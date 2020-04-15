@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
+import { PermitComponent } from './permit/permit.component';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { UsersRoutingModule } from './users-routing.module';
     UsersRoutingModule,
     LayoutsModule
   ],
-  declarations: [UsersRoutingModule.component],
+  declarations: [UsersRoutingModule.component, PermitComponent],
   providers: [
     UserAuthGuard
   ]

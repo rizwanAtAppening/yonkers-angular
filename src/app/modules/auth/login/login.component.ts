@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         if (res.status === 'success') {
           this.toasterService.success(appToaster.successHead, appToaster.loginSucess);
-          this.router.navigate([this.returnUrl]);
+          this.router.navigate(['/permit']);
           return true;
         }
       })

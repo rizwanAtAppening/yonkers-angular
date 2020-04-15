@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
   get address() { return this.registerForm.get('address') }
   get agree() { return this.registerForm.get('agree') }
 
+  
   private initForm(): void {
     const formValidations = {
       'firstName': new FormControl('', [
@@ -56,11 +57,11 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(250),
         Validators.minLength(3),
       ]),
-      'phoneNumber': new FormControl('', [
-        Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(10),
-      ]),
+      // 'phoneNumber': new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(10),
+      //   Validators.maxLength(10),
+      // ]),
       'address': new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -88,6 +89,19 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('password').value === this.registerForm.get('confirmPassword').value
       ? false : this.registerForm.get('confirmPassword').setErrors({ 'incorrect': true });
   }
+
+  passwordMatch(value: string) {
+    if (value == 'conpass') {
+      return this.registerForm.controls.password.value === this.registerForm.controls.confirmPassword.value
+        ? false : this.registerForm.get('confirmPassword').setErrors({ 'incorrect': true });
+    } else if (value == 'pass' && this.registerForm.controls.password.value === this.registerForm.controls.confirmPassword.value) {
+      this.registerForm.get('confirmPassword').setErrors(null);
+    } else if (value == 'pass' && this.registerForm.controls.password.value != this.registerForm.controls.confirmPassword.value) {
+      this.registerForm.get('confirmPassword').setErrors({ 'incorrect': true });
+    }
+  }
+
+
 
   onSubmit(): boolean {
     this.isSubmit = true;
