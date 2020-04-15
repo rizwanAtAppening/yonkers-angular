@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10.082" height="5.954" viewBox="0 0 10.082 5.954">
+    <defs>
+        <style>
+            .cls-1{fill:#fff;stroke:#fff}
+        </style>
+    </defs>
+    <path id="right-arrow" d="M4.307 8.988a.32.32 0 0 0 .453 0 .322.322 0 0 0 0-.454L.774 4.541 4.761.548a.321.321 0 0 0-.454-.454L.094 4.314a.322.322 0 0 0 0 .454l4.214 4.22z" class="cls-1" transform="rotate(90 4.516 5.066)"/>
+</svg>

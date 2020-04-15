@@ -1,0 +1,1067 @@
+<app-layout>
+  <router-outlet>
+    <div class="body_bg">
+      <div class="process_section">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-7 topbar_process">
+              <div class="same_spacebox">
+
+                <ul class="tabber-list" *ngIf="usersService.isApplicationEditable();">
+                  <li class="active" data-id="what"><a href="#">What</a></li>
+                  <li class="where" data-id="where"><a href="#">Where</a></li>
+                  <li class="applicant" data-id="applicant2"><a href="#">Applicant</a></li>
+                  <li class="property" data-id="property"><a href="#">Property Owner</a></li>
+                  <li class="buyer" data-id="buyer"><a href="#">Buyer</a></li>
+                  <li class="description" data-id="description"><a href="#">Description</a></li>
+                  <li class="uploads" data-id="uploads"><a href="#">Uploads</a></li>
+                  <li class="review" data-id="review" onclick="location= 'review.html'"><a href="#">Review</a></li>
+                </ul>
+
+                <div class="progress_step" *ngIf="!usersService.isApplicationEditable();">
+                  <div id="progressbar" data-value="16.67"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form_section">
+            <form name='whatForm' [formGroup]="whatForm" (submit)="onSubmit('whatForm','where')">
+              <!-- step 1 -->
+              <div
+                [class]="'row justify-content-between disable_step1' + [currentTab == 'what' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>What</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+                      <h3 class="form_types">Types Of Certificates</h3>
+
+
+                      <div class="haitability_step">
+
+                        <div class="certificate_click certificate_click_js  d-flex align-items-center" data-tab="tab_1">
+                          <div class="center_box">
+                            <img src="/assets/images/occupancy1.svg" alt="" height="80" width="80" />
+                            <span>Certificate of Occupancy</span>
+                          </div>
+                        </div>
+
+                        <div class="show_residenial">
+
+                          <div class="form-group">
+                            <label for="use1">Current Use<i class="requaried_impot">*</i></label>
+                            <select class="form-control" id="use1">
+                              <option value="">Resdential</option>
+                              <option value="Resdential 1">Resdential 1</option>
+                              <option value="Resdential 2">Resdential 2</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="status1">Current Status<i class="requaried_impot">*</i></label>
+                            <select class="form-control" id="status1">
+                              <option value="">Vacant</option>
+                              <option value="Vacant 1">Vacant 1</option>
+                              <option value="Vacant 2">Vacant 2</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="making1">Who is making this application?<i class="requaried_impot">*</i></label>
+                            <select class="form-control" id="making1">
+                              <option value="">Property Owner</option>
+                              <option value="Property Owner 1">Property Owner 1</option>
+                              <option value="Property Owner 2">Property Owner 2</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="transaction1">Type of transaction<i class="requaried_impot">*</i></label>
+                            <select class="form-control" id="transaction1">
+                              <option value="Sale">Sale</option>
+                              <option value="Re-finance">Re-finance</option>
+                              <option value="Ownership Transfer">Ownership Transfer</option>
+                              <option value="Obtain a Certificate Of Occupancy">Obtain a
+                                Certificate Of Occupancy</option>
+                            </select>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="haitability_step">
+
+                        <div class="certificate_click certificate_click_js  d-flex align-items-center" data-tab="tab_2">
+                          <div class="center_box">
+                            <img src="/assets/images/occupancy2.svg" alt="" height="80" width="80" />
+                            <span>Certificate of Habitability</span>
+                          </div>
+                        </div>
+
+                        <div class="show_residenial">
+                          <p>
+                            Needed prior to renting an apartment or residential dwelling unit to
+                            a
+                            <b>new tenant.</b>
+                          </p>
+
+                          <div class="form-group">
+                            <label for="use2">Current Use</label>
+                            <select class="form-control" id="use2">
+                              <option value="">Resdential</option>
+                              <option value="Resdential 1">Resdential 1</option>
+                              <option value="Resdential 2">Resdential 2</option>
+                            </select>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label for="status2">Current Status</label>
+                            <select class="form-control" id="status2">
+                              <option value="">Vacant</option>
+                              <option value="Vacant 1">Vacant 1</option>
+                              <option value="Vacant 2">Vacant 2</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="making3">Who is making this application?</label>
+                            <select class="form-control" id="making3">
+                              <option value="">Property Owner</option>
+                              <option value="Property Owner 1">Property Owner 1</option>
+                              <option value="Property Owner 2">Property Owner 2</option>
+                            </select>
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                      <div class="haitability_step">
+
+                        <div class="certificate_click certificate_click_js  d-flex align-items-center" data-tab="tab_3">
+                          <div class="center_box">
+                            <img src="/assets/images/occupancy3.svg" alt="" height="80" width="80" />
+                            <span>Certificate of Continued Occupancy</span>
+                          </div>
+                        </div>
+
+                        <div class="show_residenial">
+                          <p>
+                            Needed prior to the sale or transfer of a <b>commercial property</b>
+                            or
+                            prior to new leasing of a commercial space by a new business
+                            Establishment
+                          </p>
+
+                          <div class="form-group">
+                            <label for="use3">Current Use</label>
+                            <input type="text" id="use3" class="form-control" placeholder="Commercial">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="commercial">Current Status</label>
+                            <input type="text" id="commercial" class="form-control" placeholder="Commercial">
+                          </div>
+
+                          <div class="form-group">
+                            <label for="making4">Who is making this application?</label>
+                            <select class="form-control" id="making4">
+                              <option value="">Select</option>
+                              <option value="Select 1">Select 1</option>
+                              <option value="Select 2">Select 2</option>
+                            </select>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="use4">Proposed type of commercial</label>
+                            <select class="form-control" id="use4">
+                              <option value="">Select</option>
+                              <option value="Select 1">Select 1</option>
+                              <option value="Select 2">Select 2</option>
+                            </select>
+
+                          </div>
+
+                          <div class="form-group">
+                            <label for="status4">Previous type of commercial</label>
+                            <select class="form-control" id="status4">
+                              <option value="">Select</option>
+                              <option value="Select 1">Select 1</option>
+                              <option value="Select 2">Select 2</option>
+                            </select>
+                          </div>
+
+                        </div>
+
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-end">
+
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria rightbar_block">
+                    <div class="bg_whitebar">
+                      <h4>What type of Certificate do I need? </h4>
+                      <div class="points_sherif">
+                        <span>Certificate of Occupancy</span>
+                        <p>
+                          Needed for the sale transfer of a <strong>residential property</strong>
+                          including properties at a sheriff sale or an auction.
+                        </p>
+                      </div>
+
+                      <div class="points_sherif">
+                        <span>Certificate of Habitability</span>
+                        <p>
+                          Needed prior to renting an apartment or residential dwelling unit to a
+                          <strong>new tenant.</strong>
+                        </p>
+                      </div>
+
+                      <div class="points_sherif">
+                        <span>Certificate of Continued Occupancy</span>
+                        <p>
+                          Needed prior to the sale or transfer of a commercial property or prior
+                          to
+                          new leasing of a <strong>commercial space</strong> by a new business
+                          Establishment
+                        </p>
+                      </div>
+
+                    </div>
+
+
+                  </div>
+                  <!-- Certificate of Occupancy -->
+                  <div class="rightbar_aria mt-space d_none tab_1">
+                    <div class="bg_whitebar">
+                      <ul class="occupancy_point">
+                        <li>
+                          <i class="occupancy_point_icon1"></i>
+                          <span> What is the process?</span>
+                        </li>
+                        <li>
+                          <i class="occupancy_point_icon2"></i>
+                          <span> How long will it take?</span>
+                        </li>
+                        <li>
+                          <i class="occupancy_point_icon3"></i>
+                          <span> How much does it cost ?</span>
+                        </li>
+                        <li>
+                          <i class="occupancy_point_icon4"></i>
+                          <span> Who can apply?</span>
+                        </li>
+                        <li>
+                          <i class="occupancy_point_icon5"></i>
+                          <span> What information do I need?</span>
+                        </li>
+                        <li>
+                          <i class="occupancy_point_icon6"></i>
+                          <span> What documents do I need?</span>
+                        </li>
+                      </ul>
+
+                    </div>
+
+
+                  </div>
+
+                  <!-- Certificate of Habitability -->
+                  <div class="rightbar_aria mt-space d_none tab_2">
+                    <div class="bg_whitebar">
+                      <div class="habitability_right_bx">
+                        <img src="/assets/images/habitability_1.svg" alt="" height="74" width="66">
+                        <p>If you are the realtor, you will need to provide copy of the listing.</p>
+                      </div>
+
+                      <div class="habitability_right_bx">
+                        <img src="/assets/images/habitability_2.svg" alt="" height="74" width="66">
+                        <p>Property owners will need to provide a copy o their ID.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Certificate of Continued  Occupancy -->
+                  <div class="rightbar_aria mt-space d_none tab_3">
+                    <div class="bg_whitebar">
+                      <div class="continued_occupancy">
+                        <div class="text-center">
+                          <img src="/assets/images/contact_img.svg" alt="" height="227" width="210">
+                        </div>
+                        <h5>How can we contact you?</h5>
+                        <p>When your inspection is scheduled we email you the date so please make
+                          sure
+                          we have a good email address and phone number.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </form>
+
+            <form name='whereForm' [formGroup]="whereForm" (submit)="onSubmit('whereForm','applicant')">
+              <!-- step 2 -->
+              <div
+                [class]="'row justify-content-between disable_step2' + [currentTab == 'where' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Where</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+
+
+                      <div class="form_boxbuyer">
+                        <!-- <div class="note_block">
+                              <span><b>NOTE:</b> Please enter the location below. You can search by Address or
+                                Parcel Number (AKA Block and Lot).</span>
+                            </div> -->
+
+                        <div class="tab_search_nubadd">
+                          <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
+                                role="tab" aria-controls="pills-home" aria-selected="true">Search by
+                                Address*</a>
+                            </li>
+
+                            <li class="nav-item">
+                              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
+                                role="tab" aria-controls="pills-profile" aria-selected="false">Search
+                                by Block and Lot Number*</a>
+                            </li>
+
+                          </ul>
+
+                          <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                              aria-labelledby="pills-home-tab">
+
+                              <div class="form-group">
+
+                                <input type="text" id="tags" required=""
+                                  class="form-control controls ui-autocomplete-input"
+                                  placeholder="1 39TH ST. [SBL:070900342 00008" autocomplete="off">
+                                <!-- section dropdown -->
+                                <ul id="ui-id-1" tabindex="0"
+                                  class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front">
+                                  <li class="ui-menu-item">
+                                    <div id="ui-id-31" tabindex="-1" class="ui-menu-item-wrapper">text here</div>
+                                  </li>
+                                </ul>
+                                <!-- section drop down -->
+                                <ul class="additional_link">
+                                  <li>
+                                    <a href="#">Additional location info</a>
+                                  </li>
+                                  <li>
+                                    <a href="#">Address not listed?</a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                              <div class="note_locationapp">
+                                <p>
+                                  This location has a pending application.
+                                </p>
+                                <div class="d-flex justify-content-between">
+                                  <button type="submit" class="btn next_btn app-btn">
+                                    Create new application
+                                  </button>
+                                  <button type="button" class="bg_transparent app-trsp-btn">
+                                    Discontinue this application
+                                  </button>
+
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                              aria-labelledby="pills-profile-tab">
+                              <div class="form-group">
+                                <input type="text" class="form-control" placeholder="1 39TH ST. [SBL:070900342 00008">
+                                <ul class="additional_link">
+                                  <li>
+                                    <a href="#">Additional location info</a>
+                                  </li>
+                                  <li>
+                                    <a href="#">Address not listed?</a>
+                                  </li>
+                                </ul>
+                              </div>
+
+                            </div>
+
+
+
+                          </div>
+                        </div>
+
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-between">
+                          <button type="button" (click)="goBack('what')" class="bg_transparent back_btn">
+                            <i class="back_icon"></i> Back
+                          </button>
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="location_map">
+                      <h4>Verify your right Location </h4>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor
+                        incididunt ut labore et dolore magna.
+                      </p>
+                      <div class="maploc"><img src="/assets/images/map.png" alt="" />
+                      </div>
+
+                      <button type="button" class="btn">
+                        Adjust
+                      </button>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+            <form name='applicantForm' [formGroup]="applicantForm" (submit)="onSubmit('applicantForm','owner')">
+              <!-- step 7 start -->
+              <div
+                [class]="'row justify-content-between disable_step7' + [currentTab == 'applicant' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+                    <div class="form_process">
+                      <h3>Applicant Page</h3>
+                      <div class="step7-form">
+                        <form action="/action_page.php">
+                          <div class="form-group">
+                            <label for="email">Role in Project</label>
+                            <input type="email" class="form-control" id="email" placeholder="Property Owners Agent">
+                          </div>
+                          <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="string" class="form-control" id="name" placeholder="Mike Monxhwedey">
+                          </div>
+                          <div class="form-group">
+                            <label for="num">Phone Number</label>
+                            <input type="text" class="form-control" id="card_num" placeholder="201-456-8897">
+                          </div>
+                          <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="text" class="form-control" id="card_num"
+                              placeholder="mm@symprocitysoftware.com">
+                          </div>
+                          <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-control" id="card_num"
+                              placeholder="22 Washington Street, Plainville, MA, USA">
+                          </div>
+                          <div class="form-group">
+                            <label>
+                              Applicant's Photo ID
+                              <div class="tooltiptext">
+                                <strong>Property Owner Identification</strong>
+                                <p>A government issued photo identification of the property
+                                  owner is
+                                  required.</p>
+                                <p>Please ensure that your upload is legible/all the
+                                  information
+                                  is
+                                  clear.</p>
+                              </div>
+                            </label>
+                            <div class="upload_btn">
+                              <span>Drag and drop or <i>Choose</i> a file to upload</span>
+                              <input type="file" id="buyer_identi" class="upload_file">
+                            </div>
+
+                          </div>
+                        </form>
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-between">
+                          <button type="button" (click)="goBack('where')" class="bg_transparent back_btn">
+                            <i class="back_icon"></i> Back
+                          </button>
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/step8.png" alt="" />
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- step 7 end -->
+            </form>
+
+            <form name='ownerForm' [formGroup]="ownerForm" (submit)="onSubmit('ownerForm','buyer')">
+              <!-- Step 3 Property Owner-->
+              <div
+                [class]="'row justify-content-between disable_step3' + [currentTab == 'owner' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Property Owner</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+                      <h3 class="form_types">Property Owner Details</h3>
+
+                      <div class="form_boxbuyer">
+                        <div class="form-group">
+                          <label for="typeowner">Owner Type</label>
+                          <input type="text" id="typeowner" class="form-control" placeholder="Single Individual">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="monxhwedey">Name</label>
+                          <input type="text" id="monxhwedey" class="form-control" placeholder="Mike Monxhwedey">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="ownernumber">Phone Number</label>
+                          <input type="text" id="ownernumber" class="form-control" placeholder="201-456-8897">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="emailbox">Email Address</label>
+                          <input type="email" id="emailbox" class="form-control"
+                            placeholder="mm@symprocitysoftware.com">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="other_detail">Address</label>
+                          <textarea class="form-control" id="other_detail" rows="3"
+                            placeholder="22 Washington Street, Plainville, MA, USA"></textarea>
+                        </div>
+
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-between">
+                          <button type="button" (click)="goBack('applicant')" class="bg_transparent back_btn">
+                            <i class="back_icon"></i> Back
+                          </button>
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/imgstep3.png" alt="" />
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+            <form name='buyerForm' [formGroup]="buyerForm" (submit)="onSubmit('buyerForm','description')">
+              <!-- Step 4 Buyer-->
+              <div
+                [class]="'row justify-content-between disable_step4' + [currentTab == 'buyer' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Buyer</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+                      <h3 class="form_types">Buyer Details</h3>
+
+                      <div class="form_boxbuyer">
+                        <div class="form-group">
+                          <label for="buyerty">Buyer Type</label>
+                          <input type="text" id="buyerty" class="form-control" placeholder="Individual">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="namefill">Name</label>
+                          <input type="text" id="namefill" class="form-control" placeholder="John Smith">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="numberphone">Phone Number</label>
+                          <input type="text" id="numberphone" class="form-control" placeholder="201-456-7804">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="addressemail">Email Address</label>
+                          <input type="email" id="addressemail" class="form-control"
+                            placeholder="john@symprocitysoftware.com">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="other_detail">Address</label>
+                          <textarea class="form-control" id="other_detail" rows="3"
+                            placeholder="22 Washington Avenue, Miami Beach, FL, USA"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <label>
+                            Property owner ID <img class="info-icon" src="/assets/images/info.png" alt="info">
+                            <div class="tooltiptext">
+                              <strong>Property Owner Identification</strong>
+                              <p>A government issued photo identification of the property
+                                owner is
+                                required.</p>
+                              <p>Please ensure that your upload is legible/all the information
+                                is
+                                clear.</p>
+                            </div>
+                          </label>
+                          <div class="upload_btn">
+                            <span>Drag and drop or <i>Choose</i> a file to upload</span>
+                            <input type="file" id="idbyer_detail" class="upload_file">
+                          </div>
+
+                        </div>
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-between">
+                          <button type="button" (click)="goBack('owner')" class="bg_transparent back_btn">
+                            <i class="back_icon"></i> Back
+                          </button>
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/imgstep2.png" alt="" />
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </form>
+
+            <form name='descriptionForm' [formGroup]="descriptionForm" (submit)="onSubmit('descriptionForm','review')">
+              <!-- Step 5 Description-->
+              <div
+                [class]="'row justify-content-between disable_step5' + [currentTab == 'description' ? ' active_block' : ' disable_allbox'] ">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Description</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+                      <h3 class="form_types">Property Description</h3>
+
+
+                      <div class="form_boxbuyer">
+
+                        <div class="filter-box">
+
+                          <div class="count">
+
+                            <span>Residential Units</span>
+                            <div class="product-regulator">
+                              <button class="minus" type="button">
+                                <i class="ion-android-remove"></i>
+                              </button>
+                              <div class="output">
+                                2
+                              </div>
+                              <button class="plus" type="button">
+                                <i class="ion-android-add"></i>
+                              </button>
+                            </div>
+                          </div>
+
+                          <div class="count">
+
+                            <span>Commercial Units</span>
+                            <div class="product-regulator">
+                              <button class="minus" type="button">
+                                <i class="ion-android-remove"></i>
+                              </button>
+                              <div class="output">
+                                2
+                              </div>
+                              <button class="plus" type="button">
+                                <i class="ion-android-add"></i>
+                              </button>
+                            </div>
+                          </div>
+
+                          <div class="count">
+
+                            <span>Bedrooms</span>
+                            <div class="product-regulator">
+                              <button class="minus" type="button">
+                                <i class="ion-android-remove"></i>
+                              </button>
+                              <div class="output">
+                                0
+                              </div>
+                              <button class="plus" type="button">
+                                <i class="ion-android-add"></i>
+                              </button>
+                            </div>
+                          </div>
+
+                          <div class="count">
+
+                            <span>Kitchens</span>
+                            <div class="product-regulator">
+                              <button class="minus" type="button">
+                                <i class="ion-android-remove"></i>
+                              </button>
+                              <div class="output">
+                                0
+                              </div>
+                              <button class="plus" type="button">
+                                <i class="ion-android-add"></i>
+                              </button>
+                            </div>
+                          </div>
+
+                          <div class="count">
+
+                            <span>Bathrooms</span>
+                            <div class="product-regulator">
+                              <button class="minus" type="button">
+                                <i class="ion-android-remove"></i>
+                              </button>
+                              <div class="output">
+                                0
+                              </div>
+                              <button class="plus" type="button">
+                                <i class="ion-android-add"></i>
+                              </button>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div class="cc-selector">
+                          <span class="attic_title">Is Attic Finished?</span>
+                          <div class="amenity_redio">
+                            <input name="radio" type="radio" id="allic_yes" class="amenity_radio_box" checked="">
+                            <label for="allic_yes" class="amenity_radio_label"> <span>Yes</span>
+                            </label>
+                          </div>
+
+                          <div class="amenity_redio">
+                            <input name="radio" type="radio" id="allic_no" class="amenity_radio_box">
+                            <label for="allic_no" class="amenity_radio_label"> <span>No</span>
+                            </label>
+                          </div>
+
+                        </div>
+
+                        <div class="cc-selector">
+                          <span class="attic_title">Is Basement Finished?</span>
+                          <div class="amenity_redio">
+                            <input name="radio1" type="radio" id="basement_yes" class="amenity_radio_box">
+                            <label for="basement_yes" class="amenity_radio_label">
+                              <span>Yes</span>
+                            </label>
+                          </div>
+
+                          <div class="amenity_redio">
+                            <input name="radio1" type="radio" id="basement_no" class="amenity_radio_box" checked="">
+                            <label for="basement_no" class="amenity_radio_label">
+                              <span>No</span>
+                            </label>
+                          </div>
+
+                        </div>
+
+                        <div class="form-group">
+                          <label for="point_contact">Point of Contact for Inspection <i class="iconround"></i></label>
+                          <select class="form-control" id="point_contact">
+                            <option value="">Property Owner</option>
+                            <option value="Property Owner 1">Property Owner 1</option>
+                            <option value="Property Owner 2">Property Owner 2</option>
+                          </select>
+
+                        </div>
+
+                      </div>
+                      <!-- Button Section -->
+                      <div class="btn_row">
+                        <div class="step_button d-flex justify-content-between">
+                          <button type="button" (click)="goBack('buyer')" class="bg_transparent back_btn">
+                            <i class="back_icon"></i> Back
+                          </button>
+                          <button type="submit" class="btn next_btn next_btn_js">
+                            Next
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/imgstep5.png" alt="" />
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+
+            <!-- step 9 make payment start -->
+            <div class="row justify-content-between disable_allbox step7">
+              <div class="col-lg-7 bg_colorwhite">
+                <div class="center_stepprocess">
+                  <div class="heading_what">
+                    <h2>Make Payment</h2>
+                    <p>
+                      It will take less than a minute to fill.
+                    </p>
+                  </div>
+                  <div class="form_process">
+                    <h3>Payment</h3>
+
+                    <div class="methode">
+                      <p>Payment Method</p>
+                      <div class="cc-selector">
+                        <div class="amenity_redio">
+                          <input name="radio" type="radio" id="allic_yes" class="amenity_radio_box" checked="">
+                          <label for="allic_yes" class="amenity_radio_label"> <span>Credit
+                              Card</span>
+                          </label>
+                        </div>
+
+                        <div class="amenity_redio">
+                          <input name="radio" type="radio" id="allic_no" class="amenity_radio_box">
+                          <label for="allic_no" class="amenity_radio_label"> <span>ACH</span>
+                          </label>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="step7-form">
+                      <form action="/action_page.php">
+                        <label for="sel1">Card Type</label>
+                        <div class="styled-select master">
+                          <select class="form-control" id="sel1">
+                            <option>Master Card</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="num">Name On The Card</label>
+                          <input type="string" class="form-control" id="name" placeholder="Jonah Smith Hadlow">
+                        </div>
+                        <div class="form-group card">
+                          <label for="num">Card Number</label>
+                          <input type="text" class="form-control" id="card_num" placeholder="4587 45874 5695 2658">
+                        </div>
+                        <div class="expiry-group d-flex">
+                          <div class="form-group expiry-one">
+                            <label for="num">Expiry Date</label>
+                            <input type="text" class="form-control" id="expiry" placeholder="05/23">
+                          </div>
+                          <div class="form-group expiry-two">
+                            <label for="num">CW/CID</label>
+                            <input type="text" class="form-control" id="expiry" placeholder="4587 45874 5695 2658">
+                          </div>
+                        </div>
+                        <div class="expiry-group second">
+                          <div class="expiry-text">
+                            <h4>Fees</h4>
+                          </div>
+                          <div class="group-top d-flex">
+                            <div class="form-group expiry-one">
+                              <label>Fire Fee:</label>
+                              <input type="text" class="form-control" id="expiry" placeholder="$ 50.00">
+                            </div>
+                            <div class="form-group expiry-two">
+                              <label for="num">Processing Fee:</label>
+                              <input type="text" class="form-control" id="expiry" placeholder="$ 12.10">
+                            </div>
+                          </div>
+                          <div class="expiry-text2">
+                            <h4>Total Fee: <span> $ 62.10</span></h4>
+                          </div>
+                        </div>
+                        <div class="methode-check conditions d-flex">
+                          <div class="radio">
+                            <div class="radio-main d-flex">
+                              <input type="checkbox" checked>
+                              <span class="radio-class"></span>
+                              <h4>I agree to the <a class="pop-click" href="#">term and
+                                  conditions</a></h4>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- Button Section -->
+                    <div class="btn_row">
+                      <div class="step_button d-flex justify-content-between">
+                        <button type="button" (click)="goBack('url')" class="bg_transparent back_btn">
+                          <i class="back_icon"></i> Back
+                        </button>
+                        <button type="submit" class="btn next_btn submit_btn_js">
+                          Make Payment
+                        </button>
+                      </div>
+                    </div>
+                    <!-- button section -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-5">
+                <div class="rightbar_aria">
+                  <div class="picture_sale">
+                    <img src="/assets/images/payment.png" alt="" />
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="pop-up col-lg-12">
+                <div class="pop-inner">
+                  <h3>Terms and Conditions.</h3>
+                  <div class="pop-head" id="style1">
+                    <p>Lorem Ipsum is simply dummy text of
+                      the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standarddummy text ever since the 1500s,
+                      when an unknown
+                      printer took a galley of type and scrambled it to make
+                      a type specimen book. It has survived not only five centuries,
+                      but also the leap into electronic typesetting, remaining essentially
+                      unchanged. It was popularised in the 1960s with the release of Letraset
+                      sheets containing Lorem Ipsum passages, and more recently with desktop
+                      publishing
+                      software like Aldus PageMaker including versions of Lorem Ipsum.
+                      Lorem Ipsum is simply dummy text of
+                      the printing and typesetting industry.
+                      Lorem Ipsum has been the industry's standarddummy text ever since the 1500s,
+                      when an unknown
+                      printer took a galley of type and scrambled it to make
+                      a type specimen book. It has survived not only five centuries,
+                      but also the leap into electronic typesetting, remaining essentially
+                      unchanged. It was popularised in the 1960s with the release of Letraset
+                      sheets containing Lorem Ipsum passages, and more recently with desktop
+                      publishing
+                      software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                  </div>
+                  <div class="pop-end">
+                    <button class="btn pop-active">
+                      Accept
+                    </button>
+                    <button class="btn">
+                      Decline
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="pop-up-bg"></div>
+            </div>
+            <!-- step 9 make payment end -->
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </router-outlet>
+</app-layout>

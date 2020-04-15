@@ -1,0 +1,61 @@
+	<!-- Header -->
+	<header class="header_bar" *ngIf="!isApplicationEditable">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-lg-3 d-flex align-items-center justify-content-lg-between">
+	        <button type="button" name="button" class="menu d-block d-lg-none"></button>
+	        <a href="index.html" class="logo"> <img src="assets/images/logo.png" alt="" width="111" height="36"> </a>
+	      </div>
+
+	      <div class="col-lg-9 d-flex justify-content-end">
+	        <div class="navigation">
+
+	          <ul class="clearfix">
+	            <li>
+	              <a href="#!">Our Services</a>
+	            </li>
+	            <li>
+	              <a href="#!">Company</a>
+	            </li>
+	            <li>
+	              <a href="#!">How it Works</a>
+	            </li>
+	            <li>
+	              <a>Frequently Asked</a>
+	            </li>
+	            <li>
+	              <a *ngIf="!authenticationService.isLogin(); else elseBlock" (click)="goToLogin()"
+                  class="loginsign">Login/Singup</a>
+                  <ng-template #elseBlock>
+                    <a class="loginsign" (click)="goToDashboard()">{{ currentUser }}</a>
+                  </ng-template>
+	            </li>
+
+	          </ul>
+
+	        </div>
+        </div>
+	    </div>
+	  </div>
+  </header>
+
+  <header class="procees-logo" *ngIf="isApplicationEditable">
+      <div class="container">
+          <div class="col-md-12">
+              <div class="row">
+
+                  <div class="logo col-sm-6 text-left">
+                      <img src="assets/images/logo.png" alt="logo">
+                      <!-- <span><a href="#">Certificate Type</a></span> -->
+                  </div>
+                  <div class="save-exit col-sm-6 text-right text-sm-left text-sm-center">
+                      <span>Save and Exit</span>
+                      <div class="menu-top">
+                          <span><button type="button" name="button" class="menu d-block d-lg-none"></button></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </header>
+	<!-- Header_End -->

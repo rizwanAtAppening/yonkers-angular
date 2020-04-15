@@ -1,0 +1,113 @@
+<app-auth-layout>
+  <router-outlet>
+    <div class="body_bg">
+      <div class="process_section">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-7 topbar_process">
+              <div class="same_spacebox">
+                <div class="logo_process">
+                  <a href="#"> <img src="/assets/images/process-logo.png" alt="" /> </a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <form (submit)="onSubmit()" name="loginForm" [formGroup]="loginForm">
+            <div class="form_section">
+              <!-- Step 3 Property Owner-->
+              <div class="row justify-content-between sign-up  step3 sign-in">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Log In</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+
+                      <div class="form_boxbuyer">
+
+                        <div class="form-group">
+                          <label for="monxhwedey" class="add-detail">Email Address</label>
+                          <input
+                            [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            type="text" id="monxhwedey" class="form-control check-in" id="email" formControlName="email"
+                            placeholder="abc@example.com">
+                          <span class="input-icon-check" *ngIf="!email.invalid"></span>
+
+                        </div>
+                        <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                          <span *ngIf="email.errors['required']">
+                            Please select a Email
+                          </span>
+                          <span *ngIf="email.errors['maxlength']">
+                            Please enter a Email no more than 250 characters.
+                          </span>
+                          <span *ngIf="email.errors['pattern']">
+                            Please enter a valid Email .
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="emailbox">Password</label>
+                          <input type="password"
+                            [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
+                            [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
+                            class="form-control password" id="password" formControlName="password"
+                            placeholder="*****************">
+                          <span class="input-icon-check" *ngIf="!password.invalid"></span>
+                        </div>
+
+                        <div class="form-error"
+                          *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
+                          <span *ngIf="password.errors['required']">
+                            Please enter the Password
+                          </span>
+                          <span *ngIf="password.errors['minlength']">
+                            Please enter a Password no more than 6 characters.
+                          </span>
+                        </div>
+
+                        <div class="methode-check sign-in conditions d-flex">
+
+
+                          <h6><a class="pop-click" href="#">Forgot Password</a></h6>
+                          <h6 class="log-in">Dont't have an account? <span><a
+                                [routerLink]="['/auth/register']">Register</a></span></h6>
+
+                        </div>
+
+                        <button type="submit" class="btn register">Log in</button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/Group4045.png" alt="" />
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </router-outlet>
+
+</app-auth-layout>

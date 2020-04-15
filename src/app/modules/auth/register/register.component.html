@@ -1,0 +1,198 @@
+<app-auth-layout>
+  <router-outlet>
+    <div class="body_bg">
+      <div class="process_section">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-7 topbar_process">
+              <div class="same_spacebox">
+                <div class="logo_process">
+                  <a href="#"> <img src="/assets/images/process-logo.png" alt="" /> </a>
+                </div>
+
+                <!-- <div class="progress_step">
+                        <div  data-value="16.67"></div>
+                      </div> -->
+              </div>
+            </div>
+          </div>
+
+          <form (submit)="onSubmit()" name="registerForm" [formGroup]="registerForm">
+            <div class="form_section">
+              <!-- Step 3 Property Owner-->
+              <div class="row justify-content-between sign-up  step3 sign-up">
+                <div class="col-lg-7 bg_colorwhite">
+                  <div class="center_stepprocess">
+
+                    <div class="heading_what">
+                      <h2>Getting Started</h2>
+                      <p>
+                        It will take less than a minute to fill.
+                      </p>
+                    </div>
+
+                    <div class="form_process">
+
+                      <div class="form_boxbuyer">
+                        <div class="form-group sign-up col-12 p-0">
+                          <div class="row">
+                            <div class="col-6">
+                              <label for="typeowner">First Name</label>
+                              <input type="text" formControlName="firstName" id="firstName" class="form-control"
+                                [class]="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                placeholder="First Name">
+                              <div class="form-error"
+                                *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit)">
+                                <span *ngIf="firstName.errors['required']">
+                                  Please select a First Name
+                                </span>
+                                <span *ngIf="firstName.errors['minlength']">
+                                  Please enter a First Name no more than 250 characters.
+                                </span>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <label for="typeowner">Last Name</label>
+                              <input type="text" formControlName="lastName" id="lastName" class="form-control"
+                                [class]="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                placeholder="Last Name">
+                              <div class="form-error"
+                                *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit)">
+                                <span *ngIf="lastName.errors['required']">
+                                  Please select a Last Name
+                                </span>
+                                <span *ngIf="lastName.errors['minlength']">
+                                  Please enter a Last Name more than 3 characters.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="monxhwedey">Email Address</label>
+                          <input type="text" class="form-control check-in" formControlName="email" id="email"
+                            [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            placeholder="abc@example.com">
+                          <span class="input-icon-check" *ngIf="!email.invalid"></span>
+
+                        </div>
+                        <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                          <span *ngIf="email.errors['required']">
+                            Please select a Email
+                          </span>
+                          <span *ngIf="email.errors['maxlength']">
+                            Please enter a Email no more than 250 characters.
+                          </span>
+                          <span *ngIf="email.errors['pattern']">
+                            Please enter a valid Email .
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="ownernumber">Phone Number</label>
+                          <input type="text" class="form-control check-in" formControlName="phoneNumber"
+                            [class]="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            id="phoneNumber" placeholder="201-456-8897">
+                          <span class="input-icon-check" *ngIf="!phoneNumber.invalid"></span>
+
+                        </div>
+                        <div class="form-error"
+                          *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || isSubmit)">
+                          <span *ngIf="phoneNumber.errors['required']">
+                            Please select a Phone Number
+                          </span>
+                          <span *ngIf="phoneNumber.errors['maxlength']">
+                            Invalid Phone Number
+                          </span>
+                          <span *ngIf="phoneNumber.errors['minLength']">
+                            Invalid Phone Number
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="emailbox">Password</label>
+                          <input type="password" formControlName="password" id="password" class="form-control password"
+                            [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            placeholder="*****************">
+                        </div>
+                        <div class="form-error"
+                          *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
+                          <span *ngIf="password.errors['required']">
+                            Please select a Password
+                          </span>
+                          <span *ngIf="password.errors['minLength']">
+                            Please enter a Password more than 6 characters.
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="emailbox">Confirm Password</label>
+                          <input type="password" formControlName="confirmPassword" id="confirmPassword"
+                            (input)="pwdMatchValidator()"
+                            [class]="confirmPassword.invalid  &&  (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            class="form-control password" placeholder="*****************">
+                        </div>
+                        <div class="form-error"
+                          *ngIf="confirmPassword.invalid  && (confirmPassword.dirty || confirmPassword.touched || isSubmit)">
+                          <span>
+                            Password Not Matched
+                          </span>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="other_detail" class="add-detail">Address</label>
+                          <textarea class="form-control" rows="3" formControlName="address" id="address"
+                            [class]="address.invalid && (address.dirty || address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            placeholder="Address"></textarea>
+                        </div>
+                        <div class="form-error"
+                          *ngIf="address.invalid && (address.dirty || address.touched || isSubmit)">
+                          <span *ngIf="address.errors['required']">
+                            Please select a Address
+                          </span>
+                          <span *ngIf="address.errors['minLength']">
+                            Please enter a Address more than 6 characters.
+                          </span>
+                        </div>
+                        <div class="methode-check sign-up conditions d-flex">
+                          <div class="radio">
+                            <div class="radio-main d-flex">
+                              <input type="checkbox" formControlName="agree" id="agree">
+                              <span class="radio-class"
+                                [class]="agree.invalid && (isSubmit) ? 'radio-class form-group-error' : 'radio-class'"></span>
+                              <p><span>I you agree to</span> COOP's<a class="pop-click" href="#">Terms of Use
+                                  & Privacy Policy</a></p>
+                              <h6 class="log-in">Already have an account? <a [routerLink]="['/auth/login']">Log In</a>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+
+                        <button type="submit" class="btn register">Register</button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="col-lg-5">
+                  <div class="rightbar_aria">
+                    <div class="picture_sale">
+                      <img src="/assets/images/Group4045.png" alt="" />
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </router-outlet>
+</app-auth-layout>

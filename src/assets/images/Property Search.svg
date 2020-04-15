@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-Property_Search">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="Property_Search" data-name="Property Search" clip-path="url(#clip-Property_Search)">
+    <rect width="24" height="24" fill="#fff"/>
+    <g id="Group_2590" data-name="Group 2590" transform="translate(-1.847 0.774)" opacity="0.6">
+      <g id="search" transform="translate(2.642 2.052)">
+        <path id="Path_1241" data-name="Path 1241" d="M22.493,47.585l-10.16-6.461a1.714,1.714,0,0,0-1.856,0L.317,47.585a.7.7,0,0,0-.217.946.657.657,0,0,0,.92.223l10.16-6.461a.416.416,0,0,1,.45,0l10.16,6.461a.652.652,0,0,0,.351.1.663.663,0,0,0,.569-.326.7.7,0,0,0-.217-.946Zm0,0" transform="translate(-0.001 -39.226)" fill="#51606a"/>
+        <path id="Path_1242" data-name="Path 1242" d="M144.715-2.056A1.447,1.447,0,0,0,143.269-3.5h-.987a1.447,1.447,0,0,0-1.446,1.444V.495l3.879-2.4Zm0,0" transform="translate(-135.845 3.5)" fill="#51606a"/>
+        <path id="Path_1243" data-name="Path 1243" d="M301.719,260.039a1.669,1.669,0,1,0,1.181.488A1.666,1.666,0,0,0,301.719,260.039Zm0,0" transform="translate(-289.406 -250.38)" fill="#51606a"/>
+        <path id="Path_1244" data-name="Path 1244" d="M72.45,129.38h-.22v-8.112l-8.306-5.313a.412.412,0,0,0-.447,0l-8.306,5.313v8.112h-.221a.688.688,0,0,0,0,1.374h17.5a.688.688,0,0,0,0-1.374Zm-5.762-4.386a2.875,2.875,0,0,1-3.639.431l-2.064,2.135a.649.649,0,0,1-.94,0,.7.7,0,0,1,0-.972l2.064-2.135a3.129,3.129,0,0,1,.416-3.764,2.878,2.878,0,0,1,4.162,0,3.122,3.122,0,0,1,0,4.306Zm0,0" transform="translate(-52.295 -111.512)" fill="#51606a"/>
+      </g>
+    </g>
+  </g>
+</svg>

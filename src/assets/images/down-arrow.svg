@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="8.024" viewBox="0 0 15 8.024">
+    <defs>
+        <style>
+            .cls-1{opacity:.2}.cls-2{fill:#202020}
+        </style>
+    </defs>
+    <g id="down-arrow" class="cls-1">
+        <path id="Path_1730" d="M21.247 33.555a.53.53 0 0 0-.749 0l-6.59 6.6-6.6-6.6a.53.53 0 1 0-.749.749l6.965 6.965a.517.517 0 0 0 .375.155.539.539 0 0 0 .375-.155l6.96-6.969a.519.519 0 0 0 .013-.749z" class="cls-2" data-name="Path 1730" transform="translate(-6.4 -33.4)"/>
+    </g>
+</svg>

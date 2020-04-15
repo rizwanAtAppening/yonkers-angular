@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-More">
+      <rect width="24" height="24"/>
+    </clipPath>
+  </defs>
+  <g id="More" clip-path="url(#clip-More)">
+    <rect width="24" height="24" fill="#fff"/>
+    <g id="square-add-button" transform="translate(1 1)" opacity="0.6">
+      <g id="add-box">
+        <path id="Path_1254" data-name="Path 1254" d="M19.545,0H2.443A2.45,2.45,0,0,0,0,2.443v17.1a2.45,2.45,0,0,0,2.443,2.443h17.1a2.45,2.45,0,0,0,2.443-2.443V2.443A2.45,2.45,0,0,0,19.545,0ZM17.1,12.215H12.215V17.1H9.772V12.215H4.886V9.772H9.772V4.886h2.443V9.772H17.1Z" fill="#51606a"/>
+      </g>
+    </g>
+  </g>
+</svg>

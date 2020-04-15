@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="86" height="86" viewBox="0 0 86 86">
+    <defs>
+        <style>
+            .cls-1{fill:rgba(230,241,255,.88);opacity:.75}.cls-2{fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#56ccf2"/>
+            <stop offset="1" stop-color="#2f80ed"/>
+        </linearGradient>
+    </defs>
+    <g id="Group_2296" data-name="Group 2296" transform="translate(.312)">
+        <circle id="Ellipse_26" cx="43" cy="43" r="43" class="cls-1" data-name="Ellipse 26" transform="translate(-.313)"/>
+        <g id="Group_554" data-name="Group 554" transform="translate(22.688 26)">
+            <path id="Path_11" d="M-618.4 162.6v14.442c0 .733.13.867.848.868h4.933c.7 0 .848-.146.848-.831v-28.963c0-.671-.149-.824-.812-.824h-4.893c-.822 0-.924.1-.924.908z" class="cls-2" data-name="Path 11" transform="translate(653.066 -144.261)"/>
+            <path id="Path_12" d="M-526.93 252.452v-9.707c0-.748-.134-.882-.879-.883h-4.933c-.69 0-.835.15-.835.85v19.494c0 .715.149.864.863.865h4.933c.71 0 .852-.146.852-.873l-.001-9.746z" class="cls-2" data-name="Path 12" transform="translate(559.786 -229.427)"/>
+            <path id="Path_13" d="M-442.132 304.414v-7.079c0-.647-.15-.8-.794-.8h-5.09c-.589 0-.753.168-.753.764v14.237c0 .587.174.765.756.766q2.565.005 5.13 0c.58 0 .751-.181.751-.769v-7.119z" class="cls-2" data-name="Path 13" transform="translate(466.551 -278.658)"/>
+            <path id="Path_14" d="M-363.958 338.788v5.329c0 .625.156.784.771.785h5.09c.6 0 .772-.177.772-.79v-10.578c0-.638-.162-.8-.8-.8h-5.051c-.643 0-.784.143-.785.8l.003 5.254z" class="cls-2" data-name="Path 14" transform="translate(373.303 -311.259)"/>
+            <path id="Path_15" d="M-272.469 382.821v-3.023c0-.585-.175-.758-.762-.759h-5.131c-.571 0-.755.19-.755.772v6.006c0 .6.181.779.789.781h5.091c.605 0 .768-.172.769-.794.001-.994 0-1.988-.001-2.983z" class="cls-2" data-name="Path 15" transform="translate(280.007 -352.955)"/>
+            <g id="Group_5" data-name="Group 5">
+                <path id="Path_16" d="M30.9.922C34.967-5.259 0 21.652 0 21.652S26.832 7.1 30.9.922z" class="cls-2" data-name="Path 16" transform="translate(0 2.082)"/>
+                <path id="Path_17" d="M.329 5.45l3.13-2.96L0 0" class="cls-2" data-name="Path 17" transform="rotate(-33 16.733 -44.808)"/>
+            </g>
+        </g>
+    </g>
+</svg>

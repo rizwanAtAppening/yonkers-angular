@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="106.594" height="34" viewBox="0 0 106.594 34">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2,.cls-3{fill:#fff;font-size:31px}.cls-2{font-family:CircularStd-Bold,Circular Std Bold;font-weight:700}.cls-3{font-family:CircularStd-Black,Circular Std #000;font-weight:800}
+        </style>
+        <linearGradient id="linear-gradient" x1=".201" x2=".864" y1="-.202" y2="1.24" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#56ccf2"/>
+            <stop offset="1" stop-color="#2f80ed"/>
+        </linearGradient>
+    </defs>
+    <g id="Group_3731" data-name="Group 3731" transform="translate(-141 -37)">
+        <g id="Group_2289" data-name="Group 2289" transform="translate(5.83 8)">
+            <circle id="Ellipse_23" cx="16.99" cy="16.99" r="16.99" class="cls-1" data-name="Ellipse 23" transform="translate(135.17 29)"/>
+            <text id="C" class="cls-2" transform="translate(140.17 57)">
+                <tspan x="0" y="0">C</tspan>
+            </text>
+        </g>
+        <text id="OOP" class="cls-3" transform="translate(177.594 65)">
+            <tspan x="0" y="0">OOP</tspan>
+        </text>
+    </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+    <defs>
+        <style>
+            .cls-1{fill:rgba(230,241,255,.88)}.cls-2{fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#56ccf2"/>
+            <stop offset="1" stop-color="#2f80ed"/>
+        </linearGradient>
+    </defs>
+    <g id="Group_2296" data-name="Group 2296" transform="translate(-981 -2075)">
+        <circle id="Ellipse_26" cx="25" cy="25" r="25" class="cls-1" data-name="Ellipse 26" transform="translate(981 2075)"/>
+        <g id="Group_554" data-name="Group 554" transform="translate(990.645 2087.155)">
+            <path id="Path_11" d="M-618.4 157.281v9.428c0 .479.085.566.554.566h3.221c.458 0 .554-.1.554-.543v-18.909c0-.438-.1-.538-.53-.538h-3.199c-.537 0-.6.065-.6.593z" class="cls-2" data-name="Path 11" transform="translate(641.032 -145.311)"/>
+            <path id="Path_12" d="M-529.238 248.776v-6.337c0-.488-.087-.576-.574-.576h-3.22c-.45 0-.545.1-.545.555v12.726c0 .467.1.564.563.565h3.221c.464 0 .556-.1.556-.57l-.001-6.363z" class="cls-2" data-name="Path 12" transform="translate(550.689 -233.744)"/>
+            <path id="Path_13" d="M-444.437 301.678v-4.621c0-.422-.1-.522-.519-.523h-3.323c-.385 0-.491.11-.491.5v9.295c0 .383.114.5.494.5h3.349c.378 0 .49-.118.49-.5v-4.651z" class="cls-2" data-name="Path 13" transform="translate(460.379 -284.863)"/>
+            <path id="Path_14" d="M-363.958 336.687v3.479c0 .408.1.512.5.513h3.323c.393 0 .5-.116.5-.516v-6.906c0-.416-.105-.521-.521-.521h-3.3c-.42 0-.512.093-.512.525q.009 1.712.01 3.426z" class="cls-2" data-name="Path 14" transform="translate(370.059 -318.714)"/>
+            <path id="Path_15" d="M-274.777 381.508v-1.974c0-.382-.114-.5-.5-.5h-3.35c-.373 0-.493.124-.493.5v3.921c0 .392.118.509.515.51h3.324c.395 0 .5-.112.5-.519.005-.64.004-1.289.004-1.938z" class="cls-2" data-name="Path 15" transform="translate(279.699 -362.009)"/>
+            <g id="Group_5" data-name="Group 5">
+                <path id="Path_16" d="M20.173.6C22.828-3.433 0 14.135 0 14.135S17.518 4.637 20.173.6z" class="cls-2" data-name="Path 16" transform="translate(0 1.359)"/>
+                <path id="Path_17" d="M.215 3.558l2.043-1.933L0 0" class="cls-2" data-name="Path 17" transform="rotate(-33 10.924 -29.253)"/>
+            </g>
+        </g>
+    </g>
+</svg>

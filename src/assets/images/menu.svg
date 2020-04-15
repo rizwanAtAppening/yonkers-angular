@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.543" height="15.453" viewBox="0 0 18.543 15.453">
+    <defs>
+        <style>
+            .cls-1{opacity:.8}.cls-2{fill:#2d3b44}
+        </style>
+    </defs>
+    <g id="menu" class="cls-1">
+        <path id="Path_1207" d="M18.543 2.773A.73.73 0 0 0 17.771 2h-17A.73.73 0 0 0 0 2.773v1.545a.73.73 0 0 0 .773.773h17a.73.73 0 0 0 .773-.773z" class="cls-2" data-name="Path 1207" transform="translate(0 -2)"/>
+        <path id="Path_1208" d="M18.543 10.773a.73.73 0 0 0-.772-.773h-17a.73.73 0 0 0-.771.773v1.545a.73.73 0 0 0 .773.773h17a.73.73 0 0 0 .773-.773z" class="cls-2" data-name="Path 1208" transform="translate(0 -3.819)"/>
+        <path id="Path_1209" d="M18.543 18.773a.73.73 0 0 0-.772-.773h-17a.73.73 0 0 0-.771.773v1.545a.73.73 0 0 0 .773.773h17a.73.73 0 0 0 .773-.773z" class="cls-2" data-name="Path 1209" transform="translate(0 -5.638)"/>
+    </g>
+</svg>

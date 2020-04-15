@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.797" height="46.797" viewBox="0 0 46.797 46.797">
+    <defs>
+        <style>
+            .cls-1{fill:url(#linear-gradient)}.cls-2{fill:none;stroke:#fff;stroke-width:1.5px}.cls-3{filter:url(#Ellipse_167)}
+        </style>
+        <linearGradient id="linear-gradient" x2="1.114" y2="1.126" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#56ccf2"/>
+            <stop offset="1" stop-color="#2f80ed"/>
+        </linearGradient>
+        <filter id="Ellipse_167" width="46.797" height="46.797" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="2"/>
+            <feGaussianBlur result="blur" stdDeviation="5"/>
+            <feFlood flood-color="#0091fc" flood-opacity=".18"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="Group_4787" data-name="Group 4787" transform="translate(-1279.002 -179.001)">
+        <g class="cls-3" transform="translate(1279 179)">
+            <circle id="Ellipse_167-2" cx="8.399" cy="8.399" r="8.399" class="cls-1" data-name="Ellipse 167" transform="translate(15 13)"/>
+        </g>
+        <path id="Path_12760" d="M1208.814 500.352l2.763 2.785 5.387-4.655" class="cls-2" data-name="Path 12760" transform="translate(89.391 -300.49)"/>
+    </g>
+</svg>

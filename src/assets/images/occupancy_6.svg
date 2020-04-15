@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.63" height="30.299" viewBox="0 0 33.63 30.299">
+    <defs>
+        <style>
+            .cls-1{opacity:.89}.cls-2{fill:#ebf3ff}.cls-3{fill:#fff}.cls-4{fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".076" x2="1.105" y1="-.037" y2="1.054" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#2476e2"/>
+            <stop offset="1" stop-color="#08c2ea"/>
+        </linearGradient>
+    </defs>
+    <g id="Group_2948" data-name="Group 2948" transform="translate(-1085.713 -853.44)">
+        <g id="Group_2887" class="cls-1" data-name="Group 2887" transform="matrix(.998 .07 -.07 .998 -7860.637 4214.658)">
+            <path id="Path_1731" d="M9111.584-3989.355s-1.993 8.4 2.164 14.461c1.035 1.783-.993 6.25-5.443 8.9-5.662 3.371-14.451 3.958-19.52-4.379-2.31-4.82 1.28-12.661 6.992-17.133 6.799-5.327 16.304-6.446 15.807-1.849z" class="cls-2" data-name="Path 1731" transform="translate(-395.998 15)"/>
+            <ellipse id="Ellipse_183" cx="2.195" cy="1.674" class="cls-3" data-name="Ellipse 183" rx="2.195" ry="1.674" transform="translate(8720.616 -3959.868)"/>
+        </g>
+        <g id="document" transform="translate(1084.9 856.106)">
+            <path id="Path_3773" d="M20.431 0H6.5v25.787h20.2V6.269zm.252 1.467l4.55 4.55h-4.55zM7.36 24.928V.86h12.464v6.017h6.017v18.051z" class="cls-4" data-name="Path 3773"/>
+            <path id="Path_3774" d="M15.93 15.86h3.87a.43.43 0 1 0 0-.86h-3.87a.43.43 0 0 0 0 .86z" class="cls-4" data-name="Path 3774" transform="translate(-5.132 -8.553)"/>
+            <path id="Path_3775" d="M23.236 37H15.93a.43.43 0 1 0 0 .86h7.306a.43.43 0 1 0 0-.86z" class="cls-4" data-name="Path 3775" transform="translate(-5.132 -21.098)"/>
+            <path id="Path_3776" d="M38.938 30H35.93a.43.43 0 0 0 0 .86h3.009a.43.43 0 0 0 0-.86z" class="cls-4" data-name="Path 3776" transform="translate(-16.536 -17.106)"/>
+            <path id="Path_3777" d="M15.93 23.86h2.149a.43.43 0 1 0 0-.86H15.93a.43.43 0 0 0 0 .86z" class="cls-4" data-name="Path 3777" transform="translate(-5.132 -13.115)"/>
+            <path id="Path_3778" d="M30.93 23.86h3.009a.43.43 0 0 0 0-.86H30.93a.43.43 0 1 0 0 .86z" class="cls-4" data-name="Path 3778" transform="translate(-13.685 -13.115)"/>
+            <path id="Path_3779" d="M25.5 23.437a.43.43 0 1 0 .125-.305.452.452 0 0 0-.125.305z" class="cls-4" data-name="Path 3779" transform="translate(-10.834 -13.122)"/>
+            <path id="Path_3780" d="M20.93 30a.43.43 0 0 0 0 .86h4.3a.43.43 0 0 0 0-.86z" class="cls-4" data-name="Path 3780" transform="translate(-7.983 -17.106)"/>
+            <path id="Path_3781" d="M15.93 30.867a.431.431 0 1 0-.305-.735.442.442 0 0 0-.125.305.426.426 0 0 0 .43.43z" class="cls-4" data-name="Path 3781" transform="translate(-5.132 -17.113)"/>
+            <path id="Path_3782" d="M38.938 44H35.93a.43.43 0 0 0 0 .86h3.009a.43.43 0 0 0 0-.86z" class="cls-4" data-name="Path 3782" transform="translate(-16.536 -25.089)"/>
+            <path id="Path_3783" d="M25.228 44h-4.3a.43.43 0 1 0 0 .86h4.3a.43.43 0 1 0 0-.86z" class="cls-4" data-name="Path 3783" transform="translate(-7.983 -25.089)"/>
+            <path id="Path_3784" d="M15.625 44.132a.435.435 0 0 0-.125.305.425.425 0 0 0 .125.305.452.452 0 0 0 .305.125.444.444 0 0 0 .305-.125.452.452 0 0 0 .125-.305.424.424 0 0 0-.125-.3.446.446 0 0 0-.61-.005z" class="cls-4" data-name="Path 3784" transform="translate(-5.132 -25.097)"/>
+            <path id="Path_3785" d="M42.625 23.132a.432.432 0 0 0 .61.61.436.436 0 0 0 0-.61.45.45 0 0 0-.61 0z" class="cls-4" data-name="Path 3785" transform="translate(-20.528 -13.122)"/>
+            <path id="Path_3786" d="M38.235 37.742a.43.43 0 1 0-.61 0 .427.427 0 0 0 .305.125.444.444 0 0 0 .305-.125z" class="cls-4" data-name="Path 3786" transform="translate(-17.676 -21.105)"/>
+            <path id="Path_3787" d="M42.625 37.132a.436.436 0 0 0 0 .61.436.436 0 0 0 .61 0 .432.432 0 1 0-.61-.61z" class="cls-4" data-name="Path 3787" transform="translate(-20.528 -21.105)"/>
+        </g>
+    </g>
+</svg>
