@@ -4049,6 +4049,8 @@ select {
 /* login and ragister css */
 
 
+
+
 * {
     margin: 0;
     padding: 0;
@@ -4120,7 +4122,7 @@ ul {
     margin: 0;
     padding: 0;
 }
-
+img{max-width: 100%;}
 button:focus {
     outline: none !important;
 }
@@ -4191,7 +4193,6 @@ header{
     width: 100%;
     height: 100px;
     padding: 24px 0px;
-    border-bottom: none;
 }
 .search-box{display: flex;}
 .search-box h2{
@@ -4620,36 +4621,20 @@ padding: 11px 17px;
 
 .tabber {
     margin: 0 auto;
-    max-width: 1920px;
+    max-width: 983px;
+    margin-top: 60px;
 }
 
-.tab-sec ul {
-    border: 1px solid #00000026;
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 3px 10px #BEC2FF00;
-}
-.tab-sec ul li{
-    width: 14.28%;
-    text-align: center;
-    border-right: 0.5px solid #70707038;
-    display: block;
-}
 .tab-sec ul li a.active{
-    color: #1FA8E5;
-    background: #E5F3F9;
-    font-family: "Poppins-Medium";
-    font-size: 18px;
-    border-bottom: 4px solid #1FA8E5;
- 
+   color: #4AB5F1;
+   font-family: "Poppins-Medium";
 }
-.tab-sec ul li:last-child{border-right: none;}
+.tab-sec ul li a span{margin:0px 19px; color: #282D5B;}
 .tab-sec ul li a{
     font-family: "Poppins-Medium";
     font-size: 18px;
-    color: #001839;
+    color: #00183980;
     display: block;
-    height: 60px;
-    padding-top: 16px;
     cursor: pointer;
     border-bottom: 4px solid transparent;
 }
@@ -4661,13 +4646,236 @@ box-shadow: 0px 3px 10px #BEC2FF00;
     max-width: 983px;
     margin: 0 auto;
     display: block;
+    margin-top: 38px;
 }
 .what-bg {
     background: #FFFFFF;
 border: 1px solid #00000012;
 padding: 40px 30px;
-margin-top: 60px;
+
 }
 .txt-whate h3{
     color: #282D5B;
+    font-family: "Poppins-Bold";
+    font-size: 28px;
+    line-height: 42px;
+    border-bottom: 0.5px solid #00000042;
+    padding-bottom: 17px;
+}
+.property{
+    margin-top: 34px;
+}
+.property select{
+    width: 100%;
+    height: 60px;
+    padding: 17px 28px 17px 28px;
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 18px;
+    line-height: 27px;
+    border: 0.5px solid #A9B8C1B0;
+}
+.property label{
+    color: #001839;
+    font-family: "Poppins-Medium";
+    font-size: 15px;
+    line-height: 21px;
+    padding-bottom: 12px;
+}
+
+.Type select{
+    width: 100%;
+    height: 60px;
+    padding: 17px 28px 17px 28px;
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 18px;
+    line-height: 27px;
+    border: 0.5px solid #A9B8C1B0;
+}
+.Type label{
+    font-family: "Poppins-Medium";
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000CC;
+    margin-top: 24px;
+    padding-bottom: 11px;
+}
+.Type .form-group {position: relative;}
+.Type .form-group span{
+    position: absolute;
+    top: 77px;
+    color: #282D5B;
+    right: 18px;
+    font-size: 18px;
+}
+.property .form-group {position: relative;}
+.property .form-group span{
+    position: absolute;
+    top: 53px;
+    color: #282D5B;
+    right: 18px;
+    font-size: 18px;
+}
+
+.permittm {
+    padding: 80px 0px 50px 0px;
+    background: #F9FAFB;
+
+}
+.box-engrining{
+    background: #fff;
+    padding: 37px 0px 37px 40px;
+    max-width: 1095px;
+    margin: 0 auto;
+    display: block;
+}
+
+.engin-txt h1{
+    border-radius: 50%;
+    text-align: center;
+    line-height: 77px;
+    width: 77px;
+    height: 77px;
+    background: transparent linear-gradient(147deg, #FFFFFF 0%, #D5E4F8 100%) 0% 0% no-repeat padding-box;
+}
+.engin-txt h2{
+    color: #282D5B;
+    font-family: "Poppins-Bold";
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: 21px;
+    max-width: 164px;
+
+}
+.engin-txt p{
+font-size: 14px;
+line-height: 22px;
+    color: #19154C;
+    font-family: 'Poppins-Regular';
+    margin-top: 14px;
+    max-width: 198px;
+}
+.engin-txt button{
+    background: #4AB5F1 0% 0% no-repeat padding-box;
+border-radius: 12px;
+color: #fff;
+border:none;
+padding: 12px 61px;
+margin-top: 38px;
+}
+.engin-txt button.btn-slect{
+    background: #EDF7FE;
+    color: #4AB5F1;
+}
+.saveTxt{
+    font-family: 'Poppins-Regular';
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.curbInput {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 1px 3px #00000033;
+}
+.bg-color{
+    background: #F9FAFB;
+}
+
+/* The container */
+.clickbox {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 40px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .clickbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+  width: 20px;
+  height: 20px;
+    background-color: #D8E7FF;
+    border-radius: 50%;
+  }
+  
+  
+  /* When the radio button is checked, add a blue background */
+  .clickbox input:checked ~ .checkbox {
+    background-color: #4AB5F1;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .clickbox input:checked ~ .checkbox:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .clickbox .checkbox:after {
+       top: 5px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
+  }
+  .roll-txt{
+   padding:20px 0px;
+  }
+  .roll-txt label{
+      color: #001839CC;
+      font-family: "Poppins-Medium";
+      font-size: 14px;
+      line-height: 20px;
+
+  }
+
+  .btn-pre {
+      margin-top: 40px;
+      text-align: right;
+  }
+  .btn-pre button.continue{
+      background: #4AB5F1;
+      color: #fff;
+      font-family: 'Poppins-Regular';
+padding: 13px 20px 12px 22px;
+border: none;
+  }
+  .btn-pre button{
+      color: #4AB5F1;
+      background: #fff;
+      border: 1px solid #282D5B4F;
+      font-family: 'Poppins-Regular';
+      padding: 12px 22px;
+      margin-right: 30px;
+  }
+
+.saveTxtbtn button{
+    color: #4AB5F1;
+    border: 1px solid #282D5B4F;
+    background: #fff;
+    padding: 12px 18px;
+    font-family: 'Poppins-Regular';
 }

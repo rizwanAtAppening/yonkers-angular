@@ -1,0 +1,194 @@
+<!-- <app-layout>
+    <router-outlet> -->
+            <header>
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="search-box">
+                                            <h2>Logo</h2>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="col-6">
+                                <div class="profile-header">
+                                    <div class="saveTxtbtn">
+                                  <button> Save & Exit</button>     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+        <section class="tabber">
+            <div class="tab-sec">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li i class="nav-item">
+                        <a class="active" id="pills-What-tab" data-toggle="pill" href="#pills-What" role="tab"
+                            aria-controls="pills-What" aria-selected="true">What <span><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Where-tab" data-toggle="pill" href="#pills-Where" role="tab"
+                            aria-controls="pills-Where" aria-selected="false">Where <span><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Applicant-tab" data-toggle="pill" href="#pills-Applicant" role="tab"
+                            aria-controls="pills-Applicant" aria-selected="false">Applicant<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Contractor-tab" data-toggle="pill" href="#pills-Contractor" role="tab"
+                            aria-controls="pills-Contractor" aria-selected="false">Contractor<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Project-tab" data-toggle="pill" href="#pills-Project" role="tab"
+                            aria-controls="pills-Project" aria-selected="false">Project Details<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Uploads-tab" data-toggle="pill" href="#pills-Uploads" role="tab"
+                            aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="pills-Review-tab" data-toggle="pill" href="#pills-Review" role="tab"
+                            aria-controls="pills-Review" aria-selected="false">Review<span><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="what-box">
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-What" role="tabpanel"
+                        aria-labelledby="pills-What-tab">
+                        <div class="what-bg">
+                            <div class="txt-whate">
+                                <h3>What</h3>
+                                <form [formGroup]="whatForm">
+                                <div class="property">
+                                  
+                                        <div class="form-group">
+                                            <label>What is your role in this project ?*</label>
+                                            <select  formControlName="role" [class]="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                                <option value="" hidden> --Select--</option>
+                                                <option value="role?.key" *ngFor = "let role of settings.role">{{role?.value}}</option>
+                                                
+                                            </select>
+                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            <div
+                                            *ngIf="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit)">
+                                            <p class="form-error"
+                                                *ngIf="whatControls.role.errors['required']">
+                                                Please select role.
+                                        </p>
+                                        </div>
+                                        </div>
+                                   
+                                </div>
+                                <div class="Type">
+                                    
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <select formControlName="type" [class]="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                                    <option value="" hidden> --Select--</option>
+                                                    <option value="role?.key" *ngFor = "let type of settings.type">{{type?.value}}</option>
+                                            </select>
+                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            <div
+                                            *ngIf="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit)">
+                                            <p class="form-error"
+                                                *ngIf="whatControls.type.errors['required']">
+                                                Please select type.
+                                        </p>
+                                        </div>
+                                        </div>
+                                
+
+                                    <!-- <div class="curbInput">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <div class="roll-txt">
+                                                        <label class="clickbox">Curb Construction
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                        <label class="clickbox">Roll Off Container (Dumpster)
+                                                            <input type="radio" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                        <label class="clickbox">Street Obstruction
+                                                            <input type="radio" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="roll-txt">
+                                                        <label class="clickbox">Street Opening
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                        <label class="clickbox">Emergency Street/Sidewalk Opening
+                                                            <input type="radio" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-4">
+                                                    <div class="roll-txt">
+                                                        <label class="clickbox">Replace/Construct Sidewalk
+                                                            <input type="radio" checked="checked" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                        <label class="clickbox">Sidewalk Obstruction
+                                                            <input type="radio" name="radio">
+                                                            <span class="checkbox"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                </div>
+                            </form>
+                            </div>
+
+                            <div class="btn-pre">
+                                <button>Previous</button>
+                                <button class="continue" type="submit" (click) = "addPermitApplication('whatForm')">Continue</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-Where" role="tabpanel" aria-labelledby="pills-Where-tab">2....
+                    </div>
+                    <div class="tab-pane fade" id="pills-Applicant" role="tabpanel"
+                        aria-labelledby="pills-Applicant-tab">
+                        3...</div>
+                    <div class="tab-pane fade" id="pills-Contractor" role="tabpanel"
+                        aria-labelledby="pills-Contractor-tab">
+                        4....</div>
+                    <div class="tab-pane fade" id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
+                        5....
+                    </div>
+                    <div class="tab-pane fade" id="pills-Uploads" role="tabpanel" aria-labelledby="pills-Uploads-tab">
+                        6....
+                    </div>
+                    <div class="tab-pane fade" id="pills-Review" role="tabpanel" aria-labelledby="pills-Review-tab">7...
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    <!-- </router-outlet>
+</app-layout> -->

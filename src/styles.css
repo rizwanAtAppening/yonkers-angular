@@ -3,6 +3,11 @@
 .form-group-error {
   border: 1px solid red !important;
 }
+.form-error {
+  color: red !important;
+  font-size: 18px;
+}
+
 
 
 .input-icon-check {

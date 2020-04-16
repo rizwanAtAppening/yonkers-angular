@@ -1,93 +1,83 @@
+import * as _ from 'lodash';
+import { of as ObservableOf, Observable } from 'rxjs';
+
 export const settingConfig = {
-  currentUseType: [
-    {
-      key: "Residential",
-      value: "Residential"
-    },
-    {
-      key: "Commerical",
-      value: "Commerical"
-    },
-    {
-      key: "Mixed Use",
-      value: "Mixed Use"
-    },
-  ],
-  currentStatus: [
-    {
-      key: "Vacant",
-      value: "Vacant"
-    },
-    {
-      key: "Occupied",
-      value: "Occupied"
-    }
-  ],
+
   role: [
     {
-      key: "Property Owner",
+      key: 1,
       value: "Property Owner"
     },
     {
-      key: "Property Owners Agent",
-      value: "Property Owners Agent"
+      key: 2,
+      value: "Contrator"
     },
     {
-      key: "Buyer",
-      value: "Buyer (Auction or Sheriff Sale or Bank owned)"
-    }
-  ],
-  ownerType: [
-    {
-      key: "Single Individual",
-      value: "Single Individual"
-    },
-    {
-      key: "Business Entity/Trust",
-      value: "Business Entity/Trust"
-    },
-    {
-      key: "Bank",
-      value: "Bank"
-    }
-  ],
-  buyerType: [
-    {
-      key: "Individual",
-      value: "Individual"
-    },
-    {
-      key: "Business",
-      value: "Business"
-    }
-  ],
-  businessType: [
-    {
-      key: "Corporation",
-      value: "Corporation"
-    },
-    {
-      key: "Partnership",
-      value: "Partnership"
-    },
-    {
-      key: "LLC",
-      value: "LLC"
-    }
-  ],
-  pointofContact: [
-    {
-      key: "Applicant",
-      value: "Applicant"
-    },
-    {
-      key: "Property Owner",
-      value: "Property Owner"
-    },
-    {
-      key: "Someone else",
-      value: "Someone else"
+      key: 3,
+      value: "Agent"
     }
   ],
 
+  type: [
+    {
+      key: 1,
+      value: "Curb Construction"
+    },
+    {
+      key: 2,
+      value: "Roll Off Container (Dumpster)"
+    },
+    {
+      key: 3,
+      value: "Street Obstruction"
+    },
+    {
+      key: 4,
+      value: "Street Opening"
+    },
+    {
+      key: 5,
+      value: "Emergency Street/Sidewalk Opening"
+    },
+    {
+      key: 6,
+      value: "Replace/Construct Sidewalk"
+    },
+    {
+      key: 7,
+      value: "Sidewalk Obstruction"
+    },
+  ],
+
+
+  
+  
+
+
+  getSettingAsObservable(prop: any, condition: any): Observable<any> {
+    const object = _.find(this[prop], {
+      key: condition
+    });
+
+    return ObservableOf(object ? object.value : '');
+  },
+
+  getSetting(prop: any, condition: any): any {
+    const object = _.find(this[prop], {
+      key: condition
+    });
+
+    return object ? object.value : '';
+  },
+
+  getSettingShortForm(prop: any, condition: any): any {
+
+    const object = _.find(this[prop], {
+      key: condition
+    });
+
+    return object ? object.shortForm : '';
+  }
 }
+
+

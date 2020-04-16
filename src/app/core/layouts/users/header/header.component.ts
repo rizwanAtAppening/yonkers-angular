@@ -25,8 +25,12 @@ export class HeaderComponent implements OnInit {
 
     /** GET CURRENT ROUTE */
 
-    this.isApplicationEditable = this.usersService.isApplicationEditable();
+   // this.isApplicationEditable = this.usersService.isApplicationEditable();
 
+    this.usersService.isEditable.subscribe(isEdit => {
+      debugger
+      this.isApplicationEditable = isEdit
+    })
     if (this)
       this.authenticationService.getUserInfo().subscribe(user => {
         this.currentUser = user ? user.szEmail : null;

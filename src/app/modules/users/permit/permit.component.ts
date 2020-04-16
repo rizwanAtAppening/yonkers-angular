@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-permit',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermitComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService:UsersService
+  ) { }
 
   ngOnInit() {
+    this.userService.changeSaveAndExit(true)
+
   }
 
 }

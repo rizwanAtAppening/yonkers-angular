@@ -1,19 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 import { environment } from 'src/environments/environment';
 import { Register } from 'src/app/shared';
 import { OccupancyApplication } from '../../models/users';
+import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  private source = new BehaviorSubject(false);
+  public isEditable = this.source.asObservable()
 
+  // private applicationEditable: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  // public isEditable: Observable<boolean> = this.applicationEditable.asObservable();
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
@@ -33,6 +37,11 @@ export class UsersService {
     );
   }
 
+  changeSaveAndExit(isIt: boolean) {
+    debugger
+    this.source.next(isIt);
+  }
+
   postOccupancyApplication(data: OccupancyApplication): Observable<any> {
     const href = `${environment.application}`;
     return this.http.post<any>(href, data).pipe(
@@ -46,7 +55,7 @@ export class UsersService {
     );
   }
 
-  isApplicationEditable(): boolean {
-    return false;
-  }
+  // isApplicationEditable(): boolean {
+  //   return false;
+  // }
 }
