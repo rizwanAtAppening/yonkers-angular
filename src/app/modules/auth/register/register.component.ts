@@ -37,22 +37,22 @@ export class RegisterComponent implements OnInit {
 
   get email() { return this.registerForm.get('email') }
   get password() { return this.registerForm.get('password') }
-  get phoneNumber() { return this.registerForm.get('phoneNumber') }
+  //get phoneNumber() { return this.registerForm.get('phoneNumber') }
   get confirmPassword() { return this.registerForm.get('confirmPassword') }
-  get firstName() { return this.registerForm.get('firstName') }
-  get lastName() { return this.registerForm.get('lastName') }
-  get address() { return this.registerForm.get('address') }
+  get first_name() { return this.registerForm.get('first_name') }
+  get last_name() { return this.registerForm.get('last_name') }
+  //get address() { return this.registerForm.get('address') }
   get agree() { return this.registerForm.get('agree') }
 
   
   private initForm(): void {
     const formValidations = {
-      'firstName': new FormControl('', [
+      'first_name': new FormControl('', [
         Validators.required,
         Validators.maxLength(250),
         Validators.minLength(3),
       ]),
-      'lastName': new FormControl('', [
+      'last_name': new FormControl('', [
         Validators.required,
         Validators.maxLength(250),
         Validators.minLength(3),
@@ -62,10 +62,10 @@ export class RegisterComponent implements OnInit {
       //   Validators.minLength(10),
       //   Validators.maxLength(10),
       // ]),
-      'address': new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
+      // 'address': new FormControl('', [
+      //   Validators.required,
+      //   Validators.minLength(3),
+      // ]),
       'email': new FormControl('', [
         Validators.required,
         Validators.maxLength(250),
@@ -104,6 +104,7 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(): boolean {
+    debugger
     this.isSubmit = true;
     if (this.registerForm.invalid) {
       return false;
@@ -112,7 +113,7 @@ export class RegisterComponent implements OnInit {
       .subscribe((res) => {
         if (res.status === 'success') {
           this.toasterService.success(appToaster.successHead, res.message);
-          this.router.navigate(['/application?tab=what']);
+          this.router.navigate(['/dashboard/permit']);
         } else {
           this.toasterService.error(appToaster.errorHead, res.message);
           this.router.navigate(['/auth/register']);

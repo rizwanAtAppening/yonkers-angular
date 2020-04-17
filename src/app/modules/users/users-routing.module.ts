@@ -41,8 +41,8 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        // canActivate: [UserAuthGuard],
-        // canActivateChild: [UserAuthGuard],
+        canActivate: [UserAuthGuard],
+        canActivateChild: [UserAuthGuard],
         children: [
           {
             path:'permit',

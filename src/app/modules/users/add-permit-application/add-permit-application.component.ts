@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-permit-application',
@@ -9,7 +10,8 @@ import { UsersService } from 'src/app/core/services';
 export class AddPermitApplicationComponent implements OnInit {
 
   constructor(
-    public userSrvice:UsersService
+    public userSrvice: UsersService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -18,6 +20,9 @@ export class AddPermitApplicationComponent implements OnInit {
   }
 
 
+  navigateToTab() {
+    this.router.navigate(['/dashboard/add-permit'])
+  }
 
 
 }

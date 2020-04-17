@@ -24,7 +24,7 @@ export class UsersService {
   ) { }
 
   registerUser(data: Register): Observable<any> {
-    const href = `${environment.register}`;
+    const href = `${environment['register']}`;
     return this.http.post<any>(href, data).pipe(
       tap(
         (data) => {
@@ -42,18 +42,18 @@ export class UsersService {
     this.source.next(isIt);
   }
 
-  postOccupancyApplication(data: OccupancyApplication): Observable<any> {
-    const href = `${environment.application}`;
-    return this.http.post<any>(href, data).pipe(
-      tap(
-        (data) => {
-          if (data.status === 'success') {
-          }
-          return data;
-        }
-      )
-    );
-  }
+  // postOccupancyApplication(data: OccupancyApplication): Observable<any> {
+  //   const href = `${environment.application}`;
+  //   return this.http.post<any>(href, data).pipe(
+  //     tap(
+  //       (data) => {
+  //         if (data.status === 'success') {
+  //         }
+  //         return data;
+  //       }
+  //     )
+  //   );
+  // }
 
   // isApplicationEditable(): boolean {
   //   return false;

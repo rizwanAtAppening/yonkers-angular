@@ -116,6 +116,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "coop-angular"
+    }
+  },
+  "defaultProject": "coop-angular",
+  "cli": {
+    "analytics": "8ed9a73b-7526-408e-ab40-407219b2b826"
+  }
 }

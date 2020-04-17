@@ -31,7 +31,8 @@ const TOASTR_OPTIONS = {
     ToastrModule.forRoot(TOASTR_OPTIONS),
     NgxUiLoaderModule,
     NgxUiLoaderRouterModule,
-    NgxUiLoaderHttpModule
+    NgxUiLoaderHttpModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

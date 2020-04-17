@@ -5,7 +5,7 @@ import { urls } from './url';
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  host: 'http://localhost:3000',
+  host: 'http://139.59.40.62:8083',
   ...urls
 };
 

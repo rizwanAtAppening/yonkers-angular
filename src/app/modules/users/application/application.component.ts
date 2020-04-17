@@ -220,25 +220,25 @@ export class ApplicationComponent implements OnInit {
     this.descriptionForm = new FormGroup(validations);
   }
 
-  onSubmit(formToSubmit: string, navigateTo: string): boolean {
-    console.log(this[formToSubmit])
-    this.isSubmit = true;
-    if (this[formToSubmit].invalid) {
-      return false
-    }
-    this.usersService.postOccupancyApplication(this[formToSubmit].value)
-      .subscribe(res => {
-        if (res.status === 'success') {
-          this.toasterService.success(appToaster.successHead, res.message);
-          this.currentTab = navigateTo;
-          this.router.navigate([['/application', { queryParams: { tab: navigateTo } }]]);
-        } else {
-          this.toasterService.error(appToaster.errorHead, res.message);
-          this.router.navigate(['/application', { queryParams: { tab: this.currentTab } }]);
-        }
-      });
-    return true;
-  }
+  // onSubmit(formToSubmit: string, navigateTo: string): boolean {
+  //   console.log(this[formToSubmit])
+  //   this.isSubmit = true;
+  //   if (this[formToSubmit].invalid) {
+  //     return false
+  //   }
+  //   this.usersService.postOccupancyApplication(this[formToSubmit].value)
+  //     .subscribe(res => {
+  //       if (res.status === 'success') {
+  //         this.toasterService.success(appToaster.successHead, res.message);
+  //         this.currentTab = navigateTo;
+  //         this.router.navigate([['/application', { queryParams: { tab: navigateTo } }]]);
+  //       } else {
+  //         this.toasterService.error(appToaster.errorHead, res.message);
+  //         this.router.navigate(['/application', { queryParams: { tab: this.currentTab } }]);
+  //       }
+  //     });
+  //   return true;
+  // }
 
   goBack(navigateTo: string) {
     this.currentTab = navigateTo;

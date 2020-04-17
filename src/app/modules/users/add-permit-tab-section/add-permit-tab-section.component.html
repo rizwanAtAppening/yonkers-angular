@@ -27,37 +27,37 @@
             <div class="tab-sec">
                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
                     <li i class="nav-item">
-                        <a class="active" id="pills-What-tab" data-toggle="pill" href="#pills-What" role="tab"
+                        <a  [class] = "(currentTab == 'what') ? 'active':''"  id="pills-What-tab" data-toggle="pill" href="#pills-What" role="tab"
                             aria-controls="pills-What" aria-selected="true">What <span><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Where-tab" data-toggle="pill" href="#pills-Where" role="tab"
+                        <a [class] = "(currentTab == 'where') ? 'active':''" id="pills-Where-tab" data-toggle="pill" href="#pills-Where" role="tab"
                             aria-controls="pills-Where" aria-selected="false">Where <span><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Applicant-tab" data-toggle="pill" href="#pills-Applicant" role="tab"
+                        <a  [class] = "(currentTab == 'applicant') ? 'active':''" id="pills-Applicant-tab" data-toggle="pill" href="#pills-Applicant" role="tab"
                             aria-controls="pills-Applicant" aria-selected="false">Applicant<span><i
                                     class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Contractor-tab" data-toggle="pill" href="#pills-Contractor" role="tab"
+                        <a  [class] = "(currentTab == 'contrator') ? 'active':''" id="pills-Contractor-tab" data-toggle="pill" href="#pills-Contractor" role="tab"
                             aria-controls="pills-Contractor" aria-selected="false">Contractor<span><i
                                     class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Project-tab" data-toggle="pill" href="#pills-Project" role="tab"
+                        <a  [class] = "(currentTab == 'projectDetail') ? 'active':''" id="pills-Project-tab" data-toggle="pill" href="#pills-Project" role="tab"
                             aria-controls="pills-Project" aria-selected="false">Project Details<span><i
                                     class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Uploads-tab" data-toggle="pill" href="#pills-Uploads" role="tab"
+                        <a [class] = "(currentTab == 'upload') ? 'active':''" id="pills-Uploads-tab" data-toggle="pill" href="#pills-Uploads" role="tab"
                             aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
                                     class="fa fa-angle-right" aria-hidden="true"></i></span></a>
                     </li>
                     <li class="nav-item">
-                        <a id="pills-Review-tab" data-toggle="pill" href="#pills-Review" role="tab"
+                        <a [class] = "(currentTab == 'contrator') ? 'review':''" id="pills-Review-tab" data-toggle="pill" href="#pills-Review" role="tab"
                             aria-controls="pills-Review" aria-selected="false">Review<span><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span></a>
                     </li>
@@ -66,7 +66,7 @@
 
             <div class="what-box">
                 <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-What" role="tabpanel"
+                    <div [class] = "(currentTab == 'what') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-What" role="tabpanel"
                         aria-labelledby="pills-What-tab">
                         <div class="what-bg">
                             <div class="txt-whate">
@@ -165,26 +165,197 @@
 
                             <div class="btn-pre">
                                 <button>Previous</button>
-                                <button class="continue" type="submit" (click) = "addPermitApplication('whatForm')">Continue</button>
+                                <button class="continue" type="submit" (click) = "addPermitApplication('whatForm','where')">Continue</button>
                             </div>
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pills-Where" role="tabpanel" aria-labelledby="pills-Where-tab">2....
+                    <div   [class] = "(currentTab == 'where') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Where" role="tabpanel" aria-labelledby="pills-Where-tab">
+
+                        <div class="where-bg">
+                            <div class="job-location-Hd">
+                                <h3>Job Location</h3>
+                            </div>
+    
+    
+                            <div class="location-type-tab">
+                                <h3>Location Type</h3>
+                            </div>
+    
+                            <div class="adrees-tab">
+                                <nav>
+                                    <div class="nav" id="nav-tab" role="tablist">
+                                        <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
+                                            role="tab" aria-controls="nav-Exact" aria-selected="true">Exact Address</a>
+                                        <a class="nav-item " id="nav-Location-tab" data-toggle="tab" href="#nav-Location"
+                                            role="tab" aria-controls="nav-Location" aria-selected="false">Location</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
+                                        aria-labelledby="nav-Exact-tab">
+    
+                                        
+                                        <div class="job-input">
+                                                <form [formGroup]="whereForm"> 
+                                            <div class="container p-0">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text"  formControlName="address"  [typeahead]="states" id="jobadd" [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                            required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="jobadd">Address</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="lorem-Ipsum"  
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="lorem-Ipsum">Lorem Ipsum</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="unit-txt">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="know_us">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <label>Unit No./Also Known as</label>
+                                                                            <textarea
+                                                                                placeholder="Type something here..."></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="btn-pre">
+                                                    <button>Previous</button>
+                                                    <button class="continue" type="submit" (click) = "addPermitApplication('whereForm','where')">Continue</button>
+                                                </div>
+    
+    
+                                            </div>
+    </form>
+                                        </div>
+                                        
+    
+    
+                                    </div>
+                                   
+                                    <div class="tab-pane fade" id="nav-Location" role="tabpanel"
+                                        aria-labelledby="nav-Location-tab">
+                                        <form [formGroup]="whereForm"> 
+                                        <div class="job-input">
+                                            <div class="container p-0">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="Street"  class="form-control" formControlName="street_name"  id="jobadd" [class]="whereControls.street_name.invalid && (whereControls.street_name.dirty || whereControls.street_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                            required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="Street">Street Name</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="Selecttxt"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="Selecttxt">Select</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+    
+                                                <div class="unit-txt">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="know_us">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <label>Also known as</label>
+                                                                            <textarea
+                                                                                placeholder="Type something here..."></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="btn-pre">
+                                                    <button>Previous</button>
+                                                    <button class="continue" type="submit" (click) = "addPermitApplication('whereForm','applicant')">Continue</button>
+                                                </div>
+    
+    
+                                            </div>
+    
+                                        </div>
+    </form>
+                                    </div>
+                                    
+    
+                                </div>
+                            </div>
+    
+    
+    
+                        </div>
+    
+    
+    
                     </div>
-                    <div class="tab-pane fade" id="pills-Applicant" role="tabpanel"
+                    <div [class] = "(currentTab == 'applicant') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Applicant" role="tabpanel"
                         aria-labelledby="pills-Applicant-tab">
                         3...</div>
-                    <div class="tab-pane fade" id="pills-Contractor" role="tabpanel"
+                    <div [class] = "(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Contractor" role="tabpanel"
                         aria-labelledby="pills-Contractor-tab">
                         4....</div>
-                    <div class="tab-pane fade" id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
+                    <div [class] = "(currentTab == 'projectDetail') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
                         5....
                     </div>
-                    <div class="tab-pane fade" id="pills-Uploads" role="tabpanel" aria-labelledby="pills-Uploads-tab">
+                    <div [class] = "(currentTab == 'upload') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Uploads" role="tabpanel" aria-labelledby="pills-Uploads-tab">
                         6....
                     </div>
-                    <div class="tab-pane fade" id="pills-Review" role="tabpanel" aria-labelledby="pills-Review-tab">7...
+                    <div [class] = "(currentTab == 'review') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Review" role="tabpanel" aria-labelledby="pills-Review-tab">7...
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ export class AuthenticationService {
   }
 
   login(loginData: Login): Observable<any> {
-    const href = `${environment.login}`;
+    const href = `${environment['login']}`;
     return this.http.post<any>(href, loginData).pipe(
       tap(
         (data) => {

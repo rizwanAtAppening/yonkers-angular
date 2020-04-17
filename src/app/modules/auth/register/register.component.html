@@ -42,15 +42,15 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="name" class="form-control" formControlName="firstName" id="firstName" class="form-control"
-                          [class]="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
+                          <input type="text" id="name" class="form-control" formControlName="first_name" id="first_name" class="form-control"
+                          [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
                           <label class="form-control-placeholder" for="name">First Name</label>
                           <div class="form-error"
-                          *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit)">
-                          <span *ngIf="firstName.errors['required']">
+                          *ngIf="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit)">
+                          <span *ngIf="first_name.errors['required']">
                             Please select a First Name
                           </span>
-                          <span *ngIf="firstName.errors['minlength']">
+                          <span *ngIf="first_name.errors['minlength']">
                             Please enter a First Name no more than 250 characters.
                           </span>
                         </div>
@@ -58,16 +58,16 @@
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="lastname" class="form-control" formControlName="lastName" id="lastName" class="form-control"
-                          [class]="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label class="form-control-placeholder" for="lastname">Last Name</label>
+                          <input type="text" id="last_name" class="form-control" formControlName="last_name" id="last_name" class="form-control"
+                          [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
+                          <label class="form-control-placeholder" for="last_name">Last Name</label>
                         </div>
                         <div class="form-error"
-                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit)">
-                        <span *ngIf="lastName.errors['required']">
+                        *ngIf="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit)">
+                        <span *ngIf="last_name.errors['required']">
                           Please select a Last Name
                         </span>
-                        <span *ngIf="lastName.errors['minlength']">
+                        <span *ngIf="last_name.errors['minlength']">
                           Please enter a Last Name more than 3 characters.
                         </span>
                       </div>
@@ -99,7 +99,7 @@
                       </div>
                   </div>
 
-                  <div class="new-passwordInput creat-pass">
+                  <div class="new-passwordInput creat-pass new">
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
@@ -194,30 +194,30 @@
                           <div class="row">
                             <div class="col-6">
                               <label for="typeowner">First Name</label>
-                              <input type="text" formControlName="firstName" id="firstName" class="form-control"
-                                [class]="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                              <input type="text" formControlName="first_name" id="first_name" class="form-control"
+                                [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                 placeholder="First Name">
                               <div class="form-error"
-                                *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || isSubmit)">
-                                <span *ngIf="firstName.errors['required']">
+                                *ngIf="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit)">
+                                <span *ngIf="first_name.errors['required']">
                                   Please select a First Name
                                 </span>
-                                <span *ngIf="firstName.errors['minlength']">
+                                <span *ngIf="first_name.errors['minlength']">
                                   Please enter a First Name no more than 250 characters.
                                 </span>
                               </div>
                             </div>
                             <div class="col-6">
                               <label for="typeowner">Last Name</label>
-                              <input type="text" formControlName="lastName" id="lastName" class="form-control"
-                                [class]="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                              <input type="text" formControlName="last_name" id="last_name" class="form-control"
+                                [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                 placeholder="Last Name">
                               <div class="form-error"
-                                *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || isSubmit)">
-                                <span *ngIf="lastName.errors['required']">
+                                *ngIf="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit)">
+                                <span *ngIf="last_name.errors['required']">
                                   Please select a Last Name
                                 </span>
-                                <span *ngIf="lastName.errors['minlength']">
+                                <span *ngIf="last_name.errors['minlength']">
                                   Please enter a Last Name more than 3 characters.
                                 </span>
                               </div>

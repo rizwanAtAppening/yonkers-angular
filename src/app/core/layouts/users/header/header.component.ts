@@ -25,16 +25,20 @@ export class HeaderComponent implements OnInit {
 
     /** GET CURRENT ROUTE */
 
-   // this.isApplicationEditable = this.usersService.isApplicationEditable();
+    // this.isApplicationEditable = this.usersService.isApplicationEditable();
 
-    this.usersService.isEditable.subscribe(isEdit => {
-      debugger
-      this.isApplicationEditable = isEdit
-    })
+    this.isEdit()
     if (this)
       this.authenticationService.getUserInfo().subscribe(user => {
         this.currentUser = user ? user.szEmail : null;
       });
+  }
+
+  isEdit() {
+    this.usersService.isEditable.subscribe(isEdit => {
+      debugger
+      this.isApplicationEditable = isEdit
+    })
   }
 
   goToLogin() {
@@ -45,5 +49,17 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/application?tab=what');
   }
 
+  logoutUser() {
+    this.usersService.changeSaveAndExit(false)
+    this.authenticationService.logout().subscribe(res => {
+      if (res) {
+        debugger
+        //this.applicationService.apllicationStatus(1)
+        this.isEdit();
+        this.router.navigate(['/']);
+
+      }
+    });
+  }
 
 }
