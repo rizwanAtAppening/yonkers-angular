@@ -9,6 +9,7 @@ import { AddPermitApplicationComponent } from './add-permit-application/add-perm
 import { AddPermitTabSectionComponent } from './add-permit-tab-section/add-permit-tab-section.component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -19,6 +20,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
     LayoutsModule,
   //  BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
+    HttpClientModule
     
 
   ],

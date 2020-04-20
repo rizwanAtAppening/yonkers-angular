@@ -49,7 +49,7 @@ export class AuthenticationService {
 
   getToken() {
     const savedCredentials = this.getUser();
-    return savedCredentials && savedCredentials['ApiToken'];
+    return savedCredentials && savedCredentials['token'];
   }
 
   getUserRole(): Observable<any> {
@@ -69,6 +69,7 @@ export class AuthenticationService {
   }
 
   private getUser() {
+    debugger
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     return JSON.parse(savedCredentials);
   }

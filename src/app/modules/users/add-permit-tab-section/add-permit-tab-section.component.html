@@ -1,117 +1,120 @@
 <!-- <app-layout>
     <router-outlet> -->
-            <header>
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row">
-                                    <div class="col-3">
-                                        <div class="search-box">
-                                            <h2>Logo</h2>
-                                        </div>
-                                    </div>
-                                </div>
-            
-                            </div>
-                            <div class="col-6">
-                                <div class="profile-header">
-                                    <div class="saveTxtbtn">
-                                  <button> Save & Exit</button>     
-                                    </div>
-                                </div>
-                            </div>
+<header>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="search-box">
+                            <h2>Logo</h2>
                         </div>
                     </div>
-                </header>
-        <section class="tabber">
-            <div class="tab-sec">
-                <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                    <li i class="nav-item">
-                        <a  [class] = "(currentTab == 'what') ? 'active':''"  id="pills-What-tab" data-toggle="pill" href="#pills-What" role="tab"
-                            aria-controls="pills-What" aria-selected="true">What <span><i class="fa fa-angle-right"
-                                    aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a [class] = "(currentTab == 'where') ? 'active':''" id="pills-Where-tab" data-toggle="pill" href="#pills-Where" role="tab"
-                            aria-controls="pills-Where" aria-selected="false">Where <span><i class="fa fa-angle-right"
-                                    aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a  [class] = "(currentTab == 'applicant') ? 'active':''" id="pills-Applicant-tab" data-toggle="pill" href="#pills-Applicant" role="tab"
-                            aria-controls="pills-Applicant" aria-selected="false">Applicant<span><i
-                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a  [class] = "(currentTab == 'contrator') ? 'active':''" id="pills-Contractor-tab" data-toggle="pill" href="#pills-Contractor" role="tab"
-                            aria-controls="pills-Contractor" aria-selected="false">Contractor<span><i
-                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a  [class] = "(currentTab == 'projectDetail') ? 'active':''" id="pills-Project-tab" data-toggle="pill" href="#pills-Project" role="tab"
-                            aria-controls="pills-Project" aria-selected="false">Project Details<span><i
-                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a [class] = "(currentTab == 'upload') ? 'active':''" id="pills-Uploads-tab" data-toggle="pill" href="#pills-Uploads" role="tab"
-                            aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
-                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a [class] = "(currentTab == 'contrator') ? 'review':''" id="pills-Review-tab" data-toggle="pill" href="#pills-Review" role="tab"
-                            aria-controls="pills-Review" aria-selected="false">Review<span><i class="fa fa-angle-right"
-                                    aria-hidden="true"></i></span></a>
-                    </li>
-                </ul>
+                </div>
+
             </div>
+            <div class="col-6">
+                <div class="profile-header">
+                    <div class="saveTxtbtn">
+                        <button> Save & Exit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="tabber">
+    <div class="tab-sec">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li i class="nav-item">
+                <a [class]="(currentTab == 'what') ? 'active':''" id="pills-What-tab" data-toggle="pill"
+                    href="#pills-What" role="tab" aria-controls="pills-What" aria-selected="true">What <span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'where') ? 'active':''" id="pills-Where-tab" data-toggle="pill"
+                    href="#pills-Where" role="tab" aria-controls="pills-Where" aria-selected="false">Where <span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'applicant') ? 'active':''" id="pills-Applicant-tab" data-toggle="pill"
+                    href="#pills-Applicant" role="tab" aria-controls="pills-Applicant"
+                    aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'contrator') ? 'active':''" id="pills-Contractor-tab" data-toggle="pill"
+                    href="#pills-Contractor" role="tab" aria-controls="pills-Contractor"
+                    aria-selected="false">Contractor<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'projectDetail') ? 'active':''" id="pills-Project-tab" data-toggle="pill"
+                    href="#pills-Project" role="tab" aria-controls="pills-Project" aria-selected="false">Project
+                    Details<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'upload') ? 'active':''" id="pills-Uploads-tab" data-toggle="pill"
+                    href="#pills-Uploads" role="tab" aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'contrator') ? 'review':''" id="pills-Review-tab" data-toggle="pill"
+                    href="#pills-Review" role="tab" aria-controls="pills-Review" aria-selected="false">Review<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+        </ul>
+    </div>
 
-            <div class="what-box">
-                <div class="tab-content" id="pills-tabContent">
-                    <div [class] = "(currentTab == 'what') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-What" role="tabpanel"
-                        aria-labelledby="pills-What-tab">
-                        <div class="what-bg">
-                            <div class="txt-whate">
-                                <h3>What</h3>
-                                <form [formGroup]="whatForm">
-                                <div class="property">
-                                  
-                                        <div class="form-group">
-                                            <label>What is your role in this project ?*</label>
-                                            <select  formControlName="role" [class]="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                <option value="" hidden> --Select--</option>
-                                                <option value="role?.key" *ngFor = "let role of settings.role">{{role?.value}}</option>
-                                                
-                                            </select>
-                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                            <div
-                                            *ngIf="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit)">
-                                            <p class="form-error"
-                                                *ngIf="whatControls.role.errors['required']">
-                                                Please select role.
+    <div class="what-box">
+        <div class="tab-content" id="pills-tabContent">
+            <div [class]="(currentTab == 'what') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-What"
+                role="tabpanel" aria-labelledby="pills-What-tab">
+                <div class="what-bg">
+                    <div class="txt-whate">
+                        <h3>What</h3>
+                        <form [formGroup]="whatForm">
+                            <div class="property">
+
+                                <div class="form-group">
+                                    <label>What is your role in this project ?*</label>
+                                    <select formControlName="role"
+                                        [class]="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                        <option value="" hidden> --Select--</option>
+                                        <option [value]="role?.key" *ngFor="let role of settings.role">{{role?.value}}
+                                        </option>
+
+                                    </select>
+                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <div
+                                        *ngIf="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit)">
+                                        <p class="form-error" *ngIf="whatControls.role.errors['required']">
+                                            Please select role.
                                         </p>
-                                        </div>
-                                        </div>
-                                   
+                                    </div>
                                 </div>
-                                <div class="Type">
-                                    
-                                        <div class="form-group">
-                                            <label>Type</label>
-                                            <select formControlName="type" [class]="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                    <option value="" hidden> --Select--</option>
-                                                    <option value="role?.key" *ngFor = "let type of settings.type">{{type?.value}}</option>
-                                            </select>
-                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                            <div
-                                            *ngIf="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit)">
-                                            <p class="form-error"
-                                                *ngIf="whatControls.type.errors['required']">
-                                                Please select type.
-                                        </p>
-                                        </div>
-                                        </div>
-                                
 
-                                    <!-- <div class="curbInput">
+                            </div>
+                            <div class="Type">
+
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select formControlName="type"
+                                        [class]="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                        <option value="" hidden> --Select--</option>
+                                        <option [value]="type?.key" *ngFor="let type of settings.type">{{type?.value}}
+                                        </option>
+                                    </select>
+                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    <div
+                                        *ngIf="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit)">
+                                        <p class="form-error" *ngIf="whatControls.type.errors['required']">
+                                            Please select type.
+                                        </p>
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="curbInput">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-4">
@@ -159,207 +162,727 @@
                                         </div>
                                     </div> -->
 
-                                </div>
-                            </form>
                             </div>
+                        </form>
+                    </div>
 
-                            <div class="btn-pre">
-                                <button>Previous</button>
-                                <button class="continue" type="submit" (click) = "addPermitApplication('whatForm','where')">Continue</button>
-                            </div>
+                    <div class="btn-pre">
+                        <button>Previous</button>
+                        <button class="continue" type="submit"
+                            (click)="addPermitApplication('whatForm','where')">Continue</button>
+                    </div>
 
-                        </div>
-                    </div>
-                    <div   [class] = "(currentTab == 'where') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Where" role="tabpanel" aria-labelledby="pills-Where-tab">
-
-                        <div class="where-bg">
-                            <div class="job-location-Hd">
-                                <h3>Job Location</h3>
-                            </div>
-    
-    
-                            <div class="location-type-tab">
-                                <h3>Location Type</h3>
-                            </div>
-    
-                            <div class="adrees-tab">
-                                <nav>
-                                    <div class="nav" id="nav-tab" role="tablist">
-                                        <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
-                                            role="tab" aria-controls="nav-Exact" aria-selected="true">Exact Address</a>
-                                        <a class="nav-item " id="nav-Location-tab" data-toggle="tab" href="#nav-Location"
-                                            role="tab" aria-controls="nav-Location" aria-selected="false">Location</a>
-                                    </div>
-                                </nav>
-                                <div class="tab-content" id="nav-tabContent">
-                                    <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
-                                        aria-labelledby="nav-Exact-tab">
-    
-                                        
-                                        <div class="job-input">
-                                                <form [formGroup]="whereForm"> 
-                                            <div class="container p-0">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text"  formControlName="address"  [typeahead]="states" id="jobadd" [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                            required>
-                                                                        <label class="form-control-placeholder"
-                                                                            for="jobadd">Address</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-    
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="lorem-Ipsum"  
-                                                                            class="form-control" required>
-                                                                        <label class="form-control-placeholder"
-                                                                            for="lorem-Ipsum">Lorem Ipsum</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-    
-    
-                                                <div class="unit-txt">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="know_us">
-                                                                <div class="row">
-                                                                    <div class="col-12 ">
-                                                                        <div class="form-group">
-                                                                            <label>Unit No./Also Known as</label>
-                                                                            <textarea
-                                                                                placeholder="Type something here..."></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-    
-                                                <div class="btn-pre">
-                                                    <button>Previous</button>
-                                                    <button class="continue" type="submit" (click) = "addPermitApplication('whereForm','where')">Continue</button>
-                                                </div>
-    
-    
-                                            </div>
-    </form>
-                                        </div>
-                                        
-    
-    
-                                    </div>
-                                   
-                                    <div class="tab-pane fade" id="nav-Location" role="tabpanel"
-                                        aria-labelledby="nav-Location-tab">
-                                        <form [formGroup]="whereForm"> 
-                                        <div class="job-input">
-                                            <div class="container p-0">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="Street"  class="form-control" formControlName="street_name"  id="jobadd" [class]="whereControls.street_name.invalid && (whereControls.street_name.dirty || whereControls.street_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                            required>
-                                                                        <label class="form-control-placeholder"
-                                                                            for="Street">Street Name</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-    
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="Selecttxt"
-                                                                            class="form-control" required>
-                                                                        <label class="form-control-placeholder"
-                                                                            for="Selecttxt">Select</label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-    
-    
-                                                <div class="unit-txt">
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <div class="know_us">
-                                                                <div class="row">
-                                                                    <div class="col-12 ">
-                                                                        <div class="form-group">
-                                                                            <label>Also known as</label>
-                                                                            <textarea
-                                                                                placeholder="Type something here..."></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-    
-                                                <div class="btn-pre">
-                                                    <button>Previous</button>
-                                                    <button class="continue" type="submit" (click) = "addPermitApplication('whereForm','applicant')">Continue</button>
-                                                </div>
-    
-    
-                                            </div>
-    
-                                        </div>
-    </form>
-                                    </div>
-                                    
-    
-                                </div>
-                            </div>
-    
-    
-    
-                        </div>
-    
-    
-    
-                    </div>
-                    <div [class] = "(currentTab == 'applicant') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Applicant" role="tabpanel"
-                        aria-labelledby="pills-Applicant-tab">
-                        3...</div>
-                    <div [class] = "(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Contractor" role="tabpanel"
-                        aria-labelledby="pills-Contractor-tab">
-                        4....</div>
-                    <div [class] = "(currentTab == 'projectDetail') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
-                        5....
-                    </div>
-                    <div [class] = "(currentTab == 'upload') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Uploads" role="tabpanel" aria-labelledby="pills-Uploads-tab">
-                        6....
-                    </div>
-                    <div [class] = "(currentTab == 'review') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Review" role="tabpanel" aria-labelledby="pills-Review-tab">7...
-                    </div>
                 </div>
             </div>
+            <div [class]="(currentTab == 'where') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Where"
+                role="tabpanel" aria-labelledby="pills-Where-tab">
 
-        </section>
-    <!-- </router-outlet>
+                <div class="where-bg">
+                    <div class="job-location-Hd">
+                        <h3>Job Location</h3>
+                    </div>
+
+
+                    <div class="location-type-tab">
+                        <h3>Location Type</h3>
+                    </div>
+
+                    <div class="adrees-tab">
+                        <nav>
+                            <div class="nav" id="nav-tab" role="tablist">
+                                <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
+                                    role="tab" aria-controls="nav-Exact" aria-selected="true" (click) ="selectAddress('exactAddress')">Exact Address</a>
+                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab"  (click) ="selectAddress('location')" href="#nav-Location"
+                                    role="tab" aria-controls="nav-Location" aria-selected="false">Location</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
+                                aria-labelledby="nav-Exact-tab">
+
+
+                                <div class="job-input">
+                                    <form [formGroup]="whereForm">
+                                        <div class="container p-0">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" formControlName="address"
+                                                                        [typeahead]="states" id="jobadd"
+                                                                        [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="jobadd">Address</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="lorem-Ipsum"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="lorem-Ipsum">Lorem Ipsum</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="unit-txt">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="know_us">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <label>Unit No./Also Known as</label>
+                                                                        <textarea
+                                                                            placeholder="Type something here..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn-pre">
+                                                <button>Previous</button>
+                                                <button class="continue" type="submit"
+                                                    (click)="addPermitApplication('whereForm','applicant')">Continue</button>
+                                            </div>
+
+
+                                        </div>
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="tab-pane fade" id="nav-Location" role="tabpanel"
+                                aria-labelledby="nav-Location-tab">
+                                <form [formGroup]="whereForm">
+                                    <div class="job-input">
+                                        <div class="container p-0">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Street" class="form-control"
+                                                                        formControlName="street_name" id="jobadd"
+                                                                        [class]="whereControls.street_name.invalid && (whereControls.street_name.dirty || whereControls.street_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Street">Street Name</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Selecttxt"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Selecttxt">Select</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="unit-txt">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="know_us">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <label>Also known as</label>
+                                                                        <textarea
+                                                                            placeholder="Type something here..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn-pre">
+                                                <button>Previous</button>
+                                                <button class="continue" type="submit"
+                                                    (click)="addPermitApplication('whereForm','applicant')">Continue</button>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+            <div [class]="(currentTab == 'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
+                id="pills-Applicant" role="tabpanel" aria-labelledby="pills-Applicant-tab">
+                <form [formGroup]="applicantForm">
+                    <div class="what-bg applicant-details">
+                        <div class="job-location-Hd">
+                            <h3>Applicant Details</h3>
+                        </div>
+
+                        <div class="app-details">
+                            <div class="container p-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <select type="text" formControlName="role" disabled
+                                                            [class]="applicantControls.role.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            id="Project">
+                                                            <option [value]="role?.key" *ngFor="let role of settings.role">{{role?.value}}</option>
+                                                    
+                                                        </select>
+                                                        <label class="form-control-placeholder" for="Project">Role in
+                                                            Project</label>
+                                                        <div
+                                                            *ngIf="applicantControls.role.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantControls.role.errors['required']">
+                                                                Please select role.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="Email-app" class="form-control"
+                                                            formControlName="email"
+                                                            [class]="applicantControls.email.invalid && (applicantControls.email.dirty || applicantControls.email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            required>
+                                                        <label class="form-control-placeholder"
+                                                            for="Email-app">Email</label>
+                                                        <div
+                                                            *ngIf="applicantControls.email.invalid && (applicantControls.email.dirty || applicantControls.email.touched || isSubmit)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantControls.email.errors['required']">
+                                                                Please enter valid mail.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="name"
+                                                                [class]="applicantControls.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="namProject">Name</label>
+                                                            <div
+                                                                *ngIf="applicantControls.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.name.errors['required']">
+                                                                    Please enter name
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="Business"
+                                                                formControlName="nameofBussiness"
+                                                                [class]="applicantControls.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control">
+                                                            <label class="form-control-placeholder" for="Business">Name
+                                                                of Business</label>
+                                                            <div
+                                                                *ngIf="applicantControls.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.nameofBussiness.errors['required']">
+                                                                    Please enter nameofBussiness
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="id-address" formControlName="address"
+                                                                [class]="applicantControls.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                required>
+                                                            <label class="form-control-placeholder"
+                                                                for="id-address">Address</label>
+                                                            <div
+                                                                *ngIf="applicantControls.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.address.errors['required']">
+                                                                    Please enter address
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="phone"
+                                                                formControlName="phone"
+                                                                [class]="applicantControls.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                required>
+                                                            <label class="form-control-placeholder" for="Phone-id">Phone
+                                                                Number</label>
+                                                            <div
+                                                                *ngIf="applicantControls.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.email.errors['required']">
+                                                                    Please enter phone
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="city"
+                                                                formControlName="city"
+                                                                [class]="applicantControls.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                required>
+                                                            <label class="form-control-placeholder"
+                                                                for="Phone-id">City</label>
+                                                            <div
+                                                                *ngIf="applicantControls.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.city.errors['required']">
+                                                                    Please enter city
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="state"
+                                                                [class]="applicantControls.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                required>
+                                                            <label class="form-control-placeholder"
+                                                                for="Phone-id">State</label>
+                                                            <div
+                                                                *ngIf="applicantControls.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.state.errors['required']">
+                                                                    Please enter state
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="zip"
+                                                                [class]="applicantControls.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                required>
+                                                            <label class="form-control-placeholder"
+                                                                for="Phone-id">State</label>
+                                                            <div
+                                                                *ngIf="applicantControls.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.zip.errors['required']">
+                                                                    Please enter zip
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="bussiness-input">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="bdp_email dummyinpt">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <input type="text" id="id-dummy" class="form-control"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="id-dummy">State2</label>
+                                                                    <span>Error message</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                <div class="btn-pre">
+                                    <button>Previous</button>
+                                    <button class="continue" type="submit"
+                                        (click)="addPermitApplication('applicantForm','contrator')">Continue</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div [class]="(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'"
+                id="pills-Contractor" role="tabpanel" aria-labelledby="pills-Contractor-tab">
+                <div class="what-bg">
+                    <div class="job-location-Hd">
+                        <h3>Contractor Details</h3>
+                    </div>
+                    <form [formGroup]="contractorForm">
+                        <div class="cd-box">
+                            <div class="container p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="property">
+
+                                            <div class="form-group">
+                                                <label>Do you have a contractor for this job?</label>
+                                                <select formControlName="job"  >
+                                                    <option>Yes</option>
+                                                    <option>Work will be performed by owner</option>
+
+                                                </select>
+                                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="nameofBussiness"
+                                                                [class]="contratorControl.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder" for="Project">Name
+                                                                of Business</label>
+                                                            <div
+                                                                *ngIf="contratorControl.nameofBussiness.invalid && (contratorControl.nameofBussiness.dirty || contratorControl.nameofBussiness.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.nameofBussiness.errors['required']">
+                                                                    Please Enter Name of Business.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="email"
+                                                                [class]="contratorControl.email.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder"
+                                                                for="Project">Email</label>
+                                                            <div
+                                                                *ngIf="contratorControl.email.invalid && (contratorControl.email.dirty || contratorControl.email.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.email.errors['required']">
+                                                                    Please Enter Email
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="name"
+                                                                [class]="contratorControl.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder"
+                                                                for="Project">Email</label>
+                                                            <div
+                                                                *ngIf="contratorControl.name.invalid && (contratorControl.name.dirty || contratorControl.name.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.name.errors['required']">
+                                                                    Please Enter name
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="phone"
+                                                                [class]="contratorControl.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder" for="Project">Phone
+                                                                Number</label>
+                                                            <div
+                                                                *ngIf="contratorControl.phone.invalid && (contratorControl.phone.dirty || contratorControl.phone.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.phone.errors['required']">
+                                                                    Please Enter phone
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="address"
+                                                                [class]="contratorControl.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder"
+                                                                for="Project">Address</label>
+                                                            <div
+                                                                *ngIf="contratorControl.address.invalid && (contratorControl.address.dirty || contratorControl.address.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.address.errors['required']">
+                                                                    Please Enter address
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="city"
+                                                                [class]="contratorControl.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder" for="Project">Phone
+                                                                Number</label>
+                                                            <div
+                                                                *ngIf="contratorControl.city.invalid && (contratorControl.city.dirty || contratorControl.city.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.city.errors['required']">
+                                                                    Please Enter city
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="state"
+                                                                [class]="contratorControl.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder"
+                                                                for="Project">State</label>
+                                                            <div
+                                                                *ngIf="contratorControl.state.invalid && (contratorControl.phone.dirty || contratorControl.state.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.state.errors['required']">
+                                                                    Please Enter state
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="zip"
+                                                                [class]="contratorControl.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                            <label class="form-control-placeholder"
+                                                                for="Project">Zip</label>
+                                                            <div
+                                                                *ngIf="contratorControl.zip.invalid && (contratorControl.zip.dirty || contratorControl.zip.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.zip.errors['required']">
+                                                                    Please Enter phone
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-pre">
+                                    <button>Previous</button>
+                                    <button class="continue" type="submit"
+                                        (click)="addPermitApplication('contractorForm','projectDetail')">Continue</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div [class]="(currentTab == 'projectDetail') ? 'tab-pane fade show active':'tab-pane fade'"
+                id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
+                5....
+            </div>
+            <div [class]="(currentTab == 'upload') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Uploads"
+                role="tabpanel" aria-labelledby="pills-Uploads-tab">
+                6....
+            </div>
+            <div [class]="(currentTab == 'review') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Review"
+                role="tabpanel" aria-labelledby="pills-Review-tab">7...
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- </router-outlet>
 </app-layout> -->
