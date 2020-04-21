@@ -15,13 +15,13 @@ export class AddPermitApplicationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    debugger
+    
     this.userSrvice.changeSaveAndExit(true)
   }
 
 
   navigateToTab() {
-    this.router.navigate(['/dashboard/add-permit'])
+    this.router.navigate(['/dashboard/add-permit'],{queryParams:{tab:'what'}})
   }
 
 

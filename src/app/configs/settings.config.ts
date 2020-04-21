@@ -18,6 +18,47 @@ export const settingConfig = {
     }
   ],
 
+
+
+  contractor_for_job: [
+    {
+      key: 1,
+      value: "Yes"
+    },
+    {
+      key: 2,
+      value: "Work will be performed by owner"
+    },
+
+  ],
+  purpose: [
+    {
+      key: 1,
+      value: "Repairing existing sidewalk"
+    },
+
+    {
+      key: 2,
+      value: "Constracting new sidewalk"
+    },
+    {
+      key: 3,
+      value: "Other"
+    },
+
+
+  ],
+  traffic :[
+    {
+      key: 1,
+      value: "Yes"
+    },
+    {
+      key: 2,
+      value: "No"
+    },
+  ],
+
   type: [
     {
       key: 1,
@@ -50,8 +91,8 @@ export const settingConfig = {
   ],
 
 
-  
-  
+
+
 
 
   getSettingAsObservable(prop: any, condition: any): Observable<any> {

@@ -9,14 +9,14 @@ export class HttpTokenInterceptor implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger
+    
     const headersConfig = {
       // 'Content-Type': 'application/json',
       // 'Accept': 'application/json'
       'Accept': 'application/json'
     };
     let token = null;
-    debugger
+    
     token = this.authenticationService.getToken();
 
     if (token) {

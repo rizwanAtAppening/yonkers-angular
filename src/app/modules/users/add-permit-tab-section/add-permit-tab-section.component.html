@@ -27,39 +27,39 @@
     <div class="tab-sec">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li i class="nav-item">
-                <a [class]="(currentTab == 'what') ? 'active':''" id="pills-What-tab" data-toggle="pill"
-                    href="#pills-What" role="tab" aria-controls="pills-What" aria-selected="true">What <span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                <a [class]="(currentTab == 'what') ? 'active':''" id="pills-What-tab"
+                    (click)="hitOnTab('whatForm','what')" role="tab" aria-controls="pills-What"
+                    aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'where') ? 'active':''" id="pills-Where-tab" data-toggle="pill"
-                    href="#pills-Where" role="tab" aria-controls="pills-Where" aria-selected="false">Where <span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
+                    aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'applicant') ? 'active':''" id="pills-Applicant-tab" data-toggle="pill"
-                    href="#pills-Applicant" role="tab" aria-controls="pills-Applicant"
+                    (click)="hitOnTab('applicantForm','applicant')" role="tab" aria-controls="pills-Applicant"
                     aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'contrator') ? 'active':''" id="pills-Contractor-tab" data-toggle="pill"
-                    href="#pills-Contractor" role="tab" aria-controls="pills-Contractor"
+                (click)="hitOnTab('contractorForm','contrator')" role="tab" aria-controls="pills-Contractor"
                     aria-selected="false">Contractor<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'projectDetail') ? 'active':''" id="pills-Project-tab" data-toggle="pill"
-                    href="#pills-Project" role="tab" aria-controls="pills-Project" aria-selected="false">Project
+                (click)="hitOnTab('projectDetailsForm','projectDetail')" role="tab" aria-controls="pills-Project" aria-selected="false">Project
                     Details<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'upload') ? 'active':''" id="pills-Uploads-tab" data-toggle="pill"
-                    href="#pills-Uploads" role="tab" aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
+                (click)="hitOnTab('uploadForm','upload')" role="tab" aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'contrator') ? 'review':''" id="pills-Review-tab" data-toggle="pill"
-                    href="#pills-Review" role="tab" aria-controls="pills-Review" aria-selected="false">Review<span><i
+                <a [class]="(currentTab == 'review') ? 'active':''" id="pills-Review-tab" data-toggle="pill"
+                (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review" aria-selected="false">Review<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
         </ul>
@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="btn-pre">
-                        <button>Previous</button>
+                        <button type="submit" (click)="goToBack('whatForm','')">Previous</button>
                         <button class="continue" type="submit"
                             (click)="addPermitApplication('whatForm','where')">Continue</button>
                     </div>
@@ -191,9 +191,11 @@
                         <nav>
                             <div class="nav" id="nav-tab" role="tablist">
                                 <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
-                                    role="tab" aria-controls="nav-Exact" aria-selected="true" (click) ="selectAddress('exactAddress')">Exact Address</a>
-                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab"  (click) ="selectAddress('location')" href="#nav-Location"
-                                    role="tab" aria-controls="nav-Location" aria-selected="false">Location</a>
+                                    role="tab" aria-controls="nav-Exact" aria-selected="true"
+                                    (click)="selectAddress('exactAddress')">Exact Address</a>
+                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab"
+                                    (click)="selectAddress('location')" href="#nav-Location" role="tab"
+                                    aria-controls="nav-Location" aria-selected="false">Location</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
@@ -210,9 +212,9 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="address"
+                                                                    <input type="text" formControlName="address_id"
                                                                         [typeahead]="states" id="jobadd"
-                                                                        [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
                                                                         for="jobadd">Address</label>
@@ -258,8 +260,9 @@
                                             </div>
 
                                             <div class="btn-pre">
-                                                <button>Previous</button>
-                                                <button class="continue" type="submit"
+                                                <button type="submit"
+                                                    (click)="goToBack('whereForm','what')">Previous</button>
+                                                <button class="continue"
                                                     (click)="addPermitApplication('whereForm','applicant')">Continue</button>
                                             </div>
 
@@ -284,8 +287,8 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="Street" class="form-control"
-                                                                        formControlName="street_name" id="jobadd"
-                                                                        [class]="whereControls.street_name.invalid && (whereControls.street_name.dirty || whereControls.street_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        formControlName="street_one" id="jobadd"
+                                                                        [class]="whereControls.street_one.invalid && (whereControls.street_one.dirty || whereControls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
                                                                         for="Street">Street Name</label>
@@ -331,7 +334,8 @@
                                             </div>
 
                                             <div class="btn-pre">
-                                                <button>Previous</button>
+                                                <button type="submit"
+                                                    (click)="goToBack('whereForm','what')">Previous</button>
                                                 <button class="continue" type="submit"
                                                     (click)="addPermitApplication('whereForm','applicant')">Continue</button>
                                             </div>
@@ -370,18 +374,20 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <select type="text" formControlName="role" disabled
-                                                            [class]="applicantControls.role.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                        <select type="text" formControlName="applicant_role" disabled
+                                                            [class]="applicantControls.applicant_role.invalid && (applicantControls.applicant_role.dirty || applicantControls.applicant_role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                             id="Project">
-                                                            <option [value]="role?.key" *ngFor="let role of settings.role">{{role?.value}}</option>
-                                                    
+                                                            <option [value]="role?.key"
+                                                                *ngFor="let role of settings.role">{{role?.value}}
+                                                            </option>
+
                                                         </select>
                                                         <label class="form-control-placeholder" for="Project">Role in
                                                             Project</label>
                                                         <div
-                                                            *ngIf="applicantControls.role.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit)">
+                                                            *ngIf="applicantControls.applicant_role.invalid && (applicantControls.applicant_role.dirty || applicantControls.applicant_role.touched || isSubmit)">
                                                             <p class="form-error"
-                                                                *ngIf="applicantControls.role.errors['required']">
+                                                                *ngIf="applicantControls.applicant_role.errors['required']">
                                                                 Please select role.
                                                             </p>
                                                         </div>
@@ -397,15 +403,15 @@
                                                 <div class="col-12 ">
                                                     <div class="form-group">
                                                         <input type="text" id="Email-app" class="form-control"
-                                                            formControlName="email"
-                                                            [class]="applicantControls.email.invalid && (applicantControls.email.dirty || applicantControls.email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            formControlName="applicant_email"
+                                                            [class]="applicantControls.applicant_email.invalid && (applicantControls.applicant_email.dirty || applicantControls.applicant_email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                             required>
                                                         <label class="form-control-placeholder"
                                                             for="Email-app">Email</label>
                                                         <div
-                                                            *ngIf="applicantControls.email.invalid && (applicantControls.email.dirty || applicantControls.email.touched || isSubmit)">
+                                                            *ngIf="applicantControls.applicant_email.invalid && (applicantControls.applicant_email.dirty || applicantControls.applicant_email.touched || isSubmit)">
                                                             <p class="form-error"
-                                                                *ngIf="applicantControls.email.errors['required']">
+                                                                *ngIf="applicantControls.applicant_email.errors['required']">
                                                                 Please enter valid mail.
                                                             </p>
                                                         </div>
@@ -423,15 +429,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="name"
-                                                                [class]="applicantControls.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="applicant_name"
+                                                                [class]="applicantControls.applicant_name.invalid && (applicantControls?.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" required>
                                                             <label class="form-control-placeholder"
                                                                 for="namProject">Name</label>
                                                             <div
-                                                                *ngIf="applicantControls.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_name.invalid && (applicantControls.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.name.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_name.errors['required']">
                                                                     Please enter name
                                                                 </p>
                                                             </div>
@@ -447,16 +453,16 @@
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" id="Business"
-                                                                formControlName="nameofBussiness"
-                                                                [class]="applicantControls.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                formControlName="applicant_business"
+                                                                [class]="applicantControls.applicant_business.invalid && (applicantControls.applicant_business.dirty || applicantControls.applicant_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control">
                                                             <label class="form-control-placeholder" for="Business">Name
                                                                 of Business</label>
                                                             <div
-                                                                *ngIf="applicantControls.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_business.invalid && (applicantControls.applicant_business.dirty || applicantControls.applicant_business.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.nameofBussiness.errors['required']">
-                                                                    Please enter nameofBussiness
+                                                                    *ngIf="applicantControls.applicant_business.errors['required']">
+                                                                    Please enter name of Bussiness
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -473,15 +479,16 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address" formControlName="address"
-                                                                [class]="applicantControls.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" id="id-address"
+                                                                formControlName="applicant_address"
+                                                                [class]="applicantControls.applicant_address.invalid && (applicantControls.applicant_address.dirty || applicantControls.applicant_address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 required>
                                                             <label class="form-control-placeholder"
                                                                 for="id-address">Address</label>
                                                             <div
-                                                                *ngIf="applicantControls.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_address.invalid && (applicantControls.applicant_address.dirty || applicantControls.applicant_address.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.address.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_address.errors['required']">
                                                                     Please enter address
                                                                 </p>
                                                             </div>
@@ -500,17 +507,16 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="phone"
-                                                                formControlName="phone"
-                                                                [class]="applicantControls.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="applicant_phone"
+                                                                [class]="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
                                                             <label class="form-control-placeholder" for="Phone-id">Phone
                                                                 Number</label>
                                                             <div
-                                                                *ngIf="applicantControls.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.email.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_phone.errors['required']">
                                                                     Please enter phone
                                                                 </p>
                                                             </div>
@@ -525,17 +531,16 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="city"
-                                                                formControlName="city"
-                                                                [class]="applicantControls.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="applicant_city"
+                                                                [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
                                                             <label class="form-control-placeholder"
                                                                 for="Phone-id">City</label>
                                                             <div
-                                                                *ngIf="applicantControls.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.city.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_city.errors['required']">
                                                                     Please enter city
                                                                 </p>
                                                             </div>
@@ -553,16 +558,16 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="state"
-                                                                [class]="applicantControls.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="applicant_state"
+                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
                                                             <label class="form-control-placeholder"
                                                                 for="Phone-id">State</label>
                                                             <div
-                                                                *ngIf="applicantControls.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.state.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_state.errors['required']">
                                                                     Please enter state
                                                                 </p>
                                                             </div>
@@ -577,16 +582,16 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="zip"
-                                                                [class]="applicantControls.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="applicant_zip"
+                                                                [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
                                                             <label class="form-control-placeholder"
-                                                                for="Phone-id">State</label>
+                                                                for="Phone-id">Zip</label>
                                                             <div
-                                                                *ngIf="applicantControls.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit)">
+                                                                *ngIf="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="applicantControls.zip.errors['required']">
+                                                                    *ngIf="applicantControls.applicant_zip.errors['required']">
                                                                     Please enter zip
                                                                 </p>
                                                             </div>
@@ -617,7 +622,7 @@
                                         </div>
                                     </div> -->
                                 <div class="btn-pre">
-                                    <button>Previous</button>
+                                    <button type="submit" (click)="goToBack('applicantForm','where')">Previous</button>
                                     <button class="continue" type="submit"
                                         (click)="addPermitApplication('applicantForm','contrator')">Continue</button>
                                 </div>
@@ -641,9 +646,11 @@
 
                                             <div class="form-group">
                                                 <label>Do you have a contractor for this job?</label>
-                                                <select formControlName="job"  >
-                                                    <option>Yes</option>
-                                                    <option>Work will be performed by owner</option>
+                                                <select formControlName="contractor_for_job">
+                                                    <option value="">--Select--</option>
+                                                    <option [value]="value?.key"
+                                                        *ngFor="let value of settings?.contractor_for_job">
+                                                        {{value?.value}}</option>
 
                                                 </select>
                                                 <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -661,15 +668,15 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="nameofBussiness"
-                                                                [class]="contratorControl.nameofBussiness.invalid && (applicantControls.nameofBussiness.dirty || applicantControls.nameofBussiness.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_business"
+                                                                [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder" for="Project">Name
                                                                 of Business</label>
                                                             <div
-                                                                *ngIf="contratorControl.nameofBussiness.invalid && (contratorControl.nameofBussiness.dirty || contratorControl.nameofBussiness.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.nameofBussiness.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_business.errors['required']">
                                                                     Please Enter Name of Business.
                                                                 </p>
                                                             </div>
@@ -686,15 +693,15 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="email"
-                                                                [class]="contratorControl.email.invalid && (applicantControls.role.dirty || applicantControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_email"
+                                                                [class]="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
                                                                 for="Project">Email</label>
                                                             <div
-                                                                *ngIf="contratorControl.email.invalid && (contratorControl.email.dirty || contratorControl.email.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.email.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_email.errors['required']">
                                                                     Please Enter Email
                                                                 </p>
                                                             </div>
@@ -713,15 +720,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="name"
-                                                                [class]="contratorControl.name.invalid && (applicantControls.name.dirty || applicantControls.name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_name"
+                                                                [class]="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
-                                                                for="Project">Email</label>
+                                                                for="Project">Name</label>
                                                             <div
-                                                                *ngIf="contratorControl.name.invalid && (contratorControl.name.dirty || contratorControl.name.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.name.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_name.errors['required']">
                                                                     Please Enter name
                                                                 </p>
                                                             </div>
@@ -737,15 +744,15 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="phone"
-                                                                [class]="contratorControl.phone.invalid && (applicantControls.phone.dirty || applicantControls.phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="number" formControlName="contractor_phone"
+                                                                [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder" for="Project">Phone
                                                                 Number</label>
                                                             <div
-                                                                *ngIf="contratorControl.phone.invalid && (contratorControl.phone.dirty || contratorControl.phone.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.phone.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_phone.errors['required']">
                                                                     Please Enter phone
                                                                 </p>
                                                             </div>
@@ -764,15 +771,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="address"
-                                                                [class]="contratorControl.address.invalid && (applicantControls.address.dirty || applicantControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_address"
+                                                                [class]="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
                                                                 for="Project">Address</label>
                                                             <div
-                                                                *ngIf="contratorControl.address.invalid && (contratorControl.address.dirty || contratorControl.address.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.address.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_address.errors['required']">
                                                                     Please Enter address
                                                                 </p>
                                                             </div>
@@ -787,15 +794,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="city"
-                                                                [class]="contratorControl.city.invalid && (applicantControls.city.dirty || applicantControls.city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_city"
+                                                                [class]="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder" for="Project">Phone
-                                                                Number</label>
+                                                            <label class="form-control-placeholder" for="Project">City
+                                                            </label>
                                                             <div
-                                                                *ngIf="contratorControl.city.invalid && (contratorControl.city.dirty || contratorControl.city.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.city.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_city.errors['required']">
                                                                     Please Enter city
                                                                 </p>
                                                             </div>
@@ -814,15 +821,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="state"
-                                                                [class]="contratorControl.state.invalid && (applicantControls.state.dirty || applicantControls.state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" formControlName="contractor_state"
+                                                                [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
                                                                 for="Project">State</label>
                                                             <div
-                                                                *ngIf="contratorControl.state.invalid && (contratorControl.phone.dirty || contratorControl.state.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.state.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_state.errors['required']">
                                                                     Please Enter state
                                                                 </p>
                                                             </div>
@@ -837,15 +844,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="zip"
-                                                                [class]="contratorControl.zip.invalid && (applicantControls.zip.dirty || applicantControls.zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="number" formControlName="contractor_zip"
+                                                                [class]="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
                                                                 for="Project">Zip</label>
                                                             <div
-                                                                *ngIf="contratorControl.zip.invalid && (contratorControl.zip.dirty || contratorControl.zip.touched || isSubmit)">
+                                                                *ngIf="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit)">
                                                                 <p class="form-error"
-                                                                    *ngIf="contratorControl.zip.errors['required']">
+                                                                    *ngIf="contratorControl.contractor_zip.errors['required']">
                                                                     Please Enter phone
                                                                 </p>
                                                             </div>
@@ -857,7 +864,8 @@
                                     </div>
                                 </div>
                                 <div class="btn-pre">
-                                    <button>Previous</button>
+                                    <button type="submit"
+                                        (click)="goToBack('contractorForm','applicant')">Previous</button>
                                     <button class="continue" type="submit"
                                         (click)="addPermitApplication('contractorForm','projectDetail')">Continue</button>
                                 </div>
@@ -871,14 +879,599 @@
             </div>
             <div [class]="(currentTab == 'projectDetail') ? 'tab-pane fade show active':'tab-pane fade'"
                 id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
-                5....
+                <div class="what-bg">
+                    <form [formGroup]="projectDetailsForm">
+                        <div class="job-location-Hd">
+                            <h3>Project Description
+                                <span>Please provide the following details about your project.</span>
+                            </h3>
+
+                        </div>
+
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="property lbl-txt m-0">
+                                       
+                                            <div class="form-group">
+                                                <label>Purpose</label>
+                                                <select formControlName="purpose"  [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                                    <option value = "" hidden > --Select--</option>
+                                                    <option value ="{{value.key}}" *ngFor ="let value of settings?.purpose">{{value?.value}}</option>
+                                                   
+
+                                                </select>
+                                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="imact-trafic">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="property lbl-txt loction-adInput">
+                                           
+                                                <div class="form-group">
+                                                    <label>Will this work impact traffic?</label>
+                                                    <select formControlName="traffic_control">
+                                                            <option value = "" hidden > --Select--</option>
+                                                            <option value ="{{value.key}}" *ngFor ="let value of settings?.traffic">{{value?.value}}</option>
+                                                    </select>
+                                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                </div>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        <input type="text" id="la1"  formControlName="length" class="form-control" required>
+                                                        <label class="form-control-placeholder" for="la1">Length</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="imact-trafic">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+
+                                            <div class="form-group">
+                                                <input type="text" id="wa1" formControlName="width" class="form-control" >
+                                                <label class="form-control-placeholder"  for="wa1">Width</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+                                            <div class="form-group">
+                                                <input type="text" id="da1" class="form-control" formControlName="depth">
+                                                <label class="form-control-placeholder" for="da1">Depth</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="imact-trafic" *ngIf = "isContractor">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput lenth-pt">
+    
+                                                <div class="form-group">
+                                                    <input type="text" id="wa1" formControlName="dig_safely_no" class="form-control" required>
+                                                    <label class="form-control-placeholder"  for="wa1">Dig Safty Number</label>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput lenth-pt">
+                                                <div class="form-group">
+                                                    <input type="text" id="da1" class="form-control" formControlName="opening_number" required>
+                                                    <label class="form-control-placeholder" for="da1">Area of Opening</label>
+    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="imact-trafic" *ngIf = "isContractor">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput lenth-pt">
+        
+                                                    <div class="form-group">
+                                                        <input type="text" id="wa1" formControlName="opening_size" class="form-control" required>
+                                                        <label class="form-control-placeholder"  for="wa1">Number of Openings</label>
+                                                    </div>
+        
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput lenth-pt">
+                                                    <div class="form-group">
+                                                        <input type="text" id="da1" class="form-control" formControlName="pavement_type" required>
+                                                        <label class="form-control-placeholder" for="da1">Pavement Type</label>
+        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            <div class="imact-trafic">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+
+                                            <div class="form-group">
+                                                <input type="text" id="sda1"  formControlName="start_date" [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                <label class="form-control-placeholder" for="sda1">Start Date</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+                                            <div class="form-group">
+                                                <input type="text" id="eda1"  formControlName="end_date" [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                <label class="form-control-placeholder" for="eda1">End Date</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="imact-trafic">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="bdp_email loction-adInput lenth-pt">
+                                            <div class="form-group">
+                                                <label class="detaild-txt">Detailed Description</label>
+                                                <textarea placeholder="Type something here..." formControlName="description" [class]="projectDetail.description.invalid && (projectDetail.description.dirty || projectDetail.description.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="btn-pre">
+                                <button (click)="goToBack('projectDetailsForm','contrator')">Previous</button>
+                                <button class="continue" type="submit"
+                                    (click)="addPermitApplication('projectDetailsForm','upload')">Continue</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div [class]="(currentTab == 'upload') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Uploads"
                 role="tabpanel" aria-labelledby="pills-Uploads-tab">
-                6....
+                <div class="what-bg">
+                        <div class="job-location-Hd">
+                            <h3>Uploads
+                                <span>Click the upload button to upload your project drawings/plans where applicable.</span>
+                            </h3>
+
+                        </div>
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="img-upload-tbl">
+                                    <table class="table">
+                                        <thead>
+                                          <tr>
+                                            <th>File Type</th>
+                                            <th>Names</th>
+                                            <th>Action</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td class="plans">Drawings/ Plans</td>
+                                            <td>Document Example. jpg</td>
+                                            <td class="upload-Btn">
+                                      <button >
+                                          <span><img src="assets/images/upload.svg" alt=""></span>  Upload
+                                          <input type='file' (change)="media($event,1)" >
+                                        </button>
+                                    </td>
+                                          </tr>
+                                          <tr>
+                                            <td class="plans">Certificate of Insurance</td>
+                                            <td>Document Example. jpg</td>
+                                            <td class="upload-Btn">
+                                                    <button >
+                                                        <span><img src="assets/images/upload.svg" alt=""></span>  Upload
+                                                        <input type='file' (change)="media($event,2)" >
+                                                      </button>
+                                                  </td>                                          </tr>
+                                  
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-pre">
+                                <button>Previous</button>
+                                <button class="continue"  (click)="addPermitApplication('','review')">Continue</button>
+                            </div>
+
+                        </div>
+
+                </div>
             </div>
             <div [class]="(currentTab == 'review') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Review"
-                role="tabpanel" aria-labelledby="pills-Review-tab">7...
+                role="tabpanel" aria-labelledby="pills-Review-tab">
+                <div class="what-bg">
+
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="review-form-box">
+                                    <div class="r-hd">
+                                        <h3>Review Form</h3>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                                    </div>
+                                    <div class="box-acordine">
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            What
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseOne"
+                                                            aria-expanded="true" aria-controls="collapseOne"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="first-collepse-box">
+                                                            <div class="role-txt-collepse">
+                                                                <h2>What is your role in this project ?*</h2>
+                                                                <p>{{ settings.getSetting('role',application['role'])}}</p>
+                                                            </div>
+
+                                                            <div class="role-txt-collepse-two">
+                                                                <h2>Type</h2>
+                                                                <p>{{ settings.getSetting('type',application['type'])}}</p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingTwo">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Where
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseTwo"
+                                                            aria-expanded="true" aria-controls="collapseTwo"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="first-collepse-box">
+                                                            <div class="role-txt-collepse">
+                                                                <h2>Location Type</h2>
+                                                                <p>Exact Address</p>
+                                                            </div>
+
+                                                            <div class="role-txt-collepse-two">
+                                                                <h2>Address</h2>
+                                                                <p>{{application?.address_id}}</p>
+                                                            </div>
+                                                            <div class="role-txt-collepse-two">
+                                                                <h2>Unit No./Also Known as</h2>
+                                                                <p>Lorem ipsum dolor sit amet</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingThree">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Applicant
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseThree"
+                                                            aria-expanded="true" aria-controls="collapseThree"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Role in Project</h2>
+                                                                    <p>{{ settings.getSetting('role',application['role'])}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Name</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_name}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Phone Number</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_phone}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>City</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_city}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Zip Code</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_zip}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_mail}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Name of Business</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_business}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_name}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>State</h2>
+                                                                    <p>{{application?.applicant_details?.applicant_state}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingfour">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Contractor
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsefour"
+                                                            aria-expanded="true" aria-controls="collapsefour"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="first-collepse-box">
+                                                            <div class="role-txt-collepse mb-4">
+                                                                <h2>Do you have a contractor for this job?</h2>
+                                                                <p>{{ settings.getSetting('contractor_for_job',application?.contractor_details['contractor_for_job'])}}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Name of Business</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_business}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Name</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_name}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_business}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>State</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_state}}</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_email}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Phone Number</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_phone}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>City</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_city}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Zip Code</h2>
+                                                                    <p>{{application?.contractor_details?.contractor_zip}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingfive">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Project Details
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsefive"
+                                                            aria-expanded="true" aria-controls="collapsefive"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsefive" class="collapse" aria-labelledby="headingfive"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Purpose</h2>
+                                                                    <p>{{ settings.getSetting('purpose',application?.project_detail['purpose'])}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Length</h2>
+                                                                    <p>{{application?.project_detail?.length}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Depth</h2>
+                                                                    <p>{{application?.project_detail?.depth}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>End Date</h2>
+                                                                    <p>{{application?.project_detail?.start_date}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Detailed Description</h2>
+                                                                    <p>{{application?.project_detail?.description}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>{{application?.project_detail?.description}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Will this work impact traffic?</h2>
+                                                                    <p>{{application?.project_detail?.traffic_control}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Width</h2>
+                                                                    <p>{{application?.project_detail?.width}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Start Date</h2>
+                                                                    <p>{{application?.project_detail?.start_date}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingsix">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Upload
+                                                        </button>
+                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsesix"
+                                                            aria-expanded="true" aria-controls="collapsesix"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsesix" class="collapse" aria-labelledby="headingsix"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="drowing-tbl">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>File Type</th>
+                                                                        <th></th>
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+
+                                                                        <td>Drawings/ Plans</td>
+                                                                        <td class="passbook">
+                                                                            <span>
+                                                                                <i class="fa fa-files-o"
+                                                                                    aria-hidden="true"></i>
+                                                                            </span>
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    <tr>
+
+                                                                        <td>Drawings/ Plans</td>
+                                                                        <td class="passbook">
+                                                                            <span>
+                                                                                <i class="fa fa-files-o"
+                                                                                    aria-hidden="true"></i>
+                                                                            </span>
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

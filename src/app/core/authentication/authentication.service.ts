@@ -69,7 +69,7 @@ export class AuthenticationService {
   }
 
   private getUser() {
-    debugger
+    
     const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
     return JSON.parse(savedCredentials);
   }

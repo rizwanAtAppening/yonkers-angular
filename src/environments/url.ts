@@ -63,7 +63,8 @@ const adminUrl = {
 };
 
 const userUrl = {
-  addPermitApplication:'/application'
+  addPermitApplication:'/application',
+  uploadImage:'/application/fileUpload'
 
  
 }

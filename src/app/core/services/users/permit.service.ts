@@ -30,6 +30,7 @@ export class PermitService {
     const applicationID = this.getApplicationID();
     if (applicationID) {
       data['id'] = applicationID
+      data['application_id'] = applicationID
     }
     this.authenticationService.getUserInfo().subscribe(user => data.user_id = user.id);
     return this.http.post<any>(href, data).pipe(
@@ -45,6 +46,37 @@ export class PermitService {
     );
   }
 
+  uploadImage(data): Observable<any> {
+    const href = `${environment['uploadImage']}`;
+    const applicationID = this.getApplicationID();
+    if (applicationID) {
+      //data['id'] = applicationID
+      data['application_id'] = applicationID
+    }
+    this.authenticationService.getUserInfo().subscribe(user => data.user_id = user.id);
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success' && Object.keys(data.response).length > 0) {
+            console.log(data.response, "UPDATED")
+            this.setApplication(data.response);
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  deleteSessionApplication(): boolean {
+    if (sessionStorage.getItem(this.sessionApplication)) {
+      sessionStorage.removeItem(this.sessionApplication);
+      console.log("SESSION REMOVED")
+      return true;
+    }
+
+    return false;
+  }
+
  
   getApplicationID(): any {
     const application = this.getApplication()
@@ -55,7 +87,7 @@ export class PermitService {
   }
 
    getApplication() {
-     debugger
+     
     const session = sessionStorage.getItem(this.sessionApplication);
 
     if (session) {
