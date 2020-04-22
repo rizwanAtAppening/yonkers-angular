@@ -55,46 +55,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="refTxt">39465</td>
-                                                    <td>156 UNIVERSITY AVE</td>
-                                                    <td>Street Opening</td>
+                                                <tr *ngFor ="let application of applictionDetails">
+                                                    <td class="refTxt">{{application?.reference_no}}</td>
+                                                    <td>{{application?.address_id}}</td>
+                                                    <td> {{ settings.getSetting('type',application['type'])}}</td>
                                                     <td class="submited-Btn"><button>Submitted</button></td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td>08 Jul 2019</td>
+                                                    <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
+                                                    <td>{{application?.updatedAt | date :'dd/MM/yyyy'}}</td>
                                                     <td class="update-txt"> <span><i class="fa fa-angle-down"
                                                                 aria-hidden="true"></i></span></td>
                                                 </tr>
-                                                <tr>
-                                                    <td class="refTxt">39465</td>
-                                                    <td>156 UNIVERSITY AVE</td>
-                                                    <td>Street Opening</td>
-                                                    <td class="submited-Btn"><button>Submitted</button></td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td class="update-txt"> <span><i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="refTxt">39465</td>
-                                                    <td>156 UNIVERSITY AVE</td>
-                                                    <td>Street Opening</td>
-                                                    <td class="submited-Btn"><button>Submitted</button></td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td class="update-txt"> <span><i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i></span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="refTxt">39465</td>
-                                                    <td>156 UNIVERSITY AVE</td>
-                                                    <td>Street Opening</td>
-                                                    <td class="submited-Btn"><button>Submitted</button></td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td>08 Jul 2019</td>
-                                                    <td class="update-txt"> <span><i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i></span></td>
-                                                </tr>
+                                              
                                             </tbody>
                                         </table>
                                     </div>

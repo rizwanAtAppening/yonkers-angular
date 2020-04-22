@@ -369,7 +369,7 @@
                                     </div>
                                     <div class="addlocation">
                                             <button class="btn btn-success" type="submit"
-                                            (click)="addLocation('whereForm','applicant')">add Loaction</button>
+                                            (click)="addLocation()">add Loaction</button>
                                     </div>
                                     <div class="btn-pre">
                                             <button type="submit"
@@ -1070,7 +1070,7 @@
                                             <div class="form-group">
                                                 <input type="text" id="sda1"    #dp="bsDatepicker"
                                                 bsDatepicker
-                                                [bsValue]="bsValue" formControlName="start_date" [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                 formControlName="start_date" [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
                                                 <label class="form-control-placeholder" for="sda1">Start Date</label>
                                             </div>
                                             <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
@@ -1083,7 +1083,7 @@
                                             <div class="form-group">
                                                 <input type="text" id="eda1" #dp1="bsDatepicker"
                                                 bsDatepicker
-                                                [bsValue]="bsValue"  formControlName="end_date" [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                  formControlName="end_date" [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
                                                 <label class="form-control-placeholder" for="eda1">End Date</label>
 
                                             </div>

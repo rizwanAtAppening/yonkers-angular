@@ -64,7 +64,8 @@ const adminUrl = {
 
 const userUrl = {
   addPermitApplication:'/application',
-  uploadImage:'/application/fileUpload'
+  uploadImage:'/application/fileUpload',
+  getPermitApplication:'/application',
 
  
 }

@@ -113,8 +113,8 @@ export class PermitService {
     return false;
   }
 
-  getAdminCity(): Observable<any> {
-    const href = `${environment['adminCity']}`
+  getPermitApplication(): Observable<any> {
+    const href = `${environment['getPermitApplication']}`
     return this.http.get<any>(href).pipe(
       map(
         ({ status, ...rest }) => {
