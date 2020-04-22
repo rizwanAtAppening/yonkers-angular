@@ -6,3 +6,26 @@
     color: red
     ;
 }
+/* .tab-sec ul li a.deactive {
+    color: black;
+    font-family: "Poppins-Medium";
+} */
+.datebtn{
+    margin-top: 7x;
+    display: block;
+    margin-top: -54px;
+    margin-left: 145px;
+}
+.addlocation{
+margin-left: 2px !important;
+margin-top: 2px !important
+
+}
+
+.remover{
+    margin-top: -53px !important;
+    /* margin-left: -77px; */
+    display: block;
+    margin-left: 294px !important;
+}
+

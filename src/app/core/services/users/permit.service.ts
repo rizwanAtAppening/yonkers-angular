@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { tap,map } from 'rxjs/operators';
 
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
@@ -112,4 +112,18 @@ export class PermitService {
     }
     return false;
   }
+
+  getAdminCity(): Observable<any> {
+    const href = `${environment['adminCity']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
 }

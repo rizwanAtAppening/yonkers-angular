@@ -31,6 +31,47 @@ export const settingConfig = {
     },
 
   ],
+
+  preventType: [
+    {
+      key: 1,
+      value: "Concrete"
+    },
+    {
+      key: 2,
+      value: "Asphalt"
+    },
+    {
+      key: 3,
+      value: "Dirt"
+    }, {
+      key: 4,
+      value: "Other"
+    },
+
+  ],
+
+  address_join :[
+    {
+      key: 1,
+      value: "To(Range)"
+    },
+    {
+      key: 2,
+      value: "And(Intersection)"
+    },
+  ],
+
+  fileType:[
+    {
+      key: 1,
+      value: "To(Range)"
+    },
+    {
+      key: 2,
+      value: "To(Range)"
+    },
+  ],
   purpose: [
     {
       key: 1,

@@ -10,6 +10,7 @@ import { AddPermitTabSectionComponent } from './add-permit-tab-section/add-permi
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -20,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutsModule,
   //  BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+
     HttpClientModule
     
 

@@ -19,6 +19,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public applicantForm: FormGroup;
   public contractorForm: FormGroup;
   public projectDetailsForm: FormGroup;
+  public location = [{}]
   public states: string[] = [
     'Alabama',
     'Alaska',
@@ -69,13 +70,35 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.checkTab(this.currentTab)
   }
 
+public locations  = []
+  addLocation() {
+    if(this.isLocation){
+      this.whereForm.controls.address_id.setErrors(null)
+    }
+    if(this.whereForm.invalid){
+      this.isSubmit = true
+      return false
+    }
+    if(this.location)
+    this.locations.push({street_one:this.whereForm.value.street_one,address_join:this.whereForm.value.address_join,street_two:this.whereForm.value.street_two})
+    this.location.push({})
+    console.log(this.locations)
+  }
 
-  getApplication(){
+  remove(index) {
+    debugger
+    this.location.map((data, i) => {
+      if (index == i) {
+        this.location.splice(i, 1)
+      }
+    })
+  }
+  getApplication() {
     this.application = this.permitService.getApplication();
     console.log(this.application)
   }
   getCurrentTab() {
-    
+
     // if (this.permitService.getCurrentTab()) {
     //   this.currentTab = this.permitService.getCurrentTab()
     // }
@@ -96,7 +119,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public currentTab: string = 'what'
   nextTab(value) {
-    
+
     this.currentTab = value
   }
   whatFormControl() {
@@ -111,8 +134,8 @@ export class AddPermitTabSectionComponent implements OnInit {
       address_id: ['', Validators.required],
       also_known_as: [''],
       street_one: ['', Validators.required],
-      street_two: [],
-      select_rang: [''],
+      street_two: [''],
+      address_join: [''],
 
     })
   }
@@ -189,7 +212,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isSubmit = false;
   public data: any
   public isContractor = false;
-  public application:any;
+  public application: any;
   addPermitApplication(formGroup, nextTab) {
     const application = this.permitService.getApplication()
     if (application.role == 2) {
@@ -202,12 +225,12 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
 
-    if(nextTab == 'review' && application){
+    if (nextTab == 'review' && application) {
       this.application = this.permitService.getApplication();
       return false
 
     }
-    
+
     if (this.currentTab == 'where') {
       this.getCurrentUser()
     }
@@ -223,12 +246,15 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
     }
     else if (formGroup == 'whereForm' || this.currentTab == 'where') {
-      if (this.isLocation) {
+      if (this.isLocation ) {
+        
         this.whereForm.controls.address_id.setErrors(null)
+        if(this.locations.length == 0){
+          this.locations.push({street_one:this.whereForm.value.street_one,address_join:this.whereForm.value.address_join,street_two:this.whereForm.value.street_two})
+        }
         this.data = {
           model: 2,
-          street_one: this.whereForm.value.street_one,
-          street_two: 'ccjjc',
+         locations:this.locations,
           location_type: this.location_type,
         }
       } else {
@@ -293,7 +319,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
   public currentUserInfo: any
   getCurrentUser() {
-    
+
     const application = this.permitService.getApplication()
     this.applicantForm.controls.applicant_role.setValue(application.role);
     if (application.applicant_details) {
@@ -323,7 +349,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-    
+
     const application = this.permitService.getApplication()
     if (application.address_id) {
       this.whereForm.controls.street_one.setErrors(null)
@@ -397,7 +423,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   goToBack(formGroup, tab) {
-    
+
     console.log(this[formGroup])
     // if (this[formGroup].invalid) {
     //   this.isSubmit = true
@@ -427,7 +453,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   hitOnTab(formGroup, tab) {
-    
+
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isSubmit = true
@@ -501,20 +527,20 @@ export class AddPermitTabSectionComponent implements OnInit {
       return false
     }
 
-    if(this.currentTab == 'upload'){
+    if (this.currentTab == 'upload') {
       this.checkTab(tab)
       this.currentTab = tab;
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
 
     }
 
-    if(tab == 'review' || this.currentTab == 'review'){
-      
+    if (tab == 'review' || this.currentTab == 'review') {
+
       this.application = this.permitService.getApplication();
       this.checkTab(tab)
       this.currentTab = tab;
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
-   
+
 
     }
   }
@@ -528,21 +554,21 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.whereTab()
     } else if (tab == 'applicant') {
       this.getCurrentUser();
-    }else if (tab == 'contrator') {
+    } else if (tab == 'contrator') {
       this.contractorTab()
     }
-    else if(tab == 'projectDetail'){
-       this.projectDetailsTab()
-      
+    else if (tab == 'projectDetail') {
+      this.projectDetailsTab()
+
     }
   }
 
 
   public imageName: any;
   public attachment: any
-  public fileType:any
-  media(event1,fileType) {
-    
+  public fileType: any
+  media(event1, fileType) {
+
     this.fileType = fileType
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0]
@@ -555,7 +581,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     // reader.readAsDataURL(event1.target.files[0]);
     // console.log(this.image)
     // console.log(event1.target.files[0])
-    if(this.attachment){
+    if (this.attachment) {
       this.uploadImageAndDocuments();
     }
   }
@@ -564,7 +590,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public image: any
   uploadImageAndDocuments() {
     const applicationId = this.permitService.getApplicationID()
-   // let id = (this.certificateDetail.id)
+    // let id = (this.certificateDetail.id)
     var formData = new FormData();
     formData.append(
       "name",
@@ -582,7 +608,8 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     );
     this.permitService.uploadImage(formData).subscribe(data => {
-     console.log(data)
+      console.log(data)
+      this.getApplication()
     })
   }
 

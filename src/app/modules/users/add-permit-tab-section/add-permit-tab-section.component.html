@@ -26,39 +26,39 @@
 <section class="tabber">
     <div class="tab-sec">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li i class="nav-item">
-                <a [class]="(currentTab == 'what') ? 'active':''" id="pills-What-tab"
+            <li  class="nav-item">
+                <a [class]="(currentTab == 'what') ? 'active':'deactive'" id="pills-What-tab"
                     (click)="hitOnTab('whatForm','what')" role="tab" aria-controls="pills-What"
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':''" id="pills-Where-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'where') ? 'active':'deactive'" id="pills-Where-tab" 
                     (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'applicant') ? 'active':''" id="pills-Applicant-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'applicant') ? 'active':'deactive'" id="pills-Applicant-tab" 
                     (click)="hitOnTab('applicantForm','applicant')" role="tab" aria-controls="pills-Applicant"
                     aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'contrator') ? 'active':''" id="pills-Contractor-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'contrator') ? 'active':'deactive'" id="pills-Contractor-tab" 
                 (click)="hitOnTab('contractorForm','contrator')" role="tab" aria-controls="pills-Contractor"
                     aria-selected="false">Contractor<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'projectDetail') ? 'active':''" id="pills-Project-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'projectDetail') ? 'active':'deactive'" id="pills-Project-tab" 
                 (click)="hitOnTab('projectDetailsForm','projectDetail')" role="tab" aria-controls="pills-Project" aria-selected="false">Project
                     Details<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'upload') ? 'active':''" id="pills-Uploads-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'upload') ? 'active':'deactive'" id="pills-Uploads-tab" 
                 (click)="hitOnTab('uploadForm','upload')" role="tab" aria-controls="pills-Uploads" aria-selected="false">Uploads<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'review') ? 'active':''" id="pills-Review-tab" data-toggle="pill"
+                <a [class]="(currentTab == 'review') ? 'active':'deactive'" id="pills-Review-tab" 
                 (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review" aria-selected="false">Review<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
@@ -207,7 +207,7 @@
                                     <form [formGroup]="whereForm">
                                         <div class="container p-0">
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-12">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
@@ -224,7 +224,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-6">
+                                                <!-- <div class="col-6">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
@@ -237,7 +237,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
 
 
@@ -278,10 +278,10 @@
                             <div class="tab-pane fade" id="nav-Location" role="tabpanel"
                                 aria-labelledby="nav-Location-tab">
                                 <form [formGroup]="whereForm">
-                                    <div class="job-input">
-                                        <div class="container p-0">
+                                    <div class="job-input" *ngFor = "let value of location; let i = index">
+                                        <div class="container p-0" >
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-4">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
@@ -291,20 +291,22 @@
                                                                         [class]="whereControls.street_one.invalid && (whereControls.street_one.dirty || whereControls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="Street">Street Name</label>
+                                                                        for="Street">Street One</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-3">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Selecttxt"
-                                                                        class="form-control" required>
+                                                                    <select type="text" id="Selecttxt" formControlName="address_join"
+                                                                        class="form-control"  >
+                                                                        <option  [value] ="value?.key" *ngFor ="let value of settings?.address_join">{{value?.value}}</option>
+                                                                    </select>
                                                                     <label class="form-control-placeholder"
                                                                         for="Selecttxt">Select</label>
                                                                 </div>
@@ -312,10 +314,35 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-4">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Street" class="form-control"
+                                                                        formControlName="street_two" id="jobadd"
+                                                                       
+                                                                        >
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Street">Street Two</label>
+                                                                        <div class="btn-pre remover"  *ngIf = "i > 0">
+                                                                                <button class="continue" (click) ="remove(i)" type="submit"
+                                                                              >Remove</button>
+                                                                        </div>
+                                                                </div>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                </div>
+
+                                           
                                             </div>
+                                           
 
-
-                                            <div class="unit-txt">
+                                            <!-- <div class="unit-txt">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="know_us">
@@ -331,19 +358,25 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
-                                            <div class="btn-pre">
-                                                <button type="submit"
-                                                    (click)="goToBack('whereForm','what')">Previous</button>
-                                                <button class="continue" type="submit"
-                                                    (click)="addPermitApplication('whereForm','applicant')">Continue</button>
-                                            </div>
+                                           
 
 
                                         </div>
+                                       
 
                                     </div>
+                                    <div class="addlocation">
+                                            <button class="btn btn-success" type="submit"
+                                            (click)="addLocation('whereForm','applicant')">add Loaction</button>
+                                    </div>
+                                    <div class="btn-pre">
+                                            <button type="submit"
+                                                (click)="goToBack('whereForm','what')">Previous</button>
+                                            <button class="continue" type="submit"
+                                                (click)="addPermitApplication('whereForm','applicant')">Continue</button>
+                                        </div>
                                 </form>
                             </div>
 
@@ -393,6 +426,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                
                                             </div>
                                         </div>
 
@@ -582,7 +617,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_zip"
+                                                            <input type="text" formControlName="applicant_zip" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
@@ -999,13 +1034,28 @@
         
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <!-- <div class="col-6">
                                                 <div class="bdp_email loction-adInput lenth-pt">
                                                     <div class="form-group">
                                                         <input type="text" id="da1" class="form-control" formControlName="pavement_type" required>
                                                         <label class="form-control-placeholder" for="da1">Pavement Type</label>
         
                                                     </div>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="col-6">
+                                                <div class="property lbl-txt loction-adInput">
+                                                   
+                                                        <div class="form-group">
+                                                            <label>Pavement Type?</label>
+                                                            <select formControlName="pavement_type">
+                                                                    <option value = "" hidden > --Select--</option>
+                                                                    <option value ="{{value.key}}" *ngFor ="let value of settings?.preventType">{{value?.value}}</option>
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                        </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -1018,19 +1068,28 @@
                                         <div class="bdp_email loction-adInput lenth-pt">
 
                                             <div class="form-group">
-                                                <input type="text" id="sda1"  formControlName="start_date" [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                <input type="text" id="sda1"    #dp="bsDatepicker"
+                                                bsDatepicker
+                                                [bsValue]="bsValue" formControlName="start_date" [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
                                                 <label class="form-control-placeholder" for="sda1">Start Date</label>
                                             </div>
-
+                                            <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
+                                                <button class="btn btn-success datebtn" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" type="button">Date</button>
+                                              </div>
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <div class="bdp_email loction-adInput lenth-pt">
+                                        <div class="bdp_email loction-adInput lenth-pt ">
                                             <div class="form-group">
-                                                <input type="text" id="eda1"  formControlName="end_date" [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                <input type="text" id="eda1" #dp1="bsDatepicker"
+                                                bsDatepicker
+                                                [bsValue]="bsValue"  formControlName="end_date" [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
                                                 <label class="form-control-placeholder" for="eda1">End Date</label>
 
                                             </div>
+                                            <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
+                                                <button class="btn btn-success datebtn" (click)="dp1.toggle()" [attr.aria-expanded]="dp.isOpen" type="button">Date</button>
+                                              </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1080,7 +1139,10 @@
                                         <tbody>
                                           <tr>
                                             <td class="plans">Drawings/ Plans</td>
-                                            <td>Document Example. jpg</td>
+                                            <td *ngIf ="application?.upload_detail[0]?.type == 1">{{application?.upload_detail[0]?.name}}</td>
+                                            <td *ngIf ="application?.upload_detail[1]?.type == 1">{{application?.upload_detail[1]?.name}}</td>
+                                            <td *ngIf ="application?.upload_detail[1]?.type != 1 && application?.upload_detail[0]?.type != 1">_</td>
+
                                             <td class="upload-Btn">
                                       <button >
                                           <span><img src="assets/images/upload.svg" alt=""></span>  Upload
@@ -1090,7 +1152,10 @@
                                           </tr>
                                           <tr>
                                             <td class="plans">Certificate of Insurance</td>
-                                            <td>Document Example. jpg</td>
+                                            <td *ngIf ="application?.upload_detail[0]?.type == 2">{{application?.upload_detail[0]?.name}}</td>
+                                            <td *ngIf ="application?.upload_detail[1]?.type == 2">{{application?.upload_detail[1]?.name}}</td>
+                                            <td *ngIf ="application?.upload_detail[1]?.type != 2 && application?.upload_detail[0]?.type != 2">_</td>
+
                                             <td class="upload-Btn">
                                                     <button >
                                                         <span><img src="assets/images/upload.svg" alt=""></span>  Upload
@@ -1280,7 +1345,7 @@
                                                         <div class="first-collepse-box">
                                                             <div class="role-txt-collepse mb-4">
                                                                 <h2>Do you have a contractor for this job?</h2>
-                                                                <p>{{ settings.getSetting('contractor_for_job',application?.contractor_details['contractor_for_job'])}}</p>
+                                                                <p>{{ settings?.getSetting('contractor_for_job',application?.contractor_details?.contractor_for_job)}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="app-flex">
@@ -1353,7 +1418,7 @@
                                                             <div class="first-collepse-box">
                                                                 <div class="role-txt-collepse">
                                                                     <h2>Purpose</h2>
-                                                                    <p>{{ settings.getSetting('purpose',application?.project_detail['purpose'])}}</p>
+                                                                    <p>{{ settings?.getSetting('purpose',application?.project_detail?.purpose)}}</p>
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
