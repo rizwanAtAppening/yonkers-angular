@@ -1,4 +1,5 @@
 import { urls } from './url';
+import { staticUrls } from './staticUrls';
 
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
@@ -6,7 +7,8 @@ import { urls } from './url';
 export const environment = {
   production: false,
   host: 'http://139.59.40.62:8083',
-  ...urls
+  ...urls,
+  ...staticUrls,
 };
 
 /*

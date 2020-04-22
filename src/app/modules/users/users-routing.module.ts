@@ -5,6 +5,7 @@ import { UserAuthGuard } from 'src/app/core/guards/user-auth.guard';
 import { PermitComponent } from './permit/permit.component';
 import { AddPermitApplicationComponent } from './add-permit-application/add-permit-application.component';
 import { AddPermitTabSectionComponent } from './add-permit-tab-section/add-permit-tab-section.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 
 // const routes: Routes = [
@@ -54,6 +55,10 @@ const routes: Routes = [
           {
             path:'add-permit',
             component:AddPermitTabSectionComponent
+          },
+          {
+            path:'update-profile',
+            component:UpdateProfileComponent
           }
         
         ]

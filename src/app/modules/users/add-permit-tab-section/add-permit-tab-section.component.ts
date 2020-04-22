@@ -6,6 +6,7 @@ import { PermitService } from 'src/app/core/services/users/permit.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -14,6 +15,8 @@ import { of } from 'rxjs';
 })
 export class AddPermitTabSectionComponent implements OnInit {
   public settings: any;
+  public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
+
   public whatForm: FormGroup;
   public whereForm: FormGroup;
   public applicantForm: FormGroup;
@@ -70,17 +73,17 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.checkTab(this.currentTab)
   }
 
-public locations  = []
+  public locations = []
   addLocation() {
-    if(this.isLocation){
+    if (this.isLocation) {
       this.whereForm.controls.address_id.setErrors(null)
     }
-    if(this.whereForm.invalid){
+    if (this.whereForm.invalid) {
       this.isSubmit = true
       return false
     }
-    if(this.location)
-    this.locations.push({street_one:this.whereForm.value.street_one,address_join:this.whereForm.value.address_join,street_two:this.whereForm.value.street_two})
+    if (this.location)
+      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join, street_two: this.whereForm.value.street_two })
     this.location.push({})
     console.log(this.locations)
   }
@@ -89,12 +92,20 @@ public locations  = []
     debugger
     this.location.map((data, i) => {
       if (index == i) {
-        this.location.splice(i, 1)
+        this.location.splice(i, 1);
+        this.locations.splice(i, 1)
       }
     })
   }
   getApplication() {
     this.application = this.permitService.getApplication();
+    if (this.application.upload_detail.length > 0) {
+      this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
+      this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
+      console.log(this.application)
+    }
+
+
     console.log(this.application)
   }
   getCurrentTab() {
@@ -208,6 +219,12 @@ public locations  = []
 
   }
 
+  public isSaveAndExit = false;
+  saveAndExit(value: boolean) {
+    debugger
+    this.isSaveAndExit = value;
+    this.addPermitApplication('', this.currentTab)
+  }
 
   public isSubmit = false;
   public data: any
@@ -226,7 +243,9 @@ public locations  = []
     }
 
     if (nextTab == 'review' && application) {
-      this.application = this.permitService.getApplication();
+      this.currentTab = nextTab
+      this.getApplication()
+      this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       return false
 
     }
@@ -246,15 +265,15 @@ public locations  = []
       }
     }
     else if (formGroup == 'whereForm' || this.currentTab == 'where') {
-      if (this.isLocation ) {
-        
+      if (this.isLocation) {
+
         this.whereForm.controls.address_id.setErrors(null)
-        if(this.locations.length == 0){
-          this.locations.push({street_one:this.whereForm.value.street_one,address_join:this.whereForm.value.address_join,street_two:this.whereForm.value.street_two})
+        if (this.locations.length == 0) {
+          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join, street_two: this.whereForm.value.street_two })
         }
         this.data = {
           model: 2,
-         locations:this.locations,
+          locations: this.locations,
           location_type: this.location_type,
         }
       } else {
@@ -312,10 +331,20 @@ public locations  = []
       this.currentTab = nextTab
       this.isSubmit = false
       this.checkTab(this.currentTab)
+      this.windowScroll()
+      if(this.isSaveAndExit){
+        this.isSaveAndExit = false
+        this.router.navigate(['/dashboard/permit'])
+        return false
 
+      }
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       // this.permitService.saveCurrentTab(this.currentTab);
     })
+  }
+
+  windowScroll() {
+    window.scroll(0, 0)
   }
   public currentUserInfo: any
   getCurrentUser() {
@@ -536,7 +565,7 @@ public locations  = []
 
     if (tab == 'review' || this.currentTab == 'review') {
 
-      this.application = this.permitService.getApplication();
+      this.getApplication()
       this.checkTab(tab)
       this.currentTab = tab;
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
@@ -559,6 +588,10 @@ public locations  = []
     }
     else if (tab == 'projectDetail') {
       this.projectDetailsTab()
+
+    }
+    else if (tab == 'upload') {
+      this.getApplication()
 
     }
   }
@@ -613,6 +646,12 @@ public locations  = []
     })
   }
 
+  editByReviewPage(tab) {
+    this.currentTab = tab
+    this.checkTab(this.currentTab);
+    this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
+
+  }
 
 }
 

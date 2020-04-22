@@ -11,6 +11,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 //import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -27,7 +28,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     
 
   ],
-  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent],
+  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent],
   providers: [
     UserAuthGuard
   ]

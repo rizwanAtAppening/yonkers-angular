@@ -49,11 +49,14 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/application?tab=what');
   }
 
+  goToProfile(){
+    this.router.navigate(['/dashboard/update-profile']);
+  }
+
   logoutUser() {
     this.usersService.changeSaveAndExit(false)
     this.authenticationService.logout().subscribe(res => {
       if (res) {
-        
         //this.applicationService.apllicationStatus(1)
         this.isEdit();
         this.router.navigate(['/']);

@@ -5528,3 +5528,237 @@ color: #00183966;
     top: 23px;
     right: 20px;
 }
+
+.dumpster-txt {
+    color: #282D5B;
+    font-family: "Poppins-Medium";
+    font-size: 18px;
+    line-height: 27px;
+}
+
+.dumpster-Img {
+    color: #4AB5F1;
+	font-family: 'gilroy-regular';
+    font-size: 16px;
+    line-height: 23px;
+    text-align: right;
+    cursor: pointer;
+}
+.dumpster-Img  span{
+    margin-right: 10px;
+}
+.add-btn-compnay{
+    margin-bottom: 19px;
+    margin-top: 30px;
+}
+
+.compnay-tbl .table{
+    border: 1px solid #00000012;
+    background: #fff;
+}
+
+.compnay-tbl .table thead th{
+    border-bottom: 0px solid #dee2e6;
+    padding: 24px 0px 21px 24px;
+    color: #282D5B;
+    font-family: "Poppins-SemiBold";
+}
+.compnay-tbl .table td{
+    padding: 24px 0px 29px 24px;
+    vertical-align: middle;
+    border-top: 1px solid #00000012;
+    color: #282D5BB0;
+    font-family: 'Poppins-Regular';
+    font-size: 14px;
+    line-height: 22px;
+}
+.tbl_box {
+    border: 1px solid #00000012;
+    padding:29px 25px;
+}
+
+
+/* The container */
+.container-name {
+    position: relative;
+    padding-left: 30px;
+   cursor: pointer;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ 
+ /* Hide the browser's default checkbox */
+ .container-name input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+   height: 0;
+   width: 0;
+ }
+ 
+ /* Create a custom checkbox */
+ .checkmark-mail {
+     position: absolute;
+     top: 0;
+     left: 0;
+     box-shadow: 0px 1px 10px #8B8B8B1F;
+     width: 20px;
+     height: 20px;
+     background-color: #fff;
+     border-radius: 5px;
+     border: 0.5px solid #8484846E;
+ }
+ 
+ 
+ 
+ /* When the checkbox is checked, add a blue background */
+ .container-name input:checked ~ .checkmark-mail {
+   background-color: #2196F3;
+    border: 0.5px solid #2196F3;
+   
+ 
+ }
+ 
+ /* Create the checkmark/indicator (hidden when not checked) */
+ .checkmark-mail:after {
+   content: "";
+   position: absolute;
+   display: none;
+ }
+ 
+ /* Show the checkmark when checked */
+ .container-name input:checked ~ .checkmark-mail:after {
+   display: block;
+ }
+ 
+ /* Style the checkmark/indicator */
+ .container-name .checkmark-mail:after {
+    left: 7px;
+    top: 4px;
+    height: 10px;
+    width: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+ }
+ .mail-shlok label span {
+display: block;
+font-size: 14px;
+font-family: 'Poppins-Regular';
+color: #282D5BB0;
+ }
+ .mail-shlok label {
+     color: #282D5B;
+     font-family: "Poppins-SemiBold";
+     font-size: 14px;
+ }
+
+ .popup-dumpstar {
+     max-width: 615px !important;
+ }
+
+ .text-addpopup {
+     background: #fff;
+     border-radius: 4px;
+ }
+
+ .text-addpopup{
+     padding: 29px 24px;
+ }
+ .text-addpopup .close span{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    line-height: 30px;
+    height: 30px;
+    background: #F7F8F9;
+    cursor: pointer;
+    border-radius: 50%;
+ }
+ .text-addpopup h5{
+     color:#282D5B;
+     font-family: "Poppins-SemiBold";
+     font-size: 24px;
+     line-height: 35px;
+ }
+
+ .border-top-detals {
+     border-top:1px solid #EAEDF3;
+    margin-top: 14px;
+    }
+
+    .up-add {
+        margin-top: 29px !important;
+    }
+    .up-add input{
+        height: 42px !important;
+        font-size: 14px;
+    }
+
+    .up-add  .form-control-placeholder {
+        position: absolute;
+        top: 11px;
+        left: 17px;
+        font-size: 14px;
+        padding: 0px 0 0 0px;
+        transition: all 200ms;
+        font-family: 'Poppins-Regular';
+        opacity: 0.6;
+    }
+
+    .up-add  .form-control:valid+.form-control-placeholder {
+        font-size: 12px;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+        background: white;
+        color: #282D5B;
+        top: 13px;
+        display: inline-block;
+        left: 14px;
+        padding: 0px 6px 2px 5px;
+    }
+
+    .up-add  .form-control:focus+.form-control-placeholder {
+        font-size: 14px;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        opacity: 1;
+        background: white;
+        color: #4EB7F1;
+        top: 13px;
+        display: inline-block;
+        left: 13px;
+        padding: 0px 6px 2px 5px;
+    }
+
+    .popup-busnise {
+        margin-top: 33px;
+    }
+
+    .pop-Btn button.continue{
+        width: 104px;
+    }   
+    .pop-Btn button{
+        border: none;
+        color: #000;
+    } 
+
+    .updateprofile {
+        padding: 80px 0px 50px 0px;
+        background: #F9FAFB;
+    }
+
+    .box-engrining-2 {
+        background: #fff;
+        padding: 40px 35px 48px 35px;
+        max-width: 983px;
+        margin: 0 auto;
+        display: block;
+        border: 1px solid #00000012;
+    }
