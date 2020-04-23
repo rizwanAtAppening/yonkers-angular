@@ -42,18 +42,18 @@ export class UsersService {
     this.source.next(isIt);
   }
 
-  // postOccupancyApplication(data: OccupancyApplication): Observable<any> {
-  //   const href = `${environment.application}`;
-  //   return this.http.post<any>(href, data).pipe(
-  //     tap(
-  //       (data) => {
-  //         if (data.status === 'success') {
-  //         }
-  //         return data;
-  //       }
-  //     )
-  //   );
-  // }
+  updateUserProfile(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['updateProfile']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
 
   // isApplicationEditable(): boolean {
   //   return false;

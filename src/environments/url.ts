@@ -66,6 +66,7 @@ const userUrl = {
   addPermitApplication:'/application',
   uploadImage:'/application/fileUpload',
   getPermitApplication:'/application',
+  updateProfile:'/user/profile'
 
  
 }
