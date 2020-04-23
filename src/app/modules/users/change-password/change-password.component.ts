@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -13,7 +14,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private toasterService: ToastrService,
-
+    private router: Router,
     private formBuilder: FormBuilder,
   ) { }
 
@@ -51,12 +52,16 @@ export class ChangePasswordComponent implements OnInit {
     const data = {
 
     }
-    this.changePasswordForm.value.cnfPassword = this.changePasswordForm.value.cnfpassword 
+    this.changePasswordForm.value.cnfPassword = this.changePasswordForm.value.cnfpassword
     this.userService.changePassword(this.changePasswordForm.value).subscribe(data => {
       this.toasterService.success('password has been changed');
-
+      this.router.navigate(['/dashboard/permit'])
       console.log(data)
     })
+  }
+
+  back(){
+    this.router.navigate(['/dashboard/permit'])
   }
 
   passwordMatch(value: string) {

@@ -1,7 +1,6 @@
-<app-layout>
+<!-- <app-layout>
   <router-outlet>
 
-    <!-- Banner -->
     <section class="banner homebanner">
       <div class="container">
         <div class="row">
@@ -15,9 +14,7 @@
         </div>
       </div>
     </section>
-    <!-- Banner_End -->
-
-    <!-- Section -->
+   
     <section class="portal_certificate">
       <div class="container">
         <div class="row">
@@ -50,9 +47,7 @@
         </div>
       </div>
     </section>
-    <!-- Section_End -->
-
-    <!-- Section -->
+    
     <section class="certificates_habit">
       <div class="container">
         <div class="row">
@@ -108,8 +103,7 @@
 
       </div>
     </section>
-    <!-- Section_End -->
-    <!-- Howitwork -->
+  
     <section class="work_required">
       <div class="container">
         <div class="row">
@@ -232,11 +226,7 @@
 
       </div>
     </section>
-    <!-- Howitwork_End -->
-
-
-
-    <!-- Inspection -->
+  
     <section class="inspection_sec">
       <div class="container">
         <div class="row">
@@ -267,7 +257,6 @@
               </ul>
 
               <div class="tab-content" id="myTabContent">
-                <!-- House & Property Maintenance -->
                 <div class="tab-pane fade show active topmt_space" id="house_tab" role="tabpanel"
                   aria-labelledby="house-property">
 
@@ -287,7 +276,6 @@
                     </ul>
 
                     <div class="tab-content" id="myTabContent">
-                      <!-- Exterior First Interior-->
                       <div class="tab-pane fade show active mt_space1" id="exterior_home" role="tabpanel"
                         aria-labelledby="home-exterior">
 
@@ -401,8 +389,7 @@
 
                       </div>
 
-                      <!-- Exterior First end -->
-                      <!-- Interior First  -->
+                    
                       <div class="tab-pane fade mt_space1" id="interior_box" role="tabpanel"
                         aria-labelledby="interior-tab">
 
@@ -515,16 +502,13 @@
                         </div>
 
                       </div>
-                      <!-- Interior First End -->
                     </div>
 
 
                   </div>
 
                 </div>
-                <!-- House & Property Maintenance End-->
-
-                <!-- Fire Safety Start-->
+               
                 <div class="tab-pane fade topmt_space" id="fire_safety" role="tabpanel"
                   aria-labelledby="fire-safety-tab">
 
@@ -545,7 +529,6 @@
 
 
                     <div class="tab-content" id="myTabContent">
-                      <!-- Exterior Second-->
                       <div class="tab-pane fade show active mt_space1" id="exterior_home2" role="tabpanel"
                         aria-labelledby="home-exterior2">
 
@@ -659,8 +642,7 @@
 
                       </div>
 
-                      <!-- Exterior Second End-->
-                      <!-- Interior Second -->
+                     
                       <div class="tab-pane fade mt_space1" id="interior_box2" role="tabpanel"
                         aria-labelledby="interior-tab2">
 
@@ -773,14 +755,12 @@
                         </div>
 
                       </div>
-                      <!-- Interior Second End-->
                     </div>
 
 
                   </div>
 
                 </div>
-                <!-- Fire Safety End-->
               </div>
             </div>
           </div>
@@ -788,10 +768,7 @@
 
       </div>
     </section>
-    <!-- Inspection_End -->
-
-
-    <!-- Section_note -->
+   
     <section class="note_section">
       <div class="container">
 
@@ -808,6 +785,229 @@
 
       </div>
     </section>
-    <!-- Section_note_End -->
   </router-outlet>
-</app-layout>
+</app-layout> -->
+
+
+
+<app-auth-layout>
+    <router-outlet>
+      <div class="body_bg">
+        <div class="process_section">
+          <div class="container-fluid">
+            <!-- <div class="row">
+              <div class="col-lg-7 topbar_process">
+                <div class="same_spacebox">
+                  <div class="logo_process">
+                    <a href="#"> <img src="/assets/images/process-logo.png" alt="" /> </a>
+                  </div>
+  
+                </div>
+              </div>
+            </div> -->
+  
+            <form (submit)="onSubmit()" name="loginForm" [formGroup]="loginForm">
+  
+              <section class="dept-portal">
+                <div class="bdp-box">
+                  <div class="container p-0">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="bdp-logo">
+                          <h2>BDP</h2>
+                          <h3>Building Dept Portal</h3>
+                        </div>
+  
+                        <div class="sign-in">
+                          <h4>Sign in</h4>
+                          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                            invidunt ut labore et dolore</p>
+                        </div>
+  
+                      </div>
+                    </div>
+  
+  
+                    <div class="bdp_email">
+                      <div class="row">
+                        <div class="col-12 ">
+                          <div class="form-group">
+                            <input type="text" id="name" class="form-control" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                             id="monxhwedey" class="form-control check-in" id="email" formControlName="email" required>
+                            <label class="form-control-placeholder" for="name">Email Address</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                          <span *ngIf="email.errors['required']">
+                            Please select a Email
+                          </span>
+                          <span *ngIf="email.errors['maxlength']">
+                            Please enter a Email no more than 250 characters.
+                          </span>
+                          <span *ngIf="email.errors['pattern']">
+                            Please enter a valid Email .
+                          </span>
+                        </div>
+  
+                    </div>
+  
+                    <div class="new-passwordInput new">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="form-group">
+                            <input type="password" [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
+                            [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
+                            class="form-control password" id="password" formControlName="password" required>
+                            <label class="form-control-placeholder" for="password">Password</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-error"
+                      *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
+                      <span *ngIf="password.errors['required']">
+                        Please enter the Password
+                      </span>
+                      <span *ngIf="password.errors['minlength']">
+                        Please enter a Password no more than 6 characters.
+                      </span>
+                    </div>
+  
+                    </div>
+                    <!-- <div class="methode-check sign-in conditions d-flex">
+  
+  
+                        <h6><a class="pop-click" href="#">Forgot Password</a></h6>
+                        <h6 class="log-in">Dont't have an account? <span><a
+                              [routerLink]="['/auth/register']">Register</a></span></h6>
+  
+                      </div> -->
+                    <div class="forget-text">
+                      <div class="row">
+                        <div class="col-12">
+                          <h4>Forgot Password?</h4>
+                          <h6 class="forget-text">Dont't have an account? <span><a
+                            [routerLink]="['/auth/register']">Register</a></span></h6>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="btn-sign-in">
+                      <div class="row">
+                        <div class="col-12">
+                          <button type="submit">Sign in</button>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="border-topline"></div>
+  
+  
+                    <div class="profile-Hd">
+                      <h3>Don't have a profile?</h3>
+                      <p>Create a profile to get full access to our articles and reports, and to subscribe to our email
+                        newsletters and alerts.</p>
+                      <h4>
+                        Create a profile <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                      </h4>
+                    </div>
+  
+                  </div>
+                </div>
+  
+              </section>
+              <!-- <div class="form_section">
+                <div class="row justify-content-between sign-up  step3 sign-in">
+                  <div class="col-lg-7 bg_colorwhite">
+                    <div class="center_stepprocess">
+  
+                      <div class="heading_what">
+                        <h2>Log In</h2>
+                        <p>
+                          It will take less than a minute to fill.
+                        </p>
+                      </div>
+  
+                      <div class="form_process">
+  
+                        <div class="form_boxbuyer">
+  
+                          <div class="form-group">
+                            <label for="monxhwedey" class="add-detail">Email Address</label>
+                            <input
+                              [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                              type="text" id="monxhwedey" class="form-control check-in" id="email" formControlName="email"
+                              placeholder="abc@example.com">
+                            <span class="input-icon-check" *ngIf="!email.invalid"></span>
+  
+                          </div>
+                          <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                            <span *ngIf="email.errors['required']">
+                              Please select a Email
+                            </span>
+                            <span *ngIf="email.errors['maxlength']">
+                              Please enter a Email no more than 250 characters.
+                            </span>
+                            <span *ngIf="email.errors['pattern']">
+                              Please enter a valid Email .
+                            </span>
+                          </div>
+  
+                          <div class="form-group">
+                            <label for="emailbox">Password</label>
+                            <input type="password"
+                              [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
+                              [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
+                              class="form-control password" id="password" formControlName="password"
+                              placeholder="*****************">
+                            <span class="input-icon-check" *ngIf="!password.invalid"></span>
+                          </div>
+  
+                          <div class="form-error"
+                            *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
+                            <span *ngIf="password.errors['required']">
+                              Please enter the Password
+                            </span>
+                            <span *ngIf="password.errors['minlength']">
+                              Please enter a Password no more than 6 characters.
+                            </span>
+                          </div>
+  
+                          <div class="methode-check sign-in conditions d-flex">
+  
+  
+                            <h6><a class="pop-click" href="#">Forgot Password</a></h6>
+                            <h6 class="log-in">Dont't have an account? <span><a
+                                  [routerLink]="['/auth/register']">Register</a></span></h6>
+  
+                          </div>
+  
+                          <button type="submit" class="btn register">Log in</button>
+  
+                        </div>
+  
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                  <div class="col-lg-5">
+                    <div class="rightbar_aria">
+                      <div class="picture_sale">
+                        <img src="/assets/images/Group4045.png" alt="" />
+  
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              </div> -->
+            </form>
+          </div>
+        </div>
+  
+      </div>
+  
+    </router-outlet>
+  
+  </app-auth-layout>

@@ -148,7 +148,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ud7" class="form-control" 
+                                                            <input type="text" id="ud7" class="form-control"
                                                                 formControlName="address">
                                                             <label class="form-control-placeholder"
                                                                 for="ud7">Address</label>
@@ -170,7 +170,9 @@
                                                             <select type="text" id="ud8" class="form-control"
                                                                 formControlName="state">
                                                                 <option value="" hidden>--Select--</option>
-                                                                <option value="{{state?.key}}" *ngFor = "let state of settings?.userState"> {{state?.value}}</option>
+                                                                <option value="{{state?.key}}"
+                                                                    *ngFor="let state of settings?.userState">
+                                                                    {{state?.value}}</option>
                                                             </select>
                                                             <label class="form-control-placeholder" for="ud8">State
                                                             </label>
@@ -203,8 +205,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="ud8" class="form-control" maxlength="6"
-                                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="number" id="ud8" class="form-control"
+                                                                maxlength="6"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 formControlName="zip">
                                                             <label class="form-control-placeholder" for="ud8">Zip
                                                             </label>
@@ -219,8 +222,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="ud9" class="form-control" maxlength="10"
-                                                            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="number" id="ud9" class="form-control"
+                                                                maxlength="10"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 formControlName="phone_number">
                                                             <label class="form-control-placeholder"
                                                                 for="ud9">Phone</label>
@@ -251,7 +255,7 @@
                                     </div> -->
 
                                 <div class="btn-pre">
-                                    <button>Previous</button>
+                                    <button type="button" (click)="back()">Previous</button>
                                     <button class="continue mr-0" (click)="updateProfile()">Continue</button>
                                 </div>
                             </form>
