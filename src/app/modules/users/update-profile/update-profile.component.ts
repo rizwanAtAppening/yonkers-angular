@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
+import { appToaster, settingConfig } from 'src/app/configs';
 
 @Component({
   selector: 'app-update-profile',
@@ -9,6 +10,7 @@ import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@
   styleUrls: ['./update-profile.component.css']
 })
 export class UpdateProfileComponent implements OnInit {
+  public settings: any;
 
   profileForm: FormGroup;
   constructor(
@@ -16,7 +18,8 @@ export class UpdateProfileComponent implements OnInit {
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
 
-  ) { }
+  ) {    this.settings = settingConfig;
+  }
 
   ngOnInit(): void {
     this.userService.changeSaveAndExit(true);

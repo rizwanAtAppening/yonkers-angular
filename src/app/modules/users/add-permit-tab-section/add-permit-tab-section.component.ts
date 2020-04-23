@@ -83,7 +83,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       return false
     }
     if (this.location)
-      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two?this.whereForm.value.street_two:null })
+      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two ? this.whereForm.value.street_two : null })
     this.location.push({})
     console.log(this.locations)
   }
@@ -100,11 +100,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   getApplication() {
     this.application = this.permitService.getApplication();
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
-      if(this.application.upload_detail){
+      if (this.application.upload_detail) {
         this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
         this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
       }
-     
+
       console.log(this.application)
     }
     if (this.currentTab == "projectDetail") {
@@ -235,6 +235,10 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isSaveAndExit = false;
   saveAndExit(value: boolean) {
     debugger
+    if (this.currentTab == 'upload' || this.currentTab == 'review') {
+      this.router.navigate(['/dashboard/permit'])
+      return false
+    }
     this.isSaveAndExit = value;
     this.addPermitApplication('', this.currentTab)
   }
@@ -283,7 +287,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.whereForm.controls.address_id.setErrors(null)
         if (this.locations.length == 0) {
-          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two?this.whereForm.value.street_two:null })
+          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two ? this.whereForm.value.street_two : null })
         }
         this.data = {
           model: 2,
@@ -339,18 +343,18 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
       }
       this.projectDetailsForm.value.model = 5
-     if( this.application.role != 2){
-       this.projectDetailsForm.value.pavement_type = null
-     }
-     this.projectDetailsForm.value.purpose = Number(this.projectDetailsForm.value.purpose);
-     this.projectDetailsForm.value.pavement_type = Number(this.projectDetailsForm.value.pavement_type);
-     this.projectDetailsForm.value.traffic_control = Number(this.projectDetailsForm.value.traffic_control);
-     if(this.projectDetailsForm.value.pavement_type == ""){
-       this.projectDetailsForm.value.pavement_type = null
-     }
-     if(this.projectDetailsForm.value.traffic_control == ""){
-      this.projectDetailsForm.value.traffic_control = null
-    }
+      if (this.application.role != 2) {
+        this.projectDetailsForm.value.pavement_type = null
+      }
+      this.projectDetailsForm.value.purpose = Number(this.projectDetailsForm.value.purpose);
+      this.projectDetailsForm.value.pavement_type = Number(this.projectDetailsForm.value.pavement_type);
+      this.projectDetailsForm.value.traffic_control = Number(this.projectDetailsForm.value.traffic_control);
+      if (this.projectDetailsForm.value.pavement_type == "") {
+        this.projectDetailsForm.value.pavement_type = null
+      }
+      if (this.projectDetailsForm.value.traffic_control == "") {
+        this.projectDetailsForm.value.traffic_control = null
+      }
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
