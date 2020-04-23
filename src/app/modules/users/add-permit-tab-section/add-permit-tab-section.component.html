@@ -80,8 +80,8 @@
                                     <label>What is your role in this project ?*</label>
                                     <select formControlName="role"
                                         [class]="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                        <option value="" hidden> --Select--</option>
-                                        <option [value]="role?.key" *ngFor="let role of settings.role">{{role?.value}}
+                                        <option value = "undefined" hidden> --Select--</option>
+                                        <option value="{{role.key}}" *ngFor="let role of settings?.role">{{role?.value}}
                                         </option>
 
                                     </select>
@@ -101,8 +101,8 @@
                                     <label>Type</label>
                                     <select formControlName="type"
                                         [class]="whatControls.type.invalid && (whatControls.type.dirty || whatControls.type.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                        <option value="" hidden> --Select--</option>
-                                        <option [value]="type?.key" *ngFor="let type of settings.type">{{type?.value}}
+                                        <option value="undefined" hidden> --Select--</option>
+                                        <option value="{{type?.key}}" *ngFor="let type of settings?.type">{{type?.value}}
                                         </option>
                                     </select>
                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -287,7 +287,7 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Street" class="form-control"
+                                                                    <input type="number" id="Street" class="form-control"
                                                                         formControlName="street_one" id="jobadd"
                                                                         [class]="whereControls.street_one.invalid && (whereControls.street_one.dirty || whereControls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -324,7 +324,7 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Street" class="form-control"
+                                                                    <input type="number" id="Street" class="form-control"
                                                                         formControlName="street_two" id="jobadd">
                                                                     <label class="form-control-placeholder"
                                                                         for="Street">Street Two</label>

@@ -83,7 +83,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       return false
     }
     if (this.location)
-      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join, street_two: this.whereForm.value.street_two })
+      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two?this.whereForm.value.street_two:null })
     this.location.push({})
     console.log(this.locations)
   }
@@ -100,8 +100,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   getApplication() {
     this.application = this.permitService.getApplication();
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
-      this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
-      this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
+      if(this.application.upload_detail){
+        this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
+        this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
+      }
+     
       console.log(this.application)
     }
     if (this.currentTab == "projectDetail") {
@@ -241,8 +244,9 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isContractor = false;
   public application: any;
   addPermitApplication(formGroup, nextTab) {
-    const application = this.permitService.getApplication()
-    if (application.role == 2) {
+    //const application = this.permitService.getApplication()
+    this.getApplication()
+    if (this.application.role == 2) {
       this.isContractor = true
     } else {
       this.projectDetailsForm.controls.dig_safely_no.setErrors(null),
@@ -252,7 +256,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
 
-    if (nextTab == 'review' && application) {
+    if (nextTab == 'review' && this.application) {
       this.currentTab = nextTab
       this.getApplication()
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
@@ -279,7 +283,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.whereForm.controls.address_id.setErrors(null)
         if (this.locations.length == 0) {
-          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join, street_two: this.whereForm.value.street_two })
+          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two?this.whereForm.value.street_two:null })
         }
         this.data = {
           model: 2,
@@ -335,6 +339,18 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
       }
       this.projectDetailsForm.value.model = 5
+     if( this.application.role != 2){
+       this.projectDetailsForm.value.pavement_type = null
+     }
+     this.projectDetailsForm.value.purpose = Number(this.projectDetailsForm.value.purpose);
+     this.projectDetailsForm.value.pavement_type = Number(this.projectDetailsForm.value.pavement_type);
+     this.projectDetailsForm.value.traffic_control = Number(this.projectDetailsForm.value.traffic_control);
+     if(this.projectDetailsForm.value.pavement_type == ""){
+       this.projectDetailsForm.value.pavement_type = null
+     }
+     if(this.projectDetailsForm.value.traffic_control == ""){
+      this.projectDetailsForm.value.traffic_control = null
+    }
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
@@ -425,7 +441,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorForm.controls.contractor_phone.setValue(application.contractor_details.contractor_phone)
       this.contractorForm.controls.contractor_city.setValue(application.contractor_details.contractor_state)
       this.contractorForm.controls.contractor_state.setValue(application.contractor_details.contractor_city)
-      this.contractorForm.controls.contractor_zip.setValue(application.contractor_details.contractor_zipy)
+      this.contractorForm.controls.contractor_zip.setValue(application.contractor_details.contractor_zip)
     }
 
   }

@@ -51,7 +51,7 @@ export const settingConfig = {
 
   ],
 
-  address_join :[
+  address_join: [
     {
       key: 1,
       value: "To(Range)"
@@ -62,7 +62,7 @@ export const settingConfig = {
     },
   ],
 
-  fileType:[
+  fileType: [
     {
       key: 1,
       value: "To(Range)"
@@ -89,7 +89,7 @@ export const settingConfig = {
 
 
   ],
-  traffic :[
+  traffic: [
     {
       key: 1,
       value: "Yes"
@@ -131,55 +131,214 @@ export const settingConfig = {
     },
   ],
 
-  userState:[
+  userState: [
     {
-      key:1,
-      value:'Alabama (AL)'
-      
+      key: 1,
+      value: 'Alabama (AL)'
+
     },
     {
-      key:2,
-      value:'Alabama (AL)'
-      
+      key: 2,
+      value: 'American Samoa (AS)'
+
     }, {
-      key:3,
-      value:'Alabama (AL)'
-      
+      key: 3,
+      value: 'Arizona (AZ)'
+
+
     }, {
-      key:4,
-      value:'Alabama (AL)'
-      
+      key: 4,
+      value: 'Colorado (CO)'
+
+
     }, {
-      key:5,
-      value:'Alabama (AL)'
-      
+      key: 5,
+      value: 'Connecticut (CT)'
+
     }, {
-      key:6,
-      value:'Alabama (AL)'
-      
+      key: 6,
+      value: 'Georgia (GA)'
+
     }, {
-      key:7,
-      value:'Alabama (AL)'
-      
+      key: 7,
+      value: 'Guam (GU)'
+
     }, {
-      key:8,
-      value:'Alabama (AL)'
-      
+      key: 8,
+      value: 'Hawaii (HI)'
+
     }, {
-      key:9,
-      value:'Alabama (AL)'
-      
+      key: 9,
+      value: 'Iowa (IA)'
     }, {
-      key:10,
-      value:'Alabama (AL)'
-      
+      key: 10,
+      value: 'Idaho (ID)'
     },
-     {
-      key:11,
-      value:'Alabama (AL)'
-      
+    {
+      key: 11,
+      value: 'Illinois (IL)'
     },
+    {
+      key: 12,
+      value: 'Indiana (IN)'
+      
+    }, {
+      key: 13,
+      value: 'Kansas (KS)'
+    }, {
+      key: 14,
+      value: 'Kentucky (KY)'
+      
+    }, {
+      key: 15,
+      value: 'Louisiana (LA)'
+    }, {
+      key: 17,
+      value: 'Massachusetts (MA)'
+      
+    }, {
+      key: 18,
+      value: 'Maryland (MD)'
+      
+    }, {
+      key: 19,
+      value:'Maine (ME)'
+      
+    }, {
+      key: 20,
+      value: 'Minnesota (MN)' 
+    }, {
+      key: 21,
+      value: 'Missouri (MO)'
+      
+    }, {
+      key: 22,
+      value: 'Mississippi (MS)'
+      
+    }, {
+      key: 23,
+      value: 'Montana (MT)'
+      
+    }, {
+      key: 24,
+      value: 'North Carolina (NC)'
+      
+    }, {
+      key: 25,
+      value: 'North Dakota (ND)'
+      
+    }, {
+      key: 26,
+      value: 'Nebraska (NE)'
+      
+    }, {
+      key: 27,
+      value: 'New Hampshire (NH)'
+      
+    }, {
+      key: 28,
+      value: 'New Jersey (NJ)'
+      
+    }, {
+      key: 29,
+      value: 'New Mexico (NM)'
+      
+    }, {
+      key: 30,
+      value: 'Nevada (NV)'
+      
+    }, {
+      key: 31,
+      value: 'Ohio (OH)'
+      
+      
+    }, {
+      key: 32,
+      value: 'Oklahoma (OK)'
+      
+    }, {
+      key: 33,
+      value: 'Oregon (OR)'
+      
+    }, {
+      key: 34,
+      value: 'Pennsylvania (PA)'
+
+    }, {
+      key: 35,
+      value: 'Puerto Rico (PR)'
+
+    }, {
+      key: 36,
+      value: 'Rhode Island (RI)'
+
+    },
+    {
+      key: 37,
+      value: 'South Carolina (SC)'
+
+
+    },{
+      key: 38,
+      value: 'South Dakota (SD)'
+
+
+    },{
+      key: 39,
+      value: 'Tennessee (TN)'
+
+
+    },{
+      key: 40,
+      value: 'Texas (TX)'
+
+    },{
+      key: 41,
+      value: 'Utah (UT)'
+
+
+    },{
+      key: 42,
+      value: 'Rhode Island (RI)'
+
+    },{
+      key: 43,
+      value: 'Virgin Islands (VI)'
+
+
+    },{
+      key: 44,
+      value: 'Virginia (VA)'
+
+
+    },{
+      key: 45,
+      value: 'Vermont (VT)'
+
+
+    },{
+      key: 46,
+      value: 'Washington (WA)'
+
+
+    },{
+      key: 47,
+      value: 'Wisconsin (WI)'
+
+
+    },{
+      key: 48,
+      value: 'West Virginia (WV)'
+
+
+    },
+    {
+      key: 49,
+      value: 'Wyoming (WY)'
+    },
+   
   ],
+
 
 
 
