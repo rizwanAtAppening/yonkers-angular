@@ -133,7 +133,7 @@ label {
 
 @font-face {
     font-family: 'Gilroy-bold';
-    src: local('../fonts/Gilroy-bold'), url('../fonts/Gilroy-bold.otf');
+    src: local('../fonts/Gilroy-bold'), url('../fonts/Gilroy-Bold.otf');
 }
 
 
@@ -1964,4 +1964,34 @@ text-align: center;
 .bottom_border-btn {
     border-top: 0.5px solid #00000042;
     margin-top: 40px;
+}
+.btn-pre button.adloc{
+    float: left;
+}
+#add_slect {
+    position: relative;
+}
+
+#add_slect span{
+    position: absolute;
+    top: 11px;
+    right: 16px;
+}
+.defultInput select{
+    height: 62px;
+    color: #7E819C;
+    background: #fff;
+    border: 0.5px solid #7E819C;
+    border-radius: 0px;
+    font-family: 'Poppins-Regular';
+    padding-left: 21px;
+}
+
+.defultInput label{
+    top: -15px;
+    opacity: 1;
+    background: #fff;
+    padding: 0px 8px;
+    font-family: 'Poppins-Regular';
+    color: #7E819C;
 }
