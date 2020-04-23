@@ -131,6 +131,56 @@ export const settingConfig = {
     },
   ],
 
+  userState:[
+    {
+      key:1,
+      value:'Alabama (AL)'
+      
+    },
+    {
+      key:2,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:3,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:4,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:5,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:6,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:7,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:8,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:9,
+      value:'Alabama (AL)'
+      
+    }, {
+      key:10,
+      value:'Alabama (AL)'
+      
+    },
+     {
+      key:11,
+      value:'Alabama (AL)'
+      
+    },
+  ],
+
 
 
 

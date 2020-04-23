@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
     this.isEdit()
     if (this)
       this.authenticationService.getUserInfo().subscribe(user => {
-        this.currentUser = user ? user.szEmail : null;
+        this.currentUser = user ? user.email : null;
       });
   }
 

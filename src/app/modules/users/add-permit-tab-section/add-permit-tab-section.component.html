@@ -543,7 +543,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_phone"
+                                                            <input type="number" formControlName="applicant_phone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
@@ -685,7 +685,7 @@
                                             <div class="form-group">
                                                 <label>Do you have a contractor for this job?</label>
                                                 <select formControlName="contractor_for_job">
-                                                    <option value="">--Select--</option>
+                                                    <option value= "" hidden>--Select--</option>
                                                     <option [value]="value?.key"
                                                         *ngFor="let value of settings?.contractor_for_job">
                                                         {{value?.value}}</option>
@@ -782,7 +782,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="contractor_phone"
+                                                            <input type="number" formControlName="contractor_phone" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder" for="Project">Phone
@@ -882,7 +882,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="contractor_zip"
+                                                            <input type="number" formControlName="contractor_zip" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label class="form-control-placeholder"
@@ -891,7 +891,7 @@
                                                                 *ngIf="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit)">
                                                                 <p class="form-error"
                                                                     *ngIf="contratorControl.contractor_zip.errors['required']">
-                                                                    Please Enter phone
+                                                                    Please Enter Zip
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -972,7 +972,7 @@
                                                 <div class="col-12">
                                                     <div class="form-group">
                                                         <input type="text" id="la1" formControlName="length"
-                                                            class="form-control" required>
+                                                            class="form-control" >
                                                         <label class="form-control-placeholder" for="la1">Length</label>
                                                     </div>
                                                 </div>
@@ -1015,7 +1015,7 @@
 
                                             <div class="form-group">
                                                 <input type="text" id="wa1" formControlName="dig_safely_no"
-                                                    class="form-control" required>
+                                                    class="form-control">
                                                 <label class="form-control-placeholder" for="wa1">Dig Safty
                                                     Number</label>
                                             </div>
@@ -1026,7 +1026,7 @@
                                         <div class="bdp_email loction-adInput lenth-pt">
                                             <div class="form-group">
                                                 <input type="text" id="da1" class="form-control"
-                                                    formControlName="opening_number" required>
+                                                    formControlName="opening_number">
                                                 <label class="form-control-placeholder" for="da1">Area of
                                                     Opening</label>
 
@@ -1043,7 +1043,7 @@
 
                                             <div class="form-group">
                                                 <input type="text" id="wa1" formControlName="opening_size"
-                                                    class="form-control" required>
+                                                    class="form-control">
                                                 <label class="form-control-placeholder" for="wa1">Number of
                                                     Openings</label>
                                             </div>
@@ -1169,7 +1169,7 @@
                                                 <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type == 0">
                                                     {{application?.upload_detail[1]?.name}}</td>
-                                               <td  *ngIf="application?.upload_detail && application?.upload_detail[0]?.type != 0 && application?.upload_detail && application?.upload_detail[1]?.type == 0"> _</td>
+                                               <td  *ngIf="(application?.upload_detail && application?.upload_detail[0]?.type != 0) && (application?.upload_detail && application?.upload_detail[1]?.type != 0)"> _</td>
                                                 <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload

@@ -99,12 +99,22 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
   getApplication() {
     this.application = this.permitService.getApplication();
-    if (this.application.upload_detail.length > 0) {
+    if (this.application.upload_detail && this.application.upload_detail.length > 0) {
       this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
       this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
       console.log(this.application)
     }
+    if (this.currentTab == "projectDetail") {
 
+      if (this.application.role == 2) {
+        this.isContractor = true
+      } else {
+        this.projectDetailsForm.controls.dig_safely_no.setErrors(null),
+          this.projectDetailsForm.controls.opening_number.setErrors(null)
+        this.projectDetailsForm.controls.opening_size.setErrors(null)
+        this.projectDetailsForm.controls.pavement_type.setErrors(null)
+      }
+    }
 
     console.log(this.application)
   }
@@ -332,7 +342,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.isSubmit = false
       this.checkTab(this.currentTab)
       this.windowScroll()
-      if(this.isSaveAndExit){
+      if (this.isSaveAndExit) {
         this.isSaveAndExit = false
         this.router.navigate(['/dashboard/permit'])
         return false
@@ -364,11 +374,11 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.authService.getUserInfo().subscribe(currentUser => {
         this.currentUserInfo = currentUser
         if (this.currentUserInfo) {
-          this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.name)
+          this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.last_name)
           this.applicantForm.controls.applicant_email.setValue(this.currentUserInfo.email)
           this.applicantForm.controls.applicant_business.setValue(this.currentUserInfo.nameofBussiness)
           this.applicantForm.controls.applicant_address.setValue(this.currentUserInfo.address)
-          this.applicantForm.controls.applicant_phone.setValue(this.currentUserInfo.phone)
+          this.applicantForm.controls.applicant_phone.setValue(this.currentUserInfo.phone_number)
           this.applicantForm.controls.applicant_city.setValue(this.currentUserInfo.city)
           this.applicantForm.controls.applicant_state.setValue(this.currentUserInfo.state)
           this.applicantForm.controls.applicant_zip.setValue(this.currentUserInfo.zip)
@@ -441,11 +451,13 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.projectDetailsForm.controls.traffic_control.setValue(application.project_detail.traffic_control),
         this.projectDetailsForm.controls.length.setValue(application.project_detail.length),
         this.projectDetailsForm.controls.width.setValue(application.project_detail.width),
+        this.projectDetailsForm.controls.depth.setValue(application.project_detail.depth),
+
         this.projectDetailsForm.controls.opening_size.setValue(application.project_detail.opening_size),
         this.projectDetailsForm.controls.opening_number.setValue(application.project_detail.opening_number),
         this.projectDetailsForm.controls.pavement_type.setValue(application.project_detail.pavement_type),
-        this.projectDetailsForm.controls.start_date.setValue(application.project_detail.start_date),
-        this.projectDetailsForm.controls.end_date.setValue(application.project_detail.end_date),
+        this.projectDetailsForm.controls.start_date.setValue(new Date(application.project_detail.start_date)),
+        this.projectDetailsForm.controls.end_date.setValue(new Date(application.project_detail.end_date)),
         this.projectDetailsForm.controls.description.setValue(application.project_detail.description)
 
     }
