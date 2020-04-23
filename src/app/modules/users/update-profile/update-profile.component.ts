@@ -3,6 +3,7 @@ import { UsersService } from 'src/app/core/services';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-profile',
@@ -17,8 +18,10 @@ export class UpdateProfileComponent implements OnInit {
     private userService: UsersService,
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
+    private router: Router
 
-  ) {    this.settings = settingConfig;
+  ) {
+  this.settings = settingConfig;
   }
 
   ngOnInit(): void {
@@ -29,6 +32,9 @@ export class UpdateProfileComponent implements OnInit {
   }
 
 
+  back() {
+    this.router.navigate(['/dashboard/permit'])
+  }
   profileControl() {
     this.profileForm = this.formBuilder.group({
       address: [''],
