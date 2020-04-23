@@ -1169,7 +1169,7 @@
                                                 <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type == 0">
                                                     {{application?.upload_detail[1]?.name}}</td>
-                                               <td  *ngIf="(application?.upload_detail && application?.upload_detail[0]?.type != 0) && (application?.upload_detail && application?.upload_detail[1]?.type != 0)"> _</td>
+                                               <td  *ngIf="(application?.upload_detail && application?.upload_detail[0]?.type != 0) && (application?.upload_detail && application?.upload_detail[1]?.type != 0)">No Data</td>
                                                 <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload
@@ -1185,7 +1185,7 @@
                                                 <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type == 1">
                                                     {{application?.upload_detail[1]?.name}}</td>
-                                                    <td  *ngIf="application?.upload_detail && application?.upload_detail[0]?.type != 1 && application?.upload_detail && application?.upload_detail[1]?.type != 1"> _</td>
+                                                    <td  *ngIf="application?.upload_detail && application?.upload_detail[0]?.type != 1 && application?.upload_detail && application?.upload_detail[1]?.type != 1">No Data</td>
 
                                                 <!-- <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type != 1 && application?.upload_detail[0]?.type != 0">
