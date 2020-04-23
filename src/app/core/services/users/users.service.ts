@@ -55,6 +55,19 @@ export class UsersService {
     );
   }
 
+  changePassword(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['changePassword']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   // isApplicationEditable(): boolean {
   //   return false;
   // }

@@ -49,8 +49,8 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/application?tab=what');
   }
 
-  goToProfile(){
-    this.router.navigate(['/dashboard/update-profile']);
+  goToProfile(url){
+    this.router.navigate([url]);
   }
 
   logoutUser() {

@@ -1,45 +1,46 @@
- <header class="header_bar" *ngIf="!isApplicationEditable">
-	  <div class="container">
-	    <div class="row">
-	      <div class="col-lg-3 d-flex align-items-center justify-content-lg-between">
-	        <button type="button" name="button" class="menu d-block d-lg-none"></button>
-	        <a href="index.html" class="logo"> <img src="assets/images/logo.png" alt="" width="111" height="36"> </a>
-	      </div>
+<header class="header_bar" *ngIf="!isApplicationEditable">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-3 d-flex align-items-center justify-content-lg-between">
+				<button type="button" name="button" class="menu d-block d-lg-none"></button>
+				<a href="index.html" class="logo"> <img src="assets/images/logo.png" alt="" width="111" height="36">
+				</a>
+			</div>
 
-	      <div class="col-lg-9 d-flex justify-content-end">
-	        <div class="navigation">
+			<div class="col-lg-9 d-flex justify-content-end">
+				<div class="navigation">
 
-	          <ul class="clearfix">
-	            <li>
-	              <a href="#!">Our Services</a>
-	            </li>
-	            <li>
-	              <a href="#!">Company</a>
-	            </li>
-	            <li>
-	              <a href="#!">How it Works</a>
-	            </li>
-	            <li>
-	              <a>Frequently Asked</a>
-	            </li>
-	            <li>
-	              <a *ngIf="!authenticationService.isLogin(); else elseBlock" (click)="goToLogin()"
-                  class="loginsign">Login/Singup</a>
-                  <ng-template #elseBlock>
-                    <a class="loginsign" (click)="goToDashboard()">{{ currentUser }}</a>
-                  </ng-template>
-	            </li>
+					<ul class="clearfix">
+						<li>
+							<a href="#!">Our Services</a>
+						</li>
+						<li>
+							<a href="#!">Company</a>
+						</li>
+						<li>
+							<a href="#!">How it Works</a>
+						</li>
+						<li>
+							<a>Frequently Asked</a>
+						</li>
+						<li>
+							<a *ngIf="!authenticationService.isLogin(); else elseBlock" (click)="goToLogin()"
+								class="loginsign">Login/Singup</a>
+							<ng-template #elseBlock>
+								<a class="loginsign" (click)="goToDashboard()">{{ currentUser }}</a>
+							</ng-template>
+						</li>
 
-	          </ul>
+					</ul>
 
-	        </div>
-        </div>
-	    </div>
-	  </div>
-  </header>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
 
-  <header class="procees-logo" *ngIf="isApplicationEditable">
-      <!-- <div class="container">
+<header class="procees-logo" *ngIf="isApplicationEditable">
+	<!-- <div class="container">
           <div class="col-md-12">
               <div class="row">
 
@@ -55,49 +56,43 @@
               </div>
           </div>
 	  </div> -->
-	  
-	  
-			<div class="container p-0">
+
+
+	<div class="container p-0">
+		<div class="row">
+			<div class="col-6">
 				<div class="row">
-					<div class="col-6">
-						<div class="row">
-							<div class="col-3">
-								<div class="search-box">
-									<h2>Logo</h2>
-								</div>
-							</div>
-							<div class="col-8">
-	
-							</div>
+					<div class="col-3">
+						<div class="search-box">
+							<h2>Logo</h2>
 						</div>
-						
-	
 					</div>
-					<div class="col-6">
-						<div class="profile-header dropdown-text">
-							<div class="userTxt ">
-								<img src="assets/images/placeholder.svg" alt="">
-								{{currentUser}}
-								<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-							</div>
-		
-					   
-								<div class="drop-content">
-								  <a href="#">Change Password</a>
-								  <a  (click) ="goToProfile()" >Update Profile</a>
-								  <a (click) = "logoutUser()">Log Out</a>
-								</div>
-			  
-		
-						</div>
+					<div class="col-8">
+
 					</div>
 				</div>
+
+
 			</div>
-		
-  </header> 
+			<div class="col-6">
+				<div class="profile-header dropdown-text">
+					<div class="userTxt ">
+						<img src="assets/images/placeholder.svg" alt="">
+						{{currentUser}}
+						<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+					</div>
 
 
+					<div class="drop-content">
+						<a (click)="goToProfile('/dashboard/change-password')">Change Password</a>
+						<a (click)="goToProfile('/dashboard/update-profile')">Profile</a>
+						<a (click)="logoutUser()">Log Out</a>
+					</div>
 
-  
 
- 
+				</div>
+			</div>
+		</div>
+	</div>
+
+</header>

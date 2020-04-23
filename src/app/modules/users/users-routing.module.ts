@@ -6,6 +6,8 @@ import { PermitComponent } from './permit/permit.component';
 import { AddPermitApplicationComponent } from './add-permit-application/add-permit-application.component';
 import { AddPermitTabSectionComponent } from './add-permit-tab-section/add-permit-tab-section.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoginComponent } from '../auth/login/login.component';
 
 
 // const routes: Routes = [
@@ -37,7 +39,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomeComponent
+        component: LoginComponent
       },
       {
         path: 'dashboard',
@@ -45,27 +47,31 @@ const routes: Routes = [
         canActivateChild: [UserAuthGuard],
         children: [
           {
-            path:'permit',
-            component:PermitComponent
+            path: 'permit',
+            component: PermitComponent
           },
           {
-            path:'add-permit-selectType',
-            component:AddPermitApplicationComponent
+            path: 'add-permit-selectType',
+            component: AddPermitApplicationComponent
           },
           {
-            path:'add-permit',
-            component:AddPermitTabSectionComponent
+            path: 'add-permit',
+            component: AddPermitTabSectionComponent
           },
           {
-            path:'update-profile',
-            component:UpdateProfileComponent
+            path: 'update-profile',
+            component: UpdateProfileComponent
+          },
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
           }
-        
+
         ]
       },
-     
-    
-     
+
+
+
     ]
   }
 ];
