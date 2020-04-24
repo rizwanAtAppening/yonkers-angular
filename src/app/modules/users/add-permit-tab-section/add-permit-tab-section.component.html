@@ -16,8 +16,9 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
+                          <button class="submitTxtbtn">Submit</button>
                         <button (click)="saveAndExit(true)"> Save & Exit</button>
-                    </div>
+                           </div>
                 </div>
              </div> 
         </div>
@@ -288,9 +289,8 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="Street"
-                                                                        class="form-control"
-                                                                        formControlName="street_one" id="jobadd"
+                                                                    <input type="number" id="Street" class="form-control"
+                                                                        formControlName="street_one" 
                                                                         [class]="whereControls.street_one.invalid && (whereControls.street_one.dirty || whereControls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
@@ -301,11 +301,11 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-4">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
-                                                                <div class="form-group">
+                                                                <div class="form-group" id="add_slect">
                                                                     <select type="text" id="Selecttxt"
                                                                         formControlName="address_join"
                                                                         class="form-control">
@@ -313,8 +313,8 @@
                                                                             *ngFor="let value of settings?.address_join">
                                                                             {{value?.value}}</option>
                                                                     </select>
-                                                                    <label class="form-control-placeholder"
-                                                                        for="Selecttxt">Select</label>
+                                                                    <span _ngcontent-guj-c86=""><i _ngcontent-guj-c86="" aria-hidden="true" class="fa fa-angle-down"></i></span>
+                                                                   
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -326,15 +326,14 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="Street"
-                                                                        class="form-control"
-                                                                        formControlName="street_two" id="jobadd">
+                                                                    <input type="number" id="onfe" class="form-control"
+                                                                        formControlName="street_two" >
                                                                     <label class="form-control-placeholder"
-                                                                        for="Street">Street Two</label>
+                                                                        for="onfe">Street Two</label>
                                                                     <div class="btn-pre remover" *ngIf="i > 0">
                                                                         <button class="continue" (click)="remove(i)"
                                                                             type="submit">Remove</button>
-                                                                    </div>
+                                                                    </div> 
                                                                 </div>
 
                                                             </div>
@@ -365,20 +364,14 @@
                                                 </div>
                                             </div> -->
 
-
-
-
                                         </div>
-
-
                                     </div>
-                                    <div class="addlocation">
-                                        <button class="btn btn-success" type="submit" (click)="addLocation()">add
+                                  
+                                    <div class="btn-pre ">
+                                        <button class="continue adloc" type="submit" (click)="addLocation()">add
                                             Loaction</button>
-                                    </div>
-                                    <div class="btn-pre">
                                         <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
-                                        <button class="continue" type="submit"
+                                        <button class="continue mr-0" type="submit"
                                             (click)="addPermitApplication('whereForm','applicant')">Continue</button>
                                     </div>
                                 </form>
@@ -410,7 +403,7 @@
                                         <div class="bdp_email loction-adInput">
                                             <div class="row">
                                                 <div class="col-12 ">
-                                                    <div class="form-group">
+                                                    <div class="form-group" id="defultInput">
                                                         <select type="text" formControlName="applicant_role" disabled
                                                             [class]="applicantControls.applicant_role.invalid && (applicantControls.applicant_role.dirty || applicantControls.applicant_role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                             id="Project">
