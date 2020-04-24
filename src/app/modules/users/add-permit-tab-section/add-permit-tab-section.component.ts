@@ -102,7 +102,9 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
       if (this.application.upload_detail) {
         this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
-        this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
+        if (this.application.upload_detail.length > 1) {
+          this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
+        }
       }
 
       console.log(this.application)
@@ -451,18 +453,6 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
 
-  // purpose: ['', Validators.required],
-  // dig_safely_no: ['', Validators.required],
-  // traffic_control: ['', Validators.required],
-  // length: ['', Validators.required],
-  // width: ['', Validators.required],
-  // depth: ['', Validators.required],
-  // opening_size: ['', Validators.required],
-  // opening_number: ['', Validators.required],
-  // pavement_type: ['', Validators.required],
-  // start_date: ['', Validators.required],
-  // end_date: ['', Validators.required],
-  // description: ['', Validators.required],
   projectDetailsTab() {
     const application = this.permitService.getApplication()
     if (application.project_detail) {
@@ -484,31 +474,64 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   goToBack(formGroup, tab) {
+    debugger
+    if (this.currentTab == 'upload') {
+      this.checkTab(tab)
+      this.currentTab = tab;
+      this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
+      return false
+    }
+    if (this.currentTab == 'where') {
+      if (this.isLocation) {
+        this.whereForm.controls.address_id.setErrors(null)
+      } else {
+        this.whereForm.controls.street_one.setErrors(null)
 
+      }
+    }
     console.log(this[formGroup])
-    // if (this[formGroup].invalid) {
-    //   this.isSubmit = true
-    //   return false
-    // }
-    this.currentTab = tab
+    if (this[formGroup].invalid) {
+      this.isSubmit = true
+      return false
+    }
     if (this.currentTab == 'what') {
-      this.whatTab()
+      // this.whatTab()
+      // this.addPermitApplication('', tab);
+      // this.checkTab(tab)
+      this.currentTab = tab
+      this.router.navigate(['/dashboard/add-permit-selectType'])
+      return false
+
+
     }
 
     if (this.currentTab == 'applicant') {
-      this.getCurrentUser();
+      //this.getCurrentUser();
+      this.addPermitApplication('', tab);
+      this.checkTab(tab)
+      this.currentTab = tab
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
     }
     if (this.currentTab == 'where') {
-      this.whereTab()
+      // this.whereTab()
+      this.addPermitApplication('', tab);
+      this.checkTab(tab)
+      this.currentTab = tab
     }
     if (this.currentTab == 'contrator') {
-      this.contractorTab()
+      //this.contractorTab()
+      this.addPermitApplication('', tab);
+      this.checkTab(tab)
+      this.currentTab = tab
     }
 
     if (this.currentTab == 'projectDetail') {
-      this.projectDetailsTab()
+      // this.projectDetailsTab()
+      this.addPermitApplication('', tab);
+      this.checkTab(tab)
+      this.currentTab = tab
     }
+
     this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
   }
 
@@ -542,10 +565,11 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
 
     if (this.currentTab == 'contrator') {
-      // if (this.contractorForm.invalid) {
-      //   this.isSubmit = true
-      //   return false
-      // }
+      if (this.contractorForm.invalid) {
+        this.isSubmit = true
+        return false
+      }
+
       this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab;
