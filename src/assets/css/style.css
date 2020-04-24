@@ -2008,3 +2008,33 @@ text-align: center;
     margin-top: 3px;
     cursor: pointer;
 }
+#dfemail input{
+    background: none;
+    pointer-events: none;
+    color: #7E819C;
+    background: #fff;
+    border: 0.5px solid #7E819C;
+    border-radius: 0px;
+    font-family: 'Poppins-Regular';
+}
+#dfemail label{
+    top: -71px;
+    pointer-events: none;
+    opacity: 1;
+    background: #fff;
+    padding: 0px 8px;
+    font-family: 'Poppins-Regular';
+    color: #7E819C;
+    position: relative !important;
+}
+
+.daynmic-select select{
+height: 62px;
+border-radius: 0px;
+}
+
+.daynmic-select span{
+    position: absolute;
+    top: 25px;
+    right: 16px;
+}
