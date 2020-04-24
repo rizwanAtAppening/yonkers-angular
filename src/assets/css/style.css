@@ -1974,8 +1974,16 @@ text-align: center;
 
 #add_slect span{
     position: absolute;
-    top: 11px;
+    top: 22px;
     right: 16px;
+    
+}
+#add_slect select{
+ border-radius: 0px;
+ color: #7E819C;
+    height: 62px;
+    border: 0.5px solid #282D5B99;
+    color: #282D5B;
 }
 #defultInput select{
     height: 62px;
