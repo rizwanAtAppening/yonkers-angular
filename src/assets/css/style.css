@@ -1977,7 +1977,7 @@ text-align: center;
     top: 11px;
     right: 16px;
 }
-.defultInput select{
+#defultInput select{
     height: 62px;
     color: #7E819C;
     background: #fff;
@@ -1987,11 +1987,24 @@ text-align: center;
     padding-left: 21px;
 }
 
-.defultInput label{
+#defultInput label{
     top: -15px;
     opacity: 1;
     background: #fff;
     padding: 0px 8px;
     font-family: 'Poppins-Regular';
     color: #7E819C;
+}
+
+.saveTxtbtn button.submitTxtbtn {
+    background: #4AB5F1 0% 0% no-repeat padding-box;
+    padding: 11px 30px 15px 30px;
+    font-family: 'Poppins-Regular';
+    color: #fff;
+    font-size: 18px;
+    line-height: 21px;
+    margin-right: 30px;
+    border: none;
+    margin-top: 3px;
+    cursor: pointer;
 }
