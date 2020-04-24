@@ -2046,3 +2046,27 @@ border-radius: 0px;
     top: 25px;
     right: 16px;
 }
+
+.imact-trafic .datebtn {
+    margin-top: 7x;
+    display: block;
+    margin-top: -36px !important;
+    margin-left: 194px !important;
+}
+
+
+/* Change Autocomplete styles in Chrome*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0.5px solid #282D5B;
+  -webkit-text-fill-color: #282D5BCC;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

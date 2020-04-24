@@ -789,7 +789,6 @@
 </app-layout> -->
 
 
-
 <app-auth-layout>
     <router-outlet>
       <div class="body_bg">
@@ -833,7 +832,7 @@
                         <div class="col-12 ">
                           <div class="form-group">
                             <input type="text" id="name" class="form-control" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                             id="monxhwedey" class="form-control check-in" id="email" formControlName="email" required>
+                              class="form-control check-in"  formControlName="email" required>
                             <label class="" for="name" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder'">Email Address</label>
                           </div>
                         </div>
@@ -1011,3 +1010,4 @@
     </router-outlet>
   
   </app-auth-layout>
+
