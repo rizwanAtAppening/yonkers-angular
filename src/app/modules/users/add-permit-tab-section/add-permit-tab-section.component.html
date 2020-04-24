@@ -16,7 +16,7 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                          <button class="submitTxtbtn">Submit</button>
+                          <button *ngIf = "currentTab == 'review'" class="submitTxtbtn" data-toggle="modal" data-target="#exampleModal-3">Submit</button>
                         <button (click)="saveAndExit(true)"> Save & Exit</button>
                            </div>
                 </div>
@@ -62,7 +62,7 @@
             <li class="nav-item">
                 <a [class]="(currentTab == 'review') ? 'active':'deactive'" id="pills-Review-tab"
                     (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review"
-                    aria-selected="false">Review<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    aria-selected="false">Review</a>
             </li>
         </ul>
     </div>
@@ -1214,7 +1214,7 @@
                         </div>
 
                         <div class="btn-pre">
-                            <button>Previous</button>
+                            <button type="button" (click)="goToBack('','projectDetail')">Previous</button>
                             <button class="continue" (click)="addPermitApplication('','review')">Continue</button>
                         </div>
 
