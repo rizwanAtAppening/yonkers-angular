@@ -8,6 +8,7 @@ import { AddPermitTabSectionComponent } from './add-permit-tab-section/add-permi
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from '../auth/login/login.component';
+import { SubmitApplicationComponent } from './submit-application/submit-application.component';
 
 
 // const routes: Routes = [
@@ -65,7 +66,12 @@ const routes: Routes = [
           {
             path: 'change-password',
             component: ChangePasswordComponent,
+          },
+          {
+            path: 'submit-application',
+            component: SubmitApplicationComponent,
           }
+
 
         ]
       },

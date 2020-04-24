@@ -1,0 +1,29 @@
+<app-layout>
+    <router-outlet>
+
+        <section class="sp-box">
+            <div class="successfully-box">
+                <div class="img-done">
+                    <span>
+                        <img src="assets/images/donImg.svg" alt="">
+                    </span>
+                    <h1>Successfully Uploaded</h1>
+                    <p>The Engineering Department will review your application and contact you with the permit fee and
+                        or the next steps.</p>
+
+                    <div class="btn-grop">
+                        <button class="finish-btn" type="button" (click) = "navigateIndexPage()">Finish</button>
+                        <button class="download">Download Form</button>
+                    </div>
+
+                    <div class="pls-note">
+                        <h4>This is not a permit</h4>
+                        <p>PLEASE NOTE: Preparing an application does not constitute permission to begin work. If found
+                            doing work without a permit, you could receive a court summons.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </router-outlet>
+</app-layout>

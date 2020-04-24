@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { SubmitApplicationComponent } from './submit-application/submit-application.component';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -29,7 +30,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     
 
   ],
-  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent],
+  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent],
   providers: [
     UserAuthGuard
   ]

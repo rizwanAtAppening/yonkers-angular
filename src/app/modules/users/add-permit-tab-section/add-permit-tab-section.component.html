@@ -123,7 +123,7 @@
                                                 <div class="col-4">
                                                     <div class="roll-txt">
                                                         <label class="clickbox">Curb Construction
-                                                            <input type="radio" checked="checked" name="radio">
+                                                            <input type="radio"  name="radio">
                                                             <span class="checkbox"></span>
                                                         </label>
                                                         <label class="clickbox">Roll Off Container (Dumpster)
@@ -139,7 +139,7 @@
                                                 <div class="col-4">
                                                     <div class="roll-txt">
                                                         <label class="clickbox">Street Opening
-                                                            <input type="radio" checked="checked" name="radio">
+                                                            <input type="radio"  name="radio">
                                                             <span class="checkbox"></span>
                                                         </label>
                                                         <label class="clickbox">Emergency Street/Sidewalk Opening
@@ -152,7 +152,7 @@
                                                 <div class="col-4">
                                                     <div class="roll-txt">
                                                         <label class="clickbox">Replace/Construct Sidewalk
-                                                            <input type="radio" checked="checked" name="radio">
+                                                            <input type="radio"  name="radio">
                                                             <span class="checkbox"></span>
                                                         </label>
                                                         <label class="clickbox">Sidewalk Obstruction
@@ -1615,7 +1615,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" #checklist
         aria-hidden="true">
         <div class="modal-dialog popup-dumpstar-3" role="document">
             <div class="modal-content text-addpopup">
@@ -1629,90 +1629,90 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="upload-owner">
-                                <p>1. Upload owner authorization form</p>
+                                <p>1. What form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio" value="1"  (change)="submitApplication($event.target.value,'what')"  name="what">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" (change)="submitApplication($event.target.value,'what')" name="what">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>2. Upload owner authorization form</p>
+                                <p>3. Applicant form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio" value="1"  (change)="submitApplication($event.target.value,'applicant')" name="applicant">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0"  (change)="submitApplication($event.target.value,'applicant')" name="applicant">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>3. Upload owner authorization form</p>
+                                <p>5. ProjectDetail form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio" value="1"  name="projectDetail"  (change)="submitApplication($event.target.value,'projectDetail')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" name="projectDetail"  (change)="submitApplication($event.target.value,'projectDetail')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>4. Upload owner authorization form</p>
+                                <p>7. Review </p>
                                 <label class="owner">Confirm
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio" value="1"  name="review" (change)="submitApplication($event.target.value,'review')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" name="review" (change)="submitApplication($event.target.value,'review')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>5. Upload owner authorization form</p>
+                                <!-- <p>5. Upload owner authorization form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" checked="checked" name="radio">
+                                    <input type="radio"  name="radio">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
                                     <input type="radio" name="radio">
                                     <span class="checkma"></span>
-                                </label>
+                                </label> -->
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="upload-owner">
-                                <p>6. Upload owner authorization form</p>
+                                <p>2. where form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="1" name="where" (change)="submitApplication($event.target.value,'where')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" name="where" (change)="submitApplication($event.target.value,'where')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>7. Upload owner authorization form</p>
+                                <p>4. Contractor form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="1" name="contrator" (change)="submitApplication($event.target.value,'contrator')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" name="contrator" (change)="submitApplication($event.target.value,'contrator')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>8. Upload owner authorization form</p>
+                                <p>6. Upload form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="1" name="upload" (change)="submitApplication($event.target.value,'upload')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" name="radio">
+                                    <input type="radio" value="0" name="upload" (change)="submitApplication($event.target.value,'upload')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
-                                <p>9. Upload owner authorization form</p>
+                                <!-- <p>9. Upload owner authorization form</p>
                                 <label class="owner">Confirm
                                     <input type="radio" name="radio">
                                     <span class="checkma"></span>
@@ -1721,16 +1721,16 @@
                                     <input type="radio" name="radio">
                                     <span class="checkma"></span>
                                 </label>
-                                <div class="lable-border"></div>
-                                <p>10. Upload owner authorization form</p>
-                                <label class="owner">Confirm
+                                <div class="lable-border"></div> -->
+                                <!-- <p>10. Upload owner authorization form</p> -->
+                                <!-- <label class="owner">Confirm
                                     <input type="radio" name="radio">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
                                     <input type="radio" name="radio">
                                     <span class="checkma"></span>
-                                </label>
+                                </label> -->
                             </div>
                         </div>
                     </div>
@@ -1739,7 +1739,7 @@
                             <div class="bottom_border-btn"></div>
                             <div class="btn-pre pop-Btn">
                                 <button data-dismiss="modal" aria-label="Close">Cancel</button>
-                                <button class="continue mr-0">Save</button>
+                                <button class="continue mr-0" (click) = "submitApplicationAfterReview()">Save</button>
                             </div>
                         </div>
                     </div>

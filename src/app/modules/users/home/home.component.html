@@ -834,7 +834,7 @@
                           <div class="form-group">
                             <input type="text" id="name" class="form-control" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                              id="monxhwedey" class="form-control check-in" id="email" formControlName="email" required>
-                            <label class="form-control-placeholder" for="name">Email Address</label>
+                            <label class="" for="name" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder'">Email Address</label>
                           </div>
                         </div>
                       </div>
@@ -859,7 +859,7 @@
                             <input type="password" [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
                             [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
                             class="form-control password" id="password" formControlName="password" required>
-                            <label class="form-control-placeholder" for="password">Password</label>
+                            <label  for="password"  [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder '">Password</label>
                           </div>
                         </div>
                       </div>

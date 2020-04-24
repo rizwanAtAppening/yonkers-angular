@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
@@ -7,6 +7,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -16,6 +17,7 @@ import { environment } from 'src/environments/environment';
 export class AddPermitTabSectionComponent implements OnInit {
   public settings: any;
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
+  @ViewChild('checklist', { static: false }) checklist: ElementRef;
 
   public whatForm: FormGroup;
   public whereForm: FormGroup;
@@ -53,6 +55,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     private authService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute,
+    private toasterService: ToastrService,
   ) {
     this.settings = settingConfig;
 
@@ -707,6 +710,43 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.checkTab(this.currentTab);
     this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
 
+  }
+
+  public submitApplicationValue = []
+  public index: number
+  submitApplication(value, form) {
+    debugger
+    if (this.submitApplicationValue.length == 0) {
+      this.submitApplicationValue.push({ value: value, key: form })
+    }
+
+    if (this.submitApplicationValue.length > 0) {
+      const found = this.submitApplicationValue.find((element, i) => {
+        this.index = i
+        console.log(this.index)
+        return element.key == form;
+      })
+
+      if (found) {
+        this.submitApplicationValue.splice(this.index, 1)
+        console.log(this.submitApplicationValue)
+      }
+      this.submitApplicationValue.push({ value: value, key: form })
+      console.log(this.submitApplicationValue)
+
+
+    }
+  }
+
+  submitApplicationAfterReview() {
+    if (this.submitApplicationValue.length == 7) {
+      this.checklist.nativeElement.click()
+      this.router.navigate(['/dashboard/submit-application']);
+
+    }
+    else {
+      this.toasterService.error('Please review all tab then submit application')
+    }
   }
 
 }
