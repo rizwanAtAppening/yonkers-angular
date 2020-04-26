@@ -280,18 +280,20 @@
 
                             <div class="tab-pane fade" id="nav-Location" role="tabpanel"
                                 aria-labelledby="nav-Location-tab">
-                                <form [formGroup]="whereForm">
-                                    <div class="job-input" *ngFor="let value of location; let i = index">
-                                        <div class="container p-0">
+                                    <div class="job-input"   *ngFor = "let addloc of addLocationControls.controls; let i = index">
+                                            <form [formGroup]="addloc" >
+
+                                        <div class="container p-0" >
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="Street" class="form-control"
-                                                                        formControlName="street_one" 
-                                                                        [class]="whereControls.street_one.invalid && (whereControls.street_one.dirty || whereControls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                    <input type="number" id="Street" class="form-control" 
+                                                                        formControlName ="street_one"
+                                                                        [class]="addloc.invalid && (addloc.dirty || addloc.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+
                                                                         required>
                                                                     <label class="form-control-placeholder"
                                                                         for="Street">Street One</label>
@@ -306,8 +308,8 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group" id="add_slect">
-                                                                    <select type="text" id="Selecttxt"
-                                                                        formControlName="address_join"
+                                                                    <select type="text" id="Selecttxt" formControlName="address_join"
+                                                                     
                                                                         class="form-control">
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
@@ -326,8 +328,8 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="onfe" class="form-control"
-                                                                        formControlName="street_two" >
+                                                                    <input type="number" id="onfe" class="form-control" formControlName = "street_two"
+                                                                       >
                                                                     <label class="form-control-placeholder"
                                                                         for="onfe">Street Two</label>
                                                                     <div class="btn-pre remover" *ngIf="i > 0">
@@ -346,35 +348,19 @@
                                             </div>
 
 
-                                            <!-- <div class="unit-txt">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="know_us">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <label>Also known as</label>
-                                                                        <textarea
-                                                                            placeholder="Type something here..."></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-
+                                           
                                         </div>
+                                            </form>
                                     </div>
                                   
                                     <div class="btn-pre ">
-                                        <button class="continue adloc" type="submit" (click)="addLocation()">add
+                                        <button class="continue adloc" type="submit" (click)="addLocationForm()">add
                                             Loaction</button>
                                         <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
                                         <button class="continue mr-0" type="submit"
                                             (click)="addPermitApplication('whereForm','applicant')">Continue</button>
                                     </div>
-                                </form>
+                                
                             </div>
 
 

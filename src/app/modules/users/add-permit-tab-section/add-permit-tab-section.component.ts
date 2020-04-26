@@ -67,6 +67,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     // })
     this.userService.changeSaveAndExit(false);
     this.onInIt();
+
+    console.log(this.whereForm.controls)
     this.getCurrentTab()
     this.getApplication()
     console.log(this.currentTab)
@@ -93,10 +95,17 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   remove(index) {
     debugger
-    this.location.map((data, i) => {
+    // this.location.map((data, i) => {
+    //   if (index == i) {
+    //     this.location.splice(i, 1);
+    //     this.locations.splice(i, 1)
+    //   }
+    // })
+    this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
-        this.location.splice(i, 1);
-        this.locations.splice(i, 1)
+        this.addLocationControls.controls.splice(i, i);
+        this.addLocationControls.value.splice(i, i)
+
       }
     })
   }
@@ -162,12 +171,41 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.whereForm = this.formBuilder.group({
       address_id: ['', Validators.required],
       also_known_as: [''],
-      street_one: ['', Validators.required],
-      street_two: [''],
-      address_join: [''],
+      // street_one: ['', Validators.required],
+      // street_two: [''],
+      // address_join: [''],
+      addlocation: this.formBuilder.array([
+        this.addLocationFormGroup(),
+      ]
+
+      )
 
     })
   }
+
+
+  get addLocationControls() {
+    return this.whereForm.controls.addlocation as FormArray;
+  }
+
+  get addCon() {
+    return this.whereForm.controls.addlocation;
+
+  }
+  addLocationFormGroup(): FormGroup {
+    return this.formBuilder.group({
+      street_one: ['', Validators.required],
+      street_two: [],
+      address_join: []
+    })
+  }
+
+  addLocationForm(): void {
+    debugger
+    this.addLocationControls.push(this.addLocationFormGroup())
+  }
+
+
 
   applicantFormControl() {
     this.applicantForm = this.formBuilder.group({
@@ -291,16 +329,19 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.isLocation) {
 
         this.whereForm.controls.address_id.setErrors(null)
-        if (this.locations.length == 0) {
-          this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two ? this.whereForm.value.street_two : null })
-        }
+        // if (this.locations.length == 0) {
+        // this.locations.push({ street_one: this.whereForm.controls.addlocation.value.street_one, address_join: this.whereForm.controls.addlocation.value.address_join ? this.whereForm.controls.addlocation.value.address_join : null, street_two: this.whereForm.controls.addlocation.value.street_two ? this.whereForm.controls.addlocation.value.street_two : null })
+        this.locations = this.whereForm.controls.addlocation.value
+        //}
         this.data = {
           model: 2,
           locations: this.locations,
           location_type: this.location_type,
         }
       } else {
-        this.whereForm.controls.street_one.setErrors(null)
+        this.addLocationControls.controls.map((value, i) => {
+          value['controls'].street_one.setErrors(null)
+        })
         this.data = {
           model: 2,
           address_id: Number(this.whereForm.value.address_id),
@@ -413,17 +454,47 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-
+    debugger
     const application = this.permitService.getApplication()
     if (application.address_id) {
-      this.whereForm.controls.street_one.setErrors(null)
+      this.addLocationControls.controls.map((value, i) => {
+        value['controls'].street_one.setErrors(null)
+      })
     }
-    else if (application.street_one) {
+    else if (application.location.length > 0) {
+      if (application.location.length > 1) {
+        for (let index = 0; index < application.location.length - 1; index++) {
+          if (application.location.length != this.addLocationControls.value.length) {
+            this.addLocationControls.push(this.addLocationFormGroup())
+          }
+          application.location.map((data, i) => {
+            this.addLocationControls.controls.map((value, j) => {
+              if (i == j) {
+                value['controls'].street_one.setValue(data.street_one)
+                value['controls'].street_two.setValue(data.street_two)
+                value['controls'].address_join.setValue(data.address_join)
+              }
+            })
+          })
+
+        }
+      }
+      else {
+        application.location.map((data, i) => {
+          this.addLocationControls.controls.map((value, j) => {
+            if (i == j) {
+              value['controls'].street_one.setValue(data.street_one)
+              value['controls'].street_two.setValue(data.street_two)
+              value['controls'].address_join.setValue(data.address_join)
+            }
+          })
+        })
+      }
       this.whereForm.controls.address_id.setErrors(null)
 
     }
-    this.whereForm.controls.address_id.setValue(application.address_id);
-    this.whereForm.controls.street_one.setValue(application.street_one);
+    // this.whereForm.controls.address_id.setValue(application.address_id);
+    // this.whereForm.controls.street_one.setValue(application.street_one);
   }
 
   whatTab() {
@@ -585,7 +656,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.isLocation) {
         this.whereForm.controls.address_id.setErrors(null)
       } else {
-        this.whereForm.controls.street_one.setErrors(null)
+        this.addLocationControls.controls.map((value, i) => {
+          value['controls'].street_one.setErrors(null)
+        })
 
       }
       if (this.whereForm.invalid) {
