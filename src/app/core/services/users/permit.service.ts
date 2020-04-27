@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { tap,map } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
@@ -23,7 +23,7 @@ export class PermitService {
 
 
 
- 
+
 
   addPermitApplication(data): Observable<any> {
     const href = `${environment['application']}`;
@@ -67,6 +67,21 @@ export class PermitService {
     );
   }
 
+
+  deleteImage(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['deleteImage']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+
   deleteSessionApplication(): boolean {
     if (sessionStorage.getItem(this.sessionApplication)) {
       sessionStorage.removeItem(this.sessionApplication);
@@ -77,7 +92,7 @@ export class PermitService {
     return false;
   }
 
- 
+
   getApplicationID(): any {
     const application = this.getApplication()
     if (application) {
@@ -86,8 +101,8 @@ export class PermitService {
     return null;
   }
 
-   getApplication() {
-     
+  getApplication() {
+
     const session = sessionStorage.getItem(this.sessionApplication);
 
     if (session) {
@@ -95,16 +110,16 @@ export class PermitService {
     }
     return false;
   }
-  
+
   setApplication(application: any) {
     sessionStorage.setItem(this.sessionApplication, JSON.stringify(application));
   }
 
-  saveCurrentTab(data){
+  saveCurrentTab(data) {
     sessionStorage.setItem('currentTab', JSON.stringify(data));
 
   }
-  getCurrentTab(){
+  getCurrentTab() {
     const session = sessionStorage.getItem('currentTab');
 
     if (session) {
@@ -113,9 +128,22 @@ export class PermitService {
     return false;
   }
 
-  getPermitApplication(): Observable<any> {
+  getPermitApplication(query): Observable<any> {
     const href = `${environment['getPermitApplication']}`
-    return this.http.get<any>(href).pipe(
+    return this.http.get<any>(href, {params: query }).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  searchApplication(query): Observable<any> {
+    const href = `${environment['getPermitApplication']}`
+    return this.http.get<any>(href, { params: query }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {

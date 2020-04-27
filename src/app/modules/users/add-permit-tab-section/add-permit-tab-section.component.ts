@@ -16,6 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddPermitTabSectionComponent implements OnInit {
   public settings: any;
+  public env: any;
+
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
 
@@ -65,6 +67,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     // this.route.queryParams.subscribe(data=>{
     //   this.currentTab = data.tab;
     // })
+    this.env = environment;
+
     this.userService.changeSaveAndExit(false);
     this.onInIt();
 
@@ -79,19 +83,19 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   public locations = []
-  addLocation() {
-    if (this.isLocation) {
-      this.whereForm.controls.address_id.setErrors(null)
-    }
-    if (this.whereForm.invalid) {
-      this.isSubmit = true
-      return false
-    }
-    if (this.location)
-      this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two ? this.whereForm.value.street_two : null })
-    this.location.push({})
-    console.log(this.locations)
-  }
+  // addLocation() {
+  //   if (this.isLocation) {
+  //     this.whereForm.controls.address_id.setErrors(null)
+  //   }
+  //   if (this.whereForm.invalid) {
+  //     this.isSubmit = true
+  //     return false
+  //   }
+  //   if (this.location)
+  //     this.locations.push({ street_one: this.whereForm.value.street_one, address_join: this.whereForm.value.address_join ? this.whereForm.value.address_join : null, street_two: this.whereForm.value.street_two ? this.whereForm.value.street_two : null })
+  //   this.location.push({})
+  //   console.log(this.locations)
+  // }
 
   remove(index) {
     debugger
@@ -104,6 +108,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
+        data['controls'].street_one.setErrors(null)
+
         this.addLocationControls.value.splice(i, i)
 
       }
@@ -395,6 +401,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.projectDetailsForm.value.purpose = Number(this.projectDetailsForm.value.purpose);
       this.projectDetailsForm.value.pavement_type = Number(this.projectDetailsForm.value.pavement_type);
       this.projectDetailsForm.value.traffic_control = Number(this.projectDetailsForm.value.traffic_control);
+      this.projectDetailsForm.value.start_date = (this.projectDetailsForm.value.start_date);
+      this.projectDetailsForm.value.end_date = (this.projectDetailsForm.value.end_date);
+
       if (this.projectDetailsForm.value.pavement_type == "") {
         this.projectDetailsForm.value.pavement_type = null
       }
@@ -822,6 +831,19 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
   }
 
+  deleteImage(id,i) {
+    debugger
+    const data = {
+      id: id
+    }
+    this.permitService.deleteImage(data).subscribe(data => {
+      this.getApplication()
+      this.application.upload_detail.splice(i,1)
+      sessionStorage.setItem('application', JSON.stringify(this.application));
+
+      console.log(this.application)
+    })
+  }
 }
 
 

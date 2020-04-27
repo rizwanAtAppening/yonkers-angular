@@ -2070,3 +2070,329 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+.status-Box {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #00000012;
+    padding: 50px 23px 33px 23px;
+}
+
+
+.per-uodate {
+    margin-top: 15px;
+}
+
+.status-Box h2 {
+    font-size: 28px;
+    color: #282D5B;
+    font-family: "Poppins-Bold";
+    line-height: 42px;
+    border-bottom: 1px solid #EAEDF3;
+    padding-bottom: 12px;
+}
+
+.status-Box h3 {
+    font-size: 20px;
+    color: #282D5B;
+    font-family: "Poppins-SemiBold";
+    line-height: 18px;
+    margin-top: 30px;
+}
+
+.modifiy button.m-app-btn {
+    color: #4AB5F1;
+    font-size: 14px;
+    font-family: 'gilroy-medium';
+    padding: 12px 17px;
+    border: 1px solid #4AB5F1;
+    border-radius: 2px;
+    background: #fff;
+}
+
+.modifiy button.m-app-btn span {
+    margin-left: 5px;
+}
+
+.rc-img {
+    margin-left: 20px;
+}
+
+.modifiy {
+    margin-top: 18px;
+}
+
+.status_pro-txt h3 {
+    color: #282D5B;
+    font-family: "Poppins-SemiBold";
+    font-size: 20px;
+    line-height: 33px;
+    margin-top: 45px;
+}
+
+.status_tabber .nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    border-color: #e9ecef00 #e9ecef00 #dee2e600;
+}
+
+.status_tabber .nav-tabs .nav-link {
+    border: 0px solid transparent;
+    border-top-left-radius: 0rem;
+    border-top-right-radius: 0rem;
+}
+
+.status_tabber .nav-tabs .nav-item {
+    margin-bottom: 0px;
+}
+
+.status_tabber {
+    margin-top: 22px;
+}
+
+.status_tabber .nav-tabs {
+    padding-bottom: 19px;
+}
+
+.status_tabber .nav-link {
+    display: block;
+    padding: 0px;
+    margin-right: 74px;
+    color: #282D5B99;
+    font-family: "Poppins-Medium";
+    font-size: 13px;
+    line-height: 22px;
+    position: relative;
+}
+
+.status_tabber .nav-link.active::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 4px;
+    background: #4AB5F1;
+    top: 37px;
+}
+
+.status_tabber .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #4AB5F1;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    font-family: "Poppins-Medium";
+    font-size: 13px;
+    line-height: 22px;
+}
+
+.review-desiign-box {
+    margin-top: 23px;
+}
+
+.tbl-review-design {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #00000012;
+    border-radius: 4px;
+}
+
+.tbl-review-design .table thead th {
+    vertical-align: middle;
+    border-bottom: 0px solid #dee2e6;
+    border-top: 0px;
+    padding: 24px 0px 23px 30px;
+    color: #282D5B;
+    font-family: 'gilroy-medium';
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.tbl-review-design .table td {
+    padding: 24px 0px 19px 30px;
+    vertical-align: middle;
+    border-top: 1px solid #00000012;
+    color: #707070;
+    font-size: 16px;
+    line-height: 25px;
+    font-family: 'Poppins-Regular';
+}
+
+.tbl-review-design .table td.btn__view button {
+    color: #4AB5F1;
+    font-size: 14px;
+    font-family: 'Poppins-Regular';
+    padding: 10px 28px 9px 28px;
+    background: none;
+    border: 1px solid #4AB5F1;
+}
+
+.tbl-review-design .table th.action-type {
+    text-align: right;
+    padding-right: 108px;
+}
+
+.tbl-review-design .table td.action-type {
+    text-align: right;
+    padding-right: 108px;
+}
+
+.no-cart h5 {
+    color: #4AB5F1;
+    font-size: 16px;
+    line-height: 25px;
+    font-family: 'Poppins-Regular';
+}
+
+.no-cart {
+    background: #EDF7FE;
+    border: 1px solid #00000012;
+    border-radius: 4px;
+    padding: 22px 26px 23px;
+}
+
+.table-permit table td.blue-txt button {
+    border: 1px solid #1479EB;
+    color: #1479EB;
+    padding: 0px 21px;
+}
+
+.table-permit table td.orange-txt button {
+    border: 1px solid #EC9D16;
+    color: #EC9D16;
+    padding: 0px 21px;
+}
+
+
+.dropdown-action {
+    position: relative;
+}
+
+.dropdown-contentable {
+    display: none;
+    position: absolute;
+    min-width: 133px;
+    left: -62px;
+    top: 70px;
+    z-index: 1;
+    border-radius: 9px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 9px #00000017;
+    border: 0.5px solid #00000014;
+}
+
+.dropdown-contentable a {
+    color: #282D5BCC;
+    padding: 8px 11px;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'Poppins-Regular';
+    text-decoration: none;
+    display: block;
+    border-bottom: 0.5px solid #F6F7F8;
+
+}
+
+.dropdown-action:hover .dropdown-contentable {
+    display: block;
+}
+
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #828282;
+    position: absolute;
+    right: 18px;
+    top: -11px;
+}
+
+.triangle-left:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    border-bottom: 11px solid #ffffff;
+    position: absolute;
+    left: -11px;
+}
+
+.invite-btn {
+    padding: 13px 38px !important;
+}
+
+.dash-back {
+    max-width: 983px;
+    margin: 0 auto;
+    background: #F9FAFB;
+}
+
+.bg-dashbord {
+    background: #F9FAFB;
+    padding: 44px 0px 18px 0px;
+}
+
+.reset-pass {
+    max-width: 623px;
+    margin: 0 auto;
+    display: block;
+    padding-top: 16px;
+}
+
+.passwird-reset-box {
+    background: #FFFFFF;
+    border-radius: 4px;
+    padding: 41px 55px 45px 56px;
+}
+
+.bg-gray-color {
+    background: #F9FAFB;
+}
+
+.reset-txt h2 {
+    color: #282D5B;
+    font-family: "Poppins-Bold";
+    font-size: 28px;
+    line-height: 42px;
+}
+
+.reset-txt h6 {
+    color: #282D5B99;
+    font-family: 'gilroy-regular';
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.yonker-email {
+    margin-top: 43px;
+}
+
+.btn-reset-submit {
+    margin-top: 39px;
+}
+
+.btn-reset-submit button {
+    font-size: 18px;
+    font-family: 'gilroy-medium';
+    line-height: 30px;
+    color: #FFFFFF;
+    background: #4AB5F1;
+    border: none;
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.btn-reset-submit h5 {
+color: #2C2E30;
+font-family: "Poppins-Medium";
+font-size: 14px;
+line-height: 20px;
+text-align: center;
+margin-top: 20px;
+cursor: pointer;
+}
+
+.create-new-padding {
+    padding-top: 80px;
+}
+.yonker-email-2 {
+    margin-top: 30px;
+}

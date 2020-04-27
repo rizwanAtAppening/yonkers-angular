@@ -52,6 +52,8 @@ const authUrls = {
   login: `/login`,
   register: `/register`,
   adminLogin: '/admin/login',
+  resetPasswoed:`/`,
+  createNewPassword:`/`
   
 }
 
@@ -67,7 +69,9 @@ const userUrl = {
   uploadImage:'/application/fileUpload',
   getPermitApplication:'/application',
   updateProfile:'/user/profile',
-  changePassword:`/user/change-password`
+  changePassword:`/user/change-password`,
+  deleteImage:`/application/image/delete `
+  // searchUserApplication:`/application`
 
  
 }

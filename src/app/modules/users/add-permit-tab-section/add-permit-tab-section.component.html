@@ -1152,14 +1152,16 @@
                                             <tr>
                                                 <td class="plans">Drawings/ Plans</td>
                                                 <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[0]?.type == 0">
-                                                    {{application?.upload_detail[0]?.name}}</td>
-                                                <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[1]?.type == 0">
-                                                    {{application?.upload_detail[1]?.name}}</td>
-                                                <td
-                                                    *ngIf="(application?.upload_detail && application?.upload_detail[0]?.type != 0) && (application?.upload_detail && application?.upload_detail[1]?.type != 0)">
-                                                    No Data</td>
+                                                    >
+                                                    <h6 *ngFor = "let image of application?.upload_detail; let i = index">
+                                                        <p *ngIf = "image.type == 0">{{image?.name}} <a class="pointer" href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                            target="_blank">View</a> / <a class="pointer" (click) = "deleteImage(image?.id,i)">Delete</a></p>
+                                                        <!-- <p *ngIf = "image.type != 0">No Data</p> -->
+                                                    </h6>
+                                                   
+
+                                                </td>
+                                              
                                                 <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload
@@ -1169,16 +1171,17 @@
                                             </tr>
                                             <tr>
                                                 <td class="plans">Certificate of Insurance</td>
+                                               
                                                 <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[0]?.type == 1">
-                                                    {{application?.upload_detail[0]?.name}}</td>
-                                                <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[1]?.type == 1">
-                                                    {{application?.upload_detail[1]?.name}}</td>
-                                                <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[0]?.type != 1 && application?.upload_detail && application?.upload_detail[1]?.type != 1">
-                                                    No Data</td>
+                                                >
+                                                <h6 *ngFor = "let image of application?.upload_detail; let i = index">
+                                                    <p *ngIf = "image.type == 1">{{image?.name}}  <a class="pointer" href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                        target="_blank">View</a> / <a class="pointer" (click) = "deleteImage(image?.id,i)">Delete</a></p>
+                                                    <!-- <p *ngIf = "image.type != 1">No Data</p> -->
+                                                </h6>
+                                               
 
+                                            </td>
                                                 <!-- <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type != 1 && application?.upload_detail[0]?.type != 0">
                                                     _</td> -->

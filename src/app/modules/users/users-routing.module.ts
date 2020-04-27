@@ -70,7 +70,7 @@ const routes: Routes = [
           {
             path: 'submit-application',
             component: SubmitApplicationComponent,
-          }
+          }, 
 
 
         ]

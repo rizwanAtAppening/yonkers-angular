@@ -14,6 +14,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SubmitApplicationComponent } from './submit-application/submit-application.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -22,6 +23,7 @@ import { SubmitApplicationComponent } from './submit-application/submit-applicat
     CommonModule,
     UsersRoutingModule,
     LayoutsModule,
+    NgxPaginationModule,
   //  BrowserAnimationsModule,
     TypeaheadModule.forRoot(),
     BsDatepickerModule.forRoot(),

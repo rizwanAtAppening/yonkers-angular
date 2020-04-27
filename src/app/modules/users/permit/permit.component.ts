@@ -15,7 +15,8 @@ export class PermitComponent implements OnInit {
   constructor(
     private userService: UsersService,
     private permitService: PermitService
-  ) {    this.settings = settingConfig;
+  ) {
+    this.settings = settingConfig;
   }
 
   ngOnInit() {
@@ -25,9 +26,35 @@ export class PermitComponent implements OnInit {
 
   }
 
+  public offset: number = 10;
+  public currentPage: number = 1;
+  public totalPagination: number;
+
   getPermitApplication() {
     debugger
-    this.permitService.getPermitApplication().subscribe(data => {
+    // const data = {
+    //   page: this.currentPage
+    // }
+    this.permitService.getPermitApplication({page:this.currentPage}).subscribe(data => {
+      this.applictionDetails = data.response;
+      this.offset = data.offset;
+      this.totalPagination = data.total
+      this.currentPage = data.currentPage;
+    })
+  }
+
+  paginate(page) {
+    debugger
+    this.currentPage = page
+    this.getPermitApplication()
+  }
+  public searchString: string
+  searchApplication(applicationId: number) {
+    debugger
+    const data = {
+      search_query: String(this.searchString),
+    }
+    this.permitService.searchApplication(data).subscribe(data => {
       this.applictionDetails = data.response;
     })
   }
