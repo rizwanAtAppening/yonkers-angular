@@ -2071,6 +2071,7 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+<<<<<<< HEAD
 .status-Box {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #00000012;
@@ -2395,4 +2396,11 @@ cursor: pointer;
 }
 .yonker-email-2 {
     margin-top: 30px;
+=======
+.account-txt {
+    text-align: center;
+}
+.account-txt span a{
+    color: #4AB5F1;
+>>>>>>> e6649441afc4192cb3372e9f4b142f0568c5c82a
 }

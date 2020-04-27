@@ -884,10 +884,8 @@
                     <div class="forget-text">
                       <div class="row">
                         <div class="col-12">
-                          <h4 routerLink = "/auth/reset-password">Forgot Password?</h4>
-                          <h6 class="forget-text">Dont't have an account? <span><a
-                            [routerLink]="['/auth/register']">Register</a></span></h6>
-                        </div>
+                          <h4 class="float-right" routerLink = "/auth/reset-password">Forgot Password?</h4>
+                   
                       </div>
                     </div>
   
@@ -895,21 +893,24 @@
                       <div class="row">
                         <div class="col-12">
                           <button type="submit">Sign in</button>
+                          <h6 class="forget-text account-txt">Dont't have an account? <span><a
+                            [routerLink]="['/auth/register']">Register</a></span></h6>
+                        </div>
                         </div>
                       </div>
                     </div>
   
-                    <div class="border-topline"></div>
+                    <!-- <div class="border-topline"></div> -->
   
   
-                    <div class="profile-Hd">
+                    <!-- <div class="profile-Hd">
                       <h3>Don't have a profile?</h3>
                       <p>Create a profile to get full access to our articles and reports, and to subscribe to our email
                         newsletters and alerts.</p>
                       <h4  [routerLink]="['/auth/register']">
                         Create a profile <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                       </h4>
-                    </div>
+                    </div> -->
   
                   </div>
                 </div>
