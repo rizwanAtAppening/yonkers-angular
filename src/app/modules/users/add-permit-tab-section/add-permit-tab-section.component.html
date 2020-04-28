@@ -29,39 +29,39 @@
     <div class="tab-sec">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li class="nav-item">
-                <a [class]="(currentTab == 'what') ? 'active':'deactive'" id="pills-What-tab"
+                <a [class]="(currentTab == 'what') ? 'active':(whatControls.type.value || application?.type)?'':'gray_color'" id="pills-What-tab"
                     (click)="hitOnTab('whatForm','what')" role="tab" aria-controls="pills-What"
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':'deactive'" id="pills-Where-tab"
+                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( application.address_id || application.location && application.location.length > 0))?'':'gray_color'" id="pills-Where-tab"
                     (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'applicant') ? 'active':'deactive'" id="pills-Applicant-tab"
+                <a [class]="(currentTab == 'applicant') ? 'active':(applicantControls?.applicant_role.value || (application?.applicant_details && application?.applicant_details?.applicant_role))?'':'gray_color'" id="pills-Applicant-tab"
                     (click)="hitOnTab('applicantForm','applicant')" role="tab" aria-controls="pills-Applicant"
                     aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'contrator') ? 'active':'deactive'" id="pills-Contractor-tab"
+                <a [class]="(currentTab == 'contrator') ? 'active':(contratorControl.contractor_for_job.value || (application?.contractor_details && application?.contractor_details?.contractor_for_job))?'':'gray_color'" id="pills-Contractor-tab"
                     (click)="hitOnTab('contractorForm','contrator')" role="tab" aria-controls="pills-Contractor"
                     aria-selected="false">Contractor<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'projectDetail') ? 'active':'deactive'" id="pills-Project-tab"
+                <a [class]="(currentTab == 'projectDetail') ? 'active':(projectDetail.purpose.value || (application?.project_detail && application?.project_detail?.purpose))?'':'gray_color'" id="pills-Project-tab"
                     (click)="hitOnTab('projectDetailsForm','projectDetail')" role="tab" aria-controls="pills-Project"
                     aria-selected="false">Project
                     Details<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'upload') ? 'active':'deactive'" id="pills-Uploads-tab"
+                <a [class]="(currentTab == 'upload') ? 'active':application?.upload_detail && application?.upload_detail.length > 0?'':'gray_color'" id="pills-Uploads-tab"
                     (click)="hitOnTab('uploadForm','upload')" role="tab" aria-controls="pills-Uploads"
                     aria-selected="false">Uploads<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'review') ? 'active':'deactive'" id="pills-Review-tab"
+                <a [class]="(currentTab == 'review') ? 'active':application?'':'gray_color'" id="pills-Review-tab"
                     (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review"
                     aria-selected="false">Review</a>
             </li>
@@ -79,7 +79,7 @@
                             <div class="property">
 
                                 <div class="form-group">
-                                    <label>What is your role in this project ?*</label>
+                                    <label>What is your role in this project ?* {{whatForm.status}}</label>
                                     <select formControlName="role"
                                         [class]="whatControls.role.invalid && (whatControls.role.dirty || whatControls.role.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                         <option value="undefined" hidden> --Select--</option>
@@ -255,7 +255,7 @@
                                                                     <div class="form-group">
                                                                         <label>Unit No./Also Known as</label>
                                                                         <textarea
-                                                                            placeholder="Type something here..."></textarea>
+                                                                            placeholder="Type something here..." formControlName="also_known_as"></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>

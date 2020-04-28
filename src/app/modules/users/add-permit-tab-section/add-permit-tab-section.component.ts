@@ -17,7 +17,10 @@ import { ToastrService } from 'ngx-toastr';
 export class AddPermitTabSectionComponent implements OnInit {
   public settings: any;
   public env: any;
-
+  public isSubmit = false;
+  public data: any
+  public isContractor = false;
+  public application: any;
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
 
@@ -292,10 +295,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.addPermitApplication('', this.currentTab)
   }
 
-  public isSubmit = false;
-  public data: any
-  public isContractor = false;
-  public application: any;
+ 
   addPermitApplication(formGroup, nextTab) {
     //const application = this.permitService.getApplication()
     this.getApplication()
@@ -352,6 +352,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           address_id: Number(this.whereForm.value.address_id),
           location_type: this.location_type,
+          also_known_as:this.whereForm.value.also_known_as
 
         }
       }
@@ -466,6 +467,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     debugger
     const application = this.permitService.getApplication()
     if (application.address_id) {
+      this.whereForm.controls.address_id.setValue(application.address_id);
+      this.whereForm.controls.also_known_as.setValue(application.also_known_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
       })
@@ -564,19 +567,12 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       return false
     }
-    if (this.currentTab == 'where') {
-      if (this.isLocation) {
-        this.whereForm.controls.address_id.setErrors(null)
-      } else {
-        this.whereForm.controls.street_one.setErrors(null)
-
-      }
-    }
-    console.log(this[formGroup])
-    if (this[formGroup].invalid) {
-      this.isSubmit = true
-      return false
-    }
+   
+    // console.log(this[formGroup])
+    // if (this[formGroup].invalid) {
+    //   this.isSubmit = true
+    //   return false
+    // }
     if (this.currentTab == 'what') {
       // this.whatTab()
       // this.addPermitApplication('', tab);
@@ -590,27 +586,33 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     if (this.currentTab == 'applicant') {
       //this.getCurrentUser();
-      this.addPermitApplication('', tab);
+     // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
     }
     if (this.currentTab == 'where') {
-      // this.whereTab()
-      this.addPermitApplication('', tab);
+      if (this.isLocation) {
+        this.whereForm.controls.address_id.setErrors(null)
+      } else {
+        this.addLocationControls.controls.map((value, i) => {
+          value['controls'].street_one.setErrors(null)
+        })
+
+      }
       this.checkTab(tab)
       this.currentTab = tab
     }
     if (this.currentTab == 'contrator') {
       //this.contractorTab()
-      this.addPermitApplication('', tab);
+     // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }
 
     if (this.currentTab == 'projectDetail') {
       // this.projectDetailsTab()
-      this.addPermitApplication('', tab);
+     // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }
