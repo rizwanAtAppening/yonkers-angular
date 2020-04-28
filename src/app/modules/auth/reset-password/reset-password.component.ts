@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UsersService } from 'src/app/core/services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
-    
+    private toasterService: ToastrService
+
 
   ) { }
 
@@ -43,7 +45,9 @@ export class ResetPasswordComponent implements OnInit {
       return false
     }
     this.userService.resetPassword(this.resetForm.value).subscribe(data => {
-
+      this.toasterService.success("Link send your email. Please check your email")
+      this.resetForm.reset();
+      this.isSubmited = false;
     })
   }
 }

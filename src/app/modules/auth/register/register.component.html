@@ -44,7 +44,7 @@
                         <div class="form-group">
                           <input type="text" id="name" class="form-control" formControlName="first_name" id="first_name" class="form-control"
                           [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label class="form-control-placeholder" for="name">First Name</label>
+                          <label  [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="name">First Name</label>
                           <div class="form-error"
                           *ngIf="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit)">
                           <span *ngIf="first_name.errors['required']">
@@ -60,7 +60,7 @@
                         <div class="form-group">
                           <input type="text" id="last_name" class="form-control" formControlName="last_name" id="last_name" class="form-control"
                           [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label class="form-control-placeholder" for="last_name">Last Name</label>
+                          <label  [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="last_name">Last Name</label>
                         </div>
                         <div class="form-error"
                         *ngIf="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit)">
@@ -82,7 +82,7 @@
                         <div class="form-group">
                           <input type="text" id="Email" class="form-control" class="form-control check-in" formControlName="email" id="email"
                           [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label class="form-control-placeholder" for="Email">Email</label>
+                          <label  [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="Email">Email</label>
                         </div>
                       </div>
                     </div>
@@ -103,9 +103,9 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
-                          <input type="password" id="password" (input)="passwordMatch('pass')" class="form-control" formControlName="password" id="password" class="form-control password"
+                          <input type="password" id="password" (input)="passwordMatch('pass')"  formControlName="password" id="password" class="form-control password"
                           [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label class="form-control-placeholder" for="password">Password</label>
+                          <label  [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'" for="password">Password</label>
                         </div>
                       </div>
                     </div>
@@ -127,7 +127,7 @@
                          
                           [class]="confirmPassword.invalid  &&  (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                           class="form-control password" required>
-                          <label class="form-control-placeholder" for="conform-password">Confirm Password</label>
+                          <label  [class]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="conform-password">Confirm Password</label>
                         </div>
                       </div>
                     </div>

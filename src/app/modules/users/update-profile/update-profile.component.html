@@ -21,7 +21,7 @@
                                                         <input type="text" id="ud1" class="form-control"
                                                             formControlName="first_name"
                                                             [class]="profile.first_name.invalid && (profile.first_name.dirty ||profile.first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                        <label class="form-control-placeholder" for="ud1">Full
+                                                        <label [class]="profile.first_name.invalid && (profile.first_name.dirty ||profile.first_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud1">Full
                                                             name</label>
                                                         <div
                                                             *ngIf="profile.first_name.invalid && (profile.first_name.dirty || profile.first_name.touched || isSubmit)">
@@ -43,7 +43,7 @@
                                                     <div class="form-group" id="dfemail">
                                                         <input type="text" id="ud2" class="form-control"
                                                             formControlName="email" readonly>
-                                                        <label class="form-control-placeholder" for="ud2">Email</label>
+                                                        <label [class]="profile.email.invalid && (profile.email.dirty ||profile.email.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud2">Email</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,7 +61,7 @@
                                                             <input type="text" id="ud3" class="form-control"
                                                                 formControlName="last_name"
                                                                 [class]="profile.last_name.invalid && (profile.last_name.dirty ||profile.last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                            <label class="form-control-placeholder" for="ud3">Last
+                                                            <label [class]="profile.last_name.invalid && (profile.last_name.dirty ||profile.last_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud3">Last
                                                                 Name</label>
                                                             <div
                                                                 *ngIf="profile.last_name.invalid && (profile.last_name.dirty || profile.last_name.touched || isSubmit)">
@@ -85,7 +85,7 @@
                                                                 formControlName="mobile_number" maxlength="10"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                            <label class="form-control-placeholder" for="ud4">
+                                                            <label [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud4">
                                                                 Mobile Number</label>
                                                             <div
                                                                 *ngIf="profile.mobile_number.invalid && (profile.mobile_number.dirty || profile.mobile_number.touched || isSubmit)">
@@ -112,7 +112,7 @@
                                                         <div class="form-group">
                                                             <input type="text" id="ud5" class="form-control"
                                                                 formControlName="company">
-                                                            <label class="form-control-placeholder"
+                                                            <label [class]="profile.company.invalid && (profile.company.dirty ||profile.company.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="ud5">Company</label>
                                                         </div>
                                                     </div>
@@ -127,7 +127,7 @@
                                                         <div class="form-group">
                                                             <input type="text" id="ud6" class="form-control"
                                                                 formControlName="job_title">
-                                                            <label class="form-control-placeholder" for="ud6">
+                                                            <label [class]="profile.job_title.invalid && (profile.job_title.dirty ||profile.job_title.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud6">
                                                                 Job Titel</label>
                                                         </div>
                                                     </div>
@@ -150,7 +150,7 @@
                                                         <div class="form-group">
                                                             <input type="text" id="ud7" class="form-control"
                                                                 formControlName="address">
-                                                            <label class="form-control-placeholder"
+                                                            <label [class]="profile.address.invalid && (profile.address.dirty ||profile.address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="ud7">Address</label>
                                                         </div>
                                                     </div>

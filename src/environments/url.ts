@@ -52,8 +52,8 @@ const authUrls = {
   login: `/login`,
   register: `/register`,
   adminLogin: '/admin/login',
-  resetPasswoed:`/`,
-  createNewPassword:`/`
+  resetPasswoed:`/send-password-reset-link`,
+  createNewPassword:`/reset-password`
   
 }
 

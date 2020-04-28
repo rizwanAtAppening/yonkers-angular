@@ -16,11 +16,12 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                          <button *ngIf = "currentTab == 'review'" class="submitTxtbtn" data-toggle="modal" data-target="#exampleModal-3">Submit</button>
+                        <button *ngIf="currentTab == 'review'" class="submitTxtbtn" data-toggle="modal"
+                            data-target="#exampleModal-3">Submit</button>
                         <button (click)="saveAndExit(true)"> Save & Exit</button>
-                           </div>
+                    </div>
                 </div>
-             </div> 
+            </div>
         </div>
     </div>
 </header>
@@ -219,7 +220,8 @@
                                                                         [typeahead]="states" id="jobadd"
                                                                         [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
-                                                                    <label class="form-control-placeholder"
+                                                                    <label
+                                                                        [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                         for="jobadd">Address</label>
                                                                 </div>
                                                             </div>
@@ -280,22 +282,24 @@
 
                             <div class="tab-pane fade" id="nav-Location" role="tabpanel"
                                 aria-labelledby="nav-Location-tab">
-                                    <div class="job-input"   *ngFor = "let addloc of addLocationControls.controls; let i = index">
-                                            <form [formGroup]="addloc" >
+                                <div class="job-input"
+                                    *ngFor="let addloc of addLocationControls.controls; let i = index">
+                                    <form [formGroup]="addloc">
 
-                                        <div class="container p-0" >
+                                        <div class="container p-0">
                                             <div class="row">
                                                 <div class="col-4">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="Street" class="form-control" 
-                                                                        formControlName ="street_one"
+                                                                    <input type="number" id="Street"
+                                                                        class="form-control"
+                                                                        formControlName="street_one"
                                                                         [class]="addloc.invalid && (addloc.dirty || addloc.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-
                                                                         required>
-                                                                    <label class="form-control-placeholder"
+                                                                    <label
+                                                                        [class]="addloc.invalid && (addloc.dirty || addloc.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                         for="Street">Street One</label>
                                                                 </div>
                                                             </div>
@@ -308,15 +312,17 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group" id="add_slect">
-                                                                    <select type="text" id="Selecttxt" formControlName="address_join"
-                                                                     
+                                                                    <select type="text" id="Selecttxt"
+                                                                        formControlName="address_join"
                                                                         class="form-control">
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
                                                                             {{value?.value}}</option>
                                                                     </select>
-                                                                    <span _ngcontent-guj-c86=""><i _ngcontent-guj-c86="" aria-hidden="true" class="fa fa-angle-down"></i></span>
-                                                                   
+                                                                    <span _ngcontent-guj-c86=""><i _ngcontent-guj-c86=""
+                                                                            aria-hidden="true"
+                                                                            class="fa fa-angle-down"></i></span>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -328,14 +334,14 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="onfe" class="form-control" formControlName = "street_two"
-                                                                       >
+                                                                    <input type="number" id="onfe" class="form-control"
+                                                                        formControlName="street_two">
                                                                     <label class="form-control-placeholder"
                                                                         for="onfe">Street Two</label>
                                                                     <div class="btn-pre remover" *ngIf="i > 0">
                                                                         <button class="continue" (click)="remove(i)"
                                                                             type="submit">Remove</button>
-                                                                    </div> 
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -348,19 +354,19 @@
                                             </div>
 
 
-                                           
+
                                         </div>
-                                            </form>
-                                    </div>
-                                  
-                                    <div class="btn-pre ">
-                                        <button class="continue adloc" type="submit" (click)="addLocationForm()">add
-                                            Loaction</button>
-                                        <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
-                                        <button class="continue mr-0" type="submit"
-                                            (click)="addPermitApplication('whereForm','applicant')">Continue</button>
-                                    </div>
-                                
+                                    </form>
+                                </div>
+
+                                <div class="btn-pre ">
+                                    <button class="continue adloc" type="submit" (click)="addLocationForm()">add
+                                        Loaction</button>
+                                    <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
+                                    <button class="continue mr-0" type="submit"
+                                        (click)="addPermitApplication('whereForm','applicant')">Continue</button>
+                                </div>
+
                             </div>
 
 
@@ -398,7 +404,9 @@
                                                             </option>
 
                                                         </select>
-                                                        <label class="form-control-placeholder" for="Project">Role in
+                                                        <label
+                                                            [class]="applicantControls.applicant_role.invalid && (applicantControls.applicant_role.dirty || applicantControls.applicant_role.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                            for="Project">Role in
                                                             Project</label>
                                                         <div
                                                             *ngIf="applicantControls.applicant_role.invalid && (applicantControls.applicant_role.dirty || applicantControls.applicant_role.touched || isSubmit)">
@@ -424,7 +432,8 @@
                                                             formControlName="applicant_email"
                                                             [class]="applicantControls.applicant_email.invalid && (applicantControls.applicant_email.dirty || applicantControls.applicant_email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                             required>
-                                                        <label class="form-control-placeholder"
+                                                        <label
+                                                            [class]="applicantControls.applicant_email.invalid && (applicantControls.applicant_email.dirty || applicantControls.applicant_email.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                             for="Email-app">Email</label>
                                                         <div
                                                             *ngIf="applicantControls.applicant_email.invalid && (applicantControls.applicant_email.dirty || applicantControls.applicant_email.touched || isSubmit)">
@@ -450,7 +459,8 @@
                                                             <input type="text" formControlName="applicant_name"
                                                                 [class]="applicantControls.applicant_name.invalid && (applicantControls?.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" required>
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="applicantControls.applicant_name.invalid && (applicantControls.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="namProject">Name</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_name.invalid && (applicantControls.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit)">
@@ -474,7 +484,9 @@
                                                                 formControlName="applicant_business"
                                                                 [class]="applicantControls.applicant_business.invalid && (applicantControls.applicant_business.dirty || applicantControls.applicant_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control">
-                                                            <label class="form-control-placeholder" for="Business">Name
+                                                            <label
+                                                                [class]="applicantControls.applicant_business.invalid && (applicantControls.applicant_business.dirty || applicantControls.applicant_business.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Business">Name
                                                                 of Business</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_business.invalid && (applicantControls.applicant_business.dirty || applicantControls.applicant_business.touched || isSubmit)">
@@ -501,7 +513,8 @@
                                                                 formControlName="applicant_address"
                                                                 [class]="applicantControls.applicant_address.invalid && (applicantControls.applicant_address.dirty || applicantControls.applicant_address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 required>
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="applicantControls.applicant_address.invalid && (applicantControls.applicant_address.dirty || applicantControls.applicant_address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="id-address">Address</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_address.invalid && (applicantControls.applicant_address.dirty || applicantControls.applicant_address.touched || isSubmit)">
@@ -531,7 +544,9 @@
                                                                 [class]="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
-                                                            <label class="form-control-placeholder" for="Phone-id">Phone
+                                                            <label
+                                                                [class]="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Phone-id">Phone
                                                                 Number</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit)">
@@ -555,7 +570,8 @@
                                                                 [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id">City</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit)">
@@ -582,7 +598,8 @@
                                                                 [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id">State</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
@@ -608,7 +625,8 @@
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id">Zip</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit)">
@@ -693,7 +711,9 @@
                                                             <input type="text" formControlName="contractor_business"
                                                                 [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder" for="Project">Name
+                                                            <label
+                                                                [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Project">Name
                                                                 of Business</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit)">
@@ -718,7 +738,8 @@
                                                             <input type="text" formControlName="contractor_email"
                                                                 [class]="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Project">Email</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit)">
@@ -745,7 +766,8 @@
                                                             <input type="text" formControlName="contractor_name"
                                                                 [class]="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Project">Name</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit)">
@@ -771,7 +793,9 @@
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder" for="Project">Phone
+                                                            <label
+                                                                [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Project">Phone
                                                                 Number</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit)">
@@ -798,7 +822,8 @@
                                                             <input type="text" formControlName="contractor_address"
                                                                 [class]="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Project">Address</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit)">
@@ -821,7 +846,9 @@
                                                             <input type="text" formControlName="contractor_city"
                                                                 [class]="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder" for="Project">City
+                                                            <label
+                                                                [class]="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Project">City
                                                             </label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit)">
@@ -848,7 +875,8 @@
                                                             <input type="text" formControlName="contractor_state"
                                                                 [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Project">State</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit)">
@@ -873,7 +901,8 @@
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
-                                                            <label class="form-control-placeholder"
+                                                            <label
+                                                                [class]="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Project">Zip</label>
                                                             <div
                                                                 *ngIf="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit)">
@@ -920,7 +949,8 @@
                                     <div class="property lbl-txt m-0">
 
                                         <div class="form-group">
-                                            <label>Purpose</label>
+                                            <label
+                                                [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'msg ' : ''">Purpose</label>
                                             <select formControlName="purpose"
                                                 [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                 <option value="" hidden> --Select--</option>
@@ -930,6 +960,13 @@
 
                                             </select>
                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            <div
+                                            *ngIf="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit)">
+                                            <p class="form-error"
+                                                *ngIf="projectDetail.purpose.errors['required']">
+                                                Please Enter Purpose
+                                            </p>
+                                        </div>
                                         </div>
 
                                     </div>
@@ -1078,11 +1115,21 @@
                                                     formControlName="start_date"
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
-                                                <label class="form-control-placeholder" for="sda1">Start Date</label>
+                                                <label
+                                                    [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                    for="sda1">Start Date</label>
+                                                    <div
+                                                    *ngIf="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit)">
+                                                    <p class="form-error"
+                                                        *ngIf="projectDetail.start_date.errors['required']">
+                                                        Please Enter Date
+                                                    </p>
+                                                </div>
                                             </div>
                                             <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
                                                 <span class=" datebtn" (click)="dp.toggle()"
-                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i
+                                                        class="fa fa-calendar" aria-hidden="true"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -1093,13 +1140,23 @@
                                                     formControlName="end_date"
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
-                                                <label class="form-control-placeholder" for="eda1">End Date</label>
-
+                                                <label
+                                                    [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                    for="eda1">End Date</label>
+                                                    <div
+                                                    *ngIf="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit)">
+                                                    <p class="form-error"
+                                                        *ngIf="projectDetail.end_date.errors['required']">
+                                                        Please Enter Date
+                                                    </p>
+                                                </div>
                                             </div>
                                             <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
                                                 <span class=" datebtn" (click)="dp1.toggle()"
-                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i
+                                                        class="fa fa-calendar" aria-hidden="true"></i></span>
                                             </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -1114,6 +1171,13 @@
                                                     formControlName="description"
                                                     [class]="projectDetail.description.invalid && (projectDetail.description.dirty || projectDetail.description.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"></textarea>
                                             </div>
+                                            <div
+                                            *ngIf="projectDetail.description.invalid && (projectDetail.description.dirty || projectDetail.description.touched || isSubmit)">
+                                            <p class="form-error"
+                                                *ngIf="projectDetail.description.errors['required']">
+                                                Please Enter Description
+                                            </p>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1151,17 +1215,18 @@
                                         <tbody>
                                             <tr>
                                                 <td class="plans">Drawings/ Plans</td>
-                                                <td
-                                                    >
-                                                    <h6 *ngFor = "let image of application?.upload_detail; let i = index">
-                                                        <p *ngIf = "image.type == 0">{{image?.name}} <a class="pointer" href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                            target="_blank">View</a> / <a class="pointer" (click) = "deleteImage(image?.id,i)">Delete</a></p>
+                                                <td>
+                                                    <h6 *ngFor="let image of application?.upload_detail; let i = index">
+                                                        <p *ngIf="image.type == 0">{{image?.name}} <a class="pointer"
+                                                                href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                                target="_blank">View</a> / <a class="pointer"
+                                                                (click)="deleteImage(image?.id,i)">Delete</a></p>
                                                         <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                     </h6>
-                                                   
+
 
                                                 </td>
-                                              
+
                                                 <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload
@@ -1171,17 +1236,18 @@
                                             </tr>
                                             <tr>
                                                 <td class="plans">Certificate of Insurance</td>
-                                               
-                                                <td
-                                                >
-                                                <h6 *ngFor = "let image of application?.upload_detail; let i = index">
-                                                    <p *ngIf = "image.type == 1">{{image?.name}}  <a class="pointer" href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                        target="_blank">View</a> / <a class="pointer" (click) = "deleteImage(image?.id,i)">Delete</a></p>
-                                                    <!-- <p *ngIf = "image.type != 1">No Data</p> -->
-                                                </h6>
-                                               
 
-                                            </td>
+                                                <td>
+                                                    <h6 *ngFor="let image of application?.upload_detail; let i = index">
+                                                        <p *ngIf="image.type == 1">{{image?.name}} <a class="pointer"
+                                                                href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                                target="_blank">View</a> / <a class="pointer"
+                                                                (click)="deleteImage(image?.id,i)">Delete</a></p>
+                                                        <!-- <p *ngIf = "image.type != 1">No Data</p> -->
+                                                    </h6>
+
+
+                                                </td>
                                                 <!-- <td
                                                     *ngIf="application?.upload_detail && application?.upload_detail[1]?.type != 1 && application?.upload_detail[0]?.type != 0">
                                                     _</td> -->
@@ -1604,8 +1670,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" #checklist
-        aria-hidden="true">
+    <div class="modal fade" id="exampleModal-3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        #checklist aria-hidden="true">
         <div class="modal-dialog popup-dumpstar-3" role="document">
             <div class="modal-content text-addpopup">
                 <div class="modal-header p-0 pb-2 ">
@@ -1620,41 +1686,49 @@
                             <div class="upload-owner">
                                 <p>1. What form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1"  (change)="submitApplication($event.target.value,'what')"  name="what">
+                                    <input type="radio" value="1"
+                                        (change)="submitApplication($event.target.value,'what')" name="what">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" (change)="submitApplication($event.target.value,'what')" name="what">
+                                    <input type="radio" value="0"
+                                        (change)="submitApplication($event.target.value,'what')" name="what">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
                                 <p>3. Applicant form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1"  (change)="submitApplication($event.target.value,'applicant')" name="applicant">
+                                    <input type="radio" value="1"
+                                        (change)="submitApplication($event.target.value,'applicant')" name="applicant">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0"  (change)="submitApplication($event.target.value,'applicant')" name="applicant">
+                                    <input type="radio" value="0"
+                                        (change)="submitApplication($event.target.value,'applicant')" name="applicant">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
                                 <p>5. ProjectDetail form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1"  name="projectDetail"  (change)="submitApplication($event.target.value,'projectDetail')">
+                                    <input type="radio" value="1" name="projectDetail"
+                                        (change)="submitApplication($event.target.value,'projectDetail')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" name="projectDetail"  (change)="submitApplication($event.target.value,'projectDetail')">
+                                    <input type="radio" value="0" name="projectDetail"
+                                        (change)="submitApplication($event.target.value,'projectDetail')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
                                 <p>7. Review </p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1"  name="review" (change)="submitApplication($event.target.value,'review')">
+                                    <input type="radio" value="1" name="review"
+                                        (change)="submitApplication($event.target.value,'review')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" name="review" (change)="submitApplication($event.target.value,'review')">
+                                    <input type="radio" value="0" name="review"
+                                        (change)="submitApplication($event.target.value,'review')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
@@ -1673,31 +1747,37 @@
                             <div class="upload-owner">
                                 <p>2. where form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1" name="where" (change)="submitApplication($event.target.value,'where')">
+                                    <input type="radio" value="1" name="where"
+                                        (change)="submitApplication($event.target.value,'where')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" name="where" (change)="submitApplication($event.target.value,'where')">
+                                    <input type="radio" value="0" name="where"
+                                        (change)="submitApplication($event.target.value,'where')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
                                 <p>4. Contractor form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1" name="contrator" (change)="submitApplication($event.target.value,'contrator')">
+                                    <input type="radio" value="1" name="contrator"
+                                        (change)="submitApplication($event.target.value,'contrator')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" name="contrator" (change)="submitApplication($event.target.value,'contrator')">
+                                    <input type="radio" value="0" name="contrator"
+                                        (change)="submitApplication($event.target.value,'contrator')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
                                 <p>6. Upload form</p>
                                 <label class="owner">Confirm
-                                    <input type="radio" value="1" name="upload" (change)="submitApplication($event.target.value,'upload')">
+                                    <input type="radio" value="1" name="upload"
+                                        (change)="submitApplication($event.target.value,'upload')">
                                     <span class="checkma"></span>
                                 </label>
                                 <label class="owner auth-txt">Ignore
-                                    <input type="radio" value="0" name="upload" (change)="submitApplication($event.target.value,'upload')">
+                                    <input type="radio" value="0" name="upload"
+                                        (change)="submitApplication($event.target.value,'upload')">
                                     <span class="checkma"></span>
                                 </label>
                                 <div class="lable-border"></div>
@@ -1728,7 +1808,7 @@
                             <div class="bottom_border-btn"></div>
                             <div class="btn-pre pop-Btn">
                                 <button data-dismiss="modal" aria-label="Close">Cancel</button>
-                                <button class="continue mr-0" (click) = "submitApplicationAfterReview()">Save</button>
+                                <button class="continue mr-0" (click)="submitApplicationAfterReview()">Save</button>
                             </div>
                         </div>
                     </div>

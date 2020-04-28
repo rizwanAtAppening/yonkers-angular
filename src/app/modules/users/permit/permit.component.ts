@@ -49,7 +49,7 @@ export class PermitComponent implements OnInit {
     this.getPermitApplication()
   }
   public searchString: string
-  searchApplication(applicationId: number) {
+  searchApplication() {
     debugger
     const data = {
       search_query: String(this.searchString),
