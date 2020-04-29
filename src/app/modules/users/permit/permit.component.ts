@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-permit',
@@ -14,7 +15,8 @@ export class PermitComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private permitService: PermitService
+    private permitService: PermitService,
+    private router: Router
   ) {
     this.settings = settingConfig;
   }
@@ -35,7 +37,7 @@ export class PermitComponent implements OnInit {
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({page:this.currentPage}).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage }).subscribe(data => {
       this.applictionDetails = data.response;
       this.offset = data.offset;
       this.totalPagination = data.total
@@ -59,4 +61,8 @@ export class PermitComponent implements OnInit {
     })
   }
 
+  updateApplication(applicationId) {
+
+    this.router.navigate(['/dashboard/update-application'], { queryParams: { id: applicationId } });
+  }
 }

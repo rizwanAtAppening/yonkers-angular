@@ -81,6 +81,19 @@ export class PermitService {
     );
   }
 
+  updateApplication(query): Observable<any> {
+    const href = `${environment['updateApplication']}`;
+    return this.http.get<any>(href, {params:query}).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
 
   deleteSessionApplication(): boolean {
     if (sessionStorage.getItem(this.sessionApplication)) {

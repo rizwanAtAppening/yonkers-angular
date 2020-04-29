@@ -9,6 +9,7 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { SubmitApplicationComponent } from './submit-application/submit-application.component';
+import { UpdatePermitComponent } from './update-permit/update-permit.component';
 
 
 // const routes: Routes = [
@@ -70,6 +71,10 @@ const routes: Routes = [
           {
             path: 'submit-application',
             component: SubmitApplicationComponent,
+          }, 
+          {
+            path: 'update-application',
+            component: UpdatePermitComponent,
           }, 
 
 

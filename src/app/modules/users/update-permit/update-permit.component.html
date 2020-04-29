@@ -1,0 +1,190 @@
+<app-layout>
+    <router-outlet>
+
+        <section>
+            <div class="container p-0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="back-txt">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back to dashboard
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="per-uodate">
+            <div class="container p-0">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="status-Box">
+                            <h2>Permit Update</h2>
+                            <h3>What would you like to do?</h3>
+                            <div class="modifiy">
+                                <button class="m-app-btn" (click)="modifyApplication()"> Modify Application <span><img
+                                            src="assets/images/out.svg" alt=""></span> </button>
+                                <button class="m-app-btn rc-img">Request Cancellation <span><img
+                                            src="assets/images/out.svg" alt=""></span> </button>
+                            </div>
+
+
+                            <div class="status_pro-txt">
+                                <h3>Project Status</h3>
+                            </div>
+
+                            <div class="status_tabber">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-Decisions-tab" data-toggle="tab"
+                                            href="#nav-Decisions" role="tab" aria-controls="nav-Decisions"
+                                            aria-selected="true">Review Decisions</a>
+                                        <a class="nav-item nav-link" id="nav-Inspection-tab" data-toggle="tab"
+                                            href="#nav-Inspection" role="tab" aria-controls="nav-Inspection"
+                                            aria-selected="false">Inspection</a>
+                                        <a class="nav-item nav-link" id="nav-Documents-tab" data-toggle="tab"
+                                            href="#nav-Documents" role="tab" aria-controls="nav-Documents"
+                                            aria-selected="false">Project Documents</a>
+                                        <a class="nav-item nav-link" id="nav-Final-tab" data-toggle="tab"
+                                            href="#nav-Final" role="tab" aria-controls="nav-Final"
+                                            aria-selected="false">Final Approval</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-Decisions" role="tabpanel"
+                                        aria-labelledby="nav-Decisions-tab">
+
+                                        <div class="review-desiign-box">
+                                            <div class="tbl-review-design">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Action</th>
+                                                            <th>Review Date</th>
+                                                            <th>Plan Examiner</th>
+                                                            <th>Action Taken</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>No review</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-Inspection" role="tabpanel"
+                                        aria-labelledby="nav-Inspection-tab">
+
+                                        <div class="review-desiign-box">
+                                            <div class="tbl-review-design">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Type</th>
+                                                            <th>Decision</th>
+                                                            <th>Fee</th>
+                                                            <th>Inspector</th>
+                                                            <th>Date</th>
+                                                            <th>Remarks</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>No review</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-Documents" role="tabpanel"
+                                        aria-labelledby="nav-Documents-tab">
+
+                                        <div class="review-desiign-box">
+                                            <div class="tbl-review-design">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>File Type</th>
+                                                            <th class="action-type">Action Taken</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Application / Misc.</td>
+                                                            <td class="btn__view action-type"> <button>View</button>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Submitted Drawings/ Plans</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Permits</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Plan Review</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Approved Plans</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Final Certificate / As Built / Surveys</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Revision</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Board Approvals</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-Final" role="tabpanel"
+                                        aria-labelledby="nav-Final-tab">
+                                        <div class="review-desiign-box">
+                                            <div class="no-cart">
+                                                <h5>NO Cert. O/C Issued.</h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </router-outlet>
+</app-layout>

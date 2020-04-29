@@ -70,7 +70,8 @@ const userUrl = {
   getPermitApplication:'/application',
   updateProfile:'/user/profile',
   changePassword:`/user/change-password`,
-  deleteImage:`/application/image/delete `
+  deleteImage:`/application/image/delete `,
+  updateApplication:`/application`
   // searchUserApplication:`/application`
 
  

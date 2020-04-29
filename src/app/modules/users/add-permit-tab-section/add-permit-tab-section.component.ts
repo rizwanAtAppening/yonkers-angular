@@ -29,7 +29,8 @@ export class AddPermitTabSectionComponent implements OnInit {
   public applicantForm: FormGroup;
   public contractorForm: FormGroup;
   public projectDetailsForm: FormGroup;
-  public location = [{}]
+  public location = [{}];
+  public application_id: number
   public states: string[] = [
     'Alabama',
     'Alaska',
@@ -67,9 +68,12 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.route.queryParams.subscribe(data=>{
-    //   this.currentTab = data.tab;
-    // })
+    this.route.queryParams.subscribe(data => {
+      this.application_id = data.id;
+    })
+    if (this.application_id) {
+     // this.updateAppliction()
+    }
     this.env = environment;
 
     this.userService.changeSaveAndExit(false);
@@ -295,7 +299,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.addPermitApplication('', this.currentTab)
   }
 
- 
+
   addPermitApplication(formGroup, nextTab) {
     //const application = this.permitService.getApplication()
     this.getApplication()
@@ -352,7 +356,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           address_id: Number(this.whereForm.value.address_id),
           location_type: this.location_type,
-          also_known_as:this.whereForm.value.also_known_as
+          also_known_as: this.whereForm.value.also_known_as
 
         }
       }
@@ -567,7 +571,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       return false
     }
-   
+
     // console.log(this[formGroup])
     // if (this[formGroup].invalid) {
     //   this.isSubmit = true
@@ -586,7 +590,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     if (this.currentTab == 'applicant') {
       //this.getCurrentUser();
-     // this.addPermitApplication('', tab);
+      // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
@@ -605,14 +609,14 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
     if (this.currentTab == 'contrator') {
       //this.contractorTab()
-     // this.addPermitApplication('', tab);
+      // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }
 
     if (this.currentTab == 'projectDetail') {
       // this.projectDetailsTab()
-     // this.addPermitApplication('', tab);
+      // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }
@@ -833,17 +837,24 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
   }
 
-  deleteImage(id,i) {
+  deleteImage(id, i) {
     debugger
     const data = {
       id: id
     }
     this.permitService.deleteImage(data).subscribe(data => {
       this.getApplication()
-      this.application.upload_detail.splice(i,1)
+      this.application.upload_detail.splice(i, 1)
       sessionStorage.setItem('application', JSON.stringify(this.application));
 
       console.log(this.application)
+    })
+  }
+
+  updateAppliction() {
+    debugger
+    this.permitService.updateApplication({ application_id: this.application_id }).subscribe(data => {
+      this.application = data.respose;
     })
   }
 }
