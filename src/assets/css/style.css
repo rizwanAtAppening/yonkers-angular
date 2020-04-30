@@ -316,6 +316,7 @@ header {
     border: none;
     color: #fff;
     padding: 16px 0px 23px 0px;
+    cursor: pointer;
 }
 
 .border-topline {
@@ -944,6 +945,7 @@ header {
     font-family: 'Poppins-Regular';
     padding: 12px 22px;
     margin-right: 30px;
+    cursor: pointer;
 }
 
 .saveTxtbtn button {
@@ -952,6 +954,7 @@ header {
     background: #fff;
     padding: 12px 18px;
     font-family: 'Poppins-Regular';
+    cursor: pointer;
 }
 
 .where-bg {
@@ -1006,6 +1009,7 @@ header {
     height: 50px;
     text-align: center;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .adrees-tab {
@@ -2410,4 +2414,32 @@ cursor: pointer;
 }
 .tab-sec ul li a.gray_color{
     color: #00183980 !important;
+}
+
+.form-control:disabled, .form-control{
+    background: #fff !important;
+
+}
+
+.slectInputBox label{
+    top: -14px;
+    background: #fff;
+    opacity: 1;
+    left: 20px;
+    color: #282D5B99;
+    padding: 0px 3px;
+    font-size: 16px;
+    font-family: 'Poppins-Regular';
+}
+
+.slectInputBox input{
+    border: 0.5px solid #A9B8C1B0 !important;
+    color: #282D5B;
+}
+
+.theme-green .bs-datepicker-head{
+    background-color: #4ab5f1 !important; 
+}
+.theme-green .bs-datepicker-body table td.week span{
+    color: #4ab5f1 !important; 
 }
