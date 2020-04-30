@@ -81,9 +81,9 @@ export class PermitService {
     );
   }
 
-  updateApplication(query): Observable<any> {
-    const href = `${environment['updateApplication']}`;
-    return this.http.get<any>(href, {params:query}).pipe(
+  updateApplication(id): Observable<any> {
+    const href = `${environment['updateApplication']}/${id}`;
+    return this.http.get<any>(href,).pipe(
       tap(
         (data) => {
           if (data.status === 'success') {

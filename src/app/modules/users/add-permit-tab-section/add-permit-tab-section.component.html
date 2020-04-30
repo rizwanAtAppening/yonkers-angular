@@ -688,7 +688,7 @@
                                                 <label>Do you have a contractor for this job?</label>
                                                 <select formControlName="contractor_for_job">
                                                     <option value="" hidden>--Select--</option>
-                                                    <option [value]="value?.key"
+                                                    <option [value]="value?.key" [hidden] = "isDisabled"
                                                         *ngFor="let value of settings?.contractor_for_job">
                                                         {{value?.value}}</option>
 
@@ -708,7 +708,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_business"
+                                                            <input type="text" formControlName="contractor_business" [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -735,7 +735,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_email"
+                                                            <input type="text" formControlName="contractor_email"  [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_email.invalid && (contratorControl.contractor_email.dirty || contratorControl.contractor_email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -763,7 +763,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_name"
+                                                            <input type="text" formControlName="contractor_name" [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_name.invalid && (contratorControl.contractor_name.dirty || contratorControl.contractor_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -788,7 +788,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="contractor_phone"
+                                                            <input type="number" formControlName="contractor_phone" [readonly] = "isDisabled"
                                                                 maxlength="10"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
@@ -819,7 +819,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_address"
+                                                            <input type="text" formControlName="contractor_address" [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_address.invalid && (contratorControl.contractor_address.dirty || contratorControl.contractor_address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -843,7 +843,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_city"
+                                                            <input type="text" formControlName="contractor_city" [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_city.invalid && (contratorControl.contractor_city.dirty || contratorControl.contractor_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -872,7 +872,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_state"
+                                                            <input type="text" formControlName="contractor_state" [readonly] = "isDisabled"
                                                                 [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label
@@ -896,7 +896,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="contractor_zip"
+                                                            <input type="number" formControlName="contractor_zip" [readonly] = "isDisabled"
                                                                 maxlength="6"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="contratorControl.contractor_zip.invalid && (contratorControl.contractor_zip.dirty || contratorControl.contractor_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"

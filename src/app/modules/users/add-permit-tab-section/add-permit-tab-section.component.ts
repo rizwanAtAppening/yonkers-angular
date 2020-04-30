@@ -72,7 +72,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.application_id = data.id;
     })
     if (this.application_id) {
-     // this.updateAppliction()
+      this.updateAppliction()
     }
     this.env = environment;
 
@@ -329,11 +329,21 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.isSubmit = true
         return false
       }
-      this.data = {
-        role: Number(this.whatForm.value.role),
-        type: Number(this.whatForm.value.type),
-        model: 1
+      if (this.application_id) {
+        this.data = {
+          role: Number(this.whatForm.value.role),
+          type: Number(this.whatForm.value.type),
+          model: 1,
+          id: Number(this.application_id)
+        }
+      } else {
+        this.data = {
+          role: Number(this.whatForm.value.role),
+          type: Number(this.whatForm.value.type),
+          model: 1
+        }
       }
+
     }
     else if (formGroup == 'whereForm' || this.currentTab == 'where') {
       if (this.isLocation) {
@@ -514,9 +524,9 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whatTab() {
-    const application = this.permitService.getApplication()
-    this.whatForm.controls.role.setValue(application.role);
-    this.whatForm.controls.type.setValue(application.type);
+    // const application = this.permitService.getApplication()
+    this.whatForm.controls.role.setValue(this.application.role);
+    this.whatForm.controls.type.setValue(this.application.type);
   }
 
   // getApplicationFormSessionStorage() {
@@ -524,21 +534,40 @@ export class AddPermitTabSectionComponent implements OnInit {
   //   const application = this.permitService.getApplication()
   //   this.applicantForm.controls.applicant_role.setValue(application.role)
   // }
-
+  public isDisabled = false;
   contractorTab() {
-    const application = this.permitService.getApplication()
-    if (application.contractor_details) {
-      this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_for_job)
+    this.authService.getUserInfo().subscribe(currentUser => {
+      this.currentUserInfo = currentUser
+    })
 
-      this.contractorForm.controls.contractor_name.setValue(application.contractor_details.contractor_name)
-      this.contractorForm.controls.contractor_email.setValue(application.contractor_details.contractor_email)
-      this.contractorForm.controls.contractor_business.setValue(application.contractor_details.contractor_business)
-      this.contractorForm.controls.contractor_address.setValue(application.contractor_details.contractor_address)
-      this.contractorForm.controls.contractor_phone.setValue(application.contractor_details.contractor_phone)
-      this.contractorForm.controls.contractor_city.setValue(application.contractor_details.contractor_state)
-      this.contractorForm.controls.contractor_state.setValue(application.contractor_details.contractor_city)
-      this.contractorForm.controls.contractor_zip.setValue(application.contractor_details.contractor_zip)
+    if (this.currentUserInfo && this.application.role == 2) {
+      debugger
+      this.isDisabled = true
+      this.contractorForm.controls.contractor_for_job.setValue(1)
+      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name)
+      this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
+      this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.nameofBussiness)
+      this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
+      this.contractorForm.controls.contractor_phone.setValue(this.currentUserInfo.phone_number)
+      this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.state)
+      this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.city)
+      this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip)
+    } else {
+      const application = this.permitService.getApplication()
+      if (application.contractor_details) {
+        this.isDisabled = false
+        this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_for_job)
+        this.contractorForm.controls.contractor_name.setValue(application.contractor_details.contractor_name)
+        this.contractorForm.controls.contractor_email.setValue(application.contractor_details.contractor_email)
+        this.contractorForm.controls.contractor_business.setValue(application.contractor_details.contractor_business)
+        this.contractorForm.controls.contractor_address.setValue(application.contractor_details.contractor_address)
+        this.contractorForm.controls.contractor_phone.setValue(application.contractor_details.contractor_phone)
+        this.contractorForm.controls.contractor_city.setValue(application.contractor_details.contractor_state)
+        this.contractorForm.controls.contractor_state.setValue(application.contractor_details.contractor_city)
+        this.contractorForm.controls.contractor_zip.setValue(application.contractor_details.contractor_zip)
+      }
     }
+
 
   }
 
@@ -853,8 +882,9 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   updateAppliction() {
     debugger
-    this.permitService.updateApplication({ application_id: this.application_id }).subscribe(data => {
-      this.application = data.respose;
+    this.permitService.updateApplication(this.application_id ).subscribe(data => {
+      this.application = data.response;
+      this.checkTab(this.currentTab)
     })
   }
 }
