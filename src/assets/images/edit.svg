@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="9.794" height="9.611" viewBox="0 0 9.794 9.611">
-    <defs>
-        <style>
-            .cls-1{fill:#fff}
-        </style>
-    </defs>
-    <g id="edit" transform="translate(-5.6 -6.9)">
-        <g id="Group_2424" data-name="Group 2424" transform="translate(5.6 6.9)">
-            <path id="Path_1292" d="M15.136 114.3h-9.1a.342.342 0 0 0-.341.341.348.348 0 0 0 .341.341h9.1a.342.342 0 0 0 .341-.341.35.35 0 0 0-.341-.341z" class="cls-1" data-name="Path 1292" transform="translate(-5.692 -105.371)"/>
-            <path id="Path_1293" d="M5.608 12.811L5.6 14.432a.352.352 0 0 0 .1.249.333.333 0 0 0 .241.1l1.613-.008a.333.333 0 0 0 .241-.1l5.57-5.57a.351.351 0 0 0 0-.491L11.769 7a.351.351 0 0 0-.491 0l-1.114 1.122-4.456 4.448a.37.37 0 0 0-.1.241zm5.92-5.08l1.122 1.123-.632.632L10.9 8.363zM6.3 12.961l4.107-4.107 1.122 1.122-4.107 4.1-1.131.008z" class="cls-1" data-name="Path 1293" transform="translate(-5.6 -6.9)"/>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="10.935" height="10.935" viewBox="0 0 10.935 10.935"><defs><style>.a{fill:#fff;}</style></defs><path class="a" d="M0,74.616v2.278H2.278L9,70.171,6.723,67.893Z" transform="translate(0 -65.959)"/><path class="a" d="M262.056,1.6,260.638.178a.609.609,0,0,0-.86,0L258.666,1.29l2.278,2.278,1.112-1.112A.609.609,0,0,0,262.056,1.6Z" transform="translate(-251.299)"/></svg>

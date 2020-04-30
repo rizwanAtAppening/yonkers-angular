@@ -24,4 +24,21 @@ margin-top: 2px !important
 .submibtn{
     margin-right: 120px !important
 }
+.licensebtn{
+    cursor: pointer;
+    cursor: pointer;
+    margin-top: -30px;
+    display: block;
+    margin-left: 373px;
 
+}
+
+.imgfile{
+    margin-top: 9px !important;
+    display: block !important;
+    width: 227px !important;  
+    height: 130px !important;
+}
+.closeimage {
+    margin-top: 234px
+}

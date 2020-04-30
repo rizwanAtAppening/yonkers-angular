@@ -94,6 +94,19 @@ export class PermitService {
     );
   }
 
+  addLicenseDetails(data): Observable<any> {
+    const href = `${environment['addLicenseDetails']}`;
+    return this.http.post<any>(href,data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
 
   deleteSessionApplication(): boolean {
     if (sessionStorage.getItem(this.sessionApplication)) {
@@ -166,5 +179,20 @@ export class PermitService {
       )
     );
   }
+
+  getLicenseDetails(): Observable<any> {
+    const href = `${environment['getLicenseDetails']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  
 
 }

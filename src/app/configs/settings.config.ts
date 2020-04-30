@@ -339,12 +339,19 @@ export const settingConfig = {
    
   ],
 
-
-
-
-
-
-
+policyType:[
+{
+  key:1,
+  value:'Yonkers License'
+},
+{
+  key:1,
+  value:'General Liability'
+},{
+  key:1,
+  value:'Bond'
+},
+],
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {
       key: condition

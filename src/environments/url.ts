@@ -52,9 +52,9 @@ const authUrls = {
   login: `/login`,
   register: `/register`,
   adminLogin: '/admin/login',
-  resetPasswoed:`/send-password-reset-link`,
-  createNewPassword:`/reset-password`
-  
+  resetPasswoed: `/send-password-reset-link`,
+  createNewPassword: `/reset-password`
+
 }
 
 const adminUrl = {
@@ -65,16 +65,18 @@ const adminUrl = {
 };
 
 const userUrl = {
-  addPermitApplication:'/application',
-  uploadImage:'/application/fileUpload',
-  getPermitApplication:'/application',
-  updateProfile:'/user/profile',
-  changePassword:`/user/change-password`,
-  deleteImage:`/application/image/delete `,
-  updateApplication:`/application`
+  addPermitApplication: '/application',
+  uploadImage: '/application/fileUpload',
+  getPermitApplication: '/application',
+  updateProfile: '/user/profile',
+  changePassword: `/user/change-password`,
+  deleteImage: `/application/image/delete `,
+  updateApplication: `/application`,
+  addLicenseDetails: `/user/lienceUpload`,
+  getLicenseDetails:`/user/lience `
   // searchUserApplication:`/application`
 
- 
+
 }
 
 const UrlHelperClass = new UrlHelper();

@@ -692,6 +692,12 @@ header {
     padding: 40px 30px;
 
 }
+.what-bg1 {
+    background: #FFFFFF;
+   
+    padding: 40px 30px;
+
+}
 
 .txt-whate h3 {
     color: #282D5B;
@@ -1806,7 +1812,7 @@ border: 1px solid #00000012;
     font-size: 24px;
 }
 .poilcy_type select{
-    height: 42px;
+    height: 52;
     border: 0.5px solid #282D5B;
    
 }

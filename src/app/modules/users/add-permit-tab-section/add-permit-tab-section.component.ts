@@ -21,8 +21,10 @@ export class AddPermitTabSectionComponent implements OnInit {
   public data: any
   public isContractor = false;
   public application: any;
+  public addInsuranseForm: FormGroup
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
+  @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
 
   public whatForm: FormGroup;
   public whereForm: FormGroup;
@@ -164,13 +166,66 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.applicantFormControl();
     this.contractorFormControl();
     this.proectControls();
+    this.addInsuranseFormCon()
 
   }
 
+  addInsuranseFormCon() {
+    this.addInsuranseForm = this.formBuilder.group({
+      type: ['', Validators.required],
+      license_number: ['', Validators.required],
+      expiration_date: ['', Validators.required],
+
+    })
+  }
+  public isLicense = false
+  addLicense() {
+    if (this.addInsuranseForm.invalid) {
+      this.isLicense = true
+      return false
+    }
+    var formData = new FormData();
+    formData.append(
+      "name",
+      this.licenseFile
+
+    );
+    formData.append(
+      "type",
+      this.addInsuranseForm.value.type
+
+    );
+    formData.append(
+      "license_number",
+      this.addInsuranseForm.value.license_number
+
+    );
+    formData.append(
+      "expiration_date",
+      this.addInsuranseForm.value.expiration_date
+
+    );
+
+    this.permitService.addLicenseDetails(formData).subscribe(data => {
+      this.addInsuranseForm.reset();
+      this.getLicenseDetails()
+      this.licensePopUp.nativeElement.click()
+    })
+
+  }
+
+  public licenseDetails = []
+  getLicenseDetails() {
+    debugger
+    this.permitService.getLicenseDetails().subscribe(data => {
+      this.licenseDetails = data.response
+    })
+  }
+  
+  get licenseCon() { return this.addInsuranseForm.controls }
 
   public currentTab: string = 'what'
   nextTab(value) {
-
     this.currentTab = value
   }
   whatFormControl() {
@@ -466,7 +521,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         if (this.currentUserInfo) {
           this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.last_name)
           this.applicantForm.controls.applicant_email.setValue(this.currentUserInfo.email)
-          this.applicantForm.controls.applicant_business.setValue(this.currentUserInfo.nameofBussiness)
+          this.applicantForm.controls.applicant_business.setValue(this.currentUserInfo.company)
           this.applicantForm.controls.applicant_address.setValue(this.currentUserInfo.address)
           this.applicantForm.controls.applicant_phone.setValue(this.currentUserInfo.phone_number)
           this.applicantForm.controls.applicant_city.setValue(this.currentUserInfo.city)
@@ -543,10 +598,11 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (this.currentUserInfo && this.application.role == 2) {
       debugger
       this.isDisabled = true
+      this.getLicenseDetails();
       this.contractorForm.controls.contractor_for_job.setValue(1)
       this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
-      this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.nameofBussiness)
+      this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
       this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
       this.contractorForm.controls.contractor_phone.setValue(this.currentUserInfo.phone_number)
       this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.state)
@@ -772,31 +828,38 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
   }
 
+  imageEmpty() {
+    this.image = ''
+  }
 
   public imageName: any;
   public attachment: any
   public fileType: any
-  media(event1, fileType) {
+  public licenseFile: any
+  public image: any
+  media(event1, fileType, fileName) {
 
     this.fileType = fileType
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0]
 
-    // var reader = new FileReader();
-    // var reader = new FileReader();
-    // reader.onload = (event: any) => {
-    //   this.image = event.target.result;
-    // };
-    // reader.readAsDataURL(event1.target.files[0]);
-    // console.log(this.image)
-    // console.log(event1.target.files[0])
-    if (this.attachment) {
+    var reader = new FileReader();
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.image = event.target.result;
+    };
+    reader.readAsDataURL(event1.target.files[0]);
+    console.log(this.image)
+    console.log(event1.target.files[0])
+    if (this.attachment && fileName == 'upload') {
       this.uploadImageAndDocuments();
+    }
+    else if (this.attachment && fileName == 'license') {
+      this.licenseFile = this.attachment
     }
   }
 
   //(change)="media($event)"
-  public image: any
   uploadImageAndDocuments() {
     const applicationId = this.permitService.getApplicationID()
     // let id = (this.certificateDetail.id)
@@ -821,7 +884,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getApplication()
     })
   }
-
+ 
   editByReviewPage(tab) {
     this.currentTab = tab
     this.checkTab(this.currentTab);
@@ -882,7 +945,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   updateAppliction() {
     debugger
-    this.permitService.updateApplication(this.application_id ).subscribe(data => {
+    this.permitService.updateApplication(this.application_id).subscribe(data => {
       this.application = data.response;
       this.checkTab(this.currentTab)
     })

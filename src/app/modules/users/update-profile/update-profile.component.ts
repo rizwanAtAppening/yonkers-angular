@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-update-profile',
@@ -18,7 +19,8 @@ export class UpdateProfileComponent implements OnInit {
     private userService: UsersService,
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastService:ToastrService
 
   ) {
   this.settings = settingConfig;
@@ -87,6 +89,7 @@ export class UpdateProfileComponent implements OnInit {
       console.log(data)
       localStorage.setItem('currentUser', JSON.stringify(data.response));
       this.getCurrenrUser()
+      this.toastService.success('Profile have updated')
     })
   }
   public currentUserInfo: any
