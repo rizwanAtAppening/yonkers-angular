@@ -73,7 +73,9 @@ const userUrl = {
   deleteImage: `/application/image/delete `,
   updateApplication: `/application`,
   addLicenseDetails: `/user/lienceUpload`,
-  getLicenseDetails:`/user/lience `
+  getLicenseDetails:`/user/lience `,
+  addDailyWorkLocation:`/application/daily_work_location`,
+  submitDailyWorkLocation:`/application/daily_work_location/submitted`
   // searchUserApplication:`/application`
 
 
