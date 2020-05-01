@@ -247,24 +247,31 @@
                                                 </div> -->
                                             </div>
 
-
-                                            <div class="unit-txt">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="know_us">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <label>Unit No./Also Known as</label>
-                                                                        <textarea placeholder="Type something here..."
-                                                                            formControlName="also_known_as"></textarea>
-                                                                    </div>
+                                               <div class="job-input">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="sn1" class="form-control" required="">
+                                                                    <label class="form-control-placeholder" for="sn1">Unit No./Also Known as</label>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+
+                                            <div class="unit-txt">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                <h2 class="notfound-txt">
+                                                    Address not found
+                                                </h2>
+                                                    </div>
+                                                </div>
                                             </div>
+
 
                                             <div class="btn-pre">
                                                 <button type="submit"
@@ -290,6 +297,7 @@
 
                                         <div class="container p-0">
                                             <div class="row">
+
                                                 <div class="col-4">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
@@ -340,10 +348,10 @@
                                                                         formControlName="street_two">
                                                                     <label class="form-control-placeholder"
                                                                         for="aa1">Street Two</label>
-                                                                    <div class="btn-pre remover" *ngIf="i > 0">
+                                                                    <!-- <div class="btn-pre remover" *ngIf="i > 0">
                                                                         <button class="continue" (click)="remove(i)"
                                                                             type="submit">Remove</button>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
 
                                                             </div>
@@ -351,23 +359,55 @@
                                                     </div>
 
                                                 </div>
+                                                <div class="col-12">
+                                                    <div class="add-moreTxt">
+                                            <div class="btn-add-more" (click)="addLocationForm()">Add more address</div>
+                                            <!-- <div class="btn-add-delet">Delete</div> -->
+                                            <div class="btn-add-delet "  *ngIf="i > 0">
+                                                <button  (click)="remove(i)"
+                                                    type="submit">Delete</button>
+                                            </div>
+                                                    </div>
+                                                </div>
+
+
+ 
+
+
 
 
                                             </div>
 
-
-
+                                        
                                         </div>
                                     </form>
                                 </div>
 
+
+                                <div class="unit-txt">
+                                    <div class="row">
+                                        <div class="col-12">
+                                    <h2 class="job-addTxttwo">
+                                        Address not found
+                                    </h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
                                 <div class="btn-pre ">
-                                    <button class="continue adloc" type="submit" (click)="addLocationForm()">add
-                                        Loaction</button>
+                                    <!-- <button class="continue adloc" type="submit" (click)="addLocationForm()">add
+                                        Loaction</button> -->
                                     <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
                                     <button class="continue mr-0" type="submit"
                                         (click)="addPermitApplication('whereForm','applicant')">Continue</button>
                                 </div>
+
+
+
+
+
 
                             </div>
 

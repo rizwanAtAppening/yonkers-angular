@@ -2443,3 +2443,46 @@ cursor: pointer;
 .theme-green .bs-datepicker-body table td.week span{
     color: #4ab5f1 !important; 
 }
+
+.add-moreTxt {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 23px;
+}
+.btn-add-more {
+    color: #4AB5F1;
+    font-family: 'gilroy-medium';
+    font-size: 16px;
+    line-height: 19px;
+ cursor: pointer;
+}
+
+.btn-add-delet button{
+    color: #E53030;
+    font-family: 'gilroy-medium';
+    font-size: 16px;
+    line-height: 19px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.notfound-txt {
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    color: #4AB5F1;
+    line-height: 20px;
+    cursor: pointer;
+    margin-top: 20px;
+
+}
+
+.job-addTxttwo {
+    color: #001839;
+    font-family: "Poppins-Light";
+    font-size: 18px;
+    line-height: 28px;
+    padding-bottom: 17px;
+    margin-top: 20px;
+    cursor: pointer;
+
+}
