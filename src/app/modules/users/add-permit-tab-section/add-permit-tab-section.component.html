@@ -337,7 +337,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="aa1" class="form-control"
-                                                                        formControlName="street_two" required>
+                                                                        formControlName="street_two">
                                                                     <label class="form-control-placeholder"
                                                                         for="aa1">Street Two</label>
                                                                     <div class="btn-pre remover" *ngIf="i > 0">
@@ -704,7 +704,7 @@
 
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div  [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -732,7 +732,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-6 slectInputBox">
+                                        <div [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -762,7 +762,7 @@
                                 </div>
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div  [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -787,7 +787,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-6">
+                                        <div [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -819,7 +819,7 @@
                                 </div>
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div  [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -844,7 +844,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-6">
+                                        <div  [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -874,7 +874,7 @@
 
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div  [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -899,7 +899,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-6">
+                                        <div [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -1162,7 +1162,7 @@
                                                 <label>Pavement Type?</label>
                                                 <select formControlName="pavement_type">
                                                     <option value="" hidden> --Select--</option>
-                                                    <option value="{{value.key}}"
+                                                    <option value="{{value?.key}}"
                                                         *ngFor="let value of settings?.preventType">{{value?.value}}
                                                     </option>
                                                 </select>
@@ -1327,7 +1327,7 @@
                                                 <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload
-                                                        <input type='file' (change)="media($event,1)">
+                                                        <input type='file' (change)="media($event,1,'upload')">
                                                     </button>
                                                 </td>
                                             </tr>
