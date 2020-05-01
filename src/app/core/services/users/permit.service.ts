@@ -83,7 +83,7 @@ export class PermitService {
 
   updateApplication(id): Observable<any> {
     const href = `${environment['updateApplication']}/${id}`;
-    return this.http.get<any>(href,).pipe(
+    return this.http.get<any>(href).pipe(
       tap(
         (data) => {
           if (data.status === 'success') {
@@ -96,7 +96,7 @@ export class PermitService {
 
   addLicenseDetails(data): Observable<any> {
     const href = `${environment['addLicenseDetails']}`;
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       tap(
         (data) => {
           if (data.status === 'success') {
@@ -156,7 +156,7 @@ export class PermitService {
 
   getPermitApplication(query): Observable<any> {
     const href = `${environment['getPermitApplication']}`
-    return this.http.get<any>(href, {params: query }).pipe(
+    return this.http.get<any>(href, { params: query }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -193,6 +193,35 @@ export class PermitService {
     );
   }
 
-  
+  addDailyWorkLocation(data): Observable<any> {
+    const href = `${environment['addDailyWorkLocation']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  submitDailyWorkLocation(data): Observable<any> {
+    const href = `${environment['submitDailyWorkLocation']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
 
 }
+
+
+
+
