@@ -836,6 +836,7 @@ header {
     background: #4AB5F1 0% 0% no-repeat padding-box;
     color: #fff;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .saveTxt {
@@ -1166,6 +1167,7 @@ header {
     text-decoration: none;
     display: block;
     font-family: 'Poppins-Regular';
+    cursor: pointer;
 }
 
 .kapil {

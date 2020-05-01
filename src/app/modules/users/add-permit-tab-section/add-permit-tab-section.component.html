@@ -645,13 +645,13 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_city"
+                                                            <input type="text" id="Phone-id3" formControlName="applicant_city"
                                                                 [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                id="namProject" class="form-control" id="Phone-id"
+                                                               class="form-control" 
                                                                 required>
                                                             <label
                                                                 [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                                for="Phone-id">City</label>
+                                                                for="Phone-id3">City</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit)">
                                                                 <p class="form-error"
@@ -673,13 +673,13 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_state"
+                                                            <input type="text" id="Phone-id2" formControlName="applicant_state"
                                                                 [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                 class="form-control"
                                                                 required>
                                                             <label
                                                                 [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                                for="Phone-id">State</label>
+                                                                for="Phone-id2">State</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
                                                                 <p class="form-error"
@@ -698,15 +698,15 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_zip"
+                                                            <input type="text" formControlName="applicant_zip" id="Phone-id4"
                                                                 maxlength="6"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                id="namProject" class="form-control" id="Phone-id"
+                                                                class="form-control" 
                                                                 required>
                                                             <label
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                                for="Phone-id">Zip</label>
+                                                                for="Phone-id4">Zip</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit)">
                                                                 <p class="form-error"
