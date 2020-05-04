@@ -99,11 +99,11 @@
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true">Permit</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link" id="pills-Daily-tab" data-toggle="pill"
                                                 href="#pills-Daily" role="tab" aria-controls="pills-Daily"
                                                 aria-selected="false">Daily work location</a>
-                                        </li>
+                                        </li> -->
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
@@ -157,9 +157,9 @@
                                                                                         <th>Ref No</th>
                                                                                         <th>Location</th>
                                                                                         <th>Type</th>
-                                                                                        <th>Permit Status</th>
+                                                                                        <!-- <th>Permit Status</th> -->
                                                                                         <th>Application Status</th>
-                                                                                        <th>Layout No</th>
+                                                                                        <!-- <th>Layout No</th> -->
                                                                                         <th>Submit date</th>
                                                                                         <th>Expire Date</th>
                                                                                         <th>Action</th>
@@ -176,15 +176,15 @@
                                                                                         </td>
                                                                                         <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
                                                                                         </td>
-                                                                                        <td
+                                                                                        <!-- <td
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
-                                                                                        </td>
+                                                                                        </td> -->
                                                                                         <td
                                                                                             class="submited-Btn green-txt-2">
                                                                                             <button>Completed</button>
                                                                                         </td>
-                                                                                        <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td>
+                                                                                        <!-- <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td> -->
                                                                                         <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                         </td>
                                                                                         <td>{{application?.updatedAt | date :'dd/MM/yyyy'}}
