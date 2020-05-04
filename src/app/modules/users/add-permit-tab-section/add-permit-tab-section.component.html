@@ -34,7 +34,7 @@
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( application.address_id || (application.location && application.location.length > 0)))?'':'gray_color'"
+                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( (application.address_id || application?.address) || (application.location && application.location.length > 0)))?'':'gray_color'"
                     id="pills-Where-tab" (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
@@ -196,16 +196,16 @@
                     <div class="adrees-tab" *ngIf="isAddressFound">
                         <nav>
                             <div class="nav" id="nav-tab" role="tablist">
-                                <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
+                                <a [class]="(location_type == 1 || location_type  == 3) ?'nav-item active':'nav-item'"  id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
                                     role="tab" aria-controls="nav-Exact" aria-selected="true"
                                     (click)="selectAddress('exactAddress')">Exact Address</a>
-                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab"
+                                <a  [class]="location_type == 2 ?'nav-item active':'nav-item'"  id="nav-Location-tab" data-toggle="tab"
                                     (click)="selectAddress('location')" href="#nav-Location" role="tab"
                                     aria-controls="nav-Location" aria-selected="false">Location</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
+                            <div [class]="(location_type == 1 || location_type  == 3) ?'tab-pane fade show active':'tab-pane fade'" class="" id="nav-Exact" role="tabpanel"
                                 aria-labelledby="nav-Exact-tab">
 
 
@@ -291,7 +291,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="nav-Location" role="tabpanel"
+                            <div [class]="location_type == 2 ?'tab-pane fade show active':'tab-pane fade'" id="nav-Location" role="tabpanel"
                                 aria-labelledby="nav-Location-tab">
                                 <div class="job-input"
                                     *ngFor="let addloc of addLocationControls.controls; let i = index">
@@ -764,7 +764,7 @@
                                                                 <input type="text" id="id-dummy" class="form-control"
                                                                     required>
                                                                 <label class="form-control-placeholder"
-                                                                    for="id-dummy">State2</label>
+                                                                    for="id-dummy">State2</label
                                                                     <span>Error message</span>
                                                             </div>
                                                         </div>
@@ -1041,8 +1041,7 @@
                                     <div class="ld-txt">
                                         <h3>License Details</h3>
                                         <h4 class="email-link">
-                                            <button class="el-txt" data-toggle="modal"
-                                                data-target="#exampleModal-3">Email Link</button>
+                                            <button class="el-txt" >Email Link</button>
                                             <button class="ail-btn" data-toggle="modal" data-target="#exampleModal-2">
                                                 <span> <img src="assets/images/add-plus.svg" alt=""> </span>
                                                 Add Insurance/License</button>

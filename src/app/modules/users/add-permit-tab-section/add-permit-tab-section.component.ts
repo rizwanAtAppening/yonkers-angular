@@ -145,6 +145,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     console.log(this.application)
   }
+  public permitType:number;
   getCurrentTab() {
 
     // if (this.permitService.getCurrentTab()) {
@@ -152,6 +153,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     // }
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab
+      this.permitType = data.permitType
     })
   }
 
@@ -327,6 +329,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public isLocation = false;
   public location_type = 1
+
   selectAddress(value: string) {
     if (value == 'location') {
       this.isLocation = true
@@ -385,13 +388,15 @@ export class AddPermitTabSectionComponent implements OnInit {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
           model: 1,
-          id: Number(this.application_id)
+          id: Number(this.application_id),
+          permit_type :Number(this.permitType)
         }
       } else {
         this.data = {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
-          model: 1
+          model: 1,
+          permit_type :Number(this.permitType)
         }
       }
 
@@ -496,6 +501,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
+      if(this.currentTab ==   'where'){
+        this.getApplication()
+      }
       this.currentTab = nextTab
       this.isSubmit = false
       this.checkTab(this.currentTab)
@@ -548,14 +556,24 @@ export class AddPermitTabSectionComponent implements OnInit {
   whereTab() {
     debugger
     const application = this.permitService.getApplication()
-    if (application.address_id) {
+    if(application.location_type){
+      this.location_type = application.location_type
+
+    }
+    if(application.location_type == 3){
+      this.isAddressFound = false
+      this.isLocation = false
+      this.whereForm.controls.address.setValue(application.address);
+      return false
+    }
+    if (application.location_type == 1) {
       this.whereForm.controls.address_id.setValue(application.address_id);
       this.whereForm.controls.also_known_as.setValue(application.also_known_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
       })
     }
-    else if (application.location.length > 0) {
+    else if ( application.location_type == 2 && application.location.length > 0) {
       if (application.location.length > 1) {
         for (let index = 0; index < application.location.length - 1; index++) {
           if (application.location.length != this.addLocationControls.value.length) {
