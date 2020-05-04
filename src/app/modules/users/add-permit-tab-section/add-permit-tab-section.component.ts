@@ -108,12 +108,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   remove(index) {
     debugger
-    // this.location.map((data, i) => {
-    //   if (index == i) {
-    //     this.location.splice(i, 1);
-    //     this.locations.splice(i, 1)
-    //   }
-    // })
+   
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);

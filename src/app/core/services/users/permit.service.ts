@@ -26,6 +26,7 @@ export class PermitService {
 
 
   addPermitApplication(data): Observable<any> {
+    debugger
     const href = `${environment['application']}`;
     const applicationID = this.getApplicationID();
     if (applicationID) {
@@ -138,6 +139,7 @@ export class PermitService {
   }
 
   setApplication(application: any) {
+    debugger
     sessionStorage.setItem(this.sessionApplication, JSON.stringify(application));
   }
 

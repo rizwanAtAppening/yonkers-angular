@@ -3,7 +3,8 @@ import { UsersService } from 'src/app/core/services';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-permit',
@@ -17,12 +18,13 @@ export class PermitComponent implements OnInit {
   public offset: number = 10;
   public currentPage: number = 1;
   public totalPagination: number;
-
+  public userType: number
   constructor(
     private userService: UsersService,
     private permitService: PermitService,
     private router: Router,
     private fb: FormBuilder,
+    private authService: AuthenticationService
 
   ) {
     this.settings = settingConfig;
@@ -33,6 +35,7 @@ export class PermitComponent implements OnInit {
     this.permitService.deleteSessionApplication();
     this.getPermitApplication();
     this.onInIt();
+    this.currentUser()
 
   }
 
@@ -40,6 +43,14 @@ export class PermitComponent implements OnInit {
     this.dwlFormControl()
   }
 
+  public currentUserInfo: any
+  currentUser() {
+    debugger
+    this.authService.getUserInfo().subscribe(currentUser => {
+      this.currentUserInfo = currentUser
+      this.userType = this.currentUserInfo.type
+    })
+  }
   dwlFormControl() {
     this.dwlForm = this.fb.group({
       address_id: [''],
@@ -53,7 +64,47 @@ export class PermitComponent implements OnInit {
       sub_contractor: [''],
       sub_contractor_phone: [''],
       work_category: [''],
-      also_know_as: ['']
+      also_know_as: [''],
+      addlocation: this.fb.array([
+        this.addLocationFormGroup(),
+      ])
+    })
+  }
+
+
+  addLocationFormGroup(): FormGroup {
+    return this.fb.group({
+      street_one: [''],
+      street_two: [],
+      address_join: []
+    })
+  }
+
+  get addLocationControls() {
+    return this.dwlForm.controls.addlocation as FormArray;
+  }
+
+  get addCon() {
+    return this.dwlForm.controls.addlocation;
+
+  }
+  addLocationForm(): void {
+    debugger
+    this.addLocationControls.push(this.addLocationFormGroup())
+  }
+
+
+  remove(index) {
+    debugger
+   
+    this.addLocationControls.controls.map((data, i) => {
+      if (index == i) {
+        this.addLocationControls.controls.splice(i, i);
+        data['controls'].street_one.setErrors(null)
+
+        this.addLocationControls.value.splice(i, i)
+
+      }
     })
   }
 
@@ -74,7 +125,7 @@ export class PermitComponent implements OnInit {
     const data = {
 
     }
-    this.permitService.submitDailyWorkLocation({application:this.dwlApplication}).subscribe(data => {
+    this.permitService.submitDailyWorkLocation({ application: this.dwlApplication }).subscribe(data => {
       console.log(data)
     })
   }
@@ -95,9 +146,9 @@ export class PermitComponent implements OnInit {
         permit_number: this.dwlForm.value.permit_number,
         sub_contractor: this.dwlForm.value.sub_contractor,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
-        work_category:Number( this.dwlForm.value.work_category),
+        work_category: Number(this.dwlForm.value.work_category),
         work_description: this.dwlForm.value.work_description,
-        also_know_as:this.dwlForm.value.also_know_as,
+        also_know_as: this.dwlForm.value.also_know_as,
         location_type: this.location_type
       }
 
@@ -107,15 +158,17 @@ export class PermitComponent implements OnInit {
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
         sub_contractor: this.dwlForm.value.sub_contractor,
-        also_know_as:this.dwlForm.value.also_know_as,
+        also_know_as: this.dwlForm.value.also_know_as,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
         work_category: this.dwlForm.value.work_category,
         work_description: this.dwlForm.value.work_description,
         location_type: this.location_type,
-        locations: [{
-          street_one: this.dwlForm.value.street_one ? Number(this.dwlForm.value.street_one) : null, address_join: this.dwlForm.value.address_join ? Number(this.dwlForm.value.address_join) : null,
-          street_two: this.dwlForm.value.street_two ? Number(this.dwlForm.value.street_two) : null
-        }]
+        // locations: [{
+        //   street_one: this.dwlForm.value.street_one ? Number(this.dwlForm.value.street_one) : null, address_join: this.dwlForm.value.address_join ? Number(this.dwlForm.value.address_join) : null,
+        //   street_two: this.dwlForm.value.street_two ? Number(this.dwlForm.value.street_two) : null
+        // }]
+        locations :this.dwlForm.controls.addlocation.value
+
       }
     }
 
@@ -127,7 +180,7 @@ export class PermitComponent implements OnInit {
   }
 
   getPermitApplication() {
-    debugger
+
     // const data = {
     //   page: this.currentPage
     // }

@@ -34,7 +34,7 @@
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( application.address_id || application.location && application.location.length > 0))?'':'gray_color'"
+                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( application.address_id || (application.location && application.location.length > 0)))?'':'gray_color'"
                     id="pills-Where-tab" (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
@@ -63,7 +63,7 @@
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'review') ? 'active':application?'':'gray_color'" id="pills-Review-tab"
+                <a [class]="(currentTab == 'review') ? 'active':application?.upload_detail && application?.upload_detail.length > 0?'':'gray_color'" id="pills-Review-tab"
                     (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review"
                     aria-selected="false">Review</a>
             </li>
@@ -668,7 +668,7 @@
                                 </div>
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <!-- <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -692,7 +692,40 @@
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div> -->
+
+                                        <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group" id="defultInput">
+                                                                <select type="text" formControlName="applicant_state" 
+                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                    id="Project">
+                                                                    <option value="" hidden>--Select--</option>
+                                                                    <option value="{{state?.key}}"
+                                                                        *ngFor="let state of settings?.userState">
+                                                                        {{state?.value}}</option>
+        
+                                                                </select>
+                                                                <label
+                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="Phone-id2">State</label>
+                                                                    <div
+                                                                    *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantControls.applicant_state.errors['required']">
+                                                                        Please enter state
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+        
+        
+                                                    </div>
+                                                </div>
+        
+                                            </div>
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
@@ -1697,11 +1730,11 @@
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Length</h2>
-                                                                    <p>{{application?.project_detail?.length}}</p>
+                                                                    <p>{{application?.project_detail?.length?application?.project_detail?.legth:'_'}}</p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Depth</h2>
-                                                                    <p>{{application?.project_detail?.depth}}</p>
+                                                                    <p>{{application?.project_detail?.depth ? application?.project_detail?.depth:'_'}}</p>
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
@@ -1715,19 +1748,19 @@
                                                                 </div>
                                                             </div>
                                                             <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
+                                                                <!-- <div class="role-txt-collepse">
                                                                     <h2>Email</h2>
                                                                     <p>{{application?.project_detail?.description}}</p>
-                                                                </div>
+                                                                </div> -->
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Will this work impact traffic?</h2>
-                                                                    <p>{{application?.project_detail?.traffic_control}}
+                                                                    <p>{{application?.project_detail?.traffic_control ?application?.project_detail?.traffic_control:'_'}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Width</h2>
-                                                                    <p>{{application?.project_detail?.width}}</p>
+                                                                    <p>{{application?.project_detail?.width ? application?.project_detail?.width :"_"}}</p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Start Date</h2>

@@ -89,7 +89,7 @@ export class UpdateProfileComponent implements OnInit {
       console.log(data)
       localStorage.setItem('currentUser', JSON.stringify(data.response));
       this.getCurrenrUser()
-      this.toastService.success('Profile have updated')
+      this.toastService.success('profile has been updated')
     })
   }
   public currentUserInfo: any

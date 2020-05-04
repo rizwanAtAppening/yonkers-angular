@@ -1,8 +1,8 @@
 <app-layout>
     <router-outlet>
 
-        <!-- 
-        <section>
+         
+        <section *ngIf ="userType != 3">
             <div class="container p-0">
                 <div class="row">
                     <div class="col-12">
@@ -16,9 +16,9 @@
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
 
-        <!-- <section class="table-sec">
+        <section class="table-sec" *ngIf ="userType != 3" >
             <div class="container p-0">
                 <div class="row">
                     <div class="col-12">
@@ -85,8 +85,8 @@
                     </div>
                 </div>
             </div>
-        </section> -->
-        <section>
+        </section> 
+        <section *ngIf ="userType == 3">
             <div class="container p-0 container_full">
                 <div class="row">
                     <div class="col-12">
@@ -97,13 +97,13 @@
                                         <li class="nav-item">
                                             <a class="nav-link active" id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
-                                                aria-controls="pills-Permit-loaction" aria-selected="true">Permit</a>
+                                                aria-controls="pills-Permit-loaction" aria-selected="true" (click) = "getPermitApplication()">Permit</a>
                                         </li>
-                                        <!-- <li class="nav-item">
+                                        <li class="nav-item">
                                             <a class="nav-link" id="pills-Daily-tab" data-toggle="pill"
                                                 href="#pills-Daily" role="tab" aria-controls="pills-Daily"
                                                 aria-selected="false">Daily work location</a>
-                                        </li> -->
+                                        </li>
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
@@ -253,8 +253,8 @@
                                                                     <div class="bdp_email loction-adInput">
                                                                         <div class="row">
                                                                             <div class="col-12 ">
-                                                                                <div class="form-group">
-                                                                                    <input type="number" id="pn2"
+                                                                                <div class="form-group"> 
+                                                                                    <input type="number" id="pn2" disabled
                                                                                         class="form-control"
                                                                                         formControlName="permit_number">
                                                                                     <label
@@ -365,10 +365,12 @@
                                                                     <div class="tab-pane fade" id="nav-Location-2"
                                                                         role="tabpanel"
                                                                         aria-labelledby="nav-Location-2-tab">
-                                                                        <div class="job-input">
+                                                                        <div class="job-input"  *ngFor="let addloc of addLocationControls.controls; let i = index">
+                                                                                <form [formGroup]="addloc">
+
                                                                             <div class="container p-0">
                                                                                 <div class="row">
-                                                                                    <div class="col-6">
+                                                                                    <div class="col-4">
                                                                                         <div
                                                                                             class="bdp_email loction-adInput">
                                                                                             <div class="row">
@@ -382,15 +384,15 @@
                                                                                                             formControlName="street_one">
                                                                                                         <label
                                                                                                             class="form-control-placeholder"
-                                                                                                            for="Street">Street
-                                                                                                            Name</label>
+                                                                                                            for="Street">Street One
+                                                                                                            </label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
 
                                                                                     </div>
-                                                                                    <div class="col-6">
+                                                                                    <div class="col-4">
                                                                                         <div
                                                                                             class="bdp_email loction-adInput">
                                                                                             <div class="row">
@@ -417,37 +419,52 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-
-
-                                                                                <div class="unit-txt">
-                                                                                    <div class="row">
-                                                                                        <div class="col-12">
-                                                                                            <div class="know_us">
-                                                                                                <div class="row">
+                                                                                    <div class="col-4">
+                                                                                        <div
+                                                                                            class="bdp_email loction-adInput">
+                                                                                            <div class="row">
+                                                                                                <div class="col-12 ">
                                                                                                     <div
-                                                                                                        class="col-12 ">
-                                                                                                        <div
-                                                                                                            class="form-group">
-                                                                                                            <label>Also
-                                                                                                                known
-                                                                                                                as</label>
-                                                                                                            <textarea
-                                                                                                                formControlName="street_two"
-                                                                                                                placeholder="Type something here..."></textarea>
-                                                                                                        </div>
+                                                                                                        class="form-group">
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            id="Street"
+                                                                                                            class="form-control"
+                                                                                                            formControlName="street_two" >
+                                                                                                        <label
+                                                                                                            class="form-control-placeholder"
+                                                                                                            for="Street">Street two
+                                                                                                            </label>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
+
                                                                                     </div>
+                                                                                    <div class="col-12">
+                                                                                        <div class="add-moreTxt">
+                                    
+                                                                                            <!-- <div class="btn-add-delet">Delete</div> -->
+                                                                                            <div class="btn-add-delet " *ngIf="i > 0">
+                                                                                                <button (click)="remove(i)" type="submit">Delete</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
                                                                                 </div>
+
+
+                                                                               
 
 
 
 
                                                                             </div>
-
+</form>
+                                                                        </div>
+                                                                        <div class="add-moreTxt">
+                                                                            <div class="btn-add-more" (click)="addLocationForm()">Add more
+                                                                                address</div>
                                                                         </div>
 
                                                                     </div>
@@ -457,7 +474,7 @@
 
 
 
-                                                            <div class="bussiness-input">
+                                                            <!-- <div class="bussiness-input">
                                                                 <div class="row">
                                                                     <div class="col-6">
                                                                         <div class="bdp_email loction-adInput">
@@ -498,7 +515,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="bussiness-input">
                                                                 <div class="row">
                                                                     <div class="col-12">
@@ -587,7 +604,7 @@
                                                                     <tr>
                                                                         <th>layout Number</th>
                                                                         <th>Location</th>
-                                                                        <th>Phone</th>
+                                                                        <!-- <th>Phone</th> -->
                                                                         <th>Work Desc</th>
                                                                         <th>Action</th>
 
@@ -598,8 +615,9 @@
                                                                         <td>{{dwl?.application_daily_work_location?.layout_number}}
                                                                         </td>
                                                                         <td>156 UNIVERSITY</td>
-                                                                        <td>{{dwl?.application_daily_work_location?.sub_contractor_phone}}
-                                                                        </td>
+ 
+                                                                        <!-- <td>{{dwl?.application_daily_work_location?.sub_contractor_phone}} -->
+                                                                        <!-- </td> -->
                                                                         <td>{{dwl?.application_daily_work_location?.work_description}}
                                                                         </td>
 
