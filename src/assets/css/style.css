@@ -310,13 +310,13 @@ header {
 .btn-sign-in button {
     font-family: 'gilroy-medium';
     font-size: 18px;
-    line-height: 21px;
+    line-height: 18px;
     background: #4AB5F1;
     width: 100%;
     border: none;
     color: #fff;
-    padding: 16px 0px 23px 0px;
     cursor: pointer;
+    height: 60px;
 }
 
 .border-topline {
@@ -579,6 +579,7 @@ header {
     font-size: 14px;
     line-height: 20px;
     padding: 11px 17px;
+    cursor: pointer;
 }
 
 .New-Project button span {
@@ -632,6 +633,7 @@ header {
     padding: 5px 16px 4px 17px;
     font-family: 'Poppins-Regular';
     display: inline-block;
+    cursor: pointer;
 }
 
 .table-permit table td.update-txt span {
@@ -1201,7 +1203,7 @@ header {
     background: #fff;
     position: relative;
     top: 22px;
-    left: 30px;
+    left: 20px;
     padding-left: 7px;
     padding-right: 7px;
     color: #282D5B99;
@@ -1746,6 +1748,7 @@ color: #282D5BB0;
     border: 1px solid #D4D5DE;
 border-radius: 2px;
 margin-right: 18px;
+cursor: pointer;
 }
 
 .ld-txt h4 button.ail-btn{
@@ -1756,7 +1759,7 @@ margin-right: 18px;
     background: none;
     border: 1px solid #D4D5DE;
 border-radius: 2px;
-
+cursor: pointer;
 }
 
 .ld-txt h4 button.ail-btn span{
@@ -1839,7 +1842,7 @@ border: 1px solid #00000012;
    height: 146px;
    border: 0.5px dashed #4AB5F1;
 border-radius: 2px;
-position: relative;
+position: relative;    overflow: hidden;
 }
 .brose-file input{
     opacity: 0;
@@ -2587,9 +2590,7 @@ padding-bottom: 10px;
     margin-bottom: 82px;
 }
 .add-moreTxt {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 23px;
+float: right;
 }
 .btn-add-more {
     color: #4AB5F1;
@@ -2597,7 +2598,7 @@ padding-bottom: 10px;
     font-size: 16px;
     line-height: 19px;
  cursor: pointer;
-
+ margin-top: 20px;
 }
 
 .btn-add-delet button{
@@ -2608,7 +2609,7 @@ padding-bottom: 10px;
     border: none;
     background: none;
     cursor: pointer;
-    margin-left: 871px;
+    margin-top: 5px;
 }
 .notfound-txt {
     font-size: 16px;
@@ -2629,4 +2630,30 @@ padding-bottom: 10px;
     margin-top: 20px;
     cursor: pointer;
 
+}
+.imgfile {
+    margin-top: 9px !important;
+    display: block !important;
+    width: 100% !important;
+    height: 130px !important;
+}
+
+.licence-position span{
+    position: absolute;
+    right: -287px;
+    top: -28px;
+    color: #b5b5b5;
+}
+
+.select_keyType select{
+    height: 42px; 
+    border-radius: 0px;
+}
+
+.new-browes-file h3 img{
+    margin-top: 0px !important;
+}
+
+.what-bg2{
+    margin-top: 61px;
 }
