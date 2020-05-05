@@ -1610,7 +1610,10 @@
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>State</h2>
                                                                     <p>{{application?.applicant_details?.applicant_state}}
+                                                                        
                                                                     </p>
+                                                                    <!-- <p>{{application?.applicant_details?.applicant_state ? settings?.getSetting('userState',application?.applicant_details?.applicant_state):'_'}}</p> -->
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1665,8 +1668,9 @@
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>State</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_state}}
-                                                                    </p>
+                                                                    <p>{{application?.contractor_details?.contractor_state}}</p>
+                                                                    <!-- <p>{{settings?.getSetting('userState',application?.contractor_details?.contractor_state)}}</p> -->
+                                                                    
                                                                 </div>
 
                                                             </div>
@@ -1754,7 +1758,8 @@
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Will this work impact traffic?</h2>
-                                                                    <p>{{application?.project_detail?.traffic_control ?application?.project_detail?.traffic_control:'_'}}
+
+                                                                    <p>{{application?.project_detail?.traffic_control ? settings?.getSetting('traffic',application?.project_detail?.traffic_control):'_'}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">

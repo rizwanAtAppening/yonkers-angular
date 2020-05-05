@@ -16,6 +16,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { SubmitApplicationComponent } from './submit-application/submit-application.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UpdatePermitComponent } from './update-permit/update-permit.component';
+import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-daily-work-loaction.component';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -33,7 +34,7 @@ import { UpdatePermitComponent } from './update-permit/update-permit.component';
     
 
   ],
-  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, UpdatePermitComponent],
+  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, UpdatePermitComponent, AddDailyWorkLoactionComponent],
   providers: [
     UserAuthGuard
   ]

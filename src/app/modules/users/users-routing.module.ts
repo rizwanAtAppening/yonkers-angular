@@ -10,6 +10,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { LoginComponent } from '../auth/login/login.component';
 import { SubmitApplicationComponent } from './submit-application/submit-application.component';
 import { UpdatePermitComponent } from './update-permit/update-permit.component';
+import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-daily-work-loaction.component';
 
 
 // const routes: Routes = [
@@ -75,6 +76,10 @@ const routes: Routes = [
           {
             path: 'update-application',
             component: UpdatePermitComponent,
+          }, 
+          {
+            path: 'daily-work-location',
+            component: AddDailyWorkLoactionComponent,
           }, 
 
 

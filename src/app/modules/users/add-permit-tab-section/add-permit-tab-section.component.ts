@@ -119,8 +119,12 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
     })
   }
+  public applicationState:number
   getApplication() {
     this.application = this.permitService.getApplication();
+    if(this.application.applicant_details){
+      this.applicationState = this.application.applicant_details.applicant_state
+    }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
       if (this.application.upload_detail) {
         this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
