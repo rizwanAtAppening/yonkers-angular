@@ -34,10 +34,25 @@ margin-top: 2px !important
 }
 
 .imgfile{
-    margin-top: 9px !important;
+    margin-top: 20px !important;
     display: block !important;
-    width: 227px !important;  
-    height: 130px !important;
+    width: 100% !important;
+    height: 146px !important;
+    position: relative;
+}
+.imgfile button{
+    border-radius: 50%;
+    border: none;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: -13px;
+    top: -15px;
+    cursor: pointer;
+}
+
+.imgfile img{
+    overflow: hidden;
 }
 .closeimage {
     margin-top: 234px

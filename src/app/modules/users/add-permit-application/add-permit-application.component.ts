@@ -20,8 +20,8 @@ export class AddPermitApplicationComponent implements OnInit {
   }
 
 
-  navigateToTab() {
-    this.router.navigate(['/dashboard/add-permit'],{queryParams:{tab:'what'}})
+  navigateToTab(permitType:number) {
+    this.router.navigate(['/dashboard/add-permit'],{queryParams:{tab:'what',permitType:permitType}})
   }
 
 

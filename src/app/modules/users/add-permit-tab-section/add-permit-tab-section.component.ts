@@ -108,12 +108,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   remove(index) {
     debugger
-    // this.location.map((data, i) => {
-    //   if (index == i) {
-    //     this.location.splice(i, 1);
-    //     this.locations.splice(i, 1)
-    //   }
-    // })
+   
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
@@ -150,6 +145,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     console.log(this.application)
   }
+  public permitType:number;
   getCurrentTab() {
 
     // if (this.permitService.getCurrentTab()) {
@@ -157,6 +153,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     // }
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab
+      this.permitType = data.permitType
     })
   }
 
@@ -221,7 +218,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.licenseDetails = data.response
     })
   }
-  
+
   get licenseCon() { return this.addInsuranseForm.controls }
 
   public currentTab: string = 'what'
@@ -239,6 +236,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.whereForm = this.formBuilder.group({
       address_id: ['', Validators.required],
       also_known_as: [''],
+      address: ['',Validators.required],
       // street_one: ['', Validators.required],
       // street_two: [''],
       // address_join: [''],
@@ -331,6 +329,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public isLocation = false;
   public location_type = 1
+
   selectAddress(value: string) {
     if (value == 'location') {
       this.isLocation = true
@@ -389,21 +388,25 @@ export class AddPermitTabSectionComponent implements OnInit {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
           model: 1,
-          id: Number(this.application_id)
+          id: Number(this.application_id),
+          permit_type :Number(this.permitType)
         }
       } else {
         this.data = {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
-          model: 1
+          model: 1,
+          permit_type :Number(this.permitType)
         }
       }
 
     }
     else if (formGroup == 'whereForm' || this.currentTab == 'where') {
-      if (this.isLocation) {
+      if (this.isLocation && this.isAddressFound) {
 
         this.whereForm.controls.address_id.setErrors(null)
+        this.whereForm.controls.address.setErrors(null)
+
         // if (this.locations.length == 0) {
         // this.locations.push({ street_one: this.whereForm.controls.addlocation.value.street_one, address_join: this.whereForm.controls.addlocation.value.address_join ? this.whereForm.controls.addlocation.value.address_join : null, street_two: this.whereForm.controls.addlocation.value.street_two ? this.whereForm.controls.addlocation.value.street_two : null })
         this.locations = this.whereForm.controls.addlocation.value
@@ -413,10 +416,12 @@ export class AddPermitTabSectionComponent implements OnInit {
           locations: this.locations,
           location_type: this.location_type,
         }
-      } else {
+      } else if (!this.isLocation && this.isAddressFound) {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
         })
+        this.whereForm.controls.address.setErrors(null)
+
         this.data = {
           model: 2,
           address_id: Number(this.whereForm.value.address_id),
@@ -424,6 +429,19 @@ export class AddPermitTabSectionComponent implements OnInit {
           also_known_as: this.whereForm.value.also_known_as
 
         }
+      }
+      if(!this.isAddressFound){
+        this.addLocationControls.controls.map((value, i) => {
+          value['controls'].street_one.setErrors(null)
+        })
+        this.whereForm.controls.address_id.setErrors(null)
+        this.data = {
+          model: 2,
+          address: (this.whereForm.value.address),
+          location_type: 3,
+
+        }
+
       }
       if (this.whereForm.invalid) {
         this.isSubmit = true;
@@ -483,6 +501,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
+      if(this.currentTab ==   'where'){
+        this.getApplication()
+      }
       this.currentTab = nextTab
       this.isSubmit = false
       this.checkTab(this.currentTab)
@@ -535,14 +556,24 @@ export class AddPermitTabSectionComponent implements OnInit {
   whereTab() {
     debugger
     const application = this.permitService.getApplication()
-    if (application.address_id) {
+    if(application.location_type){
+      this.location_type = application.location_type
+
+    }
+    if(application.location_type == 3){
+      this.isAddressFound = false
+      this.isLocation = false
+      this.whereForm.controls.address.setValue(application.address);
+      return false
+    }
+    if (application.location_type == 1) {
       this.whereForm.controls.address_id.setValue(application.address_id);
       this.whereForm.controls.also_known_as.setValue(application.also_known_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
       })
     }
-    else if (application.location.length > 0) {
+    else if ( application.location_type == 2 && application.location.length > 0) {
       if (application.location.length > 1) {
         for (let index = 0; index < application.location.length - 1; index++) {
           if (application.location.length != this.addLocationControls.value.length) {
@@ -572,6 +603,9 @@ export class AddPermitTabSectionComponent implements OnInit {
         })
       }
       this.whereForm.controls.address_id.setErrors(null)
+
+    } else if(this.application.address){
+      this.whereForm.controls.address.setValue(this.application.address)
 
     }
     // this.whereForm.controls.address_id.setValue(application.address_id);
@@ -884,7 +918,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getApplication()
     })
   }
- 
+
   editByReviewPage(tab) {
     this.currentTab = tab
     this.checkTab(this.currentTab);
@@ -950,6 +984,13 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.checkTab(this.currentTab)
     })
   }
+
+  public isAddressFound = true
+  addressNotFound(value: boolean) {
+    this.isAddressFound = value
+  }
+
 }
+
 
 

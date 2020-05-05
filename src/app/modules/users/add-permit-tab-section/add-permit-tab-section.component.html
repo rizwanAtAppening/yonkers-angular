@@ -384,8 +384,7 @@
                                     </form>
                                 </div>
                             
-                                        <div class="btn-add-more" (click)="addLocationForm()">Add more
-                                                address</div>
+                                        <div class="btn-add-more" (click)="addLocationForm()">+ &nbsp;  Add more</div>
                               
 
                                 <div class="unit-txt">
@@ -971,7 +970,7 @@
                                     </div>
                                 </div>
 
-                                <div class="what-bg1" *ngIf="application?.role == 2">
+                                <div class="what-bg2" *ngIf="application?.role == 2">
                                     <div class="ld-txt">
                                         <h3>License Details</h3>
                                         <h4 class="email-link">
@@ -1950,7 +1949,7 @@
                         <div class="bdp_email up-add mt-0">
                             <form [formGroup]="addInsuranseForm">
                                 <div class="row">
-                                    <div class="col-12 poilcy_type">
+                                    <div class="col-12 poilcy_type select_keyType">
                                         <div class="property lbl-txt m-0">
 
                                             <div class="form-group">
@@ -2001,7 +2000,7 @@
                                 <div class="popup-busnise">
                                     <div class="row">
                                         <div class="col-12">
-                                            <div class="form-group">
+                                            <div class="form-group position-relative">
                                                 <input type="text" id="exp1" formControlName="expiration_date"
                                                     #license="bsDatepicker" bsDatepicker
                                                     [class]="licenseCon.expiration_date.invalid && (licenseCon.expiration_date.dirty || licenseCon.expiration_date.touched || isLicense) ? 'form-control form-group-error' : 'form-control'"
@@ -2010,7 +2009,7 @@
                                                     [class]="licenseCon.expiration_date.invalid && (licenseCon.expiration_date.dirty || licenseCon.expiration_date.touched || isLicense) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                     for="exp1">Expiration
                                                     Date</label>
-                                                <div class="col-xs-12 col-12 col-md-3 form-group">
+                                                <div class="col-xs-12 col-12 col-md-3 form-group licence-position">
                                                     <span class=" " (click)="license.toggle()"
                                                         [attr.aria-expanded]="license.isOpen" type="button"><i
                                                             class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -2040,10 +2039,10 @@
 
                                 </div>
                                 <div class="" *ngIf="image" class="imgfile">
-                                    <button type="button" (click)="imageEmpty()" aria-label="Close">
+                                    <button type="button" (click)="imageEmpty()" aria-label="Close" >
                                         <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <div class="brose-file">
+                                    <div class="brose-file new-browes-file">
                                         <h3>
                                             <img [src]="image" alt="">
 
