@@ -22,9 +22,12 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isContractor = false;
   public application: any;
   public addInsuranseForm: FormGroup
+  public duplimesterForm: FormGroup
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
   @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
+  @ViewChild('duplimesterPop', { static: false }) duplimesterPop: ElementRef;
+
 
   public whatForm: FormGroup;
   public whereForm: FormGroup;
@@ -70,6 +73,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getDuplimester();
     this.route.queryParams.subscribe(data => {
       this.application_id = data.id;
     })
@@ -82,8 +86,9 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.onInIt();
 
     console.log(this.whereForm.controls)
-    this.getCurrentTab()
     this.getApplication()
+
+    this.getCurrentTab()
     console.log(this.currentTab)
     if (this.currentTab == 'applicant') {
       this.getCurrentUser()
@@ -108,7 +113,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   remove(index) {
     debugger
-   
+
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
@@ -119,10 +124,10 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
     })
   }
-  public applicationState:number
+  public applicationState: number
   getApplication() {
     this.application = this.permitService.getApplication();
-    if(this.application.applicant_details){
+    if (this.application.applicant_details) {
       this.applicationState = this.application.applicant_details.applicant_state
     }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
@@ -149,7 +154,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     console.log(this.application)
   }
-  public permitType:number;
+  public permitType:any;
   getCurrentTab() {
 
     // if (this.permitService.getCurrentTab()) {
@@ -157,7 +162,13 @@ export class AddPermitTabSectionComponent implements OnInit {
     // }
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab
-      this.permitType = data.permitType
+      if(data.permitType){
+        this.permitType = data.permitType
+      }
+    if(!this.permitType){
+      this.permitType = this.application.permit_type
+    }
+
     })
   }
 
@@ -167,9 +178,25 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.applicantFormControl();
     this.contractorFormControl();
     this.proectControls();
-    this.addInsuranseFormCon()
-
+    this.addInsuranseFormCon();
+    this.duplimesterFormCon()
   }
+
+  duplimesterFormCon() {
+    this.duplimesterForm = this.formBuilder.group({
+      dumpster_first_name: ['', Validators.required],
+      dumpster_last_name: ['', Validators.required],
+      dumpster_business: ['', Validators.required],
+      dumpster_phone: ['', Validators.required],
+      // dumpster_mobile: ['', Validators.required],
+      dumpster_address: ['', Validators.required],
+      dumpster_state: ['', Validators.required],
+      dumpster_city: ['', Validators.required],
+      dumpster_zip: ['', Validators.required],
+      dumpster_email: ['', Validators.required],
+    })
+  }
+  get duplimesterCon() { return this.duplimesterForm.controls }
 
   addInsuranseFormCon() {
     this.addInsuranseForm = this.formBuilder.group({
@@ -240,7 +267,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.whereForm = this.formBuilder.group({
       address_id: ['', Validators.required],
       also_known_as: [''],
-      address: ['',Validators.required],
+      address: ['', Validators.required],
       // street_one: ['', Validators.required],
       // street_two: [''],
       // address_join: [''],
@@ -393,14 +420,14 @@ export class AddPermitTabSectionComponent implements OnInit {
           type: Number(this.whatForm.value.type),
           model: 1,
           id: Number(this.application_id),
-          permit_type :Number(this.permitType)
+          permit_type: Number(this.permitType)
         }
       } else {
         this.data = {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
           model: 1,
-          permit_type :Number(this.permitType)
+          permit_type: Number(this.permitType)
         }
       }
 
@@ -434,7 +461,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         }
       }
-      if(!this.isAddressFound){
+      if (!this.isAddressFound) {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
         })
@@ -463,12 +490,36 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
+
+      if ((this.application.role == 2 || this.application.role == 1 || this.application.role == 3) && this.application.type != 4) {
+        this.contractorForm.value.model = 4
+        this.data = this.contractorForm.value
+      }
+      else if (this.application.role != 2 && this.application.type == 4) {
+        if (!this.dumpster_id) {
+          this.dumpster_id = this.application.dumpster_id
+        }
+        this.contractorForm.controls.contractor_for_job.setErrors(null)
+        this.contractorForm.controls.contractor_name.setErrors(null)
+        this.contractorForm.controls.contractor_email.setErrors(null)
+        this.contractorForm.controls.contractor_business.setErrors(null)
+        this.contractorForm.controls.contractor_address.setErrors(null)
+        this.contractorForm.controls.contractor_phone.setErrors(null)
+        this.contractorForm.controls.contractor_city.setErrors(null)
+        this.contractorForm.controls.contractor_state.setErrors(null)
+        this.contractorForm.controls.contractor_zip.setErrors(null)
+        this.data = {
+          dumpster_id: this.dumpster_id,
+          model: 4,
+          contractor_for_job: 0
+        }
+      }
+
       if (this.contractorForm.invalid) {
         this.isSubmit = true;
         return false
       }
-      this.contractorForm.value.model = 4
-      this.data = this.contractorForm.value
+
     }
 
     else if (formGroup == 'projectDetailsForm' || this.currentTab == 'projectDetail') {
@@ -505,7 +556,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
-      if(this.currentTab ==   'where'){
+      if (this.currentTab == 'where') {
         this.getApplication()
       }
       this.currentTab = nextTab
@@ -560,11 +611,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   whereTab() {
     debugger
     const application = this.permitService.getApplication()
-    if(application.location_type){
+    if (application.location_type) {
       this.location_type = application.location_type
 
     }
-    if(application.location_type == 3){
+    if (application.location_type == 3) {
       this.isAddressFound = false
       this.isLocation = false
       this.whereForm.controls.address.setValue(application.address);
@@ -577,7 +628,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         value['controls'].street_one.setErrors(null)
       })
     }
-    else if ( application.location_type == 2 && application.location.length > 0) {
+    else if (application.location_type == 2 && application.location.length > 0) {
       if (application.location.length > 1) {
         for (let index = 0; index < application.location.length - 1; index++) {
           if (application.location.length != this.addLocationControls.value.length) {
@@ -608,7 +659,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
       this.whereForm.controls.address_id.setErrors(null)
 
-    } else if(this.application.address){
+    } else if (this.application.address) {
       this.whereForm.controls.address.setValue(this.application.address)
 
     }
@@ -629,10 +680,16 @@ export class AddPermitTabSectionComponent implements OnInit {
   // }
   public isDisabled = false;
   contractorTab() {
+    debugger
+    this.getApplication()
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
     })
 
+    if (this.application.dumpster_id) {
+      this.getDuplimester();
+
+    }
     if (this.currentUserInfo && this.application.role == 2) {
       debugger
       this.isDisabled = true
@@ -749,7 +806,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   hitOnTab(formGroup, tab) {
-
+debugger
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isSubmit = true
@@ -777,6 +834,17 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
 
     if (this.currentTab == 'contrator') {
+      if(this.application.dumpster_id){
+        this.contractorForm.controls.contractor_for_job.setErrors(null)
+        this.contractorForm.controls.contractor_name.setErrors(null)
+        this.contractorForm.controls.contractor_email.setErrors(null)
+        this.contractorForm.controls.contractor_business.setErrors(null)
+        this.contractorForm.controls.contractor_address.setErrors(null)
+        this.contractorForm.controls.contractor_phone.setErrors(null)
+        this.contractorForm.controls.contractor_city.setErrors(null)
+        this.contractorForm.controls.contractor_state.setErrors(null)
+        this.contractorForm.controls.contractor_zip.setErrors(null)
+      }
       if (this.contractorForm.invalid) {
         this.isSubmit = true
         return false
@@ -994,6 +1062,53 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.isAddressFound = value
   }
 
+  public duplimester = []
+  getDuplimester() {
+    debugger
+    this.permitService.getDuplimester().subscribe(data => {
+      this.duplimester = data.response;
+      this.duplimester.map(data => {
+        data.checked = false
+      })
+      if (this.application.dumpster_id) {
+        this.duplimester.map((data, i) => {
+          if (data.id == this.application.dumpster_id) {
+            data.checked = true
+          }
+        })
+      }
+
+    })
+  }
+
+  public dumpster_id: any
+  selectDuplimester(value, index, duplimesterId) {
+    debugger
+    this.duplimester.map((data, i) => {
+      if (index == i) {
+        data.checked = value.target.checked
+      } else {
+        data.checked = false
+      }
+    })
+    this.dumpster_id = duplimesterId
+  }
+
+  public isDuplimester = false;
+  addDuplimester() {
+    debugger
+    if (this.duplimesterForm.invalid) {
+      this.isDuplimester = true;
+      return false
+    }
+    const data = {
+
+    }
+    this.duplimesterForm.value.dumpster_mobile = 7858254585
+    this.permitService.addDuplimester(this.duplimesterForm.value).subscribe(data => {
+      this.duplimesterPop.nativeElement.click();
+    })
+  }
 }
 
 

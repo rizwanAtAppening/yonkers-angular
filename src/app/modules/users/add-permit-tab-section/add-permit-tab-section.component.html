@@ -39,13 +39,13 @@
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'applicant') ? 'active':(applicantControls?.applicant_role.value || (application?.applicant_details && application?.applicant_details?.applicant_role))?'':'gray_color'"
+                <a [class]="(currentTab == 'applicant') ? 'active':((applicantControls?.applicant_role.value) || (application?.applicant_details && application?.applicant_details?.applicant_role))?'':'gray_color'"
                     id="pills-Applicant-tab" (click)="hitOnTab('applicantForm','applicant')" role="tab"
                     aria-controls="pills-Applicant" aria-selected="false">Applicant<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'contrator') ? 'active':(contratorControl.contractor_for_job.value || (application?.contractor_details && application?.contractor_details?.contractor_for_job))?'':'gray_color'"
+                <a [class]="(currentTab == 'contrator') ? 'active':((contratorControl.contractor_for_job.value) ||  (application.dumpster_id) || (application?.contractor_details && application?.contractor_details?.contractor_for_job))?'':'gray_color'"
                     id="pills-Contractor-tab" (click)="hitOnTab('contractorForm','contrator')" role="tab"
                     aria-controls="pills-Contractor" aria-selected="false">Contractor<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
@@ -363,7 +363,7 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="add-moreTxt">
-                                                        
+
                                                         <!-- <div class="btn-add-delet">Delete</div> -->
                                                         <div class="btn-add-delet " *ngIf="i > 0">
                                                             <button (click)="remove(i)" type="submit">Delete</button>
@@ -383,9 +383,9 @@
                                         </div>
                                     </form>
                                 </div>
-                            
-                                        <div class="btn-add-more" (click)="addLocationForm()">+ &nbsp;  Add more</div>
-                              
+
+                                <div class="btn-add-more" (click)="addLocationForm()">+ &nbsp; Add more</div>
+
 
                                 <div class="unit-txt">
                                     <div class="row">
@@ -611,10 +611,10 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Phone-id3" formControlName="applicant_city"
+                                                            <input type="text" id="Phone-id3"
+                                                                formControlName="applicant_city"
                                                                 [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                               class="form-control" 
-                                                                required>
+                                                                class="form-control" required>
                                                             <label
                                                                 [class]="applicantControls.applicant_city.invalid && (applicantControls.applicant_city.dirty || applicantControls.applicant_city.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id3">City</label>
@@ -639,10 +639,10 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Phone-id2" formControlName="applicant_state"
+                                                            <input type="text" id="Phone-id2"
+                                                                formControlName="applicant_state"
                                                                 [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                 class="form-control"
-                                                                required>
+                                                                class="form-control" required>
                                                             <label
                                                                 [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id2">State</label>
@@ -664,12 +664,11 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="applicant_zip" id="Phone-id4"
-                                                                maxlength="6"
+                                                            <input type="text" formControlName="applicant_zip"
+                                                                id="Phone-id4" maxlength="6"
                                                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" 
-                                                                required>
+                                                                class="form-control" required>
                                                             <label
                                                                 [class]="applicantControls.applicant_zip.invalid && (applicantControls.applicant_zip.dirty || applicantControls.applicant_zip.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="Phone-id4">Zip</label>
@@ -718,7 +717,7 @@
             </div>
             <div [class]="(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'"
                 id="pills-Contractor" role="tabpanel" aria-labelledby="pills-Contractor-tab">
-                <div class="what-bg">
+                <div class="what-bg" *ngIf="(application?.role == 2 || application?.role == 3 ||application?.role == 1) && application?.type != 4">
                     <div class="job-location-Hd">
                         <h3>Contractor Details</h3>
                     </div>
@@ -1046,6 +1045,283 @@
 
                 </div>
 
+                <section class="mt-5" *ngIf="application?.role != 2 && application?.type == 4">
+                    <div class="container p-0">
+                        <div class="tbl_box">
+                            <div class="job-location-Hd">
+                                <h3>Dumpster Details</h3>
+                            </div>
+
+                            <div class="cd-box">
+                                <div class="container p-0">
+                                    <div class="add-btn-compnay">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h3 class="dumpster-txt"> Which dumpster company are you using?</h3>
+                                            </div>
+                                            <div class="col-6">
+                                                <h4 class="dumpster-Img" data-toggle="modal"
+                                                    data-target="#exampleModal"> <span><img
+                                                            src="assets/images/add-blue.svg" alt=""></span> Add Dumpster
+                                                    company</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="compnay-tbl">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <label class="container-name">Name/Email
+                                                          
+                                                        </label>
+                                                    </th>
+                                                    <th>Company</th>
+                                                    <th>Phone</th>
+                                                    <th>Address</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Zip</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor = "let dupli of duplimester; let i = index">
+                                                    <td class="mail-shlok">
+                                                        <label class="container-name">{{dupli?.dumpster_first_name}}
+                                                            <span>{{dupli?.dumpster_email}}</span>
+                                                            <input type="checkbox" [checked]="dupli?.checked" (change)="selectDuplimester($event,i,dupli?.id)">
+                                                            <span class="checkmark-mail"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td>{{dupli?.dumpster_business}}</td>
+                                                    <td>{{dupli?.dumpster_phone}}</td>
+                                                    <td>{{dupli?.dumpster_address}}</td>
+                                                    <td>{{dupli?.dumpster_city}}</td>
+                                                    <td>{{dupli?.dumpster_state}}</td>
+                                                    <td>{{dupli?.dumpster_zip}}</td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                    <div class="btn-pre">
+                                            <button type="submit"
+                                                (click)="goToBack('contractorForm','applicant')">Previous</button>
+                                            <button class="continue" type="submit"
+                                                (click)="addPermitApplication('contractorForm','projectDetail')">Continue</button>
+                                        </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" #duplimesterPop
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog popup-dumpstar" role="document">
+                        <div class="modal-content text-addpopup">
+                            <div class="modal-header p-0 pb-2 ">
+                                <h5>Update Contractor Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="container p-0">
+                                <div class="col-12 p-0">
+                                    <div class="bdp_email up-add">
+                                        <form [formGroup]="duplimesterForm">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="text" formControlName="dumpster_first_name"
+                                                            id="pop1"
+                                                            [class]="duplimesterCon.dumpster_first_name.invalid && (duplimesterCon.dumpster_first_name.dirty || duplimesterCon.dumpster_first_name.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                            required="">
+                                                        <label
+                                                            [class]="duplimesterCon.dumpster_first_name.invalid && (duplimesterCon.dumpster_first_name.dirty || duplimesterCon.dumpster_first_name.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                            for="pop1">First Name</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="duplimesterCon.dumpster_first_name.invalid && (duplimesterCon.dumpster_first_name.dirty || duplimesterCon.dumpster_first_name.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_first_name.errors['required']">
+                                                            Please enter first name
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="text" id="pop2"
+                                                            formControlName="dumpster_last_name"
+                                                            [class]="duplimesterCon.dumpster_last_name.invalid && (duplimesterCon.dumpster_last_name.dirty || duplimesterCon.dumpster_last_name.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                            required="">
+                                                        <label
+                                                            [class]="duplimesterCon.dumpster_last_name.invalid && (duplimesterCon.dumpster_last_name.dirty || duplimesterCon.dumpster_last_name.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                            for="pop2">Last Name</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="duplimesterCon.dumpster_last_name.invalid && (duplimesterCon.dumpster_last_name.dirty || duplimesterCon.dumpster_last_name.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_last_name.errors['required']">
+                                                            Please enter last name
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="popup-busnise">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="pop3"
+                                                                formControlName="dumpster_business"
+                                                                [class]="duplimesterCon.dumpster_business.invalid && (duplimesterCon.dumpster_business.dirty || duplimesterCon.dumpster_business.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label
+                                                                [class]="duplimesterCon.dumpster_business.invalid && (duplimesterCon.dumpster_business.dirty || duplimesterCon.dumpster_business.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop3">Name of Business</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="duplimesterCon.dumpster_business.invalid && (duplimesterCon.dumpster_business.dirty || duplimesterCon.dumpster_business.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_business.errors['required']">
+                                                                Please enter business
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="number" id="pop4"
+                                                                formControlName="dumpster_phone"  maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                [class]="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label
+                                                                [class]="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop4">Phone Number</label>
+                                                        </div>
+                                                        <div
+                                                        *ngIf="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_phone.errors['required']">
+                                                            Please enter phone
+                                                        </p>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="popup-busnise">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <input type="text" id="pop5"
+                                                                formControlName="dumpster_address"
+                                                                [class]="duplimesterCon.dumpster_address.invalid && (duplimesterCon.dumpster_address.dirty || duplimesterCon.dumpster_address.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label class="form-control-placeholder"
+                                                                [class]="duplimesterCon.dumpster_address.invalid && (duplimesterCon.dumpster_address.dirty || duplimesterCon.dumpster_address.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop5">Address</label>
+                                                        </div>
+                                                        <div
+                                                        *ngIf="duplimesterCon.dumpster_address.invalid && (duplimesterCon.dumpster_address.dirty || duplimesterCon.dumpster_address.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_address.errors['required']">
+                                                            Please enter adress
+                                                        </p>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="popup-busnise">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="pop6" formControlName="dumpster_city"
+                                                                [class]="duplimesterCon.dumpster_city.invalid && (duplimesterCon.dumpster_city.dirty || duplimesterCon.dumpster_city.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label
+                                                                [class]="duplimesterCon.dumpster_city.invalid && (duplimesterCon.dumpster_city.dirty || duplimesterCon.dumpster_city.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop6">City</label>
+                                                        </div>
+                                                        <div
+                                                        *ngIf="duplimesterCon.dumpster_city.invalid && (duplimesterCon.dumpster_city.dirty || duplimesterCon.dumpster_city.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_city.errors['required']">
+                                                            Please enter city
+                                                        </p>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="pop7"
+                                                                formControlName="dumpster_state"
+                                                                [class]="duplimesterCon.dumpster_state.invalid && (duplimesterCon.dumpster_state.dirty || duplimesterCon.dumpster_state.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label
+                                                                [class]="duplimesterCon.dumpster_state.invalid && (duplimesterCon.dumpster_state.dirty || duplimesterCon.dumpster_state.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop7">State</label>
+                                                        </div>
+                                                        <div
+                                                        *ngIf="duplimesterCon.dumpster_state.invalid && (duplimesterCon.dumpster_state.dirty || duplimesterCon.dumpster_state.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_state.errors['required']">
+                                                            Please enter state
+                                                        </p>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="popup-busnise">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="number"  maxlength="6" id="pop8" formControlName="dumpster_zip" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                [class]="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label
+                                                                [class]="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="pop8">Zip</label>
+                                                        </div>
+                                                        <div
+                                                        *ngIf="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester)">
+                                                        <p class="form-error"
+                                                            *ngIf="duplimesterCon.dumpster_zip.errors['required']">
+                                                            Please enter zip
+                                                        </p>
+                                                    </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="pop9" formControlName="dumpster_email" class="form-control"
+                                                                required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="pop9">Email</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="btn-pre pop-Btn">
+                                                <button data-dismiss="modal" aria-label="Close">Cancel</button>
+                                                <button class="continue mr-0" type="submit"
+                                                    (click)="addDuplimester()">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div [class]="(currentTab == 'projectDetail') ? 'tab-pane fade show active':'tab-pane fade'"
                 id="pills-Project" role="tabpanel" aria-labelledby="pills-Project-tab">
@@ -1544,7 +1820,7 @@
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>State</h2>
                                                                     <p>{{application?.applicant_details?.applicant_state}}
-                                                                        
+
                                                                     </p>
                                                                     <!-- <p>{{application?.applicant_details?.applicant_state ? settings?.getSetting('userState',application?.applicant_details?.applicant_state):'_'}}</p> -->
 
@@ -1602,9 +1878,10 @@
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>State</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_state}}</p>
+                                                                    <p>{{application?.contractor_details?.contractor_state}}
+                                                                    </p>
                                                                     <!-- <p>{{settings?.getSetting('userState',application?.contractor_details?.contractor_state)}}</p> -->
-                                                                    
+
                                                                 </div>
 
                                                             </div>
@@ -2044,7 +2321,7 @@
 
                                 </div>
                                 <div class="" *ngIf="image" class="imgfile">
-                                    <button type="button" (click)="imageEmpty()" aria-label="Close" >
+                                    <button type="button" (click)="imageEmpty()" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                     <div class="brose-file new-browes-file">

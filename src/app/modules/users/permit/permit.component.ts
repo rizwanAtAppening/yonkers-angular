@@ -184,7 +184,7 @@ export class PermitComponent implements OnInit {
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({ page: this.currentPage }).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage,application_type:1 }).subscribe(data => {
       this.applictionDetails = data.response;
       // this.dwlApplication = this.applictionDetails.filter(data => {
       //   if (data.status == null && data.application_type == 2) {

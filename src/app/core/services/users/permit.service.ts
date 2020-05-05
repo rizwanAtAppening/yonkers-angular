@@ -95,6 +95,31 @@ export class PermitService {
     );
   }
 
+  getDuplimester(): Observable<any> {
+    const href = `${environment['getDuplimester']}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  addDuplimester(data): Observable<any> {
+    const href = `${environment['addDuplimester']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
   addLicenseDetails(data): Observable<any> {
     const href = `${environment['addLicenseDetails']}`;
     return this.http.post<any>(href, data).pipe(

@@ -107,15 +107,15 @@ export const settingConfig = {
     },
     {
       key: 2,
-      value: "Roll Off Container (Dumpster)"
+      value: "Street Opening"
     },
     {
       key: 3,
-      value: "Street Obstruction"
+      value: "Replace/Construct Sidewalk"
     },
     {
       key: 4,
-      value: "Street Opening"
+      value: "Roll Off Container (Dumpster)"
     },
     {
       key: 5,
@@ -123,13 +123,21 @@ export const settingConfig = {
     },
     {
       key: 6,
-      value: "Replace/Construct Sidewalk"
+      value: "Sidewalk Obstruction"
     },
     {
       key: 7,
-      value: "Sidewalk Obstruction"
+      value: "Street Obstruction"
     },
   ],
+
+  // 1: "Curb Construction",
+  //       2: "Street Opening",
+  //       3: "Replace/Construct Sidewalk",
+  //       4: "Roll Off Container (Dumpster)",
+  //       5: "Emergency Street/Sidewalk Opening",
+  //       6: "Sidewalk Obstruction",
+  //       7: "Street Obstruction"
 
   userState: [
     {
