@@ -360,6 +360,17 @@ policyType:[
   value:'Bond'
 },
 ],
+
+imageType:[
+  {
+    key:0,
+    value:'Drawings/ Plans'
+  },
+  {
+    key:1,
+    value:'Certificate of Insurance'
+  },
+],
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {
       key: condition

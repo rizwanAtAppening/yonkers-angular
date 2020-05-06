@@ -120,6 +120,19 @@ export class PermitService {
       )
     );
   }
+
+  addDwlPemitApplication(data): Observable<any> {
+    const href = `${environment['addDwlPermitApplication']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
   addLicenseDetails(data): Observable<any> {
     const href = `${environment['addLicenseDetails']}`;
     return this.http.post<any>(href, data).pipe(

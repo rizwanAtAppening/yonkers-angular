@@ -2657,3 +2657,254 @@ float: right;
 .what-bg2{
     margin-top: 61px;
 }
+
+.file_slect-input {
+    position: relative;
+    max-width: 181px;
+}
+.file_slect-input  select{
+    height: 43px;
+    width: 100%;
+    padding: 13px 12px 10px;
+    color: #282D5B;
+    font-size: 14px;
+    line-height: 17px;
+
+}
+.file_slect-input span{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
+
+.new-UploadBox .img-upload-tbl .table thead th{
+    padding: 13px 130px 13px 30px;
+   
+}
+.new-UploadBox .img-upload-tbl .table thead tr{
+    background: #F6F9FC;
+}
+
+.new-UploadBox .img-upload-tbl .table td.upload-Btn button{
+    background: #ffffff;
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    position: relative;
+    line-height: 22px;
+    color: #4ab5f1;
+    padding: 8px 17px;
+    border: 1px solid #4AB5F1;
+    border-radius: 2px;
+}
+.new-UploadBox .img-upload-tbl .table td.acton-Btn button{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #282D5B;
+    border-radius: 2px;
+    padding: 6px 9px;
+}
+.new-UploadBox .img-upload-tbl .table td.acton-Btn button span{
+margin-right: 2px;
+}
+.new-UploadBox .img-upload-tbl .table td {
+    padding: 25px 0px 23px 30px;
+    font-family: 'Poppins-Regular';
+    color: #282D5B;
+    font-size: 14px;
+    line-height: 21px;
+    vertical-align: middle;
+}
+.new-UploadBox .img-upload-tbl .table td.acton-Btn button.delet-btn{
+margin-left: 13px;
+
+}
+.more-txt {
+    color: #4AB5F1;
+    font-family: 'gilroy-medium';
+    font-size: 16px;
+    line-height: 19px;
+    cursor: pointer;
+}
+
+.streen-Box {
+    margin: 0 auto;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #00000012;
+max-width: 983px;
+margin-top: 60px;
+}
+.submission-mt{
+    margin-top: 55px;
+    position: relative;
+}
+
+.sub-oppining select{
+    width: 100%;
+    height: 60px;
+    padding: 18px 24px;
+    color: #282D5BCC;
+    font-family: 'Poppins-Regular';
+    font-size: 18px;
+    line-height: 24px;
+    border: 0.5px solid #282D5BCC;
+    position: relative;
+}
+.sub-oppining span{
+    position: absolute;
+    top: 40px;
+    right: 20px;
+    font-size: 20px;
+
+}
+.sub-oppining{
+    margin-top: 33px !important;
+}
+.sub-oppining label{
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    line-height: 22px;
+    background: #fff;
+    position: relative;
+    top: 12px;
+    left: 17px;
+    padding-left: 7px;
+    padding-right: 7px;
+    z-index: 99;    
+}
+
+.bdp_email span.icon-calander{
+    width: 17px;
+    height: 17px;
+    color: #7E8085;
+    position: absolute;
+    right: 20px;
+    top: 22px;
+}
+.Detailed-txt{
+    margin-top: 40px;
+}
+.Detailed-txt textarea{
+width: 100%;
+height: 113px;
+border: 0.5px solid #282D5B;
+padding: 14px 17px;
+resize: none;
+}
+.Detailed-txt textarea::placeholder{
+    color: #00183966;
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    line-height: 22px;
+}
+.Detailed-txt label{
+    color: #001839;
+    font-family: "Poppins-Medium";
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 10px;
+}
+.discprection-Box{
+    margin-top: 19px;
+}
+.layout-box{
+    margin: 0 auto;
+    max-width: 983px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 1px solid #00000012;
+margin-top: 30px;
+margin-bottom: 100px;
+}
+
+.layout-box .table-permit table td small{
+    padding: 0px 26px;
+    font-size: 100%;
+}
+.layout-box .table-permit table td strong{
+    display: block;
+    color: #4AB5F1;
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: normal;
+    cursor: pointer;
+}
+.layout-box .table-permit table td {
+    vertical-align: top!important;
+}
+.street-slcTxt {
+    margin-top: 6px;
+}
+
+.multimple-moreTxt {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.multimple-moreTxt .plus-moretxt{
+color: #4AB5F1;
+font-family: 'gilroy-medium';
+font-size: 16px;
+line-height: 19px;
+cursor: pointer;
+}
+.multimple-moreTxt .plus-moretxt span{
+    margin-right: 5px;
+}
+.multimple-moreTxt .txt_delet{
+color: #E53030;
+font-size: 16px;
+line-height: 19px;
+cursor: pointer;
+font-family: 'gilroy-medium';
+}
+.delet-modal{
+    max-width: 415px !important;
+    margin: 0 auto;
+    text-align: center;
+}
+.app-content{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 1px 3px #0000000A;
+border: none !important;
+border-radius: 0px !important;
+padding: 36px 94px;
+}
+
+.soure-delete-txt h3{
+    font-family: "Poppins-SemiBold";
+    font-size: 24px;
+    line-height: 35px;
+    color: #282D5B;
+   
+}
+.soure-delete-txt h4{
+    font-family: 'Poppins-Regular';
+    font-size: 13px;
+    line-height: 25px;
+    color: #282D5B;
+    margin-top: 20px;
+}
+.modal-footer{
+    margin-top: 20px !important;
+    margin: 0 auto;
+}
+.modal-footer button.secondary{
+    border: none;
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 14px;
+    line-height: 20px;
+    background: none;
+}
+
+.modal-footer button.primary{
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 9px 19px;
+    line-height: 20px;
+    font-family: 'Poppins-Regular';
+    background: #2AABFA;
+    margin-left: 30px;
+}
