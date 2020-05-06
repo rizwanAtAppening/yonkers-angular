@@ -11,6 +11,7 @@ import { LoginComponent } from '../auth/login/login.component';
 import { SubmitApplicationComponent } from './submit-application/submit-application.component';
 import { UpdatePermitComponent } from './update-permit/update-permit.component';
 import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-daily-work-loaction.component';
+import { AddPermitComponent } from './add-permit/add-permit.component';
 
 
 // const routes: Routes = [
@@ -80,6 +81,10 @@ const routes: Routes = [
           {
             path: 'daily-work-location',
             component: AddDailyWorkLoactionComponent,
+          }, 
+          {
+            path: 'add-user-permit',
+            component: AddPermitComponent,
           }, 
 
 

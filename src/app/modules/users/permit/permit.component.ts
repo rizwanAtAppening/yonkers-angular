@@ -96,7 +96,7 @@ export class PermitComponent implements OnInit {
 
   remove(index) {
     debugger
-   
+
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
@@ -167,7 +167,7 @@ export class PermitComponent implements OnInit {
         //   street_one: this.dwlForm.value.street_one ? Number(this.dwlForm.value.street_one) : null, address_join: this.dwlForm.value.address_join ? Number(this.dwlForm.value.address_join) : null,
         //   street_two: this.dwlForm.value.street_two ? Number(this.dwlForm.value.street_two) : null
         // }]
-        locations :this.dwlForm.controls.addlocation.value
+        locations: this.dwlForm.controls.addlocation.value
 
       }
     }
@@ -179,12 +179,20 @@ export class PermitComponent implements OnInit {
     })
   }
 
+  public application_type: number
   getPermitApplication() {
+    debugger
+    this.currentUser()
+    if (this.userType == 3) {
+      this.application_type = 2
+    } else {
+      this.application_type = 1
 
+    }
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({ page: this.currentPage,application_type:1 }).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       // this.dwlApplication = this.applictionDetails.filter(data => {
       //   if (data.status == null && data.application_type == 2) {

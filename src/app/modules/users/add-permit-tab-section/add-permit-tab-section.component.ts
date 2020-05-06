@@ -154,7 +154,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     console.log(this.application)
   }
-  public permitType:any;
+  public permitType: any;
   getCurrentTab() {
 
     // if (this.permitService.getCurrentTab()) {
@@ -162,12 +162,12 @@ export class AddPermitTabSectionComponent implements OnInit {
     // }
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab
-      if(data.permitType){
+      if (data.permitType) {
         this.permitType = data.permitType
       }
-    if(!this.permitType){
-      this.permitType = this.application.permit_type
-    }
+      if (!this.permitType) {
+        this.permitType = this.application.permit_type
+      }
 
     })
   }
@@ -491,7 +491,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
 
-      if ((this.application.role == 2 || this.application.role == 1 || this.application.role == 3) && this.application.type != 4) {
+      if ((this.application.role != 1 || this.application.role != 3) && this.application.type != 4 || (this.application.role == 2 && this.application.role == 4)) {
         this.contractorForm.value.model = 4
         this.data = this.contractorForm.value
       }
@@ -806,7 +806,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   hitOnTab(formGroup, tab) {
-debugger
+    debugger
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isSubmit = true
@@ -834,7 +834,7 @@ debugger
     }
 
     if (this.currentTab == 'contrator') {
-      if(this.application.dumpster_id){
+      if (this.application.dumpster_id) {
         this.contractorForm.controls.contractor_for_job.setErrors(null)
         this.contractorForm.controls.contractor_name.setErrors(null)
         this.contractorForm.controls.contractor_email.setErrors(null)
@@ -1107,6 +1107,7 @@ debugger
     this.duplimesterForm.value.dumpster_mobile = 7858254585
     this.permitService.addDuplimester(this.duplimesterForm.value).subscribe(data => {
       this.duplimesterPop.nativeElement.click();
+      this.getDuplimester();
     })
   }
 }
