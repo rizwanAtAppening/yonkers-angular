@@ -193,7 +193,7 @@
                         <h3>Location Type</h3>
                     </div>
 
-                    <div class="adrees-tab">
+                    <div class="adrees-tab" *ngIf="isAddressFound">
                         <nav>
                             <div class="nav" id="nav-tab" role="tablist">
                                 <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
@@ -267,7 +267,7 @@
                                             <div class="unit-txt">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h2 class="notfound-txt">
+                                                        <h2 class="notfound-txt" (click) ="addressNotFound(false)">
                                                             Address not found
                                                         </h2>
                                                     </div>
@@ -288,6 +288,7 @@
                                 </div>
 
 
+                                
 
                             </div>
 
@@ -390,7 +391,7 @@
                                 <div class="unit-txt">
                                     <div class="row">
                                         <div class="col-12">
-                                            <h2 class="job-addTxttwo">
+                                            <h2 class="job-addTxttwo" (click) ="addressNotFound(false)">
                                                 Address not found
                                             </h2>
                                         </div>
@@ -422,7 +423,41 @@
 
                 </div>
 
-
+                <br>
+                <div class="col-12" *ngIf="!isAddressFound">
+                    <div class="bdp_email loction-adInput">
+                        <form [formGroup]="whereForm">
+                        <div class="row">
+                            <div class="col-10 ">
+                                <div class="form-group">
+                                    <input type="text" formControlName="address"  id="jobadd"
+                                        [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                        required>
+                                    <label
+                                        [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                        for="jobadd">Address</label>
+                                </div>
+                                <div
+                                *ngIf="whereControls.address.invalid && (whereControls.address.dirty ||whereControls.address.touched || isSubmit)">
+                                <p class="form-error" *ngIf="whereControls.address.errors['required']">
+                                    Please enter address.
+                                </p>
+                            </div>
+                            </div>
+                            <div class="col-2 ">
+                                <button class="btn btn-success" (click) ="addressNotFound(true)">Cancel</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="btn-pre ">
+                            <!-- <button class="continue adloc" type="submit" (click)="addLocationForm()">add
+                                Loaction</button> -->
+                            <button type="submit" (click)="goToBack('whereForm','what')">Previous</button>
+                            <button class="continue mr-0" type="submit"
+                                (click)="addPermitApplication('whereForm','applicant')">Continue</button>
+                        </div>
+                </div>
 
             </div>
             <div [class]="(currentTab == 'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
@@ -638,15 +673,20 @@
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Phone-id2"
-                                                                formControlName="applicant_state"
-                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
+                                                        <div class="form-group" id="defultInput">
+                                                            <select type="text" formControlName="applicant_state" 
+                                                            [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                                <option value="" hidden>--Select--</option>
+                                                                <option value="{{state?.key}}"
+                                                                    *ngFor="let state of settings?.userState">
+                                                                    {{state?.value}}</option>
+    
+                                                            </select>
                                                             <label
-                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                                for="Phone-id2">State</label>
-                                                            <div
+                                                            [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                            for="Phone-id2">State</label>
+                                                                <div
                                                                 *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
                                                                 <p class="form-error"
                                                                     *ngIf="applicantControls.applicant_state.errors['required']">
@@ -655,10 +695,13 @@
                                                             </div>
                                                         </div>
                                                     </div>
+    
+    
                                                 </div>
                                             </div>
-
+    
                                         </div>
+
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
