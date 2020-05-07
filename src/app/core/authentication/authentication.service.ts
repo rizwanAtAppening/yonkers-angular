@@ -28,6 +28,21 @@ export class AuthenticationService {
     );
   }
 
+ adminLogin(loginData: Login): Observable<any> {
+    const href = `${environment['adminLogin']}`;
+    return this.http.post<any>(href, loginData).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+            const storage = localStorage;
+            storage.setItem(credentialsKey, JSON.stringify(data.response));
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   logout(): Observable<boolean> {
     sessionStorage.removeItem(credentialsKey);
     localStorage.removeItem(credentialsKey);

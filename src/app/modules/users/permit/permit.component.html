@@ -311,10 +311,11 @@
                                                                                                         aria-hidden="true"></i></span>
                                                                                                 <div
                                                                                                     class="dropdown-contentable">
-                                                                                                    <a href="#">Delete</a>
-                                                                                                    <a href="#">Edit
+                                                                                                    <a >Delete</a>
+                                                                                                    <a >Edit
                                                                                                         Staff</a>
-                                                                                                    <a href="#">Inactive</a>
+                                                                                                    <a >Inactive</a>
+                                                                                                    <a (click) ="getApplicationId(application?.id)" data-toggle="modal" data-target="#delete_application">Conver Permit</a>
                                                                                                     <div
                                                                                                         class="triangle-left">
                                                                                                     </div>
@@ -691,7 +692,26 @@
             </div>
         </section>
 
+        <div class="modal fade" id="delete_application" tabindex="-1" role="dialog" #confirmPopUp
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+            <div class="modal-content app-content">
 
+                <div class="soure-delete-txt">
+                    <h3>Convert  Application</h3>
+                    <h4>Are you sure you want to convert  Application</h4>
+                </div>
+
+
+                <div class="modal-footer p-0 border-0">
+                    <button type="button" class="secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="primary" (click) ="convertPermitApplication()">Confirme</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
     </router-outlet>
 </app-layout>

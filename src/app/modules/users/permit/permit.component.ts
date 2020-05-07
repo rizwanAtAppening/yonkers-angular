@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
@@ -12,6 +12,9 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
   styleUrls: ['./permit.component.css']
 })
 export class PermitComponent implements OnInit {
+  @ViewChild('confirmPopUp', { static: false }) confirmPopUp: ElementRef;
+  public applicationId: number;
+
   public settings: any;
   public applictionDetails = []
   public dwlForm: FormGroup;
@@ -214,7 +217,7 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  paginate(page,dwlType) {
+  paginate(page, dwlType) {
     this.dwlType = dwlType
     debugger
     this.currentPage = page
@@ -247,5 +250,17 @@ export class PermitComponent implements OnInit {
 
 
     }
+  }
+  getApplicationId(id) {
+    debugger
+    this.applicationId = id
+  }
+
+  convertPermitApplication() {
+    debugger
+    this.permitService.convertPermitApplication({ id: this.applicationId }).subscribe(data => {
+      this.confirmPopUp.nativeElement.click();
+      this.getPermitApplication(this.dwlType)
+    })
   }
 }

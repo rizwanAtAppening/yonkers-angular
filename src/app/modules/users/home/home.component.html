@@ -790,11 +790,11 @@
 
 
 <app-auth-layout>
-    <router-outlet>
-      <div class="body_bg">
-        <div class="process_section">
-          <div class="container-fluid">
-            <!-- <div class="row">
+  <router-outlet>
+    <div class="body_bg">
+      <div class="process_section">
+        <div class="container-fluid">
+          <!-- <div class="row">
               <div class="col-lg-7 topbar_process">
                 <div class="same_spacebox">
                   <div class="logo_process">
@@ -804,65 +804,70 @@
                 </div>
               </div>
             </div> -->
-  
-            <form (submit)="onSubmit()" name="loginForm" [formGroup]="loginForm">
-  
-              <section class="dept-portal">
-                <div class="bdp-box">
-                  <div class="container p-0">
+
+          <form (submit)="onSubmit()" name="loginForm" [formGroup]="loginForm">
+
+            <section class="dept-portal">
+              <div class="bdp-box">
+                <div class="container p-0">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="bdp-logo">
+                        <h2>BDP</h2>
+                        <h3>Building Dept Portal</h3>
+                      </div>
+
+                      <div class="sign-in">
+                        <h4>Sign in</h4>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                          invidunt ut labore et dolore</p>
+                      </div>
+
+                    </div>
+                  </div>
+
+
+                  <div class="bdp_email">
+                    <div class="row">
+                      <div class="col-12 ">
+                        <div class="form-group">
+                          <input type="text" id="name" class="form-control"
+                            [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                            class="form-control check-in" formControlName="email" required>
+                          <label for="name"
+                            [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder'">Email
+                            Address</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                      <span *ngIf="email.errors['required']">
+                        Please select a Email
+                      </span>
+                      <span *ngIf="email.errors['maxlength']">
+                        Please enter a Email no more than 250 characters.
+                      </span>
+                      <span *ngIf="email.errors['pattern']">
+                        Please enter a valid Email .
+                      </span>
+                    </div>
+
+                  </div>
+
+                  <div class="new-passwordInput new">
                     <div class="row">
                       <div class="col-12">
-                        <div class="bdp-logo">
-                          <h2>BDP</h2>
-                          <h3>Building Dept Portal</h3>
-                        </div>
-  
-                        <div class="sign-in">
-                          <h4>Sign in</h4>
-                          <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                            invidunt ut labore et dolore</p>
-                        </div>
-  
-                      </div>
-                    </div>
-  
-  
-                    <div class="bdp_email">
-                      <div class="row">
-                        <div class="col-12 ">
-                          <div class="form-group">
-                            <input type="text" id="name" class="form-control" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                              class="form-control check-in"  formControlName="email" required>
-                            <label for="name" [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder'">Email Address</label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
-                          <span *ngIf="email.errors['required']">
-                            Please select a Email
-                          </span>
-                          <span *ngIf="email.errors['maxlength']">
-                            Please enter a Email no more than 250 characters.
-                          </span>
-                          <span *ngIf="email.errors['pattern']">
-                            Please enter a valid Email .
-                          </span>
-                        </div>
-  
-                    </div>
-  
-                    <div class="new-passwordInput new">
-                      <div class="row">
-                        <div class="col-12">
-                          <div class="form-group">
-                            <input type="password" [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
+                        <div class="form-group">
+                          <input type="password"
+                            [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
                             [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
                             class="form-control password" id="password" formControlName="password" required>
-                            <label  for="password"  [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder '">Password</label>
-                          </div>
+                          <label for="password"
+                            [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder '">Password</label>
                         </div>
                       </div>
-                      <div class="form-error"
+                    </div>
+                    <div class="form-error"
                       *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
                       <span *ngIf="password.errors['required']">
                         Please enter the Password
@@ -871,9 +876,9 @@
                         Please enter a Password no more than 6 characters.
                       </span>
                     </div>
-  
-                    </div>
-                    <!-- <div class="methode-check sign-in conditions d-flex">
+
+                  </div>
+                  <!-- <div class="methode-check sign-in conditions d-flex">
   
   
                         <h6><a class="pop-click" href="#">Forgot Password</a></h6>
@@ -881,29 +886,35 @@
                               [routerLink]="['/auth/register']">Register</a></span></h6>
   
                       </div> -->
-                    <div class="forget-text">
-                      <div class="row">
-                        <div class="col-12">
-                          <h4 class="float-right" routerLink = "/auth/reset-password">Forgot Password?</h4>
-                   
+                  <div class="forget-text">
+                    <div class="row">
+                      <div class="col-12">
+
+                        <h4 class="float-right" routerLink="/auth/reset-password">Forgot Password?</h4>
+
+                      </div>
+                      <!-- Default unchecked -->
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" (change) ="admin($event)" [checked] ="isAdmin" class="custom-control-input" id="defaultUnchecked">
+                        <label class="custom-control-label" for="defaultUnchecked">isAdmin</label>
                       </div>
                     </div>
-  
+
                     <div class="btn-sign-in">
                       <div class="row">
                         <div class="col-12">
                           <button type="submit">Sign in</button>
                           <h6 class="forget-text account-txt">Dont't have an account? <span><a
-                            [routerLink]="['/auth/register']">Register</a></span></h6>
-                        </div>
+                                [routerLink]="['/auth/register']">Register</a></span></h6>
                         </div>
                       </div>
                     </div>
-  
-                    <!-- <div class="border-topline"></div> -->
-  
-  
-                    <!-- <div class="profile-Hd">
+                  </div>
+
+                  <!-- <div class="border-topline"></div> -->
+
+
+                  <!-- <div class="profile-Hd">
                       <h3>Don't have a profile?</h3>
                       <p>Create a profile to get full access to our articles and reports, and to subscribe to our email
                         newsletters and alerts.</p>
@@ -911,12 +922,12 @@
                         Create a profile <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
                       </h4>
                     </div> -->
-  
-                  </div>
+
                 </div>
-  
-              </section>
-              <!-- <div class="form_section">
+              </div>
+
+            </section>
+            <!-- <div class="form_section">
                 <div class="row justify-content-between sign-up  step3 sign-in">
                   <div class="col-lg-7 bg_colorwhite">
                     <div class="center_stepprocess">
@@ -1002,13 +1013,12 @@
   
                 </div>
               </div> -->
-            </form>
-          </div>
+          </form>
         </div>
-  
       </div>
-  
-    </router-outlet>
-  
-  </app-auth-layout>
 
+    </div>
+
+  </router-outlet>
+
+</app-auth-layout>

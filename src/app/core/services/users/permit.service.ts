@@ -246,6 +246,19 @@ export class PermitService {
     );
   }
 
+  convertPermitApplication(data): Observable<any> {
+    const href = `${environment['converPermitApplication']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   submitDailyWorkLocation(data): Observable<any> {
     const href = `${environment['submitDailyWorkLocation']}`;
     return this.http.post<any>(href, data).pipe(

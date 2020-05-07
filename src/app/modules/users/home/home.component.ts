@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   public isSubmit: boolean = false;
   public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*";
   public returnUrl;
-
+  public isAdmin = false
   public formValidations = {
     'email': new FormControl('', [
       Validators.required,
@@ -53,6 +53,11 @@ export class HomeComponent implements OnInit {
 
   }
 
+  admin(value) {
+    debugger
+    this.isAdmin = value.target.checked
+  }
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -67,7 +72,8 @@ export class HomeComponent implements OnInit {
       return false;
     }
 
-    this.authenticationService
+    if(!this.isAdmin){
+      this.authenticationService
       .login(this.loginForm.value)
       .subscribe(res => {
         if (res.status === 'success') {
@@ -77,6 +83,19 @@ export class HomeComponent implements OnInit {
         }
       })
 
+    } else if(this.isAdmin){
+      this.authenticationService
+      .adminLogin(this.loginForm.value)
+      .subscribe(res => {
+        if (res.status === 'success') {
+          this.toasterService.success(appToaster.successHead, appToaster.loginSucess);
+          this.router.navigate(['/dashboard/permit']);
+          return true;
+        }
+      })
+
+    }
+    
   }
 
 }

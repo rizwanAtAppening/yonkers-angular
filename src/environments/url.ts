@@ -79,7 +79,8 @@ const userUrl = {
   addDuplimester:`/dumuster`,
   getDuplimester:`/dumuster`,
   addDwlPermitApplication:`/application/utility`,
-  deletDailyWorkLocation:`/application/daily_work_location`
+  deletDailyWorkLocation:`/application/daily_work_location`,
+  converPermitApplication:`/`
   // searchUserApplication:`/application`
 
 
