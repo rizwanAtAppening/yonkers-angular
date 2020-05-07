@@ -309,12 +309,18 @@
                                                                     <input type="number" id="Street"
                                                                         class="form-control"
                                                                         formControlName="street_one"
-                                                                        [class]="addloc.invalid && (addloc.dirty || addloc.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label
-                                                                        [class]="addloc.invalid && (addloc.dirty || addloc.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                        [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                         for="Street">Street One</label>
                                                                 </div>
+                                                                <div
+                                                                *ngIf="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit)">
+                                                                <p class="form-error" *ngIf="addloc.controls.street_one.errors['required']">
+                                                                    Please enter street one.
+                                                                </p>
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -326,7 +332,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group" id="add_slect">
                                                                     <select type="text" id="Selecttxt"
-                                                                        formControlName="address_join" 
+                                                                        formControlName="address_join"  [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control">
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
@@ -348,14 +354,21 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="aa1" class="form-control"
-                                                                        formControlName="street_two">
-                                                                    <label class="form-control-placeholder"
+                                                                        formControlName="street_two"  [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" class="form-control"
+                                                                        required="">
+                                                                    <label [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                         for="aa1">Street Two</label>
                                                                     <!-- <div class="btn-pre remover" *ngIf="i > 0">
                                                                         <button class="continue" (click)="remove(i)"
                                                                             type="submit">Remove</button>
                                                                     </div> -->
                                                                 </div>
+                                                                <div
+                                                                *ngIf="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit)">
+                                                                <p class="form-error" *ngIf="addloc.controls.street_two.errors['required']">
+                                                                    Please enter street two.
+                                                                </p>
+                                                            </div>
 
                                                             </div>
                                                         </div>
@@ -1965,8 +1978,8 @@
                                                         <button class="what-btn" type="button">
                                                             Project Details
                                                         </button>
-                                                        <button class="edit-icon"><img src="assets/images/edit.svg"
-                                                                alt="" (click)="editByReviewPage('projectDetail')">
+                                                        <button class="edit-icon" (click)="editByReviewPage('projectDetail')"><img src="assets/images/edit.svg"
+                                                                alt="" >
                                                             Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefive"
                                                             aria-expanded="true" aria-controls="collapsefive"><i

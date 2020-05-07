@@ -118,6 +118,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
         data['controls'].street_one.setErrors(null)
+        data['controls'].street_two.setErrors(null)
+        data['controls'].address_join.setErrors(null)
+
 
         this.addLocationControls.value.splice(i, i)
 
@@ -292,8 +295,8 @@ export class AddPermitTabSectionComponent implements OnInit {
   addLocationFormGroup(): FormGroup {
     return this.formBuilder.group({
       street_one: ['', Validators.required],
-      street_two: [],
-      address_join: []
+      street_two: ['',Validators.required],
+      address_join: ['',Validators.required]
     })
   }
 
@@ -450,7 +453,11 @@ export class AddPermitTabSectionComponent implements OnInit {
       } else if (!this.isLocation && this.isAddressFound) {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
+          value['controls'].street_two.setErrors(null)
+          value['controls'].address_join.setErrors(null)
+
         })
+        
         this.whereForm.controls.address.setErrors(null)
 
         this.data = {
@@ -464,6 +471,8 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (!this.isAddressFound) {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
+          value['controls'].address_join.setErrors(null)
+          value['controls'].street_two.setErrors(null)
         })
         this.whereForm.controls.address_id.setErrors(null)
         this.data = {
@@ -626,6 +635,8 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.whereForm.controls.also_known_as.setValue(application.also_known_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
+        value['controls'].street_two.setErrors(null)
+        value['controls'].address_join.setErrors(null)
       })
     }
     else if (application.location_type == 2 && application.location.length > 0) {
@@ -781,6 +792,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       } else {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
+          value['controls'].address_join.setErrors(null)
+          value['controls'].street_two.setErrors(null)
+
         })
 
       }
@@ -864,6 +878,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       } else {
         this.addLocationControls.controls.map((value, i) => {
           value['controls'].street_one.setErrors(null)
+          value['controls'].address_join.setErrors(null)
+          value['controls'].street_two.setErrors(null)
+
         })
 
       }

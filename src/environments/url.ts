@@ -75,10 +75,11 @@ const userUrl = {
   addLicenseDetails: `/user/lienceUpload`,
   getLicenseDetails:`/user/lience `,
   addDailyWorkLocation:`/application/daily_work_location`,
-  submitDailyWorkLocation:`/application/daily_work_location/submitted`,
+  submitDailyWorkLocation:`/application/submitted/daily_work_location`,
   addDuplimester:`/dumuster`,
   getDuplimester:`/dumuster`,
-  addDwlPermitApplication:`/application/utility`
+  addDwlPermitApplication:`/application/utility`,
+  deletDailyWorkLocation:`/application/daily_work_location`
   // searchUserApplication:`/application`
 
 

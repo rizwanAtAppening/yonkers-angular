@@ -30,10 +30,17 @@ export class PermitComponent implements OnInit {
     this.settings = settingConfig;
   }
 
+  public dwlType: string = '1'
   ngOnInit() {
+    if (localStorage.getItem('dwlType')) {
+      this.dwlType = (localStorage.getItem('dwlType'));
+      localStorage.removeItem('dwlType');
+    }
+
+
     this.userService.changeSaveAndExit(true);
     this.permitService.deleteSessionApplication();
-    this.getPermitApplication();
+    this.getPermitApplication(this.dwlType);
     this.onInIt();
     this.currentUser()
 
@@ -180,13 +187,14 @@ export class PermitComponent implements OnInit {
   }
 
   public application_type: number
-  getPermitApplication() {
+  getPermitApplication(dwlType) {
     debugger
+    this.dwlType = dwlType
     this.currentUser()
-    if (this.userType == 3) {
-      this.application_type = 2
-    } else {
+    if (this.dwlType == '1') {
       this.application_type = 1
+    } else if (this.dwlType == '2') {
+      this.application_type = 2
 
     }
     // const data = {
@@ -206,10 +214,11 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  paginate(page) {
+  paginate(page,dwlType) {
+    this.dwlType = dwlType
     debugger
     this.currentPage = page
-    this.getPermitApplication()
+    this.getPermitApplication(this.dwlType)
   }
   public searchString: string
   searchApplication() {
@@ -225,5 +234,18 @@ export class PermitComponent implements OnInit {
   updateApplication(applicationId) {
 
     this.router.navigate(['/dashboard/update-application'], { queryParams: { id: applicationId } });
+  }
+  navigate(value) {
+    if (value == 1) {
+      this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: value } })
+      localStorage.setItem('dwlType', '1');
+
+    }
+    else {
+      this.router.navigate(['/dashboard/daily-work-location'], { queryParams: { type: value } })
+      localStorage.setItem('dwlType', '2');
+
+
+    }
   }
 }
