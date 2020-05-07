@@ -57,3 +57,6 @@ margin-top: 2px !important
 .closeimage {
     margin-top: 234px
 }
+.form-control{
+    border-radius: 0px !important;
+}

@@ -445,7 +445,7 @@
                             </div>
                             </div>
                             <div class="col-2 ">
-                                <button class="btn btn-success" (click) ="addressNotFound(true)">Cancel</button>
+                                <button class=" add-cancle_btn " (click) ="addressNotFound(true)">Cancel</button>
                             </div>
                         </div>
                         </form>
@@ -685,7 +685,7 @@
                                                             </select>
                                                             <label
                                                             [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                            for="Phone-id2">State</label>
+                                                            for="Phone-id2" id="daynamic-select">State</label>
                                                                 <div
                                                                 *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
                                                                 <p class="form-error"
