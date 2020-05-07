@@ -326,7 +326,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group" id="add_slect">
                                                                     <select type="text" id="Selecttxt"
-                                                                        formControlName="address_join"
+                                                                        formControlName="address_join" 
                                                                         class="form-control">
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
@@ -760,7 +760,7 @@
             </div>
             <div [class]="(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'"
                 id="pills-Contractor" role="tabpanel" aria-labelledby="pills-Contractor-tab">
-                <div class="what-bg" *ngIf="(application?.role == 2 || application?.role == 3 ||application?.role == 1) && application?.type != 4">
+                <div class="what-bg" *ngIf="( application?.role != 3 ||application?.role != 1) && application?.type != 4 ||( application?.role == 2 && application?.type == 4)">
                     <div class="job-location-Hd">
                         <h3>Contractor Details</h3>
                     </div>
