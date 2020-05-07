@@ -95,19 +95,19 @@
                                 <div class="col-12">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="pills-Permit-loaction-tab" data-toggle="pill"
+                                            <a  [class]="dwlType == '1'?'nav-link active':'nav-link'" id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
-                                                aria-controls="pills-Permit-loaction" aria-selected="true" (click) = "getPermitApplication()">Permit</a>
+                                                aria-controls="pills-Permit-loaction" aria-selected="true" (click) = "getPermitApplication(1)">Permit</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="pills-Daily-tab" data-toggle="pill"
+                                            <a  [class]="dwlType == '2'?'nav-link active':'nav-link'"  id="pills-Daily-tab" data-toggle="pill" (click) = "getPermitApplication(2)"
                                                 href="#pills-Daily" role="tab" aria-controls="pills-Daily"
                                                 aria-selected="false">Daily work location</a>
                                         </li>
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-Permit-loaction"
+                                        <div [class]="dwlType == '1' ? 'tab-pane fade show active':'tab-pane fade'"  id="pills-Permit-loaction"
                                             role="tabpanel" aria-labelledby="pills-Permit-loaction-tab">
                                             <section class="table-sec daily-sec">
                                                 <div class="container p-0 container_full">
@@ -137,12 +137,12 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project"><button
-                                                                                    routerLink="/dashboard/add-user-permit">
+                                                                            <div class="New-Project" (click) ="navigate(1)"><button
+                                                                                   >
                                                                                     <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
-                                                                                    Projectmj</button></div>
+                                                                                    Project</button></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -212,7 +212,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event)">
+                                                                <pagination-controls (pageChange)="paginate($event,1)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -221,7 +221,7 @@
                                                 </div>
                                             </section>
                                         </div>
-                                        <div class="tab-pane fade" id="pills-Daily" role="tabpanel"
+                                        <div [class]="dwlType == '2' ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Daily" role="tabpanel"
                                             aria-labelledby="pills-Daily-tab">
                                             <section class="table-sec daily-sec">
                                                     <div class="container p-0 container_full">
@@ -251,8 +251,8 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-4">
-                                                                                <div class="New-Project"><button
-                                                                                        routerLink="/dashboard/daily-work-location">
+                                                                                <div class="New-Project"  (click) ="navigate(2)"><button
+                                                                                        >
                                                                                         <span><img
                                                                                                 src="assets/images/plus.svg"
                                                                                                 alt=""></span> New
@@ -288,8 +288,9 @@
                                                                                             </td>
                                                                                             <td>{{application?.address_id?application?.address_id :application?.location[0]?.street_one}}
                                                                                             </td>
-                                                                                            <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
-                                                                                            </td>
+                                                                                            <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
+                                                                                                <td class="msg"><b>Draft</b></td>
+                                                                                           
                                                                                             <td
                                                                                                 class="submited-Btn blue-txt-2">
                                                                                                 <button>Submitted</button>
@@ -326,7 +327,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <pagination-controls (pageChange)="paginate($event)">
+                                                                    <pagination-controls (pageChange)="paginate($event,2)">
                                                                     </pagination-controls>
     
                                                                 </div>

@@ -323,14 +323,14 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
+                                                        <tr *ngFor = "let image of allImage; let i = index">
                                                             <td>
 
                                                                 <div class="file_slect-input">
                                                                     <div class="form-group">
-                                                                        <select>
-                                                                            <option>Drawings/ Plans </option>
-                                                                            <option>Select</option>
+                                                                        <select (change) = "selectImageType($event.target.value)">
+                                                                            <option value="" hidden>--Select--</option>
+                                                                            <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
                                                                         </select>
                                                                         <span><i class="fa fa-angle-down"
                                                                                 aria-hidden="true"></i></span>
@@ -343,54 +343,26 @@
                                                                 <button>
                                                                     <span><img src="assets/images/b-upload.svg"
                                                                             alt=""></span> Upload file
-                                                                    <input type="file">
+                                                                    <input type="file" (change)="media($event)">
                                                                 </button>
                                                             </td>
                                                             <td class="acton-Btn">
                                                                 <button> <span><img src="assets/images/v-btn.svg"
                                                                             alt=""></span> View</button>
-                                                                <button class="delet-btn" data-toggle="modal"
-                                                                    data-target="#delete_application"> <span><img
-                                                                            src="assets/images/d-btn.svg" alt=""></span>
+                                                                <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
+                                                                            src="assets/images/d-btn.svg"  alt=""></span>
                                                                     Delete</button>
                                                             </td>
 
                                                         </tr>
-                                                        <tr>
-                                                            <td>
-
-                                                                <div class="file_slect-input">
-                                                                    <div class="form-group">
-                                                                        <select>
-                                                                            <option>Select type</option>
-                                                                            <option>Select</option>
-                                                                        </select>
-                                                                        <span><i class="fa fa-angle-down"
-                                                                                aria-hidden="true"></i></span>
-                                                                    </div>
-                                                                </div>
-
-
-                                                            </td>
-                                                            <td class="upload-Btn">
-                                                                <button>
-                                                                    <span><img src="assets/images/b-upload.svg"
-                                                                            alt=""></span> Upload file
-                                                                    <input type="file">
-                                                                </button>
-                                                            </td>
-                                                            <td class="acton-Btn">
-
-                                                            </td>
-
-                                                        </tr>
+                                                        
 
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <div class="more-txt">
+                                            <div class="more-txt" (click) ="addMoreImage()">
                                                 <span>+</span> Add more Document
                                             </div>
                                         </div>
@@ -399,7 +371,7 @@
 
                                     <div class="btn-pre">
 
-                                        <button type="submit" class="continue mr-0" (click)="addPermitApplication()">Add
+                                        <button class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
                                             to list</button>
                                     </div>
 
@@ -839,13 +811,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>47 W 13th St, New York <small>From</small> 20 Cooper Square,
+                                <tr *ngFor ="let data of dwlApplication	">
+                                    <td>{{data?.address_id}}
+                                        <!-- <small>From</small> 20 Cooper Square, -->
                                         <strong>Show More</strong>
                                     </td>
-                                    <td>547567</td>
-                                    <td>547567</td>
-                                    <td>25 Apr 2020</td>
+                                    <td>{{data?.layout ? data?.layout:'_'}}</td>
+                                    <td>            {{ settings?.getSetting('purpose',data?.project_detail?.purpose)}}
+                                        </td>
+                                    <td>{{data?.project_detail?.start_date | date}}</td>
 
                                     <td class="update-txt dropdown-action">
                                         <span> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -862,7 +836,7 @@
                         </table>
                     </div>
                     <div class="btn-pre">
-                        <button class="continue mr-0">Submit</button>
+                        <button class="continue mr-0" (click) = "submitDailyWorkLocation()">Submit</button>
                     </div>
                 </div>
 

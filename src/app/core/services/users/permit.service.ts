@@ -259,6 +259,19 @@ export class PermitService {
     );
   }
 
+  deleteDailyWorklocation(id): Observable<any> {
+    const href = `${environment['deletDailyWorkLocation']}/${id}`;
+    return this.http.post<any>(href,'').pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
 
 }
 
