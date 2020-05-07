@@ -1,6 +1,8 @@
 <app-layout>
     <router-outlet>
-        <section class="box-work-daily">
+<div class="bg-gray-color dwl-margin-top">
+
+        <section class="box-work-daily mx-auto mt-0">
             <div class="daily_Hd">
                 <h2>Daily Work location</h2>
             </div>
@@ -14,7 +16,7 @@
                                         <div class="col-12 ">
                                             <div class="form-group">
                                                 <input type="number" id="ln1" formControlName="layout_number"
-                                                    class="form-control">
+                                                    class="form-control" required>
                                                 <label class="form-control-placeholder" for="ln1">Layout Number</label>
                                             </div>
                                         </div>
@@ -63,7 +65,7 @@
                                                                 <div class="form-group">
                                                                     <input type="number" id="jobadd"
                                                                         class="form-control"
-                                                                        formControlName="address_id">
+                                                                        formControlName="address_id" required>
                                                                     <label class="form-control-placeholder"
                                                                         for="jobadd">Address</label>
                                                                 </div>
@@ -270,7 +272,7 @@
         </section>
 
 
-        <section class="box-work-daily-2">
+        <section class="box-work-daily-2 mx-auto">
             <div class="row">
                 <div class="col-12">
                     <div class="table-permit  mt-0">
@@ -315,6 +317,6 @@
                 <button class="continue mr-0" (click)="submitDailyWorkLocation()">Submit</button>
             </div>
         </section>
-
+    </div>
     </router-outlet>
 </app-layout>
