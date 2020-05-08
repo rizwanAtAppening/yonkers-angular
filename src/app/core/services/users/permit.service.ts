@@ -246,9 +246,9 @@ export class PermitService {
     );
   }
 
-  convertPermitApplication(data): Observable<any> {
-    const href = `${environment['converPermitApplication']}`;
-    return this.http.post<any>(href, data).pipe(
+  convertPermitApplication(id): Observable<any> {
+    const href = `${environment['converPermitApplication']}/${id}`;
+    return this.http.post<any>(href, '').pipe(
       tap(
         (data) => {
           if (data.status === 'success') {

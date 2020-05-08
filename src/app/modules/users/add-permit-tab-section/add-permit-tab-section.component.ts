@@ -565,7 +565,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
-      if (this.currentTab == 'where') {
+      if (this.currentTab == 'where' || this.currentTab == 'contrator' ) {
         this.getApplication()
       }
       this.currentTab = nextTab
@@ -762,16 +762,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       return false
     }
-
-    // console.log(this[formGroup])
-    // if (this[formGroup].invalid) {
-    //   this.isSubmit = true
-    //   return false
-    // }
     if (this.currentTab == 'what') {
-      // this.whatTab()
-      // this.addPermitApplication('', tab);
-      // this.checkTab(tab)
       this.currentTab = tab
       this.router.navigate(['/dashboard/add-permit-selectType'])
       return false
@@ -802,15 +793,11 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.currentTab = tab
     }
     if (this.currentTab == 'contrator') {
-      //this.contractorTab()
-      // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }
 
     if (this.currentTab == 'projectDetail') {
-      // this.projectDetailsTab()
-      // this.addPermitApplication('', tab);
       this.checkTab(tab)
       this.currentTab = tab
     }

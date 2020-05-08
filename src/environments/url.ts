@@ -80,7 +80,7 @@ const userUrl = {
   getDuplimester:`/dumuster`,
   addDwlPermitApplication:`/application/utility`,
   deletDailyWorkLocation:`/application/daily_work_location`,
-  converPermitApplication:`/`
+  converPermitApplication:`/application/convert/dwl_to_permit`
   // searchUserApplication:`/application`
 
 

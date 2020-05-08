@@ -238,6 +238,10 @@ export class PermitComponent implements OnInit {
     }
     this.permitService.searchApplication(data).subscribe(data => {
       this.applictionDetails = data.response;
+     // console.log(this.dwlApplication)
+      this.offset = data.offset;
+      this.totalPagination = data.total
+      this.currentPage = data.currentPage;
     })
   }
 
@@ -265,7 +269,7 @@ export class PermitComponent implements OnInit {
 
   convertPermitApplication() {
     debugger
-    this.permitService.convertPermitApplication({ id: this.applicationId }).subscribe(data => {
+    this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
       this.getPermitApplication(this.dwlType)
     })
