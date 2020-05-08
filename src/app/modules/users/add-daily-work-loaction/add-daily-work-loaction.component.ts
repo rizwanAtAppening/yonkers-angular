@@ -72,13 +72,13 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
   }
   addLocationForm(): void {
-    debugger
+    
     this.addLocationControls.push(this.addLocationFormGroup())
   }
 
 
   remove(index) {
-    debugger
+    
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -121,7 +121,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlData = {}
   adddwl() {
 
-    debugger
+    
     if (this.location_type == 1) {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -190,7 +190,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   application_type: number = 2
   // currentPage = 1
   getPermitApplication() {
-    debugger
+    
     // if (this.userType == 3) {
     //   this.application_type = 1
     // } else {
@@ -229,7 +229,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public id: number
   public dwl_id: number
   editAppliction(value) {
-    debugger
+    
     this.location_type = value.location_type
     this.id = value.id;
     this.dwl_id = value.application_daily_work_location.id
@@ -284,7 +284,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   deleteApplication(id) {
-    debugger
+    
     this.permitService.deleteDailyWorklocation(id).subscribe(data => {
       this.toasterService.success('Delete Succesfully');
       this.getPermitApplication()

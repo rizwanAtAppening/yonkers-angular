@@ -37,7 +37,7 @@ export class CreateNewPasswordComponent implements OnInit {
   public isSubmited = false;
   get newPassword() { return this.newPasswordForm.controls }
   createNewPass() {
-    debugger
+    
     if (this.newPasswordForm.invalid) {
       this.isSubmited = true;
       return false

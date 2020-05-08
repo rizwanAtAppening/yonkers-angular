@@ -81,7 +81,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   addLocationForm(): void {
-    debugger
+    
     this.addLocationControls.push(this.addLocationFormGroup())
   }
   get addCon() {
@@ -90,7 +90,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   remove(index) {
-    debugger
+    
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -108,7 +108,7 @@ export class AddPermitComponent implements OnInit {
 
   public isPermit = false
   addPermitApplication() {
-    debugger
+    
     const data = {
 
     }
@@ -142,7 +142,7 @@ export class AddPermitComponent implements OnInit {
     }
     this.permitForm.value.location_type = this.location_type
     this.permitForm.value.layout_number = this.permitForm.value.layout
-    this.permitForm.value.permit_type = this.permitForm.value.type
+    this.permitForm.value.permit_type = 1
     var formData = new FormData();
     if (this.location_type == 2) {
       // formData.append(
@@ -290,7 +290,7 @@ export class AddPermitComponent implements OnInit {
   public peritApplication = []
   public imageType: any = 1
   selectImageType(value) {
-    debugger
+    
     this.imageType = Number(value)
   }
 
@@ -314,7 +314,7 @@ export class AddPermitComponent implements OnInit {
   public image: any
   public name: any = []
   media(event1) {
-    debugger
+    
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0]
     this.name.push({ name: (this.attachment), type: this.imageType })
@@ -335,7 +335,7 @@ export class AddPermitComponent implements OnInit {
   // currentPage = 1
   public dwlApplication = []
   getPermitApplication() {
-    debugger
+    
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
@@ -349,7 +349,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   submitDailyWorkLocation() {
-    debugger
+    
     this.permitService.submitDailyWorkLocation({ application: this.dwlApplication }).subscribe(data => {
       console.log(data)
       this.router.navigate(['/dashboard/permit'])
@@ -360,7 +360,7 @@ export class AddPermitComponent implements OnInit {
   public id: number
   public dwl_id: number
   editAppliction(value) {
-    debugger
+    
     this.location_type = 2
     this.id = value.id;
     if(value.application_daily_work_location && value.application_daily_work_location.id )
@@ -409,7 +409,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.start_date.setValue( new Date(value.project_detail.start_date));
       this.permitForm.controls.end_date.setValue( new Date(value.project_detail.end_date));
       this.permitForm.controls.description.setValue(value.project_detail.description);
-      this.permitForm.controls.layout.setValue(value.layout);
+      this.permitForm.controls.layout.setValue(value.project_detail.layout_number);
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
@@ -423,7 +423,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.start_date.setValue( new Date(value.project_detail.start_date));
       this.permitForm.controls.end_date.setValue( new Date(value.project_detail.end_date));
       this.permitForm.controls.description.setValue(value.project_detail.description);
-      this.permitForm.controls.layout.setValue(value.layout);
+      this.permitForm.controls.layout.setValue(value.project_detail.layout_number);
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
@@ -435,7 +435,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   deleteApplication(id) {
-    debugger
+    
     this.permitService.deleteDailyWorklocation(id).subscribe(data => {
       this.toasterService.success('Delete Succesfully');
       this.getPermitApplication()

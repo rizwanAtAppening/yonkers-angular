@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
   }
 
   admin(value) {
-    debugger
+    
     this.isAdmin = value.target.checked
   }
 

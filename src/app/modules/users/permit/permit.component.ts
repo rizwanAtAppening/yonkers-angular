@@ -55,7 +55,7 @@ export class PermitComponent implements OnInit {
 
   public currentUserInfo: any
   currentUser() {
-    debugger
+    
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
       this.userType = this.currentUserInfo.type
@@ -99,13 +99,13 @@ export class PermitComponent implements OnInit {
 
   }
   addLocationForm(): void {
-    debugger
+    
     this.addLocationControls.push(this.addLocationFormGroup())
   }
 
 
   remove(index) {
-    debugger
+    
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -143,7 +143,7 @@ export class PermitComponent implements OnInit {
   public dwlApplication = []
   public dwlData = {}
   adddwl() {
-    debugger
+    
     if (this.dwlForm.invalid) {
       this.isdwlSubmit = true;
       return false
@@ -191,7 +191,7 @@ export class PermitComponent implements OnInit {
 
   public application_type: number
   getPermitApplication(dwlType) {
-    debugger
+    
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -219,13 +219,13 @@ export class PermitComponent implements OnInit {
 
   paginate(page, dwlType) {
     this.dwlType = dwlType
-    debugger
+    
     this.currentPage = page
     this.getPermitApplication(this.dwlType)
   }
   public searchString: string
   searchApplication() {
-    debugger
+    
     if (this.dwlType == '1') {
       this.application_type = 1
     } else if (this.dwlType == '2') {
@@ -263,12 +263,12 @@ export class PermitComponent implements OnInit {
     }
   }
   getApplicationId(id) {
-    debugger
+    
     this.applicationId = id
   }
 
   convertPermitApplication() {
-    debugger
+    
     this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
       this.getPermitApplication(this.dwlType)

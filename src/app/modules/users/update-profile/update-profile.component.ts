@@ -54,7 +54,7 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   getCurrenrUser() {
-    debugger
+    
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser;
       if (this.currentUserInfo) {
@@ -79,7 +79,7 @@ export class UpdateProfileComponent implements OnInit {
 
   public isSubmit = false;
   updateProfile() {
-    debugger
+    
     if (this.profileForm.invalid) {
       this.isSubmit = true
       return false
