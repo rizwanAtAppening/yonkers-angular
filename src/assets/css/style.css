@@ -2002,21 +2002,25 @@ text-align: center;
 }
 #defultInput select{
     height: 62px;
-    color: #7E819C;
     background: #fff;
     border: 0.5px solid #7E819C;
     border-radius: 0px;
     font-family: 'Poppins-Regular';
     padding-left: 21px;
 }
-
+#defultInput span{
+    position: absolute;
+    top: 21px;
+    font-size: 20px;
+    right: 21px;
+}
 #defultInput label{
     top: -15px;
     opacity: 1;
     background: #fff;
     padding: 0px 8px;
     font-family: 'Poppins-Regular';
-    color: #7E819C;
+
 }
 
 .saveTxtbtn button.submitTxtbtn {
@@ -2569,6 +2573,8 @@ border: 0.5px solid #282D5B99;
     padding: 14px 17px;
     resize: none;
     border: 0.5px solid #282D5B99;
+    border-radius: 0px;
+
 }
 .dd-textarea textarea::placeholder{
     color: #00183966;
@@ -2763,6 +2769,8 @@ margin-top: 60px;
     line-height: 24px;
     border: 0.5px solid #282D5BCC;
     position: relative;
+    border-radius: 0px !important;
+
 }
 .sub-oppining span{
     position: absolute;
@@ -2805,6 +2813,7 @@ height: 113px;
 border: 0.5px solid #282D5B;
 padding: 14px 17px;
 resize: none;
+border-radius: 0px !important;
 }
 .Detailed-txt textarea::placeholder{
     color: #00183966;
@@ -2927,4 +2936,24 @@ padding: 36px 94px;
 
 .dwl-margin-top{
     padding-top: 80px;
+}
+
+.signIn-checkbox .custom-control-label{
+    font-size: 15px;
+    font-family: 'Poppins-Regular';
+}
+
+.range-work-loaction .bdp_email .new__select select{
+    border-radius: 0px !important;
+    border: 0.5px solid #282D5B99;
+    color: #282D5B;
+}
+
+
+.bussiness-input-two{
+    margin-top: 54px;
+}
+
+#enter-dec-msg {
+    margin-left: 14px !important;
 }

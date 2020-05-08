@@ -76,8 +76,25 @@
                                                 </div>
 
                                             </div>
-                                            <div class="unit-txt">
+                                            <div class="bussiness-input-two">
                                                 <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="number" id="knowsh"
+                                                                class="form-control"
+                                                                formControlName="also_know_as"
+                                                                            formControlName="" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="knowsh">Unit  No./Also  Known  as</label>
+                                                        </div>
+                                                    </div>
+</div>
+</div>
+                                                    </div>
+<!-- 
                                                     <div class="col-12">
                                                         <div class="know_us">
                                                             <div class="row">
@@ -94,7 +111,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -135,7 +152,7 @@
                                                         </div>
 
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-4 range-work-loaction">
                                                         <div class="bdp_email loction-adInput">
                                                             <div class="row">
                                                                 <div class="col-12 ">
@@ -202,7 +219,7 @@
                                         </form>
                                     </div>
                                     <div class="add-moreTxt">
-                                        <div class="btn-add-more" (click)="addLocationForm()">Add more
+                                        <div class="btn-add-more" (click)="addLocationForm()">+ &nsub; Add more
                                             address</div>
                                     </div>
 
@@ -255,7 +272,7 @@
                                 </div>
                                 <div
                                     *ngIf="dwlControl.work_description.invalid && (dwlControl.work_description.dirty || dwlControl.work_description.touched || isdwlSubmit)">
-                                    <p class="form-error" *ngIf="dwlControl.work_description.errors['required']">
+                                    <p class="form-error" id="enter-dec-msg" *ngIf="dwlControl.work_description.errors['required']">
                                         Please Enter description
                                     </p>
                                 </div>
@@ -264,7 +281,7 @@
 
                         <div class="btn-pre">
                             <button type="button">Cancel</button>
-                            <button class="continue mr-0" type="submit" (click)="adddwl()">Add</button>
+                            <button class="continue mr-0" type="submit" (click)="adddwl()">Add to list</button>
                         </div>
                     </form>
                 </div>
