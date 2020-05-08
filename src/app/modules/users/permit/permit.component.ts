@@ -226,8 +226,15 @@ export class PermitComponent implements OnInit {
   public searchString: string
   searchApplication() {
     debugger
+    if (this.dwlType == '1') {
+      this.application_type = 1
+    } else if (this.dwlType == '2') {
+      this.application_type = 2
+
+    }
     const data = {
       search_query: String(this.searchString),
+      application_type:this.application_type
     }
     this.permitService.searchApplication(data).subscribe(data => {
       this.applictionDetails = data.response;

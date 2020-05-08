@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 
 const TOASTR_OPTIONS = {
-  timeOut: 10000,
+  timeOut: 1000 ,
   positionClass: 'toast-top-right',
   preventDuplicates: true,
 }

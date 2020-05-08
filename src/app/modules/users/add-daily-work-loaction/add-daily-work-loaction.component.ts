@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlForm: FormGroup;
   public settings: any;
-
+  public isPermit = false;
   constructor(
     private fb: FormBuilder,
     private permitService: PermitService,
@@ -132,6 +132,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_two.setErrors(null)
       })
+    }
+    else if(this.location_type == 2){
+      this.dwlForm.controls.address_id.setErrors(null)
     }
     if (this.dwlForm.invalid) {
       this.isdwlSubmit = true;
