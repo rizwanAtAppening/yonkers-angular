@@ -889,15 +889,21 @@
                   <div class="forget-text">
                     <div class="row">
                       <div class="col-12">
-
+                        <div class="row">
+                          <div class="col-6 signIn-checkbox">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" (change) ="admin($event)" [checked] ="isAdmin" class="custom-control-input" id="defaultUnchecked">
+                              <label class="custom-control-label" for="defaultUnchecked">Sign in as admin</label>
+                            </div>
+                          </div>
+                       
+                        <div class="col-6">
                         <h4 class="float-right" routerLink="/auth/reset-password">Forgot Password?</h4>
-
+                             </div>
                       </div>
+                    </div>
                       <!-- Default unchecked -->
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" (change) ="admin($event)" [checked] ="isAdmin" class="custom-control-input" id="defaultUnchecked">
-                        <label class="custom-control-label" for="defaultUnchecked">isAdmin</label>
-                      </div>
+                    
                     </div>
 
                     <div class="btn-sign-in">
