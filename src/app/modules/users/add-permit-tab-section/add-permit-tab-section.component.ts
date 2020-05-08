@@ -415,6 +415,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       
       //   this.permitType = this.application.permit_type
       // }
+     this.permitType = 1
       if (this.application_id) {
         this.data = {
           role: Number(this.whatForm.value.role),
@@ -1055,9 +1056,9 @@ export class AddPermitTabSectionComponent implements OnInit {
     
     this.permitService.updateApplication(this.application_id).subscribe(data => {
       this.application = data.response;
-      if(this.application){
-        this.permitType = this.application.permit_type
-      }
+      // if(this.application){
+      //   this.permitType = this.application.permit_type
+      // }
       this.checkTab(this.currentTab)
     })
   }
