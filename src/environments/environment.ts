@@ -6,7 +6,9 @@ import { staticUrls } from './staticUrls';
 // The list of file replacements can be found in `angular.json`.
 export const environment = {
   production: false,
-  host: 'http://139.59.40.62:8083',
+ host: 'http://139.59.40.62:8083',
+  // host: 'http://localhost:3000',
+
   ...urls,
   ...staticUrls,
 };

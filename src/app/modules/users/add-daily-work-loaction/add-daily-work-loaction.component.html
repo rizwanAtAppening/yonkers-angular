@@ -15,7 +15,7 @@
                                     <div class="row">
                                         <div class="col-12 ">
                                             <div class="form-group">
-                                                <input type="number" id="ln1" formControlName="layout_number"
+                                                <input type="number" id="ln1" formControlName="layout_number" (input) = "fillDataByLayOutNumber()"
                                                     class="form-control" >
                                                 <label class="form-control-placeholder" for="ln1">Layout Number</label>
                                             </div>
@@ -94,24 +94,7 @@
 </div>
 </div>
                                                     </div>
-<!-- 
-                                                    <div class="col-12">
-                                                        <div class="know_us">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <label>Unit
-                                                                            No./Also
-                                                                            Known
-                                                                            as</label>
-                                                                        <textarea placeholder="Type something here..."
-                                                                            formControlName="also_know_as"
-                                                                            formControlName=""></textarea>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> -->
+
                                                 </div>
                                             </div>
                                         </div>
@@ -229,8 +212,60 @@
                         </div>
 
 
+                        <div class="job-input">
+                                <div class="container p-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="number" id="permit"
+                                                                class="form-control"
+                                                                formControlName="permit_type" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="permit">Permit type</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                  
+                                </div>
+
+                            </div>
+
+                            <div class="job-input">
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="number" id="permit"
+                                                                    class="form-control"
+                                                                    formControlName="parcel_number" required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="permit">Parcel Number</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+    
+                                        </div>
+                                      
+                                    </div>
+    
+                                </div>
 
 
+                                
                         <div class="bussiness-input">
                             <div class="row">
                                 <div class="col-12">
@@ -304,20 +339,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let dwl of dwlApplication">
-                                    <td>{{dwl?.application_daily_work_location?.layout_number}}
+                                <tr *ngFor="let data of dwlApplication">
+                                    <td>{{data?.application_daily_work_location?.layout_number}}
                                     </td>
-                                    <td>156 UNIVERSITY</td>
+                                    <td >
+                                            <p *ngIf ="data?.address_id">                                                         {{data?.address_id}}
+                                               </p>
+                                            <h6  *ngIf ="!data?.address_id && data?.isSingleAddress" >
+                                                <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>
+
+                                                <h6  *ngIf ="!data?.address_id && !data.isSingleAddress" >
+                                                       <p *ngFor ="let location of data?.location " >{{location?.street_one}} {{location?.address_join == 1 ? 'To':'End'}} {{location?.street_two}} </p></h6>
+                                               <strong class="pointer" (click) = "showMoreLocation(false,data?.id)" *ngIf ="!data?.address_id && data.isSingleAddress && data?.location.length > 1 ">Show More</strong>
+                                               <strong class="pointer" (click) = "showMoreLocation(true,data?.id)"  *ngIf ="!data?.address_id && !data.isSingleAddress && data?.location.length > 1 ">Show Less</strong>
 
 
-                                    <td>{{dwl?.application_daily_work_location?.work_description}}
+                                       </td>
+
+
+                                    <td>{{data?.application_daily_work_location?.work_description}}
                                     </td>
 
                                     <td class="update-txt dropdown-action">
                                         <span> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                         <div class="dropdown-contentable">
-                                            <a (click)="editAppliction(dwl)" >Edit</a>
-                                            <a (click) ="deleteApplication(dwl?.id)" >Delete</a>
+                                            <a (click)="editAppliction(data)" >Edit</a>
+                                            <a (click) ="deleteApplication(data?.id)" >Delete</a>
                                             <div class="triangle-left"></div>
                                         </div>
                                     </td>

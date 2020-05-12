@@ -82,6 +82,19 @@ export class PermitService {
     );
   }
 
+  submitAppliction(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['submitApplication']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   updateApplication(id): Observable<any> {
     const href = `${environment['updateApplication']}/${id}`;
     return this.http.get<any>(href).pipe(
@@ -223,6 +236,19 @@ export class PermitService {
   getLicenseDetails(): Observable<any> {
     const href = `${environment['getLicenseDetails']}`
     return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  getDetailByLayOutNumber(query): Observable<any> {
+    const href = `${environment['getDetailByLayOut']}`
+    return this.http.get<any>(href,{params:query}).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {

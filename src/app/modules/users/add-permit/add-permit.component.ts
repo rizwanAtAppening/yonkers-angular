@@ -340,8 +340,10 @@ export class AddPermitComponent implements OnInit {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 1) {
+          data.isSingleAddress = true
           return data
         }
+        
       })
       console.log(this.dwlApplication)
 
@@ -441,5 +443,38 @@ export class AddPermitComponent implements OnInit {
       this.getPermitApplication()
     })
   }
+
+  showMoreLocation(value,id){
+    debugger
+    this.dwlApplication.map(data=>{
+      if(data.id == id && data.status == null && data.application_type == 1){
+        data.isSingleAddress = value
+
+      }else
+      {
+        data.isSingleAddress = !value
+
+      }
+    })
+
+  }
+
+  public layOutData:any;
+  fillDataByLayOutNumber() {
+    debugger
+    const value = this.permitForm.value.layout
+    this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
+       this.layOutData = data.response,
+       
+      this.permitForm.controls.type.setValue(this.layOutData.type)
+     // this.permitForm.controls.work_category.setValue(this.layOutData.application_daily_work_location.work_category)
+      this.permitForm.controls.length.setValue(this.layOutData.length)
+      this.permitForm.controls.work_description.setValue(this.layOutData.width)
+      this.permitForm.controls.purpose.setValue(this.layOutData.project_detail.purpose)
+
+
+    })
+   }
+
 
 }

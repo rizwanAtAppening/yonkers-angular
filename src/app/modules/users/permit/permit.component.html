@@ -57,6 +57,7 @@
                                                     <th>Location</th>
                                                     <th>Type</th>
                                                     <th>Permit Status</th>
+                                                    <th>Application status</th>
                                                     <th>Submit date</th>
                                                     <th>Expire Date</th>
                                                     <th>Action</th>
@@ -65,9 +66,24 @@
                                             <tbody>
                                                 <tr *ngFor ="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                     <td class="refTxt pointer" (click) ="updateApplication(application?.id)">{{application?.reference_no}}</td>
-                                                    <td>{{application?.address_id}}</td>
+                                                     <td >
+                                                         <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
+                                                            </p>
+                                                         <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
+                                                             <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+
+                                                             <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
+                                                                    <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                            <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                            <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+
+
+                                                    </td>
                                                     <td> {{ settings.getSetting('type',application['type'])}}</td>
                                                     <td class="submited-Btn"><button>Submitted</button></td>
+                                                    <td class="submited-Btn" *ngIf ="application?.status == null && application?.application_type ==1"><button>Draft</button></td>
+                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 2 && application?.application_type ==1"><button>Submitted</button></td>
+
                                                     <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
                                                     <td>_</td>
                                                     <td class="update-txt"> <span><i class="fa fa-angle-down"
@@ -172,17 +188,32 @@
                                                                                            >
                                                                                             {{application?.reference_no}}
                                                                                         </td>
-                                                                                        <td>{{application?.address_id?application?.address_id :application?.location[0]?.street_one}}
-                                                                                        </td>
+                                                                                        <td >
+                                                                                                <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
+                                                                                                   </p>
+                                                                                                <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
+                                                                                                    <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+                                       
+                                                                                                    <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
+                                                                                                           <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                                                   <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                                                                   <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                       
+                                       
+                                                                                           </td>
                                                                                         <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
                                                                                         </td>
                                                                                         <!-- <td
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
                                                                                         </td> -->
-                                                                                        <td
-                                                                                            class="submited-Btn green-txt-2">
-                                                                                            <button>Completed</button>
+                                                                                        <td *ngIf ="(application.application_type == 1 || application.application_type == 3) && application.status == 2"
+                                                                                                class="submited-Btn blue-txt-2">
+                                                                                                <button>Submitted</button>
+                                                                                            </td>
+                                                                                            <td *ngIf ="application.application_type == 1 && application.status == null"
+                                                                                            class="submited-Btn">
+                                                                                            <button>Draft</button>
                                                                                         </td>
                                                                                         <!-- <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td> -->
                                                                                         <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
@@ -194,16 +225,16 @@
                                                                                             <span> <i
                                                                                                     class="fa fa-angle-down"
                                                                                                     aria-hidden="true"></i></span>
-                                                                                            <div
+                                                                                            <!-- <div
                                                                                                 class="dropdown-contentable">
                                                                                                 <a href="#">Delete</a>
                                                                                                 <a href="#">Edit
                                                                                                     Staff</a>
-                                                                                                <a href="#">Inactive</a>
+                                                                                                <a href="#">Inactive</a> 
                                                                                                 <div
                                                                                                     class="triangle-left">
                                                                                                 </div>
-                                                                                            </div>
+                                                                                            </div> -->
                                                                                         </td>
                                                                                     </tr>
 
@@ -286,15 +317,30 @@
                                                                                                >
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
-                                                                                            <td>{{application?.address_id?application?.address_id :application?.location[0]?.street_one}}
-                                                                                            </td>
+                                                                                            <td >
+                                                                                                    <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
+                                                                                                       </p>
+                                                                                                    <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
+                                                                                                        <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+                                           
+                                                                                                        <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
+                                                                                                               <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                                                       <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                                                                       <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                           
+                                           
+                                                                                               </td>
                                                                                             <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
                                                                                                 <!-- <td class="msg"><b>Draft</b></td> -->
                                                                                            
-                                                                                            <td
+                                                                                            <td *ngIf ="application.application_type ==2 && application.status == 2"
                                                                                                 class="submited-Btn blue-txt-2">
                                                                                                 <button>Submitted</button>
                                                                                             </td>
+                                                                                            <td *ngIf ="application.application_type ==2 && application.status == null"
+                                                                                            class="submited-Btn">
+                                                                                            <button>Draft</button>
+                                                                                        </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
                                                                                                 <button>Completed</button>
@@ -311,10 +357,10 @@
                                                                                                         aria-hidden="true"></i></span>
                                                                                                 <div
                                                                                                     class="dropdown-contentable">
-                                                                                                    <a >Delete</a>
+                                                                                                    <!-- <a >Delete</a>
                                                                                                     <a >Edit
                                                                                                         Staff</a>
-                                                                                                    <a >Inactive</a>
+                                                                                                    <a >Inactive</a> -->
                                                                                                     <a (click) ="getApplicationId(application?.id)" data-toggle="modal" data-target="#delete_application">Conver Permit</a>
                                                                                                     <div
                                                                                                         class="triangle-left">

@@ -210,6 +210,9 @@ export class PermitComponent implements OnInit {
       //     return data
       //   }
       // })
+      this.applictionDetails.map(data=>{
+        data.isSingleAddress = true
+      })
       console.log(this.dwlApplication)
       this.offset = data.offset;
       this.totalPagination = data.total
@@ -273,5 +276,23 @@ export class PermitComponent implements OnInit {
       this.confirmPopUp.nativeElement.click();
       this.getPermitApplication(this.dwlType)
     })
+  }
+
+  public isSingleAddress = true;
+  public currentId:number
+  showMoreLocation(value,id){
+    debugger
+    this.currentId = id
+    this.applictionDetails.map(data=>{
+      if(data.id == id){
+        data.isSingleAddress = value
+
+      }else
+      {
+       data.isSingleAddress = !value
+
+      }
+    })
+
   }
 }

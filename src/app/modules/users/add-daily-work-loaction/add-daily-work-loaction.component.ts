@@ -45,8 +45,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       parcel_number: [''],
       layout_number: [''],
       permit_number: [''],
-      sub_contractor: [''],
-      sub_contractor_phone: [''],
+      permit_type: [''],
       work_category: [''],
       also_know_as: [''],
       addlocation: this.fb.array([
@@ -72,13 +71,13 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
   }
   addLocationForm(): void {
-    
+
     this.addLocationControls.push(this.addLocationFormGroup())
   }
 
 
   remove(index) {
-    
+
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -121,7 +120,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlData = {}
   adddwl() {
 
-    
+
     if (this.location_type == 1) {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -133,7 +132,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         value['controls'].street_two.setErrors(null)
       })
     }
-    else if(this.location_type == 2){
+    else if (this.location_type == 2) {
       this.dwlForm.controls.address_id.setErrors(null)
     }
     if (this.dwlForm.invalid) {
@@ -147,6 +146,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         address_id: this.dwlForm.value.address_id,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
+        permit_type:this.dwlForm.value.permit_type,
+        percel_number:this.dwlForm.value.percel_number,
+
         sub_contractor: this.dwlForm.value.sub_contractor,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
         work_category: Number(this.dwlForm.value.work_category),
@@ -162,6 +164,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlData = {
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
+        permit_type:this.dwlForm.value.permit_type,
+        percel_number:this.dwlForm.value.percel_number,
         sub_contractor: this.dwlForm.value.sub_contractor,
         also_know_as: this.dwlForm.value.also_know_as,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
@@ -190,7 +194,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   application_type: number = 2
   // currentPage = 1
   getPermitApplication() {
-    
+
     // if (this.userType == 3) {
     //   this.application_type = 1
     // } else {
@@ -204,6 +208,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 2) {
+          data.isSingleAddress = true
           return data
         }
       })
@@ -229,7 +234,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public id: number
   public dwl_id: number
   editAppliction(value) {
-    
+
     this.location_type = value.location_type
     this.id = value.id;
     this.dwl_id = value.application_daily_work_location.id
@@ -264,6 +269,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       }
       this.dwlForm.controls.work_description.setValue(value.application_daily_work_location.work_description)
       this.dwlForm.controls.work_category.setValue(value.application_daily_work_location.work_category)
+      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type)
 
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
       this.dwlForm.controls.permit_number.setValue(value.application_daily_work_location.permit_number)
@@ -272,6 +278,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     }
     else if (this.location_type == 1) {
       this.dwlForm.controls.work_category.setValue(value.application_daily_work_location.work_category)
+      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type)
 
       this.dwlForm.controls.work_description.setValue(value.application_daily_work_location.work_description)
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
@@ -284,11 +291,42 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   deleteApplication(id) {
-    
+
     this.permitService.deleteDailyWorklocation(id).subscribe(data => {
       this.toasterService.success('Delete Succesfully');
       this.getPermitApplication()
     })
   }
 
+  public layOutData:any;
+  fillDataByLayOutNumber() {
+    debugger
+    const value = this.dwlForm.value.layout_number
+    this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
+       this.layOutData = data.response,
+       
+      this.dwlForm.controls.permit_type.setValue(this.layOutData.application_daily_work_location.permit_type)
+      this.dwlForm.controls.work_category.setValue(this.layOutData.application_daily_work_location.work_category)
+      this.dwlForm.controls.permit_number.setValue(this.layOutData.application_daily_work_location.permit_number)
+      this.dwlForm.controls.percel_number.setValue(this.layOutData.application_daily_work_location.percel_number)
+
+      this.dwlForm.controls.work_description.setValue(this.layOutData.application_daily_work_location.work_description)
+
+    })
+   }
+
+   showMoreLocation(value,id){
+    debugger
+    this.dwlApplication.map(data=>{
+      if(data.id == id && data.status == null && data.application_type == 2){
+        data.isSingleAddress = value
+
+      }else
+      {
+        data.isSingleAddress = !value
+
+      }
+    })
+
+  }
 }

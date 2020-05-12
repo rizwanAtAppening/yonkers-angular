@@ -97,10 +97,10 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   public locations = []
-  
+
 
   remove(index) {
-    
+
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -117,7 +117,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
   public applicationState: number
   getApplication() {
-    
+
     this.application = this.permitService.getApplication();
     if (this.application.applicant_details) {
       this.applicationState = this.application.applicant_details.applicant_state
@@ -236,7 +236,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public licenseDetails = []
   getLicenseDetails() {
-    
+
     this.permitService.getLicenseDetails().subscribe(data => {
       this.licenseDetails = data.response
     })
@@ -284,13 +284,13 @@ export class AddPermitTabSectionComponent implements OnInit {
   addLocationFormGroup(): FormGroup {
     return this.formBuilder.group({
       street_one: ['', Validators.required],
-      street_two: ['',Validators.required],
-      address_join: ['',Validators.required]
+      street_two: ['', Validators.required],
+      address_join: ['', Validators.required]
     })
   }
 
   addLocationForm(): void {
-    
+
     this.addLocationControls.push(this.addLocationFormGroup())
   }
 
@@ -367,7 +367,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public isSaveAndExit = false;
   saveAndExit(value: boolean) {
-    
+
     if (this.currentTab == 'upload' || this.currentTab == 'review') {
       this.router.navigate(['/dashboard/permit'])
       return false
@@ -378,10 +378,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    
+
     //const application = this.permitService.getApplication()
     this.getApplication()
-    
+
     if (this.application.role == 2) {
       this.isContractor = true
     } else {
@@ -408,14 +408,14 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.isSubmit = true
         return false
       }
-      
-     //this.updateAppliction()
+
+      //this.updateAppliction()
 
       // if(this.application.permit_type){
-      
+
       //   this.permitType = this.application.permit_type
       // }
-     this.permitType = 1
+      this.permitType = 1
       if (this.application_id) {
         this.data = {
           role: Number(this.whatForm.value.role),
@@ -456,7 +456,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           value['controls'].address_join.setErrors(null)
 
         })
-        
+
         this.whereForm.controls.address.setErrors(null)
 
         this.data = {
@@ -564,7 +564,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.data = this.projectDetailsForm.value
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
-      if (this.currentTab == 'where' || this.currentTab == 'contrator' ) {
+      if (this.currentTab == 'where' || this.currentTab == 'contrator') {
         this.getApplication()
       }
       this.currentTab = nextTab
@@ -617,7 +617,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-    
+
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -690,7 +690,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   // }
   public isDisabled = false;
   contractorTab() {
-    
+
     this.getApplication()
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
@@ -701,7 +701,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
     if (this.currentUserInfo && this.application.role == 2) {
-      
+
       this.isDisabled = true
       this.getLicenseDetails();
       this.contractorForm.controls.contractor_for_job.setValue(1)
@@ -754,7 +754,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   goToBack(formGroup, tab) {
-    
+
     if (this.currentTab == 'upload') {
       this.checkTab(tab)
       this.currentTab = tab;
@@ -806,7 +806,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   hitOnTab(formGroup, tab) {
-    
+
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isSubmit = true
@@ -1004,7 +1004,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public submitApplicationValue = []
   public index: number
   submitApplication(value, form) {
-    
+
     if (this.submitApplicationValue.length == 0) {
       this.submitApplicationValue.push({ value: value, key: form })
     }
@@ -1030,6 +1030,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   submitApplicationAfterReview() {
     if (this.submitApplicationValue.length == 7) {
       this.checklist.nativeElement.click()
+      this.submitApplications()
       this.router.navigate(['/dashboard/submit-application']);
 
     }
@@ -1039,7 +1040,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   deleteImage(id, i) {
-    
+
     const data = {
       id: id
     }
@@ -1053,7 +1054,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   updateAppliction() {
-    
+
     this.permitService.updateApplication(this.application_id).subscribe(data => {
       this.application = data.response;
       // if(this.application){
@@ -1070,7 +1071,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public duplimester = []
   getDuplimester() {
-    
+
     this.permitService.getDuplimester().subscribe(data => {
       this.duplimester = data.response;
       this.duplimester.map(data => {
@@ -1089,7 +1090,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public dumpster_id: any
   selectDuplimester(value, index, duplimesterId) {
-    
+
     this.duplimester.map((data, i) => {
       if (index == i) {
         data.checked = value.target.checked
@@ -1102,7 +1103,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public isDuplimester = false;
   addDuplimester() {
-    
+
     if (this.duplimesterForm.invalid) {
       this.isDuplimester = true;
       return false
@@ -1116,6 +1117,14 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.isDuplimester = false;
       this.duplimesterPop.nativeElement.click();
       this.getDuplimester();
+    })
+
+  }
+
+  submitApplications() {
+    debugger
+    this.permitService.submitAppliction(this.application.id).subscribe(data => {
+
     })
   }
 }

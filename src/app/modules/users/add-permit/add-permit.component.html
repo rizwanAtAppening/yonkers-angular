@@ -92,7 +92,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ms4" formControlName="layout" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" id="ms4" formControlName="layout" (input) ="fillDataByLayOutNumber()" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required="">
                                                             <label  [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" class="form-control-placeholder" for="ms4">Layout
                                                                 No</label>
@@ -812,10 +812,19 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor ="let data of dwlApplication	">
-                                    <td>{{data?.address_id}}
-                                        <!-- <small>From</small> 20 Cooper Square, -->
-                                        <strong>Show More</strong>
-                                    </td>
+                                        <td >
+                                                <p *ngIf ="data?.address_id">                                                         {{data?.address_id}}
+                                                   </p>
+                                                <h6  *ngIf ="!data?.address_id && data?.isSingleAddress" >
+                                                    <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>
+
+                                                    <h6  *ngIf ="!data?.address_id && !data.isSingleAddress" >
+                                                           <p *ngFor ="let location of data?.location " >{{location?.street_one}} {{location?.address_join == 1 ? 'To':'End'}} {{location?.street_two}} </p></h6>
+                                                   <strong class="pointer" (click) = "showMoreLocation(false,data?.id)" *ngIf ="!data?.address_id && data.isSingleAddress && data?.location.length > 1 ">Show More</strong>
+                                                   <strong class="pointer" (click) = "showMoreLocation(true,data?.id)"  *ngIf ="!data?.address_id && !data.isSingleAddress && data?.location.length > 1 ">Show Less</strong>
+
+
+                                           </td>
                                     <td>{{data?.project_detail?.layout_number ? data?.project_detail?.layout_number:'_'}}</td>
                                     <td>            {{ settings?.getSetting('type',data?.type)}}
                                         </td>
