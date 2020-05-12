@@ -633,7 +633,6 @@ header {
     padding: 5px 16px 4px 17px;
     font-family: 'Poppins-Regular';
     display: inline-block;
-    cursor: pointer;
 }
 
 .table-permit table td.update-txt span {
@@ -657,6 +656,8 @@ header {
     margin: 0 auto;
     max-width: 983px;
     margin-top: 60px;
+    margin-top: 60px;
+    margin-bottom: 100px;
 }
 
 .tab-sec ul li a.active {
@@ -1210,7 +1211,7 @@ header {
 }
 .imact-trafic{margin-top: 22px;}
 .imact-trafic input{
-    border: 0.5px solid #A9B8C1B0;
+    border: 0.5px solid #A9B8C1B0 !important;
 }
 .imact-trafic .lenth-pt {
     margin-top: 32px;
@@ -1436,10 +1437,12 @@ line-height: 27px;
 border: 1px solid #282D5B4F;
 padding: 12px 41px 13px 40px;
 background: none;
+cursor: pointer;
 }
 
 .btn-grop button.download{
 color: #fff;
+cursor: pointer;
 font-family: 'Poppins-Regular';
 font-size: 18px;
 line-height: 27px;
@@ -1663,6 +1666,8 @@ color: #282D5BB0;
     .up-add input{
         height: 42px !important;
         font-size: 14px;
+        border: 0.5px solid #282D5B99 !important;
+        color: #282D5B !important;
     }
 
     .up-add  .form-control-placeholder {
@@ -1989,14 +1994,14 @@ text-align: center;
 
 #add_slect span{
     position: absolute;
-    top: 22px;
+    top: 20px;
     right: 16px;
-    
+    font-size: 20px;
 }
 #add_slect select{
  border-radius: 0px;
  color: #7E819C;
-    height: 62px;
+    height: 60px;
     border: 0.5px solid #282D5B99;
     color: #282D5B;
 }
@@ -2552,7 +2557,7 @@ border: 0.5px solid #282D5B99;
 .daily-type label{
     background: #fff;
     position: relative;
-    top: 9px;
+    top: 12px;
     font-size: 16px;
     left: 17px;
     padding-left: 7px;
@@ -2608,6 +2613,9 @@ float: right;
     line-height: 19px;
  cursor: pointer;
  margin-top: 20px;
+ display: inline-block;
+ margin-right: 80px;
+ float: right;
 }
 
 .btn-add-delet button{
@@ -2618,7 +2626,7 @@ float: right;
     border: none;
     background: none;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 21px;
 }
 .notfound-txt {
     font-size: 16px;
@@ -2631,13 +2639,12 @@ float: right;
 }
 
 .job-addTxttwo {
-    color: #001839;
-    font-family: "Poppins-Light";
-    font-size: 18px;
-    line-height: 28px;
-    padding-bottom: 17px;
-    margin-top: 20px;
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    color: #4AB5F1;
+    line-height: 20px;
     cursor: pointer;
+    margin-top: 20px;
 
 }
 .imgfile {
@@ -2670,13 +2677,16 @@ float: right;
     background: #4AB5F1;
     color: #fff;
     font-family: 'Poppins-Regular';
-    padding: 18px 35px 15px 35px;
+    padding: 10px 28px 11px 28px;
     border: none;
     cursor: pointer;
     line-height: 26px;
     float: right;
 }
-
+.foundInput .form-control-placeholder{
+    font-size: 16px;
+    top: 10px;
+}
 #daynamic-select{
     position: absolute;
     top: 11px !important;}
@@ -2956,4 +2966,62 @@ padding: 36px 94px;
 
 #enter-dec-msg {
     margin-left: 14px !important;
+}
+
+.select_keyType-2 select{
+height: 42px !important;
+font-size: 14px !important;
+line-height: 18px !important;
+padding: 6px 28px 4px 16px !important;
+border: 0.5px solid #282D5B99 !important;
+color: #282D5B !important;
+}
+.select_keyType-2  label{
+    top: 15px !important;
+    left: 10px!important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    padding-bottom: 6px !important;
+}
+
+.select_keyType-2 .poilcy_type  span {
+    top: 33px !important;
+}
+
+.foundInput input{
+height: 47px;
+}
+
+#city-applicant label{
+    color: #001839;
+    font-family: "Poppins-Medium";
+    font-size: 15px;
+    line-height: 21px;
+    padding-bottom: 5px;
+}
+#city-applicant select{
+    height: 60px;
+    border: 0.5px solid #282D5B99;
+    color: #282D5B;
+}
+#city-applicant span{
+    position: absolute;
+    right: 20px;
+    top: 45px;
+    font-size: 20px;
+}
+.sta-mt {
+    margin-top: 15px;
+}
+.togle-calnder-Btn{
+    position: absolute;
+    top: 24px;
+    right: 30px;
+    color: #908f8f;
+}
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*="select-"]:after, .theme-green .bs-datepicker-body table td[class*="select-"] span:after {
+    background-color: #4ab5f1 !important;
+}
+.dd-radio .checkma {
+    top: 4px !important;
 }

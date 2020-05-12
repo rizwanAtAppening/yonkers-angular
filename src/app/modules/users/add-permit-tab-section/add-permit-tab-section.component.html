@@ -187,8 +187,6 @@
                     <div class="job-location-Hd">
                         <h3>Job Location</h3>
                     </div>
-
-
                     <div class="location-type-tab">
                         <h3>Location Type</h3>
                     </div>
@@ -207,8 +205,6 @@
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
                                 aria-labelledby="nav-Exact-tab">
-
-
                                 <div class="job-input">
                                     <form [formGroup]="whereForm">
                                         <div class="container p-0">
@@ -330,7 +326,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-3">
                                                     <div class="bdp_email loction-adInput">
                                                         <div class="row">
                                                             <div class="col-12 ">
@@ -381,7 +377,7 @@
                                                 </div>
 
 
-                                                <div class="col-12">
+                                                <div class="col-1">
                                                     <div class="add-moreTxt">
 
                                                         <!-- <div class="btn-add-delet">Delete</div> -->
@@ -390,13 +386,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-
-
-
-
-
-
                                             </div>
 
 
@@ -409,7 +398,7 @@
 
                                 <div class="unit-txt">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 p-0">
                                             <h2 class="job-addTxttwo" (click) ="addressNotFound(false)">
                                                 Address not found
                                             </h2>
@@ -438,11 +427,11 @@
                         </div>
                     </div>
 
-                    <div class="col-12 p-0 mt-4" *ngIf="!isAddressFound">
+                    <div class="col-12 p-0 mt-4 foundInput" *ngIf="!isAddressFound">
                         <div class="bdp_email loction-adInput">
                             <form [formGroup]="whereForm">
                             <div class="row">
-                                <div class="col-10 ">
+                                <div class="col-10">
                                     <div class="form-group">
                                         <input type="text" formControlName="address"  id="jobadd"
                                             [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
@@ -459,7 +448,7 @@
                                 </div>
                                 </div>
                                 <div class="col-2 ">
-                                    <button class=" add-cancle_btn " (click) ="addressNotFound(true)">Cancel</button>
+                                    <button class=" add-cancle_btn" (click) ="addressNotFound(true)">Cancel</button>
                                 </div>
                             </div>
                             </form>
@@ -686,13 +675,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="bussiness-input">
+
+
+                                <div>
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-6 sta-mt">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
-                                                        <div class="form-group" id="defultInput">
+                                                        <div class="form-group" id="city-applicant">
+                                                            <label>State</label>
+
                                                             <select type="text" formControlName="applicant_state" 
                                                             [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
@@ -704,9 +697,9 @@
                                                             </select>
 
                                                          
-                                                            <label
+                                                            <!-- <label
                                                             [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                            for="Phone-id2" id="daynamic-select">State</label>
+                                                            for="Phone-id2" id="daynamic-select">State</label> -->
                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 
                                                                 <div
@@ -725,7 +718,7 @@
     
                                         </div>
 
-                                        <div class="col-6">
+                                        <div class="col-6 bussiness-input">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -987,6 +980,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
+                                                           
                                                             <input type="text" formControlName="contractor_state"
                                                                 [readonly]="isDisabled"
                                                                 [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
@@ -1140,9 +1134,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                                        <label class="container-name">Name/Email
-                                                          
-                                                        </label>
+                                               Name/Email
+                                              
                                                     </th>
                                                     <th>Company</th>
                                                     <th>Phone</th>
@@ -1153,12 +1146,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor = "let dupli of duplimester; let i = index">
+                                                <tr *ngFor = "let dupli of duplimester; let i = index" class="dd-radio">
                                                     <td class="mail-shlok">
-                                                        <label class="container-name">{{dupli?.dumpster_first_name}}
+                                                        <label class="owner">{{dupli?.dumpster_first_name}}
                                                             <span>{{dupli?.dumpster_email}}</span>
-                                                            <input type="checkbox" [checked]="dupli?.checked" (change)="selectDuplimester($event,i,dupli?.id)">
-                                                            <span class="checkmark-mail"></span>
+                                                            <input type="radio" [checked]="dupli?.checked" (change)="selectDuplimester($event,i,dupli?.id)">
+                                                            <span class="checkma"></span>
                                                         </label>
                                                     </td>
                                                     <td>{{dupli?.dumpster_business}}</td>
@@ -1198,7 +1191,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="container p-0">
+                            <div class="container p-0 ">
                                 <div class="col-12 p-0">
                                     <div class="bdp_email up-add">
                                         <form [formGroup]="duplimesterForm">
@@ -1403,17 +1396,17 @@
                         <div class="container p-0">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="property lbl-txt m-0">
-
+                                    <div class="property  mt-3">
                                         <div class="form-group">
-                                            <label
-                                                [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'msg ' : ''">Purpose</label>
+                                            <label>Will this work impact traffic?</label>
+
+                                            <!-- <label
+                                                [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'msg ' : ''">Purpose</label> -->
                                             <select formControlName="purpose"
                                                 [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                 <option value="" hidden> --Select--</option>
                                                 <option value="{{value.key}}" *ngFor="let value of settings?.purpose">
                                                     {{value?.value}}</option>
-
 
                                             </select>
                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -1432,7 +1425,7 @@
                             <div class="imact-trafic">
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="property lbl-txt loction-adInput">
+                                        <div class="property  loction-adInput">
 
                                             <div class="form-group">
                                                 <label>Will this work impact traffic?</label>
@@ -1576,7 +1569,7 @@
                                     <div class="col-6">
                                         <div class="bdp_email loction-adInput lenth-pt">
 
-                                            <div class="form-group">
+                                            <div class="form-group position-relative">
                                                 <input type="text" id="sda1" #dp="bsDatepicker" bsDatepicker
                                                     formControlName="start_date"
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
@@ -1591,12 +1584,13 @@
                                                         Please Enter Date
                                                     </p>
                                                 </div>
+                                               
+                                                    <span class="togle-calnder-Btn" (click)="dp.toggle()"
+                                                        [attr.aria-expanded]="dp.isOpen" ><i
+                                                            class="fa fa-calendar" aria-hidden="true"></i></span>
+                                               
                                             </div>
-                                            <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
-                                                <span class=" datebtn" (click)="dp.toggle()"
-                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i
-                                                        class="fa fa-calendar" aria-hidden="true"></i></span>
-                                            </div>
+                                        
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -1616,13 +1610,12 @@
                                                         Please Enter Date
                                                     </p>
                                                 </div>
-                                            </div>
-                                            <div class="col-xs-12 col-12 col-md-3 form-group datebtn">
-                                                <span class=" datebtn" (click)="dp1.toggle()"
-                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i
-                                                        class="fa fa-calendar" aria-hidden="true"></i></span>
-                                            </div>
+                                                <span class=" togle-calnder-Btn" (click)="dp1.toggle()"
+                                                [attr.aria-expanded]="dp.isOpen" type="button"><i
+                                                    class="fa fa-calendar" aria-hidden="true"></i></span>
 
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -2313,9 +2306,9 @@
                     <div class="col-12 p-0 yl-mtop">
                         <div class="bdp_email up-add mt-0">
                             <form [formGroup]="addInsuranseForm">
-                                <div class="row">
-                                    <div class="col-12 poilcy_type select_keyType">
-                                        <div class="property lbl-txt m-0">
+                                <div class="row select_keyType-2">
+                                    <div class="col-12 poilcy_type ">
+                                        <div class="property  mt-3">
 
                                             <div class="form-group">
                                                 <label>License or Policy Type</label>
