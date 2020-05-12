@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
 
-                                <div class="bussiness-input">
+                                <div class="bussiness-input mt-0 pt-3">
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
@@ -161,12 +161,14 @@
                                 </div>
 
                                 <div class="bussiness-input">
-                                    <div class="row">
+                                    <div class="row profile-state">
                                         <div class="col-6 daynmic-select">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
-                                                        <div class="form-group">
+                                                        <div class="form-group position-relative">
+                                                            <label>State
+                                                            </label>
                                                             <select type="text" id="ud8" class="form-control"
                                                                 formControlName="state">
                                                                 <option value="" hidden>--Select--</option>
@@ -174,8 +176,7 @@
                                                                     *ngFor="let state of settings?.userState">
                                                                     {{state?.value}}</option>
                                                             </select>
-                                                            <label class="form-control-placeholder" for="ud8">State
-                                                            </label>
+                                                           
                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                         </div>
                                                     </div>

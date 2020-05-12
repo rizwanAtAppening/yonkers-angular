@@ -5,12 +5,9 @@
                 <div class="job-location-Hd">
                     <h3>Multiple Street Opening Submission</h3>
                 </div>
-
-
                 <div class="location-type-tab">
                     <h3>Location Type</h3>
                 </div>
-
                 <div class="adrees-tab">
                     <nav>
                         <div class="nav" id="nav-tab" role="tablist">
@@ -28,9 +25,9 @@
 
                             <div class="container p-0">
                                 <form [formGroup]="permitForm">
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-6">
-                                            <div class="bdp_email ">
+                                            <div class="bdp_email">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
@@ -68,7 +65,7 @@
 
 
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-12">
                                             <div class="bdp_email ">
                                                 <div class="row">
@@ -86,7 +83,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-6">
                                             <div class="bdp_email ">
                                                 <div class="row">
@@ -137,7 +134,7 @@
                                     </div>
 
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-6">
                                             <div class="bdp_email sub-oppining">
                                                 <div class="row">
@@ -193,7 +190,7 @@
                                     </div>
 
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-6">
                                             <div class="bdp_email ">
                                                 <div class="row">
@@ -227,7 +224,7 @@
                                     </div>
 
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                         <div class="col-6">
                                             <div class="bdp_email">
                                                 <div class="row">
@@ -261,10 +258,10 @@
                                                         
                                                         <div class="form-group">
 
-                                                                <input type="text" id="ms5" formControlName="end_date"
+                                                                <input type="text" id="ms55" formControlName="end_date"
                                                                     class="form-control" #dp="bsDatepicker" bsDatepicker [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                     required="">
-                                                                <label [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'msg form-control-placeholder' : 'form-control-placeholder'" for="ms5">Start
+                                                                <label [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'msg form-control-placeholder' : 'form-control-placeholder'" for="ms55">Start
                                                                     Date</label>
     
                                                                 <span class="icon-calander" (click)="dp.toggle()"><i
@@ -387,7 +384,7 @@
                                 <form [formGroup]="permitForm">
                                     <div *ngFor="let addloc of addLocationControls.controls; let i = index">
                                         <form [formGroup]="addloc">
-                                            <div class="row">
+                                            <div class="row color-input-border">
                                                 <!-- <form [formGroup]="addloc"> -->
                                                 <div class="col-4">
                                                     <div class="bdp_email ">
@@ -413,7 +410,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-4 street-slcTxt">
+                                                <div class="col-3 street-slcTxt">
                                                     <div class="bdp_email sub-oppining">
                                                         <div class="row">
                                                             <div class="col-12">
@@ -457,24 +454,35 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-12">
-                                                    <div class="multimple-moreTxt">
-                                                        <div class="txt_delet" *ngIf="i > 0" (click)="remove(i)">Delete
+                                                <div class="col-1 mt-5">
+                                                    
+                                                        <div class="add-moreTxt mt-1" *ngIf="i > 0" (click)="remove(i)">
+                                                            <div class="btn-add-delet">
+                                                           <button>Delete</button>
+                                                        </div> 
                                                         </div>
                                                     </div>
-                                                </div>
+                                               
+                                                
+
+                                             
                                                 <!-- </form> -->
                                             </div>
                                         </form>
 
                                     </div>
-                                    <div class="plus-moretxt" (click)="addLocationForm()"> <span>+</span> Add more
-                                        </div>
+                                    <!-- <div class="plus-moretxt" (click)="addLocationForm()">
+                                         <span>+</span> Add more
+                                        </div> -->
+                             <div class="row color-input-border">
+                                 <div class="col-12">
+                                    <div class="btn-add-more" (click)="addLocationForm()" >+ &nbsp; Add more</div>
+                                 </div>
+                             </div>          
 
-
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email ">
+                                    <div class="row color-input-border">
+                                        <div class="col-12 mt-4">
+                                            <div class="bdp_email mt-0">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
@@ -490,7 +498,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">
+                                    <div class="row color-input-border">
                                             <div class="col-6">
                                                 <div class="bdp_email ">
                                                     <div class="row">
@@ -541,7 +549,7 @@
                                         </div>
     
     
-                                        <div class="row">
+                                        <div class="row color-input-border">
                                             <div class="col-6">
                                                 <div class="bdp_email sub-oppining">
                                                     <div class="row">
@@ -597,7 +605,7 @@
                                         </div>
     
     
-                                        <div class="row">
+                                        <div class="row color-input-border">
                                             <div class="col-6">
                                                 <div class="bdp_email ">
                                                     <div class="row">
@@ -631,7 +639,7 @@
                                         </div>
     
     
-                                        <div class="row">
+                                        <div class="row color-input-border">
                                             <div class="col-6">
                                                 <div class="bdp_email">
                                                     <div class="row">
@@ -688,7 +696,7 @@
                                         </div>
     
                                         <div class="Detailed-txt">
-                                            <div class="row">
+                                            <div class="row color-input-border">
                                                 <div class="col-12">
                                                     <div class="row">
                                                         <div class="col-12 ">
