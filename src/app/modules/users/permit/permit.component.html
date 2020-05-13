@@ -1,7 +1,5 @@
 <app-layout>
     <router-outlet>
-
-         
         <section *ngIf ="userType != 3">
             <div class="container p-0">
                 <div class="row">
@@ -19,7 +17,7 @@
         </section>
 
         <section class="table-sec" *ngIf ="userType != 3" >
-            <div class="container p-0">
+            <div class="container container-tbl">
                 <div class="row">
                     <div class="col-12">
                         <div class="table-Box">
@@ -74,8 +72,8 @@
 
                                                              <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
                                                                     <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                            <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                            <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                                            <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                            <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
 
 
                                                     </td>
@@ -196,8 +194,8 @@
                                        
                                                                                                     <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
                                                                                                            <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                                   <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                                                                   <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                                                                                   <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                                                                   <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
                                        
                                        
                                                                                            </td>
@@ -325,8 +323,8 @@
                                            
                                                                                                         <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
                                                                                                                <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                                       <strong  class="pointer" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                                                                       <strong class="pointer" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
+                                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
                                            
                                            
                                                                                                </td>
