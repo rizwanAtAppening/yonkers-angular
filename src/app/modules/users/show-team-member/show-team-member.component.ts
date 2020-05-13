@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-show-team-member',
@@ -6,10 +8,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./show-team-member.component.css']
 })
 export class ShowTeamMemberComponent implements OnInit {
-
-  constructor() { }
+  public staffMemberList = []
+  constructor(
+    private router:Router,
+    private userService: UsersService
+  ) { }
 
   ngOnInit(): void {
+    this.getStaffMember()
+  }
+
+  getStaffMember() {
+    debugger
+    this.userService.getStaff().subscribe(data => {
+      this.staffMemberList = data.response;
+    })
+  }
+
+  activeInactiveStaffMember(id,status) {
+    debugger
+    const data ={
+      id:id,
+      status:status
+    }
+    this.userService.activeInactiveStaff(data).subscribe(data => {
+      this.getStaffMember()
+    })
+  }
+
+  navigateByUrl(id){
+    this.router.navigate(['/dashboard/add-team-member'],{queryParams:{id:id}})
   }
 
 }

@@ -15,6 +15,13 @@ export class AddPermitComponent implements OnInit {
   public settings: any;
   public applicationId: any;
   public dwlType: any;
+  public imageName: any;
+  public attachment: any
+  public fileType: any
+  public licenseFile: any
+  public image: any
+  public name: any = []
+  public formData
   constructor(
     private fb: FormBuilder,
     private permitService: PermitService,
@@ -104,8 +111,6 @@ export class AddPermitComponent implements OnInit {
   }
 
   remove(index) {
-
-
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
         this.addLocationControls.controls.splice(i, i);
@@ -157,146 +162,69 @@ export class AddPermitComponent implements OnInit {
     this.permitForm.value.location_type = this.location_type
     this.permitForm.value.layout_number = this.permitForm.value.layout
     this.permitForm.value.permit_type = 1
-    var formData = new FormData();
+    this.formData.append(
+      "type",
+      this.permitForm.value.type
+    );
+    this.formData.append(
+      "start_date",
+      this.permitForm.value.start_date
+    );
+    this.formData.append(
+      "end_date",
+      this.permitForm.value.end_date
+    );
+    this.formData.append(
+      "description",
+      this.permitForm.value.description
+    );
+    this.formData.append(
+      "layout_number",
+      this.permitForm.value.layout
+    );
+    this.formData.append(
+      "length",
+      this.permitForm.value.length
+    );
+    this.formData.append(
+      "width",
+      this.permitForm.value.width
+    ); this.formData.append(
+      "purpose",
+      this.permitForm.value.purpose
+    );
+    this.formData.append(
+      "also_know_as",
+      this.permitForm.value.also_know_as
+    );
+    this.formData.append(
+      "traffic_control",
+      this.permitForm.value.traffic_control
+    );
+    this.formData.append(
+      "location_type",
+      this.location_type
+    );
     if (this.location_type == 2) {
-      // formData.append(
-      //   "name",
-      //   // JSON.stringify(this.name)
 
-      //   new Blob(this.name)
-      // );
-      //   for(let i =0; i < files.length; i++){
-      //     formData.append("uploads[]", files[i], files[i]['name']);
-      // }
-      // name:[{name:'',}]
+      this.permitForm.value.addlocation.map((data, i) => {
+        this.formData.append('locations[street_one][]', data.street_one)
+        this.formData.append('locations[street_two][]', data.street_two)
+        this.formData.append('locations[address_join][]', data.address_join)
 
-      if (this.name.length > 0) {
-        formData.append(
-          "name",
-          new Blob(this.name)
-        );
-      }
-      formData.append(
-        "type",
-        this.permitForm.value.type
-      );
-      formData.append(
-        "start_date",
-        this.permitForm.value.start_date
-      );
-      formData.append(
-        "end_date",
-        this.permitForm.value.end_date
-      ); formData.append(
-        "description",
-        this.permitForm.value.description
-        // );  formData.append(
-        //   "address_id",
-        // (this.permitForm.value.address_id)
-      ); formData.append(
-        "layout_number",
-        this.permitForm.value.layout
-      ); formData.append(
-        "length",
-        this.permitForm.value.length
-      ); formData.append(
-        "width",
-        this.permitForm.value.width
-      ); formData.append(
-        "purpose",
-        this.permitForm.value.purpose
-      );
-      formData.append(
-        "also_know_as",
-        this.permitForm.value.also_know_as
-      ); formData.append(
-        "traffic_control",
-        this.permitForm.value.traffic_control
-      ); formData.append(
-        "location_type",
-        this.location_type
-      );
-      formData.append(
-        "locations",
-        JSON.stringify(this.permitForm.value.addlocation),
-      );
-      formData.append(
-        "imageType",
-        this.imageType,
-      );
-
-
+      })
     } else if (this.location_type == 1) {
-      if (this.name.length > 0) {
-        formData.append(
-          "name",
-          new Blob(this.name)
-        );
-      }
-
-      //   for(let i =0; i < files.length; i++){
-      //     formData.append("uploads[]", files[i], files[i]['name']);
-      // }
-      // name:[{name:'',}]
-
-
-      formData.append(
-        "type",
-        this.permitForm.value.type
-      );
-      formData.append(
-        "start_date",
-        this.permitForm.value.start_date
-      );
-      formData.append(
-        "end_date",
-        this.permitForm.value.end_date
-      ); formData.append(
-        "description",
-        this.permitForm.value.description
-      ); formData.append(
+      this.formData.append(
         "address_id",
         (this.permitForm.value.address_id)
-      ); formData.append(
-        "layout_number",
-        this.permitForm.value.layout
-      ); formData.append(
-        "length",
-        this.permitForm.value.length
-      ); formData.append(
-        "width",
-        this.permitForm.value.width
-      ); formData.append(
-        "purpose",
-        this.permitForm.value.purpose
       );
-      formData.append(
-        "also_know_as",
-        this.permitForm.value.also_know_as
-      ); formData.append(
-        "traffic_control",
-        this.permitForm.value.traffic_control
-      ); formData.append(
-        "location_type",
-        this.location_type
-      );
-
-      formData.append(
-        "imageType",
-        this.imageType,
-      );
-
 
     }
 
-    // this.permitForm.value.addlocation.map(data=>{
-    //   formData.append('locations',JSON.stringify(data))
-    // })
-    // Object.keys(f)
-    this.permitService.addDwlPemitApplication(this.permitForm.value).subscribe(data => {
+    this.permitService.addDwlPemitApplication(this.formData).subscribe(data => {
       this.peritApplication = (data.response)
       this.getPermitApplication();
-      if(this.applicationId){
+      if (this.applicationId) {
         this.submitDailyWorkLocation();
       }
       this.isPermit = false
@@ -305,9 +233,9 @@ export class AddPermitComponent implements OnInit {
   }
 
   public peritApplication = []
-  public imageType: any = 1
+  public imageType: any = null
   selectImageType(value) {
-
+    debugger
     this.imageType = Number(value)
   }
 
@@ -324,26 +252,42 @@ export class AddPermitComponent implements OnInit {
     })
   }
 
-  public imageName: any;
-  public attachment: any
-  public fileType: any
-  public licenseFile: any
-  public image: any
-  public name: any = []
-  media(event1) {
 
-    this.imageName = event1.target.files[0].name;
-    this.attachment = event1.target.files[0]
-    this.name.push({ name: (this.attachment), type: this.imageType })
+  media(event1, index) {
+    debugger
+    if (this.imageType != null) {
+      this.imageName = event1.target.files[0].name;
+      this.attachment = event1.target.files[0];
+      this.formData = new FormData()
+      this.name.push({ name: (this.attachment), type: this.imageType })
     console.log(this.name)
-    var reader = new FileReader();
-    var reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.image = event.target.result;
-    };
-    reader.readAsDataURL(event1.target.files[0]);
-    console.log(this.image)
-    console.log(event1.target.files[0])
+      this.name.map(data => {
+        this.formData.append('name[name][]', data.name)
+        this.formData.append('name[imageType][]', data.type)
+
+      })
+      //  let hh = [{name:'value',type:1},{name:'value1',type:1}]
+      this.imageType = null
+
+      console.log(this.name)
+      var reader = new FileReader();
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.image = event.target.result;
+      };
+      reader.readAsDataURL(event1.target.files[0]);
+      this.allImage.map((data: any, i) => {
+        if (i == index) {
+          data.imageName = this.imageName;
+          data.image = this.image
+        }
+        console.log(this.allImage)
+      })
+
+
+    } else {
+      this.toasterService.error('Please select type then upload image');
+    }
 
   }
 
@@ -371,13 +315,13 @@ export class AddPermitComponent implements OnInit {
   public updateValueDwl = []
   submitDailyWorkLocation() {
     debugger
-    if(this.applicationId){
-      this.updateValueDwl = [{id:this.applicationId}]
+    if (this.applicationId) {
+      this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
-        application:this.updateValueDwl
+        application: this.updateValueDwl
       }
     }
-    else{
+    else {
       this.submitApplication = {
         application: this.dwlApplication
       }
@@ -389,7 +333,7 @@ export class AddPermitComponent implements OnInit {
     })
   }
 
-  
+
 
   public id: number
   public dwl_id: number
@@ -601,4 +545,6 @@ export class AddPermitComponent implements OnInit {
       }
     })
   }
+
+
 }

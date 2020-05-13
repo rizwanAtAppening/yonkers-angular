@@ -68,6 +68,58 @@ export class UsersService {
     );
   }
 
+  addStaff(data): Observable<any> {
+    const href = `${environment['addStaff']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  activeInactiveStaff(data): Observable<any> {
+    const href = `${environment['activeInactiveStaff']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  getStaff(): Observable<any> {
+    const href = `${environment['showStaff']}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  getSingleStaff(id): Observable<any> {
+    const href = `${environment['singleStaff']}/${id}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   resetPassword(data): Observable<any> {
     const href = `${environment['resetPasswoed']}`;
     return this.http.post<any>(href, data).pipe(

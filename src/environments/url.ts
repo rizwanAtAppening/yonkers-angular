@@ -83,7 +83,11 @@ const userUrl = {
   converPermitApplication:`/application/convert/dwl_to_permit`,
   getDetailByLayOut:`/layout`,
   submitApplication:`/application/save-and-exit`,
-  getApplicationById:`/application`
+  getApplicationById:`/application`,
+  showStaff:`/user/team_members`,
+  addStaff:`/user/team_member`,
+  singleStaff:`/user/team_member`,
+  activeInactiveStaff:`/user/team_member/active-inactive`,
   // searchUserApplication:`/application`
 
 

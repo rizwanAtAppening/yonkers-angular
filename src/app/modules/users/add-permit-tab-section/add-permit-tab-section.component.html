@@ -63,9 +63,9 @@
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'review') ? 'active':application?.upload_detail && application?.upload_detail.length > 0?'':'gray_color'" id="pills-Review-tab"
-                    (click)="hitOnTab('reviewForm','review')" role="tab" aria-controls="pills-Review"
-                    aria-selected="false">Review</a>
+                <a [class]="(currentTab == 'review') ? 'active':application?.upload_detail && application?.upload_detail.length > 0?'':'gray_color'"
+                    id="pills-Review-tab" (click)="hitOnTab('reviewForm','review')" role="tab"
+                    aria-controls="pills-Review" aria-selected="false">Review</a>
             </li>
         </ul>
     </div>
@@ -263,7 +263,7 @@
                                             <div class="unit-txt">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <h2 class="notfound-txt" (click) ="addressNotFound(false)">
+                                                        <h2 class="notfound-txt" (click)="addressNotFound(false)">
                                                             Address not found
                                                         </h2>
                                                     </div>
@@ -284,7 +284,7 @@
                                 </div>
 
 
-                                
+
 
                             </div>
 
@@ -312,16 +312,17 @@
                                                                         for="Street">Street One</label>
                                                                 </div>
                                                                 <div
-                                                                *ngIf="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit)">
-                                                                <p class="form-error" *ngIf="addloc.controls.street_one.errors['required']">
-                                                                    Please enter street one.
-                                                                </p>
-                                                            </div>
+                                                                    *ngIf="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="addloc.controls.street_one.errors['required']">
+                                                                        Please enter street one.
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
 
 
- 
+
 
                                                     </div>
 
@@ -332,7 +333,8 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group" id="add_slect">
                                                                     <select type="text" id="Selecttxt"
-                                                                        formControlName="address_join"  [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        formControlName="address_join"
+                                                                        [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control">
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
@@ -354,9 +356,11 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="aa1" class="form-control"
-                                                                        formControlName="street_two"  [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" class="form-control"
-                                                                        required="">
-                                                                    <label [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                        formControlName="street_two"
+                                                                        [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                        class="form-control" required="">
+                                                                    <label
+                                                                        [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                         for="aa1">Street Two</label>
                                                                     <!-- <div class="btn-pre remover" *ngIf="i > 0">
                                                                         <button class="continue" (click)="remove(i)"
@@ -364,11 +368,12 @@
                                                                     </div> -->
                                                                 </div>
                                                                 <div
-                                                                *ngIf="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit)">
-                                                                <p class="form-error" *ngIf="addloc.controls.street_two.errors['required']">
-                                                                    Please enter street two.
-                                                                </p>
-                                                            </div>
+                                                                    *ngIf="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="addloc.controls.street_two.errors['required']">
+                                                                        Please enter street two.
+                                                                    </p>
+                                                                </div>
 
                                                             </div>
                                                         </div>
@@ -399,7 +404,7 @@
                                 <div class="unit-txt">
                                     <div class="row">
                                         <div class="col-12 p-0">
-                                            <h2 class="job-addTxttwo" (click) ="addressNotFound(false)">
+                                            <h2 class="job-addTxttwo" (click)="addressNotFound(false)">
                                                 Address not found
                                             </h2>
                                         </div>
@@ -430,27 +435,27 @@
                     <div class="col-12 p-0 mt-4 foundInput" *ngIf="!isAddressFound">
                         <div class="bdp_email loction-adInput">
                             <form [formGroup]="whereForm">
-                            <div class="row">
-                                <div class="col-10">
-                                    <div class="form-group">
-                                        <input type="text" formControlName="address"  id="jobadd"
-                                            [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                            required>
-                                        <label
-                                            [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                            for="jobadd">Address</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <div class="form-group">
+                                            <input type="text" formControlName="address" id="jobadd"
+                                                [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                required>
+                                            <label
+                                                [class]="whereControls.address.invalid && (whereControls.address.dirty || whereControls.address.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                for="jobadd">Address</label>
+                                        </div>
+                                        <div
+                                            *ngIf="whereControls.address.invalid && (whereControls.address.dirty ||whereControls.address.touched || isSubmit)">
+                                            <p class="form-error" *ngIf="whereControls.address.errors['required']">
+                                                Please enter address.
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div
-                                    *ngIf="whereControls.address.invalid && (whereControls.address.dirty ||whereControls.address.touched || isSubmit)">
-                                    <p class="form-error" *ngIf="whereControls.address.errors['required']">
-                                        Please enter address.
-                                    </p>
+                                    <div class="col-2 ">
+                                        <button class=" add-cancle_btn" (click)="addressNotFound(true)">Cancel</button>
+                                    </div>
                                 </div>
-                                </div>
-                                <div class="col-2 ">
-                                    <button class=" add-cancle_btn" (click) ="addressNotFound(true)">Cancel</button>
-                                </div>
-                            </div>
                             </form>
                         </div>
                         <div class="btn-pre ">
@@ -464,8 +469,8 @@
 
                 </div>
 
-               
-               
+
+
 
             </div>
             <div [class]="(currentTab == 'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
@@ -686,23 +691,24 @@
                                                         <div class="form-group" id="city-applicant">
                                                             <label>State</label>
 
-                                                            <select type="text" formControlName="applicant_state" 
-                                                            [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <select type="text" formControlName="applicant_state"
+                                                                [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                                 <option value="" hidden>--Select--</option>
                                                                 <option value="{{state?.key}}"
                                                                     *ngFor="let state of settings?.userState">
                                                                     {{state?.value}}</option>
-    
+
                                                             </select>
 
-                                                         
+
                                                             <!-- <label
                                                             [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                             for="Phone-id2" id="daynamic-select">State</label> -->
-                                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
 
-                                                                <div
+                                                            <div
                                                                 *ngIf="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit)">
                                                                 <p class="form-error"
                                                                     *ngIf="applicantControls.applicant_state.errors['required']">
@@ -711,11 +717,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-    
-    
+
+
                                                 </div>
                                             </div>
-    
+
                                         </div>
 
                                         <div class="col-6 bussiness-input">
@@ -776,7 +782,8 @@
             </div>
             <div [class]="(currentTab == 'contrator') ? 'tab-pane fade show active':'tab-pane fade'"
                 id="pills-Contractor" role="tabpanel" aria-labelledby="pills-Contractor-tab">
-                <div class="what-bg" *ngIf="( application?.role != 3 ||application?.role != 1) && application?.type != 4 ||( application?.role == 2 && application?.type == 4)">
+                <div class="what-bg"
+                    *ngIf="( application?.role != 3 ||application?.role != 1) && application?.type != 4 ||( application?.role == 2 && application?.type == 4)">
                     <div class="job-location-Hd">
                         <h3>Contractor Details</h3>
                     </div>
@@ -980,7 +987,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                           
+
                                                             <input type="text" formControlName="contractor_state"
                                                                 [readonly]="isDisabled"
                                                                 [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
@@ -1134,8 +1141,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>
-                                               Name/Email
-                                              
+                                                        Name/Email
+
                                                     </th>
                                                     <th>Company</th>
                                                     <th>Phone</th>
@@ -1146,11 +1153,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor = "let dupli of duplimester; let i = index" class="dd-radio">
+                                                <tr *ngFor="let dupli of duplimester; let i = index" class="dd-radio">
                                                     <td class="mail-shlok">
                                                         <label class="owner">{{dupli?.dumpster_first_name}}
                                                             <span>{{dupli?.dumpster_email}}</span>
-                                                            <input type="radio" [checked]="dupli?.checked" (change)="selectDuplimester($event,i,dupli?.id)">
+                                                            <input type="radio" [checked]="dupli?.checked"
+                                                                (change)="selectDuplimester($event,i,dupli?.id)">
                                                             <span class="checkma"></span>
                                                         </label>
                                                     </td>
@@ -1161,18 +1169,18 @@
                                                     <td>{{dupli?.dumpster_state}}</td>
                                                     <td>{{dupli?.dumpster_zip}}</td>
                                                 </tr>
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
 
 
                                     <div class="btn-pre">
-                                            <button type="submit"
-                                                (click)="goToBack('contractorForm','applicant')">Previous</button>
-                                            <button class="continue" type="submit"
-                                                (click)="addPermitApplication('contractorForm','projectDetail')">Continue</button>
-                                        </div>
+                                        <button type="submit"
+                                            (click)="goToBack('contractorForm','applicant')">Previous</button>
+                                        <button class="continue" type="submit"
+                                            (click)="addPermitApplication('contractorForm','projectDetail')">Continue</button>
+                                    </div>
                                 </div>
 
 
@@ -1257,7 +1265,8 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <input type="number" id="pop4"
-                                                                formControlName="dumpster_phone"  maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                formControlName="dumpster_phone" maxlength="10"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
                                                                 required="">
                                                             <label
@@ -1265,12 +1274,12 @@
                                                                 for="pop4">Phone Number</label>
                                                         </div>
                                                         <div
-                                                        *ngIf="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester)">
-                                                        <p class="form-error"
-                                                            *ngIf="duplimesterCon.dumpster_phone.errors['required']">
-                                                            Please enter phone
-                                                        </p>
-                                                    </div>
+                                                            *ngIf="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_phone.errors['required']">
+                                                                Please enter phone
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1289,12 +1298,12 @@
                                                                 for="pop5">Address</label>
                                                         </div>
                                                         <div
-                                                        *ngIf="duplimesterCon.dumpster_address.invalid && (duplimesterCon.dumpster_address.dirty || duplimesterCon.dumpster_address.touched || isDuplimester)">
-                                                        <p class="form-error"
-                                                            *ngIf="duplimesterCon.dumpster_address.errors['required']">
-                                                            Please enter adress
-                                                        </p>
-                                                    </div>
+                                                            *ngIf="duplimesterCon.dumpster_address.invalid && (duplimesterCon.dumpster_address.dirty || duplimesterCon.dumpster_address.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_address.errors['required']">
+                                                                Please enter adress
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1311,12 +1320,12 @@
                                                                 for="pop6">City</label>
                                                         </div>
                                                         <div
-                                                        *ngIf="duplimesterCon.dumpster_city.invalid && (duplimesterCon.dumpster_city.dirty || duplimesterCon.dumpster_city.touched || isDuplimester)">
-                                                        <p class="form-error"
-                                                            *ngIf="duplimesterCon.dumpster_city.errors['required']">
-                                                            Please enter city
-                                                        </p>
-                                                    </div>
+                                                            *ngIf="duplimesterCon.dumpster_city.invalid && (duplimesterCon.dumpster_city.dirty || duplimesterCon.dumpster_city.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_city.errors['required']">
+                                                                Please enter city
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
@@ -1329,12 +1338,12 @@
                                                                 for="pop7">State</label>
                                                         </div>
                                                         <div
-                                                        *ngIf="duplimesterCon.dumpster_state.invalid && (duplimesterCon.dumpster_state.dirty || duplimesterCon.dumpster_state.touched || isDuplimester)">
-                                                        <p class="form-error"
-                                                            *ngIf="duplimesterCon.dumpster_state.errors['required']">
-                                                            Please enter state
-                                                        </p>
-                                                    </div>
+                                                            *ngIf="duplimesterCon.dumpster_state.invalid && (duplimesterCon.dumpster_state.dirty || duplimesterCon.dumpster_state.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_state.errors['required']">
+                                                                Please enter state
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1344,7 +1353,9 @@
                                                 <div class="row">
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <input type="number"  maxlength="6" id="pop8" formControlName="dumpster_zip" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="number" maxlength="6" id="pop8"
+                                                                formControlName="dumpster_zip"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                 [class]="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
                                                                 required="">
                                                             <label
@@ -1352,16 +1363,17 @@
                                                                 for="pop8">Zip</label>
                                                         </div>
                                                         <div
-                                                        *ngIf="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester)">
-                                                        <p class="form-error"
-                                                            *ngIf="duplimesterCon.dumpster_zip.errors['required']">
-                                                            Please enter zip
-                                                        </p>
-                                                    </div>
+                                                            *ngIf="duplimesterCon.dumpster_zip.invalid && (duplimesterCon.dumpster_zip.dirty || duplimesterCon.dumpster_zip.touched || isDuplimester)">
+                                                            <p class="form-error"
+                                                                *ngIf="duplimesterCon.dumpster_zip.errors['required']">
+                                                                Please enter zip
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <input type="text" id="pop9" formControlName="dumpster_email" class="form-control"
+                                                            <input type="text" id="pop9"
+                                                                formControlName="dumpster_email" class="form-control"
                                                                 required="">
                                                             <label class="form-control-placeholder"
                                                                 for="pop9">Email</label>
@@ -1440,7 +1452,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-6" *ngIf = "application?.type != 4">
+                                    <div class="col-6" *ngIf="application?.type != 4">
                                         <div class="bdp_email loction-adInput lenth-pt">
                                             <div class="row">
                                                 <div class="col-12">
@@ -1453,7 +1465,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-6" *ngIf = "application?.type == 4">
+                                    <div class="col-6" *ngIf="application?.type == 4">
                                         <div class="bdp_email loction-adInput lenth-pt">
                                             <div class="form-group">
                                                 <input type="text" id="da1" class="form-control"
@@ -1469,7 +1481,7 @@
 
                             <div class="imact-trafic">
                                 <div class="row">
-                                    <div class="col-6" *ngIf = "application?.type != 4">
+                                    <div class="col-6" *ngIf="application?.type != 4">
                                         <div class="bdp_email loction-adInput lenth-pt">
 
                                             <div class="form-group">
@@ -1480,7 +1492,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-6" *ngIf = "application?.type != 4">
+                                    <div class="col-6" *ngIf="application?.type != 4">
                                         <div class="bdp_email loction-adInput lenth-pt">
                                             <div class="form-group">
                                                 <input type="text" id="da1" class="form-control"
@@ -1584,13 +1596,13 @@
                                                         Please Enter Date
                                                     </p>
                                                 </div>
-                                               
-                                                    <span class="togle-calnder-Btn" (click)="dp.toggle()"
-                                                        [attr.aria-expanded]="dp.isOpen" ><i
-                                                            class="fa fa-calendar" aria-hidden="true"></i></span>
-                                               
+
+                                                <span class="togle-calnder-Btn" (click)="dp.toggle()"
+                                                    [attr.aria-expanded]="dp.isOpen"><i class="fa fa-calendar"
+                                                        aria-hidden="true"></i></span>
+
                                             </div>
-                                        
+
                                         </div>
                                     </div>
                                     <div class="col-6">
@@ -1611,11 +1623,11 @@
                                                     </p>
                                                 </div>
                                                 <span class=" togle-calnder-Btn" (click)="dp1.toggle()"
-                                                [attr.aria-expanded]="dp.isOpen" type="button"><i
-                                                    class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    [attr.aria-expanded]="dp.isOpen" type="button"><i
+                                                        class="fa fa-calendar" aria-hidden="true"></i></span>
 
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -1652,7 +1664,7 @@
             </div>
             <div [class]="(currentTab == 'upload') ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Uploads"
                 role="tabpanel" aria-labelledby="pills-Uploads-tab">
-                <div class="what-bg">
+                <!-- <div class="what-bg">
                     <div class="job-location-Hd">
                         <h3>Uploads
                             <span>Click the upload button to upload your project drawings/plans where applicable.</span>
@@ -1680,7 +1692,6 @@
                                                                 href="{{ env?.host + env?.imageBasePath + image?.name }}"
                                                                 target="_blank">View</a> / <a class="pointer"
                                                                 (click)="deleteImage(image?.id,i)">Delete</a></p>
-                                                        <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                     </h6>
 
 
@@ -1702,18 +1713,11 @@
                                                                 href="{{ env?.host + env?.imageBasePath + image?.name }}"
                                                                 target="_blank">View</a> / <a class="pointer"
                                                                 (click)="deleteImage(image?.id,i)">Delete</a></p>
-                                                        <!-- <p *ngIf = "image.type != 1">No Data</p> -->
                                                     </h6>
 
 
                                                 </td>
-                                                <!-- <td
-                                                    *ngIf="application?.upload_detail && application?.upload_detail[1]?.type != 1 && application?.upload_detail[0]?.type != 0">
-                                                    _</td> -->
-                                                <!-- <td  *ngIf="application?.upload_detail && application?.upload_detail[0]?.type == 0">_</td> -->
-
-
-                                                <td class="upload-Btn">
+                                                                                    <td class="upload-Btn">
                                                     <button>
                                                         <span><img src="assets/images/upload.svg" alt=""></span> Upload
                                                         <input type='file' (change)="media($event,1,'upload')">
@@ -1732,6 +1736,81 @@
                             <button class="continue" (click)="addPermitApplication('','review')">Continue</button>
                         </div>
 
+                    </div>
+
+                </div> -->
+
+                <div class="what-bg new-UploadBox">
+                    <div class="job-location-Hd">
+                        <h3>Uploads
+                            <span>Click the upload button to upload your project drawings/plans where applicable.</span>
+                        </h3>
+
+                    </div>
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="img-upload-tbl">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>File Type</th>
+                                                <th>Names</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor = "let image of allImage; let i = index">
+                                                <td>
+
+                                                    <div class="file_slect-input">
+                                                        <div class="form-group">
+                                                            <select (change) = "selectImageType($event.target.value)">
+                                                                    <option value="" hidden>--Select--</option>
+                                                                    <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </td>
+                                                <td class="upload-Btn" >
+                                                    <button *ngIf ="!image?.imageName">
+                                                        <span><img src="assets/images/b-upload.svg" alt=""></span>
+                                                        Upload file
+                                                        <input type='file' (change)="media($event,i,'upload')">
+                                                    </button>
+                                                    <p *ngIf = "image?.imageName">{{image?.imageName}}</p>
+                                                </td>
+                                                <td class="acton-Btn">
+                                                    <button> <span><img src="assets/images/v-btn.svg" alt=""></span>
+                                                        View</button>
+                                                    <button *ngIf ="i>0" (click) = "deleteImage1(i)" class="delet-btn"> <span><img src="assets/images/d-btn.svg"
+                                                                alt=""></span> Delete</button>
+                                                </td>
+
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="more-txt" (click) ="addMoreImage()">
+                                    <span>+</span> Add more Document
+                                </div>
+                            </div>
+
+                        </div>
+
+                      
+                        <div class="btn-pre">
+                                <button type="button" (click)="goToBack('','projectDetail')">Previous</button>
+                                <button class="continue" (click)="addPermitApplication('','review')">Continue</button>
+                            </div>
                     </div>
 
                 </div>
@@ -1991,8 +2070,9 @@
                                                         <button class="what-btn" type="button">
                                                             Project Details
                                                         </button>
-                                                        <button class="edit-icon" (click)="editByReviewPage('projectDetail')"><img src="assets/images/edit.svg"
-                                                                alt="" >
+                                                        <button class="edit-icon"
+                                                            (click)="editByReviewPage('projectDetail')"><img
+                                                                src="assets/images/edit.svg" alt="">
                                                             Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefive"
                                                             aria-expanded="true" aria-controls="collapsefive"><i
@@ -2088,35 +2168,43 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr >
+                                                                    <tr>
 
-                                                                        <td >Drawings/ Plans</td>
+                                                                        <td>Drawings/ Plans</td>
                                                                         <td>
-                                                                            <h6 *ngFor="let image of application?.upload_detail; let i = index">
-                                                                                <p *ngIf="image.type == 0">{{image?.name}} <a class="pointer"
+                                                                            <h6
+                                                                                *ngFor="let image of application?.upload_detail; let i = index">
+                                                                                <p *ngIf="image.type == 0">
+                                                                                    {{image?.name}} <a class="pointer"
                                                                                         href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                                                        target="_blank">View</a> / <a class="pointer"
-                                                                                        (click)="deleteImage(image?.id,i)">Delete</a></p>
+                                                                                        target="_blank">View</a> / <a
+                                                                                        class="pointer"
+                                                                                        (click)="deleteImage(image?.id,i)">Delete</a>
+                                                                                </p>
                                                                                 <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                                             </h6>
-                        
-                        
+
+
                                                                         </td>
 
                                                                     </tr>
-                                                                    <tr >
+                                                                    <tr>
 
-                                                                        <td >Certificate of Insurance</td>
+                                                                        <td>Certificate of Insurance</td>
                                                                         <td>
-                                                                            <h6 *ngFor="let image of application?.upload_detail; let i = index">
-                                                                                <p *ngIf="image.type == 1">{{image?.name}} <a class="pointer"
+                                                                            <h6
+                                                                                *ngFor="let image of application?.upload_detail; let i = index">
+                                                                                <p *ngIf="image.type == 1">
+                                                                                    {{image?.name}} <a class="pointer"
                                                                                         href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                                                        target="_blank">View</a> / <a class="pointer"
-                                                                                        (click)="deleteImage(image?.id,i)">Delete</a></p>
+                                                                                        target="_blank">View</a> / <a
+                                                                                        class="pointer"
+                                                                                        (click)="deleteImage(image?.id,i)">Delete</a>
+                                                                                </p>
                                                                                 <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                                             </h6>
-                        
-                        
+
+
                                                                         </td>
 
                                                                     </tr>

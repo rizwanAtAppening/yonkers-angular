@@ -1,1 +1,101 @@
-<p>show-team-member works!</p>
+<app-layout>
+        <router-outlet> 
+
+                <section>
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="back-txt">
+                                        <div class="row">
+                                            <div class="col-12" routerLink = "/dashboard/permit">
+                                                <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                
+                
+                    <section class="table-sec">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="table-Box">
+                                        <div class="permit-index">
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <div class="row">
+                                                        <div class="col-4 pr-0">
+                                                            <div class="permit-Hd" >
+                                                                My Staff
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-7 pl-0">
+                                                            <!-- <div class="header-input tbl-search-box">
+                                                        <input type="text" placeholder="Search...">
+                                                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                                                    </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4" >
+                                                    <div class="New-Project" routerLink = "/dashboard/add-team-member"><button> <span><img src="assets/images/plus.svg"
+                                                                    alt=""></span> Add Staff</button></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-permit">
+                                                    <table class="table table-bordered ">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Name</th>
+                                                                <th>Email</th>
+                                                                <th>Status</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor ="let staff of staffMemberList">
+                                                                <td class="refTxt">{{staff?.id}}</td>
+                                                                <td>{{staff?.member?.first_name}}</td>
+                                                                <td>{{staff?.member?.email}}</td>
+                                                                <td class="submited-Btn blue-txt">
+                                                                    <button *ngIf ="(staff?.member?.status == 1 || staff?.member?.status == null)">Active</button>
+                                                                    <button *ngIf ="(staff?.member?.status == 0)">InActive</button>
+
+                                                                </td>
+                                                                <td class="update-txt dropdown-action">
+                                                            <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
+                                                           
+                                                              
+                                                                <div class="dropdown-contentable">
+                                                                  <!-- <a href="#">Delete</a> -->
+                                                                  <a  (click) ="navigateByUrl(staff?.member?.id)">Edit Staff</a>
+                                                                  <a *ngIf = "(staff?.member?.status == 1 || staff?.member?.status == null)" (click) ="activeInactiveStaffMember(staff?.id,0)">InActive</a>
+                                                                  <a *ngIf = "staff?.member?.status == 0" (click) ="activeInactiveStaffMember(staff?.id,1)">Active</a>
+
+                                                                  <div class="triangle-left"></div>
+                                                                </div>
+                                                           
+                                                                </td>
+                                                            </tr>
+                                                           
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+            </router-outlet>
+            </app-layout>

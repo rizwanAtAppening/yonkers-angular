@@ -12,6 +12,8 @@ import { SubmitApplicationComponent } from './submit-application/submit-applicat
 import { UpdatePermitComponent } from './update-permit/update-permit.component';
 import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-daily-work-loaction.component';
 import { AddPermitComponent } from './add-permit/add-permit.component';
+import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
+import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
 
 
 // const routes: Routes = [
@@ -85,6 +87,13 @@ const routes: Routes = [
           {
             path: 'add-user-permit',
             component: AddPermitComponent,
+          }, 
+          {
+            path: 'add-team-member',
+            component: AddTeamMemberComponent,
+          },  {
+            path: 'show-team-member',
+            component: ShowTeamMemberComponent,
           }, 
 
 

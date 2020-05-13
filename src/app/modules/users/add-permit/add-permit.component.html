@@ -337,14 +337,16 @@
 
                                                             </td>
                                                             <td class="upload-Btn">
-                                                                <button>
+                                                                <button *ngIf ="!image?.imageName">
                                                                     <span><img src="assets/images/b-upload.svg"
-                                                                            alt=""></span> Upload file
-                                                                    <input type="file" (change)="media($event)">
+                                                                            alt=""></span> Upload file1
+                                                                    <input type="file" (change)="media($event,i)">
                                                                 </button>
+                                                                <p *ngIf ="image?.imageName">{{image?.imageName}}</p>
                                                             </td>
                                                             <td class="acton-Btn">
-                                                                <button> <span><img src="assets/images/v-btn.svg"
+                                                                <button> <span
+                                                                    target="_blank"><img src="assets/images/v-btn.svg"
                                                                             alt=""></span> View</button>
                                                                 <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
                                                                             src="assets/images/d-btn.svg"  alt=""></span>
@@ -723,76 +725,76 @@
                             </div>
 
                             <div class=" new-UploadBox discprection-Box">
-                                <div class="container p-0">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="img-upload-tbl">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>File Type</th>
-                                                            <th>Names</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor = "let image of allImage; let i = index">
-                                                            <td>
-
-                                                                <div class="file_slect-input">
-                                                                    <div class="form-group">
-                                                                        <select (change) = "selectImageType($event.target.value)">
-                                                                            <option value="" hidden>--Select--</option>
-                                                                            <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
-                                                                        </select>
-                                                                        <span><i class="fa fa-angle-down"
-                                                                                aria-hidden="true"></i></span>
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="img-upload-tbl">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>File Type</th>
+                                                                <th>Names</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor = "let image of allImage; let i = index">
+                                                                <td>
+    
+                                                                    <div class="file_slect-input">
+                                                                        <div class="form-group">
+                                                                            <select (change) = "selectImageType($event.target.value)">
+                                                                                <option value="" hidden>--Select--</option>
+                                                                                <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
+                                                                            </select>
+                                                                            <span><i class="fa fa-angle-down"
+                                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-
-
-                                                            </td>
-                                                            <td class="upload-Btn">
-                                                                <button>
-                                                                    <span><img src="assets/images/b-upload.svg"
-                                                                            alt=""></span> Upload file
-                                                                    <input type="file" (change)="media($event)">
-                                                                </button>
-                                                            </td>
-                                                            <td class="acton-Btn">
-                                                                <button> <span><img src="assets/images/v-btn.svg"
-                                                                            alt=""></span> View</button>
-                                                                <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
-                                                                            src="assets/images/d-btn.svg"  alt=""></span>
-                                                                    Delete</button>
-                                                            </td>
-
-                                                        </tr>
-                                                        
-
-                                                    </tbody>
-                                                </table>
+    
+    
+                                                                </td>
+                                                                <td class="upload-Btn">
+                                                                    <button *ngIf ="!image?.imageName">
+                                                                        <span><img src="assets/images/b-upload.svg"
+                                                                                alt=""></span> Upload file1
+                                                                        <input type="file" (change)="media($event,i)">
+                                                                    </button>
+                                                                    <p *ngIf ="image?.imageName">{{image?.imageName}}</p>
+                                                                </td>
+                                                                <td class="acton-Btn">
+                                                                    <button> <span
+                                                                        target="_blank"><img src="assets/images/v-btn.svg"
+                                                                                alt=""></span> View</button>
+                                                                    <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
+                                                                                src="assets/images/d-btn.svg"  alt=""></span>
+                                                                        Delete</button>
+                                                                </td>
+    
+                                                            </tr>
+                                                            
+    
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="more-txt" (click) ="addMoreImage()">
-                                                <span>+</span> Add more Document
+                                            <div class="col-12">
+                                                <div class="more-txt" (click) ="addMoreImage()">
+                                                    <span>+</span> Add more Document
+                                                </div>
                                             </div>
+    
                                         </div>
-
+    
+                                        <div class="btn-pre">
+    
+                                            <button class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
+                                                to list</button>
+                                        </div>
+    
                                     </div>
-
-                                    <div class="btn-pre"  >
-
-                                        <button *ngIf ="!applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
-                                            to list</button>
-                                            <button *ngIf ="applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Submit
-                                               </button>
-                                    </div>
-
+    
                                 </div>
-
-                            </div>
 
                         </div>
 

@@ -1,1 +1,139 @@
-<p>add-team-member works!</p>
+ <app-layout>
+    <router-outlet> 
+
+            <section class="bg-dashbord">
+                    <div class="dash-back">
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="back-txt m-0">
+                                    <div class="row">
+                                        <div class="col-12" routerLink = "/dashboard/show-team-member">
+                                            <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <section class="updateprofile pt-0">
+                        <div class="box-engrining-2">
+                        
+                            <div class="applicant-details">
+                                <div class="job-location-Hd" >
+                                    <h3>Add staff</h3>
+                                </div>
+                        
+                                <div class="app-details">
+                                    <form [formGroup]="addStaffForm">
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="ad3" class="form-control" formControlName="first_name"  [class]="staffCon.first_name.invalid && (staffCon.first_name.dirty || staffCon.first_name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"  required="">
+                                                                <label [class]="staffCon.first_name.invalid && (staffCon.first_name.dirty || staffCon.first_name.touched || isStaff) ? ' form-control-placeholder msg' : 'form-control-placeholder'"  for="ad3">First Name</label>
+                                                            </div>
+                                                            <div class="form-error"
+                                                            *ngIf="staffCon.first_name.invalid && (staffCon.first_name.dirty || staffCon.first_name.touched || isStaff)">
+                                                            <span *ngIf="staffCon.first_name.errors['required']">
+                                                              Please select  First Name
+                                                            </span>
+                                                           
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                        
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="ad1"  formControlName="last_name" [class]="staffCon.last_name.invalid && (staffCon.last_name.dirty || staffCon.last_name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'" required="">
+                                                                <label [class]="staffCon.last_name.invalid && (staffCon.last_name.dirty || staffCon.last_name.touched || isStaff) ? ' form-control-placeholder msg' : 'form-control-placeholder'"  for="ad1">Last Name</label>
+                                                            </div>
+                                                            <div class="form-error"
+                                                            *ngIf="staffCon.last_name.invalid && (staffCon.last_name.dirty || staffCon.last_name.touched || isStaff)">
+                                                            <span *ngIf="staffCon.last_name.errors['required']">
+                                                              Please select  Last Name
+                                                            </span>
+                                                           
+                                                          </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="email" id="ad2" formControlName="email"  [class]="staffCon.email.invalid && (staffCon.email.dirty || staffCon.email.touched || isStaff) ? 'form-control form-group-error' : 'form-control'" required="">
+                                                                    <label [class]="staffCon.email.invalid && (staffCon.email.dirty || staffCon.email.touched || isStaff) ? ' form-control-placeholder msg' : 'form-control-placeholder'"  for="ad2">Email</label>
+                                                                </div>
+                                                                <div class="form-error" *ngIf="staffCon.email.invalid && (staffCon.email.dirty || staffCon.email.touched || isSubmit)">
+                                                                        <span *ngIf="staffCon.email.errors['required']">
+                                                                          Please enter a Email
+                                                                        </span>
+                                                                        <span *ngIf="staffCon.email.errors['maxlength']">
+                                                                          Please enter a Email no more than 250 characters.
+                                                                        </span>
+                                                                        <span *ngIf="staffCon.email.errors['pattern']">
+                                                                          Please enter a valid Email .
+                                                                        </span>
+                                                                      </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="ad4" formControlName="mobile_number" [class]="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"  class="form-control" required="">
+                                                                    <label  [class]="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff) ? ' form-control-placeholder msg' : 'form-control-placeholder'" for="ad4">Phone Number</label>
+                                                                </div>
+                                                                <div class="form-error"
+                                                                *ngIf="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff)">
+                                                                <span *ngIf="staffCon.mobile_number.errors['required']">
+                                                                  Please Enter mobile number
+                                                                </span>
+                                                               
+                                                              </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                        
+                        
+                                    
+                        
+                        
+                                     
+                                        <div class="btn-pre">
+                                            <button routerLink ="/dashboard/show-team-member">Cancel</button>
+                                            <button class="continue mr-0 invite-btn" type="submit" (click) ="addStaff()">Invite</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        </section>
+        </router-outlet>
+        </app-layout>

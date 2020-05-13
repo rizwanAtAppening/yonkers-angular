@@ -946,29 +946,53 @@ export class AddPermitTabSectionComponent implements OnInit {
   public fileType: any
   public licenseFile: any
   public image: any
-  media(event1, fileType, fileName) {
-
-    this.fileType = fileType
-    this.imageName = event1.target.files[0].name;
-    this.attachment = event1.target.files[0]
-
-    var reader = new FileReader();
-    var reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.image = event.target.result;
-    };
-    reader.readAsDataURL(event1.target.files[0]);
-    console.log(this.image)
-    console.log(event1.target.files[0])
-    if (this.attachment && fileName == 'upload') {
-      this.uploadImageAndDocuments();
+  public name = []
+  public formData
+  media(event1, index, fileName) {
+    debugger
+    if (fileName == 'license') {
+      this.imageType = 1
     }
-    else if (this.attachment && fileName == 'license') {
-      this.licenseFile = this.attachment
+    if (this.imageType != null) {
+      this.imageName = event1.target.files[0].name;
+      this.attachment = event1.target.files[0]
+      this.name.push({ name: (this.attachment), type: this.imageType })
+      this.formData = new FormData()
+      console.log(this.name)
+      this.name.map(data => {
+        this.formData.append('name[name][]', data.name)
+        this.formData.append('name[imageType][]', data.type)
+
+      })
+      //  let hh = [{name:'value',type:1},{name:'value1',type:1}]
+      this.imageType = null
+      var reader = new FileReader();
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.image = event.target.result;
+      };
+      reader.readAsDataURL(event1.target.files[0]);
+      this.allImage.map((data: any, i) => {
+        if (i == index) {
+          data.imageName = this.imageName;
+          data.image = this.image
+        }
+        console.log(this.allImage)
+      })
+
+      if (this.attachment && fileName == 'upload') {
+        this.uploadImageAndDocuments();
+      }
+      else if (this.attachment && fileName == 'license') {
+        this.licenseFile = this.attachment
+      }
+    } else {
+      this.toasterService.error('Please select type then upload image');
     }
+
+
   }
 
-  //(change)="media($event)"
   uploadImageAndDocuments() {
     const applicationId = this.permitService.getApplicationID()
     // let id = (this.certificateDetail.id)
@@ -988,7 +1012,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       applicationId,
 
     );
-    this.permitService.uploadImage(formData).subscribe(data => {
+    this.permitService.uploadImage(this.formData).subscribe(data => {
       console.log(data)
       this.getApplication()
     })
@@ -1126,6 +1150,25 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
       this.router.navigate(['/dashboard/submit-application'])
     })
+  }
+
+  public allImage = [{}]
+  addMoreImage() {
+    this.allImage.push({})
+  }
+
+  deleteImage1(index) {
+    this.allImage.map((data, i) => {
+      if (i == index) {
+        this.allImage.splice(i, 1)
+      }
+    })
+  }
+
+  public imageType: any = null
+  selectImageType(value) {
+    debugger
+    this.imageType = Number(value)
   }
 }
 
