@@ -18,6 +18,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { UpdatePermitComponent } from './update-permit/update-permit.component';
 import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-daily-work-loaction.component';
 import { AddPermitComponent } from './add-permit/add-permit.component';
+import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
+import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 
@@ -35,7 +37,7 @@ import { AddPermitComponent } from './add-permit/add-permit.component';
     
 
   ],
-  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, UpdatePermitComponent, AddDailyWorkLoactionComponent, AddPermitComponent],
+  declarations: [UsersRoutingModule.component, PermitComponent, AddPermitApplicationComponent, AddPermitTabSectionComponent, UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, UpdatePermitComponent, AddDailyWorkLoactionComponent, AddPermitComponent, AddTeamMemberComponent, ShowTeamMemberComponent],
   providers: [
     UserAuthGuard
   ]
