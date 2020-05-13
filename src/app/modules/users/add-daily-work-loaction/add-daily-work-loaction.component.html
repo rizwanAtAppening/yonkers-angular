@@ -212,30 +212,35 @@
                         </div>
 
 
-                        <div class="job-input">
-                                <div class="container p-0">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="number" id="permit"
-                                                                class="form-control"
-                                                                formControlName="permit_type" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="permit">Permit type</label>
-                                                        </div>
+                    
+
+                            <div class="bussiness-input">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="daily-type">
+                                            <div class="row">
+                                                <div class="col-12 ">
+    
+                                                    <div class="form-group">
+                                                        <label>Permit type</label>
+                                                        <select formControlName="permit_type" required>
+                                                            <option value="" hidden>
+                                                                --Select--</option>
+                                                            <option value="{{category?.key}}"
+                                                                *ngFor="let category of settings?.type">
+                                                                {{category?.value}}
+                                                            </option>
+                                                        </select>
+                                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                     </div>
+    
                                                 </div>
                                             </div>
-
                                         </div>
-
+    
                                     </div>
-                                  
+    
                                 </div>
-
                             </div>
 
                             <div class="job-input">
@@ -314,9 +319,13 @@
                             </div>
                         </div>
 
-                        <div class="btn-pre">
-                            <button type="button">Cancel</button>
+                        <div class="btn-pre" *ngIf ="!applicationId">
+                            <button type="button" routerLink ="/dashboard/permit">Cancel</button>
                             <button class="continue mr-0" type="submit" (click)="adddwl()">Add to list</button>
+                        </div>
+                        <div  class="btn-pre" *ngIf ="applicationId">
+                            <button class="continue mr-0" (click)="adddwl()">Submit</button>
+
                         </div>
                     </form>
                 </div>
@@ -324,7 +333,7 @@
         </section>
 
 
-        <section class="box-work-daily-2 mx-auto">
+        <section class="box-work-daily-2 mx-auto" *ngIf ="!applicationId">
             <div class="row">
                 <div class="col-12">
                     <div class="table-permit  mt-0">

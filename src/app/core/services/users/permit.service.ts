@@ -259,6 +259,19 @@ export class PermitService {
     );
   }
 
+  getApplicationById(id): Observable<any> {
+    const href = `${environment['getApplicationById']}/${id}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   addDailyWorkLocation(data): Observable<any> {
     const href = `${environment['addDailyWorkLocation']}`;
     return this.http.post<any>(href, data).pipe(

@@ -1123,8 +1123,8 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   submitApplications() {
     debugger
-    this.permitService.submitAppliction(this.application.id).subscribe(data => {
-
+    this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
+      this.router.navigate(['/dashboard/submit-application'])
     })
   }
 }

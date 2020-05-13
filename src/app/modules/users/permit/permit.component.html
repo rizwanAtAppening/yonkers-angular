@@ -225,16 +225,16 @@
                                                                                             <span> <i
                                                                                                     class="fa fa-angle-down"
                                                                                                     aria-hidden="true"></i></span>
-                                                                                            <!-- <div
+                                                                                            <div
                                                                                                 class="dropdown-contentable">
-                                                                                                <a href="#">Delete</a>
-                                                                                                <a href="#">Edit
+                                                                                                <a class="pointer" (click) = "naviagetByUrl('dashboard/add-user-permit',application.id,1)" >Modify </a>
+                                                                                                <!-- <a href="#">Edit
                                                                                                     Staff</a>
-                                                                                                <a href="#">Inactive</a> 
+                                                                                                <a href="#">Inactive</a>  -->
                                                                                                 <div
                                                                                                     class="triangle-left">
                                                                                                 </div>
-                                                                                            </div> -->
+                                                                                            </div>
                                                                                         </td>
                                                                                     </tr>
 
@@ -332,7 +332,10 @@
                                                                                                </td>
                                                                                             <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
                                                                                                 <!-- <td class="msg"><b>Draft</b></td> -->
-                                                                                           
+                                                                                                <td
+                                                                                                class="submited-Btn green-txt-2">
+                                                                                                <button>Completed</button>
+                                                                                            </td>
                                                                                             <td *ngIf ="application.application_type ==2 && application.status == 2"
                                                                                                 class="submited-Btn blue-txt-2">
                                                                                                 <button>Submitted</button>
@@ -341,10 +344,7 @@
                                                                                             class="submited-Btn">
                                                                                             <button>Draft</button>
                                                                                         </td>
-                                                                                            <td
-                                                                                                class="submited-Btn green-txt-2">
-                                                                                                <button>Completed</button>
-                                                                                            </td>
+                                                                                            
                                                                                             <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td>
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -357,11 +357,11 @@
                                                                                                         aria-hidden="true"></i></span>
                                                                                                 <div
                                                                                                     class="dropdown-contentable">
-                                                                                                    <!-- <a >Delete</a>
-                                                                                                    <a >Edit
-                                                                                                        Staff</a>
-                                                                                                    <a >Inactive</a> -->
-                                                                                                    <a (click) ="getApplicationId(application?.id)" data-toggle="modal" data-target="#delete_application">Conver Permit</a>
+                                                                                                    <!-- <a >Delete</a> -->
+                                                                                                    <a class="pointer" (click) = "naviagetByUrl('/dashboard/daily-work-location',application.id,2)" >Modify </a>
+                                                                                                       
+                                                                                                    <!-- <a >Inactive</a> -->
+                                                                                                    <a  class="pointer" (click) ="getApplicationId(application?.id)" data-toggle="modal" data-target="#delete_application">Conver Permit</a>
                                                                                                     <div
                                                                                                         class="triangle-left">
                                                                                                     </div>

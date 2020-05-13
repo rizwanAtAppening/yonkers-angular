@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,16 +19,31 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     private permitService: PermitService,
     private router: Router,
     private toasterService: ToastrService,
+    private route: ActivatedRoute
 
 
   ) {
     this.settings = settingConfig;
 
   }
-
+  public applicationId: any
+  public dwlType: any
   ngOnInit(): void {
     this.onInIt();
-    this.getPermitApplication()
+    this.getPermitApplication();
+    this.route.queryParams.subscribe(data => {
+      this.id = data.id
+      this.applicationId = data.id
+      this.dwlType = data.type;
+      if (this.dwlType) {
+        localStorage.setItem('dwlType', this.dwlType);
+
+      }
+      if (this.id) {
+        this.getApplication();
+      }
+    })
+
   }
 
   onInIt() {
@@ -105,11 +120,22 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
   }
 
+  public submitApplication = {}
+  public updateValueDwl = []
   submitDailyWorkLocation() {
-    const data = {
-
+    debugger
+    if(this.applicationId){
+      this.updateValueDwl = [{id:this.applicationId}]
+      this.submitApplication = {
+        application:this.updateValueDwl
+      }
     }
-    this.permitService.submitDailyWorkLocation({ application: this.dwlApplication }).subscribe(data => {
+    else{
+      this.submitApplication = {
+        application: this.dwlApplication
+      }
+    }
+    this.permitService.submitDailyWorkLocation(this.submitApplication).subscribe(data => {
       console.log(data)
       this.router.navigate(['/dashboard/permit'])
 
@@ -119,8 +145,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlApplication = []
   public dwlData = {}
   adddwl() {
-
-
+    debugger
     if (this.location_type == 1) {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -139,15 +164,15 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.isdwlSubmit = true;
       return false
     }
-
+    debugger
 
     if (this.location_type == 1) {
       this.dwlData = {
         address_id: this.dwlForm.value.address_id,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
-        permit_type:this.dwlForm.value.permit_type,
-        percel_number:this.dwlForm.value.percel_number,
+        permit_type: this.dwlForm.value.permit_type,
+        parcel_number: this.dwlForm.value.parcel_number,
 
         sub_contractor: this.dwlForm.value.sub_contractor,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
@@ -164,8 +189,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlData = {
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
-        permit_type:this.dwlForm.value.permit_type,
-        percel_number:this.dwlForm.value.percel_number,
+        permit_type: this.dwlForm.value.permit_type,
+        parcel_number: this.dwlForm.value.parcel_number,
         sub_contractor: this.dwlForm.value.sub_contractor,
         also_know_as: this.dwlForm.value.also_know_as,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
@@ -174,10 +199,6 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         location_type: this.location_type,
         id: this.id ? this.id : null,
         dwl_id: this.dwl_id ? this.dwl_id : null,
-        // locations: [{
-        //   street_one: this.dwlForm.value.street_one ? Number(this.dwlForm.value.street_one) : null, address_join: this.dwlForm.value.address_join ? Number(this.dwlForm.value.address_join) : null,
-        //   street_two: this.dwlForm.value.street_two ? Number(this.dwlForm.value.street_two) : null
-        // }]
         locations: this.dwlForm.controls.addlocation.value
 
       }
@@ -187,6 +208,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlApplication = data.response;
       this.isdwlSubmit = false;
       this.dwlForm.reset()
+      if (this.id && this.applicationId) {
+        this.submitDailyWorkLocation()
+      }
     })
   }
 
@@ -194,16 +218,6 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   application_type: number = 2
   // currentPage = 1
   getPermitApplication() {
-
-    // if (this.userType == 3) {
-    //   this.application_type = 1
-    // } else {
-    //   this.application_type = 2
-
-    // }
-    // const data = {
-    //   page: this.currentPage
-    // }
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
@@ -212,25 +226,10 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           return data
         }
       })
-      // console.log(this.dwlApplication)
-      // this.offset = data.offset;
-      // this.totalPagination = data.total
-      // this.currentPage = data.currentPage;
+
     })
   }
 
-  // address_id: [''],
-  // street_one: [''],
-  // address_join: [''],
-  // street_two: [''],
-  // work_description: ['', Validators.required],
-  // parcel_number: [''],
-  // layout_number: [''],
-  // permit_number: [''],
-  // sub_contractor: [''],
-  // sub_contractor_phone: [''],
-  // work_category: [''],
-  // also_know_as: [''],
   public id: number
   public dwl_id: number
   editAppliction(value) {
@@ -298,35 +297,111 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     })
   }
 
-  public layOutData:any;
+  removeAnResetForm() {
+
+    this.dwlForm.reset();
+    if (this.addLocationControls.controls.length > 1) {
+      this.addLocationControls.controls.map((data, i) => {
+        this.remove(i);
+        if (this.addLocationControls.controls.length == 1) {
+          return false
+        }
+      })
+    }
+
+  }
+
+  public layOutData: any;
   fillDataByLayOutNumber() {
     debugger
     const value = this.dwlForm.value.layout_number
+    if (value == null) {
+      this.removeAnResetForm()
+    }
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
-       this.layOutData = data.response,
-       
-      this.dwlForm.controls.permit_type.setValue(this.layOutData.application_daily_work_location.permit_type)
+      this.layOutData = data.response;
+      if (this.layOutData.application_daily_work_location) {
+        this.fillFormOnEditAndByLayoutNumber(this.layOutData)
+      }
+    })
+
+  }
+
+  fillFormOnEditAndByLayoutNumber(value) {
+    debugger
+    this.layOutData = value
+    if (this.layOutData.application_daily_work_location) {
+      this.location_type = this.layOutData.location_type
+      this.dwlForm.controls.permit_type.setValue(this.layOutData.permit_type)
       this.dwlForm.controls.work_category.setValue(this.layOutData.application_daily_work_location.work_category)
       this.dwlForm.controls.permit_number.setValue(this.layOutData.application_daily_work_location.permit_number)
-      this.dwlForm.controls.percel_number.setValue(this.layOutData.application_daily_work_location.percel_number)
-
+      this.dwlForm.controls.parcel_number.setValue(this.layOutData.application_daily_work_location.parcel_number)
       this.dwlForm.controls.work_description.setValue(this.layOutData.application_daily_work_location.work_description)
+      this.dwlForm.controls.layout_number.setValue(this.layOutData.application_daily_work_location.layout_number)
 
-    })
-   }
+      if (this.location_type == 2) {
+        if (this.layOutData.location.length > 1) {
+          for (let index = 0; index < this.layOutData.location.length - 1; index++) {
+            if (this.layOutData.location.length != this.addLocationControls.value.length) {
+              this.addLocationControls.push(this.addLocationFormGroup())
+            }
+            this.layOutData.location.map((data, i) => {
+              this.addLocationControls.controls.map((value, j) => {
+                if (i == j) {
+                  value['controls'].street_one.setValue(data.street_one)
+                  value['controls'].street_two.setValue(data.street_two)
+                  value['controls'].address_join.setValue(data.address_join)
+                }
+              })
+            })
 
-   showMoreLocation(value,id){
+          }
+        }
+        else {
+          this.layOutData.location.map((data, i) => {
+            this.addLocationControls.controls.map((value, j) => {
+              if (i == j) {
+                debugger
+                value['controls'].street_one.setValue(data.street_one)
+                value['controls'].street_two.setValue(data.street_two)
+                value['controls'].address_join.setValue(data.address_join)
+              }
+            })
+          })
+        }
+      } else {
+        this.dwlForm.controls.address_id.setValue(this.layOutData.address_id)
+
+      }
+    }
+
+
+  }
+
+  showMoreLocation(value, id) {
     debugger
-    this.dwlApplication.map(data=>{
-      if(data.id == id && data.status == null && data.application_type == 2){
+    this.dwlApplication.map(data => {
+      if (data.id == id && data.status == null && data.application_type == 2) {
         data.isSingleAddress = value
 
-      }else
-      {
+      } else {
         data.isSingleAddress = !value
 
       }
     })
 
+  }
+  public applicationDetail: any;
+  getApplication() {
+    debugger
+    this.permitService.getApplicationById(this.id).subscribe(data => {
+      this.applicationDetail = data.response;
+      if (this.applicationDetail.application_daily_work_location) {
+        this.dwl_id = this.applicationDetail.application_daily_work_location.id
+      }
+      if (this.applicationDetail) {
+        this.fillFormOnEditAndByLayoutNumber(this.applicationDetail)
+      }
+    })
   }
 }

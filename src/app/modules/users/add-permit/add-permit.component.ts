@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -13,20 +13,34 @@ import { ToastrService } from 'ngx-toastr';
 export class AddPermitComponent implements OnInit {
   public permitForm: FormGroup;
   public settings: any;
-
+  public applicationId: any;
+  public dwlType: any;
   constructor(
     private fb: FormBuilder,
     private permitService: PermitService,
     private router: Router,
     private toasterService: ToastrService,
+    private route: ActivatedRoute,
   ) {
     this.settings = settingConfig;
 
   }
 
   ngOnInit(): void {
+    debugger
     this.onInIt()
-    this.getPermitApplication()
+    this.getPermitApplication();
+    this.route.queryParams.subscribe(data => {
+      this.applicationId = data.id,
+        this.id = data.id;
+      this.dwlType = data.type;
+      if (this.dwlType) {
+        localStorage.setItem('dwlType', this.dwlType);
+      }
+      if (this.applicationId) {
+        this.getApplication()
+      }
+    })
   }
 
 
@@ -81,7 +95,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   addLocationForm(): void {
-    
+
     this.addLocationControls.push(this.addLocationFormGroup())
   }
   get addCon() {
@@ -90,7 +104,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   remove(index) {
-    
+
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -108,7 +122,7 @@ export class AddPermitComponent implements OnInit {
 
   public isPermit = false
   addPermitApplication() {
-    
+
     const data = {
 
     }
@@ -137,7 +151,7 @@ export class AddPermitComponent implements OnInit {
       return false;
 
     }
-    if(this.id){
+    if (this.id) {
       this.permitForm.value.id = this.id
     }
     this.permitForm.value.location_type = this.location_type
@@ -281,7 +295,10 @@ export class AddPermitComponent implements OnInit {
     // Object.keys(f)
     this.permitService.addDwlPemitApplication(this.permitForm.value).subscribe(data => {
       this.peritApplication = (data.response)
-      this.getPermitApplication()
+      this.getPermitApplication();
+      if(this.applicationId){
+        this.submitDailyWorkLocation();
+      }
       this.isPermit = false
       this.permitForm.reset();
     })
@@ -290,7 +307,7 @@ export class AddPermitComponent implements OnInit {
   public peritApplication = []
   public imageType: any = 1
   selectImageType(value) {
-    
+
     this.imageType = Number(value)
   }
 
@@ -314,7 +331,7 @@ export class AddPermitComponent implements OnInit {
   public image: any
   public name: any = []
   media(event1) {
-    
+
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0]
     this.name.push({ name: (this.attachment), type: this.imageType })
@@ -335,7 +352,7 @@ export class AddPermitComponent implements OnInit {
   // currentPage = 1
   public dwlApplication = []
   getPermitApplication() {
-    
+
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
@@ -343,30 +360,44 @@ export class AddPermitComponent implements OnInit {
           data.isSingleAddress = true
           return data
         }
-        
+
       })
       console.log(this.dwlApplication)
 
     })
   }
 
+  public submitApplication = {}
+  public updateValueDwl = []
   submitDailyWorkLocation() {
-    
-    this.permitService.submitDailyWorkLocation({ application: this.dwlApplication }).subscribe(data => {
+    debugger
+    if(this.applicationId){
+      this.updateValueDwl = [{id:this.applicationId}]
+      this.submitApplication = {
+        application:this.updateValueDwl
+      }
+    }
+    else{
+      this.submitApplication = {
+        application: this.dwlApplication
+      }
+    }
+    this.permitService.submitDailyWorkLocation(this.submitApplication).subscribe(data => {
       console.log(data)
       this.router.navigate(['/dashboard/permit'])
 
     })
   }
 
+  
+
   public id: number
   public dwl_id: number
   editAppliction(value) {
-    
     this.location_type = 2
     this.id = value.id;
-    if(value.application_daily_work_location && value.application_daily_work_location.id )
-    this.dwl_id = value.application_daily_work_location.id
+    if (value.application_daily_work_location && value.application_daily_work_location.id)
+      this.dwl_id = value.application_daily_work_location.id
     if (this.location_type == 2) {
       if (value.location.length > 1) {
         for (let index = 0; index < value.location.length - 1; index++) {
@@ -396,20 +427,10 @@ export class AddPermitComponent implements OnInit {
           })
         })
       }
-      // type: ['', Validators.required],
-      // start_date: ['', Validators.required],
-      // end_date: ['', Validators.required],
-      // description: ['', Validators.required],
-      // address_id: ['', Validators.required],
-      // layout: ['', Validators.required],
-      // length: ['', Validators.required],
-      // width: ['', Validators.required],
-      // purpose: ['', Validators.required],
-      // also_know_as: [],
-      // traffic_control: ['', Validators.required],
+
       this.permitForm.controls.type.setValue(value.type);
-      this.permitForm.controls.start_date.setValue( new Date(value.project_detail.start_date));
-      this.permitForm.controls.end_date.setValue( new Date(value.project_detail.end_date));
+      this.permitForm.controls.start_date.setValue(new Date(value.project_detail.start_date));
+      this.permitForm.controls.end_date.setValue(new Date(value.project_detail.end_date));
       this.permitForm.controls.description.setValue(value.project_detail.description);
       this.permitForm.controls.layout.setValue(value.project_detail.layout_number);
       this.permitForm.controls.length.setValue(value.project_detail.length);
@@ -419,11 +440,11 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.traffic_control.setValue(value.project_detail.traffic_control);
     }
     else if (this.location_type == 1) {
-     
+
       this.permitForm.controls.address_id.setValue(value.address_id);
       this.permitForm.controls.type.setValue(value.type);
-      this.permitForm.controls.start_date.setValue( new Date(value.project_detail.start_date));
-      this.permitForm.controls.end_date.setValue( new Date(value.project_detail.end_date));
+      this.permitForm.controls.start_date.setValue(new Date(value.project_detail.start_date));
+      this.permitForm.controls.end_date.setValue(new Date(value.project_detail.end_date));
       this.permitForm.controls.description.setValue(value.project_detail.description);
       this.permitForm.controls.layout.setValue(value.project_detail.layout_number);
       this.permitForm.controls.length.setValue(value.project_detail.length);
@@ -437,21 +458,20 @@ export class AddPermitComponent implements OnInit {
   }
 
   deleteApplication(id) {
-    
+
     this.permitService.deleteDailyWorklocation(id).subscribe(data => {
       this.toasterService.success('Delete Succesfully');
       this.getPermitApplication()
     })
   }
 
-  showMoreLocation(value,id){
+  showMoreLocation(value, id) {
     debugger
-    this.dwlApplication.map(data=>{
-      if(data.id == id && data.status == null && data.application_type == 1){
+    this.dwlApplication.map(data => {
+      if (data.id == id && data.status == null && data.application_type == 1) {
         data.isSingleAddress = value
 
-      }else
-      {
+      } else {
         data.isSingleAddress = !value
 
       }
@@ -459,22 +479,126 @@ export class AddPermitComponent implements OnInit {
 
   }
 
-  public layOutData:any;
+
+  public layOutData: any;
   fillDataByLayOutNumber() {
     debugger
     const value = this.permitForm.value.layout
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
-       this.layOutData = data.response,
-       
-      this.permitForm.controls.type.setValue(this.layOutData.type)
-     // this.permitForm.controls.work_category.setValue(this.layOutData.application_daily_work_location.work_category)
-      this.permitForm.controls.length.setValue(this.layOutData.length)
-      this.permitForm.controls.work_description.setValue(this.layOutData.width)
-      this.permitForm.controls.purpose.setValue(this.layOutData.project_detail.purpose)
-
-
+      this.layOutData = data.response;
+      this.location(this.layOutData)
     })
-   }
+  }
 
+  location(value) {
+    this.layOutData = value
+    if (this.layOutData) {
+      if (this.layOutData.location_type) {
+        this.location_type = this.layOutData.location_type;
+      }
+      this.permitForm.controls.type.setValue(this.layOutData.type)
+      if (this.layOutData.project_detail) {
+        this.permitForm.controls.length.setValue(this.layOutData.project_detail.length)
+        this.permitForm.controls.width.setValue(this.layOutData.project_detail.width)
+        this.permitForm.controls.purpose.setValue(this.layOutData.project_detail.purpose)
+        this.permitForm.controls.start_date.setValue(new Date(this.layOutData.project_detail.start_date))
+        this.permitForm.controls.end_date.setValue(new Date(this.layOutData.project_detail.end_date))
+        this.permitForm.controls.traffic_control.setValue(this.layOutData.project_detail.traffic_control)
+        this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number)
+        this.permitForm.controls.description.setValue(this.layOutData.project_detail.description)
+      }
 
+      this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as)
+      if (this.location_type == 2) {
+        if (this.layOutData.location.length > 1) {
+          for (let index = 0; index < this.layOutData.location.length - 1; index++) {
+            if (this.layOutData.location.length != this.addLocationControls.value.length) {
+              this.addLocationControls.push(this.addLocationFormGroup())
+            }
+            this.layOutData.location.map((data, i) => {
+              this.addLocationControls.controls.map((value, j) => {
+                if (i == j) {
+                  value['controls'].street_one.setValue(data.street_one)
+                  value['controls'].street_two.setValue(data.street_two)
+                  value['controls'].address_join.setValue(data.address_join)
+                }
+              })
+            })
+
+          }
+        }
+        else {
+          this.layOutData.location.map((data, i) => {
+            this.addLocationControls.controls.map((value, j) => {
+              if (i == j) {
+                debugger
+                value['controls'].street_one.setValue(data.street_one)
+                value['controls'].street_two.setValue(data.street_two)
+                value['controls'].address_join.setValue(data.address_join)
+              }
+            })
+          })
+        }
+      } else {
+        if (this.layOutData) {
+          this.permitForm.controls.address_id.setValue(this.layOutData.address_id)
+
+        }
+      }
+
+    } else {
+      this.permitForm.controls.type.setValue(null)
+      this.permitForm.controls.length.setValue(null)
+      this.permitForm.controls.width.setValue(null)
+      this.permitForm.controls.purpose.setValue(null)
+      this.permitForm.controls.start_date.setValue(null)
+      this.permitForm.controls.end_date.setValue(null)
+      this.permitForm.controls.traffic_control.setValue(null)
+      // this.permitForm.controls.layout.setValue(null)
+      this.permitForm.controls.description.setValue(null)
+      this.permitForm.controls.also_know_as.setValue(null)
+      this.removeAnResetForm()
+    }
+
+  }
+
+  removeAnResetForm() {
+
+    // this.dwlForm.reset();
+    if (this.addLocationControls.controls.length > 1) {
+      this.addLocationControls.controls.map((data, i) => {
+        this.remove(i);
+        if (this.addLocationControls.controls.length == 1) {
+          data['controls'].street_one.setValue(null)
+          data['controls'].street_two.setValue(null)
+          data['controls'].address_join.setValue(null)
+          return false
+        }
+      })
+    } else {
+      this.addLocationControls.controls.map((data, i) => {
+        if (this.addLocationControls.controls.length == 1) {
+          data['controls'].street_one.setValue(null)
+          data['controls'].street_two.setValue(null)
+          data['controls'].address_join.setValue(null)
+          return false
+        }
+      })
+    }
+
+  }
+
+  public applicationDetail: any;
+  getApplication() {
+    debugger
+    this.permitService.getApplicationById(this.applicationId).subscribe(data => {
+      this.applicationDetail = data.response;
+      if (this.applicationDetail.application_daily_work_location) {
+        this.dwl_id = this.applicationDetail.application_daily_work_location.id
+      }
+      if (this.applicationDetail) {
+        this.location(this.applicationDetail)
+      }
+    })
+  }
 }

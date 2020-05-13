@@ -290,9 +290,11 @@ export class PermitComponent implements OnInit {
       }else
       {
        data.isSingleAddress = !value
-
       }
     })
 
+  }
+  naviagetByUrl(url,id,type){
+    this.router.navigate([url],{queryParams:{type:type,id:id}})
   }
 }

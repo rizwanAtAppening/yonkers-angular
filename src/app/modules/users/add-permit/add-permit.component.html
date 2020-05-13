@@ -496,7 +496,7 @@
                                                     <div class="row">
                                                         <div class="col-12 ">
                                                             <div class="form-group">
-                                                                <input type="text" id="ms4" formControlName="layout" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                                <input type="text" id="ms4" formControlName="layout" (input) ="fillDataByLayOutNumber()" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                     class="form-control" required="">
                                                                 <label  [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" class="form-control-placeholder" for="ms4">Layout
                                                                     No</label>
@@ -774,10 +774,12 @@
 
                                     </div>
 
-                                    <div class="btn-pre">
+                                    <div class="btn-pre"  >
 
-                                        <button class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
+                                        <button *ngIf ="!applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
                                             to list</button>
+                                            <button *ngIf ="applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Submit
+                                               </button>
                                     </div>
 
                                 </div>
@@ -795,7 +797,7 @@
         </div>
 
 
-        <section class="box-work-daily-2 layout-box">
+        <section class="box-work-daily-2 layout-box" *ngIf ="!applicationId">
             <div class="row">
                 <div class="col-12">
                     <div class="table-permit  mt-0">

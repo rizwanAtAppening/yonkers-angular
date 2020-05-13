@@ -82,7 +82,8 @@ const userUrl = {
   deletDailyWorkLocation:`/application/daily_work_location`,
   converPermitApplication:`/application/convert/dwl_to_permit`,
   getDetailByLayOut:`/layout`,
-  submitApplication:`/`
+  submitApplication:`/application/save-and-exit`,
+  getApplicationById:`/application`
   // searchUserApplication:`/application`
 
 
