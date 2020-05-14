@@ -35,6 +35,8 @@ export class AddPermitComponent implements OnInit {
 
   ngOnInit(): void {
     debugger
+       this.formData = new FormData()
+
     this.onInIt()
     this.getPermitApplication();
     this.route.queryParams.subscribe(data => {
@@ -127,6 +129,7 @@ export class AddPermitComponent implements OnInit {
 
   public isPermit = false
   addPermitApplication() {
+  //  this.formData = new FormData()
 
     const data = {
 
@@ -165,6 +168,10 @@ export class AddPermitComponent implements OnInit {
     this.formData.append(
       "type",
       this.permitForm.value.type
+    );
+    this.formData.append(
+      "permit_type",
+      1
     );
     this.formData.append(
       "start_date",
@@ -258,7 +265,7 @@ export class AddPermitComponent implements OnInit {
     if (this.imageType != null) {
       this.imageName = event1.target.files[0].name;
       this.attachment = event1.target.files[0];
-      this.formData = new FormData()
+    //  this.formData = new FormData()
       this.name.push({ name: (this.attachment), type: this.imageType })
     console.log(this.name)
       this.name.map(data => {

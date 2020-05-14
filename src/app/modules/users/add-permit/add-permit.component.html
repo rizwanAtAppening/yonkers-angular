@@ -1,6 +1,24 @@
 <app-layout>
     <router-outlet>
+        
         <div class="streen-Box">
+                <section class="bg-dashbord">
+                        <div class="dash-back">
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="back-txt m-0">
+                                        <div class="row">
+                                            <div class="col-12" routerLink = "/dashboard/permit">
+                                                <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </section>
             <div class="where-bg">
                 <div class="job-location-Hd">
                     <h3>Multiple Street Opening Submission</h3>
@@ -786,10 +804,12 @@
     
                                         </div>
     
-                                        <div class="btn-pre">
+                                        <div class="btn-pre" >
     
-                                            <button class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
+                                            <button *ngIf = "!applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Add
                                                 to list</button>
+                                                <button *ngIf = "applicationId" class="continue mr-0" type="submit" (click)="addPermitApplication()">Submit
+                                                        </button>
                                         </div>
     
                                     </div>
