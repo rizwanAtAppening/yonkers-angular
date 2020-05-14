@@ -442,6 +442,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   location(value) {
+    debugger
     this.layOutData = value
     if (this.layOutData) {
       if (this.layOutData.location_type) {
@@ -498,17 +499,17 @@ export class AddPermitComponent implements OnInit {
       }
 
     } else {
-      this.permitForm.controls.type.setValue(null)
-      this.permitForm.controls.length.setValue(null)
-      this.permitForm.controls.width.setValue(null)
-      this.permitForm.controls.purpose.setValue(null)
-      this.permitForm.controls.start_date.setValue(null)
-      this.permitForm.controls.end_date.setValue(null)
-      this.permitForm.controls.traffic_control.setValue(null)
-      // this.permitForm.controls.layout.setValue(null)
-      this.permitForm.controls.description.setValue(null)
-      this.permitForm.controls.also_know_as.setValue(null)
-      this.removeAnResetForm()
+      // this.permitForm.controls.type.setValue(null)
+      // this.permitForm.controls.length.setValue(null)
+      // this.permitForm.controls.width.setValue(null)
+      // this.permitForm.controls.purpose.setValue(null)
+      // this.permitForm.controls.start_date.setValue(null)
+      // this.permitForm.controls.end_date.setValue(null)
+      // this.permitForm.controls.traffic_control.setValue(null)
+      // // this.permitForm.controls.layout.setValue(null)
+      // this.permitForm.controls.description.setValue(null)
+      // this.permitForm.controls.also_know_as.setValue(null)
+     // this.removeAnResetForm()
     }
 
   }
