@@ -268,11 +268,26 @@ export class AddPermitComponent implements OnInit {
     //  this.formData = new FormData()
       this.name.push({ name: (this.attachment), type: this.imageType })
     console.log(this.name)
+      // this.name.map(data => {
+      //   if(data.type == 0){
+      //     this.formData.append('name[drawing][]', data.name)
+      //   }else if(data.type == 1){
+      //     this.formData.append('name[certificate][]', data.type)
+
+      //   }
+
+      // })
+
       this.name.map(data => {
-        this.formData.append('name[name][]', data.name)
-        this.formData.append('name[imageType][]', data.type)
+        if(data.type == 0){
+          this.formData.append('drawing', data.name)
+        }else if(data.type == 1){
+          this.formData.append('certificate', data.type)
+
+        }
 
       })
+
       //  let hh = [{name:'value',type:1},{name:'value1',type:1}]
       this.imageType = null
 

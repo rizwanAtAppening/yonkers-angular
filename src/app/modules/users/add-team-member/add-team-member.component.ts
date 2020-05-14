@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@angular/forms';
 import { UsersService } from 'src/app/core/services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-team-member',
@@ -16,7 +16,9 @@ public staffId:number
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private router:Router
+    
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ public staffId:number
     this.userService.addStaff(this.addStaffForm.value).subscribe(data => {
       this.addStaffForm.reset();
       this.isStaff = false
+      this.router.navigate(['/dashboard/show-team-member'])
     })
   }
 
