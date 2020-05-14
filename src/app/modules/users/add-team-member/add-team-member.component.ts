@@ -20,10 +20,10 @@ public staffId:number
   ) { }
 
   ngOnInit(): void {
-    debugger
+    
     this.addStaffformCon();
     this.route.queryParams.subscribe(data=>{
-      debugger
+      
       this.staffId = data.id;
       if(this.staffId){
         this.getSingleStaff();
@@ -49,7 +49,7 @@ public staffId:number
   get staffCon() { return this.addStaffForm.controls };
 
   addStaff() {
-    debugger
+    
     if (this.addStaffForm.invalid) {
       this.isStaff = true;
       return false

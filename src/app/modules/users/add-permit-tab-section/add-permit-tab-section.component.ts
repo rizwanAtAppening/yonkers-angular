@@ -949,7 +949,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public name = []
   public formData
   media(event1, index, fileName) {
-    debugger
+    
     if (fileName == 'license') {
       this.imageType = 1
     }
@@ -1146,7 +1146,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   submitApplications() {
-    debugger
+    
     this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
       this.router.navigate(['/dashboard/submit-application'])
     })
@@ -1167,7 +1167,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public imageType: any = null
   selectImageType(value) {
-    debugger
+    
     this.imageType = Number(value)
   }
 }

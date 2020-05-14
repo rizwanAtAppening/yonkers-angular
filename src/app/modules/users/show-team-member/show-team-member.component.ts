@@ -19,14 +19,14 @@ export class ShowTeamMemberComponent implements OnInit {
   }
 
   getStaffMember() {
-    debugger
+    
     this.userService.getStaff().subscribe(data => {
       this.staffMemberList = data.response;
     })
   }
 
   activeInactiveStaffMember(id,status) {
-    debugger
+    
     const data ={
       id:id,
       status:status

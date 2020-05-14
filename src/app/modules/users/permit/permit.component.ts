@@ -281,7 +281,7 @@ export class PermitComponent implements OnInit {
   public isSingleAddress = true;
   public currentId:number
   showMoreLocation(value,id){
-    debugger
+    
     this.currentId = id
     this.applictionDetails.map(data=>{
       if(data.id == id){

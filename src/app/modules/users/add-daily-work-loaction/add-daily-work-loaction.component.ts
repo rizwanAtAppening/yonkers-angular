@@ -123,7 +123,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-    debugger
+    
     if(this.applicationId){
       this.updateValueDwl = [{id:this.applicationId}]
       this.submitApplication = {
@@ -145,7 +145,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlApplication = []
   public dwlData = {}
   adddwl() {
-    debugger
+    
     if (this.location_type == 1) {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -164,7 +164,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.isdwlSubmit = true;
       return false
     }
-    debugger
+    
 
     if (this.location_type == 1) {
       this.dwlData = {
@@ -313,7 +313,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
   public layOutData: any;
   fillDataByLayOutNumber() {
-    debugger
+    
     const value = this.dwlForm.value.layout_number
     if (value == null) {
       this.removeAnResetForm()
@@ -328,7 +328,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   fillFormOnEditAndByLayoutNumber(value) {
-    debugger
+    
     this.layOutData = value
     if (this.layOutData.application_daily_work_location) {
       this.location_type = this.layOutData.location_type
@@ -361,7 +361,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           this.layOutData.location.map((data, i) => {
             this.addLocationControls.controls.map((value, j) => {
               if (i == j) {
-                debugger
+                
                 value['controls'].street_one.setValue(data.street_one)
                 value['controls'].street_two.setValue(data.street_two)
                 value['controls'].address_join.setValue(data.address_join)
@@ -379,7 +379,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   showMoreLocation(value, id) {
-    debugger
+    
     this.dwlApplication.map(data => {
       if (data.id == id && data.status == null && data.application_type == 2) {
         data.isSingleAddress = value
@@ -393,7 +393,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
   public applicationDetail: any;
   getApplication() {
-    debugger
+    
     this.permitService.getApplicationById(this.id).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {

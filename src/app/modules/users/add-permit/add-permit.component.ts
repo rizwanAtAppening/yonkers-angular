@@ -34,7 +34,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
        this.formData = new FormData()
 
     this.onInIt()
@@ -242,7 +242,7 @@ export class AddPermitComponent implements OnInit {
   public peritApplication = []
   public imageType: any = null
   selectImageType(value) {
-    debugger
+    
     this.imageType = Number(value)
   }
 
@@ -261,7 +261,7 @@ export class AddPermitComponent implements OnInit {
 
 
   media(event1, index) {
-    debugger
+    
     if (this.imageType != null) {
       this.imageName = event1.target.files[0].name;
       this.attachment = event1.target.files[0];
@@ -321,7 +321,7 @@ export class AddPermitComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-    debugger
+    
     if (this.applicationId) {
       this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
@@ -417,7 +417,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   showMoreLocation(value, id) {
-    debugger
+    
     this.dwlApplication.map(data => {
       if (data.id == id && data.status == null && data.application_type == 1) {
         data.isSingleAddress = value
@@ -433,7 +433,7 @@ export class AddPermitComponent implements OnInit {
 
   public layOutData: any;
   fillDataByLayOutNumber() {
-    debugger
+    
     const value = this.permitForm.value.layout
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
       this.layOutData = data.response;
@@ -482,7 +482,7 @@ export class AddPermitComponent implements OnInit {
           this.layOutData.location.map((data, i) => {
             this.addLocationControls.controls.map((value, j) => {
               if (i == j) {
-                debugger
+                
                 value['controls'].street_one.setValue(data.street_one)
                 value['controls'].street_two.setValue(data.street_two)
                 value['controls'].address_join.setValue(data.address_join)
@@ -541,7 +541,7 @@ export class AddPermitComponent implements OnInit {
 
   public applicationDetail: any;
   getApplication() {
-    debugger
+    
     this.permitService.getApplicationById(this.applicationId).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {
