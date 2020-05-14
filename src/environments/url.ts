@@ -88,6 +88,7 @@ const userUrl = {
   addStaff:`/user/team_member`,
   singleStaff:`/user/team_member`,
   activeInactiveStaff:`/user/team_member/active-inactive`,
+  createmMemberPassword:`/user/team_member/create-password`
   // searchUserApplication:`/application`
 
 

@@ -11,7 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CreateNewPasswordComponent implements OnInit {
   public newPasswordForm: FormGroup;
-  public token: string
+  public token: string;
+  public id: string
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
@@ -22,7 +23,11 @@ export class CreateNewPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(data => {
-      this.token = data.token
+      this.token = data.token;
+      this.id = data.id
+      if(this.id){
+       // this.crateMemberPassword()
+      }
     })
     this.psswordFormControls()
   }
@@ -37,7 +42,7 @@ export class CreateNewPasswordComponent implements OnInit {
   public isSubmited = false;
   get newPassword() { return this.newPasswordForm.controls }
   createNewPass() {
-    
+
     if (this.newPasswordForm.invalid) {
       this.isSubmited = true;
       return false
@@ -60,6 +65,18 @@ export class CreateNewPasswordComponent implements OnInit {
     } else if (value == 'pass' && this.newPasswordForm.controls.password.value != this.newPasswordForm.controls.cnfPassword.value) {
       this.newPasswordForm.get('cnfPassword').setErrors({ 'incorrect': true });
     }
+  }
+
+  crateMemberPassword() {
+    
+    this.newPasswordForm.value.id = (this.id).toString();
+
+    this.userService.createMemberPassword(this.newPasswordForm.value).subscribe(data => {
+      this.toastService.success('Password has been created');
+      this.newPasswordForm.reset();
+      this.isSubmited = false
+      //this.router.navigate(['/'])
+    })
   }
 
 }

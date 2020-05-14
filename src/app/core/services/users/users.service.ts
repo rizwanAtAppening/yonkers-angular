@@ -146,6 +146,20 @@ export class UsersService {
     );
   }
 
+
+  createMemberPassword(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['createmMemberPassword']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   
 
 

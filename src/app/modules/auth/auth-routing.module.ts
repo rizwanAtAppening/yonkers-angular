@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'forgot-password',
     component: CreateNewPasswordComponent
   },
+  {
+    path: 'user-create-password',
+    component: CreateNewPasswordComponent
+  },
   
 ];
 
