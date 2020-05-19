@@ -320,7 +320,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     }
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
       this.layOutData = data.response;
-      if (this.layOutData.application_daily_work_location) {
+      debugger
+      if ( this.layOutData && this.layOutData.application_daily_work_location != null) {
         this.fillFormOnEditAndByLayoutNumber(this.layOutData)
       }
     })
@@ -328,7 +329,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   fillFormOnEditAndByLayoutNumber(value) {
-    
+    debugger
     this.layOutData = value
     if (this.layOutData.application_daily_work_location) {
       this.location_type = this.layOutData.location_type

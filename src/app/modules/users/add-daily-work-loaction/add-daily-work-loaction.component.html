@@ -1,99 +1,103 @@
 <app-layout>
     <router-outlet>
-<div class="bg-gray-color dwl-margin-top">
-    <section class="bg-dashbord">
-        <div class="dash-back">
-        <div class="container p-0">
-            <div class="row">
-                <div class="col-12">
-                    <div class="back-txt m-0">
+        <div class="bg-gray-color dwl-margin-top">
+            <section class="bg-dashbord">
+                <div class="dash-back">
+                    <div class="container p-0">
                         <div class="row">
-                            <div class="col-12" routerLink = "/dashboard/permit">
-                                <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                            <div class="col-12">
+                                <div class="back-txt m-0">
+                                    <div class="row">
+                                        <div class="col-12" routerLink="/dashboard/permit">
+                                            <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </div>
-    </section>
+            </section>
 
-        <section class="box-work-daily mx-auto mt-0">
-            <div class="daily_Hd">
-                <h2>Daily Work location</h2>
-            </div>
-            <div class="mt_loacton">
-                <div class="container p-0">
-                    <form [formGroup]="dwlForm">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="bdp_email loction-adInput">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="form-group">
-                                                <input type="number" id="ln1" formControlName="layout_number" (input) = "fillDataByLayOutNumber()"
-                                                    class="form-control" >
-                                                <label class="form-control-placeholder" for="ln1">Layout Number</label>
+            <section class="box-work-daily mx-auto mt-0">
+                <div class="daily_Hd">
+                    <h2>Daily Work location</h2>
+                </div>
+                <div class="mt_loacton">
+                    <div class="container p-0">
+                        <form [formGroup]="dwlForm">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="bdp_email loction-adInput">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <div class="form-group">
+                                                    <input type="number" id="ln1" formControlName="layout_number"
+                                                        (input)="fillDataByLayOutNumber()" class="form-control">
+                                                    <label class="form-control-placeholder" for="ln1">Layout
+                                                        Number</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="bdp_email loction-adInput">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <div class="form-group">
+                                                    <input type="number" id="pn2" disabled class="form-control"
+                                                        formControlName="permit_number">
+                                                    <label class="form-control-placeholder" for="pn2">Permit
+                                                        Number</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            <div class="col-6">
-                                <div class="bdp_email loction-adInput">
-                                    <div class="row">
-                                        <div class="col-12 ">
-                                            <div class="form-group">
-                                                <input type="number" id="pn2" disabled class="form-control"
-                                                    formControlName="permit_number">
-                                                <label class="form-control-placeholder" for="pn2">Permit Number</label>
-                                            </div>
-                                        </div>
+
+
+                            <div class="adrees-tab dwl-tab">
+                                <nav>
+                                    <div class="nav" id="nav-tab" role="tablist">
+                                        <a [class]="location_type == 1? 'nav-item active':'nav-item'"
+                                            id="nav-Exact-2-tab" (click)="selectAddress('exactAddress')"
+                                            data-toggle="tab" href="#nav-Exact-2" role="tab" aria-controls="nav-Exact-2"
+                                            aria-selected="true">Exact Address</a>
+                                        <a [class]="location_type == 2 ? 'nav-item active':'nav-item'"
+                                            id="nav-Location-2-tab" (click)="selectAddress('location')"
+                                            data-toggle="tab" href="#nav-Location-2" role="tab"
+                                            aria-controls="nav-Location-2" aria-selected="false">Location</a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div [class]="location_type == 1 ?'tab-pane fade active show':'tab-pane fade'"
+                                        id="nav-Exact-2" role="tabpanel" aria-labelledby="nav-Exact-2-tab">
 
-
-                        <div class="adrees-tab dwl-tab">
-                            <nav>
-                                <div class="nav" id="nav-tab" role="tablist">
-                                    <a  [class]="location_type == 1? 'nav-item active':'nav-item'" id="nav-Exact-2-tab"
-                                        (click)="selectAddress('exactAddress')" data-toggle="tab" href="#nav-Exact-2"
-                                        role="tab" aria-controls="nav-Exact-2" aria-selected="true">Exact Address</a>
-                                    <a [class]="location_type == 2 ? 'nav-item active':'nav-item'"id="nav-Location-2-tab" (click)="selectAddress('location')"
-                                        data-toggle="tab" href="#nav-Location-2" role="tab"
-                                        aria-controls="nav-Location-2" aria-selected="false">Location</a>
-                                </div>
-                            </nav>
-                            <div class="tab-content" id="nav-tabContent">
-                                <div [class]="location_type == 1 ?'tab-pane fade active show':'tab-pane fade'"  id="nav-Exact-2" role="tabpanel"
-                                    aria-labelledby="nav-Exact-2-tab">
-
-                                    <div class="job-input">
-                                        <div class="container p-0">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="bdp_email loction-adInput">
-                                                        <div class="row">
-                                                            <div class="col-12 ">
-                                                                <div class="form-group">
-                                                                    <input type="number" id="jobadd"
-                                                                        class="form-control"
-                                                                        formControlName="address_id" required>
-                                                                    <label class="form-control-placeholder"
-                                                                        for="jobadd">Address</label>
+                                        <div class="job-input">
+                                            <div class="container p-0">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="number" id="jobadd"
+                                                                            class="form-control"
+                                                                            formControlName="address_id" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="jobadd">Address</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                 </div>
-
-                                            </div>
-                                            <div class="bussiness-input-two">
+                                                <!-- <div class="bussiness-input-two">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="bdp_email loction-adInput">
@@ -113,123 +117,151 @@
                                                     </div>
 
                                                 </div>
+                                            </div> -->
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div [class]="location_type == 2 ?'tab-pane fade active show':'tab-pane fade'"
+                                        id="nav-Location-2" role="tabpanel" aria-labelledby="nav-Location-2-tab">
+                                        <div class="job-input"
+                                            *ngFor="let addloc of addLocationControls.controls; let i = index">
+                                            <form [formGroup]="addloc">
+
+                                                <div class="container p-0">
+                                                    <div class="row">
+                                                        <div class="col-4">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" id="Street"
+                                                                                class="form-control"
+                                                                                formControlName="street_one"
+                                                                                [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                required="">
+                                                                            <label class="form-control-placeholder"
+                                                                                for="Street">Street One
+                                                                            </label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="addloc.controls.street_one.errors['required']">
+                                                                                Please enter street one.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-3 range-work-loaction">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group new__select">
+                                                                            <select formControlName="address_join"
+                                                                                [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isPermit) ? 'form-control form-group-error' : 'form-control'">
+                                                                                <option value="" hidden>
+                                                                                    --Select-- 
+                                                                                </option>
+                                                                                <option value="{{category?.key}}"
+                                                                                    *ngFor="let category of settings?.address_join">
+                                                                                    {{category?.value}}
+                                                                                </option>
+                                                                            </select>
+                                                                            <span><i class="fa fa-angle-down"
+                                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-4">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" id="Street"
+                                                                                class="form-control"
+                                                                                formControlName="street_two"
+                                                                                [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                class="form-control" required="">
+                                                                            <label class="form-control-placeholder"
+                                                                                for="Street">Street two
+                                                                            </label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="addloc.controls.street_two.errors['required']">
+                                                                                Please enter street two.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-1">
+                                                            <div class="add-moreTxt">
+
+                                                                <div class="btn-add-delet " *ngIf="i > 0">
+                                                                    <button (click)="remove(i)"
+                                                                        type="submit">Delete</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+
+
+
+
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="add-moreTxt">
+                                            <div class="btn-add-more mt-0 pt-2" (click)="addLocationForm()">+ Add more
                                             </div>
                                         </div>
 
                                     </div>
 
-
                                 </div>
-                                <div [class]="location_type == 2 ?'tab-pane fade active show':'tab-pane fade'" id="nav-Location-2" role="tabpanel"
-                                    aria-labelledby="nav-Location-2-tab">
-                                    <div class="job-input"
-                                        *ngFor="let addloc of addLocationControls.controls; let i = index">
-                                        <form [formGroup]="addloc">
+                            </div>
 
-                                            <div class="container p-0">
+
+                            <div class="job-input" *ngIf ="location_type == 1">
+                                <div class="container p-0">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="bdp_email loction-adInput">
                                                 <div class="row">
-                                                    <div class="col-4">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="Street"
-                                                                            class="form-control"
-                                                                            formControlName="street_one"   [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
-                                                                            required="" >
-                                                                        <label class="form-control-placeholder"
-                                                                            for="Street">Street One
-                                                                        </label>
-                                                                    </div>
-                                                                    <div
-                                                                    *ngIf="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit)">
-                                                                    <p class="form-error" *ngIf="addloc.controls.street_one.errors['required']">
-                                                                        Please enter street one.
-                                                                    </p>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-3 range-work-loaction">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group new__select">
-                                                                        <select formControlName="address_join"  [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isPermit) ? 'form-control form-group-error' : 'form-control'">
-                                                                            <option value="" hidden>
-                                                                                --Select--
-                                                                            </option>
-                                                                            <option value="{{category?.key}}"
-                                                                                *ngFor="let category of settings?.address_join">
-                                                                                {{category?.value}}
-                                                                            </option>
-                                                                        </select>
-                                                                        <span><i class="fa fa-angle-down"
-                                                                                aria-hidden="true"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="number" id="permit33" class="form-control"
+                                                                formControlName="parcel_number" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="permit33">Parcel Number</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="Street"
-                                                                            class="form-control"
-                                                                            formControlName="street_two" [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" class="form-control"
-                                                                            required="">
-                                                                        <label class="form-control-placeholder"
-                                                                            for="Street">Street two
-                                                                        </label>
-                                                                    </div>
-                                                                    <div
-                                                                    *ngIf="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit)">
-                                                                    <p class="form-error" *ngIf="addloc.controls.street_two.errors['required']">
-                                                                        Please enter street two.
-                                                                    </p>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-1">
-                                                        <div class="add-moreTxt">
-
-                                                            <div class="btn-add-delet " *ngIf="i > 0">
-                                                                <button (click)="remove(i)"
-                                                                    type="submit">Delete</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
-
-
-
-
-
-
-
                                             </div>
-                                        </form>
-                                    </div>
-                                    <div class="add-moreTxt">
-                                        <div class="btn-add-more mt-0 pt-2" (click)="addLocationForm()">+ Add more
-                                           </div>
+
+                                        </div>
+
                                     </div>
 
                                 </div>
 
                             </div>
-                        </div>
-
-
-                    
 
                             <div class="bussiness-input">
                                 <div class="row">
@@ -237,7 +269,7 @@
                                         <div class="daily-type">
                                             <div class="row">
                                                 <div class="col-12 ">
-    
+
                                                     <div class="form-group">
                                                         <label>Permit type</label>
                                                         <select formControlName="permit_type" required>
@@ -250,165 +282,172 @@
                                                         </select>
                                                         <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                     </div>
-    
+
                                                 </div>
                                             </div>
                                         </div>
-    
+
                                     </div>
-    
+
                                 </div>
                             </div>
 
-                            <div class="job-input">
-                                    <div class="container p-0">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="bdp_email loction-adInput">
-                                                    <div class="row">
-                                                        <div class="col-12 ">
-                                                            <div class="form-group">
-                                                                <input type="number" id="permit33"
-                                                                    class="form-control"
-                                                                    formControlName="parcel_number" required>
-                                                                <label class="form-control-placeholder"
-                                                                    for="permit33">Parcel Number</label>
-                                                            </div>
-                                                        </div>
+
+
+
+
+                            <div class="bussiness-input">
+                                <div class="row">
+                                    <div class="col-12 daily-worklable">
+                                        <div class="daily-type">
+                                            <div class="row">
+                                                <div class="col-12 ">
+
+                                                    <div class="form-group">
+                                                        <label class=" pl-0 ">Work Category</label>
+                                                        <select formControlName="work_category">
+                                                            <option value="" hidden>
+                                                                --Select--</option>
+                                                            <option value="{{category?.key}}"
+                                                                *ngFor="let category of settings?.purpose">
+                                                                {{category?.value}}
+                                                            </option>
+                                                        </select>
+                                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="bussiness-input-two" *ngIf="location_type == 1">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="number" id="knowsh1" class="form-control"
+                                                            formControlName="also_know_as" formControlName="" required>
+                                                        <label class="form-control-placeholder" for="knowsh1">Unit
+                                                            No./Also Known as</label>
                                                     </div>
                                                 </div>
-    
-                                            </div>
-    
-                                        </div>
-                                      
-                                    </div>
-    
-                                </div>
-
-
-                                
-                        <div class="bussiness-input">
-                            <div class="row">
-                                <div class="col-12 daily-worklable">
-                                    <div class="daily-type">
-                                        <div class="row">
-                                            <div class="col-12 ">
-
-                                                <div class="form-group">
-                                                    <label class=" pl-0 ">Work Category</label>
-                                                    <select formControlName="work_category">
-                                                        <option value="" hidden>
-                                                            --Select--</option>
-                                                        <option value="{{category?.key}}"
-                                                            *ngFor="let category of settings?.purpose">
-                                                            {{category?.value}}
-                                                        </option>
-                                                    </select>
-                                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
+                            </div>
+
+                            <div class="dd-textarea">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <label>Detailed Description</label>
+                                        <textarea
+                                            [class]="dwlControl.work_description.invalid && (dwlControl.work_description.dirty || dwlControl.work_description.touched || isdwlSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                            placeholder="Type something here..."
+                                            formControlName="work_description"></textarea>
+                                    </div>
+                                    <div
+                                        *ngIf="dwlControl.work_description.invalid && (dwlControl.work_description.dirty || dwlControl.work_description.touched || isdwlSubmit)">
+                                        <p class="form-error" id="enter-dec-msg"
+                                            *ngIf="dwlControl.work_description.errors['required']">
+                                            Please Enter description
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-pre" *ngIf="!applicationId">
+                                <button type="button" routerLink="/dashboard/permit">Cancel</button>
+                                <button class="continue mr-0" type="submit" (click)="adddwl()">Add to list</button>
+                            </div>
+                            <div class="btn-pre" *ngIf="applicationId">
+                                <button type="button" routerLink="/dashboard/permit">Cancel</button>
+
+                                <button class="continue mr-0" (click)="adddwl()">Submit</button>
 
                             </div>
-                        </div>
-
-
-                        <div class="dd-textarea">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label>Detailed Description</label>
-                                    <textarea
-                                        [class]="dwlControl.work_description.invalid && (dwlControl.work_description.dirty || dwlControl.work_description.touched || isdwlSubmit) ? 'form-control form-group-error' : 'form-control'"
-                                        placeholder="Type something here..."
-                                        formControlName="work_description"></textarea>
-                                </div>
-                                <div
-                                    *ngIf="dwlControl.work_description.invalid && (dwlControl.work_description.dirty || dwlControl.work_description.touched || isdwlSubmit)">
-                                    <p class="form-error" id="enter-dec-msg" *ngIf="dwlControl.work_description.errors['required']">
-                                        Please Enter description
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="btn-pre" *ngIf ="!applicationId">
-                            <button type="button" routerLink ="/dashboard/permit">Cancel</button>
-                            <button class="continue mr-0" type="submit" (click)="adddwl()">Add to list</button>
-                        </div>
-                        <div  class="btn-pre" *ngIf ="applicationId">
-                                <button type="button" routerLink ="/dashboard/permit">Cancel</button>
-
-                            <button class="continue mr-0" (click)="adddwl()">Submit</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="box-work-daily-2 mx-auto" *ngIf ="!applicationId">
-            <div class="row">
-                <div class="col-12">
-                    <div class="table-permit  mt-0">
-                        <table class="table table-bordered ">
-                            <thead>
-                                <tr>
-                                    <th>layout Number</th>
-                                    <th>Location</th>
-                                    <th>Work Desc</th>
-                                    <th>Action</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let data of dwlApplication">
-                                    <td>{{data?.application_daily_work_location?.layout_number}}
-                                    </td>
-                                    <td >
-                                            <p *ngIf ="data?.address_id">                                                         {{data?.address_id}}
-                                               </p>
-                                            <h6  *ngIf ="!data?.address_id && data?.isSingleAddress" >
-                                                <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>
-
-                                                <h6  *ngIf ="!data?.address_id && !data.isSingleAddress" >
-                                                       <p *ngFor ="let location of data?.location " >{{location?.street_one}} {{location?.address_join == 1 ? 'To':'End'}} {{location?.street_two}} </p></h6>
-                                               <strong class="pointer" (click) = "showMoreLocation(false,data?.id)" *ngIf ="!data?.address_id && data.isSingleAddress && data?.location.length > 1 ">Show More</strong>
-                                               <strong class="pointer" (click) = "showMoreLocation(true,data?.id)"  *ngIf ="!data?.address_id && !data.isSingleAddress && data?.location.length > 1 ">Show Less</strong>
-
-
-                                       </td>
-
-
-                                    <td>{{data?.application_daily_work_location?.work_description}}
-                                    </td>
-
-                                    <td class="update-txt dropdown-action">
-                                        <span> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                        <div class="dropdown-contentable">
-                                            <a (click)="editAppliction(data)" >Edit</a>
-                                            <a (click) ="deleteApplication(data?.id)" >Delete</a>
-                                            <div class="triangle-left"></div>
-                                        </div>
-                                    </td>
-                                </tr>
-
-
-                            </tbody>
-                        </table>
+                        </form>
                     </div>
                 </div>
-            </div>
-            <div class="btn-pre">
+            </section>
 
-                <button class="continue mr-0" (click)="submitDailyWorkLocation()">Submit</button>
-            </div>
-        </section>
-    </div>
+
+            <section class="box-work-daily-2 mx-auto" *ngIf="!applicationId">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-permit  mt-0">
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th>layout Number</th>
+                                        <th>Location</th>
+                                        <th>Work Desc</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of dwlApplication">
+                                        <td>{{data?.application_daily_work_location?.layout_number}}
+                                        </td>
+                                        <td>
+                                            <p *ngIf="data?.address_id"> {{data?.address_id}}
+                                            </p>
+                                            <h6 *ngIf="!data?.address_id && data?.isSingleAddress">
+                                                <p *ngIf="data?.location && data?.location.length > 0">
+                                                    {{data?.location[0]?.street_one}}
+                                                    {{data.location[0]?.address_join == 1 ? 'To':'End'}}
+                                                    {{data.location[0]?.street_two}}</p>
+                                            </h6>
+
+                                            <h6 *ngIf="!data?.address_id && !data.isSingleAddress">
+                                                <p *ngFor="let location of data?.location ">{{location?.street_one}}
+                                                    {{location?.address_join == 1 ? 'To':'End'}}
+                                                    {{location?.street_two}} </p>
+                                            </h6>
+                                            <strong class="pointer" (click)="showMoreLocation(false,data?.id)"
+                                                *ngIf="!data?.address_id && data.isSingleAddress && data?.location.length > 1 ">Show
+                                                More</strong>
+                                            <strong class="pointer" (click)="showMoreLocation(true,data?.id)"
+                                                *ngIf="!data?.address_id && !data.isSingleAddress && data?.location.length > 1 ">Show
+                                                Less</strong>
+
+
+                                        </td>
+
+
+                                        <td>{{data?.application_daily_work_location?.work_description}}
+                                        </td>
+
+                                        <td class="update-txt dropdown-action">
+                                            <span> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            <div class="dropdown-contentable">
+                                                <a (click)="editAppliction(data)">Edit</a>
+                                                <a (click)="deleteApplication(data?.id)">Delete</a>
+                                                <div class="triangle-left"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-pre">
+
+                    <button class="continue mr-0" (click)="submitDailyWorkLocation()">Submit</button>
+                </div>
+            </section>
+        </div>
     </router-outlet>
 </app-layout>

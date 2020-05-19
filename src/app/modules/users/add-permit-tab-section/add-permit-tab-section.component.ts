@@ -23,6 +23,8 @@ export class AddPermitTabSectionComponent implements OnInit {
   public application: any;
   public addInsuranseForm: FormGroup
   public duplimesterForm: FormGroup
+  public uploadForm: FormGroup
+
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
   @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
@@ -123,7 +125,12 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.applicationState = this.application.applicant_details.applicant_state
     }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
+      this.allImage = []
       if (this.application.upload_detail) {
+        this.application.upload_detail.map(data => {
+          this.allImage.push(data)
+        })
+        console.log(this.allImage)
         this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
         if (this.application.upload_detail.length > 1) {
           this.application['CertificateofInsurance'] = `${this.imageBasePath}${this.application.upload_detail[1].name}`
@@ -171,8 +178,15 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.contractorFormControl();
     this.proectControls();
     this.addInsuranseFormCon();
-    this.duplimesterFormCon()
+    this.duplimesterFormCon();
+    //this.uploadFormCon();
   }
+
+  // uploadFormCon() {
+  //   this.uploadForm = this.formBuilder.group({
+  //     upload: ['']
+  //   })
+  // }
 
   duplimesterFormCon() {
     this.duplimesterForm = this.formBuilder.group({
@@ -949,7 +963,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public name = []
   public formData
   media(event1, index, fileName) {
-    
+
     if (fileName == 'license') {
       this.imageType = 1
     }
@@ -958,12 +972,17 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.attachment = event1.target.files[0]
       this.name.push({ name: (this.attachment), type: this.imageType })
       this.formData = new FormData()
+      // if(this.imageType == 0){
+      this.formData.append('type', this.imageType)
+      this.formData.append('name', this.attachment)
+      // }else{
+      //}
       console.log(this.name)
-      this.name.map(data => {
-        this.formData.append('name[name][]', data.name)
-        this.formData.append('name[imageType][]', data.type)
+      // this.name.map(data => {
+      //   this.formData.append('name[name][]', data.name)
+      //   this.formData.append('name[imageType][]', data.type)
 
-      })
+      // })
       //  let hh = [{name:'value',type:1},{name:'value1',type:1}]
       this.imageType = null
       var reader = new FileReader();
@@ -996,18 +1015,9 @@ export class AddPermitTabSectionComponent implements OnInit {
   uploadImageAndDocuments() {
     const applicationId = this.permitService.getApplicationID()
     // let id = (this.certificateDetail.id)
-    var formData = new FormData();
-    formData.append(
-      "name",
-      this.attachment
+    // var formData = new FormData();
 
-    );
-    formData.append(
-      "type",
-      this.fileType
-
-    );
-    formData.append(
+    this.formData.append(
       "application_id",
       applicationId,
 
@@ -1064,7 +1074,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   deleteImage(id, i) {
-
+    this.allImage.map((data, j) => {
+      if (j == i) {
+        this.allImage.splice(j, 1)
+      }
+    })
     const data = {
       id: id
     }
@@ -1146,7 +1160,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   submitApplications() {
-    
+
     this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
       this.router.navigate(['/dashboard/submit-application'])
     })
@@ -1167,8 +1181,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public imageType: any = null
   selectImageType(value) {
-    
+    this.formData = new FormData()
+    debugger
     this.imageType = Number(value)
+
   }
 }
 

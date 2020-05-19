@@ -55,7 +55,7 @@ export class PermitComponent implements OnInit {
 
   public currentUserInfo: any
   currentUser() {
-    
+
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
       this.userType = this.currentUserInfo.type
@@ -99,13 +99,13 @@ export class PermitComponent implements OnInit {
 
   }
   addLocationForm(): void {
-    
+
     this.addLocationControls.push(this.addLocationFormGroup())
   }
 
 
   remove(index) {
-    
+
 
     this.addLocationControls.controls.map((data, i) => {
       if (index == i) {
@@ -143,7 +143,7 @@ export class PermitComponent implements OnInit {
   public dwlApplication = []
   public dwlData = {}
   adddwl() {
-    
+
     if (this.dwlForm.invalid) {
       this.isdwlSubmit = true;
       return false
@@ -191,7 +191,7 @@ export class PermitComponent implements OnInit {
 
   public application_type: number
   getPermitApplication(dwlType) {
-    
+
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -210,7 +210,7 @@ export class PermitComponent implements OnInit {
       //     return data
       //   }
       // })
-      this.applictionDetails.map(data=>{
+      this.applictionDetails.map(data => {
         data.isSingleAddress = true
       })
       console.log(this.dwlApplication)
@@ -222,13 +222,13 @@ export class PermitComponent implements OnInit {
 
   paginate(page, dwlType) {
     this.dwlType = dwlType
-    
+
     this.currentPage = page
     this.getPermitApplication(this.dwlType)
   }
   public searchString: string
   searchApplication() {
-    
+
     if (this.dwlType == '1') {
       this.application_type = 1
     } else if (this.dwlType == '2') {
@@ -237,11 +237,11 @@ export class PermitComponent implements OnInit {
     }
     const data = {
       search_query: String(this.searchString),
-      application_type:this.application_type
+      application_type: this.application_type
     }
     this.permitService.searchApplication(data).subscribe(data => {
       this.applictionDetails = data.response;
-     // console.log(this.dwlApplication)
+      // console.log(this.dwlApplication)
       this.offset = data.offset;
       this.totalPagination = data.total
       this.currentPage = data.currentPage;
@@ -266,35 +266,35 @@ export class PermitComponent implements OnInit {
     }
   }
   getApplicationId(id) {
-    
+
     this.applicationId = id
   }
 
   convertPermitApplication() {
-    
+
     this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
       this.getPermitApplication(this.dwlType)
+      this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
 
   public isSingleAddress = true;
-  public currentId:number
-  showMoreLocation(value,id){
-    
+  public currentId: number
+  showMoreLocation(value, id) {
+
     this.currentId = id
-    this.applictionDetails.map(data=>{
-      if(data.id == id){
+    this.applictionDetails.map(data => {
+      if (data.id == id) {
         data.isSingleAddress = value
 
-      }else
-      {
-       data.isSingleAddress = !value
+      } else {
+        data.isSingleAddress = !value
       }
     })
 
   }
-  naviagetByUrl(url,id,type){
-    this.router.navigate([url],{queryParams:{type:type,id:id}})
+  naviagetByUrl(url, id, type) {
+    this.router.navigate([url], { queryParams: { type: type, id: id } })
   }
 }

@@ -1764,30 +1764,40 @@
                                                 <td>
 
                                                     <div class="file_slect-input">
-                                                        <div class="form-group">
-                                                            <select (change) = "selectImageType($event.target.value)">
+                                                        <div class="form-group" *ngIf = "image?.type != 0 && image?.type != 1 ">
+                                                            <select  (change) = "selectImageType($event.target.value)">
                                                                     <option value="" hidden>--Select--</option>
                                                                     <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
                                                             </select>
                                                             <span><i class="fa fa-angle-down"
                                                                     aria-hidden="true"></i></span>
                                                         </div>
+                                                        <div>
+                                                            <p *ngIf = "image?.type == 0" >Drawings/ Plans</p>
+                                                            <p *ngIf = "image?.type == 1" >Certificate of Insurance</p>
+                                                        </div>
                                                     </div>
 
 
                                                 </td>
                                                 <td class="upload-Btn" >
-                                                    <button *ngIf ="!image?.imageName">
+                                                    <button *ngIf ="!image?.imageName && !image?.name ">
                                                         <span><img src="assets/images/b-upload.svg" alt=""></span>
                                                         Upload file
                                                         <input type='file' (change)="media($event,i,'upload')">
                                                     </button>
                                                     <p *ngIf = "image?.imageName">{{image?.imageName}}</p>
+                                                    <p *ngIf = "image?.name">{{image?.name}}</p>
+
                                                 </td>
                                                 <td class="acton-Btn">
                                                     <button> <span><img src="assets/images/v-btn.svg" alt=""></span>
-                                                        View</button>
-                                                    <button *ngIf ="i>0" (click) = "deleteImage1(i)" class="delet-btn"> <span><img src="assets/images/d-btn.svg"
+                                                        <a class="pointer"
+                                                        href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                        target="_blank"> View</a>
+                                                      </button>
+                                                    <button *ngIf ="i>0"  (click)="deleteImage(image?.id,i)"    
+                                                          class="delet-btn"> <span><img src="assets/images/d-btn.svg"
                                                                 alt=""></span> Delete</button>
                                                 </td>
 

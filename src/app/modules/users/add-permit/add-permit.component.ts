@@ -266,29 +266,16 @@ export class AddPermitComponent implements OnInit {
       this.imageName = event1.target.files[0].name;
       this.attachment = event1.target.files[0];
     //  this.formData = new FormData()
+    if(this.imageType == 0){
+      this.formData.append('drawing', this.attachment)
+
+    }else{
+      this.formData.append('certificate', this.attachment)
+
+    }
       this.name.push({ name: (this.attachment), type: this.imageType })
     console.log(this.name)
-      // this.name.map(data => {
-      //   if(data.type == 0){
-      //     this.formData.append('name[drawing][]', data.name)
-      //   }else if(data.type == 1){
-      //     this.formData.append('name[certificate][]', data.type)
-
-      //   }
-
-      // })
-
-      this.name.map(data => {
-        if(data.type == 0){
-          this.formData.append('drawing', data.name)
-        }else if(data.type == 1){
-          this.formData.append('certificate', data.type)
-
-        }
-
-      })
-
-      //  let hh = [{name:'value',type:1},{name:'value1',type:1}]
+     
       this.imageType = null
 
       console.log(this.name)
@@ -315,7 +302,6 @@ export class AddPermitComponent implements OnInit {
 
   public applictionDetails = []
   application_type: number = 1
-  // currentPage = 1
   public dwlApplication = []
   getPermitApplication() {
 
@@ -463,7 +449,8 @@ export class AddPermitComponent implements OnInit {
       if (this.layOutData.location_type) {
         this.location_type = this.layOutData.location_type;
       }
-      this.permitForm.controls.type.setValue(this.layOutData.type)
+      this.permitForm.controls.type.setValue(this.layOutData.type?this.layOutData.type:this.layOutData.permit_type)
+
       if (this.layOutData.project_detail) {
         this.permitForm.controls.length.setValue(this.layOutData.project_detail.length)
         this.permitForm.controls.width.setValue(this.layOutData.project_detail.width)
@@ -472,7 +459,10 @@ export class AddPermitComponent implements OnInit {
         this.permitForm.controls.end_date.setValue(new Date(this.layOutData.project_detail.end_date))
         this.permitForm.controls.traffic_control.setValue(this.layOutData.project_detail.traffic_control)
         this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number)
-        this.permitForm.controls.description.setValue(this.layOutData.project_detail.description)
+        this.permitForm.controls.description.setValue(this.layOutData.project_detail.description?this.layOutData.project_detail.description:this.layOutData.application_daily_work_location.work_description)
+      }else{
+        this.permitForm.controls.description.setValue(this.layOutData.application_daily_work_location.work_description)
+
       }
 
       this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as)
