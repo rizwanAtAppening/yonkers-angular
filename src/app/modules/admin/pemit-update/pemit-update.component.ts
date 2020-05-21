@@ -60,7 +60,6 @@ export class PemitUpdateComponent implements OnInit {
   get clerkCon() { return this.completIncompletForm.controls }
 
   accepetOrDeclineApplication() {
-    debugger
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -76,7 +75,6 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   changeDecision(value) {
-    debugger
     if (value == 1) {
       this.isCompletApplication = true
     }
