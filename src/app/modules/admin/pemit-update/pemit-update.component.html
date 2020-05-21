@@ -1,0 +1,327 @@
+<!-- <app-admin>
+    <router-outlet> -->
+
+<section class="bg-dashbord">
+    <div class="dash-back-two">
+        <div class="container p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="back-txt m-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <h3 class="ml-0"><span><img src="assets/images/left-arrow.svg" alt=""></span> Back
+                                    to dashboard</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="updateprofile pt-0">
+    <div class="box-engrining-admin">
+        <div class="schedule_admin">
+
+            <div class="heading-permit">
+                <h2>Permit Update</h2>
+                <h3><button>Schedule inspection</button></h3>
+            </div>
+
+
+            <div class="adminjob-details-box">
+                <div class="tabs-admin-update">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item  active" id="nav-adminapdate-one-tab" data-toggle="tab"
+                                href="#nav-adminapdate-one" role="tab" aria-controls="nav-adminapdate-one"
+                                aria-selected="true">Job Details</a>
+                            <a class="nav-item " id="nav-adminapdate-two-tab" data-toggle="tab"
+                                href="#nav-adminapdate-two" role="tab" aria-controls="nav-adminapdate-two"
+                                aria-selected="false">Project Descriptions</a>
+                            <a class="nav-item " id="nav-adminapdate-three-tab" data-toggle="tab"
+                                href="#nav-adminapdate-three" role="tab" aria-controls="nav-adminapdate-three"
+                                aria-selected="false">Document</a>
+                            <a class="nav-item " id="nav-adminapdate-four-tab" data-toggle="tab"
+                                href="#nav-adminapdate-four" role="tab" aria-controls="nav-adminapdate-four"
+                                aria-selected="false">Property Profile</a>
+                            <a class="nav-item " id="nav-adminapdate-five-tab" data-toggle="tab"
+                                href="#nav-adminapdate-five" role="tab" aria-controls="nav-adminapdate-five"
+                                aria-selected="false">Applicant</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-adminapdate-one" role="tabpanel"
+                            aria-labelledby="nav-adminapdate-one-tab">
+
+
+                            <div class="jobdetails-txt">
+                                <div class="col-12 p-0">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="no-ref-txt">
+                                                        <ul>
+                                                            <li>
+                                                                <h5>Reference No:</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Applicant</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Estimated Cost</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Location</h5>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="no-ref-txt">
+                                                        <ul>
+                                                            <li>
+                                                                <h6>{{applicationDetails?.reference_no}} </h6>
+                                                            </li>
+                                                            <li>
+                                                                <h6>{{applicationDetails?.applicant_details?.applicant_name }}</h6>
+                                                            </li>
+                                                            <li>
+                                                                <h6>$00.00</h6>
+                                                            </li>
+                                                            <li>
+                                                                <h6>47 W 13th St, New York <span>To</span> 20 Cooper
+                                                                    Square
+                                                                    <small>Show More</small>
+                                                                </h6>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4 pl-0">
+                                            <div class="row">
+                                                <div class="col-5">
+                                                    <div class="no-ref-txt">
+                                                        <ul>
+                                                            <li>
+                                                                <h5>Type</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Phone</h5>
+                                                            </li>
+                                                            <li>
+                                                                <h5>Applicant No</h5>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-7">
+                                                    <div class="no-ref-txt">
+                                                        <ul>
+                                                            <li>
+                                                                <h6>{{ settings.getSetting('type',applicationDetails?.type)}}</h6>
+                                                            </li>
+                                                            <li>
+                                                                <h6>{{applicationDetails?.applicant_details?.applicant_phone }}</h6>
+                                                            </li>
+                                                            <li>
+                                                                <h6>$00.00</h6>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 p-0">
+                                    <div class="description_edit-txt">
+                                        <h3>Description
+                                            <span><img src="assets/images/edit-pen.svg" alt=""></span>
+                                        </h3>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                                            voluptua.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="nav-adminapdate-two" role="tabpanel"
+                            aria-labelledby="nav-adminapdate-two-tab">2...</div>
+                        <div class="tab-pane fade" id="nav-adminapdate-three" role="tabpanel"
+                            aria-labelledby="nav-adminapdate-three-tab">3...</div>
+                        <div class="tab-pane fade " id="nav-adminapdate-four" role="tabpanel"
+                            aria-labelledby="nav-adminapdate-four-tab">4..</div>
+                        <div class="tab-pane fade" id="nav-adminapdate-five" role="tabpanel"
+                            aria-labelledby="nav-adminapdate-five-tab">5...</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="submision-review-box">
+                <div class="accordion" id="accordionExample">
+
+                    <div class="card">
+                        <div id="headingOne-review">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button">
+                                    Submission Review
+                                    <span data-toggle="collapse" data-target="#Submissionone" aria-expanded="true"
+                                        aria-controls="Submissionone"><i class="fa fa-chevron-down"
+                                            aria-hidden="true"></i></span>
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="Submissionone" class="collapse show" aria-labelledby="headingOne-review"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="app-status-txt">
+                                    <form [formGroup]="completIncompletForm">
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <div class="select-input-box">
+                                                    <div class="form-group">
+                                                        <label>Application Status</label>
+                                                        <select formControlName="decision" [class]="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept) ? 'form-control form-group-error' : 'form-control'"
+                                                            (change)="changeDecision($event.target.value)">
+                                                            <option value="" hidden>--Select--</option>
+                                                            <option
+                                                                *ngFor="let submission of settings?.submission_Application_status"
+                                                                value="{{submission?.key}}">{{submission?.value}}
+                                                            </option>
+
+                                                        </select>
+                                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                        <!-- <div class="form-error"
+                                                        *ngIf="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept)">
+                                                        <span *ngIf="clerkCon.decision.errors['required']">
+                                                          Please select a decision
+                                                        </span>
+                                                       
+                                                      </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="comment-box-submision" *ngIf="isCompletApplication">
+                                            <div class="form-group">
+                                                <label>Commets</label>
+                                                <textarea formControlName="message"
+                                                    placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="user-input-colomn" *ngIf="isCompletApplication">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="email-userinput">
+                                                        <div class="form-group">
+                                                            <label>To</label>
+                                                            <input formControlName="to" placeholder="user6@gmail.com">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="email-userinput">
+                                                        <div class="form-group">
+                                                            <label>CC</label>
+                                                            <input formControlName="cc" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submision-btn">
+                                            <button type="submit"
+                                                (click)="accepetOrDeclineApplication()">Submit</button>
+                                        </div>
+
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button">
+                                    Decisions
+                                    <span data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo"><i class="fa fa-chevron-down"
+                                            aria-hidden="true"></i></span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button">
+                                    Fee & Payment
+                                    <span data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree"><i class="fa fa-chevron-down"
+                                            aria-hidden="true"></i></span>
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                            data-parent="#accordionExample">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                                squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                                quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                                squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                                craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+                                butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                                nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+<!-- </router-outlet>
+        </app-admin> -->

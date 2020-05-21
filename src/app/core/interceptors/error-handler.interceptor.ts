@@ -37,7 +37,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     const error = response['error']
     switch (httpErrorCode) {
       case 401:
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/auth/login');
         break;
       case FORBIDDEN:
         this.router.navigateByUrl('/auth/403');

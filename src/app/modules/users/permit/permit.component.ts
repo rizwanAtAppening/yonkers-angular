@@ -5,6 +5,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-permit',
@@ -13,6 +14,9 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 })
 export class PermitComponent implements OnInit {
   @ViewChild('confirmPopUp', { static: false }) confirmPopUp: ElementRef;
+  @ViewChild('cancelConfirmPopUp', { static: false }) cancelConfirmPopUp: ElementRef;
+  @ViewChild('withdrawConfirmPopUp', { static: false }) withdrawConfirmPopUp: ElementRef;
+
   public applicationId: number;
 
   public settings: any;
@@ -27,7 +31,8 @@ export class PermitComponent implements OnInit {
     private permitService: PermitService,
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private toastService: ToastrService
 
   ) {
     this.settings = settingConfig;
@@ -296,5 +301,24 @@ export class PermitComponent implements OnInit {
   }
   naviagetByUrl(url, id, type) {
     this.router.navigate([url], { queryParams: { type: type, id: id } })
+  }
+
+  cancelPermit() {
+    debugger
+    this.permitService.cancelPermit(this.applicationId).subscribe(data => {
+      this.toastService.success('Application canceled');
+      this.getPermitApplication(this.dwlType);
+      this.cancelConfirmPopUp.nativeElement.click();
+    })
+  }
+
+  withdrawPermit() {
+    debugger
+    this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
+      this.toastService.success('Application withdraw');
+      this.getPermitApplication(this.dwlType)
+      this.withdrawConfirmPopUp.nativeElement.click();
+
+    })
   }
 }

@@ -371,6 +371,17 @@ imageType:[
     value:'Certificate of Insurance'
   },
 ],
+
+submission_Application_status: [
+  {
+    key: 1,
+    value: 'Submission Incomplete'
+  },
+  {
+    key: 2,
+    value: 'Accept Submission'
+  }
+],
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {
       key: condition

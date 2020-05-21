@@ -18,6 +18,7 @@ export class UserAuthGuard implements CanActivate, CanActivateChild {
     private authenticationService: AuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    debugger
     return this.chekUser(route, state);
 
   }
@@ -27,10 +28,12 @@ export class UserAuthGuard implements CanActivate, CanActivateChild {
   }
 
   private chekUser(route, state): boolean {
+    debugger
     const userType = this.authenticationService.getUserType();
     const isLogin = this.authenticationService.isLogin();
     // userType === 'client' &&
     if (isLogin) {
+      debugger
       return true;
     } else if (isLogin) {
       this.toasterService.error(appToaster.errorHead, 'Unauthorized: Access is denied');

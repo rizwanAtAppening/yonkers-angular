@@ -3057,3 +3057,235 @@ height: 47px;
     left: 0 !important;
     top: 0 !important;
 }
+/* //==================================Admin css ============================================================================*/
+
+
+.dash-back-two {
+    max-width: 1004px;
+    margin: 0 auto;
+    background: #F9FAFB;
+}
+.box-engrining-admin {
+    background: #fff;
+padding: 25px 27px 0px 27px;
+    max-width: 1004px;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #00000012;
+}
+.heading-permit{
+    display: flex;
+    justify-content: space-between;
+}
+
+.heading-permit h2{
+    font-family: "Poppins-SemiBold";
+    color: #282D5B;
+    font-size: 24px;
+    line-height: 28px;
+}
+.heading-permit h3 button{
+    background: #2AABFA;
+    border: none;
+    padding: 0px 20px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Poppins-Regular';
+}
+
+.adminjob-details-box{
+ background: #FFFFFF;
+ padding: 28px;
+ margin-top: 23px;
+border: 1px solid #00000012;
+}
+.tabs-admin-update .nav-tabs{
+    border-bottom: 1px solid #EBECF0;
+    padding-bottom: 32px;
+}
+
+.tabs-admin-update .nav-tabs .nav-item{
+    margin-bottom: 0px;
+    color: #282D5B;
+    font-family: "Poppins-SemiBold";
+  line-height: 27px;
+  font-size: 18px;
+  margin-right: 56px;
+}
+.tabs-admin-update .nav-tabs .nav-item:hover{
+    text-decoration: none;
+}
+.tabs-admin-update .nav-tabs .nav-item.active{
+    color: #4AB5F1;
+    font-family: "Poppins-SemiBold";
+    font-size: 18px;
+    line-height: 27px;
+    position: relative;
+}
+.tabs-admin-update .nav-tabs .nav-item.active::before{
+    position: absolute;
+    content: '';
+    width: 50px;
+    height: 5px;
+    background: #4AB5F1;
+    border-radius: 6px;
+    top: 32px;
+}
+
+.no-ref-txt {
+    margin-top: 17px;
+}
+
+.no-ref-txt ul li{
+    margin-bottom: 23px;
+}
+.no-ref-txt h5{
+    color: #282D5B99;
+font-size: 14px;
+line-height: 21px;
+    font-family: 'Poppins-Regular';
+}
+.no-ref-txt h6{
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    line-height: 21px;
+
+}
+.no-ref-txt h6 span{
+    padding: 0px 10px 0px 12px;
+}
+.no-ref-txt h6 small{
+    display: inline-block;
+    cursor: pointer;
+    color: #4AB5F1;
+    font-size: 12px;  
+font-family: 'Poppins-Regular';
+}
+.description_edit-txt h3{
+    color: #282D5B99;
+    font-size:14px;
+font-family: 'Poppins-Regular';
+}
+.description_edit-txt h3 span img{
+    cursor: pointer;
+}
+.description_edit-txt p{
+    color: #282D5B;
+    font-size: 16px;
+    font-family: 'Poppins-Regular';
+    line-height: 28px;
+    padding-bottom: 30px;
+
+}
+.submision-review-box {
+    margin-top: 25px;
+}
+.submision-review-box .card{
+border: 0px;
+margin-bottom: 25px;
+border-radius: 0px !important;
+}
+.submision-review-box .card button{
+    padding: 0;
+    background: #2AABFA;
+    color: #fff;
+    border-radius: 0px !important;
+    border: none;
+    font-family: "Poppins-Medium";
+    font-size: 18px;
+    line-height: 19px;
+    font-family: "Poppins-Medium";
+    padding: 18px 30px;
+    cursor: inherit;
+}
+.submision-review-box .card button span{
+    color: #fff;
+    float: right;
+    cursor: pointer;
+}
+.submision-review-box .card .card-body{
+    padding: 0;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #00000012;
+    border-top: none;
+}
+.submision-review-box .card button:hover{
+    text-decoration: none;
+}
+.select-input-box {
+    position: relative;
+}
+.select-input-box span{
+    position: absolute;
+    top: 35px;
+    right: 10px;
+}
+.select-input-box select{
+    width: 100%;
+    height: 40px;
+    padding: 10px 16px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 0.5px solid #9CA6C08C;
+color: #282D5B;
+font-family: 'Poppins-Regular';
+font-size: 14px;
+}
+.select-input-box label{
+    color: #282D5B99;
+    font-family: 'Poppins-Regular';
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 6px;
+}
+
+.app-status-txt {
+    padding: 26px;
+}
+.comment-box-submision{
+    margin-top: 30px;
+}
+.comment-box-submision label{
+    color: #282D5B80;
+    padding-bottom: 6px;
+}
+.comment-box-submision textarea{
+    width: 100%;
+    height: 102px;
+    border: 0.5px solid #9CA6C08C;
+    color: #282D5B99;
+    padding: 17px 24px 18px 16px;
+    resize: none;
+}
+.user-input-colomn {
+    margin-top: 30px;
+}
+.email-userinput input{
+width: 100%;
+height: 40px;
+padding: 10px 15px;
+background: #FFFFFF;
+border: 0.5px solid #9CA6C08C;
+
+}
+.email-userinput input::placeholder{
+    color: #282D5B;
+    font-size: 14px;
+    font-family: 'Poppins-Regular';
+}
+
+.email-userinput label{
+    color: #282D5B99;
+    padding-bottom: 6px;
+}
+.submision-btn{
+    margin-top: 24px;
+}
+.submision-btn button{
+    color: #fff !important;
+    padding: 10px 21px !important;
+    font-size: 11px !important;
+    font-family: 'Poppins-Regular' !important;
+    background: #4AB5F1 !important;
+}

@@ -84,12 +84,13 @@ export class HomeComponent implements OnInit {
       })
 
     } else if(this.isAdmin){
+      debugger
       this.authenticationService
       .adminLogin(this.loginForm.value)
       .subscribe(res => {
         if (res.status === 'success') {
           this.toasterService.success(appToaster.successHead, appToaster.loginSucess);
-          this.router.navigate(['/dashboard/permit']);
+          this.router.navigate(['/admin/permit/applications']);
           return true;
         }
       })

@@ -84,8 +84,24 @@
 
                                                     <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
                                                     <td>_</td>
-                                                    <td class="update-txt"> <span><i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i></span></td>
+                                                    <!-- <td class="update-txt"> <span><i class="fa fa-angle-down"
+                                                                aria-hidden="true"></i></span></td> -->
+                                                                <td
+                                                                class="update-txt dropdown-action">
+                                                                <span> <i
+                                                                        class="fa fa-angle-down"
+                                                                        aria-hidden="true"></i></span>
+                                                                <div
+                                                                    class="dropdown-contentable">
+                                                                    <a class="pointer" data-toggle="modal" data-target="#cancel_application" (click) = "getApplicationId(application?.id)" >Cancel </a>
+                                                                    <a class="pointer" data-toggle="modal" data-target="#withdraw_application" (click) = "getApplicationId(application?.id)" >Withdraw</a>
+                                                                       
+                                                                    <!-- <a href="#">Inactive</a>  -->
+                                                                    <div
+                                                                        class="triangle-left">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
                                                 </tr>
                                               
                                             </tbody>
@@ -756,6 +772,48 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="cancel_application" tabindex="-1" role="dialog" #cancelConfirmPopUp
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+        <div class="modal-content app-content">
+
+            <div class="soure-delete-txt">
+                <h3>Cancel Application</h3>
+                <h4>Are you sure you want to cancel Application</h4>
+            </div>
+
+
+            <div class="modal-footer p-0 border-0">
+                <button type="button" class="secondary" data-dismiss="modal">No</button>
+                <button type="button" class="primary" (click) ="cancelPermit()">Yes</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="withdraw_application" tabindex="-1" role="dialog" #withdrawConfirmPopUp
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+    <div class="modal-content app-content">
+
+        <div class="soure-delete-txt">
+            <h3>Withdraw Application</h3>
+            <h4>Are you sure you want to withdraw Application</h4>
+        </div>
+
+
+        <div class="modal-footer p-0 border-0">
+            <button type="button" class="secondary" data-dismiss="modal">No</button>
+            <button type="button" class="primary" (click) ="withdrawPermit()">Yes</button>
+        </div>
+
+
+    </div>
+</div>
+</div>
 
     </router-outlet>
 </app-layout>

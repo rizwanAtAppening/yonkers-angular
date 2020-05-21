@@ -6,7 +6,7 @@ class UrlHelper {
 
   private apiPrefix = '/api';
   private authPrefix = '/auth/api';
-  private adminPrefix = `${this.apiPrefix}/admin`;
+  private adminPrefix = `/admin`;
   private userPrefix = `${this.apiPrefix}`;
 
   getAuthUrls(urls: object) {
@@ -59,6 +59,9 @@ const authUrls = {
 
 const adminUrl = {
   allCertificates: `/assign/certificates`,
+  getApplication:`/applications`,
+  permitDetals:`/application/all_details`,
+  acceptApplication:`/application/clerk/submission`
 
 
 
@@ -88,7 +91,9 @@ const userUrl = {
   addStaff:`/user/team_member`,
   singleStaff:`/user/team_member`,
   activeInactiveStaff:`/user/team_member/active-inactive`,
-  createmMemberPassword:`/user/team_member/create-password`
+  createmMemberPassword:`/user/team_member/create-password`,
+  withDrawPermit:`/withdraw/application`,
+  cancelPermit:`/cancel/application`
   // searchUserApplication:`/application`
 
 

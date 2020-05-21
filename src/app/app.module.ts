@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
+import { AdminModule } from './modules/admin/admin.module';
 
 const TOASTR_OPTIONS = {
   timeOut: 1000 ,
@@ -28,6 +29,7 @@ const TOASTR_OPTIONS = {
     AppRoutingModule,
     CoreModule,
     LayoutsModule,
+    AdminModule,
     ToastrModule.forRoot(TOASTR_OPTIONS),
     NgxUiLoaderModule,
     NgxUiLoaderRouterModule,

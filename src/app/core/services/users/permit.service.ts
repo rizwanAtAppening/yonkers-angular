@@ -26,7 +26,7 @@ export class PermitService {
 
 
   addPermitApplication(data): Observable<any> {
-    
+
     const href = `${environment['application']}`;
     const applicationID = this.getApplicationID();
     if (applicationID) {
@@ -190,7 +190,7 @@ export class PermitService {
   }
 
   setApplication(application: any) {
-    
+
     sessionStorage.setItem(this.sessionApplication, JSON.stringify(application));
   }
 
@@ -248,7 +248,7 @@ export class PermitService {
 
   getDetailByLayOutNumber(query): Observable<any> {
     const href = `${environment['getDetailByLayOut']}`
-    return this.http.get<any>(href,{params:query}).pipe(
+    return this.http.get<any>(href, { params: query }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -313,7 +313,33 @@ export class PermitService {
 
   deleteDailyWorklocation(id): Observable<any> {
     const href = `${environment['deletDailyWorkLocation']}/${id}`;
-    return this.http.post<any>(href,'').pipe(
+    return this.http.post<any>(href, '').pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  withDrawPermit(id): Observable<any> {
+    const href = `${environment['withDrawPermit']}/${id}`;
+    return this.http.post<any>(href, '').pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  cancelPermit(id): Observable<any> {
+    const href = `${environment['cancelPermit']}/${id}`;
+    return this.http.post<any>(href, '').pipe(
       tap(
         (data) => {
           if (data.status === 'success') {
