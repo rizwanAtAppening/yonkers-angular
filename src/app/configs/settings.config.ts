@@ -374,11 +374,90 @@ imageType:[
 
 permit_status:[
   {
-    key:3,
+    key:0,
     value:'Issue Permit'
   },
  
 ],
+
+
+inspection_decision:[
+  {
+    key:6,
+    value:'Pass'
+  },
+  {
+    key:5,
+    value:'Fail'
+  },
+  {
+    key:4,
+    value:'Pending'
+  },
+],
+
+inspection_type:[
+  {
+    key:1,
+    value:'Bond Release'
+  },
+  {
+    key:2,
+    value:'Catch Basin'
+  },
+  {
+    key:3,
+    value:'Drain Line Connection'
+  },
+  {
+    key:4,
+    value:'Dumpster'
+  }, {
+    key:5,
+    value:'Final'
+  }, {
+    key:6,
+    value:'Gas Main'
+  }, {
+    key:7,
+    value:'Gas Service'
+  }, {
+    key:8,
+    value:'Other'
+  }, {
+    key:9,
+    value:'Pre-construction'
+  }, {
+    key:10,
+    value:'Road Restoration'
+  }, {
+    key:11,
+    value:'Scaffolding'
+  },
+  {
+    key:12,
+    value:'Sewer Connection'
+  },{
+    key:13,
+    value:'Sidewalk'
+  },{
+    key:14,
+    value:'Street Opening'
+  },
+  {
+    key:15,
+    value:'Tree Condition'
+  },{
+    key:16,
+    value:'Water Main'
+  },{
+    key:17,
+    value:'Water Service'
+  },
+],
+
+
+
 
 days:[
   {

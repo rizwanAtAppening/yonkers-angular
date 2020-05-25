@@ -73,9 +73,35 @@ export class ApplicationService {
   }
 
   addDecision(data){
-    debugger
     const href = `${environment['addDecision']}`
     return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  inspection(data){
+    const href = `${environment['inspection']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+
+  getInspection(){
+    const href = `${environment['getInspection']}`
+    return this.http.get<any>(href).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
