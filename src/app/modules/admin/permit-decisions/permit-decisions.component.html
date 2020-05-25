@@ -1,0 +1,210 @@
+<div class="card">
+    <div id="headingTwo-review">
+        <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" type="button">
+                Decisions
+                <span data-toggle="collapse" data-target="#SubmissionTwo" aria-expanded="false"
+                    aria-controls="SubmissionTwo"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+            </button>
+        </h2>
+    </div>
+    <div id="SubmissionTwo" class="collapse " aria-labelledby="headingTwo-review" data-parent="#accordionExample">
+        <div class="card-body">
+            <div class="decisions_box-collepse">
+                <div [formGroup]="desicionForm">
+                    <div class="text-decision-bx">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3>Decisions Details</h3>
+                                <div class="form-group">
+                                    <label>Application Status</label>
+                                    <select formControlName="permit_decision"   [class]="desicion.permit_decision.invalid && (desicion.permit_decision.dirty || desicion.permit_decision.touched || isDecision) ? 'form-control  form-group-error ' : 'form-control '">
+                                        <option value="" hidden>--Select--</option>
+                                        <option value="{{desicion?.key}}"  *ngFor="let desicion of settings?.permit_status">
+                                            {{desicion?.value}}</option>
+
+                                    </select>
+                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="add-special-box">
+                        <div class="txt-special-condition" data-toggle="modal" data-target="#staticBackdrop_m">+ Add
+                            Special Conditions</div>
+                    </div>
+                    <div class="decision-here">
+                        <textarea placeholder="Type something here..."></textarea>
+                    </div>
+
+
+                    <div class="expiration-date-box">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="app-status-slect">
+                                    <div class="form-group">
+                                        <label>Expiration Day</label>
+                                        <select>
+                                            <option value="" hidden>--Select--</option>
+                                            <option *ngFor ="let day of settings?.days">{{day?.value}}</option>
+                                            
+                                        </select>
+                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="app-status-slect">
+                                    <div class="form-group">
+                                        <label>Expiration Date</label>
+                                        <input type="text" [class]="desicion.expiration_date.invalid && (desicion.expiration_date.dirty || desicion.expiration_date.touched || isDecision) ? 'form-control  form-group-error ' : 'form-control '" formControlName="expiration_date" #permitend="bsDatepicker" bsDatepicker  placeholder="To">
+                                        <span><i class="fa fa-calendar" (click)="permitend.toggle()" aria-hidden="true" ></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="app-status-slect">
+                                    <div class="form-group">
+                                        <label>Inspector</label>
+                                        <select formControlName="inspector" >
+                                            <option value="" hidden>--Select--</option>
+                                           <option value="{{ins?.id}}" *ngFor = "let ins of inspector"> {{ins?.name}}</option>
+                                        </select>
+                                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dicision-submit_btn"><button type="submit" (click) = "decision()">Submit</button></div>
+
+                    </div>
+                </div>
+
+                <div class="plan-examiner-box">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Plan Examiner</th>
+                                <th>Action Taken</th>
+                                <th>Review Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PW2020-0514</td>
+                                <td>547567</td>
+                                <td>547567</td>
+                                <td>25 Apr 2020</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop_m" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered add-conditions-modal">
+        <div class="modal-content border-0">
+            <div class="modal-header">
+                <h5 class="modal-title contition_Hd">Add Conditions</h5>
+            </div>
+            <div class="modal-content-padding">
+                <div class="searchInput">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Search..." >
+                            <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <div class="inspaction-box" >
+                    <label class="container-curb"  *ngFor ="let value of settings?.conditions">{{value?.value}}
+                        <input type="checkbox" (change) ="addCondition($event,value)" >
+                        <span class="checkmark-replacement"></span>
+                    </label>
+                    <!-- <label class="container-curb">Inspection: Curb Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+
+                    <label class="container-curb">Inspection: New Sidewalk
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+                    <label class="container-curb">All Permits Must Be Renewed Before The Expiration Date Stated On The
+                        Permit
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+
+
+                    <label class="container-curb">Inspections are needed 24 hours in advanced before you Backfill after
+                        doing a
+                        sewer connection
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+                    <label class="container-curb">A separate inspection is required by the building inspector
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+
+                    <label class="container-curb">Inspection required by Plumbing Inspector
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+                    <label class="container-curb">Signage Must Be Placed to Warn Pedestrians of Work Zone
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+
+                    <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label>
+
+
+                    <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label> <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label> <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label> <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label> <label class="container-curb">Inspection: Sidewalk Replacement
+                        <input type="checkbox">
+                        <span class="checkmark-replacement"></span>
+                    </label> -->
+
+
+                </div>
+
+                <div class="checkbox-addBtn">
+                    <button class="cancle-btntxt"  data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <button class="add-btntxt" data-dismiss="modal" aria-label="Close">Add</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

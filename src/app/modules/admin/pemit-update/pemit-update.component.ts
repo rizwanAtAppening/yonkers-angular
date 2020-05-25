@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-pemit-update',
@@ -12,11 +14,16 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./pemit-update.component.css']
 })
 export class PemitUpdateComponent implements OnInit {
+  @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
+  certificates: any = new Subject<any>();
+
   public applicationId: number;
   public applicationDetails: any;
   public completIncompletForm: FormGroup;
+  public editDescriptionForm: FormGroup;
   public isAccept = false;
-  public settings: any
+  public settings: any;
+
   public isCompletApplication = false;
   constructor(
     private router: Router,
@@ -24,6 +31,8 @@ export class PemitUpdateComponent implements OnInit {
     private permitService: PermitService,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
+    public adminAuthService:AuthenticationService,
+
     private FB: FormBuilder
   ) { this.settings = settingConfig; }
 
@@ -35,17 +44,40 @@ export class PemitUpdateComponent implements OnInit {
     if (this.applicationId) {
       this.permitDetails()
     }
+    this.getUserInfo();
   }
 
+  public currentUser = {
+    role_id: null,
+    department:null
+  }
+  getUserInfo() {
+    debugger
+    this.adminAuthService.getUserInfo().subscribe(data => {
+      this.currentUser = data
+    })
+  }
+
+
   permitDetails() {
+    debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response
+      this.certificates.next(this.applicationDetails)
+
       console.log(this.applicationDetails)
     })
   }
 
   onInIt() {
-    this.completeIncompletCon()
+    this.completeIncompletCon();
+    this.description();
+  }
+
+  description() {
+    this.editDescriptionForm = this.FB.group({
+      description: [''],
+    })
   }
 
   completeIncompletCon() {
@@ -54,6 +86,26 @@ export class PemitUpdateComponent implements OnInit {
       message: [''],
       to: [''],
       cc: [''],
+    })
+  }
+
+  fillDescriptionForm() {
+    if (this.applicationDetails && this.applicationDetails.project_detail) {
+      this.editDescriptionForm.controls.description.setValue(this.applicationDetails.project_detail.description)
+
+    }
+  }
+
+  message: string;
+  receiveMessage($event) {
+    this.message = $event
+    this.ngOnInit();
+  }
+  editDescription() {
+    debugger
+    this.applicationService.editDescription(this.editDescriptionForm.value,this.applicationId).subscribe(data => {
+      this.descriptionPopup.nativeElement.click();
+      this.toasterService.success('Application description updated');
     })
   }
 
@@ -70,6 +122,7 @@ export class PemitUpdateComponent implements OnInit {
     this.completIncompletForm.value.application_id = this.applicationId
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
       console.log(data)
+      this.completIncompletForm.reset();
       this.toasterService.success('Application has been accepted')
     })
   }
@@ -80,8 +133,6 @@ export class PemitUpdateComponent implements OnInit {
     }
     else if (value == 2) {
       this.isCompletApplication = false
-
     }
-
   }
 }

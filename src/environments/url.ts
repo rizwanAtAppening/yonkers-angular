@@ -61,8 +61,10 @@ const adminUrl = {
   allCertificates: `/assign/certificates`,
   getApplication:`/applications`,
   permitDetals:`/application/all_details`,
-  acceptApplication:`/application/clerk/submission`
-
+  acceptApplication:`/application/clerk/submission`,
+  editDescription:`/application/update`,
+  addDecision:`/application/manager/decision`,
+  inspector:`/inspector`,
 
 
 };

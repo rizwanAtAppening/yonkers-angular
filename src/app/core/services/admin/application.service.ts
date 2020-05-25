@@ -58,4 +58,47 @@ export class ApplicationService {
     );
   }
 
+  editDescription(data,id){
+    debugger
+    const href = `${environment['editDescription']}/${id}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  addDecision(data){
+    debugger
+    const href = `${environment['addDecision']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  getInspector(){
+    debugger
+    const href = `${environment['inspector']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+
 }

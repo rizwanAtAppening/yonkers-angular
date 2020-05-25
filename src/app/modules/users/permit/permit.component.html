@@ -81,6 +81,7 @@
                                                     <td class="submited-Btn"><button>Submitted</button></td>
                                                     <td class="submited-Btn" *ngIf ="application?.status == null && application?.application_type ==1"><button>Draft</button></td>
                                                     <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 2 && application?.application_type ==1"><button>Submitted</button></td>
+                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 3 && application?.application_type ==1"><button>Camcel</button></td>
 
                                                     <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
                                                     <td>_</td>
@@ -93,8 +94,8 @@
                                                                         aria-hidden="true"></i></span>
                                                                 <div
                                                                     class="dropdown-contentable">
-                                                                    <a class="pointer" data-toggle="modal" data-target="#cancel_application" (click) = "getApplicationId(application?.id)" >Cancel </a>
-                                                                    <a class="pointer" data-toggle="modal" data-target="#withdraw_application" (click) = "getApplicationId(application?.id)" >Withdraw</a>
+                                                                    <a class="pointer" data-toggle="modal" data-target="#cancel_application" *ngIf ="application?.status != 3" (click) = "getApplicationId(application?.id)" >Cancel </a>
+                                                                    <a class="pointer" data-toggle="modal" data-target="#withdraw_application"*ngIf ="application?.status != 4 && application?.status != null "  (click) = "getApplicationId(application?.id)" >Withdraw</a>
                                                                        
                                                                     <!-- <a href="#">Inactive</a>  -->
                                                                     <div

@@ -9,8 +9,8 @@
                     <div class="back-txt m-0">
                         <div class="row">
                             <div class="col-12">
-                                <h3 class="ml-0"><span><img src="assets/images/left-arrow.svg" alt=""></span> Back
-                                    to dashboard</h3>
+                                <h3 class="ml-0" routerLink = "/admin/permit/applications"><span><img src="assets/images/left-arrow.svg"  alt=""></span> Back
+                                    </h3>
                             </div>
                         </div>
                     </div>
@@ -148,11 +148,9 @@
                                 <div class="col-12 p-0">
                                     <div class="description_edit-txt">
                                         <h3>Description
-                                            <span><img src="assets/images/edit-pen.svg" alt=""></span>
+                                            <span (click) ="fillDescriptionForm()" data-toggle="modal" data-target="#editprojectmodal"><img src="assets/images/edit-pen.svg" alt=""></span>
                                         </h3>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-                                            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                                            voluptua.</p>
+                                        <p>{{applicationDetails?.project_detail?.description}}</p>
                                     </div>
                                 </div>
 
@@ -265,7 +263,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <!-- <div class="card">
                         <div id="headingTwo">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button">
@@ -288,8 +286,9 @@
                                 nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
+                    <app-permit-decisions (messageEvent)="receiveMessage($event)" *ngIf = "(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 3)" [certificatesChild]="certificates"></app-permit-decisions>
                     <div class="card">
                         <div id="headingThree">
                             <h2 class="mb-0">
@@ -321,6 +320,36 @@
 
         </div>
     </div>
+    <!-- Modal -->
+<div class="modal fade" id="editprojectmodal"  #descriptionPopup 
+>
+<div class="modal-dialog modal-dialog-centered detailed-edit">
+  <div class="modal-content border-0">
+    <div class="modal-header">
+      <h5 class="modal-title txtepd">Edit Project Description Details</h5>
+      <button type="button" id="close-icon-modal" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="detail-txtarea">
+        <form [formGroup]="editDescriptionForm">
+      <div class="form-group">
+        <label>Detailed Description</label>
+        <textarea formControlName="description" placeholder="Type something here..."></textarea>
+      </div>
+    </form>
+
+      <div class="modal-btn-decripatn">
+        <button class="cancle_button" data-dismiss="modal" aria-label="Close">Cancel</button>
+        <button class="save_button" type="submit" (click) = "editDescription()">Save</button>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+</div>
 </section>
 
 <!-- </router-outlet>

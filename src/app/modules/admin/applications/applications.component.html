@@ -110,7 +110,7 @@
                                                                                             <tr *ngFor = "let permit of allApplications">
                                                                                                 <td class="refTxt pointer"  (click) ="navigateToUpdatePage(permit?.id)">{{permit?.reference_no}}</td>
                                                                                                 <td >
-                                                                                                        <p *ngIf ="permit?.address_id">                                                         {{addr?.address_id}}
+                                                                                                        <p *ngIf ="permit?.address_id">                                                         {{permit?.address_id}}
                                                                                                             </p>
                                                                                                             <p *ngFor = "let addr of permit?.location">{{addr?.street_one}} <span class="to-txt">{{addr?.address_join == 1 ?'To':'End'}}</span> {{addr?.street_two}}</p>
                                                                                                     

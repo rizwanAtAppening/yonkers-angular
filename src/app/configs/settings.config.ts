@@ -372,6 +372,73 @@ imageType:[
   },
 ],
 
+permit_status:[
+  {
+    key:3,
+    value:'Issue Permit'
+  },
+ 
+],
+
+days:[
+  {
+    key:1,
+    value:'7 Days'
+  },
+  {
+    key:2,
+    value:'30 Days'
+  },
+  {
+    key:3,
+    value:' 60 Days'
+  },
+  {
+    key:4,
+    value:'90 Days'
+  },
+  {
+    key:5,
+    value:' 6 Month'
+  },
+  {
+    key:6,
+    value:'1 Year'
+  }, {
+    key:7,
+    value:'2 Year'
+  },
+],
+
+// application_decision: {
+//   1: "Cancelled",
+//   2: "Accept",
+//   3: "Issue Permit",
+//   4: 'Pending',
+//   5: 'Fail',
+//   6: 'Pass',  // closed when Inspection is passed
+
+// },
+
+conditions:[
+  {
+    key: 1,
+    value: 'Inspections are needed 24 hours in advanced before you pour Concrete'
+  },{
+    key: 2,
+    value: 'Inspection: Curb Replacement'
+  },{
+    key: 3,
+    value: 'Inspection: New Sidewalk'
+  },{
+    key: 4,
+    value: 'All Permits Must Be Renewed Before The Expiration Date Stated On The'
+  },{
+    key: 5,
+    value: 'Inspections are needed 24 hours in advanced before you Backfill after add'
+  },
+],
+
 submission_Application_status: [
   {
     key: 1,
