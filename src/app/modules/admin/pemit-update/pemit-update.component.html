@@ -289,6 +289,7 @@
                     </div> -->
 
                     <app-permit-decisions (messageEvent)="receiveMessage($event)" *ngIf = "(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 3)" [certificatesChild]="certificates"></app-permit-decisions>
+                    <app-inspections *ngIf = "(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 5)" [certificatesChild]="certificates"></app-inspections>
                     <div class="card">
                         <div id="headingThree">
                             <h2 class="mb-0">

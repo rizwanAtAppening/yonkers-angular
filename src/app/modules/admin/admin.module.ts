@@ -7,10 +7,11 @@ import { PemitUpdateComponent } from './pemit-update/pemit-update.component';
 import { LayoutsModule } from 'src/app/core/layouts.module';
 import { PermitDecisionsComponent } from './permit-decisions/permit-decisions.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { InspectionsComponent } from './inspections/inspections.component';
 
 
 @NgModule({
-  declarations: [ApplicationsComponent, PemitUpdateComponent, PermitDecisionsComponent],
+  declarations: [ApplicationsComponent, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

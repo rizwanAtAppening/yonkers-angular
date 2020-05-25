@@ -1,0 +1,111 @@
+<div class="card">
+    <div id="Inspectionsfour">
+      <h2 class="mb-0">
+        <button class="btn btn-link btn-block text-left collapsed" type="button" >
+            Inspections
+          <span data-toggle="collapse" data-target="#insfour" aria-expanded="false" aria-controls="insfour"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>
+        </button>
+      </h2>
+    </div>
+    <div id="insfour" class="collapse" aria-labelledby="Inspectionsfour" data-parent="#accordionExample">
+      <div class="card-body">
+<div class="decisions_box-collepse">
+
+<div class="expiration-date-box-2">
+    <form [formGroup]="inspectionForm">
+  <div class="row">
+    <div class="col-3">
+        <div class="app-status-slect">
+            <div class="form-group">
+                <label>Inspection Date Time</label>
+             <input type="text" formControlName="date"  #permitend="bsDatepicker" bsDatepicker   placeholder="04/28/2020">
+             <span><i class="fa fa-calendar" (click)="permitend.toggle()" aria-hidden="true"></i></span>
+              </div>
+            </div>
+    </div>
+      <div class="col-3">
+          <div class="app-status-slect">
+              <div class="form-group">
+                  <label>Inspection Type</label>
+                  <select formControlName="type">
+                      <option value="" hidden>--Select--</option>
+                    <option  value="{{type?.key}}" *ngFor ="let type of settings?.inspection_type">{{type?.value}}</option>
+                    
+                  </select>
+                  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                </div>
+              </div>
+      </div>
+      <div class="col-3">
+          <div class="app-status-slect">
+              <div class="form-group">
+                  <label>Decision</label>
+                  <select formControlName="decision">
+                        <option value="" hidden>--Select--</option>
+                        <option  value="{{type?.key}}" *ngFor ="let type of settings?.inspection_decision">{{type?.value}}</option>
+                        
+                
+                  </select>
+                  <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                </div>
+              </div>
+      </div>
+      <div class="col-3">
+          <div class="app-status-slect">
+              <div class="form-group">
+                  <label>Amount</label>
+               <input type="text" placeholder="0.00" formControlName="amount">
+             
+                </div>
+              </div>
+      </div>
+  </div>
+  <div class="comment-box-submision">
+    <div class="form-group">
+        <label>Remarks</label>
+        <textarea formControlName="remark" placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+    </div>
+</div>
+  <div class="dicision-submit_btn" ><button type="submit" (click) = "addInspections()">Submit</button></div>
+  </form>
+  </div>
+  <div class="plan-examiner-box">
+      <table class="table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Decision</th>
+              <th>Fee</th>
+              <th>Inspector</th>
+              <th>Date</th>
+              <th>Remarks</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            <td>Final</td>
+              <td>Pass</td>
+              <td>20.00</td>
+              <td>Bonnie Wasylenko</td>
+              <td>08 Jul 2019</td>
+              <td>Lorem Ipsum</td>
+              <td>
+                <div class="dropdown_act">
+                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                    <div class="dropdown-content-void">
+                      <a href="#">Void Inspection</a>
+                    </div>
+                  </div>
+              </td>
+              
+            </tr>
+     
+          </tbody>
+        </table>
+  </div>
+
+</div>
+      </div>
+    </div>
+  </div>
