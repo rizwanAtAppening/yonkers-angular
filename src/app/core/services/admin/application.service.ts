@@ -98,6 +98,57 @@ export class ApplicationService {
     );
   }
 
+  voidInspection(data){
+    const href = `${environment['voidInspection']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  updateContratorInfo(data){
+    const href = `${environment['updateContractor']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  addLicenseDetails(data){
+    const href = `${environment['addLicense']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  updateLicenseDetails(data,id){
+    const href = `${environment['addLicense']}/${id}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
 
   getInspection(){
     const href = `${environment['getInspection']}`

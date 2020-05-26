@@ -502,19 +502,24 @@ days:[
 conditions:[
   {
     key: 1,
-    value: 'Inspections are needed 24 hours in advanced before you pour Concrete'
+    value: 'Inspections are needed 24 hours in advanced before you pour Concrete',
+    isChecked:false
   },{
     key: 2,
-    value: 'Inspection: Curb Replacement'
+    value: 'Inspection: Curb Replacement',
+    isChecked:false
   },{
     key: 3,
-    value: 'Inspection: New Sidewalk'
+    value: 'Inspection: New Sidewalk',
+    isChecked:false
   },{
     key: 4,
-    value: 'All Permits Must Be Renewed Before The Expiration Date Stated On The'
+    value: 'All Permits Must Be Renewed Before The Expiration Date Stated On The',
+    isChecked:false
   },{
     key: 5,
-    value: 'Inspections are needed 24 hours in advanced before you Backfill after add'
+    value: 'Inspections are needed 24 hours in advanced before you Backfill after add',
+    isChecked:false
   },
 ],
 

@@ -8,10 +8,11 @@ import { LayoutsModule } from 'src/app/core/layouts.module';
 import { PermitDecisionsComponent } from './permit-decisions/permit-decisions.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { InspectionsComponent } from './inspections/inspections.component';
+import { ContratorDetailsComponent } from './contrator-details/contrator-details.component';
 
 
 @NgModule({
-  declarations: [ApplicationsComponent, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent],
+  declarations: [ApplicationsComponent, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent, ContratorDetailsComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

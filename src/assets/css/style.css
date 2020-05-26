@@ -3661,3 +3661,203 @@ border: 0.5px solid #9CA6C08C;
        background: #fff;
       margin-right: 15px;
    }
+
+   .decision-here-2 {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 0.5px solid #9CA6C08C;
+height: 197px;
+margin-top: 30px;
+padding: 20px 28px 15px 28px;
+}
+
+.decision-here-2 h2{
+    color: #3E3F42;
+    font-family: "Poppins-SemiBold";
+    line-height: 28px;
+    font-size: 14px;
+}
+
+
+.add_more-spacial h3{
+    color: #2AABFA;
+    font-family: 'Poppins-Regular';
+    line-height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+ 
+}
+
+
+.dropdown_act {
+    position: relative;
+  }
+  
+  .dropdown-content-void {
+    display: none;
+    position: absolute;
+    right: 56px;
+    background-color: #fff;
+    min-width: 133px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 9px #00000017;
+    border: 0.5px solid #00000014;
+    border-radius: 4px;
+    z-index: 1;
+  }
+  
+  .dropdown-content-void a {
+    color: black;
+    padding: 8px 13px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown-content-void a:hover {background-color: #ddd;}
+  .dropdown_act:hover .dropdown-content-void {display: block;}
+  
+  .dropdown_act h6{
+    width: 20px;
+    height: 20px;
+    background: #2AABFA 0% 0% no-repeat padding-box;
+    border-radius: 7px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+  }
+.status-active-btn{
+    width: 80px;
+    height: 23px;
+    text-align: center;
+    color: #1479EB;
+    border: 1px solid #1479EB;
+    border-radius: 11px;
+    font-size: 12px;
+    line-height: 22px;
+    font-family: "Poppins-Medium";
+  }
+
+  .number_con_Hd h3{
+      color: #282D5B99;
+      font-family: 'Poppins-Regular';
+      font-size: 14px;
+      line-height: 21px;
+  }
+
+  .number_con_Hd h4{
+    color: #282D5B;
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    line-height: 25px;
+    margin-top: 5px;
+}
+.number_con_Hd .busines-edit{
+    text-align: right;
+}
+.number_con_Hd .busines-edit h6{
+    background: #2AABFA;
+    padding: 8px 22px;
+border-radius: 20px;
+display: inline-block;
+font-size: 11px;
+cursor: pointer;
+color: #fff;
+font-family: 'Poppins-Regular';
+}
+.number_con_Hd .busines-edit h6 span img{
+margin-right: 3px;
+}
+.con-boxis-2 {
+    margin-top: 30px;
+}
+.Add__New_inspection h4{
+color: #2AABFA;
+font-family: 'Poppins-Regular';
+font-size: 14px;
+line-height: 19px;
+cursor: pointer;
+}
+.Add__New_inspection h4 span img{
+    margin-right: 4px;
+}
+
+
+/* admin collepse css 25/05/2020 */
+
+
+.bdp_email input{
+    border: 0.5px solid #282D5B66;
+}
+#cBtn-modal {
+    color: #4AB5F1;
+    border: 1px solid #282D5B42;
+}
+.admin-add-insurance label{
+  
+    color: #282D5B99;
+    font-size: 12px;
+    line-height: 18px;
+    font-family: 'Poppins-Regular';
+    padding-bottom: 6px;
+}
+.admin-add-insurance{
+    position: relative;
+    margin-top: 26px !important;
+   
+}
+.admin-add-insurance select {
+width: 100%;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+border: 0.5px solid #282D5B66;
+height: 42px;
+padding: 11px 16px;
+color: #282D5B99;
+}
+.admin-add-insurance span{
+    position: absolute;
+    right: 15px;
+    top: 36px;
+}
+.admin-add-insurance-input {
+    margin-top: 34px !important;
+    position: relative;
+}
+
+.admin-add-insurance-input span{
+    position: absolute;
+    right: 15px;
+    top: 14px;
+    color: #a0a0a0;
+}
+#cBtn-modal-close {
+    color: #4AB5F1;
+    border: 1px solid #282D5B42;
+}
+.imgbox-upload {
+ margin-top: 30px;
+background: #EFF6FE;
+border: 1px solid #E6EAF0;
+border-radius: 2px;
+padding: 10px 11px;
+position: relative;
+}
+.fileImg {
+    display: flex;
+}
+.fileImg h4{
+    color: #000;
+    font-size: 13px;
+    line-height: 16px;
+    margin-left: 11px;
+}
+
+.fileImg h2{
+    width: 93px;
+    height: 57px;
+    overflow: hidden;
+}
+.crose-rightIcon {
+    position: absolute;
+    right: 14px;
+    top: 17px;
+    cursor: pointer;
+    color: #465C80;
+}

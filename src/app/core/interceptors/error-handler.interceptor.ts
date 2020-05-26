@@ -43,7 +43,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         this.router.navigateByUrl('/auth/403');
         break;
       case 422:
-        this.showError(error);
+        debugger
+        this.showError(error.errors[0].msg);
+        this.toasterService.error( appToaster.errorHead, error.errors[0].msg);
+
         break;
       // case BAD_REQUEST:
       //    this.showError(error.message);

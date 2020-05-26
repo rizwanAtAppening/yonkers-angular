@@ -7,6 +7,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { error } from 'util';
 
 @Component({
   selector: 'app-pemit-update',
@@ -21,9 +22,10 @@ export class PemitUpdateComponent implements OnInit {
   public applicationDetails: any;
   public completIncompletForm: FormGroup;
   public editDescriptionForm: FormGroup;
+  public addFeeForm: FormGroup;
   public isAccept = false;
   public settings: any;
-
+  public isFee = false;
   public isCompletApplication = false;
   constructor(
     private router: Router,
@@ -31,7 +33,7 @@ export class PemitUpdateComponent implements OnInit {
     private permitService: PermitService,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
-    public adminAuthService:AuthenticationService,
+    public adminAuthService: AuthenticationService,
 
     private FB: FormBuilder
   ) { this.settings = settingConfig; }
@@ -49,7 +51,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public currentUser = {
     role_id: null,
-    department:null
+    department: null
   }
   getUserInfo() {
     debugger
@@ -58,7 +60,17 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
 
+  feeControls() {
+    this.addFeeForm = this.FB.group({
+      feeType: [],
+      paymetType: [],
+      amount: [],
+    })
+  }
 
+  get fee() { return this.addFeeForm.controls }
+
+  
   permitDetails() {
     debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
@@ -72,7 +84,10 @@ export class PemitUpdateComponent implements OnInit {
   onInIt() {
     this.completeIncompletCon();
     this.description();
+    this.feeControls();
   }
+
+
 
   description() {
     this.editDescriptionForm = this.FB.group({
@@ -103,8 +118,9 @@ export class PemitUpdateComponent implements OnInit {
   }
   editDescription() {
     debugger
-    this.applicationService.editDescription(this.editDescriptionForm.value,this.applicationId).subscribe(data => {
+    this.applicationService.editDescription(this.editDescriptionForm.value, this.applicationId).subscribe(data => {
       this.descriptionPopup.nativeElement.click();
+      this.permitDetails();
       this.toasterService.success('Application description updated');
     })
   }
@@ -112,6 +128,7 @@ export class PemitUpdateComponent implements OnInit {
   get clerkCon() { return this.completIncompletForm.controls }
 
   accepetOrDeclineApplication() {
+    debugger
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -123,7 +140,10 @@ export class PemitUpdateComponent implements OnInit {
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
       console.log(data)
       this.completIncompletForm.reset();
+      this.isCompletApplication = false
       this.toasterService.success('Application has been accepted')
+    }, error => {
+      console.log(error)
     })
   }
 

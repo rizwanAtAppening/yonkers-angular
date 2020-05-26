@@ -66,7 +66,10 @@ const adminUrl = {
   addDecision:`/application/manager/decision`,
   inspector:`/inspector`,
   inspection:`/inspection`,
-  getInspection:`/inspection`
+  getInspection:`/inspection`,
+  voidInspection:`/inspection/void`,
+  addLicense:`/application/contractor_license`,
+  updateContractor:`/application/contractor_update`
 
 
 };

@@ -31,10 +31,31 @@
                     </div>
 
 
-                    <div class="add-special-box">
+                    <div class="add-special-box" *ngIf ="special_conditions?.length == 0"> 
                         <div class="txt-special-condition" data-toggle="modal" data-target="#staticBackdrop_m">+ Add
                             Special Conditions</div>
                     </div>
+
+                    <div class="decision-here-2" *ngIf ="special_conditions?.length > 0">
+                            <h2>Selected Special Conditions</h2>
+                            <div class="add_more-spacial">
+                            <label class="container-curb mt-2" *ngFor = "let data of special_conditions">{{data?.point}}
+                             <input type="checkbox" (change) ="addCondition($event,data)" [checked]="data?.isChecked">
+                             <span class="checkmark-replacement"></span>
+                           </label>
+                           <!-- <label class="container-curb">Inspection: Curb Replacement
+                             <input type="checkbox">
+                             <span class="checkmark-replacement"></span>
+                           </label>
+                           <label class="container-curb">Inspection: New Sidewalk
+                             <input type="checkbox">
+                             <span class="checkmark-replacement"></span>
+                           </label> -->
+                         
+                         <h3 data-toggle="modal" data-target="#staticBackdrop_m">+ Add More</h3>
+                         
+                         </div>
+                             </div>
                     <div class="decision-here">
                         <textarea placeholder="Type something here..."></textarea>
                     </div>
@@ -94,10 +115,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>PW2020-0514</td>
-                                <td>547567</td>
-                                <td>547567</td>
+                            <tr *ngFor ="let data of applicationDetails?.application_issue_permits"> 
+                                <td>{{data?.staff?.name ? data?.staff?.name:'_'}}</td>
+                                <td>Permit Issue</td>
+                                <td>{{data?.createdAt | date}}</td>
                                 <td>25 Apr 2020</td>
                             </tr>
 
@@ -133,7 +154,7 @@
 
                 <div class="inspaction-box" >
                     <label class="container-curb"  *ngFor ="let value of settings?.conditions">{{value?.value}}
-                        <input type="checkbox" (change) ="addCondition($event,value)" >
+                        <input type="checkbox" (change) ="addCondition($event,value)" [checked]="value?.isChecked"  >
                         <span class="checkmark-replacement"></span>
                     </label>
                     <!-- <label class="container-curb">Inspection: Curb Replacement

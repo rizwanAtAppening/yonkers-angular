@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Output,OnInit,EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
 
 @Component({
@@ -12,6 +12,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 export class InspectionsComponent implements OnInit {
   public applicationDetails: any;
   public settings: any;
+  @Output() messageEvent = new EventEmitter<string>();
   @Input() certificatesChild: Observable<any>;
   public inspectionForm: FormGroup
   constructor(
@@ -34,9 +35,9 @@ export class InspectionsComponent implements OnInit {
 
   inspectionFormControl() {
     this.inspectionForm = this.fb.group({
-      decision: [''],
-      type: [''],
-      date: [''],
+      decision: ['',Validators.required],
+      type: ['',Validators.required],
+      date: ['',Validators.required],
       amount: [''],
       remark: [''],
     })
@@ -52,19 +53,32 @@ export class InspectionsComponent implements OnInit {
       return true
     }
     const data = {
-      
+
     }
     this.inspectionForm.value.application_id = this.applicationDetails.id;
     this.inspectionForm.value.decision = Number(this.inspectionForm.value.decision)
-    this.inspectionForm.value.fee = Number(this.inspectionForm.value.fee)
+    this.inspectionForm.value.fee = Number(this.inspectionForm.value.amount)
 
     this.applicationService.inspection(this.inspectionForm.value).subscribe(data => {
       this.inspectionForm.reset();
+      this.isInspection = false
+      this.messageEvent.emit(this.message);
     })
   }
 
   getInspection() {
     this.applicationService.getInspection().subscribe(data => {
+
+    })
+  }
+  message: string = "Hola Mundo!"
+  voidInspection(id) {
+    const data = {
+      id: id,
+      application_id: this.applicationDetails.id,
+    }
+    this.applicationService.voidInspection(data).subscribe(data => {
+      this.messageEvent.emit(this.message);
 
     })
   }

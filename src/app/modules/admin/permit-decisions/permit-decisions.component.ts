@@ -97,13 +97,25 @@ export class PermitDecisionsComponent implements OnInit {
   addCondition(event,value) {
     debugger
     if(event.target.checked){
-      this.special_conditions.push({point:value.value, key:value.key})
+      this.settings.conditions.map((data,i)=>{
+        if(value.key == data.key){
+          data.isChecked = true
+        }
+      })
+      this.special_conditions.push({point:value.value, key:value.key,isChecked:true})
 
     }else{
       if(this.special_conditions.length > 0){
         this.special_conditions.map((data,i)=>{
           if(value.key == data.key){
+
             this.special_conditions.splice(i,1)
+          }
+        })
+
+        this.settings.conditions.map((data,i)=>{
+          if(value.key == data.key){
+            data.isChecked = false
           }
         })
       }
