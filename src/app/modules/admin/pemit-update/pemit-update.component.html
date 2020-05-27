@@ -93,10 +93,24 @@
                                                             <li>
                                                                 <h6>$00.00</h6>
                                                             </li>
-                                                            <li>
-                                                                <h6>47 W 13th St, New York <span>To</span> 20 Cooper
-                                                                    Square
-                                                                    <small>Show More</small>
+                                                            <li *ngIf ="applicationDetails && applicationDetails?.location?.length == 1">
+                                                                <h6>{{applicationDetails?.location[0]?.street_one }}<span>{{applicationDetails?.location[0]?.address_join == 1 ?'To':'End'}}</span> {{applicationDetails?.location[0].street_two }}
+                                                                   
+                                                                    <!-- <small>Show More</small> -->
+                                                                </h6>
+                                                            </li>
+
+                                                            <li *ngIf ="applicationDetails && applicationDetails?.location?.length > 1 && !isShowMoreAndLess">
+                                                                <h6>{{applicationDetails?.location[0]?.street_one }}<span>{{applicationDetails?.location[0]?.address_join == 1 ?'To':'End'}}</span> {{applicationDetails?.location[0].street_two }}
+                                                                   
+                                                                    <small (click) = "showMoreAndShowLess(true)">Show More</small>
+                                                                </h6>
+                                                            </li>
+
+                                                            <li *ngIf ="applicationDetails?.location?.length > 1 && isShowMoreAndLess">
+                                                                <h6 *ngFor ="let loc of applicationDetails?.location">{{loc?.street_one}}<span>{{loc?.address_join == 1 ?'To':'End'}}</span>{{loc?.street_two}}
+                                                                    
+                                                                    <small (click) = "showMoreAndShowLess(false)">Show Less</small>
                                                                 </h6>
                                                             </li>
                                                         </ul>

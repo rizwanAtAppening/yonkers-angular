@@ -61,8 +61,8 @@ export class ContratorDetailsComponent implements OnInit {
     this.contractorForm.controls.contractor_business.setValue(this.applicationDetails.contractor_details.contractor_business)
     this.contractorForm.controls.contractor_address.setValue(this.applicationDetails.contractor_details.contractor_address)
     this.contractorForm.controls.contractor_phone.setValue(this.applicationDetails.contractor_details.contractor_phone)
-    this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.contractor_details.contractor_state)
-    this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_city)
+    this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.contractor_details.contractor_city)
+    this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_state)
     this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.contractor_details.contractor_zip)
   }
 
@@ -108,8 +108,13 @@ export class ContratorDetailsComponent implements OnInit {
   }
   get licenseCon() { return this.licenseForm.controls }
 
+  public isLicense = false
   addLicense() {
     debugger
+    if(this.licenseForm.invalid){
+      this.isLicense = true;
+      return false
+    }
     var formData = new FormData();
     formData.append(
       "name",

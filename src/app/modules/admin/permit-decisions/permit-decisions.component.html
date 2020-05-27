@@ -57,7 +57,7 @@
                          </div>
                              </div>
                     <div class="decision-here">
-                        <textarea placeholder="Type something here..."></textarea>
+                        <textarea formControlName="remarks" placeholder="Type something here..."></textarea>
                     </div>
 
 
@@ -67,7 +67,7 @@
                                 <div class="app-status-slect">
                                     <div class="form-group">
                                         <label>Expiration Day</label>
-                                        <select>
+                                        <select formControlName="day">
                                             <option value="" hidden>--Select--</option>
                                             <option *ngFor ="let day of settings?.days">{{day?.value}}</option>
                                             

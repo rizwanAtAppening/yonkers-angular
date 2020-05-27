@@ -56,6 +56,8 @@ export class PermitDecisionsComponent implements OnInit {
       permit_decision: ['',Validators.required],
       expiration_date: ['',Validators.required],
       inspector: [''],
+      remarks:[''],
+      day:[],
     })
   }
 
@@ -74,7 +76,8 @@ export class PermitDecisionsComponent implements OnInit {
       inspector: this.desicionForm.value.inspector,
       permit_decision: this.desicionForm.value.permit_decision,
       application_id: this.applicationDetails.id,
-      expiration_date: this.desicionForm.value.expiration_date
+      expiration_date: this.desicionForm.value.expiration_date,
+      remarks:this.desicionForm.value.remarks,
     }
     this.applicationService.addDecision(data).subscribe(data => {
       console.log(data);

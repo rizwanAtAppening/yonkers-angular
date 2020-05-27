@@ -70,7 +70,7 @@ export class PemitUpdateComponent implements OnInit {
 
   get fee() { return this.addFeeForm.controls }
 
-  
+
   permitDetails() {
     debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
@@ -154,5 +154,10 @@ export class PemitUpdateComponent implements OnInit {
     else if (value == 2) {
       this.isCompletApplication = false
     }
+  }
+
+  public isShowMoreAndLess = false;
+  showMoreAndShowLess(value) {
+    this.isShowMoreAndLess = value
   }
 }
