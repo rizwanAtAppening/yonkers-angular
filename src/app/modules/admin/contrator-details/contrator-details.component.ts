@@ -33,8 +33,31 @@ export class ContratorDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
+      if(this.applicationDetails){
+        this.compareDate();
+      }
     });
     this.onInIt();
+   
+  }
+
+
+  compareDate() {
+    debugger
+    var currentDate
+    var date
+    date = new Date()
+    currentDate  = date.toISOString();
+    console.log(currentDate)
+    if (this.applicationDetails && this.applicationDetails.license_details)
+      this.applicationDetails.license_details.map(data => {
+        if (currentDate > data.expiration_date) {
+          data.isExpiry = true
+        }else{
+          data.isExpiry = false
+        }
+      })
+      console.log(this.applicationDetails)
   }
 
   contractorFormControl() {
@@ -95,7 +118,7 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
 
-  public licenseId:any
+  public licenseId: any
   editLicense(value) {
     debugger
     this.licenseId = value.id
@@ -111,7 +134,7 @@ export class ContratorDetailsComponent implements OnInit {
   public isLicense = false
   addLicense() {
     debugger
-    if(this.licenseForm.invalid){
+    if (this.licenseForm.invalid) {
       this.isLicense = true;
       return false
     }
@@ -146,7 +169,7 @@ export class ContratorDetailsComponent implements OnInit {
       this.applicationDetails.id
 
     );
-    if(!this.licenseId){
+    if (!this.licenseId) {
       this.applicationService.addLicenseDetails(formData).subscribe(data => {
         this.licenseForm.reset();
         this.TS.success('License added')
@@ -154,8 +177,8 @@ export class ContratorDetailsComponent implements OnInit {
         this.messageEvent.emit('hello')
         this.licenseId = null
       })
-    }else{
-      this.applicationService.updateLicenseDetails(formData,this.licenseId).subscribe(data => {
+    } else {
+      this.applicationService.updateLicenseDetails(formData, this.licenseId).subscribe(data => {
         this.licenseForm.reset();
         this.TS.success('License added')
         this.licensePopUp.nativeElement.click();
@@ -163,7 +186,7 @@ export class ContratorDetailsComponent implements OnInit {
         this.licenseId = null
       })
     }
-   
+
   }
 
 

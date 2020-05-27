@@ -118,9 +118,15 @@
                             <tr *ngFor ="let data of applicationDetails?.application_issue_permits"> 
                                 <td>{{data?.staff?.name ? data?.staff?.name:'_'}}</td>
                                 <td>Permit Issue</td>
-                                <td>{{data?.createdAt | date}}</td>
-                                <td>25 Apr 2020</td>
-                            </tr>
+                                <td>{{data?.expiration_date | date}}</td>
+                                <td>
+                                    <div class="dropdown_act">
+                                      <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                      <div class="dropdown-content-void">
+                                        <a  (click) ="editDecision(data)">Edit</a>
+                                      </div>
+                                    </div>
+                                  </td>                            </tr>
 
                         </tbody>
                     </table>

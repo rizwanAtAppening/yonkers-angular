@@ -113,7 +113,7 @@
             <tbody>
               <tr *ngFor ="let ins of applicationDetails?.inspections">
                 <td>{{ settings.getSetting('inspection_type',ins['type'])}}</td>
-                <td>{{ settings.getSetting('inspection_decision',ins['inspection_decision'])}}</td>
+                <td>{{ settings.getSetting('inspection_decision',ins['inspection_decision'])}}<span *ngIf ="ins?.status == 0" class="voidMsg">(v)</span></td>
                 <td>{{ins?.fee}}</td>
                 <td>{{ins?.staff?.name?ins?.staff?.name:'_'}}</td>
                 <td>{{ins?.createdAt | date}}</td>

@@ -85,6 +85,32 @@ export class ApplicationService {
     );
   }
 
+  addFee(data){
+    const href = `${environment['addFee']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  feeDelete(data){
+    const href = `${environment['deleteFee']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   inspection(data){
     const href = `${environment['inspection']}`
     return this.http.post<any>(href,data).pipe(

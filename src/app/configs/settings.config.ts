@@ -523,6 +523,35 @@ conditions:[
   },
 ],
 
+peyments_Type:[
+  {
+    key: 1,
+    value: 'Application',
+  },
+  {
+    key: 2,
+    value: 'Cert. Occupancy',
+  },
+  {
+    key: 4,
+    value: 'Permit',
+  },
+  {
+    key: 5,
+    value: 'Permit Renewal',
+  }
+],
+
+fee_Type:[
+  {
+    key: 1,
+    value: 'Deposit && Bond',
+  },
+  {
+    key: 2,
+    value: 'Fee && Payments',
+  }
+],
 submission_Application_status: [
   {
     key: 1,

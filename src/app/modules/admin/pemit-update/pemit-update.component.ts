@@ -16,6 +16,9 @@ import { error } from 'util';
 })
 export class PemitUpdateComponent implements OnInit {
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
+  @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
+  @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
+
   certificates: any = new Subject<any>();
 
   public applicationId: number;
@@ -62,15 +65,66 @@ export class PemitUpdateComponent implements OnInit {
 
   feeControls() {
     this.addFeeForm = this.FB.group({
-      feeType: [],
-      paymetType: [],
-      amount: [],
+      feeType: ['', Validators.required],
+      paymetType: ['', Validators.required],
+      amount: ['', Validators.required],
     })
   }
 
   get fee() { return this.addFeeForm.controls }
 
+  addFee() {
+    if (this.addFeeForm.invalid) {
+      this.isFee = true;
+      return false
+    }
+    this.addFeeForm.value.application_id = this.applicationDetails.id
+    this.addFeeForm.value.type = this.addFeeForm.value.paymetType
 
+    this.applicationService.addFee(this.addFeeForm.value).subscribe(data => {
+      this.addFeeForm.reset()
+      this.permitDetails();
+    })
+  }
+
+  public isUpdateFee = false;
+  updateFee() {
+    this.addFeeForm.controls.feeType.setErrors(null)
+    this.addFeeForm.controls.paymetType.setErrors(null)
+    if (this.addFeeForm.invalid) {
+      this.isUpdateFee = true;
+      return false
+    }
+    const data = {
+      amont: this.addFeeForm.value.amount,
+      application_id: this.applicationDetails.id,
+      id: this.feeId
+
+    }
+    this.applicationService.addFee(data).subscribe(data => {
+      this.addFeeForm.reset()
+      this.editFeePopup.nativeElement.click();
+      this.isUpdateFee = false
+      this.permitDetails();
+    })
+  }
+  public feeId: any
+  getFeeId(id) {
+    this.feeId = id;
+  }
+
+  deleteFee() {
+    const data = {
+      id: this.feeId,
+      application_id: this.applicationDetails.id
+    }
+    this.applicationService.feeDelete(data).subscribe(data => {
+      this.toasterService.success('Fee has been deleted')
+      this.deleteFeePopoUp.nativeElement.click()
+      this.feeId = null
+      this.permitDetails();
+    })
+  }
   permitDetails() {
     debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {

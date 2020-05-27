@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-inspections',
@@ -17,6 +18,7 @@ export class InspectionsComponent implements OnInit {
   public inspectionForm: FormGroup
   constructor(
     private applicationService: ApplicationService,
+    private ts:ToastrService,
     private fb: FormBuilder
   ) {
     this.settings = settingConfig;
@@ -78,6 +80,7 @@ export class InspectionsComponent implements OnInit {
       application_id: this.applicationDetails.id,
     }
     this.applicationService.voidInspection(data).subscribe(data => {
+      this.ts.success('Inspection Void')
       this.messageEvent.emit(this.message);
 
     })

@@ -66,8 +66,7 @@
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Cell Number</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.cell_Number ? applicationDetails?.contractor_details?.cell_Number :'_'}}
-                                    </h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone}}</h4>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -107,17 +106,20 @@
                                 <td *ngIf="license.municipality == 1">Yonkers</td>
                                 <td>{{ settings.getSetting('policyType',license['type'])}}</td>
                                 <td>{{license?.license_number}}</td>
-                                <td>{{license?.createdAt | date}}</td>
+                                <td>{{license?.expiration_date | date}}</td>
                                 <td>
-                                    <h6 class="status-active-btn" data-toggle="modal" data-target="#license-admin3">
+                                    <h6 class="status-active-btn" *ngIf ="!license?.isExpiry" data-toggle="modal">
                                         Active</h6>
+                                    <h6 class="status-active-btn1" *ngIf ="license?.isExpiry" data-toggle="modal">
+                                        Expire</h6>
                                 </td>
 
                                 <td>
                                     <div class="dropdown_act">
                                         <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                                         <div class="dropdown-content-void">
-                                            <a data-toggle="modal" data-target="#license-admin2" (click) = editLicense(license)>Edit</a>
+                                            <a data-toggle="modal" data-target="#license-admin2"
+                                                (click)=editLicense(license)>Edit</a>
                                         </div>
                                     </div>
                                 </td>
@@ -131,7 +133,7 @@
                 <div class="Add__New_inspection">
                     <h4 data-toggle="modal" data-target="#license-admin2"> <span><img src="assets/images/plusn.svg"
                                 alt=""></span> Add Insurance/License
-                            </h4>
+                    </h4>
                 </div>
 
             </div>
@@ -365,24 +367,25 @@
 
                             <div class="popup-busnise">
                                 <div class="row">
-                                   
+
                                     <div class="col-12">
-                                            <div class="form-group">
-                                                <input type="text" id="aucd1" formControlName="contractor_business"
-                                                    [class]="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                    required="">
-                                                <label
-                                                    [class]="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    class="form-control-placeholder">Business</label>
-                                            </div>
-                                            <div
-                                                *ngIf="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor)">
-                                                <p class="form-error" *ngIf="contrator.contractor_business.errors['required']">
-                                                    Please enter contactor business
-                                                </p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_business"
+                                                [class]="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">Business</label>
                                         </div>
-                                   
+                                        <div
+                                            *ngIf="contrator.contractor_business.invalid && (contrator.contractor_business.dirty || contrator.contractor_business.touched || isContractor)">
+                                            <p class="form-error"
+                                                *ngIf="contrator.contractor_business.errors['required']">
+                                                Please enter contactor business
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <!-- <div class="col-6">
                                             <div class="form-group">
                                                 <input type="text" id="aucd1" formControlName="contractor_phone"
@@ -405,117 +408,118 @@
 
                             <div class="popup-busnise">
                                 <div class="row">
-                                        <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="text" id="aucd1" formControlName="contractor_phone"
-                                                        [class]="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                        required="">
-                                                    <label
-                                                        [class]="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                        class="form-control-placeholder">Phone</label>
-                                                </div>
-                                                <div
-                                                    *ngIf="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor)">
-                                                    <p class="form-error" *ngIf="contrator.contractor_phone.errors['required']">
-                                                        Please enter contactor phone
-                                                    </p>
-                                                </div>
-                                            </div>
-                                   
                                     <div class="col-6">
-                                            <div class="form-group">
-                                                <input type="text" id="aucd1" formControlName="contractor_address"
-                                                    [class]="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                    required="">
-                                                <label
-                                                    [class]="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    class="form-control-placeholder">Address</label>
-                                            </div>
-                                            <div
-                                                *ngIf="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor)">
-                                                <p class="form-error" *ngIf="contrator.contractor_address.errors['required']">
-                                                    Please enter contactor address
-                                                </p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_phone"
+                                                [class]="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">Phone</label>
                                         </div>
+                                        <div
+                                            *ngIf="contrator.contractor_phone.invalid && (contrator.contractor_phone.dirty || contrator.contractor_phone.touched || isContractor)">
+                                            <p class="form-error" *ngIf="contrator.contractor_phone.errors['required']">
+                                                Please enter contactor phone
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_address"
+                                                [class]="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">Address</label>
+                                        </div>
+                                        <div
+                                            *ngIf="contrator.contractor_address.invalid && (contrator.contractor_address.dirty || contrator.contractor_address.touched || isContractor)">
+                                            <p class="form-error"
+                                                *ngIf="contrator.contractor_address.errors['required']">
+                                                Please enter contactor address
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="popup-busnise">
                                 <div class="row">
-                                  
+
                                     <div class="col-6">
-                                            <div class="form-group">
-                                                <input type="text" id="aucd1" formControlName="contractor_city"
-                                                    [class]="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                    required="">
-                                                <label
-                                                    [class]="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    class="form-control-placeholder">City</label>
-                                            </div>
-                                            <div
-                                                *ngIf="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor)">
-                                                <p class="form-error" *ngIf="contrator.contractor_city.errors['required']">
-                                                    Please enter contactor city
-                                                </p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_city"
+                                                [class]="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">City</label>
                                         </div>
-                                 
+                                        <div
+                                            *ngIf="contrator.contractor_city.invalid && (contrator.contractor_city.dirty || contrator.contractor_city.touched || isContractor)">
+                                            <p class="form-error" *ngIf="contrator.contractor_city.errors['required']">
+                                                Please enter contactor city
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <div class="col-6">
-                                            <div class="form-group">
-                                                <input type="text" id="aucd1" formControlName="contractor_state"
-                                                    [class]="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                    required="">
-                                                <label
-                                                    [class]="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    class="form-control-placeholder">State</label>
-                                            </div>
-                                            <div
-                                                *ngIf="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor)">
-                                                <p class="form-error" *ngIf="contrator.contractor_state.errors['required']">
-                                                    Please enter contactor state
-                                                </p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_state"
+                                                [class]="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">State</label>
                                         </div>
+                                        <div
+                                            *ngIf="contrator.contractor_state.invalid && (contrator.contractor_state.dirty || contrator.contractor_state.touched || isContractor)">
+                                            <p class="form-error" *ngIf="contrator.contractor_state.errors['required']">
+                                                Please enter contactor state
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
 
                             <div class="popup-busnise">
                                 <div class="row">
-                                        <div class="col-6">
-                                                <div class="form-group">
-                                                    <input type="text" id="aucd1" formControlName="contractor_zip"
-                                                        [class]="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                        required="">
-                                                    <label
-                                                        [class]="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_zip.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                        class="form-control-placeholder">Zip</label>
-                                                </div>
-                                                <div
-                                                    *ngIf="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_zip.touched || isContractor)">
-                                                    <p class="form-error" *ngIf="contrator.contractor_zip.errors['required']">
-                                                        Please enter contactor zip
-                                                    </p>
-                                                </div>
-                                            </div>
-                                    
                                     <div class="col-6">
-                                            <div class="form-group">
-                                                <input type="text" id="aucd1" formControlName="contractor_email"
-                                                    [class]="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
-                                                    required="">
-                                                <label
-                                                    [class]="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    class="form-control-placeholder">Zip</label>
-                                            </div>
-                                            <div
-                                                *ngIf="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor)">
-                                                <p class="form-error" *ngIf="contrator.contractor_email.errors['required']">
-                                                    Please enter contactor email
-                                                </p>
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_zip"
+                                                [class]="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_zip.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">Zip</label>
                                         </div>
+                                        <div
+                                            *ngIf="contrator.contractor_zip.invalid && (contrator.contractor_zip.dirty || contrator.contractor_zip.touched || isContractor)">
+                                            <p class="form-error" *ngIf="contrator.contractor_zip.errors['required']">
+                                                Please enter contactor zip
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <input type="text" id="aucd1" formControlName="contractor_email"
+                                                [class]="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_state.touched || isContractor) ? 'form-control form-group-error' : 'form-control'"
+                                                required="">
+                                            <label
+                                                [class]="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
+                                                class="form-control-placeholder">Zip</label>
+                                        </div>
+                                        <div
+                                            *ngIf="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor)">
+                                            <p class="form-error" *ngIf="contrator.contractor_email.errors['required']">
+                                                Please enter contactor email
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="btn-pre pop-Btn">

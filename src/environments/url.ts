@@ -69,7 +69,9 @@ const adminUrl = {
   getInspection:`/inspection`,
   voidInspection:`/inspection/void`,
   addLicense:`/application/contractor_license`,
-  updateContractor:`/application/contractor_update`
+  updateContractor:`/application/contractor_update`,
+  addFee:`/application/manager/fee`,
+  deleteFee:`/application/manager/fee/delete`
 
 
 };

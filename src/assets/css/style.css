@@ -3735,6 +3735,18 @@ padding: 20px 28px 15px 28px;
     font-family: "Poppins-Medium";
   }
 
+  .status-active-btn1{
+    width: 80px;
+    height: 23px;
+    text-align: center;
+    color:red;
+    border: 1px solid red;
+    border-radius: 11px;
+    font-size: 12px;
+    line-height: 22px;
+    font-family: "Poppins-Medium";
+  }
+
   .number_con_Hd h3{
       color: #282D5B99;
       font-family: 'Poppins-Regular';
