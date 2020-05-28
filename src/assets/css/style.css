@@ -239,7 +239,7 @@ header {
     background: #FFFFFF;
     border-radius: 0px !important;
     padding: 18px 24px;
-    border: 0.5px solid #282D5B;
+    border: 0.5px solid #a9abbd;
     font-weight: normal;
     font-family: 'gilroy-regular';
     font-size: 18px;
@@ -310,13 +310,16 @@ header {
 .btn-sign-in button {
     font-family: 'gilroy-medium';
     font-size: 18px;
-    line-height: 18px;
     background: #4AB5F1;
     width: 100%;
     border: none;
     color: #fff;
     cursor: pointer;
+    align-items: center;
     height: 60px;
+    display: flex;
+    justify-content: center;
+
 }
 
 .border-topline {
@@ -3649,6 +3652,7 @@ border: 0.5px solid #9CA6C08C;
          font-family: "Poppins-Medium";
          background: #4AB5F1;
          border: none;
+         cursor: pointer;
      }
    
      .checkbox-addBtn button.cancle-btntxt{
@@ -3660,12 +3664,13 @@ border: 0.5px solid #9CA6C08C;
        font-family: 'Poppins-Regular';
        background: #fff;
       margin-right: 15px;
+      cursor: pointer;
    }
 
    .decision-here-2 {
     background: #FFFFFF 0% 0% no-repeat padding-box;
 border: 0.5px solid #9CA6C08C;
-height: 197px;
+
 margin-top: 30px;
 padding: 20px 28px 15px 28px;
 }
@@ -3872,4 +3877,27 @@ position: relative;
     top: 17px;
     cursor: pointer;
     color: #465C80;
+}
+
+@media (min-width: 1200px) {
+.container_full {
+    max-width: 1286px;
+}
+}
+
+.btn-filter button {
+    background: #FFFFFF;
+    box-shadow: 0px 1px 3px #0000000A;
+    border: 1px solid #2AABFA;
+    padding: 10px 17px;
+    display: inline-block;
+    color: #2AABFAE8;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.filter_tbl .table-permit table td small.new_yorktxt {
+    font-size: 100%;
+    display: block;
+    margin-top: 3px;
 }
