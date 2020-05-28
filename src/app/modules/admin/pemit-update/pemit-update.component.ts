@@ -80,6 +80,7 @@ export class PemitUpdateComponent implements OnInit {
     }
     this.addFeeForm.value.application_id = this.applicationDetails.id
     this.addFeeForm.value.type = this.addFeeForm.value.paymetType
+    this.addFeeForm.value.fee_Type = this.addFeeForm.value.feeType
 
     this.applicationService.addFee(this.addFeeForm.value).subscribe(data => {
       this.addFeeForm.reset()
@@ -96,9 +97,11 @@ export class PemitUpdateComponent implements OnInit {
       return false
     }
     const data = {
-      amont: this.addFeeForm.value.amount,
+      amount: Number(this.addFeeForm.value.amount),
       application_id: this.applicationDetails.id,
-      id: this.feeId
+      id: this.feeId,
+      fee_Type:this.fee_Type,
+      type:this.type
 
     }
     this.applicationService.addFee(data).subscribe(data => {
@@ -109,8 +112,12 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   public feeId: any
-  getFeeId(id) {
+  public fee_Type:any;
+  public type:any
+  getFeeId(id,value) {
     this.feeId = id;
+    this.fee_Type = value.fee_Type,
+    this.type = value.type
   }
 
   deleteFee() {
@@ -213,5 +220,11 @@ export class PemitUpdateComponent implements OnInit {
   public isShowMoreAndLess = false;
   showMoreAndShowLess(value) {
     this.isShowMoreAndLess = value
+  }
+
+  public selectfeeType: number = 2
+  feeType(value) {
+    debugger
+    this.selectfeeType = value
   }
 }

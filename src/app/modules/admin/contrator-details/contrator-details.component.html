@@ -511,12 +511,15 @@
                                                 required="">
                                             <label
                                                 [class]="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor) ? ' form-control-placeholder msg' : 'form-control-placeholder'"
-                                                class="form-control-placeholder">Zip</label>
+                                                class="form-control-placeholder">Email</label>
                                         </div>
                                         <div
                                             *ngIf="contrator.contractor_email.invalid && (contrator.contractor_email.dirty || contrator.contractor_email.touched || isContractor)">
                                             <p class="form-error" *ngIf="contrator.contractor_email.errors['required']">
                                                 Please enter contactor email
+                                            </p>
+                                            <p class="form-error" *ngIf="contrator.contractor_email.errors['pattern']">
+                                                Please enter valid email
                                             </p>
                                         </div>
                                     </div>

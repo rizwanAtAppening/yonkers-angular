@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ContratorDetailsComponent implements OnInit {
   @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
   @ViewChild('updateCon', { static: false }) updateCon: ElementRef;
+public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*";
 
   public contractorForm: FormGroup
   public applicationDetails: any;
@@ -65,7 +66,7 @@ export class ContratorDetailsComponent implements OnInit {
       contractor_name: ['', Validators.required],
       contractor_lastname: ['', Validators.required],
 
-      contractor_email: ['', Validators.required],
+      contractor_email: ['', [Validators.required, Validators.pattern(this.EMAIL_REGEX)]],
       contractor_business: ['', Validators.required],
       contractor_address: ['', Validators.required],
       contractor_phone: ['', Validators.required],

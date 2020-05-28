@@ -57,7 +57,7 @@ export class PermitDecisionsComponent implements OnInit {
       expiration_date: ['', Validators.required],
       inspector: [''],
       remarks: [''],
-      day: [],
+      expiration_days: [],
     })
   }
 

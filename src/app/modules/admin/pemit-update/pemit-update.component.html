@@ -345,7 +345,32 @@
                                     <div class="expiration-date-box-2">
                                         <form [formGroup]="addFeeForm">
                                             <div class="row">
+                                               
                                                 <div class="col-4">
+                                                    <div class="app-status-slect">
+                                                        <div class="form-group">
+                                                            <label>Fee Type</label>
+                                                            <select formControlName="feeType" (change) = "feeType($event.target.value)"
+                                                                [class]="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+                                                                <option value="" hidden>--Select--</option>
+                                                                <option value="{{type?.key}}"
+                                                                    *ngFor="let type of settings?.fee_Type">
+                                                                    {{type?.value}}</option>
+
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
+                                                            <div
+                                                                *ngIf="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee)">
+                                                                <p class="form-error"
+                                                                    *ngIf="fee.paymetType.errors['required']">
+                                                                    Please select fee type
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4" *ngIf ="selectfeeType == 2">
                                                     <div class="app-status-slect">
                                                         <div class="form-group">
                                                             <label>Payment Type</label>
@@ -353,7 +378,7 @@
                                                                 [class]="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
                                                                 <option value="" hidden>--Select--</option>
                                                                 <option value="{{type?.key}}"
-                                                                    *ngFor="let type of settings?.peyments_Type">
+                                                                    *ngFor="let type of settings?.peyments_TypeForFee">
                                                                     {{type?.value}}</option>
 
                                                             </select>
@@ -369,25 +394,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-4">
+
+                                                <div class="col-4" *ngIf ="selectfeeType == 1">
                                                     <div class="app-status-slect">
                                                         <div class="form-group">
-                                                            <label>Fee Type</label>
-                                                            <select formControlName="feeType"
-                                                                [class]="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+                                                            <label>Payment Type</label>
+                                                            <select formControlName="paymetType"
+                                                                [class]="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
                                                                 <option value="" hidden>--Select--</option>
                                                                 <option value="{{type?.key}}"
-                                                                    *ngFor="let type of settings?.fee_Type">
+                                                                    *ngFor="let type of settings?.peyments_TypeForDeposit">
                                                                     {{type?.value}}</option>
 
                                                             </select>
                                                             <span><i class="fa fa-angle-down"
                                                                     aria-hidden="true"></i></span>
                                                             <div
-                                                                *ngIf="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee)">
+                                                                *ngIf="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee)">
                                                                 <p class="form-error"
                                                                     *ngIf="fee.paymetType.errors['required']">
-                                                                    Please select fee type
+                                                                    Please select paymet type
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -429,16 +455,16 @@
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let fee of applicationDetails?.application_fees">
-                                                    <td>{{ settings.getSetting('peyments_Type',fee?.type)}}</td>
+                                                    <td> {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):settings.getSetting('peyments_TypeForFee',fee?.type)}}</td>
                                                     <td>{{ settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
                                                     <td>{{fee?.amount}}</td>
                                                     <td>
                                                         <div class="dropdown_act">
                                                             <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                                                             <div class="dropdown-content-void">
-                                                                <a (click)="getFeeId(fee?.id)" data-toggle="modal"
+                                                                <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
                                                                     data-target="#withdraw_application">Delete</a>
-                                                                <a (click)="getFeeId(fee?.id)" data-toggle="modal"
+                                                                <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
                                                                     data-target="#Edit-Fee">Edit</a>
                                                             </div>
                                                         </div>

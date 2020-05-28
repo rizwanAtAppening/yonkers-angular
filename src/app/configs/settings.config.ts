@@ -523,33 +523,46 @@ conditions:[
   },
 ],
 
-peyments_Type:[
+peyments_TypeForFee:[
   {
     key: 1,
     value: 'Application',
   },
+ 
   {
     key: 2,
-    value: 'Cert. Occupancy',
-  },
-  {
-    key: 4,
     value: 'Permit',
   },
   {
-    key: 5,
+    key: 3,
     value: 'Permit Renewal',
   }
+],
+
+peyments_TypeForDeposit:[
+  {
+    key: 5,
+    value: 'Bond',
+  },
+  {
+    key: 5,
+    value: 'Deposit',
+  },
+  {
+    key: 6,
+    value: 'Self Insured',
+  },
+  
 ],
 
 fee_Type:[
   {
     key: 1,
-    value: 'Deposit && Bond',
+    value: 'Deposit & Bond',
   },
   {
     key: 2,
-    value: 'Fee && Payments',
+    value: 'Fee & Payments',
   }
 ],
 submission_Application_status: [
