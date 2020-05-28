@@ -443,7 +443,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   location(value) {
-    debugger
+    
     this.layOutData = value
     if (this.layOutData) {
       if (this.layOutData.location_type) {

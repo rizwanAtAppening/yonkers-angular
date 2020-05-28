@@ -49,7 +49,7 @@ export class InspectionsComponent implements OnInit {
 
   public isInspection = false;
   addInspections() {
-    debugger
+    
     if (this.inspectionForm.invalid) {
       this.isInspection = true;
       return true

@@ -59,7 +59,7 @@ export class ApplicationService {
   }
 
   editDescription(data,id){
-    debugger
+    
     const href = `${environment['editDescription']}/${id}`
     return this.http.post<any>(href,data).pipe(
       map(
@@ -190,7 +190,7 @@ export class ApplicationService {
   }
 
   getInspector(){
-    debugger
+    
     const href = `${environment['inspector']}`
     return this.http.get<any>(href).pipe(
       map(

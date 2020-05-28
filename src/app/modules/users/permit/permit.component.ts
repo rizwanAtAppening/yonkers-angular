@@ -304,7 +304,7 @@ export class PermitComponent implements OnInit {
   }
 
   cancelPermit() {
-    debugger
+    
     this.permitService.cancelPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application canceled');
       this.getPermitApplication(this.dwlType);
@@ -313,7 +313,7 @@ export class PermitComponent implements OnInit {
   }
 
   withdrawPermit() {
-    debugger
+    
     this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application withdraw');
       this.getPermitApplication(this.dwlType)

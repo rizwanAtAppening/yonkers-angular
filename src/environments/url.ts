@@ -6,7 +6,7 @@ class UrlHelper {
 
   private apiPrefix = '/api';
   private authPrefix = '/auth/api';
-  private adminPrefix = `/admin`;
+  private adminPrefix = `${this.apiPrefix}/admin`;
   private userPrefix = `${this.apiPrefix}`;
 
   getAuthUrls(urls: object) {

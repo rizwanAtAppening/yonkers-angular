@@ -44,7 +44,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
 
   compareDate() {
-    debugger
+    
     var currentDate
     var date
     date = new Date()
@@ -78,7 +78,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   get contrator() { return this.contractorForm.controls }
   fillContractorForm() {
-    debugger
+    
     // this.contractorForm.controls.contractor_for_job.setValue(this.applicationDetails.contractor_details.contractor_for_job)
     this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.contractor_details.contractor_name)
     this.contractorForm.controls.contractor_email.setValue(this.applicationDetails.contractor_details.contractor_email)
@@ -121,7 +121,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   public licenseId: any
   editLicense(value) {
-    debugger
+    
     this.licenseId = value.id
     this.licenseForm.controls.type.setValue(value.type)
     this.licenseForm.controls.license_number.setValue(value.license_number)
@@ -134,7 +134,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   public isLicense = false
   addLicense() {
-    debugger
+    
     if (this.licenseForm.invalid) {
       this.isLicense = true;
       return false

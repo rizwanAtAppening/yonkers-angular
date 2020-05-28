@@ -57,7 +57,7 @@ export class PemitUpdateComponent implements OnInit {
     department: null
   }
   getUserInfo() {
-    debugger
+    
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data
     })
@@ -133,7 +133,7 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   permitDetails() {
-    debugger
+    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response
       this.certificates.next(this.applicationDetails)
@@ -178,7 +178,7 @@ export class PemitUpdateComponent implements OnInit {
     this.ngOnInit();
   }
   editDescription() {
-    debugger
+    
     this.applicationService.editDescription(this.editDescriptionForm.value, this.applicationId).subscribe(data => {
       this.descriptionPopup.nativeElement.click();
       this.permitDetails();
@@ -189,7 +189,7 @@ export class PemitUpdateComponent implements OnInit {
   get clerkCon() { return this.completIncompletForm.controls }
 
   accepetOrDeclineApplication() {
-    debugger
+    
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -224,7 +224,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public selectfeeType: number = 2
   feeType(value) {
-    debugger
+    
     this.selectfeeType = value
   }
 }

@@ -23,7 +23,7 @@ export class ApplicationsComponent implements OnInit {
 
   public allApplications = []
   getAllApplication() {
-    debugger
+    
     this.applicationService.getApplications().subscribe(data => {
       this.allApplications = data.response;
     })

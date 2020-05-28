@@ -26,7 +26,7 @@ export class PermitDecisionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
     })
@@ -41,7 +41,7 @@ export class PermitDecisionsComponent implements OnInit {
     department: null
   }
   getUserInfo() {
-    debugger
+    
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data
     })
@@ -63,7 +63,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   public id:any;
   editDecision(value) {
-    debugger
+    
     if (value) {
       this.id = value.id
       this.desicionForm.controls.permit_decision.setValue(0);
@@ -80,7 +80,7 @@ export class PermitDecisionsComponent implements OnInit {
   public isDecision = false;
   public data:any;
   decision() {
-    debugger
+    
     if (this.desicionForm.invalid) {
       this.isDecision = true
       return false
@@ -118,7 +118,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   public inspector = []
   getInspector() {
-    debugger
+    
     this.applicationService.getInspector().subscribe(data => {
       this.inspector = data.response;
     })
@@ -126,7 +126,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   public special_conditions = []
   addCondition(event, value) {
-    debugger
+    
     if (event.target.checked) {
       this.settings.conditions.map((data, i) => {
         if (value.key == data.key) {
