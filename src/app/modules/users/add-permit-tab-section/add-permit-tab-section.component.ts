@@ -626,7 +626,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.authService.getUserInfo().subscribe(currentUser => {
         this.currentUserInfo = currentUser
         if (this.currentUserInfo) {
-          this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.last_name)
+          this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.first_name)
           this.applicantForm.controls.applicant_email.setValue(this.currentUserInfo.email)
           this.applicantForm.controls.applicant_business.setValue(this.currentUserInfo.company)
           this.applicantForm.controls.applicant_address.setValue(this.currentUserInfo.address)

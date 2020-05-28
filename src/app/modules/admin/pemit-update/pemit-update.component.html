@@ -138,19 +138,22 @@
                                                                 <h6>{{applicationDetails?.location[0]?.street_one }}<span>{{applicationDetails?.location[0]?.address_join == 1 ?'To':'End'}}</span>
                                                                     {{applicationDetails?.location[0].street_two }}
 
-                                                                    <small (click)="showMoreAndShowLess(true)">Show
-                                                                        More</small>
+                                                                   
                                                                 </h6>
+                                                                <small class="pointer" (click)="showMoreAndShowLess(true)">Show
+                                                                        More</small>
                                                             </li>
 
                                                             <li
                                                                 *ngIf="applicationDetails?.location?.length > 1 && isShowMoreAndLess">
+
                                                                 <h6 *ngFor="let loc of applicationDetails?.location">
                                                                     {{loc?.street_one}}<span>{{loc?.address_join == 1 ?'To':'End'}}</span>{{loc?.street_two}}
 
-                                                                    <small (click)="showMoreAndShowLess(false)">Show
-                                                                        Less</small>
+
                                                                 </h6>
+                                                                <small class="pointer" (click)="showMoreAndShowLess(false)">Show
+                                                                        Less</small>
                                                             </li>
                                                         </ul>
 
