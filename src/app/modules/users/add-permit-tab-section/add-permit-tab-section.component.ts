@@ -1182,7 +1182,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public imageType: any = null
   selectImageType(value) {
     this.formData = new FormData()
-    debugger
+    
     this.imageType = Number(value)
 
   }

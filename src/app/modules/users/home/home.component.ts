@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
       })
 
     } else if(this.isAdmin){
-      debugger
+      
       this.authenticationService
       .adminLogin(this.loginForm.value)
       .subscribe(res => {
