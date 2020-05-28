@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { error } from 'util';
+import { UsersService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-pemit-update',
@@ -33,6 +34,7 @@ export class PemitUpdateComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private userService:UsersService,
     private permitService: PermitService,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
@@ -54,7 +56,8 @@ export class PemitUpdateComponent implements OnInit {
 
   public currentUser = {
     role_id: null,
-    department: null
+    department: null,
+    email:null
   }
   getUserInfo() {
     
@@ -226,5 +229,14 @@ export class PemitUpdateComponent implements OnInit {
   feeType(value) {
     
     this.selectfeeType = value
+  }
+
+  logoutUser() {
+    this.adminAuthService.logout().subscribe(res => {
+      if (res) {
+        this.router.navigate(['/']);
+
+      }
+    });
   }
 }

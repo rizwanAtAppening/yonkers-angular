@@ -1,6 +1,37 @@
 <!-- <app-admin>
     <router-outlet> -->
+            <header>
+                    <div class="container container_full p-0">
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="row">
+                            <div class="col-3">
+                              <div class="search-box">
+                                <h2>Logo</h2>
+                              </div>
+                            </div>
+                            <div class="col-8">
+                
+                            </div>
+                          </div>
+                
+                        </div>
+                        <div class="col-6">
+                          <div class="profile-header dropdown-text">
+                            <div class="userTxt ">
+                              <img src="assets/images/placeholder.svg" alt="">
+                             {{currentUser?.email}}
+                              <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="drop-content">
+                                    <a (click)="logoutUser()">Log Out</a>
 
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </header>
 <section class="bg-dashbord">
     <div class="dash-back-two">
         <div class="container p-0">
@@ -204,7 +235,7 @@
             <div class="submision-review-box">
                 <div class="accordion" id="accordionExample">
 
-                    <div class="card">
+                    <div class="card" *ngIf ="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
                         <div id="headingOne-review">
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button">
@@ -318,13 +349,13 @@
                     </div> -->
 
                     <app-permit-decisions (messageEvent)="receiveMessage($event)"
-                        *ngIf="(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 3)"
+                        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.manager)"
                         [certificatesChild]="certificates"></app-permit-decisions>
                     <app-inspections (messageEvent)="receiveMessage($event)"
-                        *ngIf="(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 5)"
+                        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.inspector)"
                         [certificatesChild]="certificates"></app-inspections>
                     <app-contrator-details (messageEvent)="receiveMessage($event)"
-                        *ngIf="(currentUser?.role_id == 1 || currentUser?.role_id == 2 || currentUser?.role_id == 5)"
+                        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.clerk)"
                         [certificatesChild]="certificates"></app-contrator-details>
                     <div class="card">
                         <div id="FeeThree">

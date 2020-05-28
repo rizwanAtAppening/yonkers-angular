@@ -1760,44 +1760,49 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr *ngFor = "let image of allImage; let i = index">
+                                            <tr *ngFor="let image of allImage; let i = index">
                                                 <td>
 
                                                     <div class="file_slect-input">
-                                                        <div class="form-group" *ngIf = "image?.type != 0 && image?.type != 1 ">
-                                                            <select  (change) = "selectImageType($event.target.value)">
-                                                                    <option value="" hidden>--Select--</option>
-                                                                    <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
+                                                        <div class="form-group"
+                                                            *ngIf="image?.type != 0 && image?.type != 1 ">
+                                                            <select (change)="selectImageType($event.target.value)">
+                                                                <option value="" hidden>--Select--</option>
+                                                                <option value="{{type?.key}}"
+                                                                    *ngFor="let type of settings?.imageType">
+                                                                    {{type?.value}}</option>
                                                             </select>
                                                             <span><i class="fa fa-angle-down"
                                                                     aria-hidden="true"></i></span>
                                                         </div>
                                                         <div>
-                                                            <p *ngIf = "image?.type == 0" >Drawings/ Plans</p>
-                                                            <p *ngIf = "image?.type == 1" >Certificate of Insurance</p>
+                                                            <p *ngIf="image?.type == 0">Drawings/ Plans</p>
+                                                            <p *ngIf="image?.type == 1">Certificate of Insurance</p>
                                                         </div>
                                                     </div>
 
 
                                                 </td>
-                                                <td class="upload-Btn" >
-                                                    <button *ngIf ="!image?.imageName && !image?.name ">
+                                                <td class="upload-Btn">
+                                                    <button *ngIf="!image?.imageName && !image?.name ">
                                                         <span><img src="assets/images/b-upload.svg" alt=""></span>
                                                         Upload file
                                                         <input type='file' (change)="media($event,i,'upload')">
                                                     </button>
-                                                    <p *ngIf = "image?.imageName">{{image?.imageName}}</p>
-                                                    <p *ngIf = "image?.name">{{image?.name}}</p>
+                                                    <p *ngIf="image?.imageName">{{image?.imageName}}</p>
+                                                    <p *ngIf="image?.name">{{image?.name}}</p>
 
                                                 </td>
                                                 <td class="acton-Btn">
-                                                    <button> <span><img src="assets/images/v-btn.svg" alt=""></span>
+                                                    <button *ngIf="image?.imageName || image?.name "> <span><img
+                                                                src="assets/images/v-btn.svg" alt=""></span>
                                                         <a class="pointer"
-                                                        href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                        target="_blank"> View</a>
-                                                      </button>
-                                                    <button *ngIf ="i>0"  (click)="deleteImage(image?.id,i)"    
-                                                          class="delet-btn"> <span><img src="assets/images/d-btn.svg"
+                                                            href="{{ env?.host + env?.imageBasePath + image?.name }}"
+                                                            target="_blank"> View</a>
+                                                    </button>
+                                                    
+                                                    <button *ngIf="image?.imageName || image?.name " (click)="deleteImage(image?.id,i)"
+                                                        class="delet-btn"> <span><img src="assets/images/d-btn.svg"
                                                                 alt=""></span> Delete</button>
                                                 </td>
 
@@ -1809,18 +1814,18 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="more-txt" (click) ="addMoreImage()">
+                                <div class="more-txt" (click)="addMoreImage()">
                                     <span>+</span> Add more Document
                                 </div>
                             </div>
 
                         </div>
 
-                      
+
                         <div class="btn-pre">
-                                <button type="button" (click)="goToBack('','projectDetail')">Previous</button>
-                                <button class="continue" (click)="addPermitApplication('','review')">Continue</button>
-                            </div>
+                            <button type="button" (click)="goToBack('','projectDetail')">Previous</button>
+                            <button class="continue" (click)="addPermitApplication('','review')">Continue</button>
+                        </div>
                     </div>
 
                 </div>
@@ -2180,16 +2185,21 @@
                                                                 <tbody>
                                                                     <tr>
 
-                                                                        <td>Drawings/ Plans</td>
+                                                                        <td >
+                                                                            <p *ngIf = "isDrawing">
+                                                                                    Drawings/ Plans
+                                                                            </p>
+                                                                           </td>
                                                                         <td>
                                                                             <h6
                                                                                 *ngFor="let image of application?.upload_detail; let i = index">
                                                                                 <p *ngIf="image.type == 0">
                                                                                     {{image?.name}} <a class="pointer"
                                                                                         href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                                                        target="_blank">View</a> / <a
+                                                                                        target="_blank">View</a>
+                                                                                         <!-- / <a
                                                                                         class="pointer"
-                                                                                        (click)="deleteImage(image?.id,i)">Delete</a>
+                                                                                        (click)="deleteImage(image?.id,i)">Delete</a> -->
                                                                                 </p>
                                                                                 <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                                             </h6>
@@ -2200,7 +2210,9 @@
                                                                     </tr>
                                                                     <tr>
 
-                                                                        <td>Certificate of Insurance</td>
+                                                                        <td >
+                                                                          <p *ngIf = "isCertificate"> Certificate of Insurance</p> 
+                                                                        </td>
                                                                         <td>
                                                                             <h6
                                                                                 *ngFor="let image of application?.upload_detail; let i = index">
@@ -2414,7 +2426,7 @@
                                                     [class]="licenseCon.type.invalid && (licenseCon.type.dirty || licenseCon.type.touched || isLicense) ? 'form-control form-group-error' : 'form-control'">
                                                     <!-- <option value="null" hidden>--Select--</option> -->
                                                     <option value="{{type?.key}}"
-                                                         *ngFor="let type of settings?.policyType">{{type?.value}}
+                                                        *ngFor="let type of settings?.policyType">{{type?.value}}
                                                     </option>
                                                 </select>
                                                 <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>

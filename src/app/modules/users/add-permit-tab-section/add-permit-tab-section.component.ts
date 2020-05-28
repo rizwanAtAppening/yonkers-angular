@@ -118,6 +118,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
   public applicationState: number
+  public isDrawing = false;
+  public isCertificate = false;
   getApplication() {
 
     this.application = this.permitService.getApplication();
@@ -129,6 +131,13 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.application.upload_detail) {
         this.application.upload_detail.map(data => {
           this.allImage.push(data)
+          if(data.type == 1){
+            this.isCertificate = true
+          }
+           if(data.type == 0){
+            this.isDrawing = true
+
+          }
         })
         console.log(this.allImage)
         this.application['drawings'] = `${this.imageBasePath}${this.application.upload_detail[0].name}`
@@ -1074,18 +1083,26 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   deleteImage(id, i) {
-    this.allImage.map((data, j) => {
-      if (j == i) {
-        this.allImage.splice(j, 1)
-      }
-    })
+    debugger
+   
     const data = {
       id: id
     }
     this.permitService.deleteImage(data).subscribe(data => {
-      this.getApplication()
-      this.application.upload_detail.splice(i, 1)
-      sessionStorage.setItem('application', JSON.stringify(this.application));
+      this.getApplication();
+      if( this.application &&  this.application.upload_detail){
+        this.application.upload_detail.map((data,k)=>{
+          if(i == k){
+            this.application.upload_detail.splice(i, 1)
+            sessionStorage.setItem('application', JSON.stringify(this.application));
+          }
+        })
+        this.allImage.map((data, j) => {
+          if (j == i) {
+            this.allImage.splice(j, 1)
+          }
+        })
+      }
 
       console.log(this.application)
     })

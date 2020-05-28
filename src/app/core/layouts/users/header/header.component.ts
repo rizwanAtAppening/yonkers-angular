@@ -53,16 +53,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([url]);
   }
 
-  logoutUser() {
-    this.usersService.changeSaveAndExit(false)
-    this.authenticationService.logout().subscribe(res => {
-      if (res) {
-        //this.applicationService.apllicationStatus(1)
-        this.isEdit();
-        this.router.navigate(['/']);
+    logoutUser() {
+      this.usersService.changeSaveAndExit(false)
+      this.authenticationService.logout().subscribe(res => {
+        if (res) {
+          //this.applicationService.apllicationStatus(1)
+          this.isEdit();
+          this.router.navigate(['/']);
 
-      }
-    });
-  }
+        }
+      });
+    }
 
 }

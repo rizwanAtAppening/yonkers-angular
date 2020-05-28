@@ -489,6 +489,12 @@ days:[
   },
 ],
 
+superAdmin:1,
+admin:2,
+manager:3,
+clerk:4,
+inspector:5,
+
 // application_decision: {
 //   1: "Cancelled",
 //   2: "Accept",
