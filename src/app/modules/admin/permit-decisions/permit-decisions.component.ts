@@ -26,7 +26,7 @@ export class PermitDecisionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
     })
@@ -63,14 +63,12 @@ export class PermitDecisionsComponent implements OnInit {
 
   public id: any;
   editDecision(value) {
-
     if (value) {
       this.id = value.id
       this.desicionForm.controls.permit_decision.setValue(0);
       this.desicionForm.controls.expiration_date.setValue(new Date(value.expiration_date))
       this.desicionForm.controls.inspector.setValue(value.inspector)
-
-
+      this.desicionForm.controls.expiration_days.setValue(value.expiration_days)
     }
   }
 
@@ -80,7 +78,7 @@ export class PermitDecisionsComponent implements OnInit {
   public isDecision = false;
   public data: any;
   decision() {
-
+    
     if (this.desicionForm.invalid) {
       this.isDecision = true
       return false
@@ -93,7 +91,8 @@ export class PermitDecisionsComponent implements OnInit {
         application_id: this.applicationDetails.id,
         expiration_date: this.desicionForm.value.expiration_date,
         remarks: this.desicionForm.value.remarks,
-        id: (this.id ? this.id : null)
+        id: (this.id ? this.id : null),
+        expiration_days: this.desicionForm.value.expiration_days,
       }
     }
     else {
@@ -104,6 +103,8 @@ export class PermitDecisionsComponent implements OnInit {
         application_id: this.applicationDetails.id,
         expiration_date: this.desicionForm.value.expiration_date,
         remarks: this.desicionForm.value.remarks,
+        expiration_days: this.desicionForm.value.expiration_days,
+
       }
     }
 
@@ -166,14 +167,14 @@ export class PermitDecisionsComponent implements OnInit {
   public currentDate;
   public currentYear;
   public currntMonth;
-  public dayMonthYearName:string
+  public dayMonthYearName: string
   getDay(value) {
-    debugger
+    
     this.currentDate = new Date()
     this.settings.days.map(data => {
       if (data.key == value) {
         this.actualValue = data.actualValue,
-        this.dayMonthYearName = data.name;
+          this.dayMonthYearName = data.name;
       }
     })
     if (this.dayMonthYearName == 'days') {
@@ -190,7 +191,7 @@ export class PermitDecisionsComponent implements OnInit {
     } else if (this.dayMonthYearName == 'years') {
       this.currentDate.setFullYear(this.currentDate.getFullYear() + this.actualValue);
       this.desicionForm.controls.expiration_date.setValue(this.currentDate)
- 
+
     }
 
   }

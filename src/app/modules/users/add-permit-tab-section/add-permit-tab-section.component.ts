@@ -323,6 +323,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.applicantForm = this.formBuilder.group({
       applicant_role: ['', Validators.required],
       applicant_name: ['', Validators.required],
+      applican_last_name:['',],
       applicant_email: ['', Validators.required],
       applicant_business: ['', Validators.required],
       applicant_address: ['', Validators.required],
@@ -615,6 +616,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.applicantForm.controls.applicant_role.setValue(application.role);
     if (application.applicant_details) {
       this.applicantForm.controls.applicant_name.setValue(application.applicant_details.applicant_name)
+      this.applicantForm.controls.applican_last_name.setValue(application.applicant_details.applican_last_name)
+
       this.applicantForm.controls.applicant_email.setValue(application.applicant_details.applicant_email)
       this.applicantForm.controls.applicant_business.setValue(application.applicant_details.applicant_business)
       this.applicantForm.controls.applicant_address.setValue(application.applicant_details.applicant_address)
@@ -627,6 +630,8 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.currentUserInfo = currentUser
         if (this.currentUserInfo) {
           this.applicantForm.controls.applicant_name.setValue(this.currentUserInfo.first_name)
+          this.applicantForm.controls.applican_last_name.setValue(this.currentUserInfo.last_name)
+
           this.applicantForm.controls.applicant_email.setValue(this.currentUserInfo.email)
           this.applicantForm.controls.applicant_business.setValue(this.currentUserInfo.company)
           this.applicantForm.controls.applicant_address.setValue(this.currentUserInfo.address)
@@ -1083,7 +1088,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   deleteImage(id, i) {
-    debugger
+    
    
     const data = {
       id: id

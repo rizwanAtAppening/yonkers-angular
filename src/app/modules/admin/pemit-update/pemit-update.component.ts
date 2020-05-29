@@ -199,7 +199,7 @@ export class PemitUpdateComponent implements OnInit {
   message: string;
 
   receiveMessage(event) {
-    debugger
+    
     this.message = event
     // if(event == 'decision'){
     //   this.isDwonArrow = true;

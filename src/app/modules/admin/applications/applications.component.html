@@ -1,318 +1,386 @@
 <!-- <app-admin>
     <router-outlet> -->
-            <header>
-                    <div class="container container_full p-0">
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="row">
-                            <div class="col-3">
-                              <div class="search-box">
-                                <h2>Logo</h2>
-                              </div>
-                            </div>
-                            <div class="col-8">
-                
-                            </div>
-                          </div>
-                
+<header>
+    <div class="container container_full p-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="search-box">
+                            <h2>Logo</h2>
                         </div>
-                        <div class="col-6">
-                          <div class="profile-header dropdown-text">
-                            <div class="userTxt ">
-                              <img src="assets/images/placeholder.svg" alt="">
-                             {{currentUser?.email}}
-                              <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                            </div>
-                            <div class="drop-content">
-                                    <a (click)="logoutUser()">Log Out</a>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </header>
-            <section>
-                    <div class="container p-0 container_full">
-                        <div class="row">
-                            <div class="col-12 admin_tabber">
-                                <div class="work-loaction-tab">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                                <li class="nav-item">
-                                                  <a class="nav-link active" id="pills-admin-Permit-loaction-tab" data-toggle="pill" href="#pills-admin-Permit-loaction" role="tab" aria-controls="pills-admin-Permit-loaction" aria-selected="true">Permit</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                  <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL" role="tab" aria-controls="pills-DWL" aria-selected="false">DWL</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill" href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin" aria-selected="false">Inspection</a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin" aria-selected="false">Payment</a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill" href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin" aria-selected="false">Utility Invoice</a>
-                                                  </li>
-                                                  <li class="nav-item">
-                                                    <a class="nav-link" id="pills-Report-admin-tab" data-toggle="pill" href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin" aria-selected="false">Report</a>
-                                                  </li>
-                                              </ul>
-                                              <div class="tab-content" id="pills-tabContent">
-                                                <div class="tab-pane fade show active" id="pills-admin-Permit-loaction" role="tabpanel" aria-labelledby="pills-admin-Permit-loaction-tab">
-                                                    <section class="table-sec daily-sec">
-                                                        <div class="container p-0 container_full">
+                    <div class="col-8">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="profile-header dropdown-text">
+                    <div class="userTxt ">
+                        <img src="assets/images/placeholder.svg" alt="">
+                        {{currentUser?.email}}
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="drop-content">
+                        <a (click)="logoutUser()">Log Out</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="container p-0 container_full">
+        <div class="row">
+            <div class="col-12 admin_tabber">
+                <div class="work-loaction-tab">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-admin-Permit-loaction-tab" data-toggle="pill"
+                                        href="#pills-admin-Permit-loaction" role="tab"
+                                        aria-controls="pills-admin-Permit-loaction" aria-selected="true">Permit</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
+                                        role="tab" aria-controls="pills-DWL" aria-selected="false">DWL</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
+                                        href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin"
+                                        aria-selected="false">Inspection</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill"
+                                        href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
+                                        aria-selected="false">Payment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill"
+                                        href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin"
+                                        aria-selected="false">Utility Invoice</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-Report-admin-tab" data-toggle="pill"
+                                        href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin"
+                                        aria-selected="false">Report</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-admin-Permit-loaction" role="tabpanel"
+                                    aria-labelledby="pills-admin-Permit-loaction-tab">
+                                    <section class="table-sec daily-sec">
+                                        <div class="container p-0 container_full">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="table-Box pl-0 pr-0 border-0">
+                                                        <div class="permit-index">
                                                             <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="table-Box pl-0 pr-0 border-0">
-                                                                        <div class="permit-index">
-                                                                            <div class="row">
-                                                                                <div class="col-10">
-                                                                                    <div class="row">
-                                                                                        <div class="col-2 pr-0 adminpermit_hd">
-                                                                                            <div class="permit-Hd">
-                                                                                                Permit Index
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-4 filter-search">
-                                                                                            <div class="header-input tbl-search-box">
-                                                                                        <input type="text" placeholder="Search...">
-                                                                                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
-                                                                                    </div>
-                                                                                        </div>
-                                                                                        <div class="col-6 pl-0">
-                                                                               <div class="btn-filter"><button><span><img src="assets/images/filter.svg" alt=""></span> Advance Search</button></div> 
-                                                                                        </div>
-                                                                                    </div>
-                                                                                
-                                                                                </div>
-                                                                             
-                                                                                <div class="col-2 more-index">
-                                                                                    <!-- <div class="New-Project"><button> More 
-                                                                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                                                    </button></div> -->
-                                                                                </div>
+                                                                <div class="col-10">
+                                                                    <div class="row">
+                                                                        <div class="col-2 pr-0 adminpermit_hd">
+                                                                            <div class="permit-Hd">
+                                                                                Permit Index
                                                                             </div>
                                                                         </div>
-                                                
-                                                
-                                                                 <div class="row">
-                                                                            <div class="col-12 filter_tbl">
-                                                                                <div class="table-permit">
-                                                                                    <table class="table table-bordered ">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>Ref No</th>
-                                                                                                <th>Location</th>
-                                                                                                <th>Applicant</th>
-                                                                                                <th>Type</th>          
-                                                                                                <th>Decision Status</th>
-                                                                                                <th>Submit date</th>
-                                                                                                <th>Expire Date</th>
-                                                                                                <th>Action</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr *ngFor = "let permit of allApplications">
-                                                                                                <td class="refTxt pointer"  (click) ="navigateToUpdatePage(permit?.id)">{{permit?.reference_no}}</td>
-                                                                                                <td >
-                                                                                                        <p *ngIf ="permit?.address_id">                                                         {{permit?.address_id}}
-                                                                                                            </p>
-                                                                                                            <p *ngFor = "let addr of permit?.location">{{addr?.street_one}} <span class="to-txt">{{addr?.address_join == 1 ?'To':'End'}}</span> {{addr?.street_two}}</p>
-                                                                                                    
-                                                                                                <h6 class="show-more"  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && permit?.location.length > 1 ">Show More</h6>
-                                                                                                <h6 class="show-more"  class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">Show Less</h6>
+                                                                        <div class="col-4 filter-search">
+                                                                            <div class="header-input tbl-search-box">
+                                                                                <input type="text"
+                                                                                    placeholder="Search...">
+                                                                                <span><i class="fa fa-search"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6 pl-0">
+                                                                            <div class="btn-filter"><button><span><img
+                                                                                            src="assets/images/filter.svg"
+                                                                                            alt=""></span> Advance
+                                                                                    Search</button></div>
+                                                                        </div>
+                                                                    </div>
 
-                                                                                                </td>
-                                                                                                <td>{{permit?.applicant_details?.applicant_name}}</td>
-                                                                                                <td>{{ settings.getSetting('type',permit['type'])}}</td>
-                                                                                                <td class="submited-Btn green-txt-2"><button>Issued</button></td>
-                                                                                                <td>{{permit?.createdAt | date}}</td>
-                                                                                                <td>-</td>
-                                                                                   
-                                                                                                <td class="update-txt dropdown-action">
-                                                                                                    <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
-                                                                                                        <!-- <div class="dropdown-contentable">
+                                                                </div>
+
+                                                                <div class="col-2 more-index">
+                                                                    <!-- <div class="New-Project"><button> More 
+                                                                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                                    </button></div> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-12 filter_tbl">
+                                                                <div class="table-permit">
+                                                                    <table class="table table-bordered ">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Ref No</th>
+                                                                                <th>Location</th>
+                                                                                <th>Applicant</th>
+                                                                                <th>Type</th>
+                                                                                <th>Decision Status</th>
+                                                                                <th>Submit date</th>
+                                                                                <th>Expire Date</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr *ngFor="let permit of allApplications">
+                                                                                <td class="refTxt pointer"
+                                                                                    (click)="navigateToUpdatePage(permit?.id)">
+                                                                                    {{permit?.reference_no}}</td>
+                                                                                <td>
+                                                                                    <p *ngIf="permit?.address_id">
+                                                                                        {{permit?.address_id}}
+                                                                                    </p>
+                                                                                    <p
+                                                                                        *ngFor="let addr of permit?.location">
+                                                                                        {{addr?.street_one}} <span
+                                                                                            class="to-txt">{{addr?.address_join == 1 ?'To':'End'}}</span>
+                                                                                        {{addr?.street_two}}</p>
+
+                                                                                    <h6 class="show-more"
+                                                                                        class="pointer-2"
+                                                                                        (click)="showMoreLocation(false,permit?.id)"
+                                                                                        *ngIf="!permit?.address_id && permit.isSingleAddress && permit?.location.length > 1 ">
+                                                                                        Show More</h6>
+                                                                                    <h6 class="show-more"
+                                                                                        class="pointer-2"
+                                                                                        (click)="showMoreLocation(true,permit?.id)"
+                                                                                        *ngIf="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">
+                                                                                        Show Less</h6>
+
+                                                                                </td>
+                                                                                <td>{{permit?.applicant_details?.applicant_name}}
+                                                                                    {{permit?.applicant_details?.applican_last_name}}
+                                                                                </td>
+                                                                                <td>{{ settings.getSetting('type',permit['type'])}}
+                                                                                </td>
+                                                                                <td class="submited-Btn green-txt-2">
+                                                                                    <button>Issued</button></td>
+                                                                                <td>{{permit?.createdAt | date}}</td>
+                                                                                <td>-</td>
+
+                                                                                <td class="update-txt dropdown-action">
+                                                                                    <span> <i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    <!-- <div class="dropdown-contentable">
                                                                                                           <a href="#">Delete</a>
                                                                                                           <a href="#">Edit Staff</a>
                                                                                                           <a href="#">Inactive</a>
                                                                                                           <div class="triangle-left"></div>
                                                                                                         </div> -->
-                                                                                                        </td>
-                                                                                            </tr>
-                                                                                           
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </section>
+                                                    </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="pills-DWL" role="tabpanel" aria-labelledby="pills-DWL-tab">
-                                                    <section class="table-sec daily-sec">
-                                                        <div class="container p-0 container_full">
-                                                            <div class="row">
-                                                                <div class="col-12">
-                                                                    <div class="table-Box pl-0 pr-0 border-0">
-                                                                        <div class="permit-index">
-                                                                            <div class="row">
-                                                                                <div class="col-10">
-                                                                                    <div class="row">
-                                                                                        <div class="col-2 pr-0 adminpermit_hd">
-                                                                                            <div class="permit-Hd">
-                                                                                                Permit Index
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-4 filter-search">
-                                                                                            <div class="header-input tbl-search-box">
-                                                                                        <input type="text" placeholder="Search...">
-                                                                                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
-                                                                                    </div>
-                                                                                        </div>
-                                                                                        <div class="col-6 pl-0">
-                                                                               <div class="btn-filter"><button><span><img src="assets/images/filter.svg" alt=""></span> Filter</button></div> 
-                                                                                        </div>
-                                                                                    </div>
-                                                                                
-                                                                                </div>
-                                                                             
-                                                                                <div class="col-2 more-index">
-                                                                                    <!-- <div class="New-Project"><button> More 
-                                                                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                                                    </button></div> -->
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                
-                                                
-                                                                 <div class="row">
-                                                                            <div class="col-12 filter_tbl">
-                                                                                <div class="table-permit">
-                                                                                    <table class="table table-bordered ">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                <th>Ref No</th>
-                                                                                                <th>Location</th>
-                                                                                                <th>Applicant</th>
-                                                                                                <th>Type</th>          
-                                                                                                <th>Decision Status</th>
-                                                                                                <th>Submit date</th>
-                                                                                                <th>Expire Date</th>
-                                                                                                <th>Action</th>
-                                                                                            </tr>
-                                                                                        </thead>
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="refTxt">39465</td>
-                                                                                                <td>47 W 13th St, New York <span class="to-txt">To</span> 20 Cooper Square
-                                                                                                <h6 class="show-more pointer-2">Show More</h6>
-                                                                                                </td>
-                                                                                                <td>Con Edison</td>
-                                                                                                <td>Street Opening</td>
-                                                                                                <td class="submited-Btn green-txt-2"><button>Issued</button></td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                   
-                                                                                                <td class="update-txt dropdown-action">
-                                                                                                    <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
-                                                                                                        <div class="dropdown-contentable">
-                                                                                                          <a href="#">Delete</a>
-                                                                                                          <a href="#">Edit Staff</a>
-                                                                                                          <a href="#">Inactive</a>
-                                                                                                          <div class="triangle-left"></div>
-                                                                                                        </div>
-                                                                                                        </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="refTxt">39465</td>
-                                                                                                <td>47 W 13th St, New York <span class="to-txt">End</span> 20 Cooper Square
-                                                                                                 <small class="new_yorktxt">  371 7th Ave, New York, <span class="to-txt">End</span> 33 3rd Ave,</small> 
-                                                                                                    <h6 class="show-more pointer-2">Show less</h6>
-                                                                                                    </td>
-                                                                                                <td>Jci construction</td>
-                                                                                                <td>Street Opening</td>
-                                                                                                <td class="submited-Btn orange-txt-2"><button>Accepted</button></td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                               
-                                                                                                <td class="update-txt dropdown-action">
-                                                                                                    <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
-                                                                                                        <div class="dropdown-contentable">
-                                                                                                          <a href="#">Delete</a>
-                                                                                                          <a href="#">Edit Staff</a>
-                                                                                                          <a href="#">Inactive</a>
-                                                                                                          <div class="triangle-left"></div>
-                                                                                                        </div>
-                                                                                                        </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="refTxt">39465</td>
-                                                                                                <td>187 PARKER ST</td>
-                                                                                                <td>Con Edison</td>
-                                                                                                <td>Street Opening</td>
-                                                                                                <td class="submited-Btn green-txt-2"><button>Issued</button></td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                     
-                                                                                                <td class="update-txt dropdown-action">
-                                                                                                    <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
-                                                                                                        <div class="dropdown-contentable">
-                                                                                                          <a href="#">Delete</a>
-                                                                                                          <a href="#">Edit Staff</a>
-                                                                                                          <a href="#">Inactive</a>
-                                                                                                          <div class="triangle-left"></div>
-                                                                                                        </div>
-                                                                                                        </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="refTxt">39465</td>
-                                                                                                <td>187 PARKER ST</td>
-                                                                                                <td>Jci construction</td>
-                                                                                                <td>Street Opening</td>
-                                                                                                <td class="submited-Btn orange-txt-2"><button>Accepted</button></td>
-                                                                                            
-                                                                                                <td>08 Jul 2019</td>
-                                                                                                <td>08 Jul 2019</td>
-                                                                                                <td class="update-txt dropdown-action">
-                                                                                                    <span> <i class="fa fa-angle-down"aria-hidden="true"></i></span>
-                                                                                                        <div class="dropdown-contentable">
-                                                                                                          <a href="#">Delete</a>
-                                                                                                          <a href="#">Edit Staff</a>
-                                                                                                          <a href="#">Inactive</a>
-                                                                                                          <div class="triangle-left"></div>
-                                                                                                        </div>
-                                                                                                        </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                              </div>
-            
-                                              <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel" aria-labelledby="pills-Inspection-admin-tab"></div>
-                                              <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel" aria-labelledby="pills-Payment-admin-tab"></div>
-                                              <div class="tab-pane fade" id="pills-Invoice-admin" role="tabpanel" aria-labelledby="pills-Invoice-admin-tab"></div>
-                                              <div class="tab-pane fade" id="pills-Report-admin" role="tabpanel" aria-labelledby="pills-Report-admin-tab"></div>
-                                             
-            
                                             </div>
                                         </div>
-                                    </div>
+                                    </section>
                                 </div>
+                                <div class="tab-pane fade" id="pills-DWL" role="tabpanel"
+                                    aria-labelledby="pills-DWL-tab">
+                                    <section class="table-sec daily-sec">
+                                        <div class="container p-0 container_full">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="table-Box pl-0 pr-0 border-0">
+                                                        <div class="permit-index">
+                                                            <div class="row">
+                                                                <div class="col-10">
+                                                                    <div class="row">
+                                                                        <div class="col-2 pr-0 adminpermit_hd">
+                                                                            <div class="permit-Hd">
+                                                                                Permit Index
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 filter-search">
+                                                                            <div class="header-input tbl-search-box">
+                                                                                <input type="text"
+                                                                                    placeholder="Search...">
+                                                                                <span><i class="fa fa-search"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6 pl-0">
+                                                                            <div class="btn-filter"><button><span><img
+                                                                                            src="assets/images/filter.svg"
+                                                                                            alt=""></span>
+                                                                                    Filter</button></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="col-2 more-index">
+                                                                    <!-- <div class="New-Project"><button> More 
+                                                                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                                    </button></div> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row">
+                                                            <div class="col-12 filter_tbl">
+                                                                <div class="table-permit">
+                                                                    <table class="table table-bordered ">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th>Ref No</th>
+                                                                                <th>Location</th>
+                                                                                <th>Applicant</th>
+                                                                                <th>Type</th>
+                                                                                <th>Decision Status</th>
+                                                                                <th>Submit date</th>
+                                                                                <th>Expire Date</th>
+                                                                                <th>Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="refTxt">39465</td>
+                                                                                <td>47 W 13th St, New York <span
+                                                                                        class="to-txt">To</span> 20
+                                                                                    Cooper Square
+                                                                                    <h6 class="show-more pointer-2">Show
+                                                                                        More</h6>
+                                                                                </td>
+                                                                                <td>Con Edison</td>
+                                                                                <td>Street Opening</td>
+                                                                                <td class="submited-Btn green-txt-2">
+                                                                                    <button>Issued</button></td>
+                                                                                <td>08 Jul 2019</td>
+                                                                                <td>08 Jul 2019</td>
+
+                                                                                <td class="update-txt dropdown-action">
+                                                                                    <span> <i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    <div class="dropdown-contentable">
+                                                                                        <a href="#">Delete</a>
+                                                                                        <a href="#">Edit Staff</a>
+                                                                                        <a href="#">Inactive</a>
+                                                                                        <div class="triangle-left">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="refTxt">39465</td>
+                                                                                <td>47 W 13th St, New York <span
+                                                                                        class="to-txt">End</span> 20
+                                                                                    Cooper Square
+                                                                                    <small class="new_yorktxt"> 371 7th
+                                                                                        Ave, New York, <span
+                                                                                            class="to-txt">End</span> 33
+                                                                                        3rd Ave,</small>
+                                                                                    <h6 class="show-more pointer-2">Show
+                                                                                        less</h6>
+                                                                                </td>
+                                                                                <td>Jci construction</td>
+                                                                                <td>Street Opening</td>
+                                                                                <td class="submited-Btn orange-txt-2">
+                                                                                    <button>Accepted</button></td>
+                                                                                <td>08 Jul 2019</td>
+                                                                                <td>08 Jul 2019</td>
+
+                                                                                <td class="update-txt dropdown-action">
+                                                                                    <span> <i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    <div class="dropdown-contentable">
+                                                                                        <a href="#">Delete</a>
+                                                                                        <a href="#">Edit Staff</a>
+                                                                                        <a href="#">Inactive</a>
+                                                                                        <div class="triangle-left">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="refTxt">39465</td>
+                                                                                <td>187 PARKER ST</td>
+                                                                                <td>Con Edison</td>
+                                                                                <td>Street Opening</td>
+                                                                                <td class="submited-Btn green-txt-2">
+                                                                                    <button>Issued</button></td>
+                                                                                <td>08 Jul 2019</td>
+                                                                                <td>08 Jul 2019</td>
+
+                                                                                <td class="update-txt dropdown-action">
+                                                                                    <span> <i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    <div class="dropdown-contentable">
+                                                                                        <a href="#">Delete</a>
+                                                                                        <a href="#">Edit Staff</a>
+                                                                                        <a href="#">Inactive</a>
+                                                                                        <div class="triangle-left">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="refTxt">39465</td>
+                                                                                <td>187 PARKER ST</td>
+                                                                                <td>Jci construction</td>
+                                                                                <td>Street Opening</td>
+                                                                                <td class="submited-Btn orange-txt-2">
+                                                                                    <button>Accepted</button></td>
+
+                                                                                <td>08 Jul 2019</td>
+                                                                                <td>08 Jul 2019</td>
+                                                                                <td class="update-txt dropdown-action">
+                                                                                    <span> <i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    <div class="dropdown-contentable">
+                                                                                        <a href="#">Delete</a>
+                                                                                        <a href="#">Edit Staff</a>
+                                                                                        <a href="#">Inactive</a>
+                                                                                        <div class="triangle-left">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
+                                    aria-labelledby="pills-Inspection-admin-tab"></div>
+                                <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel"
+                                    aria-labelledby="pills-Payment-admin-tab"></div>
+                                <div class="tab-pane fade" id="pills-Invoice-admin" role="tabpanel"
+                                    aria-labelledby="pills-Invoice-admin-tab"></div>
+                                <div class="tab-pane fade" id="pills-Report-admin" role="tabpanel"
+                                    aria-labelledby="pills-Report-admin-tab"></div>
+
+
                             </div>
                         </div>
                     </div>
-                </section>
-        <!-- </router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- </router-outlet>
         </app-admin> -->

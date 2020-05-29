@@ -37,7 +37,7 @@ export class ApplicationsComponent implements OnInit {
   }
   public allApplications = []
   getAllApplication() {
-    
+
     this.applicationService.getApplications().subscribe(data => {
       this.allApplications = data.response;
     })
@@ -46,7 +46,6 @@ export class ApplicationsComponent implements OnInit {
   public isSingleAddress = true;
   public currentId: number
   showMoreLocation(value, id) {
-
     this.currentId = id
     this.allApplications.map(data => {
       if (data.id == id) {

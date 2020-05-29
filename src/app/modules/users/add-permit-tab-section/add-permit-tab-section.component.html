@@ -600,7 +600,7 @@
                                         <div class="col-12">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
-                                                    <div class="col-12 ">
+                                                    <div class="col-6 ">
                                                         <div class="form-group">
                                                             <input type="text" id="id-address"
                                                                 formControlName="applicant_address"
@@ -614,6 +614,25 @@
                                                                 <p class="form-error"
                                                                     *ngIf="applicantControls.applicant_address.errors['required']">
                                                                     Please enter address
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-6 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="id-address"
+                                                                formControlName="applican_last_name"
+                                                                [class]="applicantControls.applican_last_name.invalid && (applicantControls.applican_last_name.dirty || applicantControls.applican_last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                required>
+                                                            <label
+                                                                [class]="applicantControls.applican_last_name.invalid && (applicantControls.applican_last_name.dirty || applicantControls.applican_last_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                                for="id-address">Last Name</label>
+                                                            <div
+                                                                *ngIf="applicantControls.applican_last_name.invalid && (applicantControls.applican_last_name.dirty || applicantControls.applican_last_name.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantControls.applican_last_name.errors['required']">
+                                                                    Please enter last name
                                                                 </p>
                                                             </div>
                                                         </div>
