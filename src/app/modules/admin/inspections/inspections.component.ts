@@ -86,4 +86,10 @@ export class InspectionsComponent implements OnInit {
     })
   }
 
+  public isDwonArrow = false;
+  arrowRighDwon(value) {
+    this.messageEvent.emit('inspection')
+    this.applicationDetails.isInspection = !value
+  }
+
 }

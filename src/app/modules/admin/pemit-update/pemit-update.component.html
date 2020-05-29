@@ -243,8 +243,8 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button">
                                     Submission Review
-                                    <span data-toggle="collapse" data-target="#Submissionone" aria-expanded="true"
-                                        aria-controls="Submissionone"><i class="fa fa-chevron-down"
+                                    <span (click) ="arrowRighDwon(isDwonArrow,'sub')" data-toggle="collapse" data-target="#Submissionone" aria-expanded="true"
+                                        aria-controls="Submissionone"><i [class] = "isDwonArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
                                             aria-hidden="true"></i></span>
                                 </button>
                             </h2>
@@ -365,8 +365,8 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left collapsed" type="button">
                                     Fee & Payment
-                                    <span data-toggle="collapse" data-target="#PaymentThree" aria-expanded="false"
-                                        aria-controls="PaymentThree"><i class="fa fa-chevron-down"
+                                    <span (click) ="arrowRighDwon(isSubmition,'fee')" data-toggle="collapse" data-target="#PaymentThree" aria-expanded="false"
+                                        aria-controls="PaymentThree"><i [class] = "!isSubmition?'fa fa-chevron-right':'fa fa-chevron-down'"
                                             aria-hidden="true"></i></span>
                                 </button>
                             </h2>

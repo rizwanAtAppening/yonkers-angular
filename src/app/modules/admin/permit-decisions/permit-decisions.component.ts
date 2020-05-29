@@ -26,7 +26,7 @@ export class PermitDecisionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    debugger
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
     })
@@ -41,7 +41,7 @@ export class PermitDecisionsComponent implements OnInit {
     department: null
   }
   getUserInfo() {
-    
+
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data
     })
@@ -61,9 +61,9 @@ export class PermitDecisionsComponent implements OnInit {
     })
   }
 
-  public id:any;
+  public id: any;
   editDecision(value) {
-    
+
     if (value) {
       this.id = value.id
       this.desicionForm.controls.permit_decision.setValue(0);
@@ -78,14 +78,14 @@ export class PermitDecisionsComponent implements OnInit {
 
   testArray = [{ point: 'hrhk' }, { point: 'hrhk1' }]
   public isDecision = false;
-  public data:any;
+  public data: any;
   decision() {
-    
+
     if (this.desicionForm.invalid) {
       this.isDecision = true
       return false
     }
-    if(this.id){
+    if (this.id) {
       this.data = {
         special_conditions: this.special_conditions,
         inspector: this.desicionForm.value.inspector,
@@ -93,10 +93,10 @@ export class PermitDecisionsComponent implements OnInit {
         application_id: this.applicationDetails.id,
         expiration_date: this.desicionForm.value.expiration_date,
         remarks: this.desicionForm.value.remarks,
-        id:(this.id?this.id:null)
+        id: (this.id ? this.id : null)
       }
     }
-    else{
+    else {
       this.data = {
         special_conditions: this.special_conditions,
         inspector: this.desicionForm.value.inspector,
@@ -106,7 +106,7 @@ export class PermitDecisionsComponent implements OnInit {
         remarks: this.desicionForm.value.remarks,
       }
     }
-   
+
     this.applicationService.addDecision(this.data).subscribe(data => {
       console.log(data);
       this.desicionForm.reset()
@@ -118,7 +118,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   public inspector = []
   getInspector() {
-    
+
     this.applicationService.getInspector().subscribe(data => {
       this.inspector = data.response;
     })
@@ -126,7 +126,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   public special_conditions = []
   addCondition(event, value) {
-    
+
     if (event.target.checked) {
       this.settings.conditions.map((data, i) => {
         if (value.key == data.key) {
@@ -158,5 +158,41 @@ export class PermitDecisionsComponent implements OnInit {
     this.messageEvent.emit(this.message)
   }
 
+  arrowRighDwon(value) {
+    this.messageEvent.emit('decision')
+    this.applicationDetails.isDecision = !value
+  }
+  public actualValue: number;
+  public currentDate;
+  public currentYear;
+  public currntMonth;
+  public dayMonthYearName:string
+  getDay(value) {
+    debugger
+    this.currentDate = new Date()
+    this.settings.days.map(data => {
+      if (data.key == value) {
+        this.actualValue = data.actualValue,
+        this.dayMonthYearName = data.name;
+      }
+    })
+    if (this.dayMonthYearName == 'days') {
+      this.currentDate.setDate(this.currentDate.getDate() + this.actualValue);
+      this.desicionForm.controls.expiration_date.setValue(this.currentDate)
+      console.log(this.currentDate)
+
+    }
+    else if (this.dayMonthYearName == 'months') {
+      this.currentDate.setMonth(this.currentDate.getMonth() + this.actualValue);
+      this.desicionForm.controls.expiration_date.setValue(this.currentDate)
+
+
+    } else if (this.dayMonthYearName == 'years') {
+      this.currentDate.setFullYear(this.currentDate.getFullYear() + this.actualValue);
+      this.desicionForm.controls.expiration_date.setValue(this.currentDate)
+ 
+    }
+
+  }
 
 }

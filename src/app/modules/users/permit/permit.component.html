@@ -81,7 +81,7 @@
                                                     <td class="submited-Btn"><button>Submitted</button></td>
                                                     <td class="submited-Btn" *ngIf ="application?.status == null && application?.application_type ==1"><button>Draft</button></td>
                                                     <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 2 && application?.application_type ==1"><button>Submitted</button></td>
-                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 3 && application?.application_type ==1"><button>Camcel</button></td>
+                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 3 && application?.application_type ==1"><button>Cancel</button></td>
 
                                                     <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
                                                     <td>_</td>

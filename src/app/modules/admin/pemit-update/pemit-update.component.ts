@@ -34,7 +34,7 @@ export class PemitUpdateComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private userService:UsersService,
+    private userService: UsersService,
     private permitService: PermitService,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
@@ -57,10 +57,10 @@ export class PemitUpdateComponent implements OnInit {
   public currentUser = {
     role_id: null,
     department: null,
-    email:null
+    email: null
   }
   getUserInfo() {
-    
+
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data
     })
@@ -103,8 +103,8 @@ export class PemitUpdateComponent implements OnInit {
       amount: Number(this.addFeeForm.value.amount),
       application_id: this.applicationDetails.id,
       id: this.feeId,
-      fee_Type:this.fee_Type,
-      type:this.type
+      fee_Type: this.fee_Type,
+      type: this.type
 
     }
     this.applicationService.addFee(data).subscribe(data => {
@@ -115,12 +115,12 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   public feeId: any
-  public fee_Type:any;
-  public type:any
-  getFeeId(id,value) {
+  public fee_Type: any;
+  public type: any
+  getFeeId(id, value) {
     this.feeId = id;
     this.fee_Type = value.fee_Type,
-    this.type = value.type
+      this.type = value.type
   }
 
   deleteFee() {
@@ -136,9 +136,30 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   permitDetails() {
-    
+
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response
+      if (this.message == 'decision') {
+        this.applicationDetails.isDecision = true;
+        this.applicationDetails.isInspection = false
+        this.applicationDetails.isContractor = false
+      } else if (this.message == 'inspection') {
+        this.applicationDetails.isInspection = true
+        this.applicationDetails.isContractor = false
+        this.applicationDetails.isDecision = false;
+
+      } else if (this.message == 'contractor') {
+        this.applicationDetails.isInspection = false
+        this.applicationDetails.isContractor = true
+        this.applicationDetails.isDecision = false;
+      }
+      if (!this.message) {
+        this.applicationDetails.isInspection = false
+        this.applicationDetails.isContractor = false
+        this.applicationDetails.isDecision = false;
+      }
+
+
       this.certificates.next(this.applicationDetails)
 
       console.log(this.applicationDetails)
@@ -176,12 +197,20 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   message: string;
-  receiveMessage($event) {
-    this.message = $event
+
+  receiveMessage(event) {
+    debugger
+    this.message = event
+    // if(event == 'decision'){
+    //   this.isDwonArrow = true;
+    //   this.isSubmition = false;
+    // }
+    this.isDwonArrow = true;
+     this.isSubmition = false;
     this.ngOnInit();
   }
   editDescription() {
-    
+
     this.applicationService.editDescription(this.editDescriptionForm.value, this.applicationId).subscribe(data => {
       this.descriptionPopup.nativeElement.click();
       this.permitDetails();
@@ -192,7 +221,7 @@ export class PemitUpdateComponent implements OnInit {
   get clerkCon() { return this.completIncompletForm.controls }
 
   accepetOrDeclineApplication() {
-    
+
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -227,7 +256,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public selectfeeType: number = 2
   feeType(value) {
-    
+
     this.selectfeeType = value
   }
 
@@ -238,5 +267,29 @@ export class PemitUpdateComponent implements OnInit {
 
       }
     });
+  }
+
+  public isDwonArrow = false;
+  public isSubmition = false;
+  arrowRighDwon(value, condition) {
+this.message = null
+    if (condition == 'fee') {
+      this.isSubmition = !value
+      this.isDwonArrow = true
+
+    } else {
+      this.isDwonArrow = !value
+      this.isSubmition = !value
+
+    }
+    if (!this.message) {
+      this.applicationDetails.isInspection = false
+      this.applicationDetails.isContractor = false
+      this.applicationDetails.isDecision = false;
+    }
+
+
+    this.certificates.next(this.applicationDetails)
+
   }
 }

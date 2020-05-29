@@ -462,30 +462,53 @@ inspection_type:[
 days:[
   {
     key:1,
-    value:'7 Days'
+    value:'7 Days',
+    actualValue:7,
+    name:'days'
+
   },
   {
     key:2,
-    value:'30 Days'
+    value:'30 Days',
+    actualValue:30,
+    name:'days'
+
+
   },
   {
     key:3,
-    value:' 60 Days'
+    value:' 60 Days',
+    actualValue:60,
+    name:'days'
+
   },
   {
     key:4,
-    value:'90 Days'
+    value:'90 Days',
+    name:'days',
+    actualValue:90,
+
   },
   {
     key:5,
-    value:' 6 Month'
+    value:' 6 Month',
+    actualValue:6,
+    name:'months',
+
+
   },
   {
     key:6,
-    value:'1 Year'
+    value:'1 Year',
+    actualValue:1,
+    name:'years',
+
+
   }, {
     key:7,
-    value:'2 Year'
+    value:'2 Year',
+    actualValue:2,
+    name:'years',
   },
 ],
 
