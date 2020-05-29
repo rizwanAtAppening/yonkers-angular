@@ -75,7 +75,7 @@ export class CreateNewPasswordComponent implements OnInit {
       this.toastService.success('Password has been created');
       this.newPasswordForm.reset();
       this.isSubmited = false
-      //this.router.navigate(['/'])
+      this.router.navigate(['/'])
     })
   }
 
