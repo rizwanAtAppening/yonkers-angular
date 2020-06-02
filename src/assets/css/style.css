@@ -1668,7 +1668,7 @@ color: #282D5BB0;
     .up-add input{
         height: 42px !important;
         font-size: 14px;
-        border: 0.5px solid #282D5B99 !important;
+        border: 0.5px solid #a9abbd;
         color: #282D5B !important;
     }
 
@@ -2004,7 +2004,7 @@ text-align: center;
  border-radius: 0px;
  color: #7E819C;
     height: 60px;
-    border: 0.5px solid #282D5B99;
+    border: 0.5px solid #a9abbd;
     color: #282D5B;
 }
 #defultInput select{
@@ -2096,7 +2096,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  border: 0.5px solid #282D5B;
+  border: 0.5px solid #282D5B66;
   -webkit-text-fill-color: #282D5BCC;
   -webkit-box-shadow: 0 0 0px 1000px #fff inset;
   transition: background-color 5000s ease-in-out 0s;
@@ -2983,7 +2983,7 @@ height: 42px !important;
 font-size: 14px !important;
 line-height: 18px !important;
 padding: 6px 28px 4px 16px !important;
-border: 0.5px solid #282D5B99 !important;
+border: 0.5px solid #a9abbd;
 color: #282D5B !important;
 }
 .select_keyType-2  label{
