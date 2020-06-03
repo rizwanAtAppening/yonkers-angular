@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { Register } from 'src/app/shared';
 import { OccupancyApplication } from '../../models/users';
 import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
+import { query } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -284,6 +285,34 @@ export class PermitService {
       )
     );
   }
+
+  searchBussiness(data): Observable<any> {
+    const href = `${environment['searchBussiness']}`;
+    return this.http.get<any>(href, { params: data }).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  allBussiness(data): Observable<any> {
+    const href = `${environment['allBussiness']}`;
+    return this.http.get<any>(href, { params: data }).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+
 
   convertPermitApplication(id): Observable<any> {
     const href = `${environment['converPermitApplication']}/${id}`;

@@ -194,16 +194,16 @@
                     <div class="adrees-tab" *ngIf="isAddressFound">
                         <nav>
                             <div class="nav" id="nav-tab" role="tablist">
-                                <a class="nav-item active" id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
+                                <a [class] ="location_type == 1 ? 'av-item active':'av-item'"  id="nav-Exact-tab" data-toggle="tab" href="#nav-Exact"
                                     role="tab" aria-controls="nav-Exact" aria-selected="true"
                                     (click)="selectAddress('exactAddress')">Exact Address</a>
-                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab"
+                                <a [class] ="location_type == 2 ? 'av-item active':'av-item'" id="nav-Location-tab" data-toggle="tab"
                                     (click)="selectAddress('location')" href="#nav-Location" role="tab"
                                     aria-controls="nav-Location" aria-selected="false">Location</a>
                             </div>
                         </nav>
                         <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-Exact" role="tabpanel"
+                            <div [class] ="location_type == 1 ? 'tab-pane fade show active':'tab-pane fade'"  id="nav-Exact" role="tabpanel"
                                 aria-labelledby="nav-Exact-tab">
                                 <div class="job-input">
                                     <form [formGroup]="whereForm">
@@ -288,7 +288,7 @@
 
                             </div>
 
-                            <div class="tab-pane fade" id="nav-Location" role="tabpanel"
+                            <div [class] ="location_type == 2 ? 'tab-pane fade show active':'tab-pane fade'" id="nav-Location" role="tabpanel"
                                 aria-labelledby="nav-Location-tab">
                                 <div class="job-input"
                                     *ngFor="let addloc of addLocationControls.controls; let i = index">
@@ -837,7 +837,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_business"
+                                                            <input type="text" formControlName="contractor_business" (input) = "searchBussiness()"
                                                                 [readonly]="isDisabled"
                                                                 [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
@@ -1054,8 +1054,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <div class="what-bg2" *ngIf="application?.role == 2">
+                                <!-- *ngIf="application?.role == 2" -->
+                                <div class="what-bg2" >
                                     <div class="ld-txt">
                                         <h3>License Details</h3>
                                         <h4 class="email-link">
@@ -1088,8 +1088,12 @@
                                                                     <td>{{ settings.getSetting('policyType',license['type'])}}
                                                                     </td>
                                                                     <td>{{license?.license_number}}</td>
-                                                                    <td class="exp"><button>Expired</button></td>
-                                                                    <td class="view-Btn" *ngIf="license?.name"><button>
+                                                                    <td>
+                                                                        <h6 class="status-active-btn" *ngIf ="!license?.isExpiry">
+                                                                            Active</h6>
+                                                                        <h6 class="status-active-btn1" *ngIf ="license?.isExpiry">
+                                                                            Expire</h6>
+                                                                    </td>                                                                    <td class="view-Btn" *ngIf="license?.name"><button>
                                                                             <span><i class="fa fa-eye"
                                                                                     aria-hidden="true"></i></span><a
                                                                                 class="pointer"
@@ -1602,7 +1606,9 @@
 
                                             <div class="form-group position-relative">
                                                 <input type="text" id="sda1" #dp="bsDatepicker" bsDatepicker
-                                                    formControlName="start_date"
+                                                    formControlName="start_date" [minDate]="minDate"
+
+
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label

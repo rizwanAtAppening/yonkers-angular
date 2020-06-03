@@ -71,7 +71,9 @@ const adminUrl = {
   addLicense:`/application/contractor_license`,
   updateContractor:`/application/contractor_update`,
   addFee:`/application/manager/fee`,
-  deleteFee:`/application/manager/fee/delete`
+  deleteFee:`/application/manager/fee/delete`,
+  addReletedPermit:`/related-permit`,
+  reletedPermit:`/related-permit`
 
 
 };
@@ -102,8 +104,10 @@ const userUrl = {
   activeInactiveStaff:`/user/team_member/active-inactive`,
   createmMemberPassword:`/user/team_member/create-password`,
   withDrawPermit:`/withdraw/application`,
-  cancelPermit:`/cancel/application`
-  // searchUserApplication:`/application`
+  cancelPermit:`/cancel/application`,
+  // searchUserApplication:`/application`,
+  searchBussiness:`/users/business`,
+  allBussiness:`/users/business`,
 
 
 }

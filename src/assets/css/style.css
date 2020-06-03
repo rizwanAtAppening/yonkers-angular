@@ -3901,3 +3901,139 @@ position: relative;
     display: block;
     margin-top: 3px;
 }
+.heading-permit h3 button.change_typeBtn {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #282D5B;
+    color: #282D5B;
+    padding: 14px 19px;
+    line-height: 0;
+    margin-right: 15px;
+}
+.heading-permit h3 button.change_typeBtn  span{
+    margin-left: 5px;
+}
+.popup-dumpstar-related{
+    max-width: 394px;
+}
+
+.pwtest {
+    margin-top: 20px;
+}
+
+/* The container */
+.container-pw {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    color: #282D5B;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 32px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container-pw input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkpw {
+    position: absolute;
+    top: 6px;
+    left: 0;
+   width: 20px;
+  height: 20px;
+   box-shadow: 0px 1px 3px #8B8B8B19;
+  border: 1px solid #8484846E;
+  border-radius: 10px;
+    border-radius: 50%;
+  }
+  
+  
+  
+  /* When the radio button is checked, add a blue background */
+  .container-pw input:checked ~ .checkpw {
+    background-color: #2196F3;
+    border: 1px solid #2196F3;
+    
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkpw:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container-pw input:checked ~ .checkpw:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container-pw .checkpw:after {
+    top: 4px;
+    left: 4px;
+      width: 10px;
+  height: 10px;
+      border-radius: 50%;
+      background: white;
+  }
+  .emailsnote ul li a:hover{
+      text-decoration: none;
+  }
+  .emailsnote ul{
+    border-bottom: 1px solid #F1F1F1;
+  }
+  .emailsnote ul li a.active{
+      color: #2AABFA;
+      position: relative;
+      font-family: "Poppins-Medium";
+      font-size: 14px;
+      line-height: 28px;
+  }
+  .emailsnote ul li a.active::before{
+    position: absolute;
+    content: '';
+    top: 22px;
+    height: 2px;
+    width: 100%;
+    background: #2AABFA;
+  }
+  .emailsnote ul li a{
+      color: #51606ACC;
+      font-size: 14px;
+      font-family: "Poppins-Medium";
+      line-height: 28px;
+      margin-right: 24px;
+  }
+
+  .expiration-date-email .bdp_email input {
+    border: 0.5px solid #c9cedc;
+}
+.email-angle span{
+    top: 12px !important;
+}
+.email-angle select{
+    color: #282D5B99 !important;
+}
+#ddHd{
+    color: #001839;
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+    line-height: 22px;
+}
+
+
+/* css 27/05/2020 */
+
+.massege-stander-select select{
+color: #282D5B99 !important;
+}

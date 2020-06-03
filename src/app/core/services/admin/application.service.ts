@@ -45,8 +45,35 @@ export class ApplicationService {
     );
   }
 
+  reletedPermit(id): Observable<any> {
+    const href = `${environment['reletedPermit']}/${id}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   acceptApplicationByClerk(data){
     const href = `${environment['acceptApplication']}`
+    return this.http.post<any>(href,data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  
+  addReltedPemrit(data){
+    const href = `${environment['addReletedPermit']}`
     return this.http.post<any>(href,data).pipe(
       map(
         ({ status, ...rest }) => {

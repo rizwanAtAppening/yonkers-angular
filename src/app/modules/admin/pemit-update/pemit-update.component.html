@@ -514,12 +514,95 @@
                         </div>
                     </div>
 
+                    <div class="card">
+                        <div id="contractors-seven">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button">
+                              Related Permits
+                              <span data-toggle="collapse" (click) ="arrowRighDwon(isDwonArrow,'permit')" data-target="#con-seven" aria-expanded="false"
+                                aria-controls="con-seven"><i [class] = "!isReletedPermitArrow?'fa fa-chevron-right':'fa fa-chevron-down'" aria-hidden="true"></i></span>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="con-seven" class="collapse" aria-labelledby="contractors-seven" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <div class="decisions_box-collepse">
+                              <div class="plan-examiner-box mt-0">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Ref Number</th>
+                                      <th>Type</th>
+                                      <th>Contractor</th>
+                                      <th>Submitted</th>
+                                      <th>Expires</th>
+          
+          
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor ="let permit of reletedPermits">
+                                      <td>{{permit?.reference_no}}</td>
+                                      <td>{{ settings.getSetting('type',permit['type'])}}</td>
+                                      <td>{{permit?.reference_no}}</td>
+                                      <td>{{permit?.createdAt | date}}</td>
+                                      <td>{{permit?.reference_no}}</td>
+          
+          
+          
+                                    </tr>
+          
+                                  </tbody>
+                                </table>
+                              </div>
+          
+                              <div class="Add__New_inspection">
+                                <h4 data-toggle="modal" data-target="#relatedpermits-modal"> <span><img
+                                      src="assets/images/plusn.svg" alt=""></span> Add New</h4>
+                              </div>
+          
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+          
+
                 </div>
             </div>
 
 
         </div>
     </div>
+    <div class="modal fade" id="relatedpermits-modal"  #reletedPermitPopUp
+    >
+    <div class="modal-dialog popup-dumpstar-related" role="document">
+      <div class="modal-content text-addpopup">
+        <div class="modal-header p-0 pb-2 ">
+          <h5>Related Permits</h5>
+          <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+        </div>
+        <div class="container p-0 admin-contractor-details">
+          <div class="col-12 p-0">
+            <div class="pwtest">
+              <label class="container-pw" *ngFor = "let reletedPermit of applicationDetails?.related_permits">{{reletedPermit?.reference_no}}
+                <input type="radio"  (change)="check($event.target,reletedPermit)"  [checked] = "reletedPermit.isReleted"  name="radio">
+                <span class="checkpw"></span> 
+              </label>
+              
+
+              <div class="btn-pre pop-Btn">
+                <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Close</button>
+                <button class="continue mr-0" (click) = "addReletedPermit()">Submit</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <!-- Modal -->
     <div class="modal fade" id="editprojectmodal" #descriptionPopup>
         <div class="modal-dialog modal-dialog-centered detailed-edit">

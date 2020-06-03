@@ -68,7 +68,7 @@ export class CreateNewPasswordComponent implements OnInit {
   }
 
   crateMemberPassword() {
-    
+    debugger
     this.newPasswordForm.value.id = (this.id).toString();
 
     this.userService.createMemberPassword(this.newPasswordForm.value).subscribe(data => {

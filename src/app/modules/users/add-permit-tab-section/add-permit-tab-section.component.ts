@@ -73,8 +73,10 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.settings = settingConfig;
 
   }
-
+  public minDate: Date;
   ngOnInit() {
+    this.minDate = new Date();
+
     this.getDuplimester();
     this.route.queryParams.subscribe(data => {
       this.application_id = data.id;
@@ -88,9 +90,11 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.onInIt();
 
     console.log(this.whereForm.controls)
-    this.getApplication()
+    this.getApplication();
 
-    this.getCurrentTab()
+
+    this.getCurrentTab();
+    this.getLicenseDetails()
     console.log(this.currentTab)
     if (this.currentTab == 'applicant') {
       this.getCurrentUser()
@@ -131,10 +135,10 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.application.upload_detail) {
         this.application.upload_detail.map(data => {
           this.allImage.push(data)
-          if(data.type == 1){
+          if (data.type == 1) {
             this.isCertificate = true
           }
-           if(data.type == 0){
+          if (data.type == 0) {
             this.isDrawing = true
 
           }
@@ -239,6 +243,11 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     );
     formData.append(
+      "application_id",
+      this.application.id
+
+    );
+    formData.append(
       "license_number",
       this.addInsuranseForm.value.license_number
 
@@ -262,8 +271,38 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     this.permitService.getLicenseDetails().subscribe(data => {
       this.licenseDetails = data.response
+      var currentDate
+      var date
+      date = new Date()
+      currentDate = date.toISOString();
+      if (this.licenseDetails && this.licenseDetails.length > 0) {
+        this.licenseDetails.map(data => {
+          if (currentDate > data.expiration_date) {
+            data.isExpiry = true
+          } else {
+            data.isExpiry = false
+          }
+        })
+      }
     })
   }
+
+  // compareDate() {
+  //   var currentDate
+  //   var date
+  //   date = new Date()
+  //   currentDate  = date.toISOString();
+  //   console.log(currentDate)
+  //   if (this.applicationDetails && this.applicationDetails.license_details)
+  //     this.applicationDetails.license_details.map(data => {
+  //       if (currentDate > data.expiration_date) {
+  //         data.isExpiry = true
+  //       }else{
+  //         data.isExpiry = false
+  //       }
+  //     })
+  //     console.log(this.applicationDetails)
+  // }
 
   get licenseCon() { return this.addInsuranseForm.controls }
 
@@ -323,7 +362,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.applicantForm = this.formBuilder.group({
       applicant_role: ['', Validators.required],
       applicant_name: ['', Validators.required],
-      applican_last_name:['',],
+      applican_last_name: ['',],
       applicant_email: ['', Validators.required],
       applicant_business: ['', Validators.required],
       applicant_address: ['', Validators.required],
@@ -645,7 +684,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-
+    debugger
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -1088,16 +1127,16 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   deleteImage(id, i) {
-    
-   
+
+
     const data = {
       id: id
     }
     this.permitService.deleteImage(data).subscribe(data => {
       this.getApplication();
-      if( this.application &&  this.application.upload_detail){
-        this.application.upload_detail.map((data,k)=>{
-          if(i == k){
+      if (this.application && this.application.upload_detail) {
+        this.application.upload_detail.map((data, k) => {
+          if (i == k) {
             this.application.upload_detail.splice(i, 1)
             sessionStorage.setItem('application', JSON.stringify(this.application));
           }
@@ -1204,9 +1243,31 @@ export class AddPermitTabSectionComponent implements OnInit {
   public imageType: any = null
   selectImageType(value) {
     this.formData = new FormData()
-    
+
     this.imageType = Number(value)
 
+  }
+
+  public searchDetails: any
+  searchBussiness() {
+    debugger
+    // const data = {
+    //   search_query: this.contractorForm.value.contractor_business
+    // }
+    this.permitService.searchBussiness({search_query:this.contractorForm.value.contractor_business}).subscribe(data => {
+      this.searchDetails = data.response
+    })
+  }
+
+ // public searchDetails: any
+  allBussiness() {
+    debugger
+    // const data = {
+    //   search_query: this.contractorForm.value.contractor_business
+    // }
+    this.permitService.searchBussiness({search_query:this.contractorForm.value.contractor_business}).subscribe(data => {
+      this.searchDetails = data.response
+    })
   }
 }
 

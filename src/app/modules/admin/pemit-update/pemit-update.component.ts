@@ -19,6 +19,7 @@ export class PemitUpdateComponent implements OnInit {
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
   @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
+  @ViewChild('reletedPermitPopUp', { static: false }) reletedPermitPopUp: ElementRef;
 
   certificates: any = new Subject<any>();
 
@@ -52,6 +53,12 @@ export class PemitUpdateComponent implements OnInit {
       this.permitDetails()
     }
     this.getUserInfo();
+  }
+  public reletedPermits = []
+  getReletedPermit() {
+    this.applicationService.reletedPermit(this.applicationDetails.id).subscribe(data => {
+      this.reletedPermits = data.response
+    })
   }
 
   public currentUser = {
@@ -138,7 +145,15 @@ export class PemitUpdateComponent implements OnInit {
   permitDetails() {
 
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-      this.applicationDetails = data.response
+      debugger
+      this.applicationDetails = data.response;
+      this.getReletedPermit();
+      if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
+        this.applicationDetails.related_permits.map((data => {
+          data.isReleted = false
+        }))
+        console.log(this.applicationDetails)
+      }
       if (this.message == 'decision') {
         this.applicationDetails.isDecision = true;
         this.applicationDetails.isInspection = false
@@ -166,6 +181,44 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
 
+
+  reletedPermit($event, value) {
+    debugger
+
+  }
+
+  public related_permit: any
+  check(data, value) {
+    debugger
+    this.related_permit = value.id
+    if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
+      this.applicationDetails.related_permits.map((data => {
+        if (value.id == data.id) {
+          data.isReleted = data.checked
+        }
+        else {
+          data.isReleted = !data.checked
+
+        }
+      }))
+      console.log(this.applicationDetails)
+    }
+  }
+
+  addReletedPermit() {
+    if (this.related_permit) {
+      const data = {
+        related_permit: this.related_permit,
+        application_id: this.applicationDetails.id,
+      }
+      this.applicationService.addReltedPemrit(data).subscribe(data => {
+        this.reletedPermitPopUp.nativeElement.reset();
+      })
+    } else {
+      this.toasterService.error('Plz select permit');
+    }
+
+  }
   onInIt() {
     this.completeIncompletCon();
     this.description();
@@ -199,14 +252,14 @@ export class PemitUpdateComponent implements OnInit {
   message: string;
 
   receiveMessage(event) {
-    
+
     this.message = event
     // if(event == 'decision'){
     //   this.isDwonArrow = true;
     //   this.isSubmition = false;
     // }
     this.isDwonArrow = true;
-     this.isSubmition = false;
+    this.isSubmition = false;
     this.ngOnInit();
   }
   editDescription() {
@@ -271,13 +324,19 @@ export class PemitUpdateComponent implements OnInit {
 
   public isDwonArrow = false;
   public isSubmition = false;
+  public isReletedPermitArrow = false;
   arrowRighDwon(value, condition) {
-this.message = null
+    this.message = null
     if (condition == 'fee') {
       this.isSubmition = !value
       this.isDwonArrow = true
 
-    } else {
+    } else if (condition == 'permit') {
+      this.isSubmition = !value
+      this.isDwonArrow = true
+      this.isReletedPermitArrow = !value
+    }
+    else {
       this.isDwonArrow = !value
       this.isSubmition = !value
 
