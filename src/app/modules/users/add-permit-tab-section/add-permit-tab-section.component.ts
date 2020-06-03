@@ -91,6 +91,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     console.log(this.whereForm.controls)
     this.getApplication();
+    this.allBussiness();
 
 
     this.getCurrentTab();
@@ -1265,7 +1266,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
-    this.permitService.searchBussiness({search_query:this.contractorForm.value.contractor_business}).subscribe(data => {
+    this.permitService.allBussiness().subscribe(data => {
       this.searchDetails = data.response
     })
   }

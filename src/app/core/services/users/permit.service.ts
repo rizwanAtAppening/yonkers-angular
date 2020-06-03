@@ -299,9 +299,9 @@ export class PermitService {
     );
   }
 
-  allBussiness(data): Observable<any> {
+  allBussiness(): Observable<any> {
     const href = `${environment['allBussiness']}`;
-    return this.http.get<any>(href, { params: data }).pipe(
+    return this.http.get<any>(href).pipe(
       tap(
         (data) => {
           if (data.status === 'success') {

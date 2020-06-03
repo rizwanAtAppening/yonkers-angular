@@ -4037,3 +4037,312 @@ position: relative;
 .massege-stander-select select{
 color: #282D5B99 !important;
 }
+
+/* css 28/05/2020 */
+
+.massege-stander-select select{
+    color: #282D5B99 !important;
+    }
+    
+    .no-ref-txt h5{
+        text-transform: uppercase;
+    }
+    .description_edit-txt h3{
+        text-transform: uppercase;
+    }
+    .btn-pre button{
+        margin-right: 15px !important;
+    }
+    .documentFileType .select-input-box{
+        max-width: 181px;
+    }
+    .documentFileType .select-input-box span{
+        top: 11px;
+    }
+    .documentFileType  .plan-examiner-box .table tbody td{
+        vertical-align: middle;
+    }
+    .documentFileType  .dropdown-content-void{
+        right: 133px;
+    }
+    .documentFileType  .dropdown-content-void a span img{
+        margin-right: 3px;
+        font-family: 'Poppins-Regular';
+        font-size: 12px;
+    }
+    
+    .emailfor-select .admin-add-insurance{
+    margin-top: 0px !important;
+    }
+    .emailfor-select .admin-add-insurance span{ 
+        top: 14px;
+    
+    }
+    
+    .emailfor-textarea textarea{
+        width: 100%;
+        background: #fff ;
+    border: 1px solid #E4E5EB;
+    height: 113px;
+    resize: none;
+    padding: 16px 17px;
+    
+    }
+    .emailfor-textarea  label{
+        color: #001839;
+        font-size: 14px;
+        padding-bottom: 6px;
+        line-height: 22px;
+        font-family: "Poppins-Medium";
+        line-height: 22px;
+    }
+    .atechpdf {
+        color: #001839;
+        line-height: 22px;
+        font-family: "Poppins-Medium";
+        font-size: 14px;
+    }
+    
+    .atechpdf span{
+        border-radius: 2px;
+        padding: 6px 15px;
+        color: #2AABFA;
+        background: #E9F6FE;
+        font-size: 11px;
+        font-family: 'Poppins-Regular';
+        line-height: 26px;
+    }
+    
+    .delet-appliction-width {
+        max-width: 415px;
+    }
+    
+    .deleteHd-app h6{
+        color: #282D5B;
+        font-family: "Poppins-SemiBold";
+        font-size: 24px;
+        line-height: 35px;
+        padding: 19px 0px;
+        text-align: center;
+    }
+    .deleteHd-app p{
+        color: #282D5B;
+        font-family: 'Poppins-Regular';
+        font-size: 13px;
+        letter-spacing: 0.33px;
+        text-align: center;
+        max-width: 214px;
+        margin: 0 auto;
+    }
+    
+    .delete-appBtn {
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 21px;
+        padding-bottom: 20px;
+    
+    }
+    .delete-appBtn .cancle-req {
+        padding: 10px 20px;
+        color: #4AB5F1;
+        border: 1px solid #DBDCE4;
+        font-family: 'Poppins-Regular';
+        background: none;
+        font-size: 12px;
+        margin-right: 15px;
+    }
+    .delete-appBtn .confirme-req {
+        padding: 10px 20px;
+        color: #fff;
+        border: none;
+        font-family: 'Poppins-Regular';
+        background: #4AB5F1;
+        font-size: 12px;
+    }
+    .detail-txtareatwo {
+        padding: 10px 35px 0px 19px;
+    }
+    
+    .detail-txtareatwo .modal-btn-decripatn{
+    margin-top: 29px;
+    }
+    
+    /* --------------------filter css 29/05/2020-------------------------------- */
+    
+    
+    .dropdownfilter {
+        position: relative;
+      
+      }
+      
+      .dropdown-contentfilter {
+        display: none;
+        position: absolute;
+        left: -275px;
+        min-width: 629px;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 2px 6px #0000001A;
+        z-index: 1;
+    
+    
+      }
+      
+      .dropdown-contentfilter a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+      .dropdownfilter:hover .dropdown-contentfilter {display: block;}
+      .filter-list {
+          border-right: 0.5px solid #EFEFEF;
+      }
+      .filter-list .nav-pills .nav-link.active::before {
+    display: none;
+    }
+    
+    .daily-sec .filter-list .nav-pills .nav-link {
+        color: #282D5B;
+        font-family: "Poppins-Medium";
+        font-size: 12px;
+        padding: 10px 16px;
+        line-height: 20px;
+        display: inline-block;
+        width: 100%;
+        border-radius: 0px !important;
+        border-bottom: 0.5px solid #E6E6E6;
+    }
+    .daily-sec .filter-list .nav-pills .nav-link:last-child{
+        border-bottom: none; 
+    }
+    
+    .daily-sec .filter-list .nav-pills .nav-link.active {
+        font-size: 12px;
+        line-height: 20px;
+        color: #2AABFA;
+        font-family: "Poppins-Medium";
+        display: inline-block;
+        padding: 10px 16px;
+        background: #E9F6FE;
+        width: 100%;
+        border-radius: 0px !important;
+    }
+    
+    .daily-sec .filter-list .nav-pills .nav-link span{
+        background: #2AABFA 0% 0% no-repeat padding-box;
+        box-shadow: 0px 2px 9px #A2A2A21F;
+        margin-left: 10px;
+        color: #fff;
+        padding: 4px 10.5px;
+        border-radius: 50%;
+        font-size: 12px;
+        font-family: 'Poppins-Regular';
+    }
+    .decisionFilter-Hd {
+        padding: 18px 18px 0px 0px;
+    }
+    /* The container */
+    .containerdision {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 19px !important;
+        cursor: pointer;
+        font-size: 12px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Hide the browser's default checkbox */
+      .containerdision input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      
+      /* Create a custom checkbox */
+      .checkmarkdision {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius:4px;
+      width: 18px;
+      height: 18px;
+      border:1px solid #2AABFA;
+        background-color: #fff;
+      }
+      
+    
+      
+      /* When the checkbox is checked, add a blue background */
+      .containerdision input:checked ~ .checkmarkdision {
+        background-color: #2196F3;
+        border:1px solid #2196F3;
+      }
+      
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmarkdision:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the checkmark when checked */
+      .containerdision input:checked ~ .checkmarkdision:after {
+        display: block;
+      }
+      
+      /* Style the checkmark/indicator */
+      .containerdision .checkmarkdision:after {
+      left: 6px;
+          top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+     .decisionFilter-Hd .hd-desion-check {
+    color: #282D5B;
+    font-size: 14px;
+    line-height: 21px;
+    font-family: "Poppins-Medium";
+    padding-bottom: 5px;
+    border-bottom: 0.5px solid #F2F2F2;
+      }
+    
+      .clearallapplyBtn {
+          text-align: right;
+          margin: 15px 0px;
+      }
+      .pipeline-border{
+        border-top: 0.5px solid #F2F2F2;
+        width: 100%;
+      }
+      .clearallapplyBtn button.btnfltr{
+          color: #2AABFA;
+          background: none;
+          border: none;
+          font-size: 12px;
+    font-family: 'Poppins-Regular';
+          line-height: 23px;
+          box-shadow: none;
+      }
+    
+      .clearallapplyBtn button.btnaply{
+        color: #fff;
+        background: #2AABFA;
+        margin-left: 10px;
+        border: none;
+        margin-right: 26px;
+        font-size: 12px;
+        padding: 7px 26px;
+    font-family: 'Poppins-Regular';
+        line-height: 23px;
+    }
