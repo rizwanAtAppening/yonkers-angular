@@ -4346,3 +4346,169 @@ color: #282D5B99 !important;
     font-family: 'Poppins-Regular';
         line-height: 23px;
     }
+
+    .s-dpt select{
+        border: 0.5px solid #282D5B66;
+        height: 60px;
+        width: 100%;
+        padding: 16px 16px;
+        color: #282D5B99;
+        font-size: 18px;
+        font-family: 'Poppins-Regular';
+    }
+    .s-dpt label{
+        position: absolute;
+        top: -23px;
+        color: #282D5B99;
+        font-size: 14px;
+        font-family: 'Poppins-Regular';
+    }
+    .s-dpt span{    position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 18px;}
+    
+    
+        .switchs {
+            position: relative;
+        display: inline-block;
+        width: 47px;
+        height: 25px;
+          
+        
+        }
+        
+        .switchs input { 
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        
+        .slides {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+        
+        .slides:before {
+            position: absolute;
+            content: "";
+            height: 21px;
+            width: 21px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked + .slides {
+          background-color: #2196F3;
+        }
+        
+        input:focus + .slides {
+          box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked + .slides:before {
+          -webkit-transform: translateX(22px);
+          -ms-transform: translateX(22px);
+          transform: translateX(22px);
+        }
+        
+        .slides.rounds {
+          border-radius: 34px;
+        }
+        
+        .slides.rounds:before {
+          border-radius: 50%;
+        }
+        .activeswitch{
+            display: inline-flex;
+            border-bottom: 1px solid #bdbdbd;
+            margin-top: 14px;
+        }
+        .activeswitch span{
+            color: #282D5B;
+            font-size: 16px;
+            padding-right: 14px;
+            line-height: 27px;
+            font-family: "Poppins-Medium";
+        }
+        .actionImg img{
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    
+    
+    
+      /* new html changes css 03/06/2020 */
+    
+      .submissionvoid .dropdown-content-void{
+        right: 143px !important;
+      }
+      .actiondelet {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 33px;
+      }
+      .actionpadding {
+          text-align: right;
+          padding-right: 160px !important;
+      }
+      .actiondelet  h3{
+          color: #000;
+          font-family: 'Poppins-Regular';
+          font-size: 11px;
+          border: 1px solid #DEDEDE;
+    border-radius: 2px;
+    width: 81px;
+    height: 28px;
+    text-align: center;
+    line-height: 26px;
+    cursor: pointer;
+      }
+      .actiondelet  h4{
+        color: #000;
+        font-family: 'Poppins-Regular';
+        font-size: 11px;
+        border: 1px solid #DEDEDE;
+    border-radius: 2px;
+    width: 81px;
+    height: 28px;
+    text-align: center;
+    margin-left: 10px;
+    line-height: 26px;
+    cursor: pointer;
+    }
+    .uploadtable .plan-examiner-box .table tbody td{
+        padding: 20px 0px 20px 20px;
+    }
+    .tbldocument {
+        position: relative;
+        margin-right: 25px;
+    }
+    .tbldocument h3{
+        padding: 10px 0px;
+        cursor: pointer;
+        border: 1px dashed #2AABFA;
+        border-radius: 2px;
+        text-align: center;
+        color: #60bef3;
+        font-family: 'Poppins-Regular';
+        font-size: 11px;
+    }
+    /* .tbldocument h4 input{
+        top: 0;
+        position: absolute;
+        left: 0;
+        height: 35px;
+        width: 100%;
+        opacity: 0;
+    } */

@@ -778,21 +778,21 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
       this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
       this.contractorForm.controls.contractor_phone.setValue(this.currentUserInfo.phone_number)
-      this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.state)
-      this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.city)
+      this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.city)
+      this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.state)
       this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip)
     } else {
       const application = this.permitService.getApplication()
       if (application.contractor_details) {
         this.isDisabled = false
-        this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_for_job)
+        this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_job_title)
         this.contractorForm.controls.contractor_name.setValue(application.contractor_details.contractor_name)
         this.contractorForm.controls.contractor_email.setValue(application.contractor_details.contractor_email)
         this.contractorForm.controls.contractor_business.setValue(application.contractor_details.contractor_business)
         this.contractorForm.controls.contractor_address.setValue(application.contractor_details.contractor_address)
         this.contractorForm.controls.contractor_phone.setValue(application.contractor_details.contractor_phone)
-        this.contractorForm.controls.contractor_city.setValue(application.contractor_details.contractor_state)
-        this.contractorForm.controls.contractor_state.setValue(application.contractor_details.contractor_city)
+        this.contractorForm.controls.contractor_city.setValue(application.contractor_details.contractor_city)
+        this.contractorForm.controls.contractor_state.setValue(application.contractor_details.contractor_state)
         this.contractorForm.controls.contractor_zip.setValue(application.contractor_details.contractor_zip)
       }
     }
@@ -1249,25 +1249,65 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
 
-  public searchDetails: any
-  searchBussiness() {
+  public searchDetails: any = []
+  public searchDetail: any = []
+  searchBussiness(value) {
     debugger
+    var value = value
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
-    this.permitService.searchBussiness({search_query:this.contractorForm.value.contractor_business}).subscribe(data => {
-      this.searchDetails = data.response
+    this.permitService.searchBussiness({ search_query: this.contractorForm.value.contractor_business }).subscribe(data => {
+      this.searchDetail = data.response;
+      if (this.searchDetail.length > 1) {
+        //  var searchValue =  this.searchDetail[0]
+        // this.contractorForm.controls.contractor_business.setValue(searchValue.company);
+        this.searchDetail.map(data => {
+          if (value == data.company) {
+          //  this.contractorForm.controls.contractor_for_job.setValue(data.job_title)
+            this.contractorForm.controls.contractor_name.setValue(data.first_name)
+            this.contractorForm.controls.contractor_email.setValue(data.email)
+            this.contractorForm.controls.contractor_address.setValue(data.address)
+            this.contractorForm.controls.contractor_phone.setValue(data.phone_number)
+            this.contractorForm.controls.contractor_city.setValue(data.city)
+            this.contractorForm.controls.contractor_state.setValue(data.state)
+            this.contractorForm.controls.contractor_zip.setValue(data.zip)
+
+
+          }
+        })
+
+      } else {
+        this.searchDetail.map(data => {
+          if (value == data.company) {
+            this.contractorForm.controls.contractor_name.setValue(data.first_name)
+            this.contractorForm.controls.contractor_email.setValue(data.email)
+            this.contractorForm.controls.contractor_address.setValue(data.address)
+            this.contractorForm.controls.contractor_phone.setValue(data.phone_number)
+            this.contractorForm.controls.contractor_city.setValue(data.city)
+            this.contractorForm.controls.contractor_state.setValue(data.state)
+            this.contractorForm.controls.contractor_zip.setValue(data.zip)
+          }
+        })
+      }
     })
   }
 
- // public searchDetails: any
+
+
+  // public searchDetails: any
+  data3 = ['shivam', 'chauhan', 'alok', 'singh', 'kumar']
   allBussiness() {
     debugger
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
     this.permitService.allBussiness().subscribe(data => {
-      this.searchDetails = data.response
+      this.searchDetails = data.response;
+      this.searchDetails = this.searchDetails.map(data => {
+        return data.company
+      })
+      console.log(this.searchDetails)
     })
   }
 }

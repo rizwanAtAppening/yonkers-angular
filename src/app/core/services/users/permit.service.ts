@@ -286,6 +286,19 @@ export class PermitService {
     );
   }
 
+  voidSubmition(data): Observable<any> {
+    const href = `${environment['voidSubmitionAndReview']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   searchBussiness(data): Observable<any> {
     const href = `${environment['searchBussiness']}`;
     return this.http.get<any>(href, { params: data }).pipe(

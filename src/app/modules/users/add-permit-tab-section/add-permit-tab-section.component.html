@@ -837,7 +837,7 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="contractor_business" (input) = "searchBussiness()"
+                                                            <input type="text" formControlName="contractor_business" (typeaheadOnSelect)="searchBussiness($event)" [typeahead]="searchDetails"
                                                                 [readonly]="isDisabled"
                                                                 [class]="contratorControl.contractor_business.invalid && (contratorControl.contractor_business.dirty || contratorControl.contractor_business.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">

@@ -73,7 +73,8 @@ const adminUrl = {
   addFee:`/application/manager/fee`,
   deleteFee:`/application/manager/fee/delete`,
   addReletedPermit:`/related-permit`,
-  reletedPermit:`/related-permit`
+  reletedPermit:`/related-permit`,
+  voidSubmitionAndReview:`/application/clerk/submission/void`
 
 
 };
@@ -108,6 +109,7 @@ const userUrl = {
   // searchUserApplication:`/application`,
   searchBussiness:`/users/business`,
   allBussiness:`/users/business`,
+
 
 
 }

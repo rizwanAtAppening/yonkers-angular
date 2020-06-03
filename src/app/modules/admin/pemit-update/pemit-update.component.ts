@@ -181,11 +181,18 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
 
-
-  reletedPermit($event, value) {
+  voidSubmition(id) {
     debugger
-
+    const data = {
+      application_id: this.applicationDetails.id,
+      id: id,
+    }
+    this.permitService.voidSubmition(data).subscribe(data => {
+      this.toasterService.success('Submition is voided');
+      this.permitDetails();
+    })
   }
+
 
   public related_permit: any
   check(data, value) {
@@ -252,18 +259,12 @@ export class PemitUpdateComponent implements OnInit {
   message: string;
 
   receiveMessage(event) {
-
     this.message = event
-    // if(event == 'decision'){
-    //   this.isDwonArrow = true;
-    //   this.isSubmition = false;
-    // }
     this.isDwonArrow = true;
     this.isSubmition = false;
     this.ngOnInit();
   }
   editDescription() {
-
     this.applicationService.editDescription(this.editDescriptionForm.value, this.applicationId).subscribe(data => {
       this.descriptionPopup.nativeElement.click();
       this.permitDetails();
@@ -274,20 +275,17 @@ export class PemitUpdateComponent implements OnInit {
   get clerkCon() { return this.completIncompletForm.controls }
 
   accepetOrDeclineApplication() {
-
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
     }
-    const data = {
-
-    }
+  
     this.completIncompletForm.value.application_id = this.applicationId
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
-      console.log(data)
+      this.permitDetails();
       this.completIncompletForm.reset();
-      this.isCompletApplication = false
-      this.toasterService.success('Application has been accepted')
+      this.isCompletApplication = false;
+      this.toasterService.success('Application has been accepted');
     }, error => {
       console.log(error)
     })
