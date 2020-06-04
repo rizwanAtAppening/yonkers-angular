@@ -164,6 +164,19 @@ export class ApplicationService {
     );
   }
 
+  selectSpecialCondition(id){
+    const href = `${environment['selectSpecialCondition']}/${id}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   updateContratorInfo(data){
     const href = `${environment['updateContractor']}`
     return this.http.post<any>(href,data).pipe(

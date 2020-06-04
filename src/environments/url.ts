@@ -74,7 +74,8 @@ const adminUrl = {
   deleteFee:`/application/manager/fee/delete`,
   addReletedPermit:`/related-permit`,
   reletedPermit:`/related-permit`,
-  voidSubmitionAndReview:`/application/clerk/submission/void`
+  voidSubmitionAndReview:`/application/clerk/submission/void`,
+  selectSpecialCondition:`/inspection/special_conditions`,
 
 
 };

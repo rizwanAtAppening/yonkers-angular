@@ -69,6 +69,8 @@ export class PermitDecisionsComponent implements OnInit {
       this.desicionForm.controls.expiration_date.setValue(new Date(value.expiration_date))
       this.desicionForm.controls.inspector.setValue(value.inspector)
       this.desicionForm.controls.expiration_days.setValue(value.expiration_days)
+      this.desicionForm.controls.remarks.setValue(value.remark)
+
     }
   }
 
@@ -90,7 +92,7 @@ export class PermitDecisionsComponent implements OnInit {
         permit_decision: this.desicionForm.value.permit_decision,
         application_id: this.applicationDetails.id,
         expiration_date: this.desicionForm.value.expiration_date,
-        remarks: this.desicionForm.value.remarks,
+        remark: this.desicionForm.value.remarks,
         id: (this.id ? this.id : null),
         expiration_days: this.desicionForm.value.expiration_days,
       }
@@ -102,7 +104,7 @@ export class PermitDecisionsComponent implements OnInit {
         permit_decision: this.desicionForm.value.permit_decision,
         application_id: this.applicationDetails.id,
         expiration_date: this.desicionForm.value.expiration_date,
-        remarks: this.desicionForm.value.remarks,
+        remark: this.desicionForm.value.remarks,
         expiration_days: this.desicionForm.value.expiration_days,
       }
     }
@@ -133,7 +135,7 @@ export class PermitDecisionsComponent implements OnInit {
           data.isChecked = true
         }
       })
-      this.special_conditions.push({ point: value.value, key: value.key, isChecked: true })
+      this.special_conditions.push({ point: value.value, key: value.key, isChecked: true,status:value.status })
 
     } else {
       if (this.special_conditions.length > 0) {

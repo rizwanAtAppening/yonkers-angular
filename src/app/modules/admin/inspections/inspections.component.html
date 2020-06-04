@@ -3,14 +3,46 @@
     <h2 class="mb-0">
       <button class="btn btn-link btn-block text-left collapsed" type="button">
         Inspections
-    <span (click) ="arrowRighDwon(applicationDetails?.isInspection)" data-toggle="collapse" data-target="#insfour" aria-expanded="false" aria-controls="insfour"><i
-          [class] = "applicationDetails?.isInspection?'fa fa-chevron-down':'fa fa-chevron-right'" aria-hidden="true"></i></span>
+        <span (click)="arrowRighDwon(applicationDetails?.isInspection)" data-toggle="collapse" data-target="#insfour"
+          aria-expanded="false" aria-controls="insfour"><i
+            [class]="applicationDetails?.isInspection?'fa fa-chevron-down':'fa fa-chevron-right'"
+            aria-hidden="true"></i></span>
       </button>
     </h2>
   </div>
   <div id="insfour" class="collapse" aria-labelledby="Inspectionsfour" data-parent="#accordionExample">
     <div class="card-body">
       <div class="decisions_box-collepse">
+        <div class="plan-examiner-box mt-0 SubmitInspectionTxt">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Inspections Required</th>
+                <th>Status</th>
+                <th>Action</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of specialCondition?.special_conditions">
+                <td>
+                  <p>{{data?.point}}</p>
+                </td>
+                <td>{{data?.status == 0? 'Remaining Inspection':'Inspected'}}</td>
+
+                <td>
+                  <div class="dropdown_act">
+                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                    <div class="">
+                      <a (click) ="submitSpecialCondition(data)">Submit Inspection</a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
 
         <div class="expiration-date-box-2">
           <form [formGroup]="inspectionForm">
@@ -94,9 +126,48 @@
                   placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
               </div>
             </div>
+            <div class="uploadtable">
+              <div class="plan-examiner-box">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>File name</th>
+                      <th class="actionpadding">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{imageName?imageName:'_'}}</td>
+                      <td>
+                        <div class="actiondelet">
+                          <h3 data-toggle="modal" data-target="#confirmpasswordmodalName">
+                            <!-- <i class="fa fa-eye"
+                              aria-hidden="true">View</i> -->
+                             </h3>
+                          <h4 (click) ="deleteImage()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <td colspan="2">
+                      <div class="tbldocument" data-toggle="modal" data-target="#confirmpasswordmodaladd">
+                        <h3> <img src="assets/images/b-upload.svg" alt=""> Upload Documents </h3>
+                        <!-- <h4><input type="file"></h4> -->
+                      </div>
+                    </td>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
             <div class="dicision-submit_btn"><button type="submit" (click)="addInspections()">Submit</button></div>
           </form>
+
         </div>
+
         <div class="plan-examiner-box">
           <table class="table">
             <thead>
@@ -111,9 +182,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor ="let ins of applicationDetails?.inspections">
+              <tr *ngFor="let ins of applicationDetails?.inspections">
                 <td>{{ settings.getSetting('inspection_type',ins['type'])}}</td>
-                <td>{{ settings.getSetting('inspection_decision',ins['decision'])}}<span *ngIf ="ins?.status == 0" class="voidMsg">(v)</span></td>
+                <td>{{ settings.getSetting('inspection_decision',ins['decision'])}}<span *ngIf="ins?.status == 0"
+                    class="voidMsg">(v)</span></td>
                 <td>{{ins?.fee}}</td>
                 <td>{{ins?.staff?.name?ins?.staff?.name:'_'}}</td>
                 <td>{{ins?.date | date}}</td>
@@ -122,7 +194,7 @@
                   <div class="dropdown_act">
                     <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                     <div class="dropdown-content-void">
-                      <a (click)="voidInspection(ins?.id)" *ngIf ="ins?.status != 0" >Void Inspection</a>
+                      <a (click)="voidInspection(ins?.id)" *ngIf="ins?.status != 0">Void Inspection</a>
                     </div>
                   </div>
                 </td>
@@ -133,7 +205,45 @@
           </table>
         </div>
 
+
+        
       </div>
     </div>
   </div>
+</div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="confirmpasswordmodaladd" #mediaUploadPopUp 
+ aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal-dialog modal-dialog-centered detailed-editadd">
+   <div class="modal-content border-0">
+     <div class="modal-header border-0">
+       <h5 class="modal-title txtepd" >Add New Document</h5>
+     </div>
+     <div class="detail-txtareatwo">
+       <div class="bdp_email up-add">
+       <div class="row">
+         <div class="col-12" *ngIf = "!image">
+       <div class="filedocumentBox">
+       <h3><img src="assets/images/file-upload.svg"> </h3>
+       <h4>your files to assets, or <span>browse</span></h4>
+       <input type="file" (change)="media($event)">
+       </div>
+         </div>
+         <div class="col-12" *ngIf = "image">
+           <img [src] ="image"> 
+           <div class="crose-rightIcon" (click)="imageEmpty()">
+              <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+
+           </div>
+       </div>
+       </div>
+       <div class="modal-btn-decripatn">
+         <button class="cancle_button " (click) = "submitImage()">Cancel</button>
+         <button class="save_button" (click) = "submitImage()">Submit</button>
+       </div>
+     </div>
+   </div>
+ </div>
 </div>

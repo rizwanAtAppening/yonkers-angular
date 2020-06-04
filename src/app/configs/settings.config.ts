@@ -189,85 +189,85 @@ export const settingConfig = {
     {
       key: 12,
       value: 'Indiana (IN)'
-      
+
     }, {
       key: 13,
       value: 'Kansas (KS)'
     }, {
       key: 14,
       value: 'Kentucky (KY)'
-      
+
     }, {
       key: 15,
       value: 'Louisiana (LA)'
     }, {
       key: 17,
       value: 'Massachusetts (MA)'
-      
+
     }, {
       key: 18,
       value: 'Maryland (MD)'
-      
+
     }, {
       key: 19,
-      value:'Maine (ME)'
-      
+      value: 'Maine (ME)'
+
     }, {
       key: 20,
-      value: 'Minnesota (MN)' 
+      value: 'Minnesota (MN)'
     }, {
       key: 21,
       value: 'Missouri (MO)'
-      
+
     }, {
       key: 22,
       value: 'Mississippi (MS)'
-      
+
     }, {
       key: 23,
       value: 'Montana (MT)'
-      
+
     }, {
       key: 24,
       value: 'North Carolina (NC)'
-      
+
     }, {
       key: 25,
       value: 'North Dakota (ND)'
-      
+
     }, {
       key: 26,
       value: 'Nebraska (NE)'
-      
+
     }, {
       key: 27,
       value: 'New Hampshire (NH)'
-      
+
     }, {
       key: 28,
       value: 'New Jersey (NJ)'
-      
+
     }, {
       key: 29,
       value: 'New Mexico (NM)'
-      
+
     }, {
       key: 30,
       value: 'Nevada (NV)'
-      
+
     }, {
       key: 31,
       value: 'Ohio (OH)'
-      
-      
+
+
     }, {
       key: 32,
       value: 'Oklahoma (OK)'
-      
+
     }, {
       key: 33,
       value: 'Oregon (OR)'
-      
+
     }, {
       key: 34,
       value: 'Pennsylvania (PA)'
@@ -286,55 +286,55 @@ export const settingConfig = {
       value: 'South Carolina (SC)'
 
 
-    },{
+    }, {
       key: 38,
       value: 'South Dakota (SD)'
 
 
-    },{
+    }, {
       key: 39,
       value: 'Tennessee (TN)'
 
 
-    },{
+    }, {
       key: 40,
       value: 'Texas (TX)'
 
-    },{
+    }, {
       key: 41,
       value: 'Utah (UT)'
 
 
-    },{
+    }, {
       key: 42,
       value: 'Rhode Island (RI)'
 
-    },{
+    }, {
       key: 43,
       value: 'Virgin Islands (VI)'
 
 
-    },{
+    }, {
       key: 44,
       value: 'Virginia (VA)'
 
 
-    },{
+    }, {
       key: 45,
       value: 'Vermont (VT)'
 
 
-    },{
+    }, {
       key: 46,
       value: 'Washington (WA)'
 
 
-    },{
+    }, {
       key: 47,
       value: 'Wisconsin (WI)'
 
 
-    },{
+    }, {
       key: 48,
       value: 'West Virginia (WV)'
 
@@ -344,266 +344,275 @@ export const settingConfig = {
       key: 49,
       value: 'Wyoming (WY)'
     },
-   
+
   ],
 
-policyType:[
-{
-  key:1,
-  value:'Yonkers License'
-},
-{
-  key:1,
-  value:'General Liability'
-},{
-  key:1,
-  value:'Bond'
-},
-],
+  policyType: [
+    {
+      key: 1,
+      value: 'Yonkers License'
+    },
+    {
+      key: 1,
+      value: 'General Liability'
+    }, {
+      key: 1,
+      value: 'Bond'
+    },
+  ],
 
-imageType:[
-  {
-    key:0,
-    value:'Drawings/ Plans'
-  },
-  {
-    key:1,
-    value:'Certificate of Insurance'
-  },
-],
+  imageType: [
+    {
+      key: 0,
+      value: 'Drawings/ Plans'
+    },
+    {
+      key: 1,
+      value: 'Certificate of Insurance'
+    },
+  ],
 
-permit_status:[
-  {
-    key:0,
-    value:'Issue Permit'
-  },
- 
-],
+  permit_status: [
+    {
+      key: 0,
+      value: 'Issue Permit'
+    },
 
-
-inspection_decision:[
-  {
-    key:6,
-    value:'Pass'
-  },
-  {
-    key:5,
-    value:'Fail'
-  },
-  {
-    key:4,
-    value:'Pending'
-  },
-],
-
-inspection_type:[
-  {
-    key:1,
-    value:'Bond Release'
-  },
-  {
-    key:2,
-    value:'Catch Basin'
-  },
-  {
-    key:3,
-    value:'Drain Line Connection'
-  },
-  {
-    key:4,
-    value:'Dumpster'
-  }, {
-    key:5,
-    value:'Final'
-  }, {
-    key:6,
-    value:'Gas Main'
-  }, {
-    key:7,
-    value:'Gas Service'
-  }, {
-    key:8,
-    value:'Other'
-  }, {
-    key:9,
-    value:'Pre-construction'
-  }, {
-    key:10,
-    value:'Road Restoration'
-  }, {
-    key:11,
-    value:'Scaffolding'
-  },
-  {
-    key:12,
-    value:'Sewer Connection'
-  },{
-    key:13,
-    value:'Sidewalk'
-  },{
-    key:14,
-    value:'Street Opening'
-  },
-  {
-    key:15,
-    value:'Tree Condition'
-  },{
-    key:16,
-    value:'Water Main'
-  },{
-    key:17,
-    value:'Water Service'
-  },
-],
+  ],
 
 
+  inspection_decision: [
+    {
+      key: 6,
+      value: 'Pass'
+    },
+    {
+      key: 5,
+      value: 'Fail'
+    },
+    {
+      key: 4,
+      value: 'Pending'
+    },
+  ],
+
+  inspection_type: [
+    {
+      key: 1,
+      value: 'Bond Release'
+    },
+    {
+      key: 2,
+      value: 'Catch Basin'
+    },
+    {
+      key: 3,
+      value: 'Drain Line Connection'
+    },
+    {
+      key: 4,
+      value: 'Dumpster'
+    }, {
+      key: 5,
+      value: 'Final'
+    }, {
+      key: 6,
+      value: 'Gas Main'
+    }, {
+      key: 7,
+      value: 'Gas Service'
+    }, {
+      key: 8,
+      value: 'Other'
+    }, {
+      key: 9,
+      value: 'Pre-construction'
+    }, {
+      key: 10,
+      value: 'Road Restoration'
+    }, {
+      key: 11,
+      value: 'Scaffolding'
+    },
+    {
+      key: 12,
+      value: 'Sewer Connection'
+    }, {
+      key: 13,
+      value: 'Sidewalk'
+    }, {
+      key: 14,
+      value: 'Street Opening'
+    },
+    {
+      key: 15,
+      value: 'Tree Condition'
+    }, {
+      key: 16,
+      value: 'Water Main'
+    }, {
+      key: 17,
+      value: 'Water Service'
+    },
+  ],
 
 
-days:[
-  {
-    key:1,
-    value:'7 Days',
-    actualValue:7,
-    name:'days'
-
-  },
-  {
-    key:2,
-    value:'30 Days',
-    actualValue:30,
-    name:'days'
 
 
-  },
-  {
-    key:3,
-    value:' 60 Days',
-    actualValue:60,
-    name:'days'
+  days: [
+    {
+      key: 1,
+      value: '7 Days',
+      actualValue: 7,
+      name: 'days'
 
-  },
-  {
-    key:4,
-    value:'90 Days',
-    name:'days',
-    actualValue:90,
-
-  },
-  {
-    key:5,
-    value:' 6 Month',
-    actualValue:6,
-    name:'months',
+    },
+    {
+      key: 2,
+      value: '30 Days',
+      actualValue: 30,
+      name: 'days'
 
 
-  },
-  {
-    key:6,
-    value:'1 Year',
-    actualValue:1,
-    name:'years',
+    },
+    {
+      key: 3,
+      value: ' 60 Days',
+      actualValue: 60,
+      name: 'days'
+
+    },
+    {
+      key: 4,
+      value: '90 Days',
+      name: 'days',
+      actualValue: 90,
+
+    },
+    {
+      key: 5,
+      value: ' 6 Month',
+      actualValue: 6,
+      name: 'months',
 
 
-  }, {
-    key:7,
-    value:'2 Year',
-    actualValue:2,
-    name:'years',
-  },
-],
+    },
+    {
+      key: 6,
+      value: '1 Year',
+      actualValue: 1,
+      name: 'years',
 
-superAdmin:1,
-admin:2,
-manager:3,
-clerk:4,
-inspector:5,
 
-// application_decision: {
-//   1: "Cancelled",
-//   2: "Accept",
-//   3: "Issue Permit",
-//   4: 'Pending',
-//   5: 'Fail',
-//   6: 'Pass',  // closed when Inspection is passed
+    }, {
+      key: 7,
+      value: '2 Year',
+      actualValue: 2,
+      name: 'years',
+    },
+  ],
 
-// },
+  superAdmin: 1,
+  admin: 2,
+  manager: 3,
+  clerk: 4,
+  inspector: 5,
 
-conditions:[
-  {
-    key: 1,
-    value: 'Inspections are needed 24 hours in advanced before you pour Concrete',
-    isChecked:false
-  },{
-    key: 2,
-    value: 'Inspection: Curb Replacement',
-    isChecked:false
-  },{
-    key: 3,
-    value: 'Inspection: New Sidewalk',
-    isChecked:false
-  },{
-    key: 4,
-    value: 'All Permits Must Be Renewed Before The Expiration Date Stated On The',
-    isChecked:false
-  },{
-    key: 5,
-    value: 'Inspections are needed 24 hours in advanced before you Backfill after add',
-    isChecked:false
-  },
-],
+  // application_decision: {
+  //   1: "Cancelled",
+  //   2: "Accept",
+  //   3: "Issue Permit",
+  //   4: 'Pending',
+  //   5: 'Fail',
+  //   6: 'Pass',  // closed when Inspection is passed
 
-peyments_TypeForFee:[
-  {
-    key: 1,
-    value: 'Application',
-  },
- 
-  {
-    key: 2,
-    value: 'Permit',
-  },
-  {
-    key: 3,
-    value: 'Permit Renewal',
-  }
-],
+  // },
 
-peyments_TypeForDeposit:[
-  {
-    key: 5,
-    value: 'Bond',
-  },
-  {
-    key: 5,
-    value: 'Deposit',
-  },
-  {
-    key: 6,
-    value: 'Self Insured',
-  },
-  
-],
+  conditions: [
+    {
+      key: 1,
+      value: 'Inspections are needed 24 hours in advanced before you pour Concrete',
+      isChecked: false,
+      status: 0
+    }, {
+      key: 2,
+      value: 'Inspection: Curb Replacement',
+      isChecked: false,
+      status: 0
 
-fee_Type:[
-  {
-    key: 1,
-    value: 'Deposit & Bond',
-  },
-  {
-    key: 2,
-    value: 'Fee & Payments',
-  }
-],
-submission_Application_status: [
-  {
-    key: 1,
-    value: 'Submission Incomplete'
-  },
-  {
-    key: 2,
-    value: 'Accept Submission'
-  }
-],
+    }, {
+      key: 3,
+      value: 'Inspection: New Sidewalk',
+      isChecked: false,
+      status: 0
+
+    }, {
+      key: 4,
+      value: 'All Permits Must Be Renewed Before The Expiration Date Stated On The',
+      isChecked: false,
+      status: 0
+
+    }, {
+      key: 5,
+      value: 'Inspections are needed 24 hours in advanced before you Backfill after add',
+      isChecked: false,
+      status: 0
+
+    },
+  ],
+
+  peyments_TypeForFee: [
+    {
+      key: 1,
+      value: 'Application',
+    },
+
+    {
+      key: 2,
+      value: 'Permit',
+    },
+    {
+      key: 3,
+      value: 'Permit Renewal',
+    }
+  ],
+
+  peyments_TypeForDeposit: [
+    {
+      key: 5,
+      value: 'Bond',
+    },
+    {
+      key: 5,
+      value: 'Deposit',
+    },
+    {
+      key: 6,
+      value: 'Self Insured',
+    },
+
+  ],
+
+  fee_Type: [
+    {
+      key: 1,
+      value: 'Deposit & Bond',
+    },
+    {
+      key: 2,
+      value: 'Fee & Payments',
+    }
+  ],
+  submission_Application_status: [
+    {
+      key: 1,
+      value: 'Submission Incomplete'
+    },
+    {
+      key: 2,
+      value: 'Accept Submission'
+    }
+  ],
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {
       key: condition

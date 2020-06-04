@@ -1,4 +1,4 @@
-import { Component, Output,OnInit,EventEmitter, Input } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -13,12 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 export class InspectionsComponent implements OnInit {
   public applicationDetails: any;
   public settings: any;
+  @ViewChild('mediaUploadPopUp', { static: false }) mediaUploadPopUp: ElementRef;
+
   @Output() messageEvent = new EventEmitter<string>();
   @Input() certificatesChild: Observable<any>;
   public inspectionForm: FormGroup
   constructor(
     private applicationService: ApplicationService,
-    private ts:ToastrService,
+    private ts: ToastrService,
     private fb: FormBuilder
   ) {
     this.settings = settingConfig;
@@ -28,6 +30,9 @@ export class InspectionsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
+      if (this.applicationDetails) {
+        this.selectSpecialCondition();
+      }
     });
     this.onInIt()
   }
@@ -37,9 +42,9 @@ export class InspectionsComponent implements OnInit {
 
   inspectionFormControl() {
     this.inspectionForm = this.fb.group({
-      decision: ['',Validators.required],
-      type: ['',Validators.required],
-      date: ['',Validators.required],
+      decision: ['', Validators.required],
+      type: ['', Validators.required],
+      date: ['', Validators.required],
       amount: [''],
       remark: [''],
     })
@@ -49,7 +54,7 @@ export class InspectionsComponent implements OnInit {
 
   public isInspection = false;
   addInspections() {
-    
+
     if (this.inspectionForm.invalid) {
       this.isInspection = true;
       return true
@@ -57,11 +62,25 @@ export class InspectionsComponent implements OnInit {
     const data = {
 
     }
-    this.inspectionForm.value.application_id = this.applicationDetails.id;
-    this.inspectionForm.value.decision = Number(this.inspectionForm.value.decision)
-    this.inspectionForm.value.fee = Number(this.inspectionForm.value.amount)
+    // decision: ['', Validators.required],
+    // type: ['', Validators.required],
+    // date: ['', Validators.required],
+    // amount: [''],
+    // remark: [''],
+    var formData = new FormData();
+    formData.append('document', this.attachment)
+    formData.append('application_id', this.applicationDetails.id)
+    formData.append('decision', this.inspectionForm.value.decision)
+    formData.append('fee', this.inspectionForm.value.amount)
+    formData.append('type', this.inspectionForm.value.type)
+    formData.append('date', this.inspectionForm.value.date)
+    formData.append('remark', this.inspectionForm.value.remark)
 
-    this.applicationService.inspection(this.inspectionForm.value).subscribe(data => {
+    // this.inspectionForm.value.application_id = this.applicationDetails.id;
+    // this.inspectionForm.value.decision = Number(this.inspectionForm.value.decision)
+    // this.inspectionForm.value.fee = Number(this.inspectionForm.value.amount)
+
+    this.applicationService.inspection(formData).subscribe(data => {
       this.inspectionForm.reset();
       this.isInspection = false
       this.messageEvent.emit(this.message);
@@ -91,5 +110,63 @@ export class InspectionsComponent implements OnInit {
     this.messageEvent.emit('inspection')
     this.applicationDetails.isInspection = !value
   }
+
+  public specialCondition = []
+  selectSpecialCondition() {
+    this.applicationService.selectSpecialCondition(this.applicationDetails.id).subscribe(data => {
+      this.specialCondition = data.response;
+    })
+  }
+
+  public
+  submitSpecialCondition(value) {
+    debugger
+    this.settings.inspection_type.map(data => {
+      if (data.key == value.key) {
+        this.inspectionForm.controls.type.setValue(value.key)
+      }
+    })
+
+  }
+
+  public imageName: any;
+  public attachment: any
+  public licenseFile: any
+  public image: any
+  public formData
+  media(event1) {
+    this.imageName = event1.target.files[0].name;
+    this.attachment = event1.target.files[0]
+    // this.formData = new FormData()
+    // this.formData.append('name', this.attachment)
+    var reader = new FileReader();
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.image = event.target.result;
+    };
+    reader.readAsDataURL(event1.target.files[0]);
+
+
+  }
+
+
+  goToLink() {
+    window.open(this.image, "_blank");
+  }
+  submitImage() {
+    this.mediaUploadPopUp.nativeElement.click();
+  }
+
+  deleteImage() {
+    this.imageName = null;
+    this.attachment = null;
+  }
+  imageEmpty() {
+    this.imageName = null;
+    this.attachment = null;
+    this.image = null
+  }
+
+
 
 }

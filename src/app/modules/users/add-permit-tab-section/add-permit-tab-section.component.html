@@ -1091,8 +1091,10 @@
                                                                     <td>
                                                                         <h6 class="status-active-btn" *ngIf ="!license?.isExpiry">
                                                                             Active</h6>
-                                                                        <h6 class="status-active-btn1" *ngIf ="license?.isExpiry">
-                                                                            Expire</h6>
+                                                                        <!-- <h6 class="status-active-btn1" *ngIf ="license?.isExpiry">
+                                                                            Expire</h6> -->
+                                                                            <h6  *ngIf ="license?.isExpiry">
+                                                                                    {{license?.expiration_date | date}}</h6>
                                                                     </td>                                                                    <td class="view-Btn" *ngIf="license?.name"><button>
                                                                             <span><i class="fa fa-eye"
                                                                                     aria-hidden="true"></i></span><a

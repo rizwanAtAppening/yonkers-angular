@@ -4512,3 +4512,85 @@ color: #282D5B99 !important;
         width: 100%;
         opacity: 0;
     } */
+
+    .SubmitInspectionTxt .dropdown-content-void{
+        right: 150px !important;
+            min-width: 162px !important;
+    
+    }
+    .greenTxt .status-active-btn {
+        border: 1px solid #5CB85C;
+            color: #5CB85C;
+    }
+    .detailed-editadd{
+        max-width: 629px;
+        border-radius: 4px;
+    }
+    .filedocumentBox {
+        position:relative;
+        height: 189px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px dashed #282D5B;
+    border-radius: 4px;
+    width:100%;
+    }
+    .detailed-edit .modal-header, .detail-txtareatwo {
+        margin-left: 15px;
+        padding-bottom:0px;
+    }
+    
+    .filedocumentBox h3{
+        text-align: center;
+     margin-top: 57px;
+    }
+    .filedocumentBox h4{
+        color: #4D4F5C80;
+        font-family: 'Poppins-Regular';
+        text-align: center;
+        font-size: 15px;
+        line-height: 16px;
+    }
+    .filedocumentBox h4 span{
+        color: #2AABFA;
+    }
+    
+    .filedocumentBox  input{
+        position: absolute;
+        top: 0;
+        height: 187px !important;
+        width: 100%;
+        opacity: 0;
+    }
+    .namedocumentInpt input{
+        border-radius: 8px !important;
+        border: 1px solid #E0E0E0;
+    }
+    .JohnsmithTxt {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
+        background: #E9F6FE;
+    }
+    
+    .JohnsmithTxt h1{
+        font-size: 14px;
+        color: #2AABFA;
+        padding: 11px 18px 11px 18px;
+        font-family: "Poppins-Medium";
+        letter-spacing: 0.35px;
+    }
+    .JohnsmithTxt h6{
+        cursor: pointer;
+        margin: 8px 16px 0px 0px;
+    }
+    .property-map {
+        width: 100%;
+        height: 237px;
+    }
+    .exportBtn .New-Project button{
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 1px 3px #0000000A;
+        border: 1px solid #282D5B;
+        color: #282D5BE8;
+    }
