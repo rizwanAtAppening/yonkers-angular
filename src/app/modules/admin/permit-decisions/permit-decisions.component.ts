@@ -104,7 +104,6 @@ export class PermitDecisionsComponent implements OnInit {
         expiration_date: this.desicionForm.value.expiration_date,
         remarks: this.desicionForm.value.remarks,
         expiration_days: this.desicionForm.value.expiration_days,
-
       }
     }
 
