@@ -32,7 +32,7 @@ const TOASTR_OPTIONS = {
     AdminModule,
     ToastrModule.forRoot(TOASTR_OPTIONS),
     NgxUiLoaderModule,
-    NgxUiLoaderRouterModule,
+    NgxUiLoaderRouterModule, 
     NgxUiLoaderHttpModule,
     
   ],
