@@ -114,7 +114,11 @@ export class InspectionsComponent implements OnInit {
   public specialCondition = []
   selectSpecialCondition() {
     this.applicationService.selectSpecialCondition(this.applicationDetails.id).subscribe(data => {
-      this.specialCondition = data.response;
+      this.specialCondition = data.response.special_conditions;
+      // Object.keys
+      // this.specialCondition = this.specialCondition.map(data=>{
+      //   return data.special_conditions
+      //  })
     })
   }
 
