@@ -259,22 +259,22 @@
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
-                                                                <h6>Makelaarskantoor </h6>
+                                                                <h6>{{settings.getSetting('purpose',applicationDetails?.project_detail?.purpose)}} </h6>
                                                             </li>
                                                             <li>
-                                                                <h6>39594</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.width?applicationDetails?.project_detail?.width:'_'}}</h6>
                                                             </li>
                                                             <li>
                                                                 <h6>9178617701</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>$00.00</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.dig_safely_no ? applicationDetails?.project_detail?.dig_safely_no:'_'}}</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>Mike Monxhwedey</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>Mike Monxhwedey</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.layout_number ? applicationDetails?.project_detail?.layout_number:'_'}}</h6>
                                                             </li>
 
                                                         </ul>
@@ -315,22 +315,25 @@
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
-                                                                <h6>Street Opening </h6>
+                                                                <h6 *ngIf = "applicationDetails?.project_detail?.traffic">{{settings.getSetting('traffic_control',applicationDetails?.project_detail?.traffic)}}</h6>
+                                                                <h6 *ngIf = "!applicationDetails?.project_detail?.traffic">_</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>1 to 2</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>1 to 2</h6>
+                                                                <h6>{{applicationDetails?.project_detail?.start_date | date}}</h6>
                                                             </li>
                                                             <li>
-                                                                <h6>39594</h6>
-                                                            </li>
+                                                                    <h6>{{applicationDetails?.project_detail?.length ? applicationDetails?.project_detail?.length:'_'}}</h6>
+                                                                </li>
                                                             <li>
-                                                                <h6>9178617701</h6>
-                                                            </li>
+                                                                    <h6 *ngIf ="applicationDetails?.project_detail?.pavement_type">{{settings.getSetting('preventType',applicationDetails?.project_detail?.pavement_type)}}</h6>
+                                                                    <h6 *ngIf ="!applicationDetails?.project_detail?.pavement_type">_</h6>
+
+                                                                </li>
                                                             <li>
-                                                                <h6>9178617701</h6>
+                                                                    <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
                                                             </li>
 
                                                         </ul>
@@ -366,33 +369,31 @@
                                                 <td>
                                                     <div class="select-input-box">
                                                         <div class="form-group">
-                                                            <select>
-                                                                <option>Drawings/ Plans</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
+                                                            <select (change) = "selectImageType($event.target.value)">
+                                                                    <option value="" hidden>--Select--</option>
+                                                                    <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
                                                             </select>
                                                             <span><i class="fa fa-angle-down"
                                                                     aria-hidden="true"></i></span>
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>Example.jpg</td>
+                                                <!-- <td>Example.jpg</td> -->
+                                                <td><input type="file" (change)="media($event)" ></td>
 
 
                                                 <td>
                                                     <div class="dropdown_act">
                                                         <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                                                         <div class="dropdown-content-void">
-                                                            <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
-                                                                View</a>
-                                                            <a href="#" data-toggle="modal"
+                                                            <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                                View</a> -->
+                                                            <a  data-toggle="modal"
                                                                 data-target="#Email-ForApplication"> <span> <img
                                                                         src="assets/images/d2.svg"> </span> Email</a>
-                                                            <a href="#" data-toggle="modal"
+                                                            <!-- <a href="#" data-toggle="modal"
                                                                 data-target="#delete-applicationdecription"> <span> <img
-                                                                        src="assets/images/d3.svg"> </span> Delete</a>
+                                                                        src="assets/images/d3.svg"> </span> Delete</a> -->
                                                         </div>
                                                     </div>
                                                 </td>
@@ -404,118 +405,129 @@
 
                         </div>
                         <div class="tab-pane fade " id="nav-adminapdate-four" role="tabpanel"
-                            aria-labelledby="nav-adminapdate-four-tab">
+                aria-labelledby="nav-adminapdate-four-tab">
 
-                            <div class="jobdetails-txt">
-                                <div class="col-12 p-0">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-4">
-                                                    <div class="no-ref-txt">
-                                                        <ul>
-                                                            <li>
-                                                                <h5>Parcel Number:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Block:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Lot:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Owner:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Owner Street:</h5>
-                                                            </li>
+                <div class="jobdetails-txt">
+                  <div class="col-12 p-0">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-4">
+                            <div class="no-ref-txt">
+                              <ul>
+                                <li>
+                                  <h5>Parcel Number:</h5>
+                                </li>
+                                <li>
+                                  <h5>Block:</h5>
+                                </li>
+                                <li>
+                                  <h5>Lot:</h5>
+                                </li>
+                                <li>
+                                  <h5>Owner:</h5>
+                                </li>
+                                <li>
+                                  <h5>Owner Street:</h5>
+                                </li>
 
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-8">
-                                                    <div class="no-ref-txt">
-                                                        <ul>
-                                                            <li>
-                                                                <h6>2.-2041-35 </h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>2041</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>035</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>Hyung Man Kim</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>158 Ashburton Ave</h6>
-                                                            </li>
-
-
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <div class="no-ref-txt">
-                                                        <ul>
-                                                            <li>
-                                                                <h5>Owner City/State:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Roll Year:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Land Value:</h5>
-                                                            </li>
-                                                            <li>
-                                                                <h5>Total Value:</h5>
-                                                            </li>
-
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-7">
-                                                    <div class="no-ref-txt">
-                                                        <ul>
-                                                            <li>
-                                                                <h6>Street Opening </h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>9178617701</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>39594</h6>
-                                                            </li>
-                                                            <li>
-                                                                <h6>39594</h6>
-                                                            </li>
-
-
-                                                        </ul>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
+                              </ul>
 
                             </div>
+                          </div>
+                          <div class="col-8">
+                            <div class="no-ref-txt">
+                              <ul>
+                                <li>
+                                  <h6>2.-2041-35 </h6>
+                                </li>
+                                <li>
+                                  <h6>2041</h6>
+                                </li>
+                                <li>
+                                  <h6>035</h6>
+                                </li>
+                                <li>
+                                  <h6>Hyung Man Kim</h6>
+                                </li>
+                                <li>
+                                  <h6>158 Ashburton Ave</h6>
+                                </li>
 
 
+                              </ul>
+
+                            </div>
+                          </div>
                         </div>
+
+                      </div>
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-5">
+                            <div class="no-ref-txt">
+                              <ul>
+                                <li>
+                                  <h5>Owner City/State:</h5>
+                                </li>
+                                <li>
+                                  <h5>Roll Year:</h5>
+                                </li>
+                                <li>
+                                  <h5>Land Value:</h5>
+                                </li>
+                                <li>
+                                  <h5>Total Value:</h5>
+                                </li>
+
+                              </ul>
+
+                            </div>
+                          </div>
+                          <div class="col-7">
+                            <div class="no-ref-txt">
+                              <ul>
+                                <li>
+                                  <h6>Street Opening </h6>
+                                </li>
+                                <li>
+                                  <h6>9178617701</h6>
+                                </li>
+                                <li>
+                                  <h6>39594</h6>
+                                </li>
+                                <li>
+                                  <h6>39594</h6>
+                                </li>
+
+
+                              </ul>
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+<div class="row">
+  <div class="col-12">
+        <div class="map-booking-img">
+                <agm-map  [latitude]="lat" [longitude]="long">
+                  <agm-marker  [latitude]="lat" [longitude]="long">
+                  </agm-marker>
+                </agm-map>
+                <!-- <agm-map [latitude]="lat" [longitude]="lng"></agm-map> -->
+
+              </div>
+  </div>
+</div>
+
+                  </div>
+                </div>
+
+
+              </div>
 
                         <div class="tab-pane fade" id="nav-adminapdate-five" role="tabpanel"
                             aria-labelledby="nav-adminapdate-five-tab">
@@ -592,11 +604,11 @@
                         *ngIf="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
                         <div id="headingOne-review">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left" type="button">
+                                <button class="btn btn-link btn-block text-left" (click)="arrowRighDwon(isDwonArrow,'sub')"  type="button" data-toggle="collapse"
+                                data-target="#Submissionone" aria-expanded="true"
+                                aria-controls="Submissionone">
                                     Submission Review
-                                    <span (click)="arrowRighDwon(isDwonArrow,'sub')" data-toggle="collapse"
-                                        data-target="#Submissionone" aria-expanded="true"
-                                        aria-controls="Submissionone"><i
+                                    <span ><i
                                             [class]="isDwonArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
                                             aria-hidden="true"></i></span>
                                 </button>
@@ -746,11 +758,11 @@
                     <div class="card">
                         <div id="FeeThree">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button">
+                                <button  (click)="arrowRighDwon(isSubmition,'fee')" class="btn btn-link btn-block text-left collapsed" data-toggle="collapse"
+                                data-target="#PaymentThree" aria-expanded="false"
+                                aria-controls="PaymentThree" type="button">
                                     Fee & Payment
-                                    <span (click)="arrowRighDwon(isSubmition,'fee')" data-toggle="collapse"
-                                        data-target="#PaymentThree" aria-expanded="false"
-                                        aria-controls="PaymentThree"><i
+                                    <span ><i
                                             [class]="!isSubmition?'fa fa-chevron-right':'fa fa-chevron-down'"
                                             aria-hidden="true"></i></span>
                                 </button>
@@ -904,10 +916,10 @@
                     <div class="card">
                         <div id="contractors-seven">
                             <h2 class="mb-0">
-                                <button class="btn btn-link btn-block text-left collapsed" type="button">
+                                <button data-toggle="collapse" class="btn btn-link btn-block text-left collapsed" type="button" (click)="arrowRighDwon(isDwonArrow,'permit')"
+                                data-target="#con-seven" aria-expanded="false" aria-controls="con-seven">
                                     Related Permits
-                                    <span data-toggle="collapse" (click)="arrowRighDwon(isDwonArrow,'permit')"
-                                        data-target="#con-seven" aria-expanded="false" aria-controls="con-seven"><i
+                                    <span  ><i
                                             [class]="!isReletedPermitArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
                                             aria-hidden="true"></i></span>
                                 </button>
@@ -1070,6 +1082,121 @@
             </div>
         </div>
     </div>
+
+     <!-- Modal -->
+  <div class="modal fade" id="Email-ForApplication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog popup-dumpstar" role="document">
+    <div class="modal-content text-addpopup">
+      <div class="modal-header p-0 pb-2 ">
+        <h5>Email For - Application</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="container p-0 admin-contractor-details">
+        <div class="col-12 p-0">
+          <div class="bdp_email up-add">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <input type="text" id="emaila1" class="form-control" required="">
+                  <label class="form-control-placeholder" for="emaila1">To</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="row emailfor-select">
+                  <div class="col-12 ">
+                    <div class=" admin-add-insurance" style="margin-top: 0px !important;">
+                      <form>
+                        <div class="form-group">
+
+                          <select>
+                            <option>Select</option>
+                            <option>Select</option>
+                          </select>
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="popup-busnise">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <input type="text" id="aucd3" class="form-control" required="">
+                    <label class="form-control-placeholder" for="aucd3">CC</label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="row emailfor-select">
+                    <div class="col-12 ">
+                      <div class=" admin-add-insurance" style="margin-top: 0px !important;">
+                        <form>
+                          <div class="form-group">
+
+                            <select>
+                              <option>Select</option>
+                              <option>Select</option>
+                            </select>
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="popup-busnise">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <input type="text" id="aucd5" class="form-control" required="">
+                    <label class="form-control-placeholder" for="aucd5">Subject</label>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="popup-busnise">
+              <div class="row">
+                <div class="col-12 emailfor-textarea ">
+                  <div class="form-group">
+                    <label>Detailed Description</label>
+                    <textarea placeholder="Type something here..."></textarea>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="popup-busnise">
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="atechpdf">Attechment :- <span>Application.Pdf</span></h6>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="btn-pre pop-Btn">
+              <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
+              <button class="continue mr-0">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- </router-outlet>

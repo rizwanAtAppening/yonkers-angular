@@ -286,6 +286,32 @@ export class PermitService {
     );
   }
 
+  uploadImageByAdmin(data): Observable<any> {
+    const href = `${environment['uploadIamge']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+  downloadApplication(data, id): Observable<any> {
+    const href = `${environment['downloadApplication']}/${id}`;
+    return this.http.get<any>(href, { params: data }).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   voidSubmition(data): Observable<any> {
     const href = `${environment['voidSubmitionAndReview']}`;
     return this.http.post<any>(href, data).pipe(

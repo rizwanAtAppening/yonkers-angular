@@ -4594,3 +4594,26 @@ color: #282D5B99 !important;
         border: 1px solid #282D5B;
         color: #282D5BE8;
     }
+
+    /* 04/06/2020 css */
+
+.abc-search {
+    margin-left: 30px;
+}
+#nrtn {
+padding: 11px 22px !important;
+border: 1px solid #2AABFA;
+background: #2AABFA;
+font-family: 'Poppins-Regular';
+font-size: 14px;
+color: #fff;
+margin-left: 15px;
+}
+#manage-export {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 1px 3px #0000000A;
+border: 1px solid #282D5B;
+color: #282D5BE8;
+padding: 10px 17px;
+
+}

@@ -1,10 +1,10 @@
 <div class="card">
     <div id="headingTwo-review">
         <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left collapsed" type="button">
+            <button class="btn btn-link btn-block text-left collapsed" (click) ="arrowRighDwon(applicationDetails?.isDecision)" data-toggle="collapse" data-target="#SubmissionTwo" aria-expanded="false"
+            aria-controls="SubmissionTwo" type="button">
                 Decisions
-                <span (click) ="arrowRighDwon(applicationDetails?.isDecision)" data-toggle="collapse" data-target="#SubmissionTwo" aria-expanded="false"
-                    aria-controls="SubmissionTwo"><i [class] = "!applicationDetails?.isDecision?'fa fa-chevron-right':'fa fa-chevron-down'" aria-hidden="true"></i></span>
+                <span ><i [class] = "!applicationDetails?.isDecision?'fa fa-chevron-right':'fa fa-chevron-down'" aria-hidden="true"></i></span>
             </button>
         </h2>
     </div>

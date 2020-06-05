@@ -21,6 +21,8 @@ export class PemitUpdateComponent implements OnInit {
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
   @ViewChild('reletedPermitPopUp', { static: false }) reletedPermitPopUp: ElementRef;
 
+  public lat = 40.730610;
+  public long = -73.935242;
   certificates: any = new Subject<any>();
 
   public applicationId: number;
@@ -279,7 +281,7 @@ export class PemitUpdateComponent implements OnInit {
       this.isAccept = true
       return false
     }
-  
+
     this.completIncompletForm.value.application_id = this.applicationId
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
       this.permitDetails();
@@ -349,4 +351,65 @@ export class PemitUpdateComponent implements OnInit {
     this.certificates.next(this.applicationDetails)
 
   }
+
+  public imageName: any;
+  public attachment: any
+  public licenseFile: any
+  public image: any
+  public formData
+  media(event1) {
+    this.imageName = event1.target.files[0].name;
+    this.attachment = event1.target.files[0]
+    // this.formData = new FormData()
+    // this.formData.append('name', this.attachment)
+    var reader = new FileReader();
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.image = event.target.result;
+    };
+    reader.readAsDataURL(event1.target.files[0]);
+    if (this.imageType) {
+      this.uploadImage()
+    }
+
+  }
+  public imageType: string
+  selectImageType(type) {
+    var type = type
+    this.imageType = type
+    if (type == 0) {
+      this.imageType = type
+    } else {
+      this.imageType = type
+
+    }
+
+  }
+
+  uploadImage() {
+    debugger
+    var formData = new FormData();
+    formData.append('application_id', this.applicationDetails.id);
+    formData.append('name', this.attachment); 
+    formData.append('type', this.imageType);
+    this.permitService.uploadImageByAdmin(formData).subscribe(data => {
+      this.image = null;
+      this.toasterService.success('Image upload successfuly');
+    })
+  }
+
+
+
+
+  deleteImage() {
+    this.imageName = null;
+    this.attachment = null;
+  }
+  imageEmpty() {
+    this.imageName = null;
+    this.attachment = null;
+    this.image = null
+  }
+
+
 }

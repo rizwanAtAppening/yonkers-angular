@@ -76,6 +76,7 @@ const adminUrl = {
   reletedPermit:`/related-permit`,
   voidSubmitionAndReview:`/application/clerk/submission/void`,
   selectSpecialCondition:`/inspection/special_conditions`,
+  uploadIamge:`/application/fileUpload`,
 
 
 };
@@ -110,6 +111,7 @@ const userUrl = {
   // searchUserApplication:`/application`,
   searchBussiness:`/users/business`,
   allBussiness:`/users/business`,
+  downloadApplication:`/download-application`
 
 
 

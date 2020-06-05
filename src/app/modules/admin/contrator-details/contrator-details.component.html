@@ -1,9 +1,9 @@
 <div class="card">
     <div id="contractors-six">
         <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left collapsed" type="button">
+            <button class="btn btn-link btn-block text-left collapsed" (click) ="arrowRighDwon(applicationDetails?.isContractor)" data-toggle="collapse" data-target="#con-six" aria-expanded="false" aria-controls="con-six" type="button">
                 Contractors
-                <span (click) ="arrowRighDwon(applicationDetails?.isContractor)" data-toggle="collapse" data-target="#con-six" aria-expanded="false" aria-controls="con-six"><i
+                <span ><i
                     [class] = "!applicationDetails?.isContractor?'fa fa-chevron-right':'fa fa-chevron-down'" aria-hidden="true"></i></span>
             </button>
         </h2>

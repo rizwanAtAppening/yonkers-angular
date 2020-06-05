@@ -9,6 +9,7 @@ import { PermitDecisionsComponent } from './permit-decisions/permit-decisions.co
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { InspectionsComponent } from './inspections/inspections.component';
 import { ContratorDetailsComponent } from './contrator-details/contrator-details.component';
+import { AgmCoreModule } from '@agm/core';            // @agm/core
 
 
 @NgModule({
@@ -18,6 +19,9 @@ import { ContratorDetailsComponent } from './contrator-details/contrator-details
     AdminRoutingModule,
     LayoutsModule,
     BsDatepickerModule.forRoot(),
+    AgmCoreModule.forRoot({ // @agm/core
+      apiKey: 'AIzaSyAkq7DnUBTkddWXddoHAX02Srw6570ktx8',
+    }),
 
   ]
 })

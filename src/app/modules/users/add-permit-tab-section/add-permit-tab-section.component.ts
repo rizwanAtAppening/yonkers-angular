@@ -442,7 +442,11 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-
+    debugger
+    if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null) ) {
+      this.toasterService.error('Please upload image')
+      return false
+    }
     //const application = this.permitService.getApplication()
     this.getApplication()
 
@@ -1119,7 +1123,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (this.submitApplicationValue.length == 7) {
       this.checklist.nativeElement.click()
       this.submitApplications()
-      this.router.navigate(['/dashboard/submit-application']);
+      this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } });
 
     }
     else {
@@ -1224,13 +1228,13 @@ export class AddPermitTabSectionComponent implements OnInit {
   submitApplications() {
 
     this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
-      this.router.navigate(['/dashboard/submit-application'])
+      this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } })
     })
   }
 
-  public allImage = [{}]
+  public allImage = [{name:null}]
   addMoreImage() {
-    this.allImage.push({})
+    this.allImage.push({name:null})
   }
 
   deleteImage1(index) {
@@ -1264,7 +1268,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         // this.contractorForm.controls.contractor_business.setValue(searchValue.company);
         this.searchDetail.map(data => {
           if (value == data.company) {
-          //  this.contractorForm.controls.contractor_for_job.setValue(data.job_title)
+            //  this.contractorForm.controls.contractor_for_job.setValue(data.job_title)
             this.contractorForm.controls.contractor_name.setValue(data.first_name)
             this.contractorForm.controls.contractor_email.setValue(data.email)
             this.contractorForm.controls.contractor_address.setValue(data.address)

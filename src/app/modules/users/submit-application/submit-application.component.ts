@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PermitService } from 'src/app/core/services/users/permit.service';
 
 @Component({
   selector: 'app-submit-application',
@@ -7,16 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./submit-application.component.css']
 })
 export class SubmitApplicationComponent implements OnInit {
-
+  public applicationId: any
   constructor(
-    private router:Router,
+    private router: Router,
+    private route: ActivatedRoute,
+    private permitService: PermitService
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(data => {
+      this.applicationId = data.id
+    })
   }
 
 
-  navigateIndexPage(){
+  navigateIndexPage() {
     this.router.navigate(['/dashboard/permit'])
+  }
+
+  downloadApplication() {
+    debugger
+    const data = {
+      downloadType: 1,
+      exe: 2
+    }
+    this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
+
+    })
   }
 }

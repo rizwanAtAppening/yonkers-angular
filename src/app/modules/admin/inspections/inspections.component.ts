@@ -154,9 +154,7 @@ export class InspectionsComponent implements OnInit {
   }
 
 
-  goToLink() {
-    window.open(this.image, "_blank");
-  }
+  
   submitImage() {
     this.mediaUploadPopUp.nativeElement.click();
   }
