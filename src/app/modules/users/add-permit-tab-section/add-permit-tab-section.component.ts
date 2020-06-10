@@ -443,7 +443,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   addPermitApplication(formGroup, nextTab) {
     debugger
-    if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null) ) {
+    if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
     }
@@ -531,7 +531,9 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           address_id: Number(this.whereForm.value.address_id),
           location_type: this.location_type,
-          also_known_as: this.whereForm.value.also_known_as
+          also_known_as: this.whereForm.value.also_known_as,
+          locations: this.whereForm.controls.addlocation.value,
+
 
         }
       }
@@ -1232,9 +1234,9 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
 
-  public allImage = [{name:null}]
+  public allImage = [{ name: null }]
   addMoreImage() {
-    this.allImage.push({name:null})
+    this.allImage.push({ name: null })
   }
 
   deleteImage1(index) {
@@ -1313,6 +1315,23 @@ export class AddPermitTabSectionComponent implements OnInit {
       })
       console.log(this.searchDetails)
     })
+  }
+
+  public isSingleAddress = false;
+  public currentId: number
+  showMoreLocation(value, id) {
+
+    this.currentId = id
+    this.isSingleAddress = value
+    // this.applictionDetails.map(data => {
+    //   if (data.id == id) {
+    //     data.isSingleAddress = value
+
+    //   } else {
+    //     data.isSingleAddress = !value
+    //   }
+    // })
+
   }
 }
 

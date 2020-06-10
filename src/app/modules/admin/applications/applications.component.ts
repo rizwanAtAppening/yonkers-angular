@@ -40,6 +40,9 @@ export class ApplicationsComponent implements OnInit {
 
     this.applicationService.getApplications().subscribe(data => {
       this.allApplications = data.response;
+      this.allApplications.map(data => {
+        data.isSingleAddress = true
+      })
     })
   }
 

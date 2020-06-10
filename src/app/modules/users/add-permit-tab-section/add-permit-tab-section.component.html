@@ -1926,10 +1926,29 @@
                                                         <div class="first-collepse-box">
                                                             <div class="role-txt-collepse">
                                                                 <h2>Location Type</h2>
-                                                                <p>Exact Address</p>
+                                                                <p *ngIf ="application.location_type == 1">Exact Address</p>
+                                                                <p *ngIf ="application.location_type == 2">Location</p>
                                                             </div>
 
-                                                            <div class="role-txt-collepse-two">
+                                                          <div class="role-txt-collepse-two" *ngIf ="!application?.address_id">
+                                                                <h2>Address</h2>
+                                                            <h6  *ngIf ="!application?.address_id" >
+                                                                <p *ngIf ="application?.location && application?.location.length  == 1" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+   
+                                                                <h6  *ngIf ="!application?.address_id && !isSingleAddress" >
+                                                                    <p *ngIf ="application?.location && application?.location.length  > 1" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+       
+                                                                <h6  *ngIf ="!application?.address_id && application?.location.length > 1 && isSingleAddress" >
+                                                                       <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                               <strong  class="pointer-2" (click) = "showMoreLocation(true,application?.id)" *ngIf ="!application?.address_id && application?.location.length > 1 && !isSingleAddress">Show More</strong>
+                                                               <strong class="pointer-2" (click) = "showMoreLocation(false,application?.id)"  *ngIf ="!application?.address_id && application?.location.length > 1 && isSingleAddress">Show Less</strong>
+                                                          </div>
+                                                               
+                                                                
+       
+       
+                                                          
+                                                            <div class="role-txt-collepse-two" *ngIf ="application?.address_id">
                                                                 <h2>Address</h2>
                                                                 <p>{{application?.address_id}}</p>
                                                             </div>

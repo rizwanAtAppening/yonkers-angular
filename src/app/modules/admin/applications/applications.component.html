@@ -135,7 +135,7 @@
                                                                                 <td class="refTxt pointer"
                                                                                     (click)="navigateToUpdatePage(permit?.id)">
                                                                                     {{permit?.reference_no}}</td>
-                                                                                <td>
+                                                                                <!-- <td>
                                                                                     <p *ngIf="permit?.address_id">
                                                                                         {{permit?.address_id}}
                                                                                     </p>
@@ -156,7 +156,21 @@
                                                                                         *ngIf="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">
                                                                                         Show Less</h6>
 
-                                                                                </td>
+                                                                                </td> -->
+
+                                                                                <td >
+                                                                                    <p *ngIf ="permit?.address_id">                                                         {{permit?.address_id}}
+                                                                                       </p>
+                                                                                    <h6  *ngIf ="!permit?.address_id && permit?.isSingleAddress" >
+                                                                                        <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>
+                           
+                                                                                        <h6  *ngIf ="!permit?.address_id && !permit.isSingleAddress" >
+                                                                                               <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && permit?.location.length > 1 ">Show More</strong>
+                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">Show Less</strong>
+                           
+                           
+                                                                               </td>
                                                                                 <td>{{permit?.applicant_details?.applicant_name}}
                                                                                     {{permit?.applicant_details?.applican_last_name}}
                                                                                 </td>

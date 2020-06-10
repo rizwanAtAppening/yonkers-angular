@@ -159,10 +159,11 @@ export class InspectionsComponent implements OnInit {
     this.mediaUploadPopUp.nativeElement.click();
   }
 
-  deleteImage() {
-    this.imageName = null;
-    this.attachment = null;
-  }
+  // deleteImage() {
+  //   this.imageName = null;
+  //   this.attachment = null;
+
+  // }
   imageEmpty() {
     this.imageName = null;
     this.attachment = null;
