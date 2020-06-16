@@ -229,9 +229,9 @@
                             <div class="jobdetails-txt">
                                 <div class="col-12 p-0">
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="col-md-7">
                                             <div class="row">
-                                                <div class="col-5">
+                                                <div class="col-7">
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
@@ -256,7 +256,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-7">
+                                                <div class="col-5">
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
@@ -285,9 +285,9 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-5">
                                             <div class="row">
-                                                <div class="col-7">
+                                                <div class="col-6">
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
@@ -312,7 +312,7 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="col-5">
+                                                <div class="col-4">
                                                     <div class="no-ref-txt">
                                                         <ul>
                                                             <li>
@@ -341,11 +341,14 @@
 
                                                     </div>
                                                 </div>
-                                                <div class="no-ref-txt">
-                                                        <div (click) ="fillProjectdes()" class="editTab-button"   data-toggle="modal" data-target="#popup-project">
-                                                        <button><img src="assets/images/edit-p.svg" alt="">  Edit</button>
-                                                        </div>
-                                                        </div>
+                                                <div class="col-2 p-0">
+                                                  <div class="no-ref-txt">
+                                                    <div (click) ="fillProjectdes()" class="editTab-button"   data-toggle="modal" data-target="#popup-project">
+                                                    <button><img src="assets/images/edit-p.svg" alt="">  Edit</button>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                              
                                             </div>
 
                                         </div>
@@ -357,7 +360,7 @@
                             </div>
                         </div>
                         <div class="tab-pane fade" id="nav-adminapdate-three" role="tabpanel"
-                            aria-labelledby="nav-adminapdate-three-tab">
+                            aria-labelledby="nav-adminapdate-three-tab" >
 
                             <div class="documentFileType">
                                 <div class="plan-examiner-box">
@@ -385,7 +388,12 @@
                                                     </div>
                                                 </td>
                                                 <!-- <td>Example.jpg</td> -->
-                                                <td><input type="file" (change)="media($event)" ></td>
+                                                <td>
+                                                  <div class="choseFile">
+                                                  <button class="uploadFileBtn"> <img src="assets/images/upload1.png" alt="">  Upload file</button>
+                                                  <input type="file" (change)="media($event)" >
+                                                </div>
+                                                </td>
 
 
                                                 <td>
@@ -1300,17 +1308,19 @@
             </div>
             <div class="container p-0 admin-contractor-details">
               <form [formGroup]="projectDescriptionForm">
-              <div class="col-12 p-0">
+              <div class="col-12 p-0 detailsPopup">
                 <div class="bdp_email up-add">
                   <div class="row">
                     <div class="col-6">
-                      <div class="form-group">
+                      <div class="form-group position-relative">
                         <!-- <input type="text" id="pp1" formControlName="purpose" class="form-control" required=""> -->
+                        <label class="pur-lable">Purpose</label>
                         <select class="form-control" formControlName="purpose" >
                           <option value="" hidden>--Select--</option>
                           <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.purpose" > {{purpose?.value}}</option>
                         </select>
-                        <label class="form-control-placeholder"  for="pp1">Purpose</label>
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <!-- <label class="form-control-placeholder"  for="pp1">Purpose</label> -->
                       </div>
                     </div>
                     <div class="col-6">
@@ -1325,10 +1335,12 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
+                          <label class="pur-lable">Will this work impact traffic?</label>
                           <select formControlName="traffic_control" class="form-control" >
                               <option value="" hidden>--Select--</option>
                               <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.traffic" > {{purpose?.value}}</option>                          </select>
-                          <label class="form-control-placeholder" for="pp3">Will this work impact traffic?</label>
+                          <!-- <label class="form-control-placeholder" for="pp3">Will this work impact traffic?</label> -->
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                         </div>
                       </div>
                       <div class="col-6">
@@ -1381,11 +1393,13 @@
                       <div class="col-6">
                         <div class="form-group">
                           <!-- <input type="text" id="pp9" class="form-control"  required=""> -->
+                          <label class="pur-lable">Pavement Type</label>
                           <select class="form-control" formControlName="pavement_type">
                               <option value="" hidden>--Select--</option>
                               <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.preventType" > {{purpose?.value}}</option>
                           </select>
-                          <label class="form-control-placeholder" for="pp9">Pavement Type</label>
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          <!-- <label class="form-control-placeholder" for="pp9">Pavement Type</label> -->
                         </div>
                       </div>
                       <div class="col-6">
