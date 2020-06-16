@@ -1,0 +1,215 @@
+<!-- <app-admin>
+    <router-outlet> -->
+        <header>
+            <div class="container container_full p-0">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="search-box">
+                                    <h2>Logo</h2>
+                                </div>
+                            </div>
+                            <div class="col-8">
+        
+                            </div>
+                        </div>
+        
+                    </div>
+                    <div class="col-6">
+                        <div class="profile-header dropdown-text">
+                            <div class="userTxt ">
+                                <img src="assets/images/placeholder.svg" alt="">
+                                {{currentUser?.email}}
+                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="drop-content">
+                                <a (click)="logoutUser()">Log Out</a>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="bg-dashbord">
+            <div class="dash-back-two">
+                <div class="container p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="back-txt m-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="ml-0" routerLink="/admin/permit/applications"><span><img
+                                                    src="assets/images/left-arrow.svg" alt=""></span> Back
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="updateprofile pt-0">
+            <div class="box-engrining-admin">
+                <div class="schedule_admin">
+        
+                    <div class="heading-permit">
+                        <h2>Permit Update</h2>
+                        <h3><button>Schedule inspection</button></h3>
+                    </div>
+        
+        
+                 
+        
+                    <div class="submision-review-box">
+                        <div class="accordion" id="accordionExample">
+        
+                            <div class="card"
+                                *ngIf="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
+                                <div id="headingOne-review">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left" (click)="arrowRighDwon(isDwonArrow,'sub')"  type="button" data-toggle="collapse"
+                                        data-target="#Submissionone" aria-expanded="true"
+                                        aria-controls="Submissionone">
+                                            Submission Review
+                                            <span ><i
+                                                    [class]="isDwonArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
+                                                    aria-hidden="true"></i></span>
+                                        </button>
+                                    </h2>
+                                </div>
+        
+                                <div id="Submissionone" class="collapse show" aria-labelledby="headingOne-review"
+                                    data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="app-status-txt">
+                                            <form [formGroup]="completIncompletForm">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <div class="select-input-box">
+                                                            <div class="form-group">
+                                                                <label>Application Status</label>
+                                                                <select formControlName="decision"
+                                                                    [class]="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept) ? 'form-control form-group-error' : 'form-control'"
+                                                                    (change)="changeDecision($event.target.value)">
+                                                                    <option value="" hidden>--Select--</option>
+                                                                    <option
+                                                                        *ngFor="let submission of settings?.submission_Application_status"
+                                                                        value="{{submission?.key}}">{{submission?.value}}
+                                                                    </option>
+        
+                                                                </select>
+                                                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                <!-- <div class="form-error"
+                                                                *ngIf="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept)">
+                                                                <span *ngIf="clerkCon.decision.errors['required']">
+                                                                  Please select a decision
+                                                                </span>
+                                                               
+                                                              </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+        
+                                                <div class="comment-box-submision" *ngIf="isCompletApplication">
+                                                    <div class="form-group">
+                                                        <label>Commets</label>
+                                                        <textarea formControlName="message"
+                                                            placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                                                    </div>
+                                                </div>
+        
+        
+                                                <div class="user-input-colomn" *ngIf="isCompletApplication">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="email-userinput">
+                                                                <div class="form-group">
+                                                                    <label>To</label>
+                                                                    <input formControlName="to" placeholder="user6@gmail.com">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="email-userinput">
+                                                                <div class="form-group">
+                                                                    <label>CC</label>
+                                                                    <input formControlName="cc" type="text">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="submision-btn">
+                                                    <button type="submit"
+                                                        (click)="accepetOrDeclineApplication()">Submit</button>
+                                                </div>
+        
+                                            </form>
+        
+                                            <div class="plan-examiner-box submissionvoid">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Application Status</th>
+                                                            <th>Description</th>
+                                                            <th>Action</th>
+        
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let submition of  applicationDetails?.submission_review">
+        
+                                                            <td>{{settings.getSetting('submission_Application_status',submition?.decision)}}
+                                                                <span class="voidMsg" *ngIf ="submition?.status == 1">(V)</span>
+                                                            </td>
+                                                            <td>{{submition?.message ? submition?.message:'__' }}</td>
+                                                            <td>
+                                                                <div class="dropdown_act">
+                                                                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                                    <div class="dropdown-content-void" *ngIf ="submition?.status != 1">
+                                                                        <a  (click)="voidSubmition(submition?.id)">Void </a>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                            </div>
+        
+        
+                           
+                           
+                            <app-inspections 
+                                *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.inspector)"
+                                [certificatesChild]="certificates"></app-inspections>
+                            
+                           
+        
+        
+                        </div>
+                    </div>
+        
+        
+                </div>
+            </div>
+            
+         
+           
+           
+        
+             <!-- Modal -->
+        
+        </section>
+        
+        <!-- </router-outlet>
+                </app-admin> -->

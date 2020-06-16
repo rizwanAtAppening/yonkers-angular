@@ -20,6 +20,7 @@ import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-dai
 import { AddPermitComponent } from './add-permit/add-permit.component';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
+// import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
 

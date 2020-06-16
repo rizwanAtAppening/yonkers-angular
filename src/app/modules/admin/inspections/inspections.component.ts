@@ -4,6 +4,7 @@ import { ApplicationService } from 'src/app/core/services/admin/application.serv
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-inspections',
@@ -18,6 +19,8 @@ export class InspectionsComponent implements OnInit {
   @Output() messageEvent = new EventEmitter<string>();
   @Input() certificatesChild: Observable<any>;
   public inspectionForm: FormGroup
+  public imageUpload: FormGroup
+  public env: any
   constructor(
     private applicationService: ApplicationService,
     private ts: ToastrService,
@@ -34,11 +37,22 @@ export class InspectionsComponent implements OnInit {
         this.selectSpecialCondition();
       }
     });
-    this.onInIt()
+    this.onInIt();
+    this.env = environment;
+
   }
   onInIt() {
     this.inspectionFormControl();
+    this.uploadImage();
   }
+
+  uploadImage() {
+    this.imageUpload = this.fb.group({
+      imageName: ['', Validators.required]
+    })
+  }
+
+  get imageCon() { return this.imageUpload.controls }
 
   inspectionFormControl() {
     this.inspectionForm = this.fb.group({
@@ -69,6 +83,8 @@ export class InspectionsComponent implements OnInit {
     // remark: [''],
     var formData = new FormData();
     formData.append('document', this.attachment)
+    formData.append('image', this.imageUpload.value.imageName)
+
     formData.append('application_id', this.applicationDetails.id)
     formData.append('decision', this.inspectionForm.value.decision)
     formData.append('fee', this.inspectionForm.value.amount)
@@ -138,11 +154,15 @@ export class InspectionsComponent implements OnInit {
   public licenseFile: any
   public image: any
   public formData
+  public isImage = false
   media(event1) {
+    if (this.imageUpload.invalid) {
+      this.isImage = true
+      return false
+    }
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0]
-    // this.formData = new FormData()
-    // this.formData.append('name', this.attachment)
+
     var reader = new FileReader();
     var reader = new FileReader();
     reader.onload = (event: any) => {
@@ -154,7 +174,7 @@ export class InspectionsComponent implements OnInit {
   }
 
 
-  
+
   submitImage() {
     this.mediaUploadPopUp.nativeElement.click();
   }

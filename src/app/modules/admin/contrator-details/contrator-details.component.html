@@ -1,10 +1,12 @@
 <div class="card">
     <div id="contractors-six">
         <h2 class="mb-0">
-            <button class="btn btn-link btn-block text-left collapsed" (click) ="arrowRighDwon(applicationDetails?.isContractor)" data-toggle="collapse" data-target="#con-six" aria-expanded="false" aria-controls="con-six" type="button">
+            <button class="btn btn-link btn-block text-left collapsed"
+                (click)="arrowRighDwon(applicationDetails?.isContractor)" data-toggle="collapse" data-target="#con-six"
+                aria-expanded="false" aria-controls="con-six" type="button">
                 Contractors
-                <span ><i
-                    [class] = "!applicationDetails?.isContractor?'fa fa-chevron-right':'fa fa-chevron-down'" aria-hidden="true"></i></span>
+                <span><i [class]="!applicationDetails?.isContractor?'fa fa-chevron-right':'fa fa-chevron-down'"
+                        aria-hidden="true"></i></span>
             </button>
         </h2>
     </div>
@@ -108,9 +110,9 @@
                                 <td>{{license?.license_number}}</td>
                                 <td>{{license?.expiration_date | date}}</td>
                                 <td>
-                                    <h6 class="status-active-btn" *ngIf ="!license?.isExpiry" data-toggle="modal">
+                                    <h6 class="status-active-btn" *ngIf="!license?.isExpiry" data-toggle="modal">
                                         Active</h6>
-                                    <h6 class="status-active-btn1" *ngIf ="license?.isExpiry" data-toggle="modal">
+                                    <h6 class="status-active-btn1" *ngIf="license?.isExpiry" data-toggle="modal">
                                         Expire</h6>
                                 </td>
 
@@ -533,6 +535,242 @@
                         </from>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div id="contractors-nine">
+        <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#con-nine"
+                aria-expanded="false" aria-controls="con-seven" type="button" (click)="arrowRighDwonEmial()">
+                Email & Notes
+                <span><i [class]="!applicationDetails?.isEmail?'fa fa-chevron-right':'fa fa-chevron-down'"
+                        aria-hidden="true"></i></span>
+            </button>
+        </h2>
+    </div>
+    <div id="con-nine" class="collapse" aria-labelledby="contractors-nine" data-parent="#accordionExample">
+        <div class="card-body">
+            <div class="decisions_box-collepse">
+                <div class="emailsnote">
+                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a class=" active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                                aria-controls="pills-home" aria-selected="true">Email</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
+                                aria-controls="pills-profile" aria-selected="false">Notes</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                            aria-labelledby="pills-home-tab">
+                            <form [formGroup]="emailFormGroup">
+                                <div class="expiration-date-box expiration-date-email">
+                                    <div class="row">
+
+                                        <div class="col-12 massege-stander-select">
+                                            <div class="app-status-slect ">
+                                                <div class="form-group">
+                                                    <label>Standard Message</label>
+                                                    <select formControlName="standard_message">
+                                                        <option value="" hidden>--Select--</option>
+                                                        <option value="{{message?.key}}"
+                                                            *ngFor="let message of settings?.standard_message">
+                                                            {{message?.value}}</option>
+
+
+                                                    </select>
+                                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                            <div class="col-12 massege-stander-select">
+                                                <div class="app-status-slect ">
+                                                    <div class="form-group">
+                                                        <label>Subject</label>
+                                                     <input type="text" formControlName="subject"  class="form-group" [class]="emailPickUp.subject.invalid && (emailPickUp.subject.dirty || emailPickUp.subject.touched || isEmail) ? 'form-control form-group-error' : 'form-control'">
+                                                       
+                                                    </div>
+                                                    <div
+                                                    *ngIf="emailPickUp.subject.invalid && (emailPickUp.subject.dirty || emailPickUp.subject.touched || isEmail)">
+                                                    <p class="form-error" *ngIf="emailPickUp.subject.errors['required']">
+                                                        Please enter subject
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    <div class="expiration-date-box">
+                                        <div class="bdp_email up-add">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <input type="text" id="emailnotas1" class="form-control"
+                                                            required="">
+                                                        <label class="form-control-placeholder"
+                                                            for="emailnotas1">To</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="app-status-slect email-angle">
+                                                        <div class="form-group">
+
+                                                            <select formControlName="to"   [class]="emailPickUp.to.invalid && (emailPickUp.to.dirty || emailPickUp.to.touched || isEmail) ? 'form-control form-group-error' : 'form-control'"
+                                                            >
+                                                                <option value="" hidden>--Select--</option>
+                                                                <option value="1" >
+                                                                    {{applicationDetails?.applicant_details?.applicant_email}}
+                                                                </option>
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="popup-busnise">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <input type="text" id="aucd3" class="form-control"
+                                                                required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="aucd3">CC</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="app-status-slect email-angle">
+                                                            <div class="form-group">
+
+                                                                <select formControlName="from" [class]="emailPickUp.from.invalid && (emailPickUp.from.dirty || emailPickUp.from.touched || isEmail) ? 'form-control form-group-error' : 'form-control'">
+                                                                    <option value="" hidden>--Select--</option>
+                                                                    <option value="1" >
+                                                                        {{applicationDetails?.contractor_details?.contractor_email}}
+                                                                    </option>
+                                                                </select>
+                                                                <span><i class="fa fa-angle-down"
+                                                                        aria-hidden="true"></i></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="comment-box-submision">
+                                        <div class="form-group">
+                                            <label id="ddHd">Detailed Description</label>
+                                            <textarea placeholder="Type something here..." [class]="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.subject.touched || isEmail) ? 'form-control form-group-error' : 'form-control'"
+                                                formControlName="subject"></textarea>
+                                        </div>
+                                        <div
+                                        *ngIf="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.body.touched || isEmail)">
+                                        <p class="form-error" *ngIf="emailPickUp.body.errors['required']">
+                                            Please enter  message
+                                        </p>
+                                    </div>
+                                    </div>
+                                    <div class="dicision-submit_btn"><button type="submit"
+                                            (click)="addEmialAndPickUp()">Submit</button></div>
+                                    <div class="plan-examiner-box ">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>To</th>
+                                                    <th>CC</th>
+                                                    <th>Subject</th>
+                                                    <th>Date</th>
+                                                    <th>Sent By</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let data of applicationDetails?.application_send_emails">
+                                                    <td>{{data?.to}}</td>
+                                                    <td>{{data?.from}}</td>
+                                                    <td>{{data?.subject}}</td>
+                                                    <td>{{data?.createdAt | date}}</td>
+                                                    <td>user</td>
+
+
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab">
+                            <from [formGroup]="notesFormGroup">
+                                <div class="expiration-date-box expiration-date-email">
+
+
+
+                                    <div class="comment-box-submision">
+                                        <div class="form-group">
+                                            <label id="ddHd">Detailed Description</label>
+                                            <textarea formControlName="note"
+                                                placeholder="Type something here..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="dicision-submit_btn"><button type="submit" (click) ="addNotes()">Submit</button></div>
+                                    <div class="plan-examiner-box ">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Notes</th>
+                                                    <th>Date</th>
+                                                    <th>Date</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor ="let data of  applicationDetails?.application_notes ">
+                                             
+                                                    <td>{{data?.note}}</td>
+                                                    <td>{{data?.createdAt | date}}</td>
+                                                    <td class="dropdown_act">
+                                                        <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </from>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
     </div>

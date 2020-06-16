@@ -33,7 +33,7 @@ export class SubmitApplicationComponent implements OnInit {
       exe: 2
     }
     this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
-
+ 
     })
   }
 }

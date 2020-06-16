@@ -195,9 +195,12 @@
                     <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                     <div class="dropdown-content-void">
                       <a (click)="voidInspection(ins?.id)" *ngIf="ins?.status != 0">Void Inspection</a>
+                      <a *ngIf ="ins?.document" href="{{ env?.host + env?.imageBasePath + ins?.document }}"
+                      target="_blank" >View Image</a>
+
                     </div>
                   </div>
-                </td>
+                </td> 
 
               </tr>
 
@@ -221,7 +224,31 @@
        <h5 class="modal-title txtepd" >Add New Document</h5>
      </div>
      <div class="detail-txtareatwo">
+        
+        <div class="bdp_email up-add">
+        
+            <div class="row">
+              <div class="col-12">
+                <form [formGroup]="imageUpload">
+       <div class="namedocumentInpt">
+      <input type="text" formControlName="imageName" placeholder="Document Name..." [class]="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage) ? 'form-control form-group-error' : 'form-control'">
+      <div
+      *ngIf="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage)">
+      <p class="form-error" *ngIf="imageCon.imageName.errors['required']">
+        Please enter name
+      </p>
+    </div>
+       </div>
+                </form>
+       <div class="JohnsmithTxt" *ngIf = "image">
+       <h1> {{imageName}}</h1>
+       <h6 (click)="imageEmpty()"><img src="assets/images/cancle.svg" alt=""></h6>
+       </div>
+              </div>
+            </div>
+            </div>
        <div class="bdp_email up-add">
+         
        <div class="row">
          <div class="col-12" *ngIf = "!image">
        <div class="filedocumentBox">
@@ -230,18 +257,19 @@
        <input type="file" (change)="media($event)">
        </div>
          </div>
-         <div class="col-12" *ngIf = "image">
+         <!-- <div class="col-12" *ngIf = "image">
            <img [src] ="image"> 
            <div class="crose-rightIcon" (click)="imageEmpty()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </div>
 
-           </div>
+           </div> -->
        </div>
+       
        </div>
        <div class="modal-btn-decripatn">
          <button class="cancle_button " (click) = "submitImage()">Cancel</button>
-         <button class="save_button" (click) = "submitImage()">Submit</button>
+         <button class="save_button" (click) = "submitImage()" >Submit</button>
        </div>
      </div>
    </div>

@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
 import { AdminModule } from './modules/admin/admin.module';
+// import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 const TOASTR_OPTIONS = {
   timeOut: 1000 ,
@@ -22,6 +23,7 @@ const TOASTR_OPTIONS = {
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule,

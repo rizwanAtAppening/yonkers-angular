@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApplicationsComponent } from './applications/applications.component';
 import { PemitUpdateComponent } from './pemit-update/pemit-update.component';
+import { DwlDetailsComponent } from './dwl-details/dwl-details.component';
 
 
 // const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'permitDetails',
          component: PemitUpdateComponent
+      },
+      {
+        path: 'dwlDetails',
+         component: DwlDetailsComponent
       },
    
 

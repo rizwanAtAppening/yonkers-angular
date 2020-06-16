@@ -18,6 +18,16 @@ export const settingConfig = {
     }
   ],
 
+  standard_message:[
+    {
+      key: 1,
+      value: "permit"
+    },
+    {
+      key: 2,
+      value: "Non permit"
+    },
+  ],
 
 
   contractor_for_job: [

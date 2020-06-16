@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ContratorDetailsComponent implements OnInit {
   @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
   @ViewChild('updateCon', { static: false }) updateCon: ElementRef;
-public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*";
+  public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*";
 
   public contractorForm: FormGroup
   public applicationDetails: any;
@@ -22,6 +22,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
   @Input() certificatesChild: Observable<any>;
   public inspectionForm: FormGroup;
   public licenseForm: FormGroup;
+  public emailFormGroup: FormGroup;
   constructor(
     private applicationService: ApplicationService,
     private fb: FormBuilder,
@@ -34,12 +35,15 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      if(this.applicationDetails){
+      if (this.applicationDetails) {
         this.compareDate();
+        this.emailFormGroup.controls.to.setValue(1);
+        this.emailFormGroup.controls.from.setValue(1)
+
       }
     });
     this.onInIt();
-   
+
   }
 
 
@@ -47,17 +51,17 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
     var currentDate
     var date
     date = new Date()
-    currentDate  = date.toISOString();
+    currentDate = date.toISOString();
     console.log(currentDate)
     if (this.applicationDetails && this.applicationDetails.license_details)
       this.applicationDetails.license_details.map(data => {
         if (currentDate > data.expiration_date) {
           data.isExpiry = true
-        }else{
+        } else {
           data.isExpiry = false
         }
       })
-      console.log(this.applicationDetails)
+    console.log(this.applicationDetails)
   }
 
   contractorFormControl() {
@@ -77,7 +81,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   get contrator() { return this.contractorForm.controls }
   fillContractorForm() {
-    
+
     // this.contractorForm.controls.contractor_for_job.setValue(this.applicationDetails.contractor_details.contractor_for_job)
     this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.contractor_details.contractor_name)
     this.contractorForm.controls.contractor_email.setValue(this.applicationDetails.contractor_details.contractor_email)
@@ -106,7 +110,31 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
   onInIt() {
     this.licenseControl();
     this.contractorFormControl();
+    this.emailControls();
+    this.notes();
   }
+
+  public notesFormGroup: FormGroup
+  notes() {
+    this.notesFormGroup = this.fb.group({
+      note: ['', Validators.required]
+    })
+  }
+
+  emailControls() {
+    debugger
+    this.emailFormGroup = this.fb.group({
+      to: ['', Validators.required],
+      from: ['', Validators.required],
+      subject: ['', Validators.required],
+      body: ['', Validators.required],
+      standard_message: ['', Validators.required],
+
+    })
+  }
+
+  get emailPickUp() { return this.emailFormGroup.controls }
+  get notesCon() { return this.notesFormGroup.controls }
 
   licenseControl() {
     this.licenseForm = this.fb.group({
@@ -120,7 +148,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   public licenseId: any
   editLicense(value) {
-    
+
     this.licenseId = value.id
     this.licenseForm.controls.type.setValue(value.type)
     this.licenseForm.controls.license_number.setValue(value.license_number)
@@ -133,7 +161,7 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
 
   public isLicense = false
   addLicense() {
-    
+
     if (this.licenseForm.invalid) {
       this.isLicense = true;
       return false
@@ -218,4 +246,42 @@ public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])
     this.messageEvent.emit('contractor')
     this.applicationDetails.isContractor = !value
   }
+
+  arrowRighDwonEmial(value) {
+    this.messageEvent.emit('email')
+    this.applicationDetails.isEmail = !value
+  }
+
+  public isEmail = false;
+  addEmialAndPickUp() {
+    if (this.emailFormGroup.invalid) {
+      this.isEmail = true
+      return false
+    }
+    this.emailFormGroup.value.application_id = this.applicationDetails.id;
+    this.emailFormGroup.value.to = this.applicationDetails.applicant_details.applicant_email;
+    this.emailFormGroup.value.from = this.applicationDetails.contractor_details.contractor_email;
+
+    this.applicationService.emailAndPickUp(this.emailFormGroup.value).subscribe(daa => {
+      this.emailFormGroup.controls.subject.setValue(null)
+      this.emailFormGroup.controls.standard_message.setValue(null)
+      this.messageEvent.emit('hello')
+
+
+    })
+  }
+
+  addNotes() {
+    debugger
+    if (this.notesFormGroup.invalid) {
+      return false
+    }
+    this.notesFormGroup.value.application_id = this.applicationDetails.id;
+    this.applicationService.addNotes(this.notesFormGroup.value).subscribe(data => {
+      this.notesFormGroup.reset();
+      this.messageEvent.emit('hello')
+
+    })
+  }
+
 }

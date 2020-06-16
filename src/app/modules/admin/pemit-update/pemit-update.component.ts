@@ -30,6 +30,7 @@ export class PemitUpdateComponent implements OnInit {
   public completIncompletForm: FormGroup;
   public editDescriptionForm: FormGroup;
   public addFeeForm: FormGroup;
+  public projectDescriptionForm: FormGroup;
   public isAccept = false;
   public settings: any;
   public isFee = false;
@@ -72,6 +73,55 @@ export class PemitUpdateComponent implements OnInit {
 
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data
+    })
+  }
+
+
+  projectDescriptionControl() {
+    this.projectDescriptionForm = this.FB.group({
+      purpose: ['', Validators.required],
+      dig_safely_no: [''],
+      traffic_control: [''],
+      length: [''],
+      width: [''],
+      depth: [''],
+      opening_size: [''],
+      layout_Number: [''],
+      gas_leak_Number: [''],
+      opening_number: [''],
+      pavement_type: [''],
+      description: [''],
+      is_notifiable: [''],
+      start_date: ['', Validators.required],
+      end_date: ['', Validators.required],
+    })
+  }
+
+  fillProjectdes() {
+    this.projectDescriptionForm.controls.purpose.setValue(this.applicationDetails.project_detail.purpose)
+    this.projectDescriptionForm.controls.dig_safely_no.setValue(this.applicationDetails.project_detail.dig_safely_no)
+    this.projectDescriptionForm.controls.traffic_control.setValue(this.applicationDetails.project_detail.traffic_control)
+    this.projectDescriptionForm.controls.length.setValue(this.applicationDetails.project_detail.length)
+    this.projectDescriptionForm.controls.width.setValue(this.applicationDetails.project_detail.width)
+    this.projectDescriptionForm.controls.depth.setValue(this.applicationDetails.project_detail.depth)
+    this.projectDescriptionForm.controls.opening_size.setValue(this.applicationDetails.project_detail.opening_size )
+    this.projectDescriptionForm.controls.layout_Number.setValue(this.applicationDetails.project_detail.layout_Number)
+    this.projectDescriptionForm.controls.gas_leak_Number.setValue(this.applicationDetails.project_detail.gas_leak_Number)
+    this.projectDescriptionForm.controls.opening_number.setValue(this.applicationDetails.project_detail.opening_number)
+    this.projectDescriptionForm.controls.pavement_type.setValue(this.applicationDetails.project_detail.pavement_type)
+    this.projectDescriptionForm.controls.start_date.setValue( new Date(this.applicationDetails.project_detail.start_date) )
+    this.projectDescriptionForm.controls.is_notifiable.setValue(this.applicationDetails.project_detail.is_notifiable)
+    this.projectDescriptionForm.controls.end_date.setValue(new Date(this.applicationDetails.project_detail.end_date) )
+
+  }
+
+  get projectCon() { return this.projectDescriptionForm.controls }
+
+  saveProjectDescription() {
+    debugger
+    this.projectDescriptionForm.value.is_notifiable = 1
+    this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
+      this.toasterService.success('Information Updated')
     })
   }
 
@@ -170,9 +220,18 @@ export class PemitUpdateComponent implements OnInit {
         this.applicationDetails.isContractor = true
         this.applicationDetails.isDecision = false;
       }
+      else if (this.message == 'email') {
+        this.applicationDetails.isInspection = false
+        this.applicationDetails.isContractor = false
+        this.applicationDetails.isEmail = true
+
+        this.applicationDetails.isDecision = false;
+      }
       if (!this.message) {
         this.applicationDetails.isInspection = false
         this.applicationDetails.isContractor = false
+        this.applicationDetails.isEmail = false
+
         this.applicationDetails.isDecision = false;
       }
 
@@ -232,6 +291,7 @@ export class PemitUpdateComponent implements OnInit {
     this.completeIncompletCon();
     this.description();
     this.feeControls();
+    this.projectDescriptionControl()
   }
 
 
@@ -390,7 +450,7 @@ export class PemitUpdateComponent implements OnInit {
     debugger
     var formData = new FormData();
     formData.append('application_id', this.applicationDetails.id);
-    formData.append('name', this.attachment); 
+    formData.append('name', this.attachment);
     formData.append('type', this.imageType);
     this.permitService.uploadImageByAdmin(formData).subscribe(data => {
       this.image = null;

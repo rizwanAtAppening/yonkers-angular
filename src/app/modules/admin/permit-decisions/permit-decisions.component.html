@@ -150,7 +150,7 @@
                 <div class="searchInput">
                     <form>
                         <div class="form-group">
-                            <input type="text" placeholder="Search..." >
+                            <input type="text"  placeholder="Search123..."  [(ngModel)]="term"  [ngModelOptions]="{standalone: true}" >
                             <span><i class="fa fa-search" aria-hidden="true"></i></span>
                         </div>
                     </form>
@@ -159,7 +159,7 @@
 
 
                 <div class="inspaction-box" >
-                    <label class="container-curb"  *ngFor ="let value of settings?.conditions">{{value?.value}}
+                    <label class="container-curb"  *ngFor ="let value of settings?.conditions | filter:term">{{value?.value}}
                         <input type="checkbox" (change) ="addCondition($event,value)" [checked]="value?.isChecked"  >
                         <span class="checkmark-replacement"></span>
                     </label>

@@ -19,9 +19,9 @@ export class ApplicationService {
     private authenticationService: AuthenticationService
   ) { }
 
-  getApplications(): Observable<any> {
+  getApplications(data): Observable<any> {
     const href = `${environment['getApplication']}`
-    return this.http.get<any>(href).pipe(
+    return this.http.get<any>(href, { params: data }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -58,9 +58,21 @@ export class ApplicationService {
     );
   }
 
-  acceptApplicationByClerk(data){
+  acceptApplicationByClerk(data) {
     const href = `${environment['acceptApplication']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+  saveProjectInfo(data,id) {
+    const href = `${environment['saveprojectInfo']}/${id}`
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -71,10 +83,36 @@ export class ApplicationService {
     );
   }
 
-  
-  addReltedPemrit(data){
+  emailAndPickUp(data) {
+    const href = `${environment['emailAndPickUp']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  addNotes(data) {
+    const href = `${environment['addNotes']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+
+  addReltedPemrit(data) {
     const href = `${environment['addReletedPermit']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -85,10 +123,10 @@ export class ApplicationService {
     );
   }
 
-  editDescription(data,id){
-    
+  editDescription(data, id) {
+
     const href = `${environment['editDescription']}/${id}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -99,9 +137,9 @@ export class ApplicationService {
     );
   }
 
-  addDecision(data){
+  addDecision(data) {
     const href = `${environment['addDecision']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -112,9 +150,9 @@ export class ApplicationService {
     );
   }
 
-  addFee(data){
+  addFee(data) {
     const href = `${environment['addFee']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -125,9 +163,9 @@ export class ApplicationService {
     );
   }
 
-  feeDelete(data){
+  feeDelete(data) {
     const href = `${environment['deleteFee']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -138,9 +176,9 @@ export class ApplicationService {
     );
   }
 
-  inspection(data){
+  inspection(data) {
     const href = `${environment['inspection']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -151,9 +189,9 @@ export class ApplicationService {
     );
   }
 
-  voidInspection(data){
+  voidInspection(data) {
     const href = `${environment['voidInspection']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -164,7 +202,7 @@ export class ApplicationService {
     );
   }
 
-  selectSpecialCondition(id){
+  selectSpecialCondition(id) {
     const href = `${environment['selectSpecialCondition']}/${id}`
     return this.http.get<any>(href).pipe(
       map(
@@ -177,9 +215,9 @@ export class ApplicationService {
     );
   }
 
-  updateContratorInfo(data){
+  updateContratorInfo(data) {
     const href = `${environment['updateContractor']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -190,9 +228,9 @@ export class ApplicationService {
     );
   }
 
-  addLicenseDetails(data){
+  addLicenseDetails(data) {
     const href = `${environment['addLicense']}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -203,9 +241,9 @@ export class ApplicationService {
     );
   }
 
-  updateLicenseDetails(data,id){
+  updateLicenseDetails(data, id) {
     const href = `${environment['addLicense']}/${id}`
-    return this.http.post<any>(href,data).pipe(
+    return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -216,7 +254,7 @@ export class ApplicationService {
     );
   }
 
-  getInspection(){
+  getInspection() {
     const href = `${environment['getInspection']}`
     return this.http.get<any>(href).pipe(
       map(
@@ -229,8 +267,8 @@ export class ApplicationService {
     );
   }
 
-  getInspector(){
-    
+  getInspector() {
+
     const href = `${environment['inspector']}`
     return this.http.get<any>(href).pipe(
       map(

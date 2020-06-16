@@ -13,7 +13,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 export class PermitDecisionsComponent implements OnInit {
   @Input() certificatesChild: Observable<any>;
   @Output() messageEvent = new EventEmitter<string>();
-
+   term:string;
   public applicationDetails: any;
   public settings: any;
   public desicionForm: FormGroup;

@@ -77,6 +77,9 @@ const adminUrl = {
   voidSubmitionAndReview:`/application/clerk/submission/void`,
   selectSpecialCondition:`/inspection/special_conditions`,
   uploadIamge:`/application/fileUpload`,
+  emailAndPickUp:`/send-application_email`,
+  addNotes:`/application_notes`,
+  saveprojectInfo:`/application/update`
 
 
 };
