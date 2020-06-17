@@ -4627,3 +4627,47 @@ padding: 10px 17px;
     font-family: 'Poppins-Regular';
     font-size: 12px;
 }
+.detailsPopup .pur-lable{
+    color: #282D5B99;
+    position: absolute;
+    top: -19px;
+}
+
+.detailsPopup select{
+    height: 42px !important;
+    font-size: 14px !important;
+    border-radius: 0px !important;
+    border:0.5px solid #A9ABBD;
+}
+.detailsPopup span {
+    position: absolute;
+    right: 9px;
+    top: 12px;
+}
+
+.map-booking-img .agm-map-container-inner {
+    border-radius: 4px !important;
+}
+
+
+.uploadFileBtn {
+    padding: 10px 15px;
+
+    border: 1px solid #A6DBF8;
+    color:  #64BCF2;
+    background: none;
+}
+.choseFile{
+    position: relative;
+}
+.choseFile input {
+    position: absolute;
+    left: 0;
+    width: 127px;
+    height: 45px;
+    opacity: 0;
+}
+
+.nameFile .documentFileType .dropdown-content-void {
+    right: 96px;
+}
