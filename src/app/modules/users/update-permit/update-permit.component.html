@@ -70,10 +70,10 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>No review</td>
-                                                            <td></td>
-                                                            <td></td>
+                                                        <tr *ngFor = "let decision of applicationDetails?.application_issue_permits">
+                                                            <td>{{decision}}</td>
+                                                            <td>{{decision?.createdAt | date}}</td>
+                                                            <td>{{decision?.staff?.name}}</td>
                                                             <td></td>
                                                         </tr>
                                                     </tbody>
@@ -99,13 +99,13 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>No review</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                        <tr *ngFor = "let decision of applicationDetails?.inspections">
+                                                            <td>{{settings.getSetting('type',decision['type'])}}</td>
+                                                            <td>{{settings.getSetting('inspection_decision',decision['decision'])}}</td>
+                                                            <td>{{decision?.fee}}</td>
+                                                            <td>{{decision?.staff?.name}}</td>
+                                                            <td>{{decision?.createdAt | date}}</td>
+                                                            <td>{{decision?.remark}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -126,39 +126,13 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>Application / Misc.</td>
-                                                            <td class="btn__view action-type"> <button>View</button>
+                                                        <tr *ngFor = "let documents of applicationDetails?.upload_detail">
+                                                            <td>{{settings.getSetting('imageType',documents['type'])}}</td>
+                                                            <td class="btn__view action-type"> <button>  <a *ngIf ="documents?.name" href="{{ env?.host + env?.imageBasePath + documents?.name }}"
+                                                                target="_blank" >View</a></button>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Submitted Drawings/ Plans</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Permits</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Plan Review</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Approved Plans</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Final Certificate / As Built / Surveys</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Revision</td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Board Approvals</td>
-                                                            <td></td>
-                                                        </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>

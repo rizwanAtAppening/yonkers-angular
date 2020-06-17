@@ -40,7 +40,7 @@ export class ApplicationsComponent implements OnInit {
   public page = 1
   public offset = 10;
   public currentPage = 1;
-  public totalPagination = 40
+  public totalPagination: Number
   getAllApplication(application_Type) {
     this.application_Type = application_Type
     debugger
@@ -59,9 +59,9 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
-  paginate(page,value) {
+  paginate(page, value) {
     this.application_Type = value,
-    this.page = page
+      this.page = page
     this.getAllApplication(this.application_Type)
 
   }
@@ -81,11 +81,11 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  navigateToUpdatePage(id,value) {
-    if(value == 'dwl'){
+  navigateToUpdatePage(id, value) {
+    if (value == 'dwl') {
       this.router.navigate(['/admin/permit/dwlDetails'], { queryParams: { id: id } })
 
-    }else{
+    } else {
       this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: id } })
 
     }
@@ -99,14 +99,36 @@ export class ApplicationsComponent implements OnInit {
       }
     });
   }
-public from:any;
-public to:any;
+  public from: any;
+  public to: any;
   seelctDate(event) {
     debugger
     if (event) {
       this.from = event[0].toISOString()
       this.to = event[1].toISOString()
-     
+      if (this.from && this.to) {
+        this.getApplicationByDate()
+      }
     }
+  }
+
+
+  getApplicationByDate() {
+
+    const data = {
+      page: this.page,
+      application_type: this.application_Type,
+      from: this.from,
+      to: this.to
+    }
+    this.applicationService.getApplications(data).subscribe(data => {
+      this.allApplications = data.response;
+      this.currentPage = data.currentPage;
+      this.offset = data.offset;
+      this.totalPagination = data.total;
+      this.allApplications.map(data => {
+        data.isSingleAddress = true
+      })
+    })
   }
 }

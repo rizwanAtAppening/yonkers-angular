@@ -16,7 +16,9 @@ import { UsersService } from 'src/app/core/services';
   styleUrls: ['./pemit-update.component.css']
 })
 export class PemitUpdateComponent implements OnInit {
+  @ViewChild('applicantPopUp', { static: false }) applicantPopUp: ElementRef;
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
+
   @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
   @ViewChild('reletedPermitPopUp', { static: false }) reletedPermitPopUp: ElementRef;
@@ -31,6 +33,8 @@ export class PemitUpdateComponent implements OnInit {
   public editDescriptionForm: FormGroup;
   public addFeeForm: FormGroup;
   public projectDescriptionForm: FormGroup;
+  public applicantForm: FormGroup;
+
   public isAccept = false;
   public settings: any;
   public isFee = false;
@@ -86,8 +90,8 @@ export class PemitUpdateComponent implements OnInit {
       width: [''],
       depth: [''],
       opening_size: [''],
-      layout_Number: [''],
-      gas_leak_Number: [''],
+      layout_number: [''],
+      gas_leak_number: [''],
       opening_number: [''],
       pavement_type: [''],
       description: [''],
@@ -104,21 +108,26 @@ export class PemitUpdateComponent implements OnInit {
     this.projectDescriptionForm.controls.length.setValue(this.applicationDetails.project_detail.length)
     this.projectDescriptionForm.controls.width.setValue(this.applicationDetails.project_detail.width)
     this.projectDescriptionForm.controls.depth.setValue(this.applicationDetails.project_detail.depth)
-    this.projectDescriptionForm.controls.opening_size.setValue(this.applicationDetails.project_detail.opening_size )
-    this.projectDescriptionForm.controls.layout_Number.setValue(this.applicationDetails.project_detail.layout_Number)
-    this.projectDescriptionForm.controls.gas_leak_Number.setValue(this.applicationDetails.project_detail.gas_leak_Number)
+    this.projectDescriptionForm.controls.opening_size.setValue(this.applicationDetails.project_detail.opening_size)
+    this.projectDescriptionForm.controls.layout_number.setValue(this.applicationDetails.project_detail.layout_number)
+    this.projectDescriptionForm.controls.gas_leak_number.setValue(this.applicationDetails.project_detail.gas_leak_number)
     this.projectDescriptionForm.controls.opening_number.setValue(this.applicationDetails.project_detail.opening_number)
     this.projectDescriptionForm.controls.pavement_type.setValue(this.applicationDetails.project_detail.pavement_type)
-    this.projectDescriptionForm.controls.start_date.setValue( new Date(this.applicationDetails.project_detail.start_date) )
+    this.projectDescriptionForm.controls.start_date.setValue(new Date(this.applicationDetails.project_detail.start_date))
     this.projectDescriptionForm.controls.is_notifiable.setValue(this.applicationDetails.project_detail.is_notifiable)
-    this.projectDescriptionForm.controls.end_date.setValue(new Date(this.applicationDetails.project_detail.end_date) )
+    this.projectDescriptionForm.controls.end_date.setValue(new Date(this.applicationDetails.project_detail.end_date))
 
   }
 
   get projectCon() { return this.projectDescriptionForm.controls }
 
+  public isDescription = false;
   saveProjectDescription() {
     debugger
+    if (this.projectDescriptionForm.invalid) {
+      this.isDescription = true
+      return false
+    }
     this.projectDescriptionForm.value.is_notifiable = 1
     this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
       this.toasterService.success('Information Updated')
@@ -291,11 +300,37 @@ export class PemitUpdateComponent implements OnInit {
     this.completeIncompletCon();
     this.description();
     this.feeControls();
-    this.projectDescriptionControl()
+    this.projectDescriptionControl();
+    this.applicantControl();
   }
 
 
+  applicantControl() {
+    this.applicantForm = this.FB.group({
+      applicant_name: ['', Validators.required],
+      applicant_role: ['', Validators.required],
+      applicant_phone: ['', Validators.required],
+      applicant_address: ['', Validators.required],
+    })
+  }
+  get applicant() { return this.applicantForm.controls };
 
+  addApplicant() {
+    this.applicationService.applicantUpdate(this.applicantForm.value, this.applicationDetails.id).subscribe(data => {
+      this.applicantPopUp.nativeElement.click();
+      this.toasterService.success('Applicant  details have been updated')
+      this.permitDetails()
+    })
+  }
+
+  fillApplicant() {
+    debugger
+    this.applicantForm.controls.applicant_name.setValue(this.applicationDetails.applicant_details.applicant_name);
+    this.applicantForm.controls.applicant_role.setValue(this.applicationDetails.applicant_details.applicant_role)
+    this.applicantForm.controls.applicant_address.setValue(this.applicationDetails.applicant_details.applicant_address)
+    this.applicantForm.controls.applicant_phone.setValue(this.applicationDetails.applicant_details.applicant_phone)
+
+  }
   description() {
     this.editDescriptionForm = this.FB.group({
       description: [''],

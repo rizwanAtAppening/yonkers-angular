@@ -564,13 +564,13 @@
                           <div class="no-ref-txt">
                             <ul>
                               <li>
-                                <h6>{{applicationDetails?.applicant_details?.applican_last_name}}</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_name}}</h6>
                               </li>
                               <li>
-                                <h6>contractor</h6>
+                                <h6>type</h6>
                               </li>
                               <li>
-                                <h6>9178617701</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_phone}}</h6>
                               </li>
                      
 
@@ -597,7 +597,7 @@
                           <div class="no-ref-txt">
                             <ul>
                               <li>
-                                <h6>656 N. Terrace Ave Mount Vernon NY 10552</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_address}}</h6>
                               </li>
                              
                             </ul>
@@ -606,7 +606,7 @@
                         </div>
                         <div class="col-2 p-0">
                           <div class="no-ref-txt">
-                            <div class="editTab-button" data-toggle="modal" data-target="#popup-applicant">
+                            <div (click) ="fillApplicant()" class="editTab-button" data-toggle="modal" data-target="#popup-applicant">
                             <button><img src="assets/images/edit-p.svg" alt="">  Edit</button>
                             </div>
                             </div>
@@ -1226,7 +1226,7 @@
 </div>
 
  <!-- Modal -->
- <div class="modal fade" id="popup-applicant">
+ <div class="modal fade" id="popup-applicant" #applicantPopUp>
         <div class="modal-dialog popup-dumpstar" role="document">
           <div class="modal-content text-addpopup">
             <div class="modal-header p-0 pb-2 ">
@@ -1237,18 +1237,22 @@
             </div>
             <div class="container p-0 admin-contractor-details">
               <div class="col-12 p-0">
+                <form [formGroup]="applicantForm">
                 <div class="bdp_email up-add">
                   <div class="row">
                     <div class="col-6">
                       <div class="form-group">
-                        <input type="text" id="app4" class="form-control" required="">
+                        <input type="text" id="app4" class="form-control" formControlName="applicant_name"  required="">
                         <label class="form-control-placeholder" for="app4">Applicant Name</label>
                       </div>
                     </div>
                     <div class="col-6">
                       <div class="form-group">
-                        <input type="text" id="app3" class="form-control" required="">
-                        <label class="form-control-placeholder" for="app3">Applicant Type</label>
+                        <!-- <input type="text" id="app3" formControlName="applicant_role" class="form-control" required=""> -->
+                        <select formControlName="applicant_role" class="form-control">
+                           <option value="{{role?.key}}" *ngFor ="let role of settings?.role">{{role?.value}}</option>
+                        </select>
+                        <label class="form-control-placeholder" for="app3">Applicant Role</label>
                       </div>
                     </div>
                   </div>
@@ -1256,7 +1260,7 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="app2" class="form-control" required="">
+                          <input type="text" id="app2" class="form-control" formControlName="applicant_phone" required="">
                           <label class="form-control-placeholder" for="app2">Phone No.</label>
                         </div>
                       </div>
@@ -1268,7 +1272,7 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
-                          <input type="text" id="app1" class="form-control" required="">
+                          <input type="text" id="app1" class="form-control" formControlName="applicant_address" required="">
                           <label class="form-control-placeholder" for="app1">Address</label>
                         </div>
                       </div>
@@ -1279,9 +1283,10 @@
       
                   <div class="btn-pre pop-Btn">
                     <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
-                    <button class="continue mr-0">Save</button>
+                    <button class="continue mr-0" type="submit" (click) ="addApplicant()">Save</button>
                   </div>
                 </div>
+                </form>
               </div>
             </div>
           </div>
@@ -1306,7 +1311,7 @@
                     <div class="col-6">
                       <div class="form-group">
                         <!-- <input type="text" id="pp1" formControlName="purpose" class="form-control" required=""> -->
-                        <select class="form-control" formControlName="purpose" >
+                        <select class="form-control" formControlName="purpose" [class]="projectCon.purpose.invalid && (projectCon.purpose.dirty || projectCon.purpose.touched || isDescription) ? 'form-control form-group-error' : 'form-control'" >
                           <option value="" hidden>--Select--</option>
                           <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.purpose" > {{purpose?.value}}</option>
                         </select>
@@ -1325,7 +1330,7 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <select formControlName="traffic_control" class="form-control" >
+                          <select formControlName="traffic_control" class="form-control" [class]="projectCon.traffic_control.invalid && (projectCon.traffic_control.dirty || projectCon.traffic_control.touched || isDescription) ? 'form-control form-group-error' : 'form-control'" >
                               <option value="" hidden>--Select--</option>
                               <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.traffic" > {{purpose?.value}}</option>                          </select>
                           <label class="form-control-placeholder" for="pp3">Will this work impact traffic?</label>
@@ -1333,7 +1338,7 @@
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="pp4" formControlName="layout_Number" class="form-control" required="">
+                          <input type="text" id="pp4" formControlName="layout_number" class="form-control" required="">
                           <label class="form-control-placeholder" for="pp4">Layout Number</label>
                         </div>
                       </div>
@@ -1381,7 +1386,7 @@
                       <div class="col-6">
                         <div class="form-group">
                           <!-- <input type="text" id="pp9" class="form-control"  required=""> -->
-                          <select class="form-control" formControlName="pavement_type">
+                          <select class="form-control" formControlName="pavement_type" [class]="projectCon.pavement_type.invalid && (projectCon.pavement_type.dirty || projectCon.pavement_type.touched || isDescription) ? 'form-control form-group-error' : 'form-control'">
                               <option value="" hidden>--Select--</option>
                               <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.preventType" > {{purpose?.value}}</option>
                           </select>
@@ -1390,7 +1395,7 @@
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="pp9" class="form-control" formControlName="gas_leak_Number" required="">
+                          <input type="text" id="pp9" class="form-control" formControlName="gas_leak_n   umber" required=""> 
                           <label class="form-control-placeholder" for="pp9">Gas Leak Number</label>
                         </div>
                       </div>
@@ -1401,15 +1406,15 @@
                     <div class="row">
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="pp10" class="form-control"  #desStart="bsDatepicker" bsDatepicker   formControlName="start_date" required="">
-                          <label class="form-control-placeholder" for="pp10">Start Date</label>
+                          <input type="text" id="pp10" class="form-control"  #desStart="bsDatepicker" bsDatepicker   formControlName="start_date" [class]="projectCon.start_date.invalid && (projectCon.start_date.dirty || projectCon.start_date.touched || isDescription) ? 'form-control form-group-error' : 'form-control'" required="">
+                          <label  [class] = "projectCon.start_date.invalid && (projectCon.start_date.dirty || projectCon.start_date.touched || isDescription) ? 'form-control-placeholder msg':'form-control-placeholder'" for="pp10">Start Date</label>
                           <span><i class="fa fa-calendar" (click)="desStart.toggle()" aria-hidden="true"></i></span>
                         </div>
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="pp11" class="form-control" #desEnd="bsDatepicker" bsDatepicker formControlName="end_date" required="">
-                          <label class="form-control-placeholder" for="pp11">End Date</label>
+                          <input type="text" id="pp11" class="form-control" #desEnd="bsDatepicker" bsDatepicker formControlName="end_date" [class]="projectCon.end_date.invalid && (projectCon.end_date.dirty || projectCon.end_date.touched || isDescription) ? 'form-control form-group-error' : 'form-control'" required="">
+                          <label [class] = "projectCon.end_date.invalid && (projectCon.end_date.dirty || projectCon.end_date.touched || isDescription) ? 'form-control-placeholder msg':'form-control-placeholder'" class="form-control-placeholder" for="pp11">End Date</label>
                           <span><i class="fa fa-calendar" (click)="desEnd.toggle()" aria-hidden="true"></i></span>
 
                         </div>

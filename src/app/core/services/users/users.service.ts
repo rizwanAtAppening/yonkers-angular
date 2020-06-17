@@ -94,6 +94,19 @@ export class UsersService {
     );
   }
 
+  applicationDetails(id): Observable<any> {
+    const href = `${environment['applicationDetails']}/${id}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   getStaff(): Observable<any> {
     const href = `${environment['showStaff']}`;
     return this.http.get<any>(href).pipe(

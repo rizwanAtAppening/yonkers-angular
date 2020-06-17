@@ -70,6 +70,19 @@ export class ApplicationService {
       )
     );
   }
+
+  applicantUpdate(data,id) {
+    const href = `${environment['updateApplicant']}/${id}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
   saveProjectInfo(data,id) {
     const href = `${environment['saveprojectInfo']}/${id}`
     return this.http.post<any>(href, data).pipe(

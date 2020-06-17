@@ -79,7 +79,8 @@ const adminUrl = {
   uploadIamge:`/application/fileUpload`,
   emailAndPickUp:`/send-application_email`,
   addNotes:`/application_notes`,
-  saveprojectInfo:`/application/update`
+  saveprojectInfo:`/application/update`,
+  updateApplicant:`/application/applicant_update`
 
 
 };
@@ -114,7 +115,8 @@ const userUrl = {
   // searchUserApplication:`/application`,
   searchBussiness:`/users/business`,
   allBussiness:`/users/business`,
-  downloadApplication:`/download-application`
+  downloadApplication:`/download-application`,
+  applicationDetails:`/application`
 
 
 
