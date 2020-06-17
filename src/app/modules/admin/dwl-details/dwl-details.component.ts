@@ -204,7 +204,7 @@ export class DwlDetailsComponent implements OnInit {
   public isSubmition = false;
   public isReletedPermitArrow = false;
   arrowRighDwon(value, condition) {
-  //  this.message = null
+    //  this.message = null
     if (condition == 'fee') {
       this.isSubmition = !value
       this.isDwonArrow = true
@@ -230,5 +230,33 @@ export class DwlDetailsComponent implements OnInit {
 
   }
 
+  logoutUser() {
+    this.adminAuthService.logout().subscribe(res => {
+      if (res) {
+        this.router.navigate(['/']);
 
+      }
+    });
+  }
+
+  changeDecision(value) {
+    if (value == 1) {
+      this.isCompletApplication = true
+    }
+    else if (value == 2) {
+      this.isCompletApplication = false
+    }
+  }
+
+  voidSubmition(id) {
+    debugger
+    const data = {
+      application_id: this.applicationDetails.id,
+      id: id,
+    }
+    this.permitService.voidSubmition(data).subscribe(data => {
+      this.toasterService.success('Submition is voided');
+      this.permitDetails();
+    })
+  }
 }

@@ -1319,12 +1319,8 @@
                     <div class="col-6">
                       <div class="form-group position-relative">
                         <!-- <input type="text" id="pp1" formControlName="purpose" class="form-control" required=""> -->
-<<<<<<< HEAD
-                        <select class="form-control" formControlName="purpose" [class]="projectCon.purpose.invalid && (projectCon.purpose.dirty || projectCon.purpose.touched || isDescription) ? 'form-control form-group-error' : 'form-control'" >
-=======
                         <label class="pur-lable">Purpose</label>
                         <select class="form-control" formControlName="purpose" >
->>>>>>> 8477fad4bd6d3f8d77f2d179e8547a6301038d91
                           <option value="" hidden>--Select--</option>
                           <option value="{{purpose?.key}}" *ngFor = "let purpose of settings?.purpose" > {{purpose?.value}}</option>
                         </select>

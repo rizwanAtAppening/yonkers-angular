@@ -40,7 +40,7 @@ export class ApplicationsComponent implements OnInit {
   public page = 1
   public offset = 10;
   public currentPage = 1;
-  public totalPagination: Number
+  public totalPagination: number
   getAllApplication(application_Type) {
     this.application_Type = application_Type
     debugger

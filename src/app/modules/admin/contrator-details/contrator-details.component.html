@@ -544,7 +544,7 @@
     <div id="contractors-nine">
         <h2 class="mb-0">
             <button class="btn btn-link btn-block text-left collapsed" data-toggle="collapse" data-target="#con-nine"
-                aria-expanded="false" aria-controls="con-seven" type="button" (click)="arrowRighDwonEmial()">
+                aria-expanded="false" aria-controls="con-seven" type="button" (click)="arrowRighDwonEmial(applicationDetails?.isEmail)">
                 Email & Notes
                 <span><i [class]="!applicationDetails?.isEmail?'fa fa-chevron-right':'fa fa-chevron-down'"
                         aria-hidden="true"></i></span>
