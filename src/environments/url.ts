@@ -116,7 +116,8 @@ const userUrl = {
   searchBussiness:`/users/business`,
   allBussiness:`/users/business`,
   downloadApplication:`/download-application`,
-  applicationDetails:`/application`
+  applicationDetails:`/application`,
+  execAddress:`/execAddress`,
 
 
 

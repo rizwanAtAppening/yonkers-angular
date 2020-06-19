@@ -286,6 +286,20 @@ export class PermitService {
     );
   }
 
+
+  exextAddress(): Observable<any> {
+    const href = `${environment['execAddress']}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   uploadImageByAdmin(data): Observable<any> {
     const href = `${environment['uploadIamge']}`;
     return this.http.post<any>(href, data).pipe(
