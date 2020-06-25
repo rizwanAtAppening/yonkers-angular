@@ -215,7 +215,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" formControlName="address_id"
-                                                                        [typeahead]="states" id="jobadd"
+                                                                        [typeahead]="address" id="jobadd" (input) ="searchAddress('exact','')"
                                                                         [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label
@@ -248,7 +248,7 @@
                                                     <div class="row">
                                                         <div class="col-12 ">
                                                             <div class="form-group">
-                                                                <input type="text" id="sn1" class="form-control"
+                                                                <input type="text" id="sn1" class="form-control" formControlName="also_known_as"
                                                                     required="">
                                                                 <label class="form-control-placeholder" for="sn1">Unit
                                                                     No./Also Known as</label>
@@ -302,8 +302,8 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="Street"
-                                                                        class="form-control"
+                                                                    <input type="text" id="Street"
+                                                                        class="form-control"  [typeahead]="addressOne" (input) ="searchAddress('location',i)"
                                                                         formControlName="street_one"
                                                                         [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -356,7 +356,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="aa1" class="form-control"
-                                                                        formControlName="street_two"
+                                                                        formControlName="street_two" [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"
                                                                         [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control" required="">
                                                                     <label

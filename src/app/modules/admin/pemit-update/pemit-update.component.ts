@@ -204,7 +204,7 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   permitDetails() {
-
+debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       debugger
       this.applicationDetails = data.response;

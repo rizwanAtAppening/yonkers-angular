@@ -418,6 +418,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public location_type = 1
 
   selectAddress(value: string) {
+    debugger
     if (value == 'location') {
       this.isLocation = true
       this.location_type = 2
@@ -529,7 +530,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.data = {
           model: 2,
-          address_id: Number(this.whereForm.value.address_id),
+          address_id: (this.whereForm.value.address_id),
           location_type: this.location_type,
           also_known_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
@@ -1334,6 +1335,71 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
 
+  public searchString: string
+  searchAddress(sendValue:string,index) {
+    debugger
+    var value: string
+
+    if(sendValue == 'exact'){
+      value = this.whereForm.value.address_id
+      this.searchString = value;
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+     
+    }
+    if(sendValue == 'location'){
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data,i)=>{
+        if(index == i){
+          this.searchString = (data.street_one).toString()
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      } 
+    }
+    if(sendValue == 'locationtwo'){
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data,i)=>{
+        if(index == i){
+          this.searchString = data.street_one
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      } 
+    }
+   
+  }
+
+  public exactAddress = [];
+  public address = []
+  public addressOne = [];
+  public addressTwo = []
+  exextAddress() {
+    const data = {
+      query: this.searchString,
+    }
+    this.permitService.exextAddress(data).subscribe(data => {
+      this.exactAddress = data.response;
+      if(this.exactAddress.length > 0){
+        this.address = this.exactAddress.map(data => {
+          return data.szFullAddress
+        })
+        this.addressOne = this.exactAddress.map(data => {
+          return data.szStreet_name
+        })
+          this.addressTwo = this.exactAddress.map(data => {
+          return data.szStreet_number
+        })
+      }
+     
+      console.log(this.address)
+    })
+  }
 
 
 
