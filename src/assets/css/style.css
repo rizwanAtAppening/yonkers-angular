@@ -2786,7 +2786,7 @@ margin-top: 60px;
     font-family: 'Poppins-Regular';
     font-size: 18px;
     line-height: 24px;
-    border: 0.5px solid #7e819d;
+    border:0.5px solid #a9abbd;
     position: relative;
     border-radius: 0px !important;
 
@@ -2829,7 +2829,7 @@ margin-top: 60px;
 .Detailed-txt textarea{
 width: 100%;
 height: 113px;
-border: 0.5px solid #282D5B99;
+border:0.5px solid #a9abbd;
 color: #282D5B;
 padding: 14px 17px;
 resize: none;
