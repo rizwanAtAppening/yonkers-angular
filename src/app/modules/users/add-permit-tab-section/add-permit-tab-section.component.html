@@ -215,7 +215,8 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" formControlName="address_id"
-                                                                        [typeahead]="address" id="jobadd" (input) ="searchAddress('exact','')"
+                                                                        [typeahead]="address" id="jobadd" (input) ="searchAddress('exact','')"   (typeaheadOnSelect) = "typeaheadOnSelect($event)"
+
                                                                         [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label

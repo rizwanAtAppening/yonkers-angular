@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -1336,43 +1337,43 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   public searchString: string
-  searchAddress(sendValue:string,index) {
+  searchAddress(sendValue: string, index) {
     debugger
     var value: string
 
-    if(sendValue == 'exact'){
+    if (sendValue == 'exact') {
       value = this.whereForm.value.address_id
       this.searchString = value;
       if (this.searchString.length > 1) {
         this.exextAddress()
       }
-     
+
     }
-    if(sendValue == 'location'){
+    if (sendValue == 'location') {
       // value = this.addLocationControls.value.street_one
       // this.searchString = value;
-      this.addLocationControls.value.map((data,i)=>{
-        if(index == i){
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
           this.searchString = (data.street_one).toString()
         }
       })
       if (this.searchString.length > 1) {
         this.exextAddress()
-      } 
+      }
     }
-    if(sendValue == 'locationtwo'){
+    if (sendValue == 'locationtwo') {
       // value = this.addLocationControls.value.street_one
       // this.searchString = value;
-      this.addLocationControls.value.map((data,i)=>{
-        if(index == i){
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
           this.searchString = data.street_one
         }
       })
       if (this.searchString.length > 1) {
         this.exextAddress()
-      } 
+      }
     }
-   
+
   }
 
   public exactAddress = [];
@@ -1385,22 +1386,34 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
-      if(this.exactAddress.length > 0){
+      if (this.exactAddress.length > 0) {
         this.address = this.exactAddress.map(data => {
           return data.szFullAddress
         })
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })
-          this.addressTwo = this.exactAddress.map(data => {
+        this.addressTwo = this.exactAddress.map(data => {
           return data.szStreet_number
         })
       }
-     
+
       console.log(this.address)
     })
   }
 
+  typeaheadOnSelect(e: TypeaheadMatch): void {
+    debugger
+    this.exactAddress.every(data => {
+      if (e.value == data.szFullAddress) {
+        this.whereForm.value.address_id = data.id;
+        return false
+      }else{
+        return true
+      }
+    })
+    console.log('Selected value: ', e.value);
+  }
 
 
 
