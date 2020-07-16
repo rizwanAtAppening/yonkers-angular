@@ -43,7 +43,7 @@ export class ApplicationsComponent implements OnInit {
   public totalPagination: number
   getAllApplication(application_Type) {
     this.application_Type = application_Type
-    debugger
+    
     const data = {
       page: this.page,
       application_type: this.application_Type
@@ -102,7 +102,7 @@ export class ApplicationsComponent implements OnInit {
   public from: any;
   public to: any;
   seelctDate(event) {
-    debugger
+    
     if (event) {
       this.from = event[0].toISOString()
       this.to = event[1].toISOString()

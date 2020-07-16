@@ -32,3 +32,6 @@ input[type=number]::-webkit-outer-spin-button {
 .msg {
   color: red !important
 }
+.voidMsg{
+  color: red !important
+}

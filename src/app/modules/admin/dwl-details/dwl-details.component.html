@@ -85,7 +85,7 @@
                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="app-status-txt">
-                                            <form [formGroup]="completIncompletForm">
+                                            <form [formGroup]="completIncompletForm" *ngIf = "(applicationDetails?.decision == null || applicationDetails?.decision == 0)">
                                                 <div class="row">
                                                     <div class="col-3">
                                                         <div class="select-input-box">
@@ -151,7 +151,7 @@
         
                                             </form>
         
-                                            <div class="plan-examiner-box submissionvoid">
+                                            <div class="plan-examiner-box submissionvoid" *ngIf = "applicationDetails?.submission_review?.length > 0">
                                                 <table class="table">
                                                     <thead>
                                                         <tr>

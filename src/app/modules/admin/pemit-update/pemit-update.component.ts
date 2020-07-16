@@ -123,7 +123,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public isDescription = false;
   saveProjectDescription() {
-    debugger
+    
     if (this.projectDescriptionForm.invalid) {
       this.isDescription = true
       return false
@@ -204,9 +204,9 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   permitDetails() {
-debugger
+
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-      debugger
+      
       this.applicationDetails = data.response;
       this.getReletedPermit();
       if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
@@ -252,7 +252,7 @@ debugger
   }
 
   voidSubmition(id) {
-    debugger
+    
     const data = {
       application_id: this.applicationDetails.id,
       id: id,
@@ -266,7 +266,7 @@ debugger
 
   public related_permit: any
   check(data, value) {
-    debugger
+    
     this.related_permit = value.id
     if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
       this.applicationDetails.related_permits.map((data => {
@@ -316,6 +316,7 @@ debugger
   get applicant() { return this.applicantForm.controls };
 
   addApplicant() {
+    this.applicantForm.value.applicant_type =   this.applicantForm.value.applicant_role 
     this.applicationService.applicantUpdate(this.applicantForm.value, this.applicationDetails.id).subscribe(data => {
       this.applicantPopUp.nativeElement.click();
       this.toasterService.success('Applicant  details have been updated')
@@ -324,7 +325,7 @@ debugger
   }
 
   fillApplicant() {
-    debugger
+    
     this.applicantForm.controls.applicant_name.setValue(this.applicationDetails.applicant_details.applicant_name);
     this.applicantForm.controls.applicant_role.setValue(this.applicationDetails.applicant_details.applicant_role)
     this.applicantForm.controls.applicant_address.setValue(this.applicationDetails.applicant_details.applicant_address)
@@ -482,7 +483,7 @@ debugger
   }
 
   uploadImage() {
-    debugger
+    
     var formData = new FormData();
     formData.append('application_id', this.applicationDetails.id);
     formData.append('name', this.attachment);

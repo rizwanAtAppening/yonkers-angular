@@ -80,7 +80,7 @@ export class DwlDetailsComponent implements OnInit {
   permitDetails() {
 
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-      debugger
+      
       this.applicationDetails = data.response;
       if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
         this.applicationDetails.related_permits.map((data => {
@@ -249,7 +249,7 @@ export class DwlDetailsComponent implements OnInit {
   }
 
   voidSubmition(id) {
-    debugger
+    
     const data = {
       application_id: this.applicationDetails.id,
       id: id,

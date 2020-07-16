@@ -122,7 +122,7 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   emailControls() {
-    debugger
+    
     this.emailFormGroup = this.fb.group({
       to: ['', Validators.required],
       from: ['', Validators.required],
@@ -272,7 +272,7 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   addNotes() {
-    debugger
+    
     if (this.notesFormGroup.invalid) {
       return false
     }

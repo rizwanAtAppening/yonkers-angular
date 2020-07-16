@@ -575,7 +575,7 @@
                                 <h6>{{applicationDetails?.applicant_details?.applicant_name}}</h6>
                               </li>
                               <li>
-                                <h6>type</h6>
+                                <h6>{{settings.getSetting('role',applicationDetails?.application_type)}}</h6>
                               </li>
                               <li>
                                 <h6>{{applicationDetails?.applicant_details?.applicant_phone}}</h6>
@@ -632,7 +632,7 @@
             </div>
 
 
-            <div class="submision-review-box">
+            <div class="submision-review-box" >
                 <div class="accordion" id="accordionExample">
 
                     <div class="card"
@@ -654,7 +654,7 @@
                             data-parent="#accordionExample">
                             <div class="card-body">
                                 <div class="app-status-txt">
-                                    <form [formGroup]="completIncompletForm">
+                                    <form [formGroup]="completIncompletForm" *ngIf = "(applicationDetails?.decision == null || applicationDetails?.decision == 0 )">
                                         <div class="row">
                                             <div class="col-3">
                                                 <div class="select-input-box">
@@ -720,7 +720,7 @@
 
                                     </form>
 
-                                    <div class="plan-examiner-box submissionvoid">
+                                    <div class="plan-examiner-box submissionvoid" *ngIf = "applicationDetails?.submission_review?.length > 0">
                                         <table class="table">
                                             <thead>
                                                 <tr>

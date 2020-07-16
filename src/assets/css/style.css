@@ -4671,3 +4671,14 @@ padding: 10px 17px;
 .nameFile .documentFileType .dropdown-content-void {
     right: 96px;
 }
+.time-btn button {
+    height: 27px;
+    border: 1px solid #2aabfa;
+    border-radius: 4px;
+    color: #2aabfa;
+    font-size: 12px;
+    background: #fff !important;
+    line-height: 19px;
+    cursor: pointer;
+    padding: 3px 8px;
+}

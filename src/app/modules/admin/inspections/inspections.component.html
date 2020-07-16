@@ -136,15 +136,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>{{imageName?imageName:'_'}}</td>
+                    <tr *ngFor ="let img of allImage">
+                      <td>{{img?.image}}</td>
                       <td>
                         <div class="actiondelet">
                           <!-- <h3 data-toggle="modal" data-target="#confirmpasswordmodalName">
                             <i class="fa fa-eye"
                               aria-hidden="true">View</i>
                              </h3> -->
-                          <h4 (click) ="imageEmpty()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
+                          <h4 (click) ="imageEmpty(img)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
                         </div>
                       </td>
 
@@ -182,7 +182,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let ins of applicationDetails?.inspections">
+              <tr *ngFor="let ins of inspections">
                 <td>{{ settings.getSetting('inspection_type',ins['type'])}}</td>
                 <td>{{ settings.getSetting('inspection_decision',ins['decision'])}}<span *ngIf="ins?.status == 0"
                     class="voidMsg">(v)</span></td>
@@ -195,8 +195,15 @@
                     <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                     <div class="dropdown-content-void">
                       <a (click)="voidInspection(ins?.id)" *ngIf="ins?.status != 0">Void Inspection</a>
-                      <a *ngIf ="ins?.document" href="{{ env?.host + env?.imageBasePath + ins?.document }}"
-                      target="_blank" >View Image</a>
+                      <div > 
+                          <a *ngFor = "let doc of ins?.newDoc, let i = index"  href="{{ env?.host + env?.imageBasePath + doc?.document }}"
+                          target="_blank" >View Image {{ins?.newDoc.length > 1 ? i+1 :'1'}}</a>
+                          <!-- <a *ngIf ="i == 1"  href="{{ env?.host + env?.imageBasePath + doc?.document }}"
+                              target="_blank" >View Image </a> -->
+                              
+
+                      </div>
+                     
 
                     </div>
                   </div>
@@ -229,16 +236,17 @@
         
             <div class="row">
               <div class="col-12">
-                <form [formGroup]="imageUpload">
-       <div class="namedocumentInpt">
-      <input type="text" formControlName="imageName" placeholder="Document Name..." [class]="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage) ? 'form-control form-group-error' : 'form-control'">
+                <form>
+                    <!-- [class]="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage) ? 'form-control form-group-error' : 'form-control'" -->
+       <!-- <div class="namedocumentInpt">
+      <input type="text" formControlName="imageName" placeholder="Document Name..." >
       <div
       *ngIf="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage)">
-      <p class="form-error" *ngIf="imageCon.imageName.errors['required']">
+      <p class="form-error" *ngIf="imageCon.imageName.errors['required'] && isImage">
         Please enter name
       </p>
     </div>
-       </div>
+       </div> -->
                 </form>
        <div class="JohnsmithTxt" *ngIf = "image">
        <h1> {{imageName}}</h1>
