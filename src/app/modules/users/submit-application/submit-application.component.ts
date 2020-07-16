@@ -27,7 +27,7 @@ export class SubmitApplicationComponent implements OnInit {
   }
 
   downloadApplication() {
-    debugger
+    
     const data = {
       downloadType: 1,
       exe: 2

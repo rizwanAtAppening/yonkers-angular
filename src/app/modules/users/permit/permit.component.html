@@ -1,13 +1,13 @@
 <app-layout>
     <router-outlet>
-        <section *ngIf ="userType != 3">
+        <section *ngIf="userType != 3">
             <div class="container p-0">
                 <div class="row">
                     <div class="col-12">
                         <div class="back-txt">
                             <div class="row">
                                 <div class="col-12" routerLink="/">
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -16,34 +16,35 @@
             </div>
         </section>
 
-        <section class="table-sec" *ngIf ="userType != 3" >
+        <section class="table-sec" *ngIf="userType != 3">
             <div class="container container-tbl">
                 <div class="row">
                     <div class="col-12">
                         <div class="table-Box pl-0 pr-0 border-0">
-                                <div class="permit-index">
+                            <div class="permit-index">
+                                <div class="row">
+                                    <div class="col-8">
                                         <div class="row">
-                                            <div class="col-8">
-                                                <div class="row">
-                                                    <div class="col-4 pr-0">
-                                                    <div class="permit-Hd">
-                                                        Permit Index
-                                                    </div>
+                                            <div class="col-4 pr-0">
+                                                <div class="permit-Hd">
+                                                    Permit Index
                                                 </div>
+                                            </div>
                                             <div class="col-7 pl-0">
                                                 <div class="header-input tbl-search-box">
-                                                    <input type="text" (input) ="searchApplication()" placeholder="Search..." [(ngModel)] ="searchString"/>
+                                                    <input type="text" (input)="searchApplication()"
+                                                        placeholder="Search..." [(ngModel)]="searchString" />
                                                     <span><i class="fa fa-search" aria-hidden="true"></i></span>
                                                 </div>
                                             </div>
-                                            </div>
-                                        </div>
-                                            <div class="col-4"  routerLink = "/dashboard/add-permit-selectType">
-                                                <div class="New-Project"><button> <span><img src="assets/images/plus.svg"
-                                                                alt=""></span> New Project</button></div>
-                                            </div>
                                         </div>
                                     </div>
+                                    <div class="col-4" routerLink="/dashboard/add-permit-selectType">
+                                        <div class="New-Project"><button> <span><img src="assets/images/plus.svg"
+                                                        alt=""></span> New Project</button></div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-12">
@@ -62,62 +63,96 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor ="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                    <td class="refTxt pointer" (click) ="updateApplication(application?.id)">{{application?.reference_no}}</td>
-                                                     <td >
-                                                         <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
-                                                            </p>
-                                                         <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
-                                                             <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
+                                                <tr
+                                                    *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                    <td class="refTxt pointer"
+                                                        (click)="updateApplication(application?.id)">
+                                                        {{application?.reference_no}}</td>
+                                                    <td>
+                                                        <p *ngIf="application?.address_id"> {{application?.address_id}}
+                                                        </p>
+                                                        <h6
+                                                            *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                            <p
+                                                                *ngIf="application?.location && application?.location.length > 0">
+                                                                {{application?.location[0]?.street_one}}
+                                                                {{application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                {{application?.location[0]?.street_two}}</p>
+                                                        </h6>
 
-                                                             <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
-                                                                    <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                            <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                            <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
+                                                        <h6
+                                                            *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                            <p *ngFor="let location of application?.location ">
+                                                                {{location?.street_one}}
+                                                                {{location?.address_join == 1 ?'To':'End'}}
+                                                                {{location?.street_two}}</p>
+                                                        </h6>
+                                                        <strong class="pointer-2"
+                                                            (click)="showMoreLocation(false,application?.id)"
+                                                            *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                            More</strong>
+                                                        <strong class="pointer-2"
+                                                            (click)="showMoreLocation(true,application?.id)"
+                                                            *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                            Less</strong>
 
 
                                                     </td>
                                                     <td> {{ settings.getSetting('type',application['type'])}}</td>
                                                     <td class="submited-Btn"><button>Submitted</button></td>
-                                                    <td class="submited-Btn" *ngIf ="application?.status == null && application?.application_type ==1"><button>Draft</button></td>
-                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 2 && application?.application_type ==1"><button>Submitted</button></td>
-                                                    <td class="submited-Btn blue-txt-2" *ngIf ="application?.status == 3 && application?.application_type ==1"><button>Cancel</button></td>
+                                                    <td class="submited-Btn"
+                                                        *ngIf="application?.status == null && application?.application_type ==1">
+                                                        <button>Draft</button></td>
+                                                    <td class="submited-Btn blue-txt-2"
+                                                        *ngIf="application?.status == 2 && application?.application_type ==1">
+                                                        <button>Submitted</button></td>
+                                                    <td class="submited-Btn blue-txt-2"
+                                                        *ngIf="application?.status == 3 && application?.application_type ==1">
+                                                        <button>Cancel</button></td>
 
                                                     <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
                                                     <td>_</td>
                                                     <!-- <td class="update-txt"> <span><i class="fa fa-angle-down"
                                                                 aria-hidden="true"></i></span></td> -->
-                                                                <td
-                                                                class="update-txt dropdown-action">
-                                                                <span> <i
-                                                                        class="fa fa-angle-down"
-                                                                        aria-hidden="true"></i></span>
-                                                                <div
-                                                                    class="dropdown-contentable">
-                                                                    <a class="pointer" data-toggle="modal" data-target="#cancel_application" *ngIf ="application?.status != 3" (click) = "getApplicationId(application?.id)" >Cancel </a>
-                                                                    <a class="pointer" data-toggle="modal" data-target="#withdraw_application"*ngIf ="application?.status != 4 && application?.status != null "  (click) = "getApplicationId(application?.id)" >Withdraw</a>
-                                                                       
-                                                                    <!-- <a href="#">Inactive</a>  -->
-                                                                    <div
-                                                                        class="triangle-left">
-                                                                    </div>
-                                                                </div>
-                                                            </td>
+                                                    <td class="update-txt dropdown-action">
+                                                        <div class="time-btn">
+                                                            <button (click) = "navigateTopaymentPage()">
+                                                                <img src="./assets/images/x-time.svg" alt="">
+                                                                Pay Now
+                                                            </button>
+                                                        </div>
+                                                        <span> <i class="fa fa-angle-down"
+                                                                aria-hidden="true"></i></span>
+                                                        <div class="dropdown-contentable">
+                                                            <a class="pointer" data-toggle="modal"
+                                                                data-target="#cancel_application"
+                                                                *ngIf="application?.status != 3"
+                                                                (click)="getApplicationId(application?.id)">Cancel </a>
+                                                            <a class="pointer" data-toggle="modal"
+                                                                data-target="#withdraw_application"
+                                                                *ngIf="application?.status != 4 && application?.status != null "
+                                                                (click)="getApplicationId(application?.id)">Withdraw</a>
+
+                                                            <!-- <a href="#">Inactive</a>  -->
+                                                            <div class="triangle-left">
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
-                                              
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <pagination-controls   (pageChange)="paginate($event,'')"></pagination-controls>
+                            <pagination-controls (pageChange)="paginate($event,'')"></pagination-controls>
 
                         </div>
                     </div>
                 </div>
             </div>
-        </section> 
-        <section *ngIf ="userType == 3">
+        </section>
+        <section *ngIf="userType == 3">
             <div class="container p-0 container_full">
                 <div class="row">
                     <div class="col-12">
@@ -126,20 +161,25 @@
                                 <div class="col-12">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a  [class]="dwlType == '1'?'nav-link active':'nav-link'" id="pills-Permit-loaction-tab" data-toggle="pill"
+                                            <a [class]="dwlType == '1'?'nav-link active':'nav-link'"
+                                                id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
-                                                aria-controls="pills-Permit-loaction" aria-selected="true" (click) = "getPermitApplication(1)">Permit</a>
+                                                aria-controls="pills-Permit-loaction" aria-selected="true"
+                                                (click)="getPermitApplication(1)">Permit</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a  [class]="dwlType == '2'?'nav-link active':'nav-link'"  id="pills-Daily-tab" data-toggle="pill" (click) = "getPermitApplication(2)"
-                                                href="#pills-Daily" role="tab" aria-controls="pills-Daily"
-                                                aria-selected="false">Daily work location</a>
+                                            <a [class]="dwlType == '2'?'nav-link active':'nav-link'"
+                                                id="pills-Daily-tab" data-toggle="pill"
+                                                (click)="getPermitApplication(2)" href="#pills-Daily" role="tab"
+                                                aria-controls="pills-Daily" aria-selected="false">Daily work
+                                                location</a>
                                         </li>
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div [class]="dwlType == '1' ? 'tab-pane fade show active':'tab-pane fade'"  id="pills-Permit-loaction"
-                                            role="tabpanel" aria-labelledby="pills-Permit-loaction-tab">
+                                        <div [class]="dwlType == '1' ? 'tab-pane fade show active':'tab-pane fade'"
+                                            id="pills-Permit-loaction" role="tabpanel"
+                                            aria-labelledby="pills-Permit-loaction-tab">
                                             <section class="table-sec daily-sec">
                                                 <div class="container p-0 container_full">
                                                     <div class="row">
@@ -168,8 +208,8 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project" (click) ="navigate(1)"><button
-                                                                                   >
+                                                                            <div class="New-Project"
+                                                                                (click)="navigate(1)"><button>
                                                                                     <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -199,34 +239,55 @@
                                                                                 <tbody>
                                                                                     <tr
                                                                                         *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                        <td class="refTxt "
-                                                                                           >
+                                                                                        <td class="refTxt ">
                                                                                             {{application?.reference_no}}
                                                                                         </td>
-                                                                                        <td >
-                                                                                                <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
-                                                                                                   </p>
-                                                                                                <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
-                                                                                                    <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
-                                       
-                                                                                                    <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
-                                                                                                           <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                                   <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                                                                   <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
-                                       
-                                       
-                                                                                           </td>
+                                                                                        <td>
+                                                                                            <p
+                                                                                                *ngIf="application?.address_id">
+                                                                                                {{application?.address_id}}
+                                                                                            </p>
+                                                                                            <h6
+                                                                                                *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngIf="application?.location && application?.location.length > 0">
+                                                                                                    {{application?.location[0]?.street_one}}
+                                                                                                    {{application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                    {{application?.location[0]?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+
+                                                                                            <h6
+                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngFor="let location of application?.location ">
+                                                                                                    {{location?.street_one}}
+                                                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                    {{location?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(false,application?.id)"
+                                                                                                *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                More</strong>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(true,application?.id)"
+                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                Less</strong>
+
+
+                                                                                        </td>
                                                                                         <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
                                                                                         </td>
                                                                                         <!-- <td
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
                                                                                         </td> -->
-                                                                                        <td *ngIf ="(application.application_type == 1 || application.application_type == 3) && application.status == 2"
-                                                                                                class="submited-Btn blue-txt-2">
-                                                                                                <button>Submitted</button>
-                                                                                            </td>
-                                                                                            <td *ngIf ="application.application_type == 1 && application.status == null"
+                                                                                        <td *ngIf="(application.application_type == 1 || application.application_type == 3) && application.status == 2"
+                                                                                            class="submited-Btn blue-txt-2">
+                                                                                            <button>Submitted</button>
+                                                                                        </td>
+                                                                                        <td *ngIf="application.application_type == 1 && application.status == null"
                                                                                             class="submited-Btn">
                                                                                             <button>Draft</button>
                                                                                         </td>
@@ -242,7 +303,9 @@
                                                                                                     aria-hidden="true"></i></span>
                                                                                             <div
                                                                                                 class="dropdown-contentable">
-                                                                                                <a class="pointer" (click) = "naviagetByUrl('dashboard/add-user-permit',application.id,1)" >Modify </a>
+                                                                                                <a class="pointer"
+                                                                                                    (click)="naviagetByUrl('dashboard/add-user-permit',application.id,1)">Modify
+                                                                                                </a>
                                                                                                 <!-- <a href="#">Edit
                                                                                                     Staff</a>
                                                                                                 <a href="#">Inactive</a>  -->
@@ -267,136 +330,164 @@
                                                 </div>
                                             </section>
                                         </div>
-                                        <div [class]="dwlType == '2' ? 'tab-pane fade show active':'tab-pane fade'" id="pills-Daily" role="tabpanel"
-                                            aria-labelledby="pills-Daily-tab">
+                                        <div [class]="dwlType == '2' ? 'tab-pane fade show active':'tab-pane fade'"
+                                            id="pills-Daily" role="tabpanel" aria-labelledby="pills-Daily-tab">
                                             <section class="table-sec daily-sec">
-                                                    <div class="container p-0 container_full">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="table-Box ">
-                                                                    <div class="permit-index">
-                                                                        <div class="row">
-                                                                            <div class="col-8">
-                                                                                <div class="row">
-                                                                                    <div class="col-3 pr-0">
-                                                                                        <div class="permit-Hd">
-                                                                                            DWL Index
-                                                                                        </div>
+                                                <div class="container p-0 container_full">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box ">
+                                                                <div class="permit-index">
+                                                                    <div class="row">
+                                                                        <div class="col-8">
+                                                                            <div class="row">
+                                                                                <div class="col-3 pr-0">
+                                                                                    <div class="permit-Hd">
+                                                                                        DWL Index
                                                                                     </div>
-                                                                                    <div class="col-6 pl-0">
-                                                                                        <div
-                                                                                            class="header-input tbl-search-box">
-                                                                                            <input type="text"
-                                                                                                placeholder="Search..."
-                                                                                                (input)="searchApplication()"
-                                                                                                [(ngModel)]="searchString">
-                                                                                            <span><i class="fa fa-search"
-                                                                                                    aria-hidden="true"></i></span>
-                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="col-6 pl-0">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            placeholder="Search..."
+                                                                                            (input)="searchApplication()"
+                                                                                            [(ngModel)]="searchString">
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="col-4">
-                                                                                <div class="New-Project"  (click) ="navigate(2)"><button
-                                                                                        >
-                                                                                        <span><img
-                                                                                                src="assets/images/plus.svg"
-                                                                                                alt=""></span> New
-                                                                                        Project</button></div>
-                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4">
+                                                                            <div class="New-Project"
+                                                                                (click)="navigate(2)"><button>
+                                                                                    <span><img
+                                                                                            src="assets/images/plus.svg"
+                                                                                            alt=""></span> New
+                                                                                    Project</button></div>
                                                                         </div>
                                                                     </div>
-    
-    
-                                                                    <div class="row">
-                                                                        <div class="col-12">
-                                                                            <div class="table-permit">
-                                                                                <table class="table table-bordered ">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                            <th>Ref No</th>
-                                                                                            <th>Location</th>
-                                                                                            <!-- <th>Type</th> -->
-                                                                                            <th>Permit Status</th>
-                                                                                            <th>Application Status</th>
-                                                                                            <th>Layout No</th>
-                                                                                            <th>Submit date</th>
-                                                                                            <th>Expire Date</th>
-                                                                                            <th>Action</th>
-                                                                                        </tr>
-                                                                                    </thead>
-                                                                                    <tbody>
-                                                                                        <tr
-                                                                                            *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt"
-                                                                                               >
-                                                                                                {{application?.reference_no}}
-                                                                                            </td>
-                                                                                            <td >
-                                                                                                    <p *ngIf ="application?.address_id">                                                         {{application?.address_id}}
-                                                                                                       </p>
-                                                                                                    <h6  *ngIf ="!application?.address_id && application?.isSingleAddress" >
-                                                                                                        <p *ngIf ="application?.location && application?.location.length > 0" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
-                                           
-                                                                                                        <h6  *ngIf ="!application?.address_id && !application.isSingleAddress" >
-                                                                                                               <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,application?.id)" *ngIf ="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show More</strong>
-                                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,application?.id)"  *ngIf ="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show Less</strong>
-                                           
-                                           
-                                                                                               </td>
-                                                                                            <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
-                                                                                                <!-- <td class="msg"><b>Draft</b></td> -->
-                                                                                                <td
-                                                                                                class="submited-Btn green-txt-2">
-                                                                                                <button>Completed</button>
-                                                                                            </td>
-                                                                                            <td *ngIf ="application.application_type ==2 && application.status == 2"
-                                                                                                class="submited-Btn blue-txt-2">
-                                                                                                <button>Submitted</button>
-                                                                                            </td>
-                                                                                            <td *ngIf ="application.application_type ==2 && application.status == null"
+                                                                </div>
+
+
+                                                                <div class="row">
+                                                                    <div class="col-12">
+                                                                        <div class="table-permit">
+                                                                            <table class="table table-bordered ">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Ref No</th>
+                                                                                        <th>Location</th>
+                                                                                        <!-- <th>Type</th> -->
+                                                                                        <th>Permit Status</th>
+                                                                                        <th>Application Status</th>
+                                                                                        <th>Layout No</th>
+                                                                                        <th>Submit date</th>
+                                                                                        <th>Expire Date</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                        <td class="refTxt">
+                                                                                            {{application?.reference_no}}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <p
+                                                                                                *ngIf="application?.address_id">
+                                                                                                {{application?.address_id}}
+                                                                                            </p>
+                                                                                            <h6
+                                                                                                *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngIf="application?.location && application?.location.length > 0">
+                                                                                                    {{application?.location[0]?.street_one}}
+                                                                                                    {{application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                    {{application?.location[0]?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+
+                                                                                            <h6
+                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngFor="let location of application?.location ">
+                                                                                                    {{location?.street_one}}
+                                                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                    {{location?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(false,application?.id)"
+                                                                                                *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                More</strong>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(true,application?.id)"
+                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                Less</strong>
+
+
+                                                                                        </td>
+                                                                                        <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
+                                                                                        <!-- <td class="msg"><b>Draft</b></td> -->
+                                                                                        <td
+                                                                                            class="submited-Btn green-txt-2">
+                                                                                            <button>Completed</button>
+                                                                                        </td>
+                                                                                        <td *ngIf="application.application_type ==2 && application.status == 2"
+                                                                                            class="submited-Btn blue-txt-2">
+                                                                                            <button>Submitted</button>
+                                                                                        </td>
+                                                                                        <td *ngIf="application.application_type ==2 && application.status == null"
                                                                                             class="submited-Btn">
                                                                                             <button>Draft</button>
                                                                                         </td>
-                                                                                            
-                                                                                            <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td>
-                                                                                            <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
-                                                                                            </td>
-                                                                                            <td>_
-                                                                                            </td>
-                                                                                            <td
-                                                                                                class="update-txt dropdown-action">
-                                                                                                <span> <i
-                                                                                                        class="fa fa-angle-down"
-                                                                                                        aria-hidden="true"></i></span>
+
+                                                                                        <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}
+                                                                                        </td>
+                                                                                        <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
+                                                                                        </td>
+                                                                                        <td>_
+                                                                                        </td>
+                                                                                        <td
+                                                                                            class="update-txt dropdown-action">
+                                                                                            <span> <i
+                                                                                                    class="fa fa-angle-down"
+                                                                                                    aria-hidden="true"></i></span>
+                                                                                            <div
+                                                                                                class="dropdown-contentable">
+                                                                                                <!-- <a >Delete</a> -->
+                                                                                                <a class="pointer"
+                                                                                                    (click)="naviagetByUrl('/dashboard/daily-work-location',application.id,2)">Modify
+                                                                                                </a>
+
+                                                                                                <!-- <a >Inactive</a> -->
+                                                                                                <a class="pointer"
+                                                                                                    (click)="getApplicationId(application?.id)"
+                                                                                                    data-toggle="modal"
+                                                                                                    data-target="#delete_application">Conver
+                                                                                                    Permit</a>
                                                                                                 <div
-                                                                                                    class="dropdown-contentable">
-                                                                                                    <!-- <a >Delete</a> -->
-                                                                                                    <a class="pointer" (click) = "naviagetByUrl('/dashboard/daily-work-location',application.id,2)" >Modify </a>
-                                                                                                       
-                                                                                                    <!-- <a >Inactive</a> -->
-                                                                                                    <a  class="pointer" (click) ="getApplicationId(application?.id)" data-toggle="modal" data-target="#delete_application">Conver Permit</a>
-                                                                                                    <div
-                                                                                                        class="triangle-left">
-                                                                                                    </div>
+                                                                                                    class="triangle-left">
                                                                                                 </div>
-                                                                                            </td>
-                                                                                        </tr>
-    
-                                                                                    </tbody>
-                                                                                </table>
-                                                                            </div>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div>
                                                                     </div>
-                                                                    <pagination-controls (pageChange)="paginate($event,2)">
-                                                                    </pagination-controls>
-    
                                                                 </div>
+                                                                <pagination-controls (pageChange)="paginate($event,2)">
+                                                                </pagination-controls>
+
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </section>
+                                                </div>
+                                            </section>
 
                                             <!-- <section class="box-work-daily">
                                                 <div class="daily_Hd">
@@ -754,67 +845,67 @@
         </section>
 
         <div class="modal fade" id="delete_application" tabindex="-1" role="dialog" #confirmPopUp
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
-            <div class="modal-content app-content">
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+                <div class="modal-content app-content">
 
-                <div class="soure-delete-txt">
-                    <h3>Convert Application</h3>
-                    <h4>Are you sure you want to convert Application</h4>
+                    <div class="soure-delete-txt">
+                        <h3>Convert Application</h3>
+                        <h4>Are you sure you want to convert Application</h4>
+                    </div>
+
+
+                    <div class="modal-footer p-0 border-0">
+                        <button type="button" class="secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="primary" (click)="convertPermitApplication()">Yes</button>
+                    </div>
+
+
                 </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cancel_application" tabindex="-1" role="dialog" #cancelConfirmPopUp
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+                <div class="modal-content app-content">
+
+                    <div class="soure-delete-txt">
+                        <h3>Cancel Application</h3>
+                        <h4>Are you sure you want to cancel Application</h4>
+                    </div>
 
 
-                <div class="modal-footer p-0 border-0">
-                    <button type="button" class="secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="primary" (click) ="convertPermitApplication()">Yes</button>
+                    <div class="modal-footer p-0 border-0">
+                        <button type="button" class="secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="primary" (click)="cancelPermit()">Yes</button>
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 
-    <div class="modal fade" id="cancel_application" tabindex="-1" role="dialog" #cancelConfirmPopUp
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
-        <div class="modal-content app-content">
+        <div class="modal fade" id="withdraw_application" tabindex="-1" role="dialog" #withdrawConfirmPopUp
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered delet-modal" role="document">
+                <div class="modal-content app-content">
 
-            <div class="soure-delete-txt">
-                <h3>Cancel Application</h3>
-                <h4>Are you sure you want to cancel Application</h4>
+                    <div class="soure-delete-txt">
+                        <h3>Withdraw Application</h3>
+                        <h4>Are you sure you want to withdraw Application</h4>
+                    </div>
+
+
+                    <div class="modal-footer p-0 border-0">
+                        <button type="button" class="secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="primary" (click)="withdrawPermit()">Yes</button>
+                    </div>
+
+
+                </div>
             </div>
-
-
-            <div class="modal-footer p-0 border-0">
-                <button type="button" class="secondary" data-dismiss="modal">No</button>
-                <button type="button" class="primary" (click) ="cancelPermit()">Yes</button>
-            </div>
-
-
         </div>
-    </div>
-</div>
-
-<div class="modal fade" id="withdraw_application" tabindex="-1" role="dialog" #withdrawConfirmPopUp
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered delet-modal" role="document">
-    <div class="modal-content app-content">
-
-        <div class="soure-delete-txt">
-            <h3>Withdraw Application</h3>
-            <h4>Are you sure you want to withdraw Application</h4>
-        </div>
-
-
-        <div class="modal-footer p-0 border-0">
-            <button type="button" class="secondary" data-dismiss="modal">No</button>
-            <button type="button" class="primary" (click) ="withdrawPermit()">Yes</button>
-        </div>
-
-
-    </div>
-</div>
-</div>
 
     </router-outlet>
 </app-layout>

@@ -419,7 +419,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public location_type = 1
 
   selectAddress(value: string) {
-    debugger
+    
     if (value == 'location') {
       this.isLocation = true
       this.location_type = 2
@@ -444,7 +444,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    debugger
+    
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -531,7 +531,8 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.data = {
           model: 2,
-          address_id: (this.whereForm.value.address_id),
+          // address_id: (this.whereForm.value.address_id),
+          address_id: this.addressId,
           location_type: this.location_type,
           also_known_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
@@ -693,7 +694,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-    debugger
+    
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -1260,7 +1261,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public searchDetails: any = []
   public searchDetail: any = []
   searchBussiness(value) {
-    debugger
+    
     var value = value
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
@@ -1306,7 +1307,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   // public searchDetails: any
   data3 = ['shivam', 'chauhan', 'alok', 'singh', 'kumar']
   allBussiness() {
-    debugger
+    
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
@@ -1338,7 +1339,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    debugger
+    
     var value: string
 
     if (sendValue == 'exact') {
@@ -1402,17 +1403,45 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
 
-  typeaheadOnSelect(e: TypeaheadMatch): void {
-    debugger
-    this.exactAddress.every(data => {
-      if (e.value == data.szFullAddress) {
-        this.whereForm.value.address_id = data.id;
-        return false
-      }else{
-        return true
+  public addressId: number;
+  public addressOneId: number;
+  public addressTwoId: number;
+  typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+    if (value == 'exact') {
+      this.exactAddress.every(data => {
+        if (e.value == data.szFullAddress) {
+          //this.whereForm.value.address_id = data.id;
+          this.addressId = data.id
+          return false
+        } else {
+          return true
+        }
+      })
+    } else if (value == 'location') {
+      if (address == 'addressTwo') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressTwo = data.id
+            return false
+          } else {
+            return true
+          }
+        })
       }
-    })
-    console.log('Selected value: ', e.value);
+      else if (address == 'addressOne') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressOne = data.id
+            return false
+          } else {
+            return true
+          }
+        })
+      }
+    }
+
   }
 
 

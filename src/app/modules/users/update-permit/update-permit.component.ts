@@ -38,7 +38,7 @@ export class UpdatePermitComponent implements OnInit {
 
   public applicationDetails: any
   applicationDetais() {
-    debugger
+    
     this.userService.applicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
       console.log(this.applicationDetails)

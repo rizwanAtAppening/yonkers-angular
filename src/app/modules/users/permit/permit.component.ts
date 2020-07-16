@@ -321,4 +321,8 @@ export class PermitComponent implements OnInit {
 
     })
   }
+
+  navigateTopaymentPage(){
+    this.router.navigate(['/dashboard/payment'])
+  }
 }

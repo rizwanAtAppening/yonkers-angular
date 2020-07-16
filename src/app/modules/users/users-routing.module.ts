@@ -14,6 +14,7 @@ import { AddDailyWorkLoactionComponent } from './add-daily-work-loaction/add-dai
 import { AddPermitComponent } from './add-permit/add-permit.component';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 // const routes: Routes = [
@@ -95,6 +96,10 @@ const routes: Routes = [
             path: 'show-team-member',
             component: ShowTeamMemberComponent,
           }, 
+          {
+            path:'payment',
+            component:PaymentComponent
+          }
          
 
 
