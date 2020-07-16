@@ -118,6 +118,8 @@ const userUrl = {
   downloadApplication:`/download-application`,
   applicationDetails:`/application`,
   execAddress:`/address`,
+  payment:`/application-payment`,
+  showPaymentDetails:`/application-fee`
 
 
 

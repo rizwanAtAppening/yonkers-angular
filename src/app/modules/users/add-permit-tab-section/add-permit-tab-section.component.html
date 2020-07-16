@@ -214,8 +214,9 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
+                                                                        <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'exact','')" -->
                                                                     <input type="text" formControlName="address_id"
-                                                                        [typeahead]="address" id="jobadd" (input) ="searchAddress('exact','')"   (typeaheadOnSelect) = "typeaheadOnSelect($event,'exact','')"
+                                                                        [typeahead]="address" id="jobadd" (typeaheadOnSelect) = "typeaheadOnSelect($event,'exact','')"  (input) ="searchAddress('exact','')"   
 
                                                                         [class]="whereControls.address_id.invalid && (whereControls.address_id.dirty || whereControls.address_id.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -303,8 +304,10 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
+                                                                        <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'location','addressOne')" -->
+
                                                                     <input type="text" id="Street"
-                                                                        class="form-control" (typeaheadOnSelect) = "typeaheadOnSelect($event,'location','addressOne')"  [typeahead]="addressOne" (input) ="searchAddress('location',i)"
+                                                                        class="form-control"   [typeahead]="addressOne" (input) ="searchAddress('location',i)"
                                                                         formControlName="street_one"
                                                                         [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -356,8 +359,9 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
+                                                                        <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'location','addressTwo')" -->
                                                                     <input type="text" id="aa1" class="form-control"
-                                                                        formControlName="street_two" (typeaheadOnSelect) = "typeaheadOnSelect($event,'location','addressTwo')"  [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"
+                                                                        formControlName="street_two"   [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"
                                                                         [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control" required="">
                                                                     <label

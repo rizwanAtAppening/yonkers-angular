@@ -304,7 +304,7 @@ export class PermitComponent implements OnInit {
   }
 
   cancelPermit() {
-    
+
     this.permitService.cancelPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application canceled');
       this.getPermitApplication(this.dwlType);
@@ -313,7 +313,7 @@ export class PermitComponent implements OnInit {
   }
 
   withdrawPermit() {
-    
+
     this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application withdraw');
       this.getPermitApplication(this.dwlType)
@@ -322,7 +322,7 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  navigateTopaymentPage(){
-    this.router.navigate(['/dashboard/payment'])
+  navigateTopaymentPage(id) {
+    this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
   }
 }
