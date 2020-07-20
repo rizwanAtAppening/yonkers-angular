@@ -84,9 +84,9 @@
                                                             <div class="row">
                                                                 <div class="col-12 ">
                                                                     <div class="form-group">
-                                                                        <input type="number" id="jobadd"
+                                                                        <input type="text" id="jobadd"
                                                                             class="form-control"
-                                                                            formControlName="address_id" required>
+                                                                            formControlName="address_id" [typeahead]="address" (typeaheadOnSelect) = "typeaheadOnSelect($event,'exact','')"  (input) ="searchAddress('exact','')" required>
                                                                         <label class="form-control-placeholder"
                                                                             for="jobadd">Address</label>
                                                                     </div>
@@ -139,7 +139,7 @@
                                                                         <div class="form-group">
                                                                             <input type="text" id="Street"
                                                                                 class="form-control"
-                                                                                formControlName="street_one"
+                                                                                formControlName="street_one"  [typeahead]="addressOne" (input) ="searchAddress('location',i)"
                                                                                 [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                                 required="">
                                                                             <label class="form-control-placeholder"
@@ -187,7 +187,7 @@
                                                                         <div class="form-group">
                                                                             <input type="text" id="Street"
                                                                                 class="form-control"
-                                                                                formControlName="street_two"
+                                                                                formControlName="street_two"  [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"
                                                                                 [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                                 class="form-control" required="">
                                                                             <label class="form-control-placeholder"

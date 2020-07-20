@@ -4,6 +4,7 @@ import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   selector: 'app-add-permit',
@@ -223,7 +224,7 @@ export class AddPermitComponent implements OnInit {
     } else if (this.location_type == 1) {
       this.formData.append(
         "address_id",
-        (this.permitForm.value.address_id)
+        (this.addressId)
       );
 
     }
@@ -346,7 +347,8 @@ export class AddPermitComponent implements OnInit {
   public id: number
   public dwl_id: number
   editAppliction(value) {
-    this.location_type = 2
+    debugger
+    this.location_type = value.location_type
     this.id = value.id;
     if (value.application_daily_work_location && value.application_daily_work_location.id)
       this.dwl_id = value.application_daily_work_location.id
@@ -393,7 +395,7 @@ export class AddPermitComponent implements OnInit {
     }
     else if (this.location_type == 1) {
 
-      this.permitForm.controls.address_id.setValue(value.address_id);
+      this.permitForm.controls.address_id.setValue(value.address_details.szFullAddress);
       this.permitForm.controls.type.setValue(value.type);
       this.permitForm.controls.start_date.setValue(new Date(value.project_detail.start_date));
       this.permitForm.controls.end_date.setValue(new Date(value.project_detail.end_date));
@@ -559,5 +561,111 @@ export class AddPermitComponent implements OnInit {
     })
   }
 
+  public searchString
+  public exactAddress = [];
+  public address = []
+  public addressOne = [];
+  public addressTwo = []
+  exextAddress() {
+    const data = {
+      query: this.searchString,
+    }
+    this.permitService.exextAddress(data).subscribe(data => {
+      this.exactAddress = data.response;
+      if (this.exactAddress.length > 0) {
+        this.address = this.exactAddress.map(data => {
+          return data.szFullAddress
+        })
+        this.addressOne = this.exactAddress.map(data => {
+          return data.szStreet_name
+        })
+        this.addressTwo = this.exactAddress.map(data => {
+          return data.szStreet_name
+        })
+      }
+
+      console.log(this.address)
+    })
+  }
+
+  searchAddress(sendValue: string, index) {
+    debugger
+    var value: string
+
+    if (sendValue == 'exact') {
+      value = this.permitForm.value.address_id
+      this.searchString = value;
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+
+    }
+    if (sendValue == 'location') {
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
+          this.searchString = (data.street_one).toString()
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+    }
+    if (sendValue == 'locationtwo') {
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
+          this.searchString = data.street_one
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+    }
+
+  }
+
+  public addressId: number;
+  public addressOneId: number;
+  public addressTwoId: number;
+  typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+    if (value == 'exact') {
+      this.exactAddress.every(data => {
+        if (e.value == data.szFullAddress) {
+          //this.whereForm.value.address_id = data.id;
+          this.addressId = data.id
+          return false
+        } else {
+          return true
+        }
+      })
+    } else if (value == 'location') {
+      if (address == 'addressTwo') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressTwo = data.id
+            return false
+          } else {
+            return true
+          }
+        })
+      }
+      else if (address == 'addressOne') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressOne = data.id
+            return false
+          } else {
+            return true
+          }
+        })
+      }
+    }
+
+  }
 
 }

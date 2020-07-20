@@ -4,6 +4,7 @@ import { PermitService } from 'src/app/core/services/users/permit.service';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   selector: 'app-add-daily-work-loaction',
@@ -159,6 +160,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     }
     else if (this.location_type == 2) {
       this.dwlForm.controls.address_id.setErrors(null)
+      this.dwlForm.controls.parcel_number.setErrors(null)
+
     }
     if (this.dwlForm.invalid) {
       this.isdwlSubmit = true;
@@ -168,7 +171,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
     if (this.location_type == 1) {
       this.dwlData = {
-        address_id: this.dwlForm.value.address_id,
+        //address_id: this.dwlForm.value.address_id,
+        address_id:this.addressId,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
         permit_type: this.dwlForm.value.permit_type,
@@ -404,5 +408,112 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         this.fillFormOnEditAndByLayoutNumber(this.applicationDetail)
       }
     })
+  }
+
+  public searchString
+  public exactAddress = [];
+  public address = []
+  public addressOne = [];
+  public addressTwo = []
+  exextAddress() {
+    const data = {
+      query: this.searchString,
+    }
+    this.permitService.exextAddress(data).subscribe(data => {
+      this.exactAddress = data.response;
+      if (this.exactAddress.length > 0) {
+        this.address = this.exactAddress.map(data => {
+          return data.szFullAddress
+        })
+        this.addressOne = this.exactAddress.map(data => {
+          return data.szStreet_name
+        })
+        this.addressTwo = this.exactAddress.map(data => {
+          return data.szStreet_name
+        })
+      }
+
+      console.log(this.address)
+    })
+  }
+
+  searchAddress(sendValue: string, index) {
+    debugger
+    var value: string
+
+    if (sendValue == 'exact') {
+      value = this.dwlForm.value.address_id
+      this.searchString = value;
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+
+    }
+    if (sendValue == 'location') {
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
+          this.searchString = (data.street_one).toString()
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+    }
+    if (sendValue == 'locationtwo') {
+      // value = this.addLocationControls.value.street_one
+      // this.searchString = value;
+      this.addLocationControls.value.map((data, i) => {
+        if (index == i) {
+          this.searchString = data.street_one
+        }
+      })
+      if (this.searchString.length > 1) {
+        this.exextAddress()
+      }
+    }
+
+  }
+
+  public addressId: number;
+  public addressOneId: number;
+  public addressTwoId: number;
+  typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+    if (value == 'exact') {
+      this.exactAddress.every(data => {
+        if (e.value == data.szFullAddress) {
+          //this.whereForm.value.address_id = data.id;
+          this.addressId = data.id
+          return false
+        } else {
+          return true
+        }
+      })
+    } else if (value == 'location') {
+      if (address == 'addressTwo') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressTwo = data.id
+            return false
+          } else {
+            return true
+          }
+        })
+      }
+      else if (address == 'addressOne') {
+        this.exactAddress.every(data => {
+          if (e.value == data.szFullAddress) {
+            //this.whereForm.value.address_id = data.id;
+            this.addressOne = data.id
+            return false
+          } else {
+            return true
+          }
+        })
+      }
+    }
+
   }
 }

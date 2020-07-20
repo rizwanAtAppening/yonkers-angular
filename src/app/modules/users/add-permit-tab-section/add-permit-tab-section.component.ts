@@ -1367,7 +1367,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       // this.searchString = value;
       this.addLocationControls.value.map((data, i) => {
         if (index == i) {
-          this.searchString = data.street_one
+          this.searchString = (data.street_two).toString()
         }
       })
       if (this.searchString.length > 1) {
@@ -1395,7 +1395,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           return data.szStreet_name
         })
         this.addressTwo = this.exactAddress.map(data => {
-          return data.szStreet_number
+          return data.szStreet_name
         })
       }
 

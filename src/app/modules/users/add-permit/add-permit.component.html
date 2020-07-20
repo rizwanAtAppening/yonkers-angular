@@ -49,7 +49,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" formControlName="address_id"  [class]="permiControl.address_id.invalid && (permiControl.address_id.dirty || permiControl.address_id.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" id="ms1"
+                                                            <input type="text" formControlName="address_id"  [typeahead]="address" (typeaheadOnSelect) = "typeaheadOnSelect($event,'exact','')"  (input) ="searchAddress('exact','')" [class]="permiControl.address_id.invalid && (permiControl.address_id.dirty || permiControl.address_id.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" id="ms1"
                                                                 class="form-control" required="">
                                                             <label    [class]="permiControl.address_id.invalid && (permiControl.address_id.dirty || permiControl.address_id.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
                                                                 for="ms1">Address</label>
@@ -279,7 +279,7 @@
                                                                 <input type="text" id="ms55" formControlName="end_date"
                                                                     class="form-control" #dp="bsDatepicker" bsDatepicker [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                     required="">
-                                                                <label [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'msg form-control-placeholder' : 'form-control-placeholder'" for="ms55">Start
+                                                                <label [class]="permiControl.end_date.invalid && (permiControl.end_date.dirty || permiControl.end_date.touched || isPermit) ? 'msg form-control-placeholder' : 'form-control-placeholder'" for="ms55">End
                                                                     Date</label>
     
                                                                 <span class="icon-calander" (click)="dp.toggle()"><i
@@ -412,7 +412,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="ms7"
-                                                                        formControlName="street_one" 
+                                                                        formControlName="street_one"  [typeahead]="addressOne" (input) ="searchAddress('location',i)"
                                                                         [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
@@ -457,7 +457,7 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="ms8"  formControlName="street_two"    [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" class="form-control"
+                                                                    <input type="text" id="ms8"  formControlName="street_two" [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"    [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'" class="form-control"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
                                                                         for="ms8">Street
