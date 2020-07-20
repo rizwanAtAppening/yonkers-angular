@@ -216,9 +216,9 @@ export class AddPermitComponent implements OnInit {
     if (this.location_type == 2) {
 
       this.permitForm.value.addlocation.map((data, i) => {
-        this.formData.append('locations[street_one][]', data.street_one)
-        this.formData.append('locations[street_two][]', data.street_two)
-        this.formData.append('locations[address_join][]', data.address_join)
+        this.formData.append('locations[street_one]', data.street_one)
+        this.formData.append('locations[street_two]', data.street_two)
+        this.formData.append('locations[address_join]', data.address_join)
 
       })
     } else if (this.location_type == 1) {
