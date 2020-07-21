@@ -509,6 +509,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.whereForm.controls.address_id.setErrors(null)
         this.whereForm.controls.address.setErrors(null)
+        this.whereForm.controls.also_known_as.setErrors(null)
 
         // if (this.locations.length == 0) {
         // this.locations.push({ street_one: this.whereForm.controls.addlocation.value.street_one, address_join: this.whereForm.controls.addlocation.value.address_join ? this.whereForm.controls.addlocation.value.address_join : null, street_two: this.whereForm.controls.addlocation.value.street_two ? this.whereForm.controls.addlocation.value.street_two : null })

@@ -221,6 +221,11 @@ export class AddPermitComponent implements OnInit {
         this.formData.append('locations[address_join]', data.address_join)
 
       })
+
+      // this.formData.append(
+      //   'location',
+        
+      // )
     } else if (this.location_type == 1) {
       this.formData.append(
         "address_id",
