@@ -52,6 +52,7 @@ export class PemitUpdateComponent implements OnInit {
   ) { this.settings = settingConfig; }
 
   ngOnInit(): void {
+    
     this.onInIt()
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;

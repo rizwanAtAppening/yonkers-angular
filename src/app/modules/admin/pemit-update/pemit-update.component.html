@@ -118,11 +118,14 @@
                                                                 <h6>{{applicationDetails?.reference_no}} </h6>
                                                             </li>
                                                             <li>
-                                                                <h6>{{applicationDetails?.applicant_details?.applicant_name }}
+                                                                <h6>{{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'  }}
                                                                 </h6>
                                                             </li>
                                                             <li>
                                                                 <h6>$00.00</h6>
+                                                            </li>
+                                                            <li *ngIf="applicationDetails && applicationDetails?.address_details && applicationDetails?.address_details.szFullAddress">
+{{applicationDetails?.address_details.szFullAddress}}
                                                             </li>
                                                             <li
                                                                 *ngIf="applicationDetails && applicationDetails?.location?.length == 1">
@@ -572,13 +575,20 @@
                           <div class="no-ref-txt">
                             <ul>
                               <li>
-                                <h6>{{applicationDetails?.applicant_details?.applicant_name}}</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'}}</h6>
                               </li>
                               <li>
-                                <h6>{{settings.getSetting('role',applicationDetails?.application_type)}}</h6>
+                                <h6>{{settings.getSetting('role',applicationDetails?.type)}}</h6>
+                                <!-- <h6 *ngIf ="applicationDetails?.type == 1">Property Owner</h6>
+                                <h6 *ngIf ="applicationDetails?.type == 2">Contrator</h6>
+
+                                <h6 *ngIf ="applicationDetails?.type == 3">Agent</h6> -->
+                                <h6 *ngIf ="applicationDetails?.type == null">_</h6>
+
+
                               </li>
                               <li>
-                                <h6>{{applicationDetails?.applicant_details?.applicant_phone}}</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_phone ? applicationDetails?.applicant_details?.applicant_phone :'_'}}</h6>
                               </li>
                      
 
@@ -605,7 +615,7 @@
                           <div class="no-ref-txt">
                             <ul>
                               <li>
-                                <h6>{{applicationDetails?.applicant_details?.applicant_address}}</h6>
+                                <h6>{{applicationDetails?.applicant_details?.applicant_address  ? applicationDetails?.applicant_details?.applicant_address :'_'}}</h6>
                               </li>
                              
                             </ul>

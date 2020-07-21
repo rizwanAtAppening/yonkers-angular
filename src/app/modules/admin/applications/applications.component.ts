@@ -12,6 +12,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 export class ApplicationsComponent implements OnInit {
   public settings: any;
   public application_Type = 1;
+  public searchString:any;
   constructor(
     private applicationService: ApplicationService,
     private router: Router,
@@ -131,4 +132,19 @@ export class ApplicationsComponent implements OnInit {
       })
     })
   }
+
+  searchApplication() {
+    const data = {
+      search_query: String(this.searchString),
+      application_type: this.application_Type
+    }
+    this.applicationService.getApplications(data).subscribe(data => {
+      this.allApplications = data.response;
+      // console.log(this.dwlApplication)
+      this.offset = data.offset;
+      this.totalPagination = data.total
+      this.currentPage = data.currentPage;
+    })
+  }
+  
 }
