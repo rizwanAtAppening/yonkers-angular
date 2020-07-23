@@ -80,7 +80,8 @@ const adminUrl = {
   emailAndPickUp:`/send-application_email`,
   addNotes:`/application_notes`,
   saveprojectInfo:`/application/update`,
-  updateApplicant:`/application/applicant_update`
+  updateApplicant:`/application/applicant_update`,
+  sendMail:`/`
 
 
 };

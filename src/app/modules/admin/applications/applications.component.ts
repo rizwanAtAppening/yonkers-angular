@@ -60,6 +60,28 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
+  public paymentSummary:any = []
+  paymentsSummary(status){
+   // this.application_Type = application_Type
+    debugger
+    const data = {
+      page: this.page,
+      payment_summary: status
+    }
+    this.applicationService.getApplications(data).subscribe(data => {
+      this.paymentSummary = data.response;
+      this.currentPage = data.currentPage;
+      this.offset = data.offset;
+      this.totalPagination = data.total;    
+      this.paymentSummary.map(data => {
+        data.isSingleAddress = true
+      })
+      console.log(this.paymentSummary, '++++++++++++++++++++++++')
+
+    })
+
+  }
+
   paginate(page, value) {
     this.application_Type = value,
       this.page = page

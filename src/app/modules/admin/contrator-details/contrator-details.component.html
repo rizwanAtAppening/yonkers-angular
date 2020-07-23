@@ -680,7 +680,7 @@
                                         <div class="form-group">
                                             <label id="ddHd">Detailed Description</label>
                                             <textarea placeholder="Type something here..." [class]="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.subject.touched || isEmail) ? 'form-control form-group-error' : 'form-control'"
-                                                formControlName="subject"></textarea>
+                                                formControlName="body"></textarea>
                                         </div>
                                         <div
                                         *ngIf="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.body.touched || isEmail)">

@@ -55,7 +55,7 @@
                                         aria-selected="false">Inspection</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill"
+                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1)"
                                         href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
                                         aria-selected="false">Payment</a>
                                 </li>
@@ -145,8 +145,8 @@
                            
                                                                                         <h6  *ngIf ="!permit?.address_id && !permit.isSingleAddress" >
                                                                                                <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && permit?.location.length > 1 ">Show More</strong>
-                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">Show Less</strong>
+                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && ( permit?.location &&  permit?.location.length > 1) ">Show More</strong>
+                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && ( permit?.location && permit?.location.length > 1) ">Show Less</strong>
                            
                            
                                                                                </td>
@@ -156,7 +156,10 @@
                                                                                 <td>{{ settings.getSetting('type',permit['type'])}}
                                                                                 </td>
                                                                                 <td class="submited-Btn green-txt-2">
-                                                                                    <button>Issued</button></td>
+                                                                                    <button *ngIf ="permit?.decision == null" >Submitted</button>
+                                                                                    <button *ngIf ="permit?.decision == 2" >Accept</button>
+                                                                                    <button *ngIf ="permit?.decision == 1" >Incomplete</button></td>
+
                                                                                 <td>{{permit?.createdAt | date}}</td>
                                                                                 <td>-</td>
 
@@ -253,8 +256,8 @@
                            
                                                                                         <h6  *ngIf ="!permit?.address_id && !permit.isSingleAddress" >
                                                                                                <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && permit?.location.length > 1 ">Show More</strong>
-                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && permit?.location.length > 1 ">Show Less</strong>
+                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && ( permit?.location && permit?.location.length > 1 )">Show More</strong>
+                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && (permit?.location && permit?.location.length > 1 )">Show Less</strong>
                            
                            
                                                                                </td>
@@ -287,8 +290,130 @@
 
                                 <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
                                     aria-labelledby="pills-Inspection-admin-tab"></div>
-                                <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel"
-                                    aria-labelledby="pills-Payment-admin-tab"></div>
+                                <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel" 
+                                    aria-labelledby="pills-Payment-admin-tab">
+                                    <section class="table-sec daily-sec">
+                                        <div class="container p-0 container_full">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="table-Box pl-0 pr-0 border-0">
+                                                        <div class="permit-index">
+                                                            <div class="row">
+                                                                <div class="col-8">
+                                                                    <div class="row">
+                                                                        <div class="col-2 pr-0 adminpermit_hd">
+                                                                            <div class="permit-Hd">
+                                                                                Inspections
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 filter-search abc-search">
+                                                                            <div
+                                                                                class="header-input tbl-search-box">
+                                                                                <input type="text"
+                                                                                    placeholder="Search...">
+                                                                                <span><i class="fa fa-search"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 pl-0">
+                                                                            <div class="btn-filter">
+                                                                                <button><span><img
+                                                                                            src="assets/images/filter.svg"
+                                                                                            alt=""></span>
+                                                                                    Filter</button></div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="col-4 exportBtn">
+                                                                    <div class="d-flex justify-content-end">
+                                                                        <div class="New-Project"><button>
+                                                                                <span><img
+                                                                                        src="assets/images/interface.svg"
+                                                                                        alt=""></span>
+                                                                                Print
+                                                                            </button></div>
+                                                                        <div class="New-Project ml-3"><button>
+                                                                                <span><img
+                                                                                        src="assets/images/upload-index.svg"
+                                                                                        alt=""></span>
+                                                                                Export
+                                                                            </button></div>
+                                                                        <div class="New-Project"><button id="nrtn">
+                                                                                New Request
+                                                                            </button></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="row">
+                                                                <div class="col-12 filter_tbl">
+                                                                    <div class="table-permit">
+                                                                        <table class="table table-bordered ">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>Location</th>
+                                                                                    <th>Created By</th>
+                                                                                    <th>Status </th>
+                                                                                    <th>Pay Method</th>
+                                                                                    <th>Receipt No</th>
+                                                                                    <th>Ref No</th>
+                                                                                    <th>Amount</th>
+                                                                                    <th>Date</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr *ngFor = "let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                    <td >
+                                                                                        <p *ngIf ="summary?.application?.address_id">                                                         {{summary?.application?.address}}
+                                                                                           </p>
+                                                                                        <h6  *ngIf ="!summary?.application?.address_id && summary?.isSingleAddress" >
+                                                                                            <p *ngIf ="summary?.application?.location && summary?.application?.location?.length  > 0" >{{summary?.application?.location[0]?.street_one}} {{summary?.application?.location[0]?.address_join == 1? 'To':'End'}} {{summary?.application?.location[0]?.street_two}}</p></h6>
+                               
+                                                                                            <!-- <h6  *ngIf ="!summary?.application?.address_id && !summary?.application?.isSingleAddress" >
+                                                                                                   <p *ngFor ="let location of summary?.application?.location" >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                                           <strong  class="pointer-2" (click) = "showMoreLocation(false,summary?.id)" *ngIf ="!summary?.summary?.application?.location?.address_id && summary.isSingleAddress && ( summary?.application?.location &&  summary?.application?.location.length > 1) ">Show More</strong>
+                                                                                           <strong class="pointer-2" (click) = "showMoreLocation(true,summary?.id)"  *ngIf ="!summary?.summary?.application?.location?.address_id && !summary.isSingleAddress && ( summary?.application?.location && summary?.application?.location.length > 1) ">Show Less</strong>
+                                -->
+                               
+                                                                                   </td>
+                                                                                    <td>{{summary?.application?.applicant_details?.applicant_name}}</td>
+                                                                                    <td
+                                                                                        class="submited-Btn green-txt-2">
+                                                                                        <button *ngIf ="summary?.application?.payment_status == 1"
+                                                                                            class="pb-0 pt-0">Paid</button>
+                                                                                            <button *ngIf ="summary?.application?.payment_status == null"
+                                                                                            class="pb-0 pt-0">Unpaid</button>
+                                                                                    </td>
+                                                                                    <td>Check</td>
+                                                                                    <td>{{summary?.reciept_no}}</td>
+                                                                                    <td>{{summary?.reference_no}}</td>
+                                                                                    <td>{{summary?.amount}}</td>
+                                                                                    <td>{{summary?.createdAt | date}}</td>
+
+
+
+                                                                                </tr>
+                                                                               
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <pagination-controls (pageChange)="paginate($event,1)">
+                                                        </pagination-controls>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            
+                                    </section>
+                                    
+                                </div>
                                 <div class="tab-pane fade" id="pills-Invoice-admin" role="tabpanel"
                                     aria-labelledby="pills-Invoice-admin-tab"></div>
                                 <div class="tab-pane fade" id="pills-Report-admin" role="tabpanel"

@@ -215,18 +215,17 @@ export class AddPermitComponent implements OnInit {
     );
     if (this.location_type == 2) {
 
-      this.permitForm.value.addlocation.map((data, i) => {
-        this.formData.append('locations[street_one]', data.street_one)
-        this.formData.append('locations[street_two]', data.street_two)
-        this.formData.append('locations[address_join]', data.address_join)
+      this.permitForm.value.addlocation.forEach((data, i) => {
+        this.formData.append('locations['+i+'][street_one]', data.street_one)
+        this.formData.append('locations['+i+'][street_two]', data.street_two)
+        this.formData.append('locations['+i+'][address_join]', data.address_join)
 
       })
       // var array = this.permitForm.value.addlocation;
       // for (var i = 0; i < array.length; i++) {
       //     //this.formData.append('locations[]', array[i]);
-      //     this.formData.append('locations[]', {street_one:2,street_two:5})
-      //   // this.formData.append('locations[]', array[i].street_two)
-      //   // this.formData.append('locations[]', array[i].address_join)
+      //     this.formData.append('locations[]', array[i])
+    
       // }
       // // this.formData.append(
       // //   'location',

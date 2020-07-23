@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PermitService } from 'src/app/core/services/users/permit.service';
+import { error } from 'util';
 
 @Component({
   selector: 'app-submit-application',
@@ -27,13 +28,14 @@ export class SubmitApplicationComponent implements OnInit {
   }
 
   downloadApplication() {
-    
+    debugger
     const data = {
       downloadType: 1,
       exe: 2
     }
     this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
- 
-    })
+      console.log(data)
+    },error
+    )
   }
 }

@@ -377,44 +377,70 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            <tr *ngFor = "let file of applicationDetails?.upload_detail">
                                                 <td>
-                                                    <div class="select-input-box">
-                                                        <div class="form-group">
-                                                            <select (change) = "selectImageType($event.target.value)">
-                                                                    <option value="" hidden>--Select--</option>
-                                                                    <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
-                                                            </select>
-                                                            <span><i class="fa fa-angle-down"
-                                                                    aria-hidden="true"></i></span>
-                                                        </div>
-                                                    </div>
+                                                  {{settings.getSetting('imageType',file?.type)}}
                                                 </td>
-                                                <!-- <td>Example.jpg</td> -->
                                                 <td>
-                                                  <div class="choseFile">
-                                                  <button class="uploadFileBtn"> <img src="assets/images/upload1.png" alt="">  Upload file</button>
-                                                  <input type="file" (change)="media($event)" >
-                                                </div>
+                                                 {{file?.name}}
                                                 </td>
+                                                <td>
+                                                  <div class="dropdown_act">
+                                                      <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                      <div class="dropdown-content-void">
+                                                          <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                              View</a> -->
+                                                          <a  data-toggle="modal"
+                                                              data-target="#Email-ForApplication"> <span> <img
+                                                                      src="assets/images/d2.svg"> </span> Email</a>
+                                                          <!-- <a href="#" data-toggle="modal"
+                                                              data-target="#delete-applicationdecription"> <span> <img
+                                                                      src="assets/images/d3.svg"> </span> Delete</a> -->
+                                                      </div>
+                                                  </div>
+                                              </td>
 
-
-                                                <td>
-                                                    <div class="dropdown_act">
-                                                        <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
-                                                        <div class="dropdown-content-void">
-                                                            <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
-                                                                View</a> -->
-                                                            <a  data-toggle="modal"
-                                                                data-target="#Email-ForApplication"> <span> <img
-                                                                        src="assets/images/d2.svg"> </span> Email</a>
-                                                            <!-- <a href="#" data-toggle="modal"
-                                                                data-target="#delete-applicationdecription"> <span> <img
-                                                                        src="assets/images/d3.svg"> </span> Delete</a> -->
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                               
                                             </tr>
+<!-- <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++> -->
+                                            <tr>
+                                              <td>
+                                                  <div class="select-input-box">
+                                                      <div class="form-group">
+                                                          <select (change) = "selectImageType($event.target.value)">
+                                                                  <option value="" hidden>--Select--</option>
+                                                                  <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
+                                                          </select>
+                                                          <span><i class="fa fa-angle-down"
+                                                                  aria-hidden="true"></i></span>
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                              <!-- <td>Example.jpg</td> -->
+                                              <td>
+                                                <div class="choseFile">
+                                                <button class="uploadFileBtn"> <img src="assets/images/upload1.png" alt="">  Upload file</button>
+                                                <input type="file" (change)="media($event)" >
+                                              </div>
+                                              </td>
+
+
+                                              <td>
+                                                  <div class="dropdown_act">
+                                                      <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                      <div class="dropdown-content-void">
+                                                          <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                              View</a> -->
+                                                          <a  data-toggle="modal"
+                                                              data-target="#Email-ForApplication"> <span> <img
+                                                                      src="assets/images/d2.svg"> </span> Email</a>
+                                                          <!-- <a href="#" data-toggle="modal"
+                                                              data-target="#delete-applicationdecription"> <span> <img
+                                                                      src="assets/images/d3.svg"> </span> Delete</a> -->
+                                                      </div>
+                                                  </div>
+                                              </td>
+                                          </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -578,11 +604,12 @@
                                 <h6>{{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'}}</h6>
                               </li>
                               <li>
-                                <h6>{{settings.getSetting('role',applicationDetails?.type)}}</h6>
-                                <!-- <h6 *ngIf ="applicationDetails?.type == 1">Property Owner</h6>
+                                <!-- {{applicationDetails?.applicant_details?.applicant_role}} -->
+                                <h6>{{settings.getSetting('role',applicationDetails?.applicant_details?.applicant_role)}}</h6>
+                                <h6 *ngIf ="applicationDetails?.type == 1">Property Owner</h6>
                                 <h6 *ngIf ="applicationDetails?.type == 2">Contrator</h6>
 
-                                <h6 *ngIf ="applicationDetails?.type == 3">Agent</h6> -->
+                                <h6 *ngIf ="applicationDetails?.type == 3">Agent</h6>
                                 <h6 *ngIf ="applicationDetails?.type == null">_</h6>
 
 
@@ -1139,13 +1166,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form [formGroup]="sendEmialForm">
       <div class="container p-0 admin-contractor-details">
         <div class="col-12 p-0">
           <div class="bdp_email up-add">
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" id="emaila1" class="form-control" required="">
+                  <input type="text" id="emaila1" class="form-control" formControlName="to" required="">
                   <label class="form-control-placeholder" for="emaila1">To</label>
                 </div>
               </div>
@@ -1153,16 +1181,16 @@
                 <div class="row emailfor-select">
                   <div class="col-12 ">
                     <div class=" admin-add-insurance" style="margin-top: 0px !important;">
-                      <form>
+                     
                         <div class="form-group">
 
-                          <select>
-                            <option>Select</option>
-                            <option>Select</option>
+                          <select formControlName="to" >
+                              <option value="" hidden>--Select--</option>
+                              <option *ngFor = "let mail of allMails">{{mail}}</option>
                           </select>
                           <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                         </div>
-                      </form>
+                     
                     </div>
                   </div>
                 </div>
@@ -1173,7 +1201,7 @@
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
-                    <input type="text" id="aucd3" class="form-control" required="">
+                    <input type="text" id="aucd3" formControlName="cc"  class="form-control" required="">
                     <label class="form-control-placeholder" for="aucd3">CC</label>
                   </div>
                 </div>
@@ -1181,16 +1209,16 @@
                   <div class="row emailfor-select">
                     <div class="col-12 ">
                       <div class=" admin-add-insurance" style="margin-top: 0px !important;">
-                        <form>
+                     
                           <div class="form-group">
 
-                            <select>
-                              <option>Select</option>
-                              <option>Select</option>
+                            <select formControlName="cc" >
+                              <option value="" hidden>--Select--</option>
+                             <option *ngFor = "let mail of allMails ">{{mail}}</option>
                             </select>
                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                           </div>
-                        </form>
+                        
                       </div>
                     </div>
                   </div>
@@ -1203,7 +1231,7 @@
               <div class="row">
                 <div class="col-12">
                   <div class="form-group">
-                    <input type="text" id="aucd5" class="form-control" required="">
+                    <input type="text" id="aucd5" class="form-control" formControlName="subject" [class]="mailCon.subject.invalid && (mailCon.subject.dirty || mailCon.subject.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"  required="">
                     <label class="form-control-placeholder" for="aucd5">Subject</label>
                   </div>
                 </div>
@@ -1216,7 +1244,7 @@
                 <div class="col-12 emailfor-textarea ">
                   <div class="form-group">
                     <label>Detailed Description</label>
-                    <textarea placeholder="Type something here..."></textarea>
+                    <textarea placeholder="Type something here..." formControlName="description"></textarea>
                   </div>
                 </div>
 
@@ -1234,11 +1262,12 @@
 
             <div class="btn-pre pop-Btn">
               <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
-              <button class="continue mr-0">Save</button>
+              <button class="continue mr-0" type="submit" (click) ="sendEmail()">Save</button>
             </div>
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>

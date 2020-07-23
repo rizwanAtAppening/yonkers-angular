@@ -400,7 +400,9 @@
                                         <td>{{data?.application_daily_work_location?.layout_number}}
                                         </td>
                                         <td>
-                                            <p *ngIf="data?.address_id"> {{data?.address_id}}
+                                            <p *ngIf="data?.address_id">                                                                                                {{application?.address_details?.szFullAddress}}
+                                                    {{data?.address_details?.szFullAddress}}
+
                                             </p>
                                             <h6 *ngIf="!data?.address_id && data?.isSingleAddress">
                                                 <p *ngIf="data?.location && data?.location.length > 0">

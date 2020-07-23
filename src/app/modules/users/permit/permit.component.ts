@@ -276,7 +276,7 @@ export class PermitComponent implements OnInit {
   }
 
   convertPermitApplication() {
-
+debugger
     this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
       this.getPermitApplication(this.dwlType)

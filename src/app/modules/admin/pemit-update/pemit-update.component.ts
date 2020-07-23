@@ -52,7 +52,7 @@ export class PemitUpdateComponent implements OnInit {
   ) { this.settings = settingConfig; }
 
   ngOnInit(): void {
-    
+
     this.onInIt()
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
@@ -124,7 +124,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public isDescription = false;
   saveProjectDescription() {
-    
+
     if (this.projectDescriptionForm.invalid) {
       this.isDescription = true
       return false
@@ -204,11 +204,15 @@ export class PemitUpdateComponent implements OnInit {
       this.permitDetails();
     })
   }
+  public allMails = []
   permitDetails() {
 
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-      
+
       this.applicationDetails = data.response;
+      this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
+      this.allMails.push(this.applicationDetails.contractor_details.contractor_email)
+
       this.getReletedPermit();
       if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
         this.applicationDetails.related_permits.map((data => {
@@ -253,7 +257,7 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   voidSubmition(id) {
-    
+
     const data = {
       application_id: this.applicationDetails.id,
       id: id,
@@ -267,7 +271,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public related_permit: any
   check(data, value) {
-    
+
     this.related_permit = value.id
     if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
       this.applicationDetails.related_permits.map((data => {
@@ -297,13 +301,27 @@ export class PemitUpdateComponent implements OnInit {
     }
 
   }
+  public sendEmialForm: FormGroup
   onInIt() {
     this.completeIncompletCon();
     this.description();
     this.feeControls();
     this.projectDescriptionControl();
     this.applicantControl();
+    this.mailControl();
   }
+
+
+  mailControl() {
+    this.sendEmialForm = this.FB.group({
+      cc: [''],
+      to: [''],
+      subject: [''],
+      description: ['', Validators.required],
+    })
+  }
+
+  get mailCon() { return this.sendEmialForm.controls }
 
 
   applicantControl() {
@@ -317,7 +335,7 @@ export class PemitUpdateComponent implements OnInit {
   get applicant() { return this.applicantForm.controls };
 
   addApplicant() {
-    this.applicantForm.value.applicant_type =   this.applicantForm.value.applicant_role 
+    this.applicantForm.value.applicant_type = this.applicantForm.value.applicant_role
     this.applicationService.applicantUpdate(this.applicantForm.value, this.applicationDetails.id).subscribe(data => {
       this.applicantPopUp.nativeElement.click();
       this.toasterService.success('Applicant  details have been updated')
@@ -326,7 +344,7 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   fillApplicant() {
-    
+
     this.applicantForm.controls.applicant_name.setValue(this.applicationDetails.applicant_details.applicant_name);
     this.applicantForm.controls.applicant_role.setValue(this.applicationDetails.applicant_details.applicant_role)
     this.applicantForm.controls.applicant_address.setValue(this.applicationDetails.applicant_details.applicant_address)
@@ -484,7 +502,7 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   uploadImage() {
-    
+
     var formData = new FormData();
     formData.append('application_id', this.applicationDetails.id);
     formData.append('name', this.attachment);
@@ -508,5 +526,19 @@ export class PemitUpdateComponent implements OnInit {
     this.image = null
   }
 
+
+  public isSendEmail = false
+  sendEmail() {
+    if (this.sendEmialForm.invalid) {
+      this.isSendEmail = true
+      return false
+    }
+
+    this.sendEmialForm.value.applicantId = this.applicationDetails.id
+    this.permitService.sendMail(this.sendEmialForm.value).subscribe(data => {
+      this.sendEmialForm.reset()
+      this.isSendEmail = false
+    })
+  }
 
 }

@@ -254,6 +254,7 @@ export class ContratorDetailsComponent implements OnInit {
 
   public isEmail = false;
   addEmialAndPickUp() {
+    debugger
     if (this.emailFormGroup.invalid) {
       this.isEmail = true
       return false
@@ -265,6 +266,9 @@ export class ContratorDetailsComponent implements OnInit {
     this.applicationService.emailAndPickUp(this.emailFormGroup.value).subscribe(daa => {
       this.emailFormGroup.controls.subject.setValue(null)
       this.emailFormGroup.controls.standard_message.setValue(null)
+      this.emailFormGroup.controls.body.setValue(null)
+       this.isEmail = false
+
       this.messageEvent.emit('hello')
 
 

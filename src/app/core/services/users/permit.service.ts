@@ -314,6 +314,19 @@ export class PermitService {
     );
   }
 
+  sendMail(data): Observable<any> {
+    const href = `${environment['sendMail']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
 
   exextAddress(data): Observable<any> {
     const href = `${environment['execAddress']}`;
@@ -343,7 +356,7 @@ export class PermitService {
 
   downloadApplication(data, id): Observable<any> {
     const href = `${environment['downloadApplication']}/${id}`;
-    return this.http.get<any>(href, { params: data }).pipe(
+    return this.http.get<any>(href,{params: data}).pipe(
       tap(
         (data) => {
           if (data.status === 'success') {
