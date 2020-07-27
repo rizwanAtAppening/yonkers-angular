@@ -64,6 +64,7 @@ export class PemitUpdateComponent implements OnInit {
   }
   public reletedPermits = []
   getReletedPermit() {
+    debugger
     this.applicationService.reletedPermit(this.applicationDetails.id).subscribe(data => {
       this.reletedPermits = data.response
     })
@@ -206,12 +207,17 @@ export class PemitUpdateComponent implements OnInit {
   }
   public allMails = []
   permitDetails() {
-
+debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
 
       this.applicationDetails = data.response;
-      this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
-      this.allMails.push(this.applicationDetails.contractor_details.contractor_email)
+      if(this.applicationDetails.applicant_details){
+        this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
+
+      }
+      if(this.applicationDetails.contractor_details){
+        this.allMails.push(this.applicationDetails.contractor_details.contractor_email)
+      }
 
       this.getReletedPermit();
       if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
