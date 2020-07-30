@@ -24,6 +24,7 @@ export class PemitUpdateComponent implements OnInit {
   @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
   @ViewChild('reletedPermitPopUp', { static: false }) reletedPermitPopUp: ElementRef;
+  @ViewChild('deleteImagepop', { static: false }) deleteImagepop: ElementRef;
 
   public lat = 40.730610;
   public long = -73.935242;
@@ -66,9 +67,10 @@ export class PemitUpdateComponent implements OnInit {
   }
   public reletedPermits = []
   getReletedPermit() {
-    debugger
+    
     this.applicationService.reletedPermit(this.applicationDetails.id).subscribe(data => {
-      this.reletedPermits = data.response
+      this.reletedPermits= data.response;
+      console.log(this.reletedPermits)
     })
   }
 
@@ -208,8 +210,9 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
   public allMails = []
+  public allRelatedPermit = []
   permitDetails() {
-    debugger
+    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
 
       this.applicationDetails = data.response;
@@ -226,7 +229,8 @@ export class PemitUpdateComponent implements OnInit {
         this.applicationDetails.related_permits.map((data => {
           data.isReleted = false
         }))
-        console.log(this.applicationDetails)
+        this.allRelatedPermit =  this.applicationDetails.related_permits
+        console.log(this.allRelatedPermit)
       }
       if (this.message == 'decision') {
         this.applicationDetails.isDecision = true;
@@ -541,7 +545,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public isSendEmail = false
   sendEmail() {
-    debugger
+    
     this.sendEmialForm.controls.to.setErrors(null)
     this.sendEmialForm.controls.cc.setErrors(null)
 
@@ -577,6 +581,8 @@ export class PemitUpdateComponent implements OnInit {
     }
     this.permitService.deleteDocuments(data).subscribe(data => {
       this.toasterService.success('Delete Successful')
+      this.deleteImagepop.nativeElement.click();
+      this.getReletedPermit();
     })
   }
 } 

@@ -30,10 +30,11 @@
                                 <div class="col-6">
                                     <div class="bdp_email loction-adInput">
                                         <div class="row">
+                                                <!-- (input)="fillDataByLayOutNumber()"  -->
                                             <div class="col-12 ">
                                                 <div class="form-group">
-                                                    <input type="number" id="ln1" formControlName="layout_number"
-                                                        (input)="fillDataByLayOutNumber()" class="form-control">
+                                                    <input type="text" id="ln1" formControlName="layout_number" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)"
+                                                       class="form-control">
                                                     <label class="form-control-placeholder" for="ln1">Layout
                                                         Number</label>
                                                 </div>
@@ -244,7 +245,7 @@
                                                 <div class="col-12 ">
                                                     <div class="form-group">
                                                         <input type="text" id="knowsh1" class="form-control"
-                                                            formControlName="also_know_as" formControlName="" required>
+                                                            formControlName="also_know_as"  required>
                                                         <label class="form-control-placeholder" for="knowsh1">Unit
                                                             No./Also Known as</label>
                                                     </div>

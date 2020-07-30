@@ -124,14 +124,14 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-    
-    if(this.applicationId){
-      this.updateValueDwl = [{id:this.applicationId}]
+
+    if (this.applicationId) {
+      this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
-        application:this.updateValueDwl
+        application: this.updateValueDwl
       }
     }
-    else{
+    else {
       this.submitApplication = {
         application: this.dwlApplication
       }
@@ -146,7 +146,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlApplication = []
   public dwlData = {}
   adddwl() {
-    
+
     if (this.location_type == 1) {
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -163,16 +163,17 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlForm.controls.parcel_number.setErrors(null)
 
     }
+    this.dwlForm.controls.also_know_as.setErrors(null)
     if (this.dwlForm.invalid) {
       this.isdwlSubmit = true;
       return false
     }
-    
+
 
     if (this.location_type == 1) {
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
-        address_id:this.addressId,
+        address_id: this.addressId ? this.addressId : this.editValue.address_id,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
         permit_type: this.dwlForm.value.permit_type,
@@ -209,7 +210,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     }
 
     this.permitService.addDailyWorkLocation(this.dwlData).subscribe(data => {
-      this.dwlApplication = data.response;
+      // this.dwlApplication = data.response;
+      this.getPermitApplication()
       this.isdwlSubmit = false;
       this.dwlForm.reset()
       if (this.id && this.applicationId) {
@@ -221,7 +223,11 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public applictionDetails = []
   application_type: number = 2
   // currentPage = 1
+  public lll = ['dd','ddddsfsd','sdfsd']
+  public allLayOutNumber = []
   getPermitApplication() {
+    debugger
+    this.allLayOutNumber = []
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
@@ -229,15 +235,21 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           data.isSingleAddress = true
           return data
         }
-      })
+        if (data.status == 2 && data.application_type == 2) {
+          this.allLayOutNumber.push(data && Number(data.application_daily_work_location.layout_number))
 
+        }
+      })
+      console.log(this.allLayOutNumber)
     })
   }
 
   public id: number
   public dwl_id: number
+  public editValue: any;
   editAppliction(value) {
 
+    this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
     this.dwl_id = value.application_daily_work_location.id
@@ -287,7 +299,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
       this.dwlForm.controls.permit_number.setValue(value.application_daily_work_location.permit_number)
       this.dwlForm.controls.layout_number.setValue(value.application_daily_work_location.layout_number)
-      this.dwlForm.controls.address_id.setValue(value.application_daily_work_location.address_id)
+      this.dwlForm.controls.address_id.setValue(value.address_details.szFullAddress)
 
 
     }
@@ -316,16 +328,16 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   public layOutData: any;
-  fillDataByLayOutNumber() {
-    
-    const value = this.dwlForm.value.layout_number
+  fillDataByLayOutNumber(selectLayoutNumber) {
+
+    const value = this.dwlForm.value.layout_number ? this.dwlForm.value.layout_number : selectLayoutNumber
     if (value == null) {
       this.removeAnResetForm()
     }
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
       this.layOutData = data.response;
-      
-      if ( this.layOutData && this.layOutData.application_daily_work_location != null) {
+
+      if (this.layOutData && this.layOutData.application_daily_work_location != null) {
         this.fillFormOnEditAndByLayoutNumber(this.layOutData)
       }
     })
@@ -333,10 +345,11 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   fillFormOnEditAndByLayoutNumber(value) {
-    
+
     this.layOutData = value
+    this.editValue = value
     if (this.layOutData.application_daily_work_location) {
-      this.location_type = this.layOutData.location_type
+      this.location_type = this.layOutData.location_type ? this.layOutData.location_type : 1
       this.dwlForm.controls.permit_type.setValue(this.layOutData.permit_type)
       this.dwlForm.controls.work_category.setValue(this.layOutData.application_daily_work_location.work_category)
       this.dwlForm.controls.permit_number.setValue(this.layOutData.application_daily_work_location.permit_number)
@@ -366,7 +379,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           this.layOutData.location.map((data, i) => {
             this.addLocationControls.controls.map((value, j) => {
               if (i == j) {
-                
+
                 value['controls'].street_one.setValue(data.street_one)
                 value['controls'].street_two.setValue(data.street_two)
                 value['controls'].address_join.setValue(data.address_join)
@@ -375,7 +388,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           })
         }
       } else {
-        this.dwlForm.controls.address_id.setValue(this.layOutData.address_id)
+        this.dwlForm.controls.address_id.setValue(this.layOutData.address_details.szFullAddress)
 
       }
     }
@@ -384,7 +397,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   showMoreLocation(value, id) {
-    
+
     this.dwlApplication.map(data => {
       if (data.id == id && data.status == null && data.application_type == 2) {
         data.isSingleAddress = value
@@ -398,7 +411,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
   public applicationDetail: any;
   getApplication() {
-    
+
     this.permitService.getApplicationById(this.id).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {
@@ -438,7 +451,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   searchAddress(sendValue: string, index) {
-    debugger
+
     var value: string
 
     if (sendValue == 'exact') {
@@ -480,6 +493,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public addressOneId: number;
   public addressTwoId: number;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+
     if (value == 'exact') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {

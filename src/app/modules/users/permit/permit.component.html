@@ -69,7 +69,9 @@
                                                         (click)="updateApplication(application?.id)">
                                                         {{application?.reference_no}}</td>
                                                     <td>
-                                                        <p *ngIf="application?.address_id"> {{application?.address_id}}
+                                                        <p *ngIf="application?.address_id">                                                                                                
+                                                            {{application?.address_details?.szFullAddress}}
+
                                                         </p>
                                                         <h6
                                                             *ngIf="!application?.address_id && application?.isSingleAddress">
@@ -225,7 +227,7 @@
                                                                             <table class="table table-bordered ">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Ref No</th>
+                                                                                        <th>Ref No1</th>
                                                                                         <th>Location</th>
                                                                                         <th>Type</th>
                                                                                         <!-- <th>Permit Status</th> -->

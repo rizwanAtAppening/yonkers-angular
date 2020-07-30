@@ -138,7 +138,8 @@
                                                                                     {{permit?.reference_no}}</td>
                                                                                 
                                                                                 <td >
-                                                                                    <p *ngIf ="permit?.address_id">                                                         {{permit?.address_id}}
+                                                                                    <p *ngIf ="permit?.address_id">  
+                                                                                                                                              {{permit?.address_details?.szFullAddress}}
                                                                                        </p>
                                                                                     <h6  *ngIf ="!permit?.address_id && permit?.isSingleAddress" >
                                                                                         <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>

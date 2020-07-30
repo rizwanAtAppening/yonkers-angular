@@ -105,9 +105,11 @@
                                         <div class="col-6">
                                             <div class="bdp_email ">
                                                 <div class="row">
+                                                        <!-- (input) ="fillDataByLayOutNumber()"  -->
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ms4" formControlName="layout" (input) ="fillDataByLayOutNumber()" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+
+                                                            <input type="text" id="ms4" formControlName="layout" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required="">
                                                             <label  [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" class="form-control-placeholder" for="ms4">Layout
                                                                 No</label>
@@ -340,7 +342,7 @@
                                                     <tbody>
                                                         <tr *ngFor = "let image of allImage; let i = index">
                                                             <td>
-
+                                                               
                                                                 <div class="file_slect-input">
                                                                     <div class="form-group">
                                                                         <select (change) = "selectImageType($event.target.value)">
@@ -355,12 +357,12 @@
 
                                                             </td>
                                                             <td class="upload-Btn">
-                                                                <button *ngIf ="!image?.imageName">
+                                                                <button *ngIf ="!image?.imageName && !image?.name">
                                                                     <span><img src="assets/images/b-upload.svg"
-                                                                            alt=""></span> Upload file1
+                                                                            alt=""></span> Upload file
                                                                     <input type="file" (change)="media($event,i)">
                                                                 </button>
-                                                                <p *ngIf ="image?.imageName">{{image?.imageName}}</p>
+                                                                <p *ngIf ="image?.imageName || image?.name">{{image?.imageName ? image?.imageName : image?.name}}</p>
                                                             </td>
                                                             <td class="acton-Btn">
                                                                 <!-- <button> <span
@@ -758,7 +760,7 @@
                                                         <tbody>
                                                             <tr *ngFor = "let image of allImage; let i = index">
                                                                 <td>
-    
+                                                                  
                                                                     <div class="file_slect-input">
                                                                         <div class="form-group">
                                                                             <select (change) = "selectImageType($event.target.value)">
@@ -773,12 +775,12 @@
     
                                                                 </td>
                                                                 <td class="upload-Btn">
-                                                                    <button *ngIf ="!image?.imageName">
+                                                                    <button *ngIf ="!image?.imageName && !image?.name">
                                                                         <span><img src="assets/images/b-upload.svg"
-                                                                                alt=""></span> Upload file1
+                                                                                alt=""></span> Upload file
                                                                         <input type="file" (change)="media($event,i)">
                                                                     </button>
-                                                                    <p *ngIf ="image?.imageName">{{image?.imageName}}</p>
+                                                                    <p *ngIf ="image?.imageName || image?.name">{{image?.imageName ? image?.imageName : image?.name}}</p>
                                                                 </td>
                                                                 <td class="acton-Btn">
                                                                     <!-- <button> <span
@@ -845,7 +847,7 @@
                             <tbody>
                                 <tr *ngFor ="let data of dwlApplication	">
                                         <td >
-                                                <p *ngIf ="data?.address_id">                                                         {{data?.address_id}}
+                                                <p *ngIf ="data?.address_id">                                                         {{data?.address_details?.szFullAddress}}
                                                    </p>
                                                 <h6  *ngIf ="!data?.address_id && data?.isSingleAddress" >
                                                     <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>

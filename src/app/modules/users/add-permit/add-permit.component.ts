@@ -35,8 +35,8 @@ export class AddPermitComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-       this.formData = new FormData()
+
+    this.formData = new FormData()
 
     this.onInIt()
     this.getPermitApplication();
@@ -130,8 +130,9 @@ export class AddPermitComponent implements OnInit {
 
   public isPermit = false
   addPermitApplication() {
-  //  this.formData = new FormData()
+    //  this.formData = new FormData()
 
+    //this.formData = new FormData()
     const data = {
 
     }
@@ -155,6 +156,7 @@ export class AddPermitComponent implements OnInit {
       //   value['controls'].street_two.setErrors(null)
       // })
     }
+    this.permitForm.controls.also_know_as.setErrors(null)
     if (this.permitForm.invalid) {
       this.isPermit = true
       return false;
@@ -170,6 +172,13 @@ export class AddPermitComponent implements OnInit {
       "type",
       this.permitForm.value.type
     );
+    if (this.id) {
+      this.formData.append(
+        "id",
+        this.id
+      );
+    }
+
     this.formData.append(
       "permit_type",
       1
@@ -216,16 +225,16 @@ export class AddPermitComponent implements OnInit {
     if (this.location_type == 2) {
 
       this.permitForm.value.addlocation.forEach((data, i) => {
-        this.formData.append('locations['+i+'][street_one]', data.street_one)
-        this.formData.append('locations['+i+'][street_two]', data.street_two)
-        this.formData.append('locations['+i+'][address_join]', data.address_join)
+        this.formData.append('locations[' + i + '][street_one]', data.street_one)
+        this.formData.append('locations[' + i + '][street_two]', data.street_two)
+        this.formData.append('locations[' + i + '][address_join]', data.address_join)
 
       })
       // var array = this.permitForm.value.addlocation;
       // for (var i = 0; i < array.length; i++) {
       //     //this.formData.append('locations[]', array[i]);
       //     this.formData.append('locations[]', array[i])
-    
+
       // }
       // // this.formData.append(
       // //   'location',
@@ -234,26 +243,32 @@ export class AddPermitComponent implements OnInit {
     } else if (this.location_type == 1) {
       this.formData.append(
         "address_id",
-        (this.addressId)
+        (this.addressId ? this.addressId : this.editValue.address_id)
       );
 
     }
 
     this.permitService.addDwlPemitApplication(this.formData).subscribe(data => {
       this.peritApplication = (data.response)
+      this.formData = new FormData();
+
       this.getPermitApplication();
       if (this.applicationId) {
         this.submitDailyWorkLocation();
       }
       this.isPermit = false
       this.permitForm.reset();
+      this.allImage = [{}]
+    }, error => {
+      this.formData = new FormData();
+      this.allImage = [{}]
     })
   }
 
   public peritApplication = []
   public imageType: any = null
   selectImageType(value) {
-    
+
     this.imageType = Number(value)
   }
 
@@ -272,21 +287,21 @@ export class AddPermitComponent implements OnInit {
 
 
   media(event1, index) {
-    
+
     if (this.imageType != null) {
       this.imageName = event1.target.files[0].name;
       this.attachment = event1.target.files[0];
-    //  this.formData = new FormData()
-    if(this.imageType == 0){
-      this.formData.append('drawing', this.attachment)
+      //  this.formData = new FormData()
+      if (this.imageType == 0) {
+        this.formData.append('drawing', this.attachment)
 
-    }else{
-      this.formData.append('certificate', this.attachment)
+      } else {
+        this.formData.append('certificate', this.attachment)
 
-    }
+      }
       this.name.push({ name: (this.attachment), type: this.imageType })
-    console.log(this.name)
-     
+      console.log(this.name)
+
       this.imageType = null
 
       console.log(this.name)
@@ -314,8 +329,9 @@ export class AddPermitComponent implements OnInit {
   public applictionDetails = []
   application_type: number = 1
   public dwlApplication = []
+  public allLayOutNumber = []
   getPermitApplication() {
-
+    this.allLayOutNumber = []
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
@@ -324,6 +340,9 @@ export class AddPermitComponent implements OnInit {
           return data
         }
 
+        if (data.status == 2 && data.application_type == 1) {
+          this.allLayOutNumber.push(data.project_detail.layout_number)
+        }
       })
       console.log(this.dwlApplication)
 
@@ -333,7 +352,7 @@ export class AddPermitComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-    
+
     if (this.applicationId) {
       this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
@@ -356,12 +375,18 @@ export class AddPermitComponent implements OnInit {
 
   public id: number
   public dwl_id: number
+  public selectedCat = 0
+  public editValue: any
   editAppliction(value) {
     debugger
+    this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
     if (value.application_daily_work_location && value.application_daily_work_location.id)
       this.dwl_id = value.application_daily_work_location.id
+    if (value.upload_detail && value.upload_detail.length > 0) {
+      this.allImage = value.upload_detail
+    }
     if (this.location_type == 2) {
       if (value.location.length > 1) {
         for (let index = 0; index < value.location.length - 1; index++) {
@@ -430,7 +455,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   showMoreLocation(value, id) {
-    
+
     this.dwlApplication.map(data => {
       if (data.id == id && data.status == null && data.application_type == 1) {
         data.isSingleAddress = value
@@ -445,23 +470,24 @@ export class AddPermitComponent implements OnInit {
 
 
   public layOutData: any;
-  fillDataByLayOutNumber() {
-    
-    const value = this.permitForm.value.layout
+  fillDataByLayOutNumber(selectLayOut) {
+    debugger
+    const value = this.permitForm.value.layout?this.permitForm.value.layout :selectLayOut
     this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
       this.layOutData = data.response;
+      this.editValue = this.layOutData
       this.location(this.layOutData)
     })
   }
 
   location(value) {
-    
+
     this.layOutData = value
     if (this.layOutData) {
       if (this.layOutData.location_type) {
         this.location_type = this.layOutData.location_type;
       }
-      this.permitForm.controls.type.setValue(this.layOutData.type?this.layOutData.type:this.layOutData.permit_type)
+      this.permitForm.controls.type.setValue(this.layOutData.type ? this.layOutData.type : this.layOutData.permit_type)
 
       if (this.layOutData.project_detail) {
         this.permitForm.controls.length.setValue(this.layOutData.project_detail.length)
@@ -471,8 +497,8 @@ export class AddPermitComponent implements OnInit {
         this.permitForm.controls.end_date.setValue(new Date(this.layOutData.project_detail.end_date))
         this.permitForm.controls.traffic_control.setValue(this.layOutData.project_detail.traffic_control)
         this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number)
-        this.permitForm.controls.description.setValue(this.layOutData.project_detail.description?this.layOutData.project_detail.description:this.layOutData.application_daily_work_location.work_description)
-      }else{
+        this.permitForm.controls.description.setValue(this.layOutData.project_detail.description ? this.layOutData.project_detail.description : this.layOutData.application_daily_work_location.work_description)
+      } else {
         this.permitForm.controls.description.setValue(this.layOutData.application_daily_work_location.work_description)
 
       }
@@ -500,7 +526,7 @@ export class AddPermitComponent implements OnInit {
           this.layOutData.location.map((data, i) => {
             this.addLocationControls.controls.map((value, j) => {
               if (i == j) {
-                
+
                 value['controls'].street_one.setValue(data.street_one)
                 value['controls'].street_two.setValue(data.street_two)
                 value['controls'].address_join.setValue(data.address_join)
@@ -510,7 +536,7 @@ export class AddPermitComponent implements OnInit {
         }
       } else {
         if (this.layOutData) {
-          this.permitForm.controls.address_id.setValue(this.layOutData.address_id)
+          this.permitForm.controls.address_id.setValue(this.layOutData.address_details.szFullAddress)
 
         }
       }
@@ -526,7 +552,7 @@ export class AddPermitComponent implements OnInit {
       // // this.permitForm.controls.layout.setValue(null)
       // this.permitForm.controls.description.setValue(null)
       // this.permitForm.controls.also_know_as.setValue(null)
-     // this.removeAnResetForm()
+      // this.removeAnResetForm()
     }
 
   }
@@ -559,7 +585,7 @@ export class AddPermitComponent implements OnInit {
 
   public applicationDetail: any;
   getApplication() {
-    
+
     this.permitService.getApplicationById(this.applicationId).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {
@@ -599,7 +625,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   searchAddress(sendValue: string, index) {
-    debugger
+
     var value: string
 
     if (sendValue == 'exact') {
@@ -641,6 +667,7 @@ export class AddPermitComponent implements OnInit {
   public addressOneId: number;
   public addressTwoId: number;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+
     if (value == 'exact') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {

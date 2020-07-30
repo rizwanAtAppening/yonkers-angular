@@ -1017,7 +1017,8 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- -------------------------------------------------------------------------------------------------------------------------- -->
+                                            <!-- <tbody>
                                                 <tr *ngFor="let permit of reletedPermits">
                                                     <td>{{permit?.reference_no}}</td>
                                                     <td>{{ settings.getSetting('type',permit['type'])}}</td>
@@ -1029,7 +1030,7 @@
 
                                                 </tr>
 
-                                            </tbody>
+                                            </tbody> -->
                                         </table>
                                     </div>
 
@@ -1063,7 +1064,7 @@
                     <div class="col-12 p-0">
                         <div class="pwtest">
                             <label class="container-pw"
-                                *ngFor="let reletedPermit of applicationDetails?.related_permits">{{reletedPermit?.reference_no}}
+                                *ngFor="let reletedPermit of allRelatedPermit">{{reletedPermit?.reference_no}}
                                 <input type="radio" (change)="check($event.target,reletedPermit)"
                                     [checked]="reletedPermit.isReleted" name="radio">
                                 <span class="checkpw"></span>
@@ -1451,7 +1452,7 @@
                       </div>
                       <div class="col-6">
                         <div class="form-group">
-                          <input type="text" id="pp9" class="form-control" formControlName="gas_leak_n   umber" required=""> 
+                          <input type="text" id="pp9" class="form-control" formControlName="gas_leak_number" required=""> 
                           <label class="form-control-placeholder" for="pp9">Gas Leak Number</label>
                         </div>
                       </div>
@@ -1492,7 +1493,7 @@
       </div>
 </section>
 <!-- Modal -->
-<div class="modal fade" id="delete-applicationdecription" tabindex="-1" role="dialog"
+<div class="modal fade" id="delete-applicationdecription" tabindex="-1" role="dialog" #deleteImagepop
 aria-labelledby="staticBackdropLabel">
 <div class="modal-dialog modal-dialog-centered delet-appliction-width">
   <div class="modal-content">

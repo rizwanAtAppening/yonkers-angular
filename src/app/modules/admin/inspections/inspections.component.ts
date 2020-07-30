@@ -34,7 +34,7 @@ export class InspectionsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      debugger
+      
       this.inspections = (this.applicationDetails.inspections);
       if (this.inspections.length > 0) {
         this.inspections.map(data => {
@@ -142,8 +142,11 @@ export class InspectionsComponent implements OnInit {
 
   public specialCondition = []
   selectSpecialCondition() {
+    
     this.applicationService.selectSpecialCondition(this.applicationDetails.id).subscribe(data => {
-      this.specialCondition = data.response.special_conditions;
+      if(data.response != null ){
+        this.specialCondition = data.response.special_conditions;
+      }
       // Object.keys
       // this.specialCondition = this.specialCondition.map(data=>{
       //   return data.special_conditions
@@ -257,7 +260,7 @@ export class InspectionsComponent implements OnInit {
 
   // }
   imageEmpty(value) {
-    debugger
+    
     this.imageName = null;
     this.attachment = null;
     this.image = null

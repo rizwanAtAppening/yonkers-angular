@@ -63,7 +63,7 @@ export class ApplicationsComponent implements OnInit {
   public paymentSummary:any = []
   paymentsSummary(status){
    // this.application_Type = application_Type
-    debugger
+    
     const data = {
       page: this.page,
       payment_summary: status

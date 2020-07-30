@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
 
   public paymentsDetailsWithKey = []
   showPayment() {
-    debugger
+    
     const data = {
       fee_Type: 3,
       application_id: this.applicationId
@@ -56,7 +56,7 @@ export class PaymentComponent implements OnInit {
 
   public isSubmit = false;
   payment() {
-    debugger
+    
     this.isSubmit = true
     const data = {
       fee_Type: 3,

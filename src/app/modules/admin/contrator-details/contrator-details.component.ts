@@ -254,7 +254,7 @@ export class ContratorDetailsComponent implements OnInit {
 
   public isEmail = false;
   addEmialAndPickUp() {
-    debugger
+    
     if (this.emailFormGroup.invalid) {
       this.isEmail = true
       return false

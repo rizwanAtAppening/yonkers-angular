@@ -419,7 +419,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public location_type = 1
 
   selectAddress(value: string) {
-    debugger
+    
     if (value == 'location') {
       this.isLocation = true
       this.location_type = 2
@@ -444,7 +444,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    debugger
+    
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -695,7 +695,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-    debugger
+    
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -1262,7 +1262,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public searchDetails: any = []
   public searchDetail: any = []
   searchBussiness(value) {
-    debugger
+    
     var value = value
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
@@ -1308,7 +1308,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   // public searchDetails: any
   data3 = ['shivam', 'chauhan', 'alok', 'singh', 'kumar']
   allBussiness() {
-    debugger
+    
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
@@ -1340,7 +1340,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    debugger
+    
     var value: string
 
     if (sendValue == 'exact') {
