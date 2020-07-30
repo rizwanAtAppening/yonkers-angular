@@ -35,7 +35,11 @@ export class SubmitApplicationComponent implements OnInit {
     }
     this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
       console.log(data)
-    },error
+    },error=>{
+      console.log(data);
+    }
     )
+    
+    
   }
 }

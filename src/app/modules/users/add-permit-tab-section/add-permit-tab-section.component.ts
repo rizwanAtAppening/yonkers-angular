@@ -708,7 +708,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       return false
     }
     if (application.location_type == 1) {
-      this.whereForm.controls.address_id.setValue(application.address_id);
+      this.whereForm.controls.address_id.setValue(application.address_details.szFullAddress);
       this.whereForm.controls.also_known_as.setValue(application.also_known_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)

@@ -34,14 +34,14 @@ export class InspectionsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-debugger
+      debugger
       this.inspections = (this.applicationDetails.inspections);
       if (this.inspections.length > 0) {
         this.inspections.map(data => {
-          if(data.document != null)
-        data.newDoc =   JSON.parse(data.document)
-        // console.log(data.document)
-           return data;
+          if (data.document != null)
+            data.newDoc = JSON.parse(data.document)
+          // console.log(data.document)
+          return data;
         })
         console.log(this.inspections, '++++++++++++++++++++++++')
       }
@@ -153,7 +153,7 @@ debugger
 
   public
   submitSpecialCondition(value) {
-    
+
     this.settings.inspection_type.map(data => {
       if (data.key == value.key) {
         this.inspectionForm.controls.type.setValue(value.key)
@@ -169,9 +169,10 @@ debugger
   public formData
   public isImage = false
   public allImage = []
-
+  public id: number = 1
+  public newId: any
   media(event1) {
-    
+
 
     // if (this.imageUpload.invalid) {
     //   this.isImage = true
@@ -179,12 +180,13 @@ debugger
     // }
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0];
-    var id = 1
+    //this.id = 1
     if (this.allImage.length == 0) {
-      this.allImage.push({ id: id, image: this.imageName })
+      this.allImage.push({ id: this.id, image: this.imageName })
     } else {
-      id = id + 1
-      this.allImage.push({ id: id, image: this.imageName })
+      this.newId = this.id + 1
+      this.id = this.newId
+      this.allImage.push({ id: this.id, image: this.imageName })
 
     }
     this.formData.append('document', this.attachment)
@@ -255,7 +257,7 @@ debugger
 
   // }
   imageEmpty(value) {
-    
+    debugger
     this.imageName = null;
     this.attachment = null;
     this.image = null

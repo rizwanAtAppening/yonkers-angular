@@ -390,12 +390,15 @@
                                                       <div class="dropdown-content-void">
                                                           <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
                                                               View</a> -->
-                                                          <a  data-toggle="modal"
+                                                          <a  data-toggle="modal" (click) ="docId(file?.id)"
                                                               data-target="#Email-ForApplication"> <span> <img
                                                                       src="assets/images/d2.svg"> </span> Email</a>
-                                                          <!-- <a href="#" data-toggle="modal"
+                                                          <a href="#" data-toggle="modal" (click) ="docId(file?.id)"
                                                               data-target="#delete-applicationdecription"> <span> <img
-                                                                      src="assets/images/d3.svg"> </span> Delete</a> -->
+                                                                      src="assets/images/d3.svg"> </span> Delete</a>
+
+                                                                      <a  href="{{ env?.host + env?.imageBasePath + file?.name }}"  target="_blank"> <span> <img
+                                                                              src="assets/images/d3.svg"> </span> View</a>
                                                       </div>
                                                   </div>
                                               </td>
@@ -431,9 +434,9 @@
                                                       <div class="dropdown-content-void">
                                                           <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
                                                               View</a> -->
-                                                          <a  data-toggle="modal"
+                                                          <!-- <a  data-toggle="modal"
                                                               data-target="#Email-ForApplication"> <span> <img
-                                                                      src="assets/images/d2.svg"> </span> Email</a>
+                                                                      src="assets/images/d2.svg"> </span> Email</a> -->
                                                           <!-- <a href="#" data-toggle="modal"
                                                               data-target="#delete-applicationdecription"> <span> <img
                                                                       src="assets/images/d3.svg"> </span> Delete</a> -->
@@ -1156,7 +1159,7 @@
     </div>
 
      <!-- Modal -->
-  <div class="modal fade" id="Email-ForApplication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class="modal fade" id="Email-ForApplication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" #mailPopUp
   aria-hidden="true">
   <div class="modal-dialog popup-dumpstar" role="document">
     <div class="modal-content text-addpopup">
@@ -1488,6 +1491,26 @@
         </div>
       </div>
 </section>
+<!-- Modal -->
+<div class="modal fade" id="delete-applicationdecription" tabindex="-1" role="dialog"
+aria-labelledby="staticBackdropLabel">
+<div class="modal-dialog modal-dialog-centered delet-appliction-width">
+  <div class="modal-content">
 
+    <div class="modal-body border-0">
+      <div class="deleteHd-app">
+        <h6>Delete Application</h6>
+        <p>Are you sure you want to Delete Application</p>
+        <div class="delete-appBtn">
+          <button class="cancle-req">Cancel</button>
+          <button class="confirme-req" (click) ="deleteDocuments()">Confirme</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
 <!-- </router-outlet>
         </app-admin> -->

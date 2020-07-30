@@ -196,7 +196,7 @@ export class PermitComponent implements OnInit {
 
   public application_type: number
   getPermitApplication(dwlType) {
-
+debugger
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -233,7 +233,7 @@ export class PermitComponent implements OnInit {
   }
   public searchString: string
   searchApplication() {
-
+debugger
     if (this.dwlType == '1') {
       this.application_type = 1
     } else if (this.dwlType == '2') {
@@ -276,11 +276,13 @@ export class PermitComponent implements OnInit {
   }
 
   convertPermitApplication() {
-debugger
+    debugger
     this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
-      this.getPermitApplication(this.dwlType)
-      this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
+      this.toastService.success('Application have beed converted');
+
+      this.getPermitApplication(this.dwlType);
+      //this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
 

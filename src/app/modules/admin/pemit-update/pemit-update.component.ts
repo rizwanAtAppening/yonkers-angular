@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { error } from 'util';
 import { UsersService } from 'src/app/core/services';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pemit-update',
@@ -18,6 +19,7 @@ import { UsersService } from 'src/app/core/services';
 export class PemitUpdateComponent implements OnInit {
   @ViewChild('applicantPopUp', { static: false }) applicantPopUp: ElementRef;
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
+  @ViewChild('mailPopUp', { static: false }) mailPopUp: ElementRef;
 
   @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
@@ -26,7 +28,7 @@ export class PemitUpdateComponent implements OnInit {
   public lat = 40.730610;
   public long = -73.935242;
   certificates: any = new Subject<any>();
-
+  public env: any
   public applicationId: number;
   public applicationDetails: any;
   public completIncompletForm: FormGroup;
@@ -52,7 +54,7 @@ export class PemitUpdateComponent implements OnInit {
   ) { this.settings = settingConfig; }
 
   ngOnInit(): void {
-
+    this.env = environment;
     this.onInIt()
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
@@ -207,15 +209,15 @@ export class PemitUpdateComponent implements OnInit {
   }
   public allMails = []
   permitDetails() {
-debugger
+    debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
 
       this.applicationDetails = data.response;
-      if(this.applicationDetails.applicant_details){
+      if (this.applicationDetails.applicant_details) {
         this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
 
       }
-      if(this.applicationDetails.contractor_details){
+      if (this.applicationDetails.contractor_details) {
         this.allMails.push(this.applicationDetails.contractor_details.contractor_email)
       }
 
@@ -532,19 +534,49 @@ debugger
     this.image = null
   }
 
+  public documentId: any
+  docId(id) {
+    this.documentId = id;
+  }
 
   public isSendEmail = false
   sendEmail() {
+    debugger
+    this.sendEmialForm.controls.to.setErrors(null)
+    this.sendEmialForm.controls.cc.setErrors(null)
+
     if (this.sendEmialForm.invalid) {
       this.isSendEmail = true
       return false
     }
 
+    const data = {
+      application_id: this.applicationDetails.id,
+      subject: this.sendEmialForm.value.subject,
+      to: this.sendEmialForm.value.to,
+      cc: this.sendEmialForm.value.cc,
+      doc_id: this.documentId,
+      discription: this.sendEmialForm.value.description
+
+    }
+
     this.sendEmialForm.value.applicantId = this.applicationDetails.id
-    this.permitService.sendMail(this.sendEmialForm.value).subscribe(data => {
+    this.permitService.sendMail(data).subscribe(data => {
       this.sendEmialForm.reset()
-      this.isSendEmail = false
+      this.mailPopUp.nativeElement.click();
+      this.isSendEmail = false;
+      this.toasterService.success('Mail have beed send')
     })
   }
 
+
+  deleteDocuments() {
+    const data = {
+      document_id: this.documentId,
+      application_id: this.applicationDetails.id,
+    }
+    this.permitService.deleteDocuments(data).subscribe(data => {
+      this.toasterService.success('Delete Successful')
+    })
+  }
 } 
