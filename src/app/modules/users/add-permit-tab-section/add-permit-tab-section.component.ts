@@ -556,6 +556,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         }
 
       }
+      this.whereForm.controls.also_known_as.setErrors(null)
       if (this.whereForm.invalid) {
         this.isSubmit = true;
         return false

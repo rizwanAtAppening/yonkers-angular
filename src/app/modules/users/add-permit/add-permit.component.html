@@ -109,7 +109,7 @@
                                                     <div class="col-12 ">
                                                         <div class="form-group">
 
-                                                            <input type="text" id="ms4" formControlName="layout" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                            <input type="text" id="ms4" formControlName="layout" (input)="fillDataByLayOutNumber('')" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required="">
                                                             <label  [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" class="form-control-placeholder" for="ms4">Layout
                                                                 No</label>
@@ -186,7 +186,7 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <label [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'msg' : ''">Will this work impect traffic_control</label>
+                                                            <label [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'msg' : ''">Will this work impect traffic control</label>
                                                             <select formControlName="traffic_control" [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'form-control form-group-error' : 'form-control'">
                                                                 <option value=" " hidden> --Select--</option>
                                                                 <option value="{{type?.key}}"
@@ -368,9 +368,10 @@
                                                                 <!-- <button> <span
                                                                     target="_blank"><img src="assets/images/v-btn.svg"
                                                                             alt=""></span> View</button> -->
-                                                                <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
+                                                                <button *ngIf ="image?.imageName || image?.name" class="delet-btn" (click) ="deleteImage(i)"> <span><img
                                                                             src="assets/images/d-btn.svg"  alt=""></span>
                                                                     Delete</button>
+                                                                    <p *ngIf ="!image?.imageName && !image?.name"> _ </p>
                                                             </td>
 
                                                         </tr>
@@ -526,7 +527,7 @@
                                                     <div class="row">
                                                         <div class="col-12 ">
                                                             <div class="form-group">
-                                                                <input type="text" id="ms4" formControlName="layout" (input) ="fillDataByLayOutNumber()" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
+                                                                <input type="text" id="ms4" formControlName="layout" (input) ="fillDataByLayOutNumber('')" [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                     class="form-control" required="">
                                                                 <label  [class]="permiControl.layout.invalid && (permiControl.layout.dirty || permiControl.layout.touched || isPermit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" class="form-control-placeholder" for="ms4">Layout
                                                                     No</label>
@@ -603,7 +604,7 @@
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <label [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'msg' : ''">Will this work impect traffic_control</label>
+                                                                <label [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'msg' : ''">Will this work impect traffic control</label>
                                                                 <select formControlName="traffic_control" [class]="permiControl.traffic_control.invalid && (permiControl.traffic_control.dirty || permiControl.traffic_control.touched || isPermit) ? 'form-control form-group-error' : 'form-control'">
                                                                     <option value=" " hidden> --Select--</option>
                                                                     <option value="{{type?.key}}"
@@ -777,7 +778,7 @@
                                                                 <td class="upload-Btn">
                                                                     <button *ngIf ="!image?.imageName && !image?.name">
                                                                         <span><img src="assets/images/b-upload.svg"
-                                                                                alt=""></span> Upload file
+                                                                                alt=""></span> Upload file1
                                                                         <input type="file" (change)="media($event,i)">
                                                                     </button>
                                                                     <p *ngIf ="image?.imageName || image?.name">{{image?.imageName ? image?.imageName : image?.name}}</p>
@@ -786,7 +787,7 @@
                                                                     <!-- <button> <span
                                                                         target="_blank"><img src="assets/images/v-btn.svg"
                                                                                 alt=""></span> View</button> -->
-                                                                    <button class="delet-btn" (click) ="deleteImage(i)"> <span><img
+                                                                    <button *ngIf ="image?.imageName || image?.name" class="delet-btn" (click) ="deleteImage(i)"> <span><img
                                                                                 src="assets/images/d-btn.svg"  alt=""></span>
                                                                         Delete</button>
                                                                 </td>

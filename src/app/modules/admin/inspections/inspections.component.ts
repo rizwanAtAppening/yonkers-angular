@@ -112,7 +112,13 @@ export class InspectionsComponent implements OnInit {
     this.applicationService.inspection(this.formData).subscribe(data => {
       this.inspectionForm.reset();
       this.isInspection = false
+      this.formData = new FormData()
+      this.allImage = []
       this.messageEvent.emit(this.message);
+    },error=>{
+      this.formData = new FormData()
+      this.allImage = []
+
     })
   }
 

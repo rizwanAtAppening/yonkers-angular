@@ -259,4 +259,11 @@ export class DwlDetailsComponent implements OnInit {
       this.permitDetails();
     })
   }
+  public message:any
+  receiveMessage(event) {
+    this.message = event
+    this.isDwonArrow = true;
+    this.isSubmition = false;
+    this.ngOnInit();
+  }
 }

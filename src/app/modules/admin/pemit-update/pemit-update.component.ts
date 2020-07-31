@@ -327,8 +327,8 @@ export class PemitUpdateComponent implements OnInit {
   mailControl() {
     this.sendEmialForm = this.FB.group({
       cc: [''],
-      to: [''],
-      subject: [''],
+      to: ['',Validators.required],
+      subject: ['',Validators.required],
       description: ['', Validators.required],
     })
   }
@@ -539,14 +539,16 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   public documentId: any
-  docId(id) {
-    this.documentId = id;
+  public document:any;
+  docId(file) {
+    this.documentId = file.id;
+    this.document = file.name
   }
 
   public isSendEmail = false
   sendEmail() {
     
-    this.sendEmialForm.controls.to.setErrors(null)
+   // this.sendEmialForm.controls.to.setErrors(null)
     this.sendEmialForm.controls.cc.setErrors(null)
 
     if (this.sendEmialForm.invalid) {

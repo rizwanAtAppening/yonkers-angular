@@ -3699,7 +3699,7 @@ padding: 20px 28px 15px 28px;
   
   .dropdown-content-void {
     display: none;
-    position: absolute;
+    /* position: absolute; */
     right: 56px;
     background-color: #fff;
     min-width: 133px;

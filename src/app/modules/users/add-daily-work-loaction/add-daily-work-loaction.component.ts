@@ -223,10 +223,10 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public applictionDetails = []
   application_type: number = 2
   // currentPage = 1
-  public lll = ['dd','ddddsfsd','sdfsd']
+  public lll = ['dd', 'ddddsfsd', 'sdfsd']
   public allLayOutNumber = []
   getPermitApplication() {
-    debugger
+    
     this.allLayOutNumber = []
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
@@ -284,16 +284,18 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       }
       this.dwlForm.controls.work_description.setValue(value.application_daily_work_location.work_description)
       this.dwlForm.controls.work_category.setValue(value.application_daily_work_location.work_category)
-      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type)
+      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type ? value.application_daily_work_location.permit_type : value.permit_type)
 
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
       this.dwlForm.controls.permit_number.setValue(value.application_daily_work_location.permit_number)
       this.dwlForm.controls.layout_number.setValue(value.application_daily_work_location.layout_number)
+      this.dwlForm.controls.also_know_as.setValue(value.also_know_as)
 
     }
     else if (this.location_type == 1) {
       this.dwlForm.controls.work_category.setValue(value.application_daily_work_location.work_category)
-      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type)
+      this.dwlForm.controls.permit_type.setValue(value.application_daily_work_location.permit_type ? value.application_daily_work_location.permit_type : value.permit_type)
+      this.dwlForm.controls.also_know_as.setValue(value.also_know_as)
 
       this.dwlForm.controls.work_description.setValue(value.application_daily_work_location.work_description)
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
@@ -330,17 +332,23 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public layOutData: any;
   fillDataByLayOutNumber(selectLayoutNumber) {
 
-    const value = this.dwlForm.value.layout_number ? this.dwlForm.value.layout_number : selectLayoutNumber
-    if (value == null) {
+    // const value = this.dwlForm.value.layout_number ? this.dwlForm.value.layout_number : selectLayoutNumber
+    const value = selectLayoutNumber
+    const emptyValue = this.dwlForm.value.layout_number;
+    
+    if (emptyValue == null || emptyValue == "") {
       this.removeAnResetForm()
     }
-    this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
-      this.layOutData = data.response;
+    if (value) {
+      this.permitService.getDetailByLayOutNumber({ layout: value,application_type:2 }).subscribe(data => {
+        this.layOutData = data.response;
 
-      if (this.layOutData && this.layOutData.application_daily_work_location != null) {
-        this.fillFormOnEditAndByLayoutNumber(this.layOutData)
-      }
-    })
+        if (this.layOutData && this.layOutData.application_daily_work_location != null) {
+          this.fillFormOnEditAndByLayoutNumber(this.layOutData)
+        }
+      })
+    }
+
 
   }
 
@@ -356,6 +364,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlForm.controls.parcel_number.setValue(this.layOutData.application_daily_work_location.parcel_number)
       this.dwlForm.controls.work_description.setValue(this.layOutData.application_daily_work_location.work_description)
       this.dwlForm.controls.layout_number.setValue(this.layOutData.application_daily_work_location.layout_number)
+      this.dwlForm.controls.also_know_as.setValue(this.layOutData.also_know_as)
 
       if (this.location_type == 2) {
         if (this.layOutData.location.length > 1) {

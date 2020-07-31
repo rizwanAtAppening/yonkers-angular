@@ -340,8 +340,8 @@ export class AddPermitComponent implements OnInit {
           return data
         }
 
-        if (data.status == 2 && data.application_type == 1) {
-          this.allLayOutNumber.push(data.project_detail.layout_number)
+        if (data.status == 2 && (data.application_type == 1 || data.application_type == 3)) {
+          this.allLayOutNumber.push((data.project_detail && data.project_detail.layout_number)?data.project_detail.layout_number:data.application_daily_work_location.layout_number)
         }
       })
       console.log(this.dwlApplication)
@@ -378,7 +378,7 @@ export class AddPermitComponent implements OnInit {
   public selectedCat = 0
   public editValue: any
   editAppliction(value) {
-    debugger
+    
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -470,19 +470,29 @@ export class AddPermitComponent implements OnInit {
 
 
   public layOutData: any;
-  fillDataByLayOutNumber(selectLayOut) {
-    debugger
-    const value = this.permitForm.value.layout?this.permitForm.value.layout :selectLayOut
-    this.permitService.getDetailByLayOutNumber({ layout: value }).subscribe(data => {
-      this.layOutData = data.response;
-      this.editValue = this.layOutData
-      this.location(this.layOutData)
-    })
+  fillDataByLayOutNumber(selectLayoutNumber) {
+    
+    //const value = this.permitForm.value.layout?this.permitForm.value.layout :selectLayOut
+    const value = selectLayoutNumber
+    const emptyValue = this.permitForm.value.layout;
+
+    if (emptyValue == null || emptyValue == "") {
+      this.removeAnResetForm()
+    }
+    if (value) {
+      this.permitService.getDetailByLayOutNumber({ layout: value,application_type:1 }).subscribe(data => {
+        this.layOutData = data.response;
+        this.editValue = this.layOutData
+        this.location(this.layOutData)
+      })
+    }
+
   }
 
   location(value) {
 
     this.layOutData = value
+    this.editValue = this.layOutData
     if (this.layOutData) {
       if (this.layOutData.location_type) {
         this.location_type = this.layOutData.location_type;
@@ -559,7 +569,7 @@ export class AddPermitComponent implements OnInit {
 
   removeAnResetForm() {
 
-    // this.dwlForm.reset();
+     this.permitForm.reset();
     if (this.addLocationControls.controls.length > 1) {
       this.addLocationControls.controls.map((data, i) => {
         this.remove(i);
@@ -585,7 +595,7 @@ export class AddPermitComponent implements OnInit {
 
   public applicationDetail: any;
   getApplication() {
-
+    
     this.permitService.getApplicationById(this.applicationId).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {

@@ -189,7 +189,7 @@
         
                            
                            
-                            <app-inspections 
+                            <app-inspections (messageEvent)="receiveMessage($event)"
                                 *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.inspector)"
                                 [certificatesChild]="certificates"></app-inspections>
                             

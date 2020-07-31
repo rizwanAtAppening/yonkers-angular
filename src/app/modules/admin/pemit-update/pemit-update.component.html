@@ -390,10 +390,10 @@
                                                       <div class="dropdown-content-void">
                                                           <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
                                                               View</a> -->
-                                                          <a  data-toggle="modal" (click) ="docId(file?.id)"
+                                                          <a  data-toggle="modal" (click) ="docId(file)"
                                                               data-target="#Email-ForApplication"> <span> <img
                                                                       src="assets/images/d2.svg"> </span> Email</a>
-                                                          <a href="#" data-toggle="modal" (click) ="docId(file?.id)"
+                                                          <a href="#" data-toggle="modal" (click) ="docId(file)"
                                                               data-target="#delete-applicationdecription"> <span> <img
                                                                       src="assets/images/d3.svg"> </span> Delete</a>
 
@@ -1177,7 +1177,7 @@
             <div class="row">
               <div class="col-6">
                 <div class="form-group">
-                  <input type="text" id="emaila1" class="form-control" formControlName="to" required="">
+                  <input type="text" id="emaila1" class="form-control" formControlName="to" [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"  required="">
                   <label class="form-control-placeholder" for="emaila1">To</label>
                 </div>
               </div>
@@ -1188,7 +1188,7 @@
                      
                         <div class="form-group">
 
-                          <select formControlName="to" >
+                          <select formControlName="to" [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'">
                               <option value="" hidden>--Select--</option>
                               <option *ngFor = "let mail of allMails">{{mail}}</option>
                           </select>
@@ -1205,7 +1205,7 @@
               <div class="row">
                 <div class="col-6">
                   <div class="form-group">
-                    <input type="text" id="aucd3" formControlName="cc"  class="form-control" required="">
+                    <input type="text" id="aucd3" formControlName="cc"  class="form-control"  required="">
                     <label class="form-control-placeholder" for="aucd3">CC</label>
                   </div>
                 </div>
@@ -1248,7 +1248,7 @@
                 <div class="col-12 emailfor-textarea ">
                   <div class="form-group">
                     <label>Detailed Description</label>
-                    <textarea placeholder="Type something here..." formControlName="description"></textarea>
+                    <textarea placeholder="Type something here..." formControlName="description" [class]="mailCon.description.invalid && (mailCon.description.dirty || mailCon.description.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"></textarea>
                   </div>
                 </div>
 
@@ -1258,7 +1258,7 @@
             <div class="popup-busnise">
               <div class="row">
                 <div class="col-12">
-                  <h6 class="atechpdf">Attechment :- <span>Application.Pdf</span></h6>
+                  <h6 class="atechpdf">Attechment :- <span>{{document ? document :'_'}}</span></h6>
                 </div>
 
               </div>

@@ -33,7 +33,7 @@
                                                 <!-- (input)="fillDataByLayOutNumber()"  -->
                                             <div class="col-12 ">
                                                 <div class="form-group">
-                                                    <input type="text" id="ln1" formControlName="layout_number" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)"
+                                                    <input type="text" id="ln1" formControlName="layout_number" (input)="fillDataByLayOutNumber('')" [typeahead]="allLayOutNumber" (typeaheadOnSelect) = "fillDataByLayOutNumber($event)"
                                                        class="form-control">
                                                     <label class="form-control-placeholder" for="ln1">Layout
                                                         Number</label>
