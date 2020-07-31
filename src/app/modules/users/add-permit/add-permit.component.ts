@@ -506,10 +506,11 @@ export class AddPermitComponent implements OnInit {
         this.permitForm.controls.start_date.setValue(new Date(this.layOutData.project_detail.start_date))
         this.permitForm.controls.end_date.setValue(new Date(this.layOutData.project_detail.end_date))
         this.permitForm.controls.traffic_control.setValue(this.layOutData.project_detail.traffic_control)
-        this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number)
+        this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number ?this.layOutData.project_detail.layout_number :this.layOutData.application_daily_work_location.layout_number)
         this.permitForm.controls.description.setValue(this.layOutData.project_detail.description ? this.layOutData.project_detail.description : this.layOutData.application_daily_work_location.work_description)
       } else {
         this.permitForm.controls.description.setValue(this.layOutData.application_daily_work_location.work_description)
+        this.permitForm.controls.layout.setValue(this.layOutData.application_daily_work_location.layout_number)
 
       }
 
