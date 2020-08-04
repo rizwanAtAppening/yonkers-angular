@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { error } from 'util';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-submit-application',
@@ -10,6 +11,8 @@ import { error } from 'util';
 })
 export class SubmitApplicationComponent implements OnInit {
   public applicationId: any
+  public certificate = "/api/download-application/";
+  public env:any
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -17,6 +20,7 @@ export class SubmitApplicationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.env = environment;
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id
     })
@@ -27,19 +31,19 @@ export class SubmitApplicationComponent implements OnInit {
     this.router.navigate(['/dashboard/permit'])
   }
 
-  downloadApplication() {
+  // downloadApplication() {
     
-    const data = {
-      downloadType: 1,
-      exe: 2
-    }
-    this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
-      console.log(data)
-    },error=>{
-      console.log(data);
-    }
-    )
+  //   const data = {
+  //     downloadType: 1,
+  //     exe: 2
+  //   }
+  //   this.permitService.downloadApplication(data, this.applicationId).subscribe(data => {
+  //     console.log(data)
+  //   },error=>{
+  //     console.log(data);
+  //   }
+  //   )
     
     
-  }
+  // }
 }

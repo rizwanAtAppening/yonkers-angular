@@ -13,7 +13,10 @@
 
                     <div class="btn-grop">
                         <button class="finish-btn" type="button" (click) = "navigateIndexPage()">Finish</button>
-                        <button class="download"><a target="_blank" (click) ="downloadApplication()">Download Form</a>
+                        <button class="download">  <a 
+                            href="{{env.host + certificate + applicationId}}?downloadType=1&exe=2"
+                            target="_blank">Download Form</a>
+                           
                             </button>
                     </div>
 

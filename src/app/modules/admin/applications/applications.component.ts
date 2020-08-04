@@ -60,16 +60,27 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
+  public sendData = {}
   public paymentSummary:any = []
-  paymentsSummary(status){
+  public inspections= []
+  paymentsSummary(status,value){
+    debugger
    // this.application_Type = application_Type
-    
-    const data = {
-      page: this.page,
-      payment_summary: status
+    if(value == "inspection"){
+      this.sendData = {
+        page: this.page,
+        inspection: status
+      }
+    }else{
+      this.sendData = {
+        page: this.page,
+        payment_summary: status
+      }
     }
-    this.applicationService.getApplications(data).subscribe(data => {
+   
+    this.applicationService.getApplications(this.sendData).subscribe(data => {
       this.paymentSummary = data.response;
+     
       this.currentPage = data.currentPage;
       this.offset = data.offset;
       this.totalPagination = data.total;    
@@ -82,9 +93,15 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  paginate(page, value) {
+  paginate(page, value,stringValue) {
     this.application_Type = value,
       this.page = page
+      if(stringValue == 'inspection'){
+        this.paymentsSummary(1,'inspection')
+      }else if(stringValue == 'payment'){
+        this.paymentsSummary(1,'payment')
+
+      }
     this.getAllApplication(this.application_Type)
 
   }
@@ -92,6 +109,7 @@ export class ApplicationsComponent implements OnInit {
   public isSingleAddress = true;
   public currentId: number
   showMoreLocation(value, id) {
+    debugger
     this.currentId = id
     this.allApplications.map(data => {
       if (data.id == id) {
@@ -101,6 +119,16 @@ export class ApplicationsComponent implements OnInit {
         data.isSingleAddress = !value
       }
     })
+    if(this.paymentSummary){
+      this.paymentSummary.map(data => {
+        if (data.id == id) {
+          data.isSingleAddress = value
+  
+        } else {
+          data.isSingleAddress = !value
+        }
+      }) 
+    }
 
   }
 

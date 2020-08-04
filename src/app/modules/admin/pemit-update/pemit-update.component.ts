@@ -521,6 +521,7 @@ export class PemitUpdateComponent implements OnInit {
     formData.append('type', this.imageType);
     this.permitService.uploadImageByAdmin(formData).subscribe(data => {
       this.image = null;
+      this.permitDetails();
       this.toasterService.success('Image upload successfuly');
     })
   }
@@ -584,7 +585,8 @@ export class PemitUpdateComponent implements OnInit {
     this.permitService.deleteDocuments(data).subscribe(data => {
       this.toasterService.success('Delete Successful')
       this.deleteImagepop.nativeElement.click();
-      this.getReletedPermit();
+     // this.getReletedPermit();
+     this.permitDetails()
     })
   }
 } 

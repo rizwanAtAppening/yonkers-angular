@@ -264,9 +264,10 @@ export class ContratorDetailsComponent implements OnInit {
     this.emailFormGroup.value.from = this.applicationDetails.contractor_details.contractor_email;
 
     this.applicationService.emailAndPickUp(this.emailFormGroup.value).subscribe(daa => {
-      this.emailFormGroup.controls.subject.setValue(null)
-      this.emailFormGroup.controls.standard_message.setValue(null)
-      this.emailFormGroup.controls.body.setValue(null)
+      // this.emailFormGroup.controls.subject.setValue(null)
+      // //this.emailFormGroup.controls.standard_message.setValue(null)
+      // this.emailFormGroup.controls.body.setValue(null)
+      this.emailFormGroup.reset()
        this.isEmail = false
 
       this.messageEvent.emit('hello')

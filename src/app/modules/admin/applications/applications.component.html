@@ -50,12 +50,12 @@
                                         role="tab" aria-controls="pills-DWL" aria-selected="false" (click) = "getAllApplication(2)">DWL</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
+                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'inspection')"
                                         href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin"
                                         aria-selected="false">Inspection</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1)"
+                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'payment')"
                                         href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
                                         aria-selected="false">Payment</a>
                                 </li>
@@ -121,7 +121,7 @@
                                                                     <table class="table table-bordered ">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th>Ref No13</th>
+                                                                                <th>Ref No</th>
                                                                                 <th>Location</th>
                                                                                 <th>Applicant</th>
                                                                                 <th>Type</th>
@@ -250,7 +250,7 @@
                                                                                     {{permit?.reference_no}}</td>
                                                                                 
                                                                                 <td >
-                                                                                    <p *ngIf ="permit?.address_id">                                                         {{permit?.address_id}}
+                                                                                    <p *ngIf ="permit?.address_id">                                                         {{permit?.address_details?.szFullAddress}}
                                                                                        </p>
                                                                                     <h6  *ngIf ="!permit?.address_id && permit?.isSingleAddress" >
                                                                                         <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>
@@ -290,7 +290,124 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
-                                    aria-labelledby="pills-Inspection-admin-tab"></div>
+                                aria-labelledby="pills-Inspection-admin-tab">
+
+
+                                <section class="table-sec daily-sec">
+                                    <div class="container p-0 container_full">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-Box pl-0 pr-0 border-0">
+                                                    <div class="permit-index">
+                                                        <div class="row">
+                                                            <div class="col-10">
+                                                                <div class="row">
+                                                                    <div class="col-2 pr-0 adminpermit_hd">
+                                                                        <div class="permit-Hd">
+                                                                            Inspections
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4 filter-search">
+                                                                        <div
+                                                                            class="header-input tbl-search-box">
+                                                                            <input type="text"
+                                                                                placeholder="Search...">
+                                                                            <span><i class="fa fa-search"
+                                                                                    aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6 pl-0">
+                                                                        <div class="btn-filter">
+                                                                            <button><span><img
+                                                                                        src="assets/images/filter.svg"
+                                                                                        alt=""></span>
+                                                                                Filter</button></div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-2 more-index">
+                                                                <!-- <div class="New-Project"><button> More 
+                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                            </button></div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row">
+                                                        <div class="col-12 filter_tbl">
+                                                            <div class="table-permit">
+                                                                <table class="table table-bordered ">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Permit Number</th>
+                                                                            <th>Location</th>
+                                                                            <th>Inspection Type</th>
+                                                                            <th>Date Requested</th>
+                                                                            <th>Inspector</th>
+                                                                         
+                                                                            <th>Decision</th>
+                                                                            <th>Status</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody >
+                                                                        <tr *ngFor ="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                            <td>PW2020-0510</td>
+                                                                            <td >
+                                                                                <p *ngIf ="inspection?.application?.address_id">  
+                                                                                                                                          {{ins?.address_details?.szFullAddress}}
+                                                                                   </p>
+                                                                                <h6  *ngIf ="!inspection?.application?.address_id && inspection?.isSingleAddress" >
+                                                                                    <p *ngIf ="inspection?.application?.location && inspection?.application?.location.length > 0" >{{inspection?.application?.location[0]?.street_one}} {{inspection?.application?.location[0]?.address_join == 1? 'To':'End'}} {{inspection?.application?.location[0]?.street_two}}</p></h6>
+                       
+                                                                                    <h6  *ngIf ="!inspection?.application?.address_id && !inspection?.isSingleAddress" >
+                                                                                           <p *ngFor ="let location of inspection?.application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                                   <strong  class="pointer-2" (click) = "showMoreLocation(false,inspection?.id)" *ngIf ="!inspection?.application?.address_id && inspection.isSingleAddress && ( inspection?.application?.location &&  inspection?.application?.location.length > 1) ">Show More</strong>
+                                                                                   <strong class="pointer-2" (click) = "showMoreLocation(true,inspection?.id)"  *ngIf ="!inspection?.application?.address_id && !inspection.isSingleAddress && ( inspection?.application?.location && inspection?.application?.location.length > 1) ">Show Less</strong>
+                       
+                       
+                                                                           </td>
+                                                                           <td>test</td>
+                                                                            <td>{{ settings.getSetting('inspection_type',inspection?.type)}}</td>
+                                                                            <td>{{inspection?.date | date}}</td>
+                                                                           <td>{{inspection?.staff?.name}}</td>
+                                                                            <td>{{ settings.getSetting('inspection_decision',inspection?.decision)}}</td>
+                                                                            <td>Pending</td>
+                                                                            <td
+                                                                                class="update-txt dropdown-action">
+                                                                                <span> <i
+                                                                                        class="fa fa-angle-down"
+                                                                                        aria-hidden="true"></i></span>
+                                                                                <div
+                                                                                    class="dropdown-contentable">
+                                                                                    <a href="#">Delete</a>
+                                                                                    <a href="#">Edit Staff</a>
+                                                                                    <a href="#">Inactive</a>
+                                                                                    <div class="triangle-left">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+
+                                                                        </tr>
+                                                                       
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <pagination-controls (pageChange)="paginate($event,'','inspection')">
+                                                    </pagination-controls>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+                            </div>
                                 <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel" 
                                     aria-labelledby="pills-Payment-admin-tab">
                                     <section class="table-sec daily-sec">
@@ -369,7 +486,7 @@
                                                                             <tbody>
                                                                                 <tr *ngFor = "let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                     <td >
-                                                                                        <p *ngIf ="summary?.application?.address_id">                                                         {{summary?.application?.address}}
+                                                                                        <p *ngIf ="summary?.application?.address_id">                                                      {{summary?.application?.address_details?.szFullAddress}}
                                                                                            </p>
                                                                                         <h6  *ngIf ="!summary?.application?.address_id && summary?.isSingleAddress" >
                                                                                             <p *ngIf ="summary?.application?.location && summary?.application?.location?.length  > 0" >{{summary?.application?.location[0]?.street_one}} {{summary?.application?.location[0]?.address_join == 1? 'To':'End'}} {{summary?.application?.location[0]?.street_two}}</p></h6>
@@ -405,7 +522,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <pagination-controls (pageChange)="paginate($event,1)">
+                                                        <pagination-controls (pageChange)="paginate($event,1,'payment')">
                                                         </pagination-controls>
                                                     </div>
                                                 </div>

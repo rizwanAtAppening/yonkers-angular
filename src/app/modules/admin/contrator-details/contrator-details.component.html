@@ -599,12 +599,12 @@
                                                 <div class="app-status-slect ">
                                                     <div class="form-group">
                                                         <label>Subject</label>
-                                                     <input type="text" formControlName="subject"  class="form-group" [class]="emailPickUp.subject.invalid && (emailPickUp.subject.dirty || emailPickUp.subject.touched || isEmail) ? 'form-control form-group-error' : 'form-control'">
+                                                     <input type="text" formControlName="subject"  class="form-group" [class]="emailPickUp.subject.invalid && (emailPickUp.subject.dirty || emailPickUp.subject.touched && isEmail) ? 'form-control form-group-error' : 'form-control'">
                                                        
                                                     </div>
                                                     <div
                                                     *ngIf="emailPickUp.subject.invalid && (emailPickUp.subject.dirty || emailPickUp.subject.touched || isEmail)">
-                                                    <p class="form-error" *ngIf="emailPickUp.subject.errors['required']">
+                                                    <p class="form-error" *ngIf="emailPickUp.subject.errors['required'] && isEmail">
                                                         Please enter subject
                                                     </p>
                                                 </div>
@@ -679,12 +679,12 @@
                                     <div class="comment-box-submision">
                                         <div class="form-group">
                                             <label id="ddHd">Detailed Description</label>
-                                            <textarea placeholder="Type something here..." [class]="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.subject.touched || isEmail) ? 'form-control form-group-error' : 'form-control'"
+                                            <textarea placeholder="Type something here..." [class]="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.subject.touched && isEmail) ? 'form-control form-group-error' : 'form-control'"
                                                 formControlName="body"></textarea>
                                         </div>
                                         <div
                                         *ngIf="emailPickUp.body.invalid && (emailPickUp.body.dirty || emailPickUp.body.touched || isEmail)">
-                                        <p class="form-error" *ngIf="emailPickUp.body.errors['required']">
+                                        <p class="form-error" *ngIf="emailPickUp.body.errors['required'] && isEmail">
                                             Please enter  message
                                         </p>
                                     </div>
