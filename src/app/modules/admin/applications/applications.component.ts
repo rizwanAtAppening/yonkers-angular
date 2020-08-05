@@ -100,8 +100,8 @@ export class ApplicationsComponent implements OnInit {
         this.paymentsSummary(1,'inspection')
       }else if(stringValue == 'payment'){
         this.paymentsSummary(1,'payment')
-
       }
+      if(stringValue != 'inspection' && stringValue != 'payment')
     this.getAllApplication(this.application_Type)
 
   }

@@ -59,7 +59,7 @@
                                         href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
                                         aria-selected="false">Payment</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill"
                                         href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin"
                                         aria-selected="false">Utility Invoice</a>
@@ -68,7 +68,7 @@
                                     <a class="nav-link" id="pills-Report-admin-tab" data-toggle="pill"
                                         href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin"
                                         aria-selected="false">Report</a>
-                                </li>
+                                </li> -->
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-admin-Permit-loaction" role="tabpanel"
@@ -176,7 +176,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <pagination-controls (pageChange)="paginate($event,1)">
+                                                        <pagination-controls (pageChange)="paginate($event,1,'')">
                                                         </pagination-controls>
                                                     </div>
                                                 </div>
@@ -280,7 +280,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <pagination-controls (pageChange)="paginate($event,1)">
+                                                        <pagination-controls (pageChange)="paginate($event,2,'')">
                                                         </pagination-controls>
                                                     </div>
                                                 </div>
@@ -358,7 +358,7 @@
                                                                             <td>PW2020-0510</td>
                                                                             <td >
                                                                                 <p *ngIf ="inspection?.application?.address_id">  
-                                                                                                                                          {{ins?.address_details?.szFullAddress}}
+                                                   {{inspection?.application?.address_details?.szFullAddress}}
                                                                                    </p>
                                                                                 <h6  *ngIf ="!inspection?.application?.address_id && inspection?.isSingleAddress" >
                                                                                     <p *ngIf ="inspection?.application?.location && inspection?.application?.location.length > 0" >{{inspection?.application?.location[0]?.street_one}} {{inspection?.application?.location[0]?.address_join == 1? 'To':'End'}} {{inspection?.application?.location[0]?.street_two}}</p></h6>
