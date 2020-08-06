@@ -341,7 +341,7 @@ export class AddPermitComponent implements OnInit {
         }
 
         if (data.status == 2 && (data.application_type == 1 || data.application_type == 3)) {
-          this.allLayOutNumber.push((data.project_detail && data.project_detail.layout_number)?data.project_detail.layout_number:data.application_daily_work_location.layout_number)
+          this.allLayOutNumber.push((data.project_detail && data.project_detail.layout_number) ? data.project_detail.layout_number : data.application_daily_work_location.layout_number)
         }
       })
       console.log(this.dwlApplication)
@@ -378,7 +378,7 @@ export class AddPermitComponent implements OnInit {
   public selectedCat = 0
   public editValue: any
   editAppliction(value) {
-    
+
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -471,7 +471,7 @@ export class AddPermitComponent implements OnInit {
 
   public layOutData: any;
   fillDataByLayOutNumber(selectLayoutNumber) {
-    
+
     //const value = this.permitForm.value.layout?this.permitForm.value.layout :selectLayOut
     const value = selectLayoutNumber
     const emptyValue = this.permitForm.value.layout;
@@ -480,7 +480,7 @@ export class AddPermitComponent implements OnInit {
       this.removeAnResetForm()
     }
     if (value) {
-      this.permitService.getDetailByLayOutNumber({ layout: value,application_type:1 }).subscribe(data => {
+      this.permitService.getDetailByLayOutNumber({ layout: value, application_type: 1 }).subscribe(data => {
         this.layOutData = data.response;
         this.editValue = this.layOutData
         this.location(this.layOutData)
@@ -490,7 +490,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   location(value) {
-
+    debugger
     this.layOutData = value
     this.editValue = this.layOutData
     if (this.layOutData) {
@@ -498,7 +498,9 @@ export class AddPermitComponent implements OnInit {
         this.location_type = this.layOutData.location_type;
       }
       this.permitForm.controls.type.setValue(this.layOutData.type ? this.layOutData.type : this.layOutData.permit_type)
-
+      if (this.layOutData && this.layOutData.upload_detail) {
+        this.allImage = this.layOutData.upload_detail
+      }
       if (this.layOutData.project_detail) {
         this.permitForm.controls.length.setValue(this.layOutData.project_detail.length)
         this.permitForm.controls.width.setValue(this.layOutData.project_detail.width)
@@ -506,7 +508,7 @@ export class AddPermitComponent implements OnInit {
         this.permitForm.controls.start_date.setValue(new Date(this.layOutData.project_detail.start_date))
         this.permitForm.controls.end_date.setValue(new Date(this.layOutData.project_detail.end_date))
         this.permitForm.controls.traffic_control.setValue(this.layOutData.project_detail.traffic_control)
-        this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number ?this.layOutData.project_detail.layout_number :this.layOutData.application_daily_work_location.layout_number)
+        this.permitForm.controls.layout.setValue(this.layOutData.project_detail.layout_number ? this.layOutData.project_detail.layout_number : this.layOutData.application_daily_work_location.layout_number)
         this.permitForm.controls.description.setValue(this.layOutData.project_detail.description ? this.layOutData.project_detail.description : this.layOutData.application_daily_work_location.work_description)
       } else {
         this.permitForm.controls.description.setValue(this.layOutData.application_daily_work_location.work_description)
@@ -514,7 +516,7 @@ export class AddPermitComponent implements OnInit {
 
       }
 
-      this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as)
+      this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as?this.layOutData.also_know_as:'')
       if (this.location_type == 2) {
         if (this.layOutData.location.length > 1) {
           for (let index = 0; index < this.layOutData.location.length - 1; index++) {
@@ -570,7 +572,7 @@ export class AddPermitComponent implements OnInit {
 
   removeAnResetForm() {
 
-     this.permitForm.reset();
+    this.permitForm.reset();
     if (this.addLocationControls.controls.length > 1) {
       this.addLocationControls.controls.map((data, i) => {
         this.remove(i);
@@ -596,7 +598,7 @@ export class AddPermitComponent implements OnInit {
 
   public applicationDetail: any;
   getApplication() {
-    
+
     this.permitService.getApplicationById(this.applicationId).subscribe(data => {
       this.applicationDetail = data.response;
       if (this.applicationDetail.application_daily_work_location) {

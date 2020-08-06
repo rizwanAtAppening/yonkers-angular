@@ -138,16 +138,16 @@
                                                                                     {{permit?.reference_no}}</td>
                                                                                 
                                                                                 <td >
-                                                                                    <p *ngIf ="permit?.address_id">  
+                                                                                    <p *ngIf ="permit?.address_id  && permit?.location_type == 1">  
                                                                                                                                               {{permit?.address_details?.szFullAddress}}
                                                                                        </p>
-                                                                                    <h6  *ngIf ="!permit?.address_id && permit?.isSingleAddress" >
+                                                                                    <h6  *ngIf ="permit?.location_type == 2 && permit?.isSingleAddress" >
                                                                                         <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>
                            
-                                                                                        <h6  *ngIf ="!permit?.address_id && !permit.isSingleAddress" >
+                                                                                        <h6  *ngIf ="permit?.location_type == 2 && !permit.isSingleAddress" >
                                                                                                <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && ( permit?.location &&  permit?.location.length > 1) ">Show More</strong>
-                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && ( permit?.location && permit?.location.length > 1) ">Show Less</strong>
+                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="permit?.location_type == 2 && permit.isSingleAddress && ( permit?.location &&  permit?.location.length > 1) ">Show More</strong>
+                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="permit?.location_type == 2 && !permit.isSingleAddress && ( permit?.location && permit?.location.length > 1) ">Show Less</strong>
                            
                            
                                                                                </td>
@@ -349,7 +349,7 @@
                                                                             <th>Inspector</th>
                                                                          
                                                                             <th>Decision</th>
-                                                                            <th>Status</th>
+                                                                            <!-- <th>Status</th> -->
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -370,12 +370,12 @@
                        
                        
                                                                            </td>
-                                                                           <td>test</td>
+                                                                           <!-- <td>test</td> -->
                                                                             <td>{{ settings.getSetting('inspection_type',inspection?.type)}}</td>
                                                                             <td>{{inspection?.date | date}}</td>
                                                                            <td>{{inspection?.staff?.name}}</td>
                                                                             <td>{{ settings.getSetting('inspection_decision',inspection?.decision)}}</td>
-                                                                            <td>Pending</td>
+                                                                            <!-- <td>Pending</td> -->
                                                                             <td
                                                                                 class="update-txt dropdown-action">
                                                                                 <span> <i
@@ -383,9 +383,9 @@
                                                                                         aria-hidden="true"></i></span>
                                                                                 <div
                                                                                     class="dropdown-contentable">
-                                                                                    <a href="#">Delete</a>
-                                                                                    <a href="#">Edit Staff</a>
-                                                                                    <a href="#">Inactive</a>
+                                                                                    <!-- <a href="#">Delete</a> -->
+                                                                                    <a (click) ="editInspection(inspection?.id,inspection?.application)">Edit Staff</a>
+                                                                                    <!-- <a href="#">Inactive</a> -->
                                                                                     <div class="triangle-left">
                                                                                     </div>
                                                                                 </div>

@@ -20,6 +20,7 @@ export class PemitUpdateComponent implements OnInit {
   @ViewChild('applicantPopUp', { static: false }) applicantPopUp: ElementRef;
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
   @ViewChild('mailPopUp', { static: false }) mailPopUp: ElementRef;
+  @ViewChild('contactorDetailsPopUp', { static: false }) contactorDetailsPopUp: ElementRef;
 
   @ViewChild('deleteFeePopoUp', { static: false }) deleteFeePopoUp: ElementRef;
   @ViewChild('editFeePopup', { static: false }) editFeePopup: ElementRef;
@@ -137,6 +138,7 @@ export class PemitUpdateComponent implements OnInit {
     this.projectDescriptionForm.value.is_notifiable = 1
     this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
       this.toasterService.success('Information Updated')
+      this.contactorDetailsPopUp.nativeElement.click();
     })
   }
 
@@ -282,16 +284,16 @@ export class PemitUpdateComponent implements OnInit {
 
 
   public related_permit: any
-  check(data, value) {
-
+  check(selectedValue, value) {
+debugger
     this.related_permit = value.id
     if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
       this.applicationDetails.related_permits.map((data => {
         if (value.id == data.id) {
-          data.isReleted = data.checked
+          data.isReleted = selectedValue.checked
         }
         else {
-          data.isReleted = !data.checked
+          data.isReleted = !selectedValue.checked
 
         }
       }))
@@ -306,7 +308,8 @@ export class PemitUpdateComponent implements OnInit {
         application_id: this.applicationDetails.id,
       }
       this.applicationService.addReltedPemrit(data).subscribe(data => {
-        this.reletedPermitPopUp.nativeElement.reset();
+        this.reletedPermitPopUp.nativeElement.click();
+        this.getReletedPermit();
       })
     } else {
       this.toasterService.error('Plz select permit');

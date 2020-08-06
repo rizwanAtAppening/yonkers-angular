@@ -227,7 +227,7 @@
                                                                             <table class="table table-bordered ">
                                                                                 <thead>
                                                                                     <tr>
-                                                                                        <th>Ref No</th>
+                                                                                        <th>Ref No5</th>
                                                                                         <th>Location</th>
                                                                                         <th>Type</th>
                                                                                         <!-- <th>Permit Status</th> -->
@@ -246,11 +246,11 @@
                                                                                         </td>
                                                                                         <td>
                                                                                             <p
-                                                                                                *ngIf="application?.address_id">
+                                                                                                *ngIf="application?.address_id && application.location_type == 1">
                                                                                                 {{application?.address_details?.szFullAddress}}
                                                                                             </p>
                                                                                             <h6
-                                                                                                *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                                                                *ngIf="application.location_type == 2 && application?.isSingleAddress">
                                                                                                 <p
                                                                                                     *ngIf="application?.location && application?.location.length > 0">
                                                                                                     {{application?.location[0]?.street_one}}
@@ -260,7 +260,7 @@
                                                                                             </h6>
 
                                                                                             <h6
-                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                                                                *ngIf="application.location_type == 2 && !application.isSingleAddress">
                                                                                                 <p
                                                                                                     *ngFor="let location of application?.location ">
                                                                                                     {{location?.street_one}}
@@ -270,11 +270,11 @@
                                                                                             </h6>
                                                                                             <strong class="pointer-2"
                                                                                                 (click)="showMoreLocation(false,application?.id)"
-                                                                                                *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                *ngIf="application.location_type == 2 && application.isSingleAddress && application?.location.length > 1 ">Show
                                                                                                 More</strong>
                                                                                             <strong class="pointer-2"
                                                                                                 (click)="showMoreLocation(true,application?.id)"
-                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                *ngIf="application.location_type == 2 && !application.isSingleAddress && application?.location.length > 1 ">Show
                                                                                                 Less</strong>
 
 
@@ -289,7 +289,7 @@
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
                                                                                         </td>
-                                                                                        <td *ngIf="application.application_type == 1 && application.status == null"
+                                                                                        <td *ngIf="(application.application_type == 1 || application.application_type == 3) && application.status == null"
                                                                                             class="submited-Btn">
                                                                                             <button>Draft</button>
                                                                                         </td>
@@ -398,11 +398,11 @@
                                                                                         </td>
                                                                                         <td>
                                                                                             <p
-                                                                                                *ngIf="application?.address_id">
+                                                                                                *ngIf="application?.address_id && application.location_type == 1">
                                                                                                 {{application?.address_details?.szFullAddress}}
                                                                                             </p>
                                                                                             <h6
-                                                                                                *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                                                                *ngIf="application.location_type == 2 && application?.isSingleAddress">
                                                                                                 <p
                                                                                                     *ngIf="application?.location && application?.location.length > 0">
                                                                                                     {{application?.location[0]?.street_one}}
@@ -412,7 +412,7 @@
                                                                                             </h6>
 
                                                                                             <h6
-                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                                                                *ngIf="application.location_type == 2 && !application.isSingleAddress">
                                                                                                 <p
                                                                                                     *ngFor="let location of application?.location ">
                                                                                                     {{location?.street_one}}
@@ -422,11 +422,11 @@
                                                                                             </h6>
                                                                                             <strong class="pointer-2"
                                                                                                 (click)="showMoreLocation(false,application?.id)"
-                                                                                                *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                *ngIf="application.location_type == 2 && application.isSingleAddress && application?.location.length > 1 ">Show
                                                                                                 More</strong>
                                                                                             <strong class="pointer-2"
                                                                                                 (click)="showMoreLocation(true,application?.id)"
-                                                                                                *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                                                *ngIf="application.location_type == 2 && !application.isSingleAddress && application?.location.length > 1 ">Show
                                                                                                 Less</strong>
 
 

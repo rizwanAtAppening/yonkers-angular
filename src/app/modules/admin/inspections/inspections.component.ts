@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-inspections',
@@ -25,17 +26,32 @@ export class InspectionsComponent implements OnInit {
   constructor(
     private applicationService: ApplicationService,
     private ts: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.settings = settingConfig;
 
   }
 
+  public inspectionId: any;
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      
+      this.route.queryParams.subscribe(data => {
+        this.inspectionId = data.inspectionId;
+
+      })
       this.inspections = (this.applicationDetails.inspections);
+      if (this.inspectionId) {
+        if (this.inspections.length > 0) {
+          this.inspections.map(data => {
+            if (data.id == this.inspectionId) {
+              this.fillInspectionDetails(data);
+            }
+          })
+        }
+      }
       if (this.inspections.length > 0) {
         this.inspections.map(data => {
           if (data.document != null)
@@ -77,6 +93,30 @@ export class InspectionsComponent implements OnInit {
     })
   }
 
+  fillInspectionDetails(inspectionDetails) {
+    debugger
+    this.allImage = []
+    this.inspectionForm.controls.decision.setValue(inspectionDetails.decision);
+    this.inspectionForm.controls.type.setValue(inspectionDetails.type);
+    this.inspectionForm.controls.date.setValue(new Date(inspectionDetails.date));
+    this.inspectionForm.controls.amount.setValue(inspectionDetails.fee);
+    this.inspectionForm.controls.remark.setValue(inspectionDetails.remark);
+    var data = JSON.parse(inspectionDetails.document)
+    if (data.length == 1) {
+      this.allImage.push({ id: this.id, image: data[0].document })
+    } else {
+      data.map(value => {
+        this.newId = this.id + 1
+        this.id = this.newId
+        this.allImage.push({ id: this.id, image: value.document })
+      })
+
+
+    }
+    // this.allImage = data;
+
+  }
+
   get inspection() { return this.inspectionForm.controls };
 
   public isInspection = false;
@@ -97,7 +137,9 @@ export class InspectionsComponent implements OnInit {
     //  var formData = new FormData();
     //formData.append('document', this.attachment)
     // this.formData.append('image', this.imageUpload.value.imageName)
-
+    if (this.inspectionId) {
+      this.formData.append('id', this.inspectionId)
+    }
     this.formData.append('application_id', this.applicationDetails.id)
     this.formData.append('decision', this.inspectionForm.value.decision)
     this.formData.append('fee', this.inspectionForm.value.amount)
@@ -115,7 +157,10 @@ export class InspectionsComponent implements OnInit {
       this.formData = new FormData()
       this.allImage = []
       this.messageEvent.emit(this.message);
-    },error=>{
+      if (this.inspectionId) {
+        this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: this.applicationDetails.id } })
+      }
+    }, error => {
       this.formData = new FormData()
       this.allImage = []
 
@@ -148,9 +193,9 @@ export class InspectionsComponent implements OnInit {
 
   public specialCondition = []
   selectSpecialCondition() {
-    
+
     this.applicationService.selectSpecialCondition(this.applicationDetails.id).subscribe(data => {
-      if(data.response != null ){
+      if (data.response != null) {
         this.specialCondition = data.response.special_conditions;
       }
       // Object.keys
@@ -266,7 +311,7 @@ export class InspectionsComponent implements OnInit {
 
   // }
   imageEmpty(value) {
-    
+
     this.imageName = null;
     this.attachment = null;
     this.image = null

@@ -196,5 +196,14 @@ export class ApplicationsComponent implements OnInit {
       this.currentPage = data.currentPage;
     })
   }
+
+  editInspection(inspectionId,application){
+    if(application.application_type == 1){
+      this.router.navigate(['/admin/permit/permitDetails'],{queryParams:{id:application.id,inspectionId:inspectionId}})
+    }else if(application.application_type == 2){
+      this.router.navigate(['admin/permit/dwlDetails'],{queryParams:{id:application.id,inspectionId:inspectionId}})
+
+    }
+  }
   
 }

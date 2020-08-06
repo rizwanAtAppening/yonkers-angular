@@ -848,15 +848,15 @@
                             <tbody>
                                 <tr *ngFor ="let data of dwlApplication	">
                                         <td >
-                                                <p *ngIf ="data?.address_id">                                                         {{data?.address_details?.szFullAddress}}
+                                                <p *ngIf ="data?.address_id && data?.location_type == 1">                                                         {{data?.address_details?.szFullAddress}}
                                                    </p>
-                                                <h6  *ngIf ="!data?.address_id && data?.isSingleAddress" >
+                                                <h6  *ngIf ="data?.isSingleAddress && data?.location_type == 2" >
                                                     <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>
 
-                                                    <h6  *ngIf ="!data?.address_id && !data.isSingleAddress" >
+                                                    <h6  *ngIf ="data?.location_type == 2 && !data.isSingleAddress" >
                                                            <p *ngFor ="let location of data?.location " >{{location?.street_one}} {{location?.address_join == 1 ? 'To':'End'}} {{location?.street_two}} </p></h6>
-                                                   <strong class="pointer" (click) = "showMoreLocation(false,data?.id)" *ngIf ="!data?.address_id && data.isSingleAddress && data?.location.length > 1 ">Show More</strong>
-                                                   <strong class="pointer" (click) = "showMoreLocation(true,data?.id)"  *ngIf ="!data?.address_id && !data.isSingleAddress && data?.location.length > 1 ">Show Less</strong>
+                                                   <strong class="pointer" (click) = "showMoreLocation(false,data?.id)" *ngIf ="data?.location_type == 2 && data.isSingleAddress && data?.location.length > 1 ">Show More</strong>
+                                                   <strong class="pointer" (click) = "showMoreLocation(true,data?.id)"  *ngIf ="data?.location_type == 2 && !data.isSingleAddress && data?.location.length > 1 ">Show Less</strong>
 
 
                                            </td>
