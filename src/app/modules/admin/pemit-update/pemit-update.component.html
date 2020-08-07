@@ -1064,7 +1064,7 @@
         <div class="container p-0 admin-contractor-details">
           <div class="col-12 p-0">
             <div class="pwtest" *ngIf="allRelatedPermit.length > 0">
-              <label class="container-pw" *ngFor="let reletedPermit of allRelatedPermit">{{reletedPermit?.reference_no}} {{settings.getSetting('type',reletedPermit?.type)}}
+              <label class="container-pw" *ngFor="let reletedPermit of allRelatedPermit">{{reletedPermit?.reference_no}} {{settings.getSetting('type ',reletedPermit?.type)}}
                 <input type="radio" (change)="check($event.target,reletedPermit)" [checked]="reletedPermit.isReleted"
                   name="radio">
                 <span class="checkpw"></span>

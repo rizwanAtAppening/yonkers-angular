@@ -63,7 +63,7 @@ export class ApplicationsComponent implements OnInit {
   public sendData = {}
   public paymentSummary:any = []
   public inspections= []
-  paymentsSummary(status,value){
+  paymentsSummary(status,value,summary){
     debugger
    // this.application_Type = application_Type
     if(value == "inspection"){
@@ -71,7 +71,39 @@ export class ApplicationsComponent implements OnInit {
         page: this.page,
         inspection: status
       }
-    }else{
+     
+    } else if(summary == 'DWL'){
+      this.sendData = {
+        page: this.page,
+        payment_summary: status,
+        payment_summary_dwl:1
+      }
+    }
+    else if(summary == 'permit'){
+      this.sendData = {
+        page: this.page,
+        payment_summary: status,
+        payment_summary_permit:1
+      }
+      
+    }
+    else if(summary == 'paid'){
+      this.sendData = {
+        page: this.page,
+        payment_summary: status,
+        paid:1
+      }
+      
+    }
+    else if(summary == 'unpaid'){
+      this.sendData = {
+        page: this.page,
+        payment_summary: status,
+        unpaid:1
+      }
+      
+    }
+    else{
       this.sendData = {
         page: this.page,
         payment_summary: status
@@ -97,9 +129,9 @@ export class ApplicationsComponent implements OnInit {
     this.application_Type = value,
       this.page = page
       if(stringValue == 'inspection'){
-        this.paymentsSummary(1,'inspection')
+        this.paymentsSummary(1,'inspection','')
       }else if(stringValue == 'payment'){
-        this.paymentsSummary(1,'payment')
+        this.paymentsSummary(1,'payment','')
       }
       if(stringValue != 'inspection' && stringValue != 'payment')
     this.getAllApplication(this.application_Type)

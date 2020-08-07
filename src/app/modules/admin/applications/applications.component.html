@@ -50,12 +50,12 @@
                                         role="tab" aria-controls="pills-DWL" aria-selected="false" (click) = "getAllApplication(2)">DWL</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'inspection')"
+                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'inspection','')"
                                         href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin"
                                         aria-selected="false">Inspection</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'payment')"
+                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'payment','')"
                                         href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
                                         aria-selected="false">Payment</a>
                                 </li>
@@ -100,7 +100,10 @@
                                                                             <div class="btn-filter"><button><span><img
                                                                                             src="assets/images/filter.svg"
                                                                                             alt=""></span> Advance
-                                                                                    Search</button></div>
+                                                                                    Search</button>
+                                                                                    
+                                                                                </div>
+                                                                                
                                                                         </div>
                                                                     </div>
 
@@ -322,6 +325,7 @@
                                                                                         src="assets/images/filter.svg"
                                                                                         alt=""></span>
                                                                                 Filter</button></div>
+                                                                                
                                                                     </div>
                                                                 </div>
 
@@ -434,11 +438,27 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4 pl-0">
-                                                                            <div class="btn-filter">
+                                                                            <!-- <div class="btn-filter">
                                                                                 <button><span><img
                                                                                             src="assets/images/filter.svg"
                                                                                             alt=""></span>
-                                                                                    Filter</button></div>
+                                                                                    Filter</button></div> -->
+                                                                                    <div class="dropdown">
+                                                                                        <!-- <button class="dropbtn">Dropdown</button> -->
+                                                                                        <div class="btn-filter dropbtn"><button><span><img
+                                                                                            src="assets/images/filter.svg"
+                                                                                            alt=""></span> Filter
+                                                                                   </button>
+                                                                                    
+                                                                                </div>
+                                                                                        <div class="dropdown-content">
+                                                                                          <a (click) ="paymentsSummary(1,'','')">All</a>
+                                                                                          <a (click) ="paymentsSummary(1,'','DWL')">DWL</a>
+                                                                                          <a (click) ="paymentsSummary(1,'','permit')">Permit</a>
+                                                                                          <a (click) ="paymentsSummary(1,'','paid')">Paid</a>
+                                                                                          <a (click) ="paymentsSummary(1,'','unpaid')">Unpaid</a>
+                                                                                        </div>
+                                                                                      </div>
                                                                         </div>
                                                                     </div>
 
