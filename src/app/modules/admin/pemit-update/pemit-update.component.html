@@ -321,10 +321,10 @@
                           <div class="no-ref-txt">
                             <ul>
                               <li>
-                                <h6 *ngIf="applicationDetails?.project_detail?.traffic">
-                                  {{settings.getSetting('traffic_control',applicationDetails?.project_detail?.traffic)}}
+                                <h6 *ngIf="applicationDetails?.project_detail?.traffic_control">
+                                  {{settings.getSetting('traffic',applicationDetails?.project_detail?.traffic_control)}}
                                 </h6>
-                                <h6 *ngIf="!applicationDetails?.project_detail?.traffic">_</h6>
+                                <h6 *ngIf="!applicationDetails?.project_detail?.traffic_control">_</h6>
                               </li>
                               <li>
                                 <h6>
