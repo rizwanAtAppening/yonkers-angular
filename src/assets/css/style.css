@@ -2700,7 +2700,7 @@ float: right;
     top: 11px !important;}
 .file_slect-input {
     position: relative;
-    max-width: 181px;
+    max-width: 206px;
 }
 .file_slect-input  select{
     height: 43px;
@@ -3481,9 +3481,31 @@ border: 0.5px solid #9CA6C08C;
        font-family: "Poppins-Medium" !important;
        cursor: pointer!important;
    }
-   .plan-examiner-box{
-       margin-top: 30px;
-   }
+   .plan-examiner-box {
+    margin-top: 30px;
+    overflow-y: auto;
+}
+.plan-examiner-box::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  /* Track */
+  .plan-examiner-box::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .plan-examiner-box::-webkit-scrollbar-thumb {
+    background: #2AABFA; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .plan-examiner-box::-webkit-scrollbar-thumb:hover {
+    background: #2AABFA; 
+  }
+
    .plan-examiner-box .table{
        background: #FFFFFF 0% 0% no-repeat padding-box;
    border: 1px solid #00000012;
@@ -4681,4 +4703,8 @@ padding: 10px 17px;
     line-height: 19px;
     cursor: pointer;
     padding: 3px 8px;
+}
+
+.tblOverflow{
+    overflow: auto;
 }
