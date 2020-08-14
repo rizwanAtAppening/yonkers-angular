@@ -754,7 +754,7 @@
                                                     <td>{{data?.note}}</td>
                                                     <td>{{data?.createdAt | date}}</td>
                                                     <td class="dropdown_act">
-                                                        <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                        <h6><i class="fa fa-angle-down" aria-hidden="true" (click) = "deleteNotes(data.id)">Delete</i></h6>
                                                     </td>
                                                 </tr>
 

@@ -122,6 +122,19 @@ export class ApplicationService {
     );
   }
 
+  deleteNotes(data) {
+    const href = `${environment['deleteNotes']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    ); 
+  }
+
 
   addReltedPemrit(data) {
     const href = `${environment['addReletedPermit']}`

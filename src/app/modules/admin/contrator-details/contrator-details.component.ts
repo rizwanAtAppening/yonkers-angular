@@ -289,4 +289,16 @@ export class ContratorDetailsComponent implements OnInit {
     })
   }
 
+  deleteNotes(id){
+    const data ={
+      application_id:this.applicationDetails.id,
+      id:id
+    }
+    this.applicationService.deleteNotes(data).subscribe(data => {
+      // this.notesFormGroup.reset();
+       this.messageEvent.emit('hello')
+
+    })
+  }
+
 }

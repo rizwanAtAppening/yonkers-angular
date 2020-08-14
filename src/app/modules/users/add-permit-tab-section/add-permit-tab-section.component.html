@@ -1009,7 +1009,7 @@
                                         <div [class]="application?.role == 2 ? 'col-6 slectInputBox':'col-6' ">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
-                                                    <div class="col-12 ">
+                                                    <!-- <div class="col-12 ">
                                                         <div class="form-group">
 
                                                             <input type="text" formControlName="contractor_state"
@@ -1024,6 +1024,37 @@
                                                                 <p class="form-error"
                                                                     *ngIf="contratorControl.contractor_state.errors['required']">
                                                                     Please Enter state
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+
+                                                    <div class="col-12 ">
+                                                        <div class="form-group" id="city-applicant">
+                                                            <label>State</label>
+
+                                                            <select type="text" formControlName="contractor_state" 
+                                                                [class]="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                id="Project">
+                                                                <option value="" hidden>--Select--</option>
+                                                                <option value="{{state?.key}}"
+                                                                    *ngFor="let state of settings?.userState">
+                                                                    {{state?.value}}</option>
+
+                                                            </select>
+
+
+                                                            <!-- <label
+                                                            [class]="applicantControls.applicant_state.invalid && (applicantControls.applicant_state.dirty || applicantControls.applicant_state.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                            for="Phone-id2" id="daynamic-select">State</label> -->
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
+
+                                                            <div
+                                                                *ngIf="contratorControl.contractor_state.invalid && (contratorControl.contractor_state.dirty || contratorControl.contractor_state.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="contratorControl.contractor_state.errors['required']">
+                                                                    Please enter state
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -1944,7 +1975,7 @@
                                                                     <p *ngIf ="application?.location && application?.location.length  > 1" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
        
                                                                 <h6  *ngIf ="!application?.address_id && (application?.location && application?.location.length > 1) && isSingleAddress" >
-                                                                       <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
+                                                                       <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'and'}} {{location?.street_two}}</p></h6>
                                                                <strong  class="pointer-2" (click) = "showMoreLocation(true,application?.id)" *ngIf ="!application?.address_id && (application?.location && application?.location.length > 1) && !isSingleAddress">Show More</strong>
                                                                <strong class="pointer-2" (click) = "showMoreLocation(false,application?.id)"  *ngIf ="!application?.address_id && ( application?.location && application?.location.length > 1 )&& isSingleAddress">Show Less</strong>
                                                           </div> 
@@ -1955,7 +1986,7 @@
                                                           
                                                             <div class="role-txt-collepse-two" *ngIf ="application?.address_id">
                                                                 <h2>Address</h2>
-                                                                <p>{{application?.address_id}}</p>
+                                                                <p>    {{application?.address_details?.szFullAddress}}</p>
                                                             </div>
                                                             <div class="role-txt-collepse-two">
                                                                 <h2>Unit No./Also Known as</h2>
@@ -2033,7 +2064,7 @@
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>State</h2>
-                                                                    <p>{{application?.applicant_details?.applicant_state}}
+                                                                    <p>  {{application?.applicant_details?.applicant_state}}
 
                                                                     </p>
                                                                     <!-- <p>{{application?.applicant_details?.applicant_state ? settings?.getSetting('userState',application?.applicant_details?.applicant_state):'_'}}</p> -->

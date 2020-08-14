@@ -82,7 +82,8 @@ const adminUrl = {
   saveprojectInfo:`/application/update`,
   updateApplicant:`/application/applicant_update`,
   sendMail:`/email-for-application`,
-  deleteDocuments:`/application/delete-file`
+  deleteDocuments:`/application/delete-file`,
+  deleteNotes:`/`
 
 
 };
