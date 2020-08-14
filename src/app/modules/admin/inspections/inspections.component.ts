@@ -235,14 +235,14 @@ export class InspectionsComponent implements OnInit {
     this.imageName = event1.target.files[0].name;
     this.attachment = event1.target.files[0];
     //this.id = 1
-    if (this.allImage.length == 0) {
-      this.allImage.push({ id: this.id, image: this.imageName })
-    } else {
-      this.newId = this.id + 1
-      this.id = this.newId
-      this.allImage.push({ id: this.id, image: this.imageName })
+    // if (this.allImage.length == 0) {
+    //   this.allImage.push({ id: this.id, image: this.imageName })
+    // } else {
+    //   this.newId = this.id + 1
+    //   this.id = this.newId
+    //   this.allImage.push({ id: this.id, image: this.imageName })
 
-    }
+    // }
     this.formData.append('document', this.attachment)
 
     var reader = new FileReader();
@@ -250,7 +250,7 @@ export class InspectionsComponent implements OnInit {
     reader.onload = (event: any) => {
       this.image = event.target.result;
     };
-    reader.readAsDataURL(event1.target.files[0]);
+    reader.readAsDataURL(this.attachment);
 
 
   }
@@ -297,13 +297,40 @@ export class InspectionsComponent implements OnInit {
 
 
   submitImage() {
-    this.mediaUploadPopUp.nativeElement.click();
-    this.imageName = null;
-    this.attachment = null;
-    this.image = null
-    // this.imageUpload.controls.imageName.setValue(null);
-    this.isImage = false
+    debugger
+    if (this.imageName) {
+      if (this.allImage.length == 0) {
+        this.allImage.push({ id: this.id, image: this.imageName })
+      } else {
+        this.newId = this.id + 1
+        this.id = this.newId
+        this.allImage.push({ id: this.id, image: this.imageName })
+
+      }
+
+      this.formData.append('document', this.attachment)
+      this.imageName = null;
+      this.attachment = null;
+      this.image = null
+      var reader = new FileReader();
+      var reader = new FileReader();
+      this.mediaUploadPopUp.nativeElement.click();
+
+      reader.onload = (event: any) => {
+        this.image = event.target.result;
+      };
+      reader.readAsDataURL(this.attachment);
+
+    } else {
+      this.ts.error('Please select image');
+    }
+
+
+
+    // this.isImage = false
+
   }
+
 
   // deleteImage() {
   //   this.imageName = null;
@@ -323,6 +350,22 @@ export class InspectionsComponent implements OnInit {
       })
     }
 
+  }
+
+
+  cancelImage() {
+    this.imageName = null;
+    this.attachment = null;
+    this.image = null
+    this.mediaUploadPopUp.nativeElement.click();
+
+    // if (value) {
+    //   this.allImage.map((data, i) => {
+    //     if (data.id == value.id) {
+    //       this.allImage.splice(i, 1)
+    //     }
+    //   })
+    // }
   }
 
 

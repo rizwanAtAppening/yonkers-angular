@@ -190,7 +190,7 @@ export const settingConfig = {
       value: 'Iowa (IA)'
     }, {
       key: 10,
-      value: 'Idaho (ID)'
+      value: "Idaho (ID)"
     },
     {
       key: 11,
