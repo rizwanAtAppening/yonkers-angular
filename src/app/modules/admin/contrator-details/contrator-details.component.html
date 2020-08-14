@@ -753,9 +753,19 @@
                                              
                                                     <td>{{data?.note}}</td>
                                                     <td>{{data?.createdAt | date}}</td>
-                                                    <td class="dropdown_act">
-                                                        <h6><i class="fa fa-angle-down" aria-hidden="true" (click) = "deleteNotes(data.id)">Delete</i></h6>
-                                                    </td>
+                                                    <!-- <td class="dropdown_act">
+                                                        <h6><i class="fa fa-angle-down" aria-hidden="true" ></i> 
+                                                            </h6>
+                                                            <a  (click) = "deleteNotes(data.id)">Delete </a>
+                                                    </td> -->
+                                                    <td>
+                                                            <div class="dropdown_act">
+                                                                <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                                <div class="dropdown-content-void" >
+                                                                    <a  (click) = "deleteNotes(data.id)">Delete </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
                                                 </tr>
 
                                             </tbody>

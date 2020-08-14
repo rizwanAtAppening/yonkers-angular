@@ -83,7 +83,7 @@ const adminUrl = {
   updateApplicant:`/application/applicant_update`,
   sendMail:`/email-for-application`,
   deleteDocuments:`/application/delete-file`,
-  deleteNotes:`/`
+  deleteNotes:`/application-notes-delete`,
 
 
 };
