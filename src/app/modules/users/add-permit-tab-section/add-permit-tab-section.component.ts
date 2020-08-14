@@ -126,11 +126,15 @@ export class AddPermitTabSectionComponent implements OnInit {
   public applicationState: number
   public isDrawing = false;
   public isCertificate = false;
+  public contractorDetails:any
   getApplication() {
 
     this.application = this.permitService.getApplication();
     if (this.application.applicant_details) {
-      this.applicationState = this.application.applicant_details.applicant_state
+      this.applicationState = Number(this.application.applicant_details.applicant_state)
+    }
+    if (this.application.contractor_details) {
+      this.contractorDetails = Number(this.application.contractor_details.contractor_state)
     }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
       this.allImage = []
