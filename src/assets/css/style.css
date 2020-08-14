@@ -614,7 +614,7 @@ header {
     font-family: 'Poppins-Regular';
     border-left: 0px;
     vertical-align: middle;
-    color: #282D5B80;
+    color: #282d5bab;
 }
 
 .table-permit table td.refTxt {
@@ -3483,7 +3483,7 @@ border: 0.5px solid #9CA6C08C;
    }
    .plan-examiner-box {
     margin-top: 30px;
-    overflow-y: auto;
+ 
 }
 .plan-examiner-box::-webkit-scrollbar {
     width: 2px;
@@ -4707,4 +4707,20 @@ padding: 10px 17px;
 
 .tblOverflow{
     overflow: auto;
+}
+
+.accordion .card {
+    overflow: unset !important;
+}
+
+.dropfixis .documentFileType .dropdown-content-void {
+    left: 0px;
+}
+
+.rightalign_dropdown .SubmitInspectionTxt .dropdown-content-void {
+    left: 0 !important;
+    
+}
+.rightalign_dropdown .SubmitInspectionTxt .dropdown-content-void a{
+    cursor: pointer;
 }
