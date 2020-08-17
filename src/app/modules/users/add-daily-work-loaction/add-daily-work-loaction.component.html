@@ -434,7 +434,7 @@
                                         <td class="update-txt dropdown-action">
                                             <span> <i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                             <div class="dropdown-contentable">
-                                                <a (click)="editAppliction(data)">Edit</a>
+                                                <a (click)="editAppliction(data)" *ngIf="!isEdit"> Edit</a>
                                                 <a (click)="deleteApplication(data?.id)">Delete</a>
                                                 <div class="triangle-left"></div>
                                             </div>

@@ -377,8 +377,10 @@ export class AddPermitComponent implements OnInit {
   public dwl_id: number
   public selectedCat = 0
   public editValue: any
+  public isEdit = false
   editAppliction(value) {
-
+    debugger
+this.isEdit = true
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -666,7 +668,7 @@ export class AddPermitComponent implements OnInit {
       // this.searchString = value;
       this.addLocationControls.value.map((data, i) => {
         if (index == i) {
-          this.searchString = data.street_one
+          this.searchString = (data.street_two).toString()
         }
       })
       if (this.searchString.length > 1) {

@@ -130,6 +130,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   getApplication() {
 
     this.application = this.permitService.getApplication();
+    this.addressId = this.addressId ? this.addressId: this.application.address_id
     if (this.application.applicant_details) {
       this.applicationState = Number(this.application.applicant_details.applicant_state)
     }
@@ -800,7 +801,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       const application = this.permitService.getApplication()
       if (application.contractor_details) {
         this.isDisabled = false
-        this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_job_title)
+        this.contractorForm.controls.contractor_for_job.setValue(application.contractor_details.contractor_for_job)
         this.contractorForm.controls.contractor_name.setValue(application.contractor_details.contractor_name)
         this.contractorForm.controls.contractor_email.setValue(application.contractor_details.contractor_email)
         this.contractorForm.controls.contractor_business.setValue(application.contractor_details.contractor_business)

@@ -1179,14 +1179,8 @@
               <div class="bdp_email up-add">
                 <div class="row">
                   <div class="col-6">
-                    <div class="form-group">
-                      <input type="text" id="emaila1" class="form-control" formControlName="to"
-                        [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"
-                        required="">
-                      <label class="form-control-placeholder" for="emaila1">To</label>
-                    </div>
-                  </div>
-                  <div class="col-6">
+                   
+
                     <div class="row emailfor-select">
                       <div class="col-12 ">
                         <div class=" admin-add-insurance" style="margin-top: 0px !important;">
@@ -1205,16 +1199,18 @@
                       </div>
                     </div>
                   </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input type="text" id="emaila1" class="form-control" formControlName="to"
+                        [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"
+                        required="">
+                      <label class="form-control-placeholder" for="emaila1">To</label>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="popup-busnise">
                   <div class="row">
-                    <div class="col-6">
-                      <div class="form-group">
-                        <input type="text" id="aucd3" formControlName="cc" class="form-control" required="">
-                        <label class="form-control-placeholder" for="aucd3">CC</label>
-                      </div>
-                    </div>
                     <div class="col-6">
                       <div class="row emailfor-select">
                         <div class="col-12 ">
@@ -1232,6 +1228,14 @@
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div class="col-6">
+                    
+                      <div class="form-group">
+                        <input type="text" id="aucd3" formControlName="cc" class="form-control" required="">
+                        <label class="form-control-placeholder" for="aucd3">CC</label>
+                      </div>
+
                     </div>
                   </div>
                 </div>

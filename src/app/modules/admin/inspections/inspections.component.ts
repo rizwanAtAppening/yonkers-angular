@@ -243,7 +243,7 @@ export class InspectionsComponent implements OnInit {
     //   this.allImage.push({ id: this.id, image: this.imageName })
 
     // }
-    this.formData.append('document', this.attachment)
+   // this.formData.append('document', this.attachment)
 
     var reader = new FileReader();
     var reader = new FileReader();

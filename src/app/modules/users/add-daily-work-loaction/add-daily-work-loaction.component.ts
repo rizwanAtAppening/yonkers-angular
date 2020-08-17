@@ -213,7 +213,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       // this.dwlApplication = data.response;
       this.getPermitApplication()
       this.isdwlSubmit = false;
-      this.dwlForm.reset()
+      this.dwlForm.reset();
+      this.isEdit = false
+
       if (this.id && this.applicationId) {
         this.submitDailyWorkLocation()
       }
@@ -247,8 +249,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public id: number
   public dwl_id: number
   public editValue: any;
+  public isEdit = false
   editAppliction(value) {
-
+this.isEdit = true
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -488,7 +491,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       // this.searchString = value;
       this.addLocationControls.value.map((data, i) => {
         if (index == i) {
-          this.searchString = data.street_one
+          this.searchString = (data.street_two).toString()
         }
       })
       if (this.searchString.length > 1) {

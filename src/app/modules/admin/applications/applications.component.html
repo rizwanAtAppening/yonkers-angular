@@ -518,12 +518,12 @@
                                 -->
                                
                                                                                    </td>
-                                                                                    <td>{{summary?.application?.applicant_details?.applicant_name}}</td>
+                                                                                    <td>{{summary?.application?.applicant_details?.applicant_name}}{{summary?.application?.payment_status}}</td>
                                                                                     <td
                                                                                         class="submited-Btn green-txt-2">
-                                                                                        <button *ngIf ="summary?.application?.payment_status == 1"
+                                                                                        <button *ngIf = "summary?.payment_status == 1 && summary?.payment_status != null "
                                                                                             class="pb-0 pt-0">Paid</button>
-                                                                                            <button *ngIf ="summary?.application?.payment_status == null"
+                                                                                            <button *ngIf ="(summary?.payment_status == null || summary?.payment_status == 0)"
                                                                                             class="pb-0 pt-0">Unpaid</button>
                                                                                     </td>
                                                                                     <td>Check</td>
