@@ -18,7 +18,7 @@ export const settingConfig = {
     }
   ],
 
-  standard_message:[
+  standard_message: [
     {
       key: 1,
       value: "permit"
@@ -613,6 +613,21 @@ export const settingConfig = {
       value: 'Fee & Payments',
     }
   ],
+
+  department_Role: [
+    {
+      key: 4,
+      value: 'Inspector',
+    },
+    {
+      key: 5,
+      value: 'Manager',
+    },
+  ],
+  department: [
+
+  ],
+
   submission_Application_status: [
     {
       key: 1,

@@ -92,5 +92,18 @@ export class AuthenticationService {
     localStorage.setItem(credentialsKey, JSON.stringify(user));
   }
 
+  addStaff(data) {
+    const href = `${environment['addstaff']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
 }
 

@@ -84,7 +84,7 @@ const adminUrl = {
   sendMail:`/email-for-application`,
   deleteDocuments:`/application/delete-file`,
   deleteNotes:`/application-notes-delete`,
-
+  addstaff:`/staff`,
 
 };
 
