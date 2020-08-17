@@ -14,9 +14,10 @@ import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DwlDetailsComponent } from './dwl-details/dwl-details.component';
+import { AddStaffComponent } from './add-staff/add-staff.component';
 
 @NgModule({
-  declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent],
+  declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent],
   imports: [
   
     CommonModule,
