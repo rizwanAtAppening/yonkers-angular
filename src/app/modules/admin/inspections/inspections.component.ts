@@ -72,16 +72,16 @@ export class InspectionsComponent implements OnInit {
   onInIt() {
     this.formData = new FormData()
     this.inspectionFormControl();
-    // this.uploadImage();
+    this.uploadImage();
   }
 
-  // uploadImage() {
-  //   this.imageUpload = this.fb.group({
-  //     imageName: ['', Validators.required]
-  //   })
-  // }
+  uploadImage() {
+    this.imageUpload = this.fb.group({
+      name: ['', Validators.required]
+    })
+  }
 
-  //get imageCon() { return this.imageUpload.controls }
+  get imageControls() { return this.imageUpload.controls }
 
   inspectionFormControl() {
     this.inspectionForm = this.fb.group({
@@ -129,14 +129,11 @@ export class InspectionsComponent implements OnInit {
     const data = {
 
     }
-    // decision: ['', Validators.required],
-    // type: ['', Validators.required],
-    // date: ['', Validators.required],
-    // amount: [''],
-    // remark: [''],
-    //  var formData = new FormData();
-    //formData.append('document', this.attachment)
-    // this.formData.append('image', this.imageUpload.value.imageName)
+    this.documents.forEach((data, i) => {
+      this.formData.append('documents[' + i + '][name]', data.name)
+      this.formData.append('documents[' + i + '][document]', data.document)
+
+    })
     if (this.inspectionId) {
       this.formData.append('id', this.inspectionId)
     }
@@ -225,90 +222,51 @@ export class InspectionsComponent implements OnInit {
   public allImage = []
   public id: number = 1
   public newId: any
+  public documents = []
   media(event1) {
 
-
+    debugger
     // if (this.imageUpload.invalid) {
     //   this.isImage = true
     //   return false
     // }
-    this.imageName = event1.target.files[0].name;
-    this.attachment = event1.target.files[0];
-    //this.id = 1
-    // if (this.allImage.length == 0) {
-    //   this.allImage.push({ id: this.id, image: this.imageName })
-    // } else {
-    //   this.newId = this.id + 1
-    //   this.id = this.newId
-    //   this.allImage.push({ id: this.id, image: this.imageName })
 
-    // }
-   // this.formData.append('document', this.attachment)
+    if (this.imageUpload.value.name != '' && this.imageUpload.value.name != null) {
+      this.imageName = event1.target.files[0].name;
+      this.attachment = event1.target.files[0];
+      this.documents.push({ name: this.imageUpload.value.name, document: this.attachment })
+      console.log(this.documents)
+      var reader = new FileReader();
+      var reader = new FileReader();
+      reader.onload = (event: any) => {
+        this.image = event.target.result;
+      };
+      reader.readAsDataURL(this.attachment);
+    } else {
+      this.ts.error('Please enter name then upload image');
 
-    var reader = new FileReader();
-    var reader = new FileReader();
-    reader.onload = (event: any) => {
-      this.image = event.target.result;
-    };
-    reader.readAsDataURL(this.attachment);
+    }
+
 
 
   }
 
-  // media(event1, index) {
-
-  //   if (this.imageType != null) {
-  //     this.imageName = event1.target.files[0].name;
-  //     this.attachment = event1.target.files[0];
-  //   //  this.formData = new FormData()
-  //   if(this.imageType == 0){
-  //     this.formData.append('drawing', this.attachment)
-
-  //   }else{
-  //     this.formData.append('certificate', this.attachment)
-
-  //   }
-  //     this.name.push({ name: (this.attachment), type: this.imageType })
-  //   console.log(this.name)
-
-  //     this.imageType = null
-
-  //     console.log(this.name)
-  //     var reader = new FileReader();
-  //     var reader = new FileReader();
-  //     reader.onload = (event: any) => {
-  //       this.image = event.target.result;
-  //     };
-  //     reader.readAsDataURL(event1.target.files[0]);
-  //     this.allImage.map((data: any, i) => {
-  //       if (i == index) {
-  //         data.imageName = this.imageName;
-  //         data.image = this.image
-  //       }
-  //       console.log(this.allImage)
-  //     })
-
-
-  //   } else {
-  //     this.toasterService.error('Please select type then upload image');
-  //   }
-
-  // }
 
 
   submitImage() {
     debugger
     if (this.imageName) {
       if (this.allImage.length == 0) {
-        this.allImage.push({ id: this.id, image: this.imageName })
+        this.allImage.push({ id: this.id, name: this.imageUpload.value.name, image: this.imageName })
       } else {
         this.newId = this.id + 1
         this.id = this.newId
-        this.allImage.push({ id: this.id, image: this.imageName })
+        this.allImage.push({ id: this.id, name: this.imageUpload.value.name, image: this.imageName })
 
       }
+      this.imageUpload.reset();
 
-      this.formData.append('document', this.attachment)
+      //  this.formData.append('document', this.attachment)
       this.imageName = null;
       this.attachment = null;
       this.image = null
@@ -328,7 +286,6 @@ export class InspectionsComponent implements OnInit {
 
 
     // this.isImage = false
-
   }
 
 
@@ -346,6 +303,12 @@ export class InspectionsComponent implements OnInit {
       this.allImage.map((data, i) => {
         if (data.id == value.id) {
           this.allImage.splice(i, 1)
+        }
+      })
+
+      this.documents.map((data, i) => {
+        if (data.id == value.id) {
+          this.documents.splice(i, 1)
         }
       })
     }

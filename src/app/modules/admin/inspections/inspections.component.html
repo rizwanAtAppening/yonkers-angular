@@ -2,10 +2,9 @@
   <div id="Inspectionsfour">
     <h2 class="mb-0">
       <button (click)="arrowRighDwon(applicationDetails?.isInspection)" data-toggle="collapse" data-target="#insfour"
-      aria-expanded="false" aria-controls="insfour" class="btn btn-link btn-block text-left collapsed" type="button">
+        aria-expanded="false" aria-controls="insfour" class="btn btn-link btn-block text-left collapsed" type="button">
         Inspections
-        <span ><i
-            [class]="applicationDetails?.isInspection?'fa fa-chevron-down':'fa fa-chevron-right'"
+        <span><i [class]="applicationDetails?.isInspection?'fa fa-chevron-down':'fa fa-chevron-right'"
             aria-hidden="true"></i></span>
       </button>
     </h2>
@@ -34,7 +33,7 @@
                   <div class="dropdown_act">
                     <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                     <div class="dropdown-content-void">
-                      <a (click) ="submitSpecialCondition(data)">Submit Inspection</a>
+                      <a (click)="submitSpecialCondition(data)">Submit Inspection</a>
                     </div>
                   </div>
                 </td>
@@ -136,7 +135,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor ="let img of allImage">
+                    <tr *ngFor="let img of allImage">
                       <td>{{img?.image}}</td>
                       <td>
                         <div class="actiondelet">
@@ -144,7 +143,7 @@
                             <i class="fa fa-eye"
                               aria-hidden="true">View</i>
                              </h3> -->
-                          <h4 (click) ="imageEmpty(img)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
+                          <h4 (click)="imageEmpty(img)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
                         </div>
                       </td>
 
@@ -158,7 +157,7 @@
                         <!-- <h4><input type="file"></h4> -->
                       </div>
                     </td>
-                    
+
                   </tbody>
                 </table>
               </div>
@@ -195,19 +194,20 @@
                     <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                     <div class="dropdown-content-void">
                       <a (click)="voidInspection(ins?.id)" *ngIf="ins?.status != 0">Void Inspection</a>
-                      <div > 
-                          <a *ngFor = "let doc of ins?.newDoc, let i = index"  href="{{ env?.host + env?.imageBasePath + doc?.document }}"
-                          target="_blank" >View Image {{ins?.newDoc.length > 1 ? i+1 :'1'}}</a>
-                          <!-- <a *ngIf ="i == 1"  href="{{ env?.host + env?.imageBasePath + doc?.document }}"
+                      <div>
+                        <a *ngFor="let doc of ins?.newDoc, let i = index"
+                          href="{{ env?.host + env?.imageBasePath + doc?.document }}" target="_blank">View Image
+                          {{ins?.newDoc.length > 1 ? i+1 :'1'}}</a>
+                        <!-- <a *ngIf ="i == 1"  href="{{ env?.host + env?.imageBasePath + doc?.document }}"
                               target="_blank" >View Image </a> -->
-                              
+
 
                       </div>
-                     
+
 
                     </div>
                   </div>
-                </td> 
+                </td>
 
               </tr>
 
@@ -216,70 +216,74 @@
         </div>
 
 
-        
+
       </div>
     </div>
   </div>
 </div>
 
- <!-- Modal -->
- <div class="modal fade" id="confirmpasswordmodaladd" #mediaUploadPopUp 
- aria-labelledby="staticBackdropLabel" aria-hidden="true">
- <div class="modal-dialog modal-dialog-centered detailed-editadd">
-   <div class="modal-content border-0">
-     <div class="modal-header border-0">
-       <h5 class="modal-title txtepd" >Add New Document</h5>
-     </div>
-     <div class="detail-txtareatwo">
-        
+<!-- Modal -->
+<div class="modal fade" id="confirmpasswordmodaladd" #mediaUploadPopUp aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered detailed-editadd">
+    <div class="modal-content border-0">
+      <div class="modal-header border-0">
+        <h5 class="modal-title txtepd">Add New Document</h5>
+      </div>
+      <div class="detail-txtareatwo">
+
         <div class="bdp_email up-add">
-        
-            <div class="row">
-              <div class="col-12">
-                <form>
-                    <!-- [class]="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage) ? 'form-control form-group-error' : 'form-control'" -->
-       <!-- <div class="namedocumentInpt">
-      <input type="text" formControlName="imageName" placeholder="Document Name..." >
-      <div
-      *ngIf="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage)">
-      <p class="form-error" *ngIf="imageCon.imageName.errors['required'] && isImage">
-        Please enter name
-      </p>
-    </div>
-       </div> -->
-                </form>
-       <div class="JohnsmithTxt" *ngIf = "image">
-       <h1> {{imageName}}</h1>
-       <h6 (click)="imageEmpty('')"><img src="assets/images/cancle.svg" alt=""></h6>
-       </div>
+              <!-- [class]="imageCon.imageName.invalid && (imageCon.imageName.dirty || imageCon.imageName.touched || isImage) ? 'form-control form-group-error' : 'form-control'" -->
+
+          <div class="row">
+          
+            <div class="col-12">
+                <form [formGroup]="imageUpload">
+              <div class="namedocumentInpt">
+                <input type="text" formControlName="name" placeholder="Document Name...">
+                
+              </div>
+              <!-- <div
+              *ngIf="imageControls.name.invalid && (imageControls.name.dirty || imageControls.name.touched || isImage)">
+              <p class="form-error" *ngIf="imageControls.name.errors['required']">
+                Please enter name
+              </p>
+            </div> -->
+          </form>
+            </div>
+       
+          </div>
+         
+        </div>
+        <div class="JohnsmithTxt" *ngIf="image">
+          <h1> {{imageName}}</h1>
+          <h6 (click)="imageEmpty('')"><img src="assets/images/cancle.svg" alt=""></h6>
+        </div>
+        <div class="bdp_email up-add">
+
+          <div class="row">
+            <div class="col-12" *ngIf="!image">
+              <div class="filedocumentBox">
+                <h3><img src="assets/images/file-upload.svg"> </h3>
+                <h4>your files to assets, or <span>browse</span></h4>
+                <input type="file" (change)="media($event)">
               </div>
             </div>
-            </div>
-       <div class="bdp_email up-add">
-         
-       <div class="row">
-         <div class="col-12" *ngIf = "!image">
-       <div class="filedocumentBox">
-       <h3><img src="assets/images/file-upload.svg"> </h3>
-       <h4>your files to assets, or <span>browse</span></h4>
-       <input type="file" (change)="media($event)">
-       </div>
-         </div>
-         <!-- <div class="col-12" *ngIf = "image">
+            <!-- <div class="col-12" *ngIf = "image">
            <img [src] ="image"> 
            <div class="crose-rightIcon" (click)="imageEmpty()">
               <i class="fa fa-times" aria-hidden="true"></i>
           </div>
 
            </div> -->
-       </div>
-       
-       </div>
-       <div class="modal-btn-decripatn">
-         <button class="cancle_button" (click) ="cancelImage()">Cancel</button>
-         <button class="save_button" (click) = "submitImage()" >Submit</button>
-       </div>
-     </div>
-   </div>
- </div>
+          </div>
+
+        </div>
+        <div class="modal-btn-decripatn">
+          <button class="cancle_button" (click)="cancelImage()">Cancel</button>
+          <button class="save_button" (click)="submitImage()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

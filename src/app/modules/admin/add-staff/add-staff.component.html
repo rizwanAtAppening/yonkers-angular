@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="container container_full p-0">
         <div class="row">
             <div class="col-6">
@@ -29,8 +29,10 @@
             </div>
         </div>
     </div>
-</header>
+</header> -->
 
+<app-auth-layout>
+    <router-outlet> 
 <section class="bg-dashbord">
     <div class="dash-back">
         <div class="container p-0">
@@ -39,7 +41,7 @@
                     <div class="back-txt m-0">
                         <div class="row">
                             <div class="col-12">
-                                <!-- <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back to dashboard</h3> -->
+                                <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
                             </div>
                         </div>
                     </div>
@@ -58,7 +60,7 @@
                     <h6 class="activeswitch">
                         <span>Active</span>
                         <label class="switchs">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" formControlName="isActive" checked>
                             <span class="slides rounds"></span>
                         </label>
                     </h6>
@@ -103,8 +105,8 @@
                                         <div class="row">
                                             <div class="col-12 ">
                                                 <div class="form-group">
-                                                    <input type="email" id="ans3" class="form-control"
-                                                        formControlName="phone" required="">
+                                                    <input type="number" id="ans3" class="form-control"
+                                                        formControlName="phone" maxlength="10"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  required="">
                                                     <label class="form-control-placeholder" for="ans3">Phone</label>
                                                 </div>
                                             </div>
@@ -117,10 +119,9 @@
                                             <div class="col-12 s-dpt">
                                                 <div class="form-group">
                                                     <label>Select Department</label>
-                                                    <select formControlName="departments">
-                                                        <option>Select</option>
-                                                        <option>Select</option>
-                                                        <option>Select</option>
+                                                    <select formControlName="departments"  [class]="staffControl.departments.invalid && (staffControl.departments.dirty || staffControl.departments.touched || isStaff) ? 'form-control form-group-error' : 'form-control'">
+                                                        <option value="{{departmentId}}" >Department</option>
+                                                        <option value="" hidden>--Select--</option>
 
                                                     </select>
                                                     <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -142,7 +143,7 @@
                                             <div class="col-12 s-dpt">
                                                 <div class="form-group">
                                                     <label>Select Role</label>
-                                                    <select formControlName="role_id">
+                                                    <select formControlName="role_id" [class]="staffControl.role_id.invalid && (staffControl.role_id.dirty || staffControl.role_id.touched || isStaff) ? 'form-control form-group-error' : 'form-control'">
                                                         <option value="" hidden>--Select--</option>
                                                         <option value="{{role?.key}}"
                                                             *ngFor="let role of settings?.department_Role">
@@ -170,3 +171,5 @@
         </form>
     </div>
 </section>
+</router-outlet>
+</app-auth-layout>
