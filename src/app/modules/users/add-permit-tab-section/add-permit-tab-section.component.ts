@@ -784,7 +784,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getDuplimester();
 
     }
-    if (this.currentUserInfo && this.application.role == 2) {
+    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1 )) {
 
       this.isDisabled = true
       this.getLicenseDetails();

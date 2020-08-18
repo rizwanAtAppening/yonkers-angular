@@ -337,6 +337,7 @@ export class AddPermitComponent implements OnInit {
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 1) {
           data.isSingleAddress = true
+          data.isEdit = true
           return data
         }
 
@@ -380,7 +381,12 @@ export class AddPermitComponent implements OnInit {
   public isEdit = false
   editAppliction(value) {
     debugger
-this.isEdit = true
+    this.isEdit = true
+    this.dwlApplication.map(data => {
+      if (value.id == data.id) {
+        data.isEdit = false
+      }
+    })
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -518,7 +524,7 @@ this.isEdit = true
 
       }
 
-      this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as?this.layOutData.also_know_as:'')
+      this.permitForm.controls.also_know_as.setValue(this.layOutData.also_know_as ? this.layOutData.also_know_as : '')
       if (this.location_type == 2) {
         if (this.layOutData.location.length > 1) {
           for (let index = 0; index < this.layOutData.location.length - 1; index++) {

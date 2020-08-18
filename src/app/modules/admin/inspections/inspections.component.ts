@@ -129,11 +129,11 @@ export class InspectionsComponent implements OnInit {
     const data = {
 
     }
-    this.documents.forEach((data, i) => {
-      this.formData.append('documents[' + i + '][name]', data.name)
-      this.formData.append('documents[' + i + '][document]', data.document)
+    // this.documents.forEach((data, i) => {
+    //   this.formData.append('documents[' + i + '][name]', data.name)
+    //   this.formData.append('documents[' + i + '][document]', data.document)
 
-    })
+    // })
     if (this.inspectionId) {
       this.formData.append('id', this.inspectionId)
     }
@@ -231,10 +231,10 @@ export class InspectionsComponent implements OnInit {
     //   return false
     // }
 
-    if (this.imageUpload.value.name != '' && this.imageUpload.value.name != null) {
+    //if (this.imageUpload.value.name != '' && this.imageUpload.value.name != null) {
       this.imageName = event1.target.files[0].name;
       this.attachment = event1.target.files[0];
-      this.documents.push({ name: this.imageUpload.value.name, document: this.attachment })
+     // this.documents.push({ name: this.imageUpload.value.name, document: this.attachment })
       console.log(this.documents)
       var reader = new FileReader();
       var reader = new FileReader();
@@ -242,10 +242,10 @@ export class InspectionsComponent implements OnInit {
         this.image = event.target.result;
       };
       reader.readAsDataURL(this.attachment);
-    } else {
-      this.ts.error('Please enter name then upload image');
+    // } else {
+    //   this.ts.error('Please enter name then upload image');
 
-    }
+    // }
 
 
 
@@ -266,7 +266,7 @@ export class InspectionsComponent implements OnInit {
       }
       this.imageUpload.reset();
 
-      //  this.formData.append('document', this.attachment)
+        this.formData.append('document', this.attachment)
       this.imageName = null;
       this.attachment = null;
       this.image = null
