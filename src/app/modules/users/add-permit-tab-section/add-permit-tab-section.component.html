@@ -1966,25 +1966,25 @@
                                                                 <p *ngIf ="application.location_type == 2">Location</p>
                                                             </div>
 
-                                                          <div class="role-txt-collepse-two" *ngIf ="!application?.address_id">
+                                                          <div class="role-txt-collepse-two" *ngIf ="application.location_type == 2">
                                                                 <h2>Address</h2>
-                                                            <h6  *ngIf ="!application?.address_id" >
+                                                            <h6  *ngIf ="application.location_type == 2" >
                                                                 <p *ngIf ="application?.location && application?.location.length  == 1" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
    
-                                                                <h6  *ngIf ="!application?.address_id && !isSingleAddress" >
+                                                                <h6  *ngIf ="application.location_type == 2 && !isSingleAddress" >
                                                                     <p *ngIf ="application?.location && application?.location.length  > 1" >{{application?.location[0]?.street_one}} {{application?.location[0]?.address_join == 1? 'To':'End'}} {{application?.location[0]?.street_two}}</p></h6>
        
-                                                                <h6  *ngIf ="!application?.address_id && (application?.location && application?.location.length > 1) && isSingleAddress" >
+                                                                <h6  *ngIf ="application.location_type == 2 && (application?.location && application?.location.length > 1) && isSingleAddress" >
                                                                        <p *ngFor ="let location of application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'and'}} {{location?.street_two}}</p></h6>
-                                                               <strong  class="pointer-2" (click) = "showMoreLocation(true,application?.id)" *ngIf ="!application?.address_id && (application?.location && application?.location.length > 1) && !isSingleAddress">Show More</strong>
-                                                               <strong class="pointer-2" (click) = "showMoreLocation(false,application?.id)"  *ngIf ="!application?.address_id && ( application?.location && application?.location.length > 1 )&& isSingleAddress">Show Less</strong>
+                                                               <strong  class="pointer-2" (click) = "showMoreLocation(true,application?.id)" *ngIf ="application.location_type == 2 && (application?.location && application?.location.length > 1) && !isSingleAddress">Show More</strong>
+                                                               <strong class="pointer-2" (click) = "showMoreLocation(false,application?.id)"  *ngIf ="application.location_type == 2 && ( application?.location && application?.location.length > 1 )&& isSingleAddress">Show Less</strong>
                                                           </div> 
                                                                
                                                                 
        
        
                                                           
-                                                            <div class="role-txt-collepse-two" *ngIf ="application?.address_id">
+                                                            <div class="role-txt-collepse-two" *ngIf ="application.location_type == 1">
                                                                 <h2>Address</h2>
                                                                 <p>    {{application?.address_details?.szFullAddress}}</p>
                                                             </div>
