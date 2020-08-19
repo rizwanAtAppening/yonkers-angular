@@ -14,10 +14,12 @@ import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DwlDetailsComponent } from './dwl-details/dwl-details.component';
-import { AddStaffComponent } from './add-staff/add-staff.component';
+import { AddStaffComponent } from './staff/add-staff/add-staff.component';
+import { StaffListComponent } from './staff/staff-list/staff-list.component';
+import { CreatePasswordComponent } from './staff/create-password/create-password.component';
 
 @NgModule({
-  declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent],
+  declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent, InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent, StaffListComponent, CreatePasswordComponent],
   imports: [
   
     CommonModule,

@@ -2285,6 +2285,12 @@ select:-webkit-autofill:focus {
     padding: 0px 21px;
 }
 
+
+.table-permit table td.red-txt button {
+    border: 1px solid red;
+    color: red;
+    padding: 0px 21px;
+}
 .table-permit table td.orange-txt button {
     border: 1px solid #EC9D16;
     color: #EC9D16;

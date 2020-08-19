@@ -619,10 +619,7 @@ export const settingConfig = {
       key: 4,
       value: 'Inspector',
     },
-    {
-      key: 5,
-      value: 'Manager',
-    },
+    
   ],
   department: [
 

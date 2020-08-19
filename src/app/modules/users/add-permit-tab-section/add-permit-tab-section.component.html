@@ -1990,7 +1990,7 @@
                                                             </div>
                                                             <div class="role-txt-collepse-two">
                                                                 <h2>Unit No./Also Known as</h2>
-                                                                <p>{{application?.also_known_as ? application?.also_known_as : '_' }}
+                                                                <p>{{application?.also_know_as ? application?.also_know_as : '_' }}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -2298,9 +2298,10 @@
                                                                                 <p *ngIf="image.type == 1">
                                                                                     {{image?.name}} <a class="pointer"
                                                                                         href="{{ env?.host + env?.imageBasePath + image?.name }}"
-                                                                                        target="_blank">View</a> / <a
+                                                                                        target="_blank">View</a> 
+                                                                                        <!-- / <a
                                                                                         class="pointer"
-                                                                                        (click)="deleteImage(image?.id,i)">Delete</a>
+                                                                                        (click)="deleteImage(image?.id,i)">Delete</a> -->
                                                                                 </p>
                                                                                 <!-- <p *ngIf = "image.type != 0">No Data</p> -->
                                                                             </h6>

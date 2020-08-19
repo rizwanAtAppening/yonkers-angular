@@ -28,7 +28,7 @@ export class AuthenticationService {
     );
   }
 
- adminLogin(loginData: Login): Observable<any> {
+  adminLogin(loginData: Login): Observable<any> {
     const href = `${environment['adminLogin']}`;
     return this.http.post<any>(href, loginData).pipe(
       tap(
@@ -105,5 +105,56 @@ export class AuthenticationService {
     );
   }
 
+  staffList() {
+    const href = `${environment['staffList']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  getStaffById(staffId) {
+    const href = `${environment['getStffById']}/${staffId}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  updateStaff(data, staffId) {
+    const href = `${environment['updateStaff']}/${staffId}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  createNewPassword(data) {
+    const href = `${environment['createNewPasswordForAdmin']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
 }
 

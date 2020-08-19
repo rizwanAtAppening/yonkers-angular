@@ -56,16 +56,16 @@ export class CreateNewPasswordComponent implements OnInit {
     })
   }
 
-  passwordMatch(value: string) {
-    if (value == 'conpass') {
-      return this.newPasswordForm.controls.password.value === this.newPasswordForm.controls.cnfPassword.value
-        ? false : this.newPasswordForm.get('cnfPassword').setErrors({ 'incorrect': true });
-    } else if (value == 'pass' && this.newPasswordForm.controls.password.value === this.newPasswordForm.controls.cnfPassword.value) {
-      this.newPasswordForm.get('cnfPassword').setErrors(null);
-    } else if (value == 'pass' && this.newPasswordForm.controls.password.value != this.newPasswordForm.controls.cnfPassword.value) {
-      this.newPasswordForm.get('cnfPassword').setErrors({ 'incorrect': true });
+    passwordMatch(value: string) {
+      if (value == 'conpass') {
+        return this.newPasswordForm.controls.password.value === this.newPasswordForm.controls.cnfPassword.value
+          ? false : this.newPasswordForm.get('cnfPassword').setErrors({ 'incorrect': true });
+      } else if (value == 'pass' && this.newPasswordForm.controls.password.value === this.newPasswordForm.controls.cnfPassword.value) {
+        this.newPasswordForm.get('cnfPassword').setErrors(null);
+      } else if (value == 'pass' && this.newPasswordForm.controls.password.value != this.newPasswordForm.controls.cnfPassword.value) {
+        this.newPasswordForm.get('cnfPassword').setErrors({ 'incorrect': true });
+      }
     }
-  }
 
   crateMemberPassword() {
     

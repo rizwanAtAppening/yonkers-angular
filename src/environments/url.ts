@@ -53,7 +53,9 @@ const authUrls = {
   register: `/register`,
   adminLogin: '/admin/login',
   resetPasswoed: `/send-password-reset-link`,
-  createNewPassword: `/reset-password`
+  createNewPassword: `/reset-password`,
+  createNewPasswordForAdmin:`/staff/create-password`
+
 
 }
 
@@ -85,6 +87,10 @@ const adminUrl = {
   deleteDocuments:`/application/delete-file`,
   deleteNotes:`/application-notes-delete`,
   addstaff:`/staff`,
+  staffList:`/staff`,
+  getStffById:`/staff`,
+  updateStaff:`/staff/update`,
+
 
 };
 
@@ -122,7 +128,7 @@ const userUrl = {
   applicationDetails:`/application`,
   execAddress:`/address`,
   payment:`/application-payment`,
-  showPaymentDetails:`/application-fee`
+  showPaymentDetails:`/application-fee`,
 
 
 

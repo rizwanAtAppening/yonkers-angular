@@ -540,7 +540,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           // address_id: (this.whereForm.value.address_id),
           address_id: this.addressId,
           location_type: this.location_type,
-          also_known_as: this.whereForm.value.also_known_as,
+          also_know_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
 
 
@@ -715,7 +715,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
     if (application.location_type == 1) {
       this.whereForm.controls.address_id.setValue(application.address_details.szFullAddress);
-      this.whereForm.controls.also_known_as.setValue(application.also_known_as);
+      this.whereForm.controls.also_known_as.setValue(application.also_know_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
         value['controls'].street_two.setErrors(null)
