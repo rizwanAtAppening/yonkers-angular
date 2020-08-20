@@ -5,6 +5,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-permit',
@@ -212,7 +213,7 @@ export class AddPermitComponent implements OnInit {
     );
     this.formData.append(
       "also_know_as",
-      this.permitForm.value.also_know_as
+      this.permitForm.value.also_know_as ? this.permitForm.value.also_know_as :''
     );
     this.formData.append(
       "traffic_control",
@@ -433,7 +434,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
-      this.permitForm.controls.also_know_as.setValue(value.also_know_as);
+      this.permitForm.controls.also_know_as.setValue(value.also_know_as?value.also_know_as:'');
       this.permitForm.controls.traffic_control.setValue(value.project_detail.traffic_control);
     }
     else if (this.location_type == 1) {
@@ -447,7 +448,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
-      this.permitForm.controls.also_know_as.setValue(value.also_know_as);
+      this.permitForm.controls.also_know_as.setValue(value.also_know_as ? value.also_know_as :'');
       this.permitForm.controls.traffic_control.setValue(value.project_detail.traffic_control);
 
 
@@ -618,11 +619,12 @@ export class AddPermitComponent implements OnInit {
     })
   }
 
-  public searchString
   public exactAddress = [];
-  public address = []
+  public address = new Subject<any>();
   public addressOne = [];
   public addressTwo = []
+  public selectadd = []
+  public searchString:any
   exextAddress() {
     const data = {
       query: this.searchString,
@@ -630,9 +632,10 @@ export class AddPermitComponent implements OnInit {
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
-        this.address = this.exactAddress.map(data => {
+        this.selectadd = this.exactAddress.map(data => {
           return data.szFullAddress
         })
+        this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })

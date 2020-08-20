@@ -220,7 +220,7 @@
                                                                     <div class="New-Project">
                                                                         <button class="mr-4"  (bsValueChange)="seelctDate($event)" #drp="bsDaterangepicker" bsDaterangepicker>
                                                                      <span (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen"><i class="fa fa-calendar" aria-hidden="true"  ></i></span>
-                                                                     01/06/2020 -  02/06/2020
+                                                                      {{from ? (from | date :'dd/MM/yyyy') :'01/06/2020'}} - {{to ? (to | date :'dd/MM/yyyy') :'01/07/2020'}}
                                                                     </button>
                                                                     <button>
                                                                         <span><img src="assets/images/upload-index.svg" alt=""></span>

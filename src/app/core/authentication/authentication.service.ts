@@ -105,9 +105,9 @@ export class AuthenticationService {
     );
   }
 
-  staffList() {
+  staffList(page) {
     const href = `${environment['staffList']}`
-    return this.http.get<any>(href).pipe(
+    return this.http.get<any>(href,{ params:page }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
@@ -144,9 +144,9 @@ export class AuthenticationService {
     );
   }
 
-  resendMail(staffId) {
-    const href = `${environment['resendMail']}/${staffId}`
-    return this.http.post<any>(href,'').pipe(
+  resendMail(staff) {
+    const href = `${environment['resendMail']}`
+    return this.http.post<any>(href,staff).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {

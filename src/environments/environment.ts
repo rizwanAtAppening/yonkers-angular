@@ -24,3 +24,4 @@ export const environment = {
 //  node --max_old_space_size=8192 ./node_modules/@angular/cli/bin/ng build --configuration=dev
 
   //chrome://settings/content/notifications  
+  //https://app.slack.com/client/TQQU38RM1/D019JLZLNSD

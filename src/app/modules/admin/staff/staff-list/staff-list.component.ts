@@ -25,9 +25,11 @@ export class StaffListComponent implements OnInit {
   }
 
   getStaffList() {
-    debugger
-    this.adminAuthService.staffList().subscribe(data => {
-      this.staffList = data.response
+    this.adminAuthService.staffList({page:this.page}).subscribe(data => {
+      this.staffList = data.response;
+      this.totalPagination = data.total;
+      this.offset = data.offset
+      this.currentPage = data.pages
       console.log(this.staffList)
     })
   }
@@ -37,12 +39,16 @@ export class StaffListComponent implements OnInit {
   }
 
   paginate(page) {
-
+    this.page = page;
+    this.getStaffList();
   }
 
   reSendMail(id) {
-    this.adminAuthService.resendMail(id).subscribe(data => {
-      this.TS.success('Invitation has been send')
+    const data = {
+      id: id
+    }
+    this.adminAuthService.resendMail(data).subscribe(data => {
+      this.TS.success('Invitation has been send on your email')
     })
   }
 

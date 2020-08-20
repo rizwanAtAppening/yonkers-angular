@@ -185,7 +185,7 @@ export class ApplicationsComponent implements OnInit {
   public from: any;
   public to: any;
   seelctDate(event) {
-    
+    debugger
     if (event) {
       this.from = event[0].toISOString()
       this.to = event[1].toISOString()

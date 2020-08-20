@@ -118,7 +118,7 @@ export class AddStaffComponent implements OnInit {
     else {
       this.adminAuthService.addStaff(data).subscribe(data => {
         this.addStaffForm.reset();
-        this.TS.success('Add staff');
+        this.TS.success('Staff added and sent invitation on your email');
         this.router.navigate(['/admin/staff-list'])
       })
     }

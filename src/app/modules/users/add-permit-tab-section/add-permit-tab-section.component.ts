@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -126,11 +126,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   public applicationState: number
   public isDrawing = false;
   public isCertificate = false;
-  public contractorDetails:any
+  public contractorDetails: any
   getApplication() {
 
     this.application = this.permitService.getApplication();
-    this.addressId = this.addressId ? this.addressId: this.application.address_id
+    this.addressId = this.addressId ? this.addressId : this.application.address_id
     if (this.application.applicant_details) {
       this.applicationState = Number(this.application.applicant_details.applicant_state)
     }
@@ -424,7 +424,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public location_type = 1
 
   selectAddress(value: string) {
-    
+
     if (value == 'location') {
       this.isLocation = true
       this.location_type = 2
@@ -449,7 +449,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    
+
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -701,7 +701,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-    
+
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -784,9 +784,14 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getDuplimester();
 
     }
-    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1 )) {
+    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1)) {
 
-      this.isDisabled = true
+      if(this.application.role == 2 ){
+        this.isDisabled = true
+      }else{
+        this.isDisabled = false
+      }
+     
       this.getLicenseDetails();
       this.contractorForm.controls.contractor_for_job.setValue(1)
       this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name)
@@ -1268,7 +1273,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public searchDetails: any = []
   public searchDetail: any = []
   searchBussiness(value) {
-    
+
     var value = value
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
@@ -1314,7 +1319,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   // public searchDetails: any
   data3 = ['shivam', 'chauhan', 'alok', 'singh', 'kumar']
   allBussiness() {
-    
+
     // const data = {
     //   search_query: this.contractorForm.value.contractor_business
     // }
@@ -1346,14 +1351,16 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    
+    debugger
+    //this.address = []
     var value: string
 
     if (sendValue == 'exact') {
       value = this.whereForm.value.address_id
       this.searchString = value;
+
       if (this.searchString.length > 1) {
-        this.exextAddress()
+        this.exextAddress(this.searchString)
       }
 
     }
@@ -1366,7 +1373,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         }
       })
       if (this.searchString.length > 1) {
-        this.exextAddress()
+        this.exextAddress(this.searchString)
       }
     }
     if (sendValue == 'locationtwo') {
@@ -1378,26 +1385,29 @@ export class AddPermitTabSectionComponent implements OnInit {
         }
       })
       if (this.searchString.length > 1) {
-        this.exextAddress()
+        this.exextAddress(this.searchString)
       }
     }
 
   }
 
   public exactAddress = [];
-  public address = []
+  public address = new Subject<any>();
   public addressOne = [];
   public addressTwo = []
-  exextAddress() {
+  public selectadd = []
+  //private subject = new Subject<any>();
+  exextAddress(value) {
     const data = {
-      query: this.searchString,
+      query: value,
     }
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
-        this.address = this.exactAddress.map(data => {
+        this.selectadd = this.exactAddress.map(data => {
           return data.szFullAddress
         })
+        this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })

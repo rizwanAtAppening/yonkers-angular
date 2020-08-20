@@ -5,6 +5,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-add-daily-work-loaction',
@@ -435,11 +436,12 @@ this.isEdit = true
     })
   }
 
-  public searchString
   public exactAddress = [];
-  public address = []
+  public address = new Subject<any>();
   public addressOne = [];
   public addressTwo = []
+  public selectadd = []
+  public searchString:any
   exextAddress() {
     const data = {
       query: this.searchString,
@@ -447,9 +449,10 @@ this.isEdit = true
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
-        this.address = this.exactAddress.map(data => {
+        this.selectadd = this.exactAddress.map(data => {
           return data.szFullAddress
         })
+        this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })
