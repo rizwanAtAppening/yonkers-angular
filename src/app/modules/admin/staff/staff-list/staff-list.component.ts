@@ -10,6 +10,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StaffListComponent implements OnInit {
   public staffList = []
+  public offset = 10
+  public currentPage = 1
+  public totalPagination = 40
+  public page = 1
   constructor(
     private adminAuthService: AuthenticationService,
     private router: Router,
@@ -28,9 +32,18 @@ export class StaffListComponent implements OnInit {
     })
   }
 
-  editStaff(staffId){
-    this.router.navigate(['/admin/add-staff'],{queryParams:{staffId:staffId}})
+  editStaff(staffId) {
+    this.router.navigate(['/admin/add-staff'], { queryParams: { staffId: staffId } })
+  }
+
+  paginate(page) {
+
+  }
+
+  reSendMail(id) {
+    this.adminAuthService.resendMail(id).subscribe(data => {
+      this.TS.success('Invitation has been send')
+    })
   }
 
 }
- 

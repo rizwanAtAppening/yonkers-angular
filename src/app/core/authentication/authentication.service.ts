@@ -144,6 +144,19 @@ export class AuthenticationService {
     );
   }
 
+  resendMail(staffId) {
+    const href = `${environment['resendMail']}/${staffId}`
+    return this.http.post<any>(href,'').pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   createNewPassword(data) {
     const href = `${environment['createNewPasswordForAdmin']}`
     return this.http.post<any>(href, data).pipe(

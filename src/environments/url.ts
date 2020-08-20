@@ -90,6 +90,7 @@ const adminUrl = {
   staffList:`/staff`,
   getStffById:`/staff`,
   updateStaff:`/staff/update`,
+  resendMail:`/`
 
 
 };
