@@ -139,7 +139,9 @@
                                                                             <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                 <td class="refTxt pointer"
                                                                                     (click)="navigateToUpdatePage(permit?.id,'permit')">
-                                                                                    {{permit?.reference_no}}</td>
+                                                                                    <!-- <strong class="reedunreedadmin"></strong> -->
+
+                                                                                   <a>{{permit?.reference_no}}</a> </td>
                                                                                 
                                                                                 <td >
                                                                                     <p *ngIf ="permit?.address_id  && permit?.location_type == 1">  
@@ -250,7 +252,10 @@
                                                                         <tbody>
                                                                             <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                 <td class="refTxt pointer"
+                                                                                
                                                                                     (click)="navigateToUpdatePage(permit?.id,'dwl')">
+                                                                                    <strong class="reedunreedadmin"  ></strong>
+
                                                                                     {{permit?.reference_no}}</td>
                                                                                 
                                                                                 <td >

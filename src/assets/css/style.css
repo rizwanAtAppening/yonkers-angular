@@ -4730,3 +4730,13 @@ padding: 10px 17px;
 .rightalign_dropdown .SubmitInspectionTxt .dropdown-content-void a{
     cursor: pointer;
 }
+/* .reedunreedadmin:before{
+    position: absolute;
+    content: '';
+    top: 141px;
+    left: 24px;
+    width: 10px;
+    height: 10px;
+    background: #f44336;
+    border-radius: 50%;
+} */
