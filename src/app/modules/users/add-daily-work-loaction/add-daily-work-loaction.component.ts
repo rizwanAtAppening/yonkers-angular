@@ -175,6 +175,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
         address_id: this.addressId ? this.addressId : this.editValue.address_id,
+        address:this.selectedValue ? this.selectedValue : this.editValue.address,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
         permit_type: this.dwlForm.value.permit_type,
@@ -229,7 +230,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public lll = ['dd', 'ddddsfsd', 'sdfsd']
   public allLayOutNumber = []
   getPermitApplication() {
-    
+
     this.allLayOutNumber = []
     this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
       this.applictionDetails = data.response;
@@ -252,7 +253,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public editValue: any;
   public isEdit = false
   editAppliction(value) {
-this.isEdit = true
+    this.isEdit = true
     this.editValue = value
     this.location_type = value.location_type
     this.id = value.id;
@@ -339,12 +340,12 @@ this.isEdit = true
     // const value = this.dwlForm.value.layout_number ? this.dwlForm.value.layout_number : selectLayoutNumber
     const value = selectLayoutNumber
     const emptyValue = this.dwlForm.value.layout_number;
-    
+
     if (emptyValue == null || emptyValue == "") {
       this.removeAnResetForm()
     }
     if (value) {
-      this.permitService.getDetailByLayOutNumber({ layout: value,application_type:2 }).subscribe(data => {
+      this.permitService.getDetailByLayOutNumber({ layout: value, application_type: 2 }).subscribe(data => {
         this.layOutData = data.response;
 
         if (this.layOutData && this.layOutData.application_daily_work_location != null) {
@@ -441,7 +442,7 @@ this.isEdit = true
   public addressOne = [];
   public addressTwo = []
   public selectadd = []
-  public searchString:any
+  public searchString: any
   exextAddress() {
     const data = {
       query: this.searchString,
@@ -507,8 +508,9 @@ this.isEdit = true
   public addressId: number;
   public addressOneId: number;
   public addressTwoId: number;
+  public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-
+    this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {
