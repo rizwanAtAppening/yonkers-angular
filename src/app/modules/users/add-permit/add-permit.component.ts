@@ -213,7 +213,7 @@ export class AddPermitComponent implements OnInit {
     );
     this.formData.append(
       "also_know_as",
-      this.permitForm.value.also_know_as ? this.permitForm.value.also_know_as :''
+      this.permitForm.value.also_know_as ? this.permitForm.value.also_know_as : ''
     );
     this.formData.append(
       "traffic_control",
@@ -245,6 +245,11 @@ export class AddPermitComponent implements OnInit {
       this.formData.append(
         "address_id",
         (this.addressId ? this.addressId : this.editValue.address_id)
+      );
+
+      this.formData.append(
+        "address",
+        (this.selectedValue ? this.selectedValue : this.editValue.address)
       );
 
     }
@@ -434,7 +439,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
-      this.permitForm.controls.also_know_as.setValue(value.also_know_as?value.also_know_as:'');
+      this.permitForm.controls.also_know_as.setValue(value.also_know_as ? value.also_know_as : '');
       this.permitForm.controls.traffic_control.setValue(value.project_detail.traffic_control);
     }
     else if (this.location_type == 1) {
@@ -448,7 +453,7 @@ export class AddPermitComponent implements OnInit {
       this.permitForm.controls.length.setValue(value.project_detail.length);
       this.permitForm.controls.width.setValue(value.project_detail.width);
       this.permitForm.controls.purpose.setValue(value.project_detail.purpose);
-      this.permitForm.controls.also_know_as.setValue(value.also_know_as ? value.also_know_as :'');
+      this.permitForm.controls.also_know_as.setValue(value.also_know_as ? value.also_know_as : '');
       this.permitForm.controls.traffic_control.setValue(value.project_detail.traffic_control);
 
 
@@ -624,7 +629,7 @@ export class AddPermitComponent implements OnInit {
   public addressOne = [];
   public addressTwo = []
   public selectadd = []
-  public searchString:any
+  public searchString: any
   exextAddress() {
     const data = {
       query: this.searchString,
@@ -690,8 +695,9 @@ export class AddPermitComponent implements OnInit {
   public addressId: number;
   public addressOneId: number;
   public addressTwoId: number;
+  public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-
+    this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {

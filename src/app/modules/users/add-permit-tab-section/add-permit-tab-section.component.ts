@@ -9,6 +9,7 @@ import { of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { thistle } from 'color-name';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -128,9 +129,9 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isCertificate = false;
   public contractorDetails: any
   getApplication() {
-
     this.application = this.permitService.getApplication();
     this.addressId = this.addressId ? this.addressId : this.application.address_id
+    this.selectedValue = this.selectedValue ? this.selectedValue : this.application.address
     if (this.application.applicant_details) {
       this.applicationState = Number(this.application.applicant_details.applicant_state)
     }
@@ -539,6 +540,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           // address_id: (this.whereForm.value.address_id),
           address_id: this.addressId,
+          address:this.selectedValue,
           location_type: this.location_type,
           also_know_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
@@ -786,12 +788,12 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
     if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1)) {
 
-      if(this.application.role == 2 ){
+      if (this.application.role == 2) {
         this.isDisabled = true
-      }else{
+      } else {
         this.isDisabled = false
       }
-     
+
       this.getLicenseDetails();
       this.contractorForm.controls.contractor_for_job.setValue(1)
       this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name)
@@ -1175,9 +1177,12 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   updateAppliction() {
-
     this.permitService.updateApplication(this.application_id).subscribe(data => {
       this.application = data.response;
+      if(this.application){
+        sessionStorage.setItem('application', JSON.stringify(this.application));
+
+      }
       // if(this.application){
       //   this.permitType = this.application.permit_type
       // }
@@ -1351,7 +1356,6 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    debugger
     //this.address = []
     var value: string
 
@@ -1423,7 +1427,9 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressId: number;
   public addressOneId: number;
   public addressTwoId: number;
+  public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+    this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {
