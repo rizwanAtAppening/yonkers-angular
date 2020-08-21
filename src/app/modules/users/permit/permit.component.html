@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tblOverflow">
+                            <div class="">
                             <div class="row">
                                 <div class="col-12">
                                     <div class="table-permit">
@@ -118,14 +118,15 @@
                                                     <!-- <td class="update-txt"> <span><i class="fa fa-angle-down"
                                                                 aria-hidden="true"></i></span></td> -->
                                                     <td class="update-txt dropdown-action">
+                                                        <div class="displayAlign">
                                                         <div class="time-btn" *ngIf = "application?.payment_status == null">
                                                             <button (click) = "navigateTopaymentPage(application?.id)">
-                                                                <img src="./assets/images/x-time.svg" alt="">
+                                                                <!-- <img src="./assets/images/x-time.svg" alt=""> -->
                                                                 Pay Now
                                                             </button>
                                                         </div>
                                                         <span> <i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i></span>
+                                                                aria-hidden="true"></i>
                                                         <div class="dropdown-contentable">
                                                             <a class="pointer" data-toggle="modal"
                                                                 data-target="#cancel_application"
@@ -140,6 +141,8 @@
                                                             <div class="triangle-left">
                                                             </div>
                                                         </div>
+                                                    </span>
+                                                    </div>
                                                     </td>
                                                 </tr>
 
