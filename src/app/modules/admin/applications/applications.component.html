@@ -365,7 +365,7 @@
                                                                     </thead>
                                                                     <tbody >
                                                                         <tr *ngFor ="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                            <td>PW2020-0510</td>
+                                                                            <td>{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}</td>
                                                                             <td >
                                                                                 <p *ngIf ="inspection?.application?.address_id">  
                                                    {{inspection?.application?.address_details?.szFullAddress}}
@@ -459,7 +459,7 @@
                                                                                 </div>
                                                                                         <div class="dropdown-content">
                                                                                           <a (click) ="paymentsSummary(1,'','')">All</a>
-                                                                                          <a (click) ="paymentsSummary(1,'','DWL')">DWL</a>
+                                                                                          <!-- <a (click) ="paymentsSummary(1,'','DWL')">DWL</a> -->
                                                                                           <a (click) ="paymentsSummary(1,'','permit')">Permit</a>
                                                                                           <a (click) ="paymentsSummary(1,'','paid')">Paid</a>
                                                                                           <a (click) ="paymentsSummary(1,'','unpaid')">Unpaid</a>
