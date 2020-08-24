@@ -386,7 +386,7 @@ export class AddPermitComponent implements OnInit {
   public editValue: any
   public isEdit = false
   editAppliction(value) {
-    debugger
+    
     this.isEdit = true
     this.dwlApplication.map(data => {
       if (value.id == data.id) {
@@ -504,7 +504,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   location(value) {
-    debugger
+    
     this.layOutData = value
     this.editValue = this.layOutData
     if (this.layOutData) {

@@ -33,7 +33,7 @@ export class AddStaffComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.staffId = data.staffId
     })
-    debugger
+    
     if (this.staffId) {
       this.isEmailReadOnly = true
       this.getStaffById();
@@ -78,7 +78,7 @@ export class AddStaffComponent implements OnInit {
   public departments = [1]
   public status: number = 1
   addStaff() {
-    debugger
+    
     this.addStaffForm.controls.name.setErrors(null);
     this.addStaffForm.controls.phone.setErrors(null);
    // this.addStaffForm.controls.name.setErrors(null);

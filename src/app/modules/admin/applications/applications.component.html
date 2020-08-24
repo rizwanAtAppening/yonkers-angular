@@ -137,7 +137,7 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                <td class="refTxt pointer"
+                                                                                <td [class] = "permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
                                                                                     (click)="navigateToUpdatePage(permit?.id,'permit')">
                                                                                     <!-- <strong class="reedunreedadmin"></strong> -->
 
@@ -251,12 +251,11 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                <td class="refTxt pointer"
+                                                                                <td [class] = "permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
                                                                                 
                                                                                     (click)="navigateToUpdatePage(permit?.id,'dwl')">
-                                                                                    <strong class="reedunreedadmin"  ></strong>
 
-                                                                                    {{permit?.reference_no}}</td>
+                                                                                  {{permit?.reference_no}}</td>
                                                                                 
                                                                                 <td >
                                                                                     <p *ngIf ="permit?.address_id">                                                         {{permit?.address_details?.szFullAddress}}
@@ -365,7 +364,7 @@
                                                                     </thead>
                                                                     <tbody >
                                                                         <tr *ngFor ="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                            <td>{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}</td>
+                                                                            <td >{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}</td>
                                                                             <td >
                                                                                 <p *ngIf ="inspection?.application?.address_id">  
                                                    {{inspection?.application?.address_details?.szFullAddress}}

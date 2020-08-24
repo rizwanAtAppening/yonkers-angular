@@ -23,7 +23,7 @@ export class CreatePasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger
+    
     this.psswordFormControls();
     this.route.queryParams.subscribe(data => {
       this.token = data.id;
@@ -56,7 +56,7 @@ export class CreatePasswordComponent implements OnInit {
   }
 
   createNewPass() {
-debugger
+
     if (this.newPasswordForm.invalid) {
       this.isSubmited = true;
       return false

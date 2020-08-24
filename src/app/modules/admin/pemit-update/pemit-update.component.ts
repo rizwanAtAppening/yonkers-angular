@@ -285,7 +285,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public related_permit: any
   check(selectedValue, value) {
-debugger
+
     this.related_permit = value.id
     if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
       this.applicationDetails.related_permits.map((data => {

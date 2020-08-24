@@ -94,7 +94,7 @@ export class InspectionsComponent implements OnInit {
   }
 
   fillInspectionDetails(inspectionDetails) {
-    debugger
+    
     this.allImage = []
     this.inspectionForm.controls.decision.setValue(inspectionDetails.decision);
     this.inspectionForm.controls.type.setValue(inspectionDetails.type);
@@ -225,7 +225,7 @@ export class InspectionsComponent implements OnInit {
   public documents = []
   media(event1) {
 
-    debugger
+    
     // if (this.imageUpload.invalid) {
     //   this.isImage = true
     //   return false
@@ -254,7 +254,7 @@ export class InspectionsComponent implements OnInit {
 
 
   submitImage() {
-    debugger
+    
     if (this.imageName) {
       if (this.allImage.length == 0) {
         this.allImage.push({ id: this.id, name: this.imageUpload.value.name, image: this.imageName })

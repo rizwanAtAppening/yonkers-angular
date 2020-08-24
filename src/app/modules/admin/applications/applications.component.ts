@@ -64,7 +64,7 @@ export class ApplicationsComponent implements OnInit {
   public paymentSummary:any = []
   public inspections= []
   paymentsSummary(status,value,summary){
-    debugger
+    
    // this.application_Type = application_Type
     if(value == "inspection"){
       this.sendData = {
@@ -141,7 +141,7 @@ export class ApplicationsComponent implements OnInit {
   public isSingleAddress = true;
   public currentId: number
   showMoreLocation(value, id) {
-    debugger
+    
     this.currentId = id
     this.allApplications.map(data => {
       if (data.id == id) {
@@ -185,7 +185,7 @@ export class ApplicationsComponent implements OnInit {
   public from: any;
   public to: any;
   seelctDate(event) {
-    debugger
+    
     if (event) {
       this.from = event[0].toISOString()
       this.to = event[1].toISOString()
