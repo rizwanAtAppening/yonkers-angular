@@ -4775,3 +4775,17 @@ padding: 10px 17px;
 #ms_text select{
     border: 0.5px solid #c4ced4;
 }
+
+.circle-round{
+    position: relative;
+}
+.circle-round::before{
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #2aabfa;
+    border-radius: 50%;
+    left: 15px;
+    top: 45%;
+}
