@@ -243,7 +243,7 @@
                                                                                 <th>Location</th>
                                                                                 <!-- <th>Applicant</th>
                                                                                 <th>Type</th> -->
-                                                                                <th>Decision Status</th>
+                                                                                <!-- <th>Decision Status</th> -->
                                                                                 <th>Submit date</th>
                                                                                 <th>Expire Date</th>
                                                                                 <th>Action</th>
@@ -271,9 +271,9 @@
                            
                                                                                </td>
                                                                                 
-                                                                                <td class="submited-Btn green-txt-2">
-                                                                                    <button>Issued</button></td>
-                                                                                <td>{{permit?.createdAt | date}}</td>
+                                                                                <!-- <td class="submited-Btn green-txt-2">
+                                                                                    <button>Issued</button></td> -->
+                                                                                <td>{{permit?.submittedAt | date}}</td>
                                                                                 <td>-</td>
 
                                                                                 <td class="update-txt dropdown-action">
@@ -393,7 +393,7 @@
                                                                                 <div
                                                                                     class="dropdown-contentable">
                                                                                     <!-- <a href="#">Delete</a> -->
-                                                                                    <a (click) ="editInspection(inspection?.id,inspection?.application)">Edit Staff</a>
+                                                                                    <a (click) ="editInspection(inspection?.id,inspection?.application)">Modify</a>
                                                                                     <!-- <a href="#">Inactive</a> -->
                                                                                     <div class="triangle-left">
                                                                                     </div>

@@ -77,7 +77,7 @@
                                                               
                                                                 <div class="dropdown-contentable">
                                                                   <!-- <a href="#">Delete</a> -->
-                                                                  <a  (click) ="navigateByUrl(staff?.member?.id)">Edit Staff</a>
+                                                                  <a  (click) ="navigateByUrl(staff?.member?.id)">Modify  Staff</a>
                                                                   <a *ngIf = "(staff?.member?.status == 1 || staff?.member?.status == null)" (click) ="activeInactiveStaffMember(staff?.id,0)">InActive</a>
                                                                   <a *ngIf = "staff?.member?.status == 0" (click) ="activeInactiveStaffMember(staff?.id,1)">Active</a>
 
