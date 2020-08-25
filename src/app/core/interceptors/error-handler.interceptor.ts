@@ -35,6 +35,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     // console.error(error);
     const httpErrorCode = response['status'];
     const error = response['error']
+    debugger
     switch (httpErrorCode) {
       case 401:
         this.router.navigateByUrl('/auth/login');
@@ -43,7 +44,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
         this.router.navigateByUrl('/auth/403');
         break;
       case 422:
-        
+        if(error && error.response){
+          this.toasterService.error( error.response);
+
+        }
         this.showError(error.errors[0].msg);
         this.toasterService.error( appToaster.errorHead, error.errors[0].msg);
 
