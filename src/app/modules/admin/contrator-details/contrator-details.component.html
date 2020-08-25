@@ -619,10 +619,10 @@
                                                     <div class="app-status-slect email-angle">
                                                         <div class="form-group">
 
-                                                            <select formControlName="to"   [class]="emailPickUp.to.invalid && (emailPickUp.to.dirty || emailPickUp.to.touched || isEmail) ? 'form-control form-group-error' : 'form-control'"
+                                                            <select    
                                                             >
-                                                                <option value="" hidden>--Select--</option>
-                                                                <option value="1" >
+                                                                <!-- <option value="" hidden>--Select--</option> -->
+                                                                <option  >
                                                                     {{applicationDetails?.applicant_details?.applicant_email}}
                                                                 </option>
                                                             </select>
@@ -635,7 +635,7 @@
                                                    
 
                                                     <div class="form-group">
-                                                        <input type="text" id="emailnotas1" class="form-control"
+                                                        <input type="text" id="emailnotas1" formControlName="to"   [class]="emailPickUp.to.invalid && (emailPickUp.to.dirty || emailPickUp.to.touched || isEmail) ? 'form-control form-group-error' : 'form-control'" class="form-control"
                                                             required="">
                                                         <label class="form-control-placeholder"
                                                             for="emailnotas1">To</label>
@@ -649,9 +649,9 @@
                                                         <div class="app-status-slect email-angle">
                                                             <div class="form-group">
 
-                                                                <select formControlName="from" [class]="emailPickUp.from.invalid && (emailPickUp.from.dirty || emailPickUp.from.touched || isEmail) ? 'form-control form-group-error' : 'form-control'">
-                                                                    <option value="" hidden>--Select--</option>
-                                                                    <option value="1" >
+                                                                <select  [class]="emailPickUp.from.invalid && (emailPickUp.from.dirty || emailPickUp.from.touched || isEmail) ? 'form-control form-group-error' : 'form-control'">
+                                                                    <!-- <option value="" hidden>--Select--</option> -->
+                                                                    <option >
                                                                         {{applicationDetails?.contractor_details?.contractor_email}}
                                                                     </option>
                                                                 </select>
@@ -664,7 +664,7 @@
                                                       
 
                                                         <div class="form-group">
-                                                            <input type="text" id="aucd3" class="form-control"
+                                                            <input type="text" id="aucd3" formControlName="from" [class]="emailPickUp.from.invalid && (emailPickUp.from.dirty || emailPickUp.from.touched || isEmail) ? 'form-control form-group-error' : 'form-control'" class="form-control"
                                                                 required="">
                                                             <label class="form-control-placeholder"
                                                                 for="aucd3">CC</label>

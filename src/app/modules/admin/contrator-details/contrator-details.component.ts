@@ -37,8 +37,8 @@ export class ContratorDetailsComponent implements OnInit {
       this.applicationDetails = data;
       if (this.applicationDetails) {
         this.compareDate();
-        this.emailFormGroup.controls.to.setValue(1);
-        this.emailFormGroup.controls.from.setValue(1)
+        this.emailFormGroup.controls.to.setValue(null);
+        this.emailFormGroup.controls.from.setValue(null)
 
       }
     });
@@ -122,10 +122,10 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   emailControls() {
-    
+
     this.emailFormGroup = this.fb.group({
       to: ['', Validators.required],
-      from: ['', Validators.required],
+      from: [''],
       subject: ['', Validators.required],
       body: ['', Validators.required],
       standard_message: ['', Validators.required],
@@ -254,21 +254,30 @@ export class ContratorDetailsComponent implements OnInit {
 
   public isEmail = false;
   addEmialAndPickUp() {
-    
+    debugger
+    if (this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_email) {
+      this.emailFormGroup.controls.to.setValue(this.applicationDetails.applicant_details.applicant_email)
+    }
+
+    if (this.applicationDetails.contractor_email && this.applicationDetails.contractor_details.contractor_email) {
+      this.emailFormGroup.controls.from.setValue(this.applicationDetails.contractor_details.contractor_email)
+    }
+    this.emailFormGroup.controls.from.setErrors(null)
     if (this.emailFormGroup.invalid) {
       this.isEmail = true
       return false
     }
+
     this.emailFormGroup.value.application_id = this.applicationDetails.id;
-    this.emailFormGroup.value.to = this.applicationDetails.applicant_details.applicant_email;
-    this.emailFormGroup.value.from = this.applicationDetails.contractor_details.contractor_email;
+    this.emailFormGroup.value.to = this.emailFormGroup.value.to;
+    this.emailFormGroup.value.from = this.emailFormGroup.value.from;
 
     this.applicationService.emailAndPickUp(this.emailFormGroup.value).subscribe(daa => {
       // this.emailFormGroup.controls.subject.setValue(null)
       // //this.emailFormGroup.controls.standard_message.setValue(null)
       // this.emailFormGroup.controls.body.setValue(null)
       this.emailFormGroup.reset()
-       this.isEmail = false
+      this.isEmail = false
 
       this.messageEvent.emit('hello')
 
@@ -277,7 +286,7 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   addNotes() {
-    
+
     if (this.notesFormGroup.invalid) {
       return false
     }
@@ -289,14 +298,14 @@ export class ContratorDetailsComponent implements OnInit {
     })
   }
 
-  deleteNotes(id){
-    const data ={
-      application_id:this.applicationDetails.id,
-      id:id
+  deleteNotes(id) {
+    const data = {
+      application_id: this.applicationDetails.id,
+      id: id
     }
     this.applicationService.deleteNotes(data).subscribe(data => {
       // this.notesFormGroup.reset();
-       this.messageEvent.emit('hello')
+      this.messageEvent.emit('hello')
 
     })
   }
