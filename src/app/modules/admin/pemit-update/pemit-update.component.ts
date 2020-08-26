@@ -43,6 +43,12 @@ export class PemitUpdateComponent implements OnInit {
   public settings: any;
   public isFee = false;
   public isCompletApplication = false;
+ 
+  public currentUser = {
+    role_id: null,
+    department: null,
+    email: null
+  }
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -75,11 +81,7 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
 
-  public currentUser = {
-    role_id: null,
-    department: null,
-    email: null
-  }
+ 
   getUserInfo() {
 
     this.adminAuthService.getUserInfo().subscribe(data => {

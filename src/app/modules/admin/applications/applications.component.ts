@@ -12,7 +12,13 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 export class ApplicationsComponent implements OnInit {
   public settings: any;
   public application_Type = 1;
-  public searchString:any;
+  public searchString: any;
+
+  public currentUser = {
+    role_id: null,
+    department: null,
+    email: null
+  }
   constructor(
     private applicationService: ApplicationService,
     private router: Router,
@@ -26,17 +32,13 @@ export class ApplicationsComponent implements OnInit {
     this.getUserInfo()
   }
 
-  public currentUser = {
-    role_id: null,
-    department: null,
-    email: null
-  }
+  
   getUserInfo() {
-
     this.adminAuthService.getUserInfo().subscribe(data => {
-      this.currentUser = data
+      this.currentUser = data;
     })
   }
+  
   public allApplications = []
   public page = 1
   public offset = 10;
@@ -44,7 +46,7 @@ export class ApplicationsComponent implements OnInit {
   public totalPagination: number
   getAllApplication(application_Type) {
     this.application_Type = application_Type
-    
+
     const data = {
       page: this.page,
       application_type: this.application_Type
@@ -61,61 +63,61 @@ export class ApplicationsComponent implements OnInit {
   }
 
   public sendData = {}
-  public paymentSummary:any = []
-  public inspections= []
-  paymentsSummary(status,value,summary){
-    
-   // this.application_Type = application_Type
-    if(value == "inspection"){
+  public paymentSummary: any = []
+  public inspections = []
+  paymentsSummary(status, value, summary) {
+
+    // this.application_Type = application_Type
+    if (value == "inspection") {
       this.sendData = {
         page: this.page,
         inspection: status
       }
-     
-    } else if(summary == 'DWL'){
+
+    } else if (summary == 'DWL') {
       this.sendData = {
         page: this.page,
         payment_summary: status,
-        payment_summary_dwl:1
+        payment_summary_dwl: 1
       }
     }
-    else if(summary == 'permit'){
+    else if (summary == 'permit') {
       this.sendData = {
         page: this.page,
         payment_summary: status,
-        payment_summary_permit:1
+        payment_summary_permit: 1
       }
-      
+
     }
-    else if(summary == 'paid'){
+    else if (summary == 'paid') {
       this.sendData = {
         page: this.page,
         payment_summary: status,
-        paid:1
+        paid: 1
       }
-      
+
     }
-    else if(summary == 'unpaid'){
+    else if (summary == 'unpaid') {
       this.sendData = {
         page: this.page,
         payment_summary: status,
-        unpaid:1
+        unpaid: 1
       }
-      
+
     }
-    else{
+    else {
       this.sendData = {
         page: this.page,
         payment_summary: status
       }
     }
-   
+
     this.applicationService.getApplications(this.sendData).subscribe(data => {
       this.paymentSummary = data.response;
-     
+
       this.currentPage = data.currentPage;
       this.offset = data.offset;
-      this.totalPagination = data.total;    
+      this.totalPagination = data.total;
       this.paymentSummary.map(data => {
         data.isSingleAddress = true
       })
@@ -125,23 +127,23 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  paginate(page, value,stringValue) {
+  paginate(page, value, stringValue) {
     this.application_Type = value,
       this.page = page
-      if(stringValue == 'inspection'){
-        this.paymentsSummary(1,'inspection','')
-      }else if(stringValue == 'payment'){
-        this.paymentsSummary(1,'payment','')
-      }
-      if(stringValue != 'inspection' && stringValue != 'payment')
-    this.getAllApplication(this.application_Type)
+    if (stringValue == 'inspection') {
+      this.paymentsSummary(1, 'inspection', '')
+    } else if (stringValue == 'payment') {
+      this.paymentsSummary(1, 'payment', '')
+    }
+    if (stringValue != 'inspection' && stringValue != 'payment')
+      this.getAllApplication(this.application_Type)
 
   }
 
   public isSingleAddress = true;
   public currentId: number
   showMoreLocation(value, id) {
-    
+
     this.currentId = id
     this.allApplications.map(data => {
       if (data.id == id) {
@@ -151,15 +153,15 @@ export class ApplicationsComponent implements OnInit {
         data.isSingleAddress = !value
       }
     })
-    if(this.paymentSummary){
+    if (this.paymentSummary) {
       this.paymentSummary.map(data => {
         if (data.id == id) {
           data.isSingleAddress = value
-  
+
         } else {
           data.isSingleAddress = !value
         }
-      }) 
+      })
     }
 
   }
@@ -185,7 +187,7 @@ export class ApplicationsComponent implements OnInit {
   public from: any;
   public to: any;
   seelctDate(event) {
-    
+
     if (event) {
       this.from = event[0].toISOString()
       this.to = event[1].toISOString()
@@ -229,13 +231,14 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
-  editInspection(inspectionId,application){
-    if(application.application_type == 1){
-      this.router.navigate(['/admin/permit/permitDetails'],{queryParams:{id:application.id,inspectionId:inspectionId}})
-    }else if(application.application_type == 2){
-      this.router.navigate(['admin/permit/dwlDetails'],{queryParams:{id:application.id,inspectionId:inspectionId}})
+  editInspection(inspectionId, application) {
+    if (application.application_type == 1) {
+      this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: application.id, inspectionId: inspectionId } })
+    } else if (application.application_type == 2) {
+      this.router.navigate(['admin/permit/dwlDetails'], { queryParams: { id: application.id, inspectionId: inspectionId } })
 
     }
   }
-  
+ 
+ 
 }

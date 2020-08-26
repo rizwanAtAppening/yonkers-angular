@@ -270,13 +270,15 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.addInsuranseForm.reset();
       this.getLicenseDetails()
       this.licensePopUp.nativeElement.click()
+      this.image = null
+      this.isLicense = false
     })
 
   }
 
   public licenseDetails = []
   getLicenseDetails() {
-
+debugger
     this.permitService.getLicenseDetails().subscribe(data => {
       this.licenseDetails = data.response
       var currentDate
@@ -776,7 +778,8 @@ export class AddPermitTabSectionComponent implements OnInit {
   // }
   public isDisabled = false;
   contractorTab() {
-
+debugger
+//const application = this.permitService.getApplication()
     this.getApplication()
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
@@ -786,7 +789,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getDuplimester();
 
     }
-    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1)) {
+    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1) && !this.application.contractor_details) {
 
       if (this.application.role == 2) {
         this.isDisabled = true

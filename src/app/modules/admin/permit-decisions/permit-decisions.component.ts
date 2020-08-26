@@ -112,8 +112,18 @@ export class PermitDecisionsComponent implements OnInit {
     this.applicationService.addDecision(this.data).subscribe(data => {
       console.log(data);
       this.desicionForm.reset()
+      this.settings.conditions.map((data, i) => {
+          data.isChecked = false
+      })
+      this.special_conditions = []
       this.messageEvent.emit(this.message);
 
+    },error=>{
+      this.settings.conditions.map((data, i) => {
+        data.isChecked = false
+    })
+    this.special_conditions = []
+    this.desicionForm.reset()
     })
   }
 

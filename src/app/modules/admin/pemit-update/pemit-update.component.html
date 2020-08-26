@@ -320,42 +320,42 @@
                           </div>
                         </div>
                         <div class="col-4">
-                          <div class="no-ref-txt">
-                            <ul>
-                              <li>
-                                <h6 *ngIf="applicationDetails?.project_detail?.traffic_control">
-                                  {{settings.getSetting('traffic',applicationDetails?.project_detail?.traffic_control)}}
-                                </h6>
-                                <h6 *ngIf="!applicationDetails?.project_detail?.traffic_control">_</h6>
-                              </li>
-                              <li>
-                                <h6>
-                                  {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
-                                </h6>
-                              </li>
-                              <li>
-                                <h6>{{applicationDetails?.project_detail?.start_date | date}}</h6>
-                              </li>
-                              <li>
-                                <h6>
-                                  {{applicationDetails?.project_detail?.length ? applicationDetails?.project_detail?.length:'_'}}
-                                </h6>
-                              </li>
-                              <li>
-                                <h6 *ngIf="applicationDetails?.project_detail?.pavement_type">
-                                  {{settings.getSetting('preventType',applicationDetails?.project_detail?.pavement_type)}}
-                                </h6>
-                                <h6 *ngIf="!applicationDetails?.project_detail?.pavement_type">_</h6>
-
-                              </li>
-                              <li>
-                                <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
-                              </li>
-
-                            </ul>
-
+                            <div class="no-ref-txt">
+                              <ul>
+                                <li>
+                                  <h6 *ngIf="applicationDetails?.project_detail?.traffic_control">
+                              {{applicationDetails?.project_detail?.traffic_control ? settings.getSetting('traffic',applicationDetails?.project_detail?.traffic_control) :'_'}} 
+                                  </h6>
+                                  <h6 *ngIf="!applicationDetails?.project_detail?.traffic_control">_</h6>
+                                </li>
+                                <li>
+                                  <h6>
+                                    {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
+                                  </h6>
+                                </li>
+                                <li>
+                                  <h6>{{applicationDetails?.project_detail?.start_date ? (applicationDetails?.project_detail?.start_date | date):'_'}}</h6>
+                                </li>
+                                <li>
+                                  <h6>
+                                    {{applicationDetails?.project_detail?.length ? applicationDetails?.project_detail?.length:'_'}}
+                                  </h6>
+                                </li>
+                                <li>
+                                  <h6 *ngIf="applicationDetails?.project_detail?.pavement_type">
+                                    {{settings.getSetting('preventType',applicationDetails?.project_detail?.pavement_type)}} 
+                                  </h6>
+                                  <h6 *ngIf="!applicationDetails?.project_detail?.pavement_type">_</h6>
+  
+                                </li>
+                                <li>
+                                  <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
+                                </li>
+  
+                              </ul>
+  
+                            </div>
                           </div>
-                        </div>
                         <div class="col-2 p-0">
                           <div class="no-ref-txt">
                             <div (click)="fillProjectdes()" class="editTab-button" data-toggle="modal"
@@ -841,16 +841,16 @@
                         </div>
                     </div> -->
 
-          <app-permit-decisions (messageEvent)="receiveMessage($event)"
+          <app-permit-decisions (messageEvent)="receiveMessage($event)" 
             *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.manager)"
             [certificatesChild]="certificates"></app-permit-decisions>
           <app-inspections (messageEvent)="receiveMessage($event)"
             *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.inspector)"
             [certificatesChild]="certificates"></app-inspections>
           <app-contrator-details (messageEvent)="receiveMessage($event)"
-            *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.clerk)"
+            *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.clerk || currentUser?.role_id == settings?.inspector)"
             [certificatesChild]="certificates"></app-contrator-details>
-          <div class="card">
+          <div class="card" *ngIf="(currentUser?.role_id != settings?.inspector)">
             <div id="FeeThree">
               <h2 class="mb-0">
                 <button (click)="arrowRighDwon(isSubmition,'fee')" class="btn btn-link btn-block text-left collapsed"
@@ -992,7 +992,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" >
             <div id="contractors-seven">
               <h2 class="mb-0">
                 <button data-toggle="collapse" class="btn btn-link btn-block text-left collapsed" type="button"
@@ -1365,7 +1365,8 @@
     <div class="modal-dialog popup-dumpstar" role="document">
       <div class="modal-content text-addpopup">
         <div class="modal-header p-0 pb-2 ">
-          <h5>Update Contractor Details</h5>
+          <h5>Update 
+            Project Descriptions Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -1534,7 +1535,7 @@
           <p>Are you sure you want to Delete Application</p>
           <div class="delete-appBtn">
             <button class="cancle-req">Cancel</button>
-            <button class="confirme-req" (click)="deleteDocuments()">Confirme</button>
+            <button class="confirme-req" (click)="deleteDocuments()">Confirm</button>
           </div>
 
         </div>

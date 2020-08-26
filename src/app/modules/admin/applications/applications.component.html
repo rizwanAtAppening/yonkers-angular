@@ -55,7 +55,7 @@
                                         href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin"
                                         aria-selected="false">Inspection</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item" *ngIf= "((currentUser && currentUser?.role_id) != settings?.inspector)">
                                     <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'payment','')"
                                         href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
                                         aria-selected="false">Payment</a>

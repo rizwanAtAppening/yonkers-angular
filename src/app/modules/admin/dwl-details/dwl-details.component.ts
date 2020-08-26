@@ -9,6 +9,7 @@ import { Subject } from 'rxjs';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { error } from 'util';
 import { UsersService } from 'src/app/core/services';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dwl-details',
@@ -17,6 +18,16 @@ import { UsersService } from 'src/app/core/services';
 })
 export class DwlDetailsComponent implements OnInit {
   public applicationDetails: any;
+  public applicantForm: FormGroup;
+  public sendEmialForm: FormGroup;
+  public editDescriptionForm: FormGroup;
+  public projectDescriptionForm: FormGroup;
+  @ViewChild('applicantPopUp', { static: false }) applicantPopUp: ElementRef;
+  @ViewChild('mailPopUp', { static: false }) mailPopUp: ElementRef;
+  @ViewChild('deleteImagepop', { static: false }) deleteImagepop: ElementRef;
+  @ViewChild('contactorDetailsPopUp', { static: false }) contactorDetailsPopUp: ElementRef;
+  @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
+
   public applicationId: any;
   certificates: any = new Subject<any>();
   public currentUser = {
@@ -24,6 +35,8 @@ export class DwlDetailsComponent implements OnInit {
     department: null,
     email: null
   }
+  public allMails = []
+  public env: any
   public completIncompletForm: FormGroup;
   public inspectionForm: FormGroup;
   public settings: any
@@ -42,6 +55,7 @@ export class DwlDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.env = environment;
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
     })
@@ -51,18 +65,74 @@ export class DwlDetailsComponent implements OnInit {
   }
 
   onInIt() {
-    this.completeIncompletCon()
+    // this.completeIncompletCon()
     this.inspectionFormControl();
+    this.applicantControl();
+    this.mailControl();
+    this.projectDescriptionControl()
+    this.description()
   }
 
-  completeIncompletCon() {
-    this.completIncompletForm = this.FB.group({
-      decision: ['', Validators.required],
-      message: [''],
-      to: [''],
-      cc: [''],
+  description() {
+    this.editDescriptionForm = this.FB.group({
+      description: [''],
     })
   }
+
+  fillDescriptionForm() {
+    if (this.applicationDetails && this.applicationDetails.project_detail) {
+      this.editDescriptionForm.controls.description.setValue(this.applicationDetails.project_detail.description)
+    }
+  }
+
+  editDescription() {
+    this.applicationService.editDescription(this.editDescriptionForm.value, this.applicationId).subscribe(data => {
+      this.descriptionPopup.nativeElement.click();
+      this.permitDetails();
+      this.toasterService.success('Application description updated');
+    })
+  }
+
+  projectDescriptionControl() {
+    this.projectDescriptionForm = this.FB.group({
+      purpose: ['', Validators.required],
+      dig_safely_no: [''],
+      traffic_control: [''],
+      length: [''],
+      width: [''],
+      depth: [''],
+      opening_size: [''],
+      layout_number: [''],
+      gas_leak_number: [''],
+      opening_number: [''],
+      pavement_type: [''],
+      description: [''],
+      is_notifiable: [''],
+      start_date: ['', Validators.required],
+      end_date: ['', Validators.required],
+    })
+  }
+  get projectCon() { return this.projectDescriptionForm.controls }
+
+
+  // completeIncompletCon() {
+  //   this.completIncompletForm = this.FB.group({
+  //     decision: ['', Validators.required],
+  //     message: [''],
+  //     to: [''],
+  //     cc: [''],
+  //   })
+  // }
+  mailControl() {
+    this.sendEmialForm = this.FB.group({
+      cc: [''],
+      to: ['', Validators.required],
+      subject: ['', Validators.required],
+      description: ['', Validators.required],
+    })
+  }
+
+  get mailCon() { return this.sendEmialForm.controls }
 
   inspectionFormControl() {
     this.inspectionForm = this.FB.group({
@@ -74,14 +144,29 @@ export class DwlDetailsComponent implements OnInit {
     })
   }
 
+  applicantControl() {
+    this.applicantForm = this.FB.group({
+      applicant_name: ['', Validators.required],
+      applicant_role: ['', Validators.required],
+      applicant_phone: ['', Validators.required],
+      applicant_address: ['', Validators.required],
+    })
+  }
+  get applicant() { return this.applicantForm.controls };
+
+
   get inspection() { return this.inspectionForm.controls };
-  get clerkCon() { return this.completIncompletForm.controls }
+  // get clerkCon() { return this.completIncompletForm.controls }
 
   permitDetails() {
-
+    debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-      
+
       this.applicationDetails = data.response;
+      if (this.applicationDetails.applicant_details) {
+        this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
+
+      }
       if (this.applicationDetails.related_permits && this.applicationDetails.related_permits.length > 0) {
         this.applicationDetails.related_permits.map((data => {
           data.isReleted = false
@@ -123,24 +208,24 @@ export class DwlDetailsComponent implements OnInit {
     })
   }
 
-  public isAccept = false;
-  public isCompletApplication = false;
-  accepetOrDeclineApplication() {
-    if (this.completIncompletForm.invalid) {
-      this.isAccept = true
-      return false
-    }
+  // public isAccept = false;
+  // public isCompletApplication = false;
+  // accepetOrDeclineApplication() {
+  //   if (this.completIncompletForm.invalid) {
+  //     this.isAccept = true
+  //     return false
+  //   }
 
-    this.completIncompletForm.value.application_id = this.applicationId
-    this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
-      this.permitDetails();
-      this.completIncompletForm.reset();
-      this.isCompletApplication = false;
-      this.toasterService.success('Application has been accepted');
-    }, error => {
-      console.log(error)
-    })
-  }
+  //   this.completIncompletForm.value.application_id = this.applicationId
+  //   this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
+  //     this.permitDetails();
+  //     this.completIncompletForm.reset();
+  //     this.isCompletApplication = false;
+  //     this.toasterService.success('Application has been accepted');
+  //   }, error => {
+  //     console.log(error)
+  //   })
+  // }
 
   public isInspection = false;
 
@@ -239,17 +324,18 @@ export class DwlDetailsComponent implements OnInit {
     });
   }
 
-  changeDecision(value) {
-    if (value == 1) {
-      this.isCompletApplication = true
-    }
-    else if (value == 2) {
-      this.isCompletApplication = false
-    }
-  }
+  // changeDecision(value) {
+  //   if (value == 1) {
+  //     this.isCompletApplication = true
+  //   }
+  //   else if (value == 2) {
+  //     this.isCompletApplication = false
+  //   }
+  // }
+
 
   voidSubmition(id) {
-    
+
     const data = {
       application_id: this.applicationDetails.id,
       id: id,
@@ -259,11 +345,150 @@ export class DwlDetailsComponent implements OnInit {
       this.permitDetails();
     })
   }
-  public message:any
+  public message: any
   receiveMessage(event) {
     this.message = event
     this.isDwonArrow = true;
     this.isSubmition = false;
     this.ngOnInit();
   }
+
+  addApplicant() {
+    this.applicantForm.value.applicant_type = this.applicantForm.value.applicant_role
+    this.applicationService.applicantUpdate(this.applicantForm.value, this.applicationDetails.id).subscribe(data => {
+      this.applicantPopUp.nativeElement.click();
+      this.toasterService.success('Applicant  details have been updated')
+      this.permitDetails()
+    })
+  }
+
+  fillApplicant() {
+
+    this.applicantForm.controls.applicant_name.setValue(this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_name);
+    this.applicantForm.controls.applicant_role.setValue(this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_role)
+    this.applicantForm.controls.applicant_address.setValue(this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_address)
+    this.applicantForm.controls.applicant_phone.setValue(this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_phone)
+
+  }
+
+  mediaDocuments(event1) {
+    this.imageName = event1.target.files[0].name;
+    this.attachment = event1.target.files[0]
+    // this.formData = new FormData()
+    // this.formData.append('name', this.attachment)
+    var reader = new FileReader();
+    var reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.image = event.target.result;
+    };
+    reader.readAsDataURL(event1.target.files[0]);
+    if (this.imageType) {
+      this.uploadImage()
+    }
+
+  }
+  public imageType: string
+  selectImageType(type) {
+    var type = type
+    this.imageType = type
+    if (type == 0) {
+      this.imageType = type
+    } else {
+      this.imageType = type
+
+    }
+
+  }
+
+  uploadImage() {
+
+    var formData = new FormData();
+    formData.append('application_id', this.applicationDetails.id);
+    formData.append('name', this.attachment);
+    formData.append('type', this.imageType);
+    this.permitService.uploadImageByAdmin(formData).subscribe(data => {
+      this.image = null;
+      this.permitDetails();
+      this.toasterService.success('Image upload successfuly');
+    })
+  }
+
+
+
+
+  deleteImage() {
+    this.imageName = null;
+    this.attachment = null;
+  }
+  imageEmpty() {
+    this.imageName = null;
+    this.attachment = null;
+    this.image = null
+  }
+
+  public documentId: any
+  public document: any;
+  docId(file) {
+    this.documentId = file.id;
+    this.document = file.name
+  }
+
+  public isSendEmail = false
+  sendEmail() {
+
+    // this.sendEmialForm.controls.to.setErrors(null)
+    this.sendEmialForm.controls.cc.setErrors(null)
+
+    if (this.sendEmialForm.invalid) {
+      this.isSendEmail = true
+      return false
+    }
+
+    const data = {
+      application_id: this.applicationDetails.id,
+      subject: this.sendEmialForm.value.subject,
+      to: this.sendEmialForm.value.to,
+      cc: this.sendEmialForm.value.cc,
+      doc_id: this.documentId,
+      discription: this.sendEmialForm.value.description
+
+    }
+
+    this.sendEmialForm.value.applicantId = this.applicationDetails.id
+    this.permitService.sendMail(data).subscribe(data => {
+      this.sendEmialForm.reset()
+      this.mailPopUp.nativeElement.click();
+      this.isSendEmail = false;
+      this.toasterService.success('Mail have beed send')
+    })
+  }
+
+
+  deleteDocuments() {
+    const data = {
+      document_id: this.documentId,
+      application_id: this.applicationDetails.id,
+    }
+    this.permitService.deleteDocuments(data).subscribe(data => {
+      this.toasterService.success('Delete Successful')
+      this.deleteImagepop.nativeElement.click();
+      // this.getReletedPermit();
+      this.permitDetails()
+    })
+  }
+
+  public isDescription = false;
+  saveProjectDescription() {
+
+    if (this.projectDescriptionForm.invalid) {
+      this.isDescription = true
+      return false
+    }
+    this.projectDescriptionForm.value.is_notifiable = 1
+    this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
+      this.toasterService.success('Information Updated')
+      this.contactorDetailsPopUp.nativeElement.click();
+    })
+  }
+
 }

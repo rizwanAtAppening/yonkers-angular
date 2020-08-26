@@ -102,7 +102,9 @@
 
                                                     </td>
                                                     <td> {{ settings.getSetting('type',application['type'])}}</td>
+
                                                     <td class="submited-Btn"><button>Submitted</button></td>
+                                                    
                                                     <td class="submited-Btn"
                                                         *ngIf="application?.status == null && application?.application_type ==1">
                                                         <button>Draft</button></td>

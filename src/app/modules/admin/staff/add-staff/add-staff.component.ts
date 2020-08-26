@@ -98,7 +98,7 @@ export class AddStaffComponent implements OnInit {
     // this.addStaffForm.value.role_id = 4;
 
     const data = {
-      role_id: 4,
+      role_id: 5,
       departments: this.departments,
       status: this.status,
       password: 123456,

@@ -32,9 +32,11 @@ export class ContratorDetailsComponent implements OnInit {
 
   }
 
+  public contractorState:number
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
+      this.contractorState = Number  (this.applicationDetails.contractor_details.contractor_state);
       if (this.applicationDetails) {
         this.compareDate();
         this.emailFormGroup.controls.to.setValue(null);
@@ -43,7 +45,7 @@ export class ContratorDetailsComponent implements OnInit {
       }
     });
     this.onInIt();
-
+ 
   }
 
 
@@ -67,7 +69,7 @@ export class ContratorDetailsComponent implements OnInit {
   contractorFormControl() {
     this.contractorForm = this.fb.group({
       contractor_name: ['', Validators.required],
-      contractor_lastname: ['', Validators.required],
+      contractor_lastname: [''],
 
       contractor_email: ['', [Validators.required, Validators.pattern(this.EMAIL_REGEX)]],
       contractor_business: ['', Validators.required],
@@ -91,6 +93,7 @@ export class ContratorDetailsComponent implements OnInit {
     this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.contractor_details.contractor_city)
     this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_state)
     this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.contractor_details.contractor_zip)
+
   }
 
 
@@ -204,6 +207,8 @@ export class ContratorDetailsComponent implements OnInit {
         this.licensePopUp.nativeElement.click();
         this.messageEvent.emit('hello')
         this.licenseId = null
+        this.image = null
+        this.isLicense = false
       })
     } else {
       this.applicationService.updateLicenseDetails(formData, this.licenseId).subscribe(data => {
@@ -212,6 +217,9 @@ export class ContratorDetailsComponent implements OnInit {
         this.licensePopUp.nativeElement.click();
         this.messageEvent.emit('hello')
         this.licenseId = null
+        this.image = null
+        this.isLicense = false
+
       })
     }
 

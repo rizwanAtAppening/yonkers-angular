@@ -66,125 +66,635 @@
                     <div class="submision-review-box">
                         <div class="accordion" id="accordionExample">
         
-                            <div class="card"
-                                *ngIf="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
-                                <div id="headingOne-review">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" (click)="arrowRighDwon(isDwonArrow,'sub')"  type="button" data-toggle="collapse"
-                                        data-target="#Submissionone" aria-expanded="true"
-                                        aria-controls="Submissionone">
-                                            Submission Review
-                                            <span ><i
-                                                    [class]="isDwonArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
-                                                    aria-hidden="true"></i></span>
-                                        </button>
-                                    </h2>
-                                </div>
-        
-                                <div id="Submissionone" class="collapse show" aria-labelledby="headingOne-review"
-                                    data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="app-status-txt">
-                                            <form [formGroup]="completIncompletForm" *ngIf = "(applicationDetails?.decision == null || applicationDetails?.decision == 0)">
-                                                <div class="row">
-                                                    <div class="col-3">
-                                                        <div class="select-input-box">
-                                                            <div class="form-group">
-                                                                <label>Application Status</label>
-                                                                <select formControlName="decision"
-                                                                    [class]="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept) ? 'form-control form-group-error' : 'form-control'"
-                                                                    (change)="changeDecision($event.target.value)">
-                                                                    <option value="" hidden>--Select--</option>
-                                                                    <option
-                                                                        *ngFor="let submission of settings?.submission_Application_status"
-                                                                        value="{{submission?.key}}">{{submission?.value}}
-                                                                    </option>
-        
-                                                                </select>
-                                                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                                <!-- <div class="form-error"
-                                                                *ngIf="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept)">
-                                                                <span *ngIf="clerkCon.decision.errors['required']">
-                                                                  Please select a decision
-                                                                </span>
-                                                               
-                                                              </div> -->
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-        
-        
-                                                <div class="comment-box-submision" *ngIf="isCompletApplication">
-                                                    <div class="form-group">
-                                                        <label>Commets</label>
-                                                        <textarea formControlName="message"
-                                                            placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
-                                                    </div>
-                                                </div>
-        
-        
-                                                <div class="user-input-colomn" *ngIf="isCompletApplication">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="email-userinput">
-                                                                <div class="form-group">
-                                                                    <label>To</label>
-                                                                    <input formControlName="to" placeholder="user6@gmail.com">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="email-userinput">
-                                                                <div class="form-group">
-                                                                    <label>CC</label>
-                                                                    <input formControlName="cc" type="text">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="submision-btn">
-                                                    <button type="submit"
-                                                        (click)="accepetOrDeclineApplication()">Submit</button>
-                                                </div>
-        
-                                            </form>
-        
-                                            <div class="plan-examiner-box submissionvoid" *ngIf = "applicationDetails?.submission_review?.length > 0">
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Application Status</th>
-                                                            <th>Description</th>
-                                                            <th>Action</th>
-        
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr *ngFor="let submition of  applicationDetails?.submission_review">
-        
-                                                            <td>{{settings.getSetting('submission_Application_status',submition?.decision)}}
-                                                                <span class="voidMsg" *ngIf ="submition?.status == 1">(V)</span>
-                                                            </td>
-                                                            <td>{{submition?.message ? submition?.message:'__' }}</td>
-                                                            <td>
-                                                                <div class="dropdown_act">
-                                                                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
-                                                                    <div class="dropdown-content-void" *ngIf ="submition?.status != 1">
-                                                                        <a  (click)="voidSubmition(submition?.id)">Void </a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-        
+                            <div class="adminjob-details-box">
+                                <div class="tabs-admin-update">
+                                  <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                      <a class="nav-item  active" id="nav-adminapdate-one-tab" data-toggle="tab" href="#nav-adminapdate-one"
+                                        role="tab" aria-controls="nav-adminapdate-one" aria-selected="true">Job Details</a>
+                                      <a class="nav-item " id="nav-adminapdate-two-tab" data-toggle="tab" href="#nav-adminapdate-two" role="tab"
+                                        aria-controls="nav-adminapdate-two" aria-selected="false">Project Descriptions</a>
+                                      <a class="nav-item " id="nav-adminapdate-three-tab" data-toggle="tab" href="#nav-adminapdate-three"
+                                        role="tab" aria-controls="nav-adminapdate-three" aria-selected="false">Document</a>
+                                      <a class="nav-item " id="nav-adminapdate-four-tab" data-toggle="tab" href="#nav-adminapdate-four"
+                                        role="tab" aria-controls="nav-adminapdate-four" aria-selected="false">Property Profile</a>
+                                      <a class="nav-item " id="nav-adminapdate-five-tab" data-toggle="tab" href="#nav-adminapdate-five"
+                                        role="tab" aria-controls="nav-adminapdate-five" aria-selected="false">Applicant</a>
                                     </div>
+                                  </nav>
+                                  <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-adminapdate-one" role="tabpanel"
+                                      aria-labelledby="nav-adminapdate-one-tab">
+                        
+                        
+                                      <div class="jobdetails-txt">
+                                        <div class="col-12 p-0">
+                                          <div class="row">
+                                            <div class="col-md-8">
+                                              <div class="row">
+                                                <div class="col-3">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Reference No:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Applicant</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Estimated Cost</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Location</h5>
+                                                      </li>
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-9">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>{{applicationDetails?.reference_no}} </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'  }} {{applicationDetails?.applicant_details?.applican_last_name}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>$00.00</h6>
+                                                      </li>
+                                                      <li
+                                                        *ngIf="applicationDetails && applicationDetails?.address_details && applicationDetails?.address_details.szFullAddress && applicationDetails?.location_type == 1">
+                                                        {{applicationDetails?.address_details.szFullAddress}}
+                                                      </li>
+                                                      <li *ngIf="applicationDetails && applicationDetails?.location?.length == 1 && applicationDetails?.location_type == 2">
+                                                        <h6>
+                                                          {{applicationDetails?.location[0]?.street_one }}<span>{{applicationDetails?.location[0]?.address_join == 1 ?'To':'End'}}</span>
+                                                          {{applicationDetails?.location[0].street_two }}
+                        
+                                                          <!-- <small>Show More</small> -->
+                                                        </h6>
+                                                      </li>
+                        
+                                                      <li
+                                                        *ngIf="applicationDetails && applicationDetails?.location?.length > 1 && !isShowMoreAndLess  && applicationDetails?.location_type == 2">
+                                                        <h6>
+                                                          {{applicationDetails?.location[0]?.street_one }}<span>{{applicationDetails?.location[0]?.address_join == 1 ?'To':'End'}}</span>
+                                                          {{applicationDetails?.location[0].street_two }}
+                        
+                        
+                                                        </h6>
+                                                        <small class="pointer" (click)="showMoreAndShowLess(true)">Show
+                                                          More</small>
+                                                      </li>
+                        
+                                                      <li *ngIf="applicationDetails?.location?.length > 1 && isShowMoreAndLess">
+                        
+                                                        <h6 *ngFor="let loc of applicationDetails?.location">
+                                                          {{loc?.street_one}}<span>{{loc?.address_join == 1 ?'To':'End'}}</span>{{loc?.street_two}}
+                        
+                        
+                                                        </h6>
+                                                        <small class="pointer" (click)="showMoreAndShowLess(false)">Show
+                                                          Less</small>
+                                                      </li>
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                        
+                                              </div>
+                        
+                                            </div>
+                                            <div class="col-md-4 pl-0">
+                                              <div class="row">
+                                                <div class="col-5">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Type</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Phone</h5>
+                                                      </li>
+                                                      <!-- <li>
+                                                        <h5>Applicant No</h5>
+                                                      </li> -->
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-7">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                          <h6> {{applicationDetails?.type ? settings.getSetting('type',applicationDetails?.type) :'_'}}</h6>
+                                                      
+                                                      </li>
+                                                      <li>
+                                                          <h6>{{applicationDetails?.applicant_details?.applicant_phone  ? applicationDetails?.applicant_details?.applicant_phone  :'_'}}</h6>
+                                                        
+                                                      </li>
+                                                      <!-- <li>
+                                                        <h6>$00.00</h6>
+                                                      </li> -->
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                        
+                                        <div class="col-12 p-0">
+                                          <div class="description_edit-txt">
+                                            <h3>Description
+                                              <span (click)="fillDescriptionForm()" data-toggle="modal" data-target="#editprojectmodal"><img
+                                                  src="assets/images/edit-pen.svg" alt=""></span>
+                                            </h3>
+                                            <p>{{applicationDetails?.project_detail?.description}}</p>
+                                          </div>
+                                        </div>
+                        
+                                      </div>
+                        
+                        
+                        
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-adminapdate-two" role="tabpanel"
+                                      aria-labelledby="nav-adminapdate-two-tab">
+                                      <div class="jobdetails-txt">
+                                        <div class="col-12 p-0">
+                                          <div class="row">
+                                            <div class="col-md-7">
+                                              <div class="row">
+                                                <div class="col-7">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Purpose</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Width</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Gas Leak Number</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Dig Safely No</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Area of Opening</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Layout Number</h5>
+                                                      </li>
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-5">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>{{settings.getSetting('purpose',applicationDetails?.project_detail?.purpose)}} </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.width?applicationDetails?.project_detail?.width:'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>9178617701</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.dig_safely_no ? applicationDetails?.project_detail?.dig_safely_no:'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.layout_number ? applicationDetails?.project_detail?.layout_number:'_'}}
+                                                        </h6>
+                                                      </li>
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                              </div>
+                        
+                                            </div>
+                                            <div class="col-md-5">
+                                              <div class="row">
+                                                <div class="col-6">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Will this work impact traffic?</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Number of Openings</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Start Date</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Length</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Pavement Type</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>End Date</h5>
+                                                      </li>
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-4">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6 *ngIf="applicationDetails?.project_detail?.traffic_control">
+                                                    {{applicationDetails?.project_detail?.traffic_control ? settings.getSetting('traffic',applicationDetails?.project_detail?.traffic_control) :'_'}} 
+                                                        </h6>
+                                                        <h6 *ngIf="!applicationDetails?.project_detail?.traffic_control">_</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>{{applicationDetails?.project_detail?.start_date ? (applicationDetails?.project_detail?.start_date | date):'_'}}</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.project_detail?.length ? applicationDetails?.project_detail?.length:'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6 *ngIf="applicationDetails?.project_detail?.pavement_type">
+                                                          {{settings.getSetting('preventType',applicationDetails?.project_detail?.pavement_type)}} 
+                                                        </h6>
+                                                        <h6 *ngIf="!applicationDetails?.project_detail?.pavement_type">_</h6>
+                        
+                                                      </li>
+                                                      <li>
+                                                        <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
+                                                      </li>
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-2 p-0">
+                                                  <div class="no-ref-txt">
+                                                    <div (click)="fillProjectdes()" class="editTab-button" data-toggle="modal"
+                                                      data-target="#popup-project">
+                                                      <button><img src="assets/images/edit-p.svg" alt=""> Edit</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                        
+                                              </div>
+                        
+                                            </div>
+                                          </div>
+                                        </div>
+                        
+                        
+                        
+                                      </div>
+                                    </div>
+                                    <div class="tab-pane fade dropfixis" id="nav-adminapdate-three" role="tabpanel"
+                                      aria-labelledby="nav-adminapdate-three-tab ">
+                        
+                                      <div class="documentFileType">
+                                        <div class="plan-examiner-box">
+                                          <table class="table">
+                                            <thead>
+                                              <tr>
+                                                <th>File Type</th>
+                                                <th>Names</th>
+                                                <th>Action</th>
+                        
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor="let file of applicationDetails?.upload_detail">
+                                                <td>
+                                                  {{settings.getSetting('imageType',file?.type)}}
+                                                </td>
+                                                <td>
+                                                  {{file?.name}}
+                                                </td>
+                                                <td>
+                                                  <div class="dropdown_act">
+                                                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                    <div class="dropdown-content-void">
+                                                      <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                                                      View</a> -->
+                                                      <a data-toggle="modal" (click)="docId(file)" data-target="#Email-ForApplication"> <span>
+                                                          <img src="assets/images/d2.svg"> </span> Email</a>
+                                                      <a href="#" data-toggle="modal" (click)="docId(file)"
+                                                        data-target="#delete-applicationdecription"> <span> <img src="assets/images/d3.svg">
+                                                        </span> Delete</a>
+                        
+                                                      <a href="{{ env?.host + env?.imageBasePath + file?.name }}" target="_blank"> <span> <img
+                                                            src="assets/images/d3.svg"> </span> View</a>
+                                                    </div>
+                                                  </div>
+                                                </td>
+                        
+                        
+                                              </tr>
+                                              <!-- <++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++> -->
+                                              <tr>
+                                                <td>
+                                                  <div class="select-input-box">
+                                                    <div class="form-group">
+                                                      <select (change)="selectImageType($event.target.value)">
+                                                        <option value="" hidden>--Select--</option>
+                                                        <option value="{{type?.key}}" *ngFor="let type of settings?.imageType">{{type?.value}}
+                                                        </option>
+                                                      </select>
+                                                      <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </div>
+                                                  </div>
+                                                </td>
+                                                <!-- <td>Example.jpg</td> -->
+                                                <td>
+                                                  <div class="choseFile">
+                                                    <button class="uploadFileBtn"> <img src="assets/images/upload1.png" alt=""> Upload
+                                                      file</button>
+                                                    <input type="file" (change)="mediaDocuments($event)">
+                                                  </div>
+                                                </td>
+                        
+                        
+                                                <td>
+                                                  <div class="dropdown_act">
+                                                    <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                                                    <div class="dropdown-content-void">
+                                                      <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                                                      View</a> -->
+                                                      <!-- <a  data-toggle="modal"
+                                                                                      data-target="#Email-ForApplication"> <span> <img
+                                                                                              src="assets/images/d2.svg"> </span> Email</a> -->
+                                                      <!-- <a href="#" data-toggle="modal"
+                                                                                      data-target="#delete-applicationdecription"> <span> <img
+                                                                                              src="assets/images/d3.svg"> </span> Delete</a> -->
+                                                    </div>
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                        
+                                    </div>
+                                    <div class="tab-pane fade " id="nav-adminapdate-four" role="tabpanel"
+                                      aria-labelledby="nav-adminapdate-four-tab">
+                        
+                                      <div class="jobdetails-txt">
+                                        <div class="col-12 p-0">
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <div class="row">
+                                                <div class="col-4">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Parcel Number:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Block:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Lot:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Owner:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Owner Street:</h5>
+                                                      </li>
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-8">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>2.-2041-35 </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>2041</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>035</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>Hyung Man Kim</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>158 Ashburton Ave</h6>
+                                                      </li>
+                        
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                              </div>
+                        
+                                            </div>
+                                            <div class="col-md-6">
+                                              <div class="row">
+                                                <div class="col-5">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Owner City/State:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Roll Year:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Land Value:</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Total Value:</h5>
+                                                      </li>
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-7">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>Street Opening </h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>9178617701</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>39594</h6>
+                                                      </li>
+                                                      <li>
+                                                        <h6>39594</h6>
+                                                      </li>
+                        
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                              </div>
+                        
+                                            </div>
+                                          </div>
+                        
+                                          <div class="row">
+                                            <div class="col-12">
+                                              <div class="map-booking-img">
+                                                <agm-map [latitude]="lat" [longitude]="long">
+                                                  <agm-marker [latitude]="lat" [longitude]="long">
+                                                  </agm-marker>
+                                                </agm-map>
+                                                <!-- <agm-map [latitude]="lat" [longitude]="lng"></agm-map> -->
+                        
+                                              </div>
+                                            </div>
+                                          </div>
+                        
+                                        </div>
+                                      </div>
+                        
+                        
+                                    </div>
+                        
+                                    <div class="tab-pane fade" id="nav-adminapdate-five" role="tabpanel"
+                                      aria-labelledby="nav-adminapdate-five-tab">
+                                      <div class="jobdetails-txt">
+                                        <div class="col-12 p-0">
+                                          <div class="row">
+                                            <div class="col-md-6">
+                                              <div class="row">
+                                                <div class="col-4">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Applicant Name</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Applicant Type</h5>
+                                                      </li>
+                                                      <li>
+                                                        <h5>Phone No.</h5>
+                                                      </li>
+                        
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-8">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'}}
+                                                        </h6>
+                                                      </li>
+                                                      <li>
+                                                        <!-- {{applicationDetails?.applicant_details?.applicant_role}} -->
+                                                        <h6>
+                                                          {{settings.getSetting('role',applicationDetails?.applicant_details?.applicant_role)}}
+                                                        </h6>
+                                                        <h6 *ngIf="applicationDetails?.type == 1">Property Owner</h6>
+                                                        <h6 *ngIf="applicationDetails?.type == 2">Contrator</h6>
+                        
+                                                        <h6 *ngIf="applicationDetails?.type == 3">Agent</h6>
+                                                        <!-- <h6 *ngIf="applicationDetails?.type == null">_</h6> -->
+                        
+                        
+                                                      </li>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.applicant_details?.applicant_phone ? applicationDetails?.applicant_details?.applicant_phone :'_'}}
+                                                        </h6>
+                                                      </li>
+                        
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                              </div>
+                        
+                                            </div>
+                                            <div class="col-md-6">
+                                              <div class="row">
+                                                <div class="col-4">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h5>Address</h5>
+                                                      </li>
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-6">
+                                                  <div class="no-ref-txt">
+                                                    <ul>
+                                                      <li>
+                                                        <h6>
+                                                          {{applicationDetails?.applicant_details?.applicant_address  ? applicationDetails?.applicant_details?.applicant_address :'_'}}
+                                                        </h6>
+                                                      </li>
+                        
+                                                    </ul>
+                        
+                                                  </div>
+                                                </div>
+                                                <div class="col-2 p-0">
+                                                  <div class="no-ref-txt">
+                                                    <div (click)="fillApplicant()" class="editTab-button" data-toggle="modal"
+                                                      data-target="#popup-applicant">
+                                                      <button><img src="assets/images/edit-p.svg" alt=""> Edit</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                        
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
-                            </div>
+                        
+                              </div>
         
         
                            
@@ -208,7 +718,413 @@
            
         
              <!-- Modal -->
-        
+             <div class="modal fade" id="popup-applicant" #applicantPopUp>
+                <div class="modal-dialog popup-dumpstar" role="document">
+                  <div class="modal-content text-addpopup">
+                    <div class="modal-header p-0 pb-2 ">
+                      <h5>Applicant</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="container p-0 admin-contractor-details">
+                      <div class="col-12 p-0">
+                        <form [formGroup]="applicantForm">
+                          <div class="bdp_email up-add">
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <input type="text" id="app4" class="form-control" formControlName="applicant_name" required="">
+                                  <label class="form-control-placeholder" for="app4">Applicant Name</label>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group">
+                                  <!-- <input type="text" id="app3" formControlName="applicant_role" class="form-control" required=""> -->
+                                  <select formControlName="applicant_role" class="form-control">
+                                    <option value="{{role?.key}}" *ngFor="let role of settings?.role">{{role?.value}}</option>
+                                  </select>
+                                  <label class="form-control-placeholder" for="app3">Applicant Role</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="popup-busnise">
+                              <div class="row">
+                                <div class="col-6">
+                                  <div class="form-group">
+                                    <input type="number" maxlength="10" id="app2" class="form-control"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" formControlName="applicant_phone" required="">
+                                    <label class="form-control-placeholder" for="app2">Phone No.</label>
+                                  </div>
+                                </div>
+            
+                              </div>
+                            </div>
+            
+                            <div class="popup-busnise">
+                              <div class="row">
+                                <div class="col-12">
+                                  <div class="form-group">
+                                    <input type="text" id="app1" class="form-control" formControlName="applicant_address"
+                                      required="">
+                                    <label class="form-control-placeholder" for="app1">Address</label>
+                                  </div>
+                                </div>
+            
+                              </div>
+                            </div>
+            
+            
+                            <div class="btn-pre pop-Btn">
+                              <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
+                              <button class="continue mr-0" type="submit" (click)="addApplicant()">Save</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="modal fade" id="Email-ForApplication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    #mailPopUp aria-hidden="true">
+    <div class="modal-dialog popup-dumpstar" role="document">
+      <div class="modal-content text-addpopup">
+        <div class="modal-header p-0 pb-2 ">
+          <h5>Email For - Application</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form [formGroup]="sendEmialForm">
+          <div class="container p-0 admin-contractor-details">
+            <div class="col-12 p-0">
+              <div class="bdp_email up-add">
+                <div class="row">
+                  <div class="col-6">
+                   
+
+                    <div class="row emailfor-select">
+                      <div class="col-12 ">
+                        <div class=" admin-add-insurance" style="margin-top: 0px !important;">
+
+                          <div class="form-group">
+
+                            <select formControlName="to"
+                              [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'">
+                              <option value="" hidden>--Select--</option>
+                              <option *ngFor="let mail of allMails">{{mail}}</option>
+                            </select>
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input type="text" id="emaila1" class="form-control" formControlName="to"
+                        [class]="mailCon.to.invalid && (mailCon.to.dirty || mailCon.to.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"
+                        required="">
+                      <label class="form-control-placeholder" for="emaila1">To</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="row emailfor-select">
+                        <div class="col-12 ">
+                          <div class=" admin-add-insurance" style="margin-top: 0px !important;">
+
+                            <div class="form-group">
+
+                              <select formControlName="cc">
+                                <option value="" hidden>--Select--</option>
+                                <option *ngFor="let mail of allMails ">{{mail}}</option>
+                              </select>
+                              <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                    
+                      <div class="form-group">
+                        <input type="text" id="aucd3" formControlName="cc" class="form-control" required="">
+                        <label class="form-control-placeholder" for="aucd3">CC</label>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                        <input type="text" id="aucd5" class="form-control" formControlName="subject"
+                          [class]="mailCon.subject.invalid && (mailCon.subject.dirty || mailCon.subject.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"
+                          required="">
+                        <label class="form-control-placeholder" for="aucd5">Subject</label>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-12 emailfor-textarea ">
+                      <div class="form-group">
+                        <label>Detailed Description</label>
+                        <textarea placeholder="Type something here..." formControlName="description"
+                          [class]="mailCon.description.invalid && (mailCon.description.dirty || mailCon.description.touched || isSendEmail) ? 'form-control form-group-error' : 'form-control'"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-12">
+                      <h6 class="atechpdf">Attechment :- <span>{{document ? document :'_'}}</span></h6>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="btn-pre pop-Btn">
+                  <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
+                  <button class="continue mr-0" type="submit" (click)="sendEmail()">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="delete-applicationdecription" tabindex="-1" role="dialog" #deleteImagepop
+  aria-labelledby="staticBackdropLabel">
+  <div class="modal-dialog modal-dialog-centered delet-appliction-width">
+    <div class="modal-content">
+
+      <div class="modal-body border-0">
+        <div class="deleteHd-app">
+          <h6>Delete Application</h6>
+          <p>Are you sure you want to Delete Application</p>
+          <div class="delete-appBtn">
+            <button class="cancle-req">Cancel</button>
+            <button class="confirme-req" (click)="deleteDocuments()">Confirm</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="popup-project" #contactorDetailsPopUp>
+    <div class="modal-dialog popup-dumpstar" role="document">
+      <div class="modal-content text-addpopup">
+        <div class="modal-header p-0 pb-2 ">
+          <h5>Update 
+            Project Descriptions Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="container p-0 admin-contractor-details">
+          <form [formGroup]="projectDescriptionForm">
+            <div class="col-12 p-0 detailsPopup">
+              <div class="bdp_email up-add">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group position-relative">
+                      <!-- <input type="text" id="pp1" formControlName="purpose" class="form-control" required=""> -->
+                      <label class="pur-lable">Purpose</label>
+                      <select class="form-control" formControlName="purpose">
+                        <option value="" hidden>--Select--</option>
+                        <option value="{{purpose?.key}}" *ngFor="let purpose of settings?.purpose"> {{purpose?.value}}
+                        </option>
+                      </select>
+                      <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                      <!-- <label class="form-control-placeholder"  for="pp1">Purpose</label> -->
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input type="text" id="pp2" formControlName="dig_safely_no" class="form-control" required="">
+                      <label class="form-control-placeholder" for="pp2">Dig Safely No</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label class="pur-lable">Will this work impact traffic?</label>
+                        <select formControlName="traffic_control" class="form-control">
+                          <option value="" hidden>--Select--</option>
+                          <option value="{{purpose?.key}}" *ngFor="let purpose of settings?.traffic"> {{purpose?.value}}
+                          </option>
+                        </select>
+                        <!-- <label class="form-control-placeholder" for="pp3">Will this work impact traffic?</label> -->
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp4" formControlName="layout_number" class="form-control" required="">
+                        <label class="form-control-placeholder" for="pp4">Layout Number</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp5" class="form-control" formControlName="width" required="">
+                        <label class="form-control-placeholder" for="pp5">Width</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp6" class="form-control" formControlName="length" required="">
+                        <label class="form-control-placeholder" for="pp6">Length</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp7" class="form-control" formControlName="opening_size" required="">
+                        <label class="form-control-placeholder" for="pp7">Area of Opening</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp8" class="form-control" formControlName="opening_number" required="">
+                        <label class="form-control-placeholder" for="pp8">Number of Openings</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <!-- <input type="text" id="pp9" class="form-control"  required=""> -->
+                        <label class="pur-lable">Pavement Type</label>
+                        <select class="form-control" formControlName="pavement_type">
+                          <option value="" hidden>--Select--</option>
+                          <option value="{{purpose?.key}}" *ngFor="let purpose of settings?.preventType">
+                            {{purpose?.value}}</option>
+                        </select>
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <!-- <label class="form-control-placeholder" for="pp9">Pavement Type</label> -->
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp9" class="form-control" formControlName="gas_leak_number" required="">
+                        <label class="form-control-placeholder" for="pp9">Gas Leak Number</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="popup-busnise">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp10" class="form-control" #desStart="bsDatepicker" bsDatepicker
+                          formControlName="start_date"
+                          [class]="projectCon.start_date.invalid && (projectCon.start_date.dirty || projectCon.start_date.touched || isDescription) ? 'form-control form-group-error' : 'form-control'"
+                          required="">
+                        <label
+                          [class]="projectCon.start_date.invalid && (projectCon.start_date.dirty || projectCon.start_date.touched || isDescription) ? 'form-control-placeholder msg':'form-control-placeholder'"
+                          for="pp10">Start Date</label>
+                        <span><i class="fa fa-calendar" (click)="desStart.toggle()" aria-hidden="true"></i></span>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <input type="text" id="pp11" class="form-control" #desEnd="bsDatepicker" bsDatepicker
+                          formControlName="end_date"
+                          [class]="projectCon.end_date.invalid && (projectCon.end_date.dirty || projectCon.end_date.touched || isDescription) ? 'form-control form-group-error' : 'form-control'"
+                          required="">
+                        <label
+                          [class]="projectCon.end_date.invalid && (projectCon.end_date.dirty || projectCon.end_date.touched || isDescription) ? 'form-control-placeholder msg':'form-control-placeholder'"
+                          class="form-control-placeholder" for="pp11">End Date</label>
+                        <span><i class="fa fa-calendar" (click)="desEnd.toggle()" aria-hidden="true"></i></span>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="btn-pre pop-Btn">
+                  <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
+                  <button class="continue mr-0" type="submit" (click)="saveProjectDescription()">Save</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editprojectmodal" #descriptionPopup>
+    <div class="modal-dialog modal-dialog-centered detailed-edit">
+      <div class="modal-content border-0">
+        <div class="modal-header">
+          <h5 class="modal-title txtepd">Edit Project Description Details</h5>
+          <button type="button" id="close-icon-modal" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="detail-txtarea">
+          <form [formGroup]="editDescriptionForm">
+            <div class="form-group">
+              <label>Detailed Description</label>
+              <textarea formControlName="description" placeholder="Type something here..."></textarea>
+            </div>
+          </form>
+
+          <div class="modal-btn-decripatn">
+            <button class="cancle_button" data-dismiss="modal" aria-label="Close">Cancel</button>
+            <button class="save_button" type="submit" (click)="editDescription()">Save</button>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
         </section>
         
         <!-- </router-outlet>
