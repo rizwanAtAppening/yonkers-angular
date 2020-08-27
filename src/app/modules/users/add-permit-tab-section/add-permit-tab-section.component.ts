@@ -666,6 +666,7 @@ debugger
     })
   }
 
+  
   windowScroll() {
     window.scroll(0, 0)
   }
@@ -789,7 +790,11 @@ debugger
       this.getDuplimester();
 
     }
-    if (this.currentUserInfo && (this.application.role == 2 || this.application.role == 1) && !this.application.contractor_details) {
+    if(this.currentUserInfo && (this.application.role == 1) && !this.application.contractor_details){
+      this.contractorForm.controls.contractor_for_job.setValue(1)
+
+    }
+    if (this.currentUserInfo && (this.application.role == 2) && !this.application.contractor_details) {
 
       if (this.application.role == 2) {
         this.isDisabled = true
@@ -798,8 +803,9 @@ debugger
       }
 
       this.getLicenseDetails();
+      debugger
       this.contractorForm.controls.contractor_for_job.setValue(1)
-      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name)
+      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.first_name,this.currentUserInfo.last_name)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
       this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
       this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
@@ -824,6 +830,31 @@ debugger
     }
 
 
+  }
+
+  fillDetails(){
+    debugger
+    //this.contractorForm.controls.contractor_for_job.setValue(1)
+    if(this.contractorForm.value.contractor_for_job == 2){
+      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name,this.currentUserInfo.last_name)
+      this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
+      this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
+      this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
+      this.contractorForm.controls.contractor_phone.setValue(this.currentUserInfo.phone_number)
+      this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.city)
+      this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.state)
+      this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip) 
+    }else{
+      this.contractorForm.controls.contractor_name.setValue(null)
+      this.contractorForm.controls.contractor_email.setValue(null)
+      this.contractorForm.controls.contractor_business.setValue(null)
+      this.contractorForm.controls.contractor_address.setValue(null)
+      this.contractorForm.controls.contractor_phone.setValue(null)
+      this.contractorForm.controls.contractor_city.setValue(null)
+      this.contractorForm.controls.contractor_state.setValue(null)
+      this.contractorForm.controls.contractor_zip.setValue(null) 
+    }
+     
   }
 
 

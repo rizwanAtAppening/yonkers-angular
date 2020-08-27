@@ -481,7 +481,19 @@ export class DwlDetailsComponent implements OnInit {
 
   public isDescription = false;
   saveProjectDescription() {
-
+    this.projectDescriptionForm.controls.dig_safely_no.setErrors(null);
+    this.projectDescriptionForm.controls.traffic_control.setErrors(null);
+    this.projectDescriptionForm.controls.length.setErrors(null);
+    this.projectDescriptionForm.controls.width.setErrors(null);
+    this.projectDescriptionForm.controls.depth.setErrors(null);
+    this.projectDescriptionForm.controls.opening_size.setErrors(null);
+    this.projectDescriptionForm.controls.layout_number.setErrors(null);
+    this.projectDescriptionForm.controls.gas_leak_number.setErrors(null);
+    this.projectDescriptionForm.controls.opening_number.setErrors(null);
+    this.projectDescriptionForm.controls.description.setErrors(null);
+    this.projectDescriptionForm.controls.is_notifiable.setErrors(null);
+    this.projectDescriptionForm.controls.start_date.setErrors(null);
+    this.projectDescriptionForm.controls.end_date.setErrors(null);
     if (this.projectDescriptionForm.invalid) {
       this.isDescription = true
       return false
@@ -490,6 +502,8 @@ export class DwlDetailsComponent implements OnInit {
     this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
       this.toasterService.success('Information Updated')
       this.contactorDetailsPopUp.nativeElement.click();
+      this.permitDetails()
+
     })
   }
 

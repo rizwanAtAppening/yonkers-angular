@@ -43,7 +43,7 @@ export class PemitUpdateComponent implements OnInit {
   public settings: any;
   public isFee = false;
   public isCompletApplication = false;
- 
+
   public currentUser = {
     role_id: null,
     department: null,
@@ -74,14 +74,14 @@ export class PemitUpdateComponent implements OnInit {
   }
   public reletedPermits = []
   getReletedPermit() {
-    
+
     this.applicationService.reletedPermit(this.applicationDetails.id).subscribe(data => {
-      this.reletedPermits= data.response;
+      this.reletedPermits = data.response;
       console.log(this.reletedPermits)
     })
   }
 
- 
+
   getUserInfo() {
 
     this.adminAuthService.getUserInfo().subscribe(data => {
@@ -131,8 +131,22 @@ export class PemitUpdateComponent implements OnInit {
   get projectCon() { return this.projectDescriptionForm.controls }
 
   public isDescription = false;
-  saveProjectDescription() {
 
+  
+  saveProjectDescription() {
+    this.projectDescriptionForm.controls.dig_safely_no.setErrors(null);
+    this.projectDescriptionForm.controls.traffic_control.setErrors(null);
+    this.projectDescriptionForm.controls.length.setErrors(null);
+    this.projectDescriptionForm.controls.width.setErrors(null);
+    this.projectDescriptionForm.controls.depth.setErrors(null);
+    this.projectDescriptionForm.controls.opening_size.setErrors(null);
+    this.projectDescriptionForm.controls.layout_number.setErrors(null);
+    this.projectDescriptionForm.controls.gas_leak_number.setErrors(null);
+    this.projectDescriptionForm.controls.opening_number.setErrors(null);
+    this.projectDescriptionForm.controls.description.setErrors(null);
+    this.projectDescriptionForm.controls.is_notifiable.setErrors(null);
+    this.projectDescriptionForm.controls.start_date.setErrors(null);
+    this.projectDescriptionForm.controls.end_date.setErrors(null);
     if (this.projectDescriptionForm.invalid) {
       this.isDescription = true
       return false
@@ -141,6 +155,8 @@ export class PemitUpdateComponent implements OnInit {
     this.applicationService.saveProjectInfo(this.projectDescriptionForm.value, this.applicationDetails.id).subscribe(data => {
       this.toasterService.success('Information Updated')
       this.contactorDetailsPopUp.nativeElement.click();
+      this.permitDetails()
+
     })
   }
 
@@ -216,10 +232,10 @@ export class PemitUpdateComponent implements OnInit {
   public allMails = []
   public allRelatedPermit = []
   permitDetails() {
-    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
 
       this.applicationDetails = data.response;
+      this.allMails = []
       if (this.applicationDetails.applicant_details) {
         this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
 
@@ -233,7 +249,7 @@ export class PemitUpdateComponent implements OnInit {
         this.applicationDetails.related_permits.map((data => {
           data.isReleted = false
         }))
-        this.allRelatedPermit =  this.applicationDetails.related_permits
+        this.allRelatedPermit = this.applicationDetails.related_permits
         console.log(this.allRelatedPermit)
       }
       if (this.message == 'decision') {
@@ -332,8 +348,8 @@ export class PemitUpdateComponent implements OnInit {
   mailControl() {
     this.sendEmialForm = this.FB.group({
       cc: [''],
-      to: ['',Validators.required],
-      subject: ['',Validators.required],
+      to: ['', Validators.required],
+      subject: ['', Validators.required],
       description: ['', Validators.required],
     })
   }
@@ -545,7 +561,7 @@ export class PemitUpdateComponent implements OnInit {
   }
 
   public documentId: any
-  public document:any;
+  public document: any;
   docId(file) {
     this.documentId = file.id;
     this.document = file.name
@@ -553,8 +569,8 @@ export class PemitUpdateComponent implements OnInit {
 
   public isSendEmail = false
   sendEmail() {
-    
-   // this.sendEmialForm.controls.to.setErrors(null)
+
+    // this.sendEmialForm.controls.to.setErrors(null)
     this.sendEmialForm.controls.cc.setErrors(null)
 
     if (this.sendEmialForm.invalid) {
@@ -590,8 +606,8 @@ export class PemitUpdateComponent implements OnInit {
     this.permitService.deleteDocuments(data).subscribe(data => {
       this.toasterService.success('Delete Successful')
       this.deleteImagepop.nativeElement.click();
-     // this.getReletedPermit();
-     this.permitDetails()
+      // this.getReletedPermit();
+      this.permitDetails()
     })
   }
 } 

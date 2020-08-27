@@ -820,7 +820,7 @@
 
                                             <div class="form-group">
                                                 <label>Do you have a contractor for this job?</label>
-                                                <select formControlName="contractor_for_job">
+                                                <select formControlName="contractor_for_job" (click) = "fillDetails()">
                                                     <option value="" hidden>--Select--</option>
                                                     <option [value]="value?.key" [hidden]="isDisabled"
                                                         *ngFor="let value of settings?.contractor_for_job">

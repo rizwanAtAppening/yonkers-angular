@@ -46,110 +46,116 @@
                                 </div>
                             </div>
                             <div class="">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="table-permit">
-                                       
-                                        <table class="table table-bordered ">
-                                            <thead>
-                                                <tr>
-                                                    <th>Ref No</th>
-                                                    <th>Location</th>
-                                                    <th>Type</th>
-                                                    <th>Permit Status</th>
-                                                    <th>Application status</th>
-                                                    <th>Submit date</th>
-                                                    <th>Expire Date</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr
-                                                    *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                    <td [class] ="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                        (click)="updateApplication(application?.id)">
-                                                        {{application?.reference_no}}</td>
-                                                    <td>
-                                                        <p *ngIf="application?.address_id">                                                                                                
-                                                            {{application?.address_details?.szFullAddress}}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-permit">
 
-                                                        </p>
-                                                        <h6
-                                                            *ngIf="!application?.address_id && application?.isSingleAddress">
-                                                            <p
-                                                                *ngIf="application?.location && application?.location.length > 0">
-                                                                {{application?.location[0]?.street_one}}
-                                                                {{application?.location[0]?.address_join == 1? 'To':'End'}}
-                                                                {{application?.location[0]?.street_two}}</p>
-                                                        </h6>
+                                            <table class="table table-bordered ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Ref No</th>
+                                                        <th>Location</th>
+                                                        <th>Type</th>
+                                                        <th>Permit Status</th>
+                                                        <th>Application status</th>
+                                                        <th>Submit date</th>
+                                                        <th>Expire Date</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                        <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
+                                                            (click)="updateApplication(application?.id)">
+                                                            {{application?.reference_no}}</td>
+                                                        <td>
+                                                            <p *ngIf="application?.address_id">
+                                                                {{application?.address_details?.szFullAddress}}
 
-                                                        <h6
-                                                            *ngIf="!application?.address_id && !application.isSingleAddress">
-                                                            <p *ngFor="let location of application?.location ">
-                                                                {{location?.street_one}}
-                                                                {{location?.address_join == 1 ?'To':'End'}}
-                                                                {{location?.street_two}}</p>
-                                                        </h6>
-                                                        <strong class="pointer-2"
-                                                            (click)="showMoreLocation(false,application?.id)"
-                                                            *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
-                                                            More</strong>
-                                                        <strong class="pointer-2"
-                                                            (click)="showMoreLocation(true,application?.id)"
-                                                            *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
-                                                            Less</strong>
+                                                            </p>
+                                                            <h6
+                                                                *ngIf="!application?.address_id && application?.isSingleAddress">
+                                                                <p
+                                                                    *ngIf="application?.location && application?.location.length > 0">
+                                                                    {{application?.location[0]?.street_one}}
+                                                                    {{application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                    {{application?.location[0]?.street_two}}</p>
+                                                            </h6>
+
+                                                            <h6
+                                                                *ngIf="!application?.address_id && !application.isSingleAddress">
+                                                                <p *ngFor="let location of application?.location ">
+                                                                    {{location?.street_one}}
+                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                    {{location?.street_two}}</p>
+                                                            </h6>
+                                                            <strong class="pointer-2"
+                                                                (click)="showMoreLocation(false,application?.id)"
+                                                                *ngIf="!application?.address_id && application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                More</strong>
+                                                            <strong class="pointer-2"
+                                                                (click)="showMoreLocation(true,application?.id)"
+                                                                *ngIf="!application?.address_id && !application.isSingleAddress && application?.location.length > 1 ">Show
+                                                                Less</strong>
 
 
-                                                    </td>
-                                                    <td> {{ settings.getSetting('type',application['type'])}}</td>
+                                                        </td>
+                                                        <td> {{ settings.getSetting('type',application['type'])}}</td>
 
-                                                    <td class="submited-Btn"><button>Submitted</button></td>
-                                                    
-                                                    <td class="submited-Btn"
-                                                        *ngIf="application?.status == null && application?.application_type ==1">
-                                                        <button>Draft</button></td>
-                                                    <td class="submited-Btn blue-txt-2"
-                                                        *ngIf="application?.status == 2 && application?.application_type ==1">
-                                                        <button>Submitted</button></td>
-                                                    <td class="submited-Btn blue-txt-2"
-                                                        *ngIf="application?.status == 3 && application?.application_type ==1">
-                                                        <button>Cancel</button></td>
+                                                        <td [class]="application?.decision == 3 ? 'submited-Btn blue-txt-2':'submited-Btn'"
+                                                            class="submited-Btn"><button>
+                                                                {{application?.decision == 3 ? 'Submitted':'Pending'}}</button>
+                                                        </td>
 
-                                                    <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
-                                                    <td>_</td>
-                                                    <!-- <td class="update-txt"> <span><i class="fa fa-angle-down"
+                                                        <td class="submited-Btn"
+                                                            *ngIf="application?.status == null && application?.application_type ==1">
+                                                            <button>Draft</button></td>
+                                                        <td class="submited-Btn blue-txt-2"
+                                                            *ngIf="application?.status == 2 && application?.application_type ==1">
+                                                            <button>Submitted</button></td>
+                                                        <td class="submited-Btn blue-txt-2"
+                                                            *ngIf="application?.status == 3 && application?.application_type ==1">
+                                                            <button>Cancel</button></td>
+
+                                                        <td>{{application?.createdAt | date :'dd/MM/yyyy'}}</td>
+                                                        <td>_</td>
+                                                        <!-- <td class="update-txt"> <span><i class="fa fa-angle-down"
                                                                 aria-hidden="true"></i></span></td> -->
-                                                    <td class="update-txt dropdown-action">
-                                                        <div class="displayAlign">
-                                                        <div class="time-btn" *ngIf = "application?.payment_status == null">
-                                                            <button (click) = "navigateTopaymentPage(application?.id)">
-                                                                <!-- <img src="./assets/images/x-time.svg" alt=""> -->
-                                                                Pay Now
-                                                            </button>
-                                                        </div>
-                                                        <span> <i class="fa fa-angle-down"
-                                                                aria-hidden="true"></i>
-                                                        <div class="dropdown-contentable">
-                                                            <a class="pointer" data-toggle="modal"
-                                                                data-target="#cancel_application"
-                                                                *ngIf="application?.status != 3"
-                                                                (click)="getApplicationId(application?.id)">Cancel </a>
-                                                            <a class="pointer" data-toggle="modal"
-                                                                data-target="#withdraw_application"
-                                                                *ngIf="application?.status != 4 && application?.status != null "
-                                                                (click)="getApplicationId(application?.id)">Withdraw</a>
+                                                        <td class="update-txt dropdown-action">
+                                                            <div class="displayAlign">
+                                                                <div class="time-btn"
+                                                                    *ngIf="application?.payment_status == null">
+                                                                    <button
+                                                                        (click)="navigateTopaymentPage(application?.id)">
+                                                                        <!-- <img src="./assets/images/x-time.svg" alt=""> -->
+                                                                        Pay Now
+                                                                    </button>
+                                                                </div>
+                                                                <span> <i class="fa fa-angle-down"
+                                                                        aria-hidden="true"></i>
+                                                                    <div class="dropdown-contentable">
+                                                                        <a class="pointer" data-toggle="modal"
+                                                                            data-target="#cancel_application"
+                                                                            *ngIf="application?.status != 3"
+                                                                            (click)="getApplicationId(application?.id)">Cancel
+                                                                        </a>
+                                                                        <a class="pointer" data-toggle="modal"
+                                                                            data-target="#withdraw_application"
+                                                                            *ngIf="application?.status != 4 && application?.status != null "
+                                                                            (click)="getApplicationId(application?.id)">Withdraw</a>
 
-                                                            <!-- <a href="#">Inactive</a>  -->
-                                                            <div class="triangle-left">
+                                                                        <!-- <a href="#">Inactive</a>  -->
+                                                                        <div class="triangle-left">
+                                                                        </div>
+                                                                    </div>
+                                                                </span>
                                                             </div>
-                                                        </div>
-                                                    </span>
-                                                    </div>
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
 
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +243,7 @@
                                                                                         <th>Ref No</th>
                                                                                         <th>Location</th>
                                                                                         <th>Type</th>
-                                                                                        <!-- <th>Permit Status</th> -->
+                                                                                        <th>Permit Status</th>
                                                                                         <th>Application Status</th>
                                                                                         <!-- <th>Layout No</th> -->
                                                                                         <th>Submit date</th>
@@ -248,7 +254,8 @@
                                                                                 <tbody>
                                                                                     <tr
                                                                                         *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                        <td [class] ="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
+                                                                                        <td
+                                                                                            [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                             {{application?.reference_no}}
                                                                                         </td>
                                                                                         <td>
@@ -288,10 +295,12 @@
                                                                                         </td>
                                                                                         <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
                                                                                         </td>
-                                                                                        <!-- <td
-                                                                                            class="submited-Btn blue-txt-2">
-                                                                                            <button>Submitted</button>
-                                                                                        </td> -->
+                                                                                        <td [class]="application?.decision == 3 ? 'submited-Btn blue-txt-2':'submited-Btn'"
+                                                                                            class="submited-Btn">
+                                                                                            <button>
+                                                                                                {{application?.decision == 3 ? 'Submitted':'Pending'}}</button>
+                                                                                        </td>
+
                                                                                         <td *ngIf="(application.application_type == 1 || application.application_type == 3) && application.status == 2"
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
@@ -400,7 +409,8 @@
                                                                                 <tbody>
                                                                                     <tr
                                                                                         *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                        <td [class] ="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'" >
+                                                                                        <td
+                                                                                            [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                             {{application?.reference_no}}
                                                                                         </td>
                                                                                         <td>
@@ -440,10 +450,12 @@
                                                                                         </td>
                                                                                         <!-- <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}  </td> -->
                                                                                         <!-- <td class="msg"><b>Draft</b></td> -->
-                                                                                        <td
-                                                                                            class="submited-Btn green-txt-2">
-                                                                                            <button>Completed</button>
+                                                                                        <td [class]="application?.decision == 3 ? 'submited-Btn blue-txt-2':'submited-Btn'"
+                                                                                            class="submited-Btn">
+                                                                                            <button>
+                                                                                                {{application?.decision == 3 ? 'Submitted':'Pending'}}</button>
                                                                                         </td>
+
                                                                                         <td *ngIf="application.application_type ==2 && application.status == 2"
                                                                                             class="submited-Btn blue-txt-2">
                                                                                             <button>Submitted</button>
