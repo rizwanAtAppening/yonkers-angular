@@ -29,6 +29,8 @@ export class DwlDetailsComponent implements OnInit {
   @ViewChild('descriptionPopup', { static: false }) descriptionPopup: ElementRef;
 
   public applicationId: any;
+  public lat = 40.730610;
+  public long = -73.935242;
   certificates: any = new Subject<any>();
   public currentUser = {
     role_id: null,
@@ -491,4 +493,27 @@ export class DwlDetailsComponent implements OnInit {
     })
   }
 
+
+  public isShowMoreAndLess = false;
+  showMoreAndShowLess(value) {
+    this.isShowMoreAndLess = value
+  }
+
+  fillProjectdes() {
+    this.projectDescriptionForm.controls.purpose.setValue(this.applicationDetails.project_detail.purpose)
+    this.projectDescriptionForm.controls.dig_safely_no.setValue(this.applicationDetails.project_detail.dig_safely_no)
+    this.projectDescriptionForm.controls.traffic_control.setValue(this.applicationDetails.project_detail.traffic_control)
+    this.projectDescriptionForm.controls.length.setValue(this.applicationDetails.project_detail.length)
+    this.projectDescriptionForm.controls.width.setValue(this.applicationDetails.project_detail.width)
+    this.projectDescriptionForm.controls.depth.setValue(this.applicationDetails.project_detail.depth)
+    this.projectDescriptionForm.controls.opening_size.setValue(this.applicationDetails.project_detail.opening_size)
+    this.projectDescriptionForm.controls.layout_number.setValue(this.applicationDetails.project_detail.layout_number)
+    this.projectDescriptionForm.controls.gas_leak_number.setValue(this.applicationDetails.project_detail.gas_leak_number)
+    this.projectDescriptionForm.controls.opening_number.setValue(this.applicationDetails.project_detail.opening_number)
+    this.projectDescriptionForm.controls.pavement_type.setValue(this.applicationDetails.project_detail.pavement_type)
+    this.projectDescriptionForm.controls.start_date.setValue(new Date(this.applicationDetails.project_detail.start_date))
+    this.projectDescriptionForm.controls.is_notifiable.setValue(this.applicationDetails.project_detail.is_notifiable)
+    this.projectDescriptionForm.controls.end_date.setValue(new Date(this.applicationDetails.project_detail.end_date))
+
+  }
 }
