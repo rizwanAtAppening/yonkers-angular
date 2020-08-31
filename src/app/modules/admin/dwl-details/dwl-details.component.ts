@@ -530,4 +530,8 @@ export class DwlDetailsComponent implements OnInit {
     this.projectDescriptionForm.controls.end_date.setValue(new Date(this.applicationDetails.project_detail.end_date))
 
   }
+
+  canclePopUp(){
+    this.deleteImagepop.nativeElement.click();
+  }
 }

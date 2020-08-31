@@ -610,4 +610,8 @@ export class PemitUpdateComponent implements OnInit {
       this.permitDetails()
     })
   }
+
+  canclePopUp(){
+    this.deleteImagepop.nativeElement.click();
+  }
 } 
