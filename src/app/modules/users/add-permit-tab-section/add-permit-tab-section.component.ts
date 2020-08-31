@@ -836,7 +836,9 @@ debugger
     debugger
     //this.contractorForm.controls.contractor_for_job.setValue(1)
     if(this.contractorForm.value.contractor_for_job == 2){
-      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.last_name,this.currentUserInfo.last_name)
+      let value = this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name
+      console.log(value)
+      this.contractorForm.controls.contractor_name.setValue(value)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
       this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
       this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)
