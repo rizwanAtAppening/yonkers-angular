@@ -212,7 +212,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   duplimesterFormCon() {
     this.duplimesterForm = this.formBuilder.group({
       dumpster_first_name: ['', Validators.required],
-      dumpster_last_name: ['', Validators.required],
+      dumpster_last_name: [''],
       dumpster_business: ['', Validators.required],
       dumpster_phone: ['', Validators.required],
       // dumpster_mobile: ['', Validators.required],

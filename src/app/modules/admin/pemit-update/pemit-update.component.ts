@@ -360,6 +360,8 @@ export class PemitUpdateComponent implements OnInit {
   applicantControl() {
     this.applicantForm = this.FB.group({
       applicant_name: ['', Validators.required],
+      applican_last_name: ['', Validators.required],
+
       applicant_role: ['', Validators.required],
       applicant_phone: ['', Validators.required],
       applicant_address: ['', Validators.required],
@@ -382,6 +384,8 @@ export class PemitUpdateComponent implements OnInit {
     this.applicantForm.controls.applicant_role.setValue(this.applicationDetails.applicant_details.applicant_role)
     this.applicantForm.controls.applicant_address.setValue(this.applicationDetails.applicant_details.applicant_address)
     this.applicantForm.controls.applicant_phone.setValue(this.applicationDetails.applicant_details.applicant_phone)
+    this.applicantForm.controls.applican_last_name.setValue(this.applicationDetails.applicant_details.applican_last_name)
+
 
   }
   description() {

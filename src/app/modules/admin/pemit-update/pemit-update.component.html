@@ -1308,15 +1308,16 @@
                       <label class="form-control-placeholder" for="app4">Applicant Name</label>
                     </div>
                   </div>
+
+
                   <div class="col-6">
                     <div class="form-group">
-                      <!-- <input type="text" id="app3" formControlName="applicant_role" class="form-control" required=""> -->
-                      <select formControlName="applicant_role" class="form-control">
-                        <option value="{{role?.key}}" *ngFor="let role of settings?.role">{{role?.value}}</option>
-                      </select>
-                      <label class="form-control-placeholder" for="app3">Applicant Role</label>
+                      <input type="text" id="app2" class="form-control" formControlName="applican_last_name" required="">
+                      <label class="form-control-placeholder" for="app2">Last Name</label>
                     </div>
                   </div>
+
+                 
                 </div>
                 <div class="popup-busnise">
                   <div class="row">
@@ -1326,8 +1327,22 @@
                         <label class="form-control-placeholder" for="app2">Phone No.</label>
                       </div>
                     </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <!-- <input type="text" id="app3" formControlName="applicant_role" class="form-control" required=""> -->
+                        <select formControlName="applicant_role" class="form-control">
+                          <option value="{{role?.key}}" *ngFor="let role of settings?.role">{{role?.value}}</option>
+                        </select>
+                        <label class="form-control-placeholder" for="app3">Applicant Role</label>
+                      </div>
+                    </div>
 
                   </div>
+
+                  
+                  
+
+                 
                 </div>
 
                 <div class="popup-busnise">
