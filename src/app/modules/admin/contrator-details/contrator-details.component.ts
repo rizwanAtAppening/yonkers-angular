@@ -106,7 +106,7 @@ export class ContratorDetailsComponent implements OnInit {
       return false
     }
    // this.contractorForm.value.application_id = this.applicationDetails.id
-    if(this.applicationDetails.dumpster_id){
+    if(this.applicationDetails.role != 2 && this.applicationDetails.type == 4){
       this.contractorData = {
         dumpster_first_name:this.contractorForm.value.contractor_name,
         //dumpster_last_name:this.applicationDetails.dumpsters_details.dumpster_last_name,

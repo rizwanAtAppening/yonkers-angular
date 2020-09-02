@@ -2075,7 +2075,91 @@
                                                 </div>
                                             </div>
 
-                                            <div class="card" >
+                                            <div class="card" *ngIf="application?.role != 2 && application?.type == 4">
+                                                <div class="card-header" id="headingfour">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Contractor
+                                                        </button>
+                                                        <button class="edit-icon"
+                                                            (click)="editByReviewPage('contrator')"><img
+                                                                src="assets/images/edit.svg" alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsefour"
+                                                            aria-expanded="true" aria-controls="collapsefour"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="first-collepse-box">
+                                                            <!-- <div class="role-txt-collepse mb-4">
+                                                                <h2>Do you have a contractor for this job?</h2>
+                                                                <p *ngIf ="application?.contractor_details?.contractor_for_job != 0">{{ settings?.getSetting('contractor_for_job',application?.contractor_details?.contractor_for_job)}}
+                                                                </p>
+                                                                <p *ngIf ="application?.contractor_details?.contractor_for_job == 0">_</p>
+                                                            </div> -->
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Name of Business</h2>
+                                                                    <p> {{application?.dumpsters_details?.dumpster_business}}
+                                                                    </p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Name</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_first_name}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_address}}
+                                                                    </p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>State</h2>
+                                                                    <!-- <p>{{application?.contractor_details?.contractor_state}}
+                                                                    </p> -->
+                                                                    <!-- <p *ngIf ="application?.contractor_details?.contractor_state">{{settings?.getSetting('userState',contractorDetails)}}</p> -->
+                                                                    <p>{{application?.dumpsters_details?.dumpster_state}}</p>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_email}}
+                                                                    </p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Phone Number</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_phone}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>City</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_city}}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Zip Code</h2>
+                                                                    <p>{{application?.dumpsters_details?.dumpster_zip}}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card" *ngIf ="( (application.role == 2 || (application.role == 1 && application.type != 4) || (application.role == 3 &&  application.type != 4)))">
                                                 <div class="card-header" id="headingfour">
                                                     <h2 class="mb-0">
                                                         <button class="what-btn" type="button">
@@ -2104,18 +2188,18 @@
                                                             <div class="first-collepse-box">
                                                                 <div class="role-txt-collepse">
                                                                     <h2>Name of Business</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_business ? application?.contractor_details?.contractor_business : application?.dumpsters_details?.dumpster_business}}
+                                                                    <p>{{application?.contractor_details?.contractor_business}}
                                                                     </p>
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Name</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_name ? application?.contractor_details?.contractor_name :application?.dumpsters_details?.dumpster_first_name}}
+                                                                    <p>{{application?.contractor_details?.contractor_name}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Address</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_address ? application?.contractor_details?.contractor_address : application?.dumpsters_details?.dumpster_address}}
+                                                                    <p>{{application?.contractor_details?.contractor_address}}
                                                                     </p>
                                                                 </div>
 
@@ -2124,7 +2208,6 @@
                                                                     <!-- <p>{{application?.contractor_details?.contractor_state}}
                                                                     </p> -->
                                                                     <p *ngIf ="application?.contractor_details?.contractor_state">{{settings?.getSetting('userState',contractorDetails)}}</p>
-                                                                    <p>{{application?.dumpsters_details?.dumpster_state}}</p>
 
                                                                 </div>
 
@@ -2132,23 +2215,23 @@
                                                             <div class="first-collepse-box">
                                                                 <div class="role-txt-collepse">
                                                                     <h2>Email</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_email ? application?.contractor_details?.contractor_email : application?.dumpsters_details?.dumpster_email}}
+                                                                    <p>{{application?.contractor_details?.contractor_email}}
                                                                     </p>
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Phone Number</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_phone ? application?.contractor_details?.contractor_phone : application?.dumpsters_details?.dumpster_phone}}
+                                                                    <p>{{application?.contractor_details?.contractor_phone}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>City</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_city ? application?.contractor_details?.contractor_city :application?.dumpsters_details?.dumpster_city}}
+                                                                    <p>{{application?.contractor_details?.contractor_city}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Zip Code</h2>
-                                                                    <p>{{application?.contractor_details?.contractor_zip ? application?.contractor_details?.contractor_zip : application?.dumpsters_details?.dumpster_zip}}
+                                                                    <p>{{application?.contractor_details?.contractor_zip}}
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -2158,7 +2241,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                            
 
 

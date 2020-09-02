@@ -452,7 +452,7 @@ debugger
 
 
   addPermitApplication(formGroup, nextTab) {
-
+debugger
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -582,8 +582,8 @@ debugger
     }
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
-
-      if ((this.application.role != 1 || this.application.role != 3) && this.application.type != 4 || (this.application.role == 2 && this.application.role == 4)) {
+debugger
+      if ( (this.application.role == 2 || (this.application.role == 1 && this.application.type != 4) || (this.application.role == 3 &&  this.application.type != 4))) {
         this.contractorForm.value.model = 4
         this.data = this.contractorForm.value
       }

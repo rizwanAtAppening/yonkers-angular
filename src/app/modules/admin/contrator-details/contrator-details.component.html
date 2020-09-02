@@ -14,9 +14,91 @@
         <div class="card-body">
             <div class="decisions_box-collepse">
 
-                <div class="expiration-date-box-2">
+                <div class="expiration-date-box-2" *ngIf ="applicationDetails?.role != 2 && applicationDetails?.type == 4" >
 
-                    <div class="con-boxis" *ngIf="applicationDetails?.contractor_details || applicationDetails?.dumpsters_details">
+                    <div class="con-boxis" >
+                        <div class="row">
+                            
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>Named</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_name ? applicationDetails?.contractor_details?.contractor_name:applicationDetails?.dumpsters_details?.dumpster_first_name}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="number_con_Hd">
+                                    <h3>Email</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_email ? applicationDetails?.contractor_details?.contractor_email :applicationDetails?.dumpsters_details?.dumpster_email}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>Business</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_business ? applicationDetails?.contractor_details?.contractor_business :applicationDetails?.dumpsters_details?.dumpster_business}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>Phone</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <div class="busines-edit">
+                                        <h6 data-toggle="modal" data-target="#update_editcontractor"
+                                            (click)="fillContractorForm()"> <span><img src="assets/images/edit-p.svg"
+                                                    alt=""></span> Edit</h6>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="con-boxis-2">
+                        <div class="row">
+                          
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>Cell Number</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="number_con_Hd">
+                                    <h3>Address</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_address ? applicationDetails?.contractor_details?.contractor_address :applicationDetails?.dumpsters_details?.dumpster_address}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>City</h3>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_city ? applicationDetails?.contractor_details?.contractor_city :applicationDetails?.dumpsters_details?.dumpster_city}}</h4>
+                                </div>
+                            </div>
+
+                            <div class="col-2">
+                                <div class="number_con_Hd">
+                                    <h3>State</h3>
+                                    <!-- <h4>{{applicationDetails?.contractor_details?.contractor_state}}</h4> -->
+                                    <h4 *ngIf ="applicationDetails?.contractor_details?.contractor_state"> {{ settings.getSetting('userState',contractorState)}}</h4>
+                                    <h4 *ngIf ="applicationDetails?.dumpsters_details?.dumpster_state">{{applicationDetails?.dumpsters_details?.dumpster_state}}</h4>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="expiration-date-box-2" *ngIf ="( (applicationDetails?.role == 2 || (applicationDetails?.role == 1 && applicationDetails?.type != 4) || (applicationDetails?.role == 3 &&  applicationDetails?.type != 4)))">
+
+                    <div class="con-boxis" >
                         <div class="row">
                             
                             <div class="col-2">
@@ -94,6 +176,13 @@
 
 
                 </div>
+
+
+
+
+
+
+              
                 <div class="plan-examiner-box">
                     <table class="table">
                         <thead>
