@@ -21,26 +21,26 @@
                             
                             <div class="col-2">
                                 <div class="number_con_Hd">
-                                    <h3>Named</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_name ? applicationDetails?.contractor_details?.contractor_name:applicationDetails?.dumpsters_details?.dumpster_first_name}}</h4>
+                                    <h3>Name</h3>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_first_name}}</h4>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="number_con_Hd">
                                     <h3>Email</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_email ? applicationDetails?.contractor_details?.contractor_email :applicationDetails?.dumpsters_details?.dumpster_email}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_email}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Business</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_business ? applicationDetails?.contractor_details?.contractor_business :applicationDetails?.dumpsters_details?.dumpster_business}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_business}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Phone</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -63,19 +63,19 @@
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Cell Number</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="number_con_Hd">
                                     <h3>Address</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_address ? applicationDetails?.contractor_details?.contractor_address :applicationDetails?.dumpsters_details?.dumpster_address}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_address}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>City</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_city ? applicationDetails?.contractor_details?.contractor_city :applicationDetails?.dumpsters_details?.dumpster_city}}</h4>
+                                    <h4>{{applicationDetails?.dumpsters_details?.dumpster_city}}</h4>
                                 </div>
                             </div>
 
@@ -83,8 +83,7 @@
                                 <div class="number_con_Hd">
                                     <h3>State</h3>
                                     <!-- <h4>{{applicationDetails?.contractor_details?.contractor_state}}</h4> -->
-                                    <h4 *ngIf ="applicationDetails?.contractor_details?.contractor_state"> {{ settings.getSetting('userState',contractorState)}}</h4>
-                                    <h4 *ngIf ="applicationDetails?.dumpsters_details?.dumpster_state">{{applicationDetails?.dumpsters_details?.dumpster_state}}</h4>
+                                    <h4 *ngIf ="applicationDetails?.dumpsters_details?.dumpster_state"> {{ settings.getSetting('userState',dumsterState)}}</h4>
                                 </div>
                             </div>
 
@@ -104,25 +103,25 @@
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Name</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_name ? applicationDetails?.contractor_details?.contractor_name:applicationDetails?.dumpsters_details?.dumpster_first_name}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_name }}</h4>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="number_con_Hd">
                                     <h3>Email</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_email ? applicationDetails?.contractor_details?.contractor_email :applicationDetails?.dumpsters_details?.dumpster_email}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_email}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Business</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_business ? applicationDetails?.contractor_details?.contractor_business :applicationDetails?.dumpsters_details?.dumpster_business}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_business}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Phone</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -145,19 +144,19 @@
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>Cell Number</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone ? applicationDetails?.contractor_details?.contractor_phone :applicationDetails?.dumpsters_details?.dumpster_phone}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_phone }}</h4>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="number_con_Hd">
                                     <h3>Address</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_address ? applicationDetails?.contractor_details?.contractor_address :applicationDetails?.dumpsters_details?.dumpster_address}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_address}}</h4>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="number_con_Hd">
                                     <h3>City</h3>
-                                    <h4>{{applicationDetails?.contractor_details?.contractor_city ? applicationDetails?.contractor_details?.contractor_city :applicationDetails?.dumpsters_details?.dumpster_city}}</h4>
+                                    <h4>{{applicationDetails?.contractor_details?.contractor_city }}</h4>
                                 </div>
                             </div>
 
@@ -166,7 +165,7 @@
                                     <h3>State</h3>
                                     <!-- <h4>{{applicationDetails?.contractor_details?.contractor_state}}</h4> -->
                                     <h4 *ngIf ="applicationDetails?.contractor_details?.contractor_state"> {{ settings.getSetting('userState',contractorState)}}</h4>
-                                    <h4 *ngIf ="applicationDetails?.dumpsters_details?.dumpster_state">{{applicationDetails?.dumpsters_details?.dumpster_state}}</h4>
+                                    <!-- <h4 *ngIf ="applicationDetails?.dumpsters_details?.dumpster_state">{{applicationDetails?.dumpsters_details?.dumpster_state}}</h4> -->
                                 </div>
                             </div>
 

@@ -128,6 +128,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isDrawing = false;
   public isCertificate = false;
   public contractorDetails: any
+  public dumsterState:number
   getApplication() {
     this.application = this.permitService.getApplication();
     this.addressId = this.addressId ? this.addressId : this.application.address_id
@@ -137,6 +138,10 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
     if (this.application.contractor_details) {
       this.contractorDetails = Number(this.application.contractor_details.contractor_state)
+    }
+    if(this.application.dumpsters_details){
+      this.dumsterState = Number(this.application.dumpsters_details.dumpster_state)
+
     }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
       this.allImage = []
@@ -805,7 +810,7 @@ debugger
       this.getLicenseDetails();
       debugger
       this.contractorForm.controls.contractor_for_job.setValue(1)
-      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.first_name,this.currentUserInfo.last_name)
+      this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
       this.contractorForm.controls.contractor_business.setValue(this.currentUserInfo.company)
       this.contractorForm.controls.contractor_address.setValue(this.currentUserInfo.address)

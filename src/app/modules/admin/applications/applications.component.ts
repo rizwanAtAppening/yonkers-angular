@@ -32,13 +32,13 @@ export class ApplicationsComponent implements OnInit {
     this.getUserInfo()
   }
 
-  
+
   getUserInfo() {
     this.adminAuthService.getUserInfo().subscribe(data => {
       this.currentUser = data;
     })
   }
-  
+
   public allApplications = []
   public page = 1
   public offset = 10;
@@ -236,9 +236,24 @@ export class ApplicationsComponent implements OnInit {
       this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: application.id, inspectionId: inspectionId } })
     } else if (application.application_type == 2) {
       this.router.navigate(['admin/permit/dwlDetails'], { queryParams: { id: application.id, inspectionId: inspectionId } })
-
     }
   }
- 
- 
+
+  public modify = {}
+  public value = 1;
+  public selectDecision = 'decision'
+  selectFilter(selectValue) {
+    debugger
+    if (selectValue.checked) {
+      // Object.keys(this.modify).forEach(data => {
+      //   if (data == this.selectDecision) {
+      //     delete this.modify[data]
+
+      //   }
+      // })
+      this.modify[this.selectDecision] = Number(selectValue.value);
+    }
+    console.log(this.modify, '+++++++++++++++++++++++++++++++++++++++++++')
+  }
+
 }

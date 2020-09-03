@@ -251,6 +251,9 @@
                               <li>
                                 <h5>Layout Number</h5>
                               </li>
+                              <li>
+                                <h5>Opning Size</h5>
+                              </li>
                             </ul>
 
                           </div>
@@ -284,6 +287,9 @@
                                   {{applicationDetails?.project_detail?.layout_number ? applicationDetails?.project_detail?.layout_number:'_'}}
                                 </h6>
                               </li>
+                              <li>
+                                <h6>{{applicationDetails?.project_detail?.opening_size}}</h6>
+                              </li>
 
                             </ul>
 
@@ -315,6 +321,7 @@
                               <li>
                                 <h5>End Date</h5>
                               </li>
+                             
                             </ul>
 
                           </div>
@@ -351,6 +358,7 @@
                                 <li>
                                   <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
                                 </li>
+                               
   
                               </ul>
   
@@ -1376,8 +1384,7 @@
     <div class="modal-dialog popup-dumpstar" role="document">
       <div class="modal-content text-addpopup">
         <div class="modal-header p-0 pb-2 ">
-          <h5>Update 
-                       Project Descriptions Details</h5>
+          <h5>Update Project Descriptions Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

@@ -32,11 +32,14 @@ export class ContratorDetailsComponent implements OnInit {
 
   }
 
-  public contractorState:number
+  public contractorState:number;
+  public dumsterState:number
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      this.contractorState = Number  (this.applicationDetails.contractor_details.contractor_state);
+      this.contractorState = Number  ( this.applicationDetails.contractor_details && this.applicationDetails.contractor_details.contractor_state);
+      this.dumsterState = Number  ( this.applicationDetails.dumpsters_details && this.applicationDetails.dumpsters_details.dumpster_state);
+
       if (this.applicationDetails) {
         this.compareDate();
         this.emailFormGroup.controls.to.setValue(null);
@@ -83,16 +86,28 @@ export class ContratorDetailsComponent implements OnInit {
 
   get contrator() { return this.contractorForm.controls }
   fillContractorForm() {
-
+debugger
     // this.contractorForm.controls.contractor_for_job.setValue(this.applicationDetails.contractor_details.contractor_for_job)
-    this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.contractor_details.contractor_name ? this.applicationDetails.contractor_details.contractor_name :this.applicationDetails.dumpsters_details.dumpster_first_name)
-    this.contractorForm.controls.contractor_email.setValue(this.applicationDetails.contractor_details.contractor_email ? this.applicationDetails.contractor_details.contractor_email :this.applicationDetails.dumpsters_details.dumpster_email)
-    this.contractorForm.controls.contractor_business.setValue(this.applicationDetails.contractor_details.contractor_business ? this.applicationDetails.contractor_details.contractor_business  : this.applicationDetails.dumpsters_details.dumpster_business)
-    this.contractorForm.controls.contractor_address.setValue(this.applicationDetails.contractor_details.contractor_address ? this.applicationDetails.contractor_details.contractor_address :this.applicationDetails.dumpsters_details.dumpster_address)
-    this.contractorForm.controls.contractor_phone.setValue(this.applicationDetails.contractor_details.contractor_phone ? this.applicationDetails.dumpsters_details.contractor_phone : this.applicationDetails.dumpsters_details.dumpster_phone)
-    this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.contractor_details.contractor_city ? this.applicationDetails.contractor_details.contractor_city : this.applicationDetails.dumpsters_details.dumpster_city)
-    this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_state ? this.applicationDetails.contractor_details.contractor_state : this.applicationDetails.dumpsters_details.dumpster_state)
-    this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.contractor_details.contractor_zip ? this.applicationDetails.contractor_details.contractor_zip : this.applicationDetails.dumpsters_details.dumpster_zip)
+    if(this.applicationDetails.role != 2 && this.applicationDetails.type == 4){
+      this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.dumpsters_details.dumpster_first_name)
+      this.contractorForm.controls.contractor_email.setValue(this.applicationDetails.dumpsters_details.dumpster_email)
+      this.contractorForm.controls.contractor_business.setValue(this.applicationDetails.dumpsters_details.dumpster_business)
+      this.contractorForm.controls.contractor_address.setValue(this.applicationDetails.dumpsters_details.dumpster_address)
+      this.contractorForm.controls.contractor_phone.setValue( this.applicationDetails.dumpsters_details.dumpster_phone)
+      this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.dumpsters_details.dumpster_city)
+      this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.dumpsters_details.dumpster_state)
+      this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.dumpsters_details.dumpster_zip)
+    }else{
+      this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.contractor_details.contractor_name )
+      this.contractorForm.controls.contractor_email.setValue(this.applicationDetails.contractor_details.contractor_email )
+      this.contractorForm.controls.contractor_business.setValue(this.applicationDetails.contractor_details.contractor_business )
+      this.contractorForm.controls.contractor_address.setValue(this.applicationDetails.contractor_details.contractor_address )
+      this.contractorForm.controls.contractor_phone.setValue(this.applicationDetails.contractor_details.contractor_phone )
+      this.contractorForm.controls.contractor_city.setValue(this.applicationDetails.contractor_details.contractor_city )
+      this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_state )
+      this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.contractor_details.contractor_zip )
+    }
+   
 
   }
 
@@ -136,6 +151,7 @@ export class ContratorDetailsComponent implements OnInit {
     debugger
     this.applicationService.updateContratorInfo(this.contractorData).subscribe(data => {
       this.updateCon.nativeElement.click();
+      this.applicationDetails.contractor_details = data.response
       this.messageEvent.emit('hello')
     })
   }
