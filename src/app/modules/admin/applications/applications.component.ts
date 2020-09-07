@@ -3,6 +3,7 @@ import { ApplicationService } from 'src/app/core/services/admin/application.serv
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-applications',
@@ -31,6 +32,7 @@ export class ApplicationsComponent implements OnInit {
     this.getAllApplication(this.application_Type);
     this.getUserInfo()
     this.allInspector();
+    this.allExaminer();
   }
 
 
@@ -57,7 +59,7 @@ export class ApplicationsComponent implements OnInit {
     //   page: this.page,
     //   application_type: this.application_Type
     // }
-    this.applicationService.getApplications(this.modify).subscribe(data => {
+    this.applicationService.getApplications(this.modify, this.inspectorAndExaminerIdsArray).subscribe(data => {
       this.allApplications = data.response;
       this.currentPage = data.currentPage;
       this.offset = data.offset;
@@ -118,7 +120,7 @@ export class ApplicationsComponent implements OnInit {
       }
     }
 
-    this.applicationService.getApplications(this.sendData).subscribe(data => {
+    this.applicationService.getApplications(this.sendData, this.inspections).subscribe(data => {
       this.paymentSummary = data.response;
 
       this.currentPage = data.currentPage;
@@ -212,7 +214,7 @@ export class ApplicationsComponent implements OnInit {
       from: this.from,
       to: this.to
     }
-    this.applicationService.getApplications(data).subscribe(data => {
+    this.applicationService.getApplications(data, '').subscribe(data => {
       this.allApplications = data.response;
       this.currentPage = data.currentPage;
       this.offset = data.offset;
@@ -228,7 +230,7 @@ export class ApplicationsComponent implements OnInit {
       search_query: String(this.searchString),
       application_type: this.application_Type
     }
-    this.applicationService.getApplications(data).subscribe(data => {
+    this.applicationService.getApplications(data, '').subscribe(data => {
       this.allApplications = data.response;
       // console.log(this.dwlApplication)
       this.offset = data.offset;
@@ -248,23 +250,36 @@ export class ApplicationsComponent implements OnInit {
 
   // public value = 1;
   // public selectDecision = 'decision'
-  public inspectorKey = "inspectorId"
+  public inspectorKey = "inspectorAndExaminerIdsArray"
+  public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
     debugger
     if (value == 'inspector') {
       if (!selectValue.checked) {
-        Object.keys(this.modify).forEach(data => {
-          if (this.modify[this.inspectorKey] == selectValue.value) {
-            delete this.modify[data]
+        this.inspectorAndExaminerIdsArray.forEach((data, i) => {
+          if (selectValue.value == data.inspector) {
 
+            this.inspectorAndExaminerIdsArray.splice(i, 1)
           }
         })
       } else {
-
-        this.modify['inspectorId'] = selectValue.value;
-        
+        this.inspectorAndExaminerIdsArray.push({ 'inspector': selectValue.value })
       }
 
+    }
+
+    else if (value == 'examiner') {
+      if (!selectValue.checked) {
+        this.inspectorAndExaminerIdsArray.forEach((data, i) => {
+          if (selectValue.value == data.examiner) {
+
+            this.inspectorAndExaminerIdsArray.splice(i, 1)
+          }
+        })
+      }else{
+        this.inspectorAndExaminerIdsArray.push({ 'examiner': selectValue.value })
+
+      }
 
     }
     else if (value == 'decision') {
@@ -279,6 +294,8 @@ export class ApplicationsComponent implements OnInit {
         this.modify[selectValue.value] = 1;
 
       }
+      // this.inspectorAndExaminerIdsArray.push(selectValue.value = 1)
+      // console.log(this.inspectorAndExaminerIdsArray)
 
     }
 

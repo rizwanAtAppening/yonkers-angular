@@ -164,7 +164,8 @@
                                                                                                                     role="tab"
                                                                                                                     aria-controls="v-pills-ads5"
                                                                                                                     aria-selected="true">Decision
-                                                                                                                    <span>1</span></a>
+                                                                                                                    <!-- <span>1</span> -->
+                                                                                                                </a>
                                                                                                                 <a class="nav-link"
                                                                                                                     id="v-pills-ads6-tab"
                                                                                                                     data-toggle="pill"
@@ -225,7 +226,7 @@
                                                                                                                 aria-labelledby="v-pills-ads4-tab">
                                                                                                                 4...
                                                                                                             </div> -->
-                                                                                                                <div class="tab-pane fade "
+                                                                                                                <div class="tab-pane fade show active"
                                                                                                                     id="v-pills-ads5"
                                                                                                                     role="tabpanel"
                                                                                                                     aria-labelledby="v-pills-ads5-tab">
@@ -340,36 +341,17 @@
                                                                                                                             class="hd-desion-check">
                                                                                                                             Examiner
                                                                                                                         </p>
-                                                                                                                        <label
-                                                                                                                            class="containerdision mt-3">Cancelled
+                                                                                                                        <label 
+                                                                                                                            class="containerdision mt-3" *ngFor = "let exm of examiner">{{exm?.name}}
                                                                                                                             <input
-                                                                                                                                type="checkbox"
+                                                                                                                                type="checkbox" value="{{exm?.id}}" (change)="selectFilter($event.target,'examiner')"
                                                                                                                                 >
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
-                                                                                                                        <label
-                                                                                                                            class="containerdision">Permit
-                                                                                                                            <input
-                                                                                                                                type="checkbox">
-                                                                                                                            <span
-                                                                                                                                class="checkmarkdision"></span>
-                                                                                                                        </label>
-                                                                                                                        <label
-                                                                                                                            class="containerdision">Plan
-                                                                                                                            Review
-                                                                                                                            <input
-                                                                                                                                type="checkbox">
-                                                                                                                            <span
-                                                                                                                                class="checkmarkdision"></span>
-                                                                                                                        </label>
-                                                                                                                        <label
-                                                                                                                            class="containerdision">Denied
-                                                                                                                            <input
-                                                                                                                                type="checkbox">
-                                                                                                                            <span
-                                                                                                                                class="checkmarkdision"></span>
-                                                                                                                        </label>
+                                                                                                                       
+                                                                                                                        
+                                                                                                                       
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="tab-pane fade "

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
@@ -19,9 +19,31 @@ export class ApplicationService {
     private authenticationService: AuthenticationService
   ) { }
 
-  getApplications(data): Observable<any> {
+  getApplications(data, array): Observable<any> {
+    debugger
+    // var page
+    // var application_Type
+    // page = data['page'],
+    // application_Type = data.a
+    // const actors = ['Elvis', 'Jane', 'Frances'];
+    const actors = array
+    let params = new HttpParams();
+    // for (const actor of actors) {
+    //   params = params.append('actors', actor);
+    // }
+    actors.map(actor => {
+      Object.keys(actor).forEach(obj => {
+        params = params.append(obj,actor[obj]);
+
+      })
+    })
+    Object.keys(data).forEach(value => {
+
+      params = params.append(value,data[value])
+    })
+    // data[''] = params
     const href = `${environment['getApplication']}`
-    return this.http.get<any>(href, { params: data }).pipe(
+    return this.http.get<any>(href, { params: params }).pipe(
       map(
         ({ status, ...rest }) => {
           if (status === 'success') {
