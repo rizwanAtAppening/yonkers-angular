@@ -1,4 +1,3 @@
-
 <!-- <header>
     <div class="container container_full p-0">
         <div class="row">
@@ -33,34 +32,40 @@
 </header> -->
 <app-auth-layout>
     <router-outlet>
-<section>
-    <div class="container p-0 container_full">
-        <div class="row">
-            <div class="col-12 admin_tabber">
-                <div class="work-loaction-tab">
-                    <div class="row">
-                        <div class="col-12">
-                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="pills-admin-Permit-loaction-tab" data-toggle="pill"
-                                        href="#pills-admin-Permit-loaction" role="tab"
-                                        aria-controls="pills-admin-Permit-loaction" aria-selected="true" (click) = "getAllApplication(1)">Permit</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
-                                        role="tab" aria-controls="pills-DWL" aria-selected="false" (click) = "getAllApplication(2)">DWL</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'inspection','')"
-                                        href="#pills-Inspection-admin" role="tab" aria-controls="pills-Inspection-admin"
-                                        aria-selected="false">Inspection</a>
-                                </li>
-                                <li class="nav-item" *ngIf= "((currentUser && currentUser?.role_id) != settings?.inspector)">
-                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill" (click) ="paymentsSummary(1,'payment','')"
-                                        href="#pills-Payment-admin" role="tab" aria-controls="pills-Payment-admin"
-                                        aria-selected="false">Payment</a>
-                                </li>
-                                <!-- <li class="nav-item">
+        <section>
+            <div class="container p-0 container_full">
+                <div class="row">
+                    <div class="col-12 admin_tabber">
+                        <div class="work-loaction-tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="pills-admin-Permit-loaction-tab"
+                                                data-toggle="pill" href="#pills-admin-Permit-loaction" role="tab"
+                                                aria-controls="pills-admin-Permit-loaction" aria-selected="true"
+                                                (click)="getAllApplication(1)">Permit</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
+                                                role="tab" aria-controls="pills-DWL" aria-selected="false"
+                                                (click)="getAllApplication(2)">DWL</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
+                                                (click)="paymentsSummary(1,'inspection','')"
+                                                href="#pills-Inspection-admin" role="tab"
+                                                aria-controls="pills-Inspection-admin"
+                                                aria-selected="false">Inspection</a>
+                                        </li>
+                                        <li class="nav-item"
+                                            *ngIf="((currentUser && currentUser?.role_id) != settings?.inspector)">
+                                            <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill"
+                                                (click)="paymentsSummary(1,'payment','')" href="#pills-Payment-admin"
+                                                role="tab" aria-controls="pills-Payment-admin"
+                                                aria-selected="false">Payment</a>
+                                        </li>
+                                        <!-- <li class="nav-item">
                                     <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill"
                                         href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin"
                                         aria-selected="false">Utility Invoice</a>
@@ -70,49 +75,55 @@
                                         href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin"
                                         aria-selected="false">Report</a>
                                 </li> -->
-                            </ul>
-                            <div class="tab-content" id="pills-tabContent">
-                                <div class="tab-pane fade show active" id="pills-admin-Permit-loaction" role="tabpanel"
-                                    aria-labelledby="pills-admin-Permit-loaction-tab">
-                                    <section class="table-sec daily-sec">
-                                        <div class="container p-0 container_full">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="table-Box pl-0 pr-0 border-0">
-                                                        <div class="permit-index">
-                                                            <div class="row">
-                                                                <div class="col-10">
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-admin-Permit-loaction"
+                                            role="tabpanel" aria-labelledby="pills-admin-Permit-loaction-tab">
+                                            <section class="table-sec daily-sec">
+                                                <div class="container p-0 container_full">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
                                                                     <div class="row">
-                                                                        <div class="col-2 pr-0 adminpermit_hd">
-                                                                            <div class="permit-Hd">
-                                                                                Permit Index
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-4 filter-search">
-                                                                            <div class="header-input tbl-search-box">
-                                                                                <input type="text"
-                                                                                    placeholder="Search..." (input)="searchApplication()"
-                                                                                     [(ngModel)]="searchString">
-                                                                                <span><i class="fa fa-search"
-                                                                                        aria-hidden="true"></i></span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-6 pl-0">
-                                                                            <div class="btn-filter dropdownfilter"><button><span><img
-                                                                                            src="assets/images/filter.svg"
-                                                                                            alt=""></span> Advance
-                                                                                    Search</button>
-                                                                                    <div class="dropdown-contentfilter">
-                                                                                        <div class="container p-0">
-                                                                                            <div class="row">
-                                                                                                <div class="col-4 ">
-                                                                                                    <div
-                                                                                                        class="filter-list">
-                                                                                                        <div class="nav flex-column nav-pills"
-                                                                                                            id="v-pills-tab"
-                                                                                                            role="tablist"
-                                                                                                            aria-orientation="vertical">
-                                                                                                            <!-- <a class="nav-link active"
+                                                                        <div class="col-10">
+                                                                            <div class="row">
+                                                                                <div class="col-2 pr-0 adminpermit_hd">
+                                                                                    <div class="permit-Hd">
+                                                                                        Permit Index
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-4 filter-search">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            placeholder="Search..."
+                                                                                            (input)="searchApplication()"
+                                                                                            [(ngModel)]="searchString">
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6 pl-0">
+                                                                                    <div
+                                                                                        class="btn-filter dropdownfilter">
+                                                                                        <button><span><img
+                                                                                                    src="assets/images/filter.svg"
+                                                                                                    alt=""></span>
+                                                                                            Advance
+                                                                                            Search</button>
+                                                                                        <div
+                                                                                            class="dropdown-contentfilter">
+                                                                                            <div class="container p-0">
+                                                                                                <div class="row">
+                                                                                                    <div class="col-4 ">
+                                                                                                        <div
+                                                                                                            class="filter-list">
+                                                                                                            <div class="nav flex-column nav-pills"
+                                                                                                                id="v-pills-tab"
+                                                                                                                role="tablist"
+                                                                                                                aria-orientation="vertical">
+                                                                                                                <!-- <a class="nav-link active"
                                                                                                                 id="v-pills-ads1-tab"
                                                                                                                 data-toggle="pill"
                                                                                                                 href="#v-pills-ads1"
@@ -120,7 +131,7 @@
                                                                                                                 aria-controls="v-pills-ads1"
                                                                                                                 aria-selected="true">Submission
                                                                                                                 Date</a> -->
-                                                                                                            <!-- <a class="nav-link"
+                                                                                                                <!-- <a class="nav-link"
                                                                                                                 id="v-pills-ads2-tab"
                                                                                                                 data-toggle="pill"
                                                                                                                 href="#v-pills-ads2"
@@ -128,15 +139,15 @@
                                                                                                                 aria-controls="v-pills-ads2"
                                                                                                                 aria-selected="false">Submission
                                                                                                                 Date</a> -->
-                                                                                                            <a class="nav-link"
-                                                                                                                id="v-pills-ads3-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads3"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads3"
-                                                                                                                aria-selected="false">Street
-                                                                                                                Name</a>
-                                                                                                            <!-- <a class="nav-link"
+                                                                                                                <!-- <a class="nav-link"
+                                                                                                                    id="v-pills-ads3-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads3"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads3"
+                                                                                                                    aria-selected="false">Street
+                                                                                                                    Name</a> -->
+                                                                                                                <!-- <a class="nav-link"
                                                                                                                 id="v-pills-ads4-tab"
                                                                                                                 data-toggle="pill"
                                                                                                                 href="#v-pills-ads4"
@@ -146,767 +157,917 @@
                                                                                                                 Non
                                                                                                                 Utility</a> -->
 
-                                                                                                            <a class="nav-link  "
-                                                                                                                id="v-pills-ads5-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads5"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads5"
-                                                                                                                aria-selected="true">Decision
-                                                                                                                <span>1</span></a>
-                                                                                                            <a class="nav-link"
-                                                                                                                id="v-pills-ads6-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads6"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads6"
-                                                                                                                aria-selected="false">Inspector</a>
-                                                                                                            <a class="nav-link"
-                                                                                                                id="v-pills-ads7-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads7"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads7"
-                                                                                                                aria-selected="false">Examiner</a>
-                                                                                                            <a class="nav-link"
-                                                                                                                id="v-pills-ads8-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads8"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads8"
-                                                                                                                aria-selected="false">Status</a>
-                                                                                                            <a class="nav-link"
-                                                                                                                id="v-pills-ads9-tab"
-                                                                                                                data-toggle="pill"
-                                                                                                                href="#v-pills-ads9"
-                                                                                                                role="tab"
-                                                                                                                aria-controls="v-pills-ads9"
-                                                                                                                aria-selected="false">Pipeline</a>
+                                                                                                                <a class="nav-link  "
+                                                                                                                    id="v-pills-ads5-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads5"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads5"
+                                                                                                                    aria-selected="true">Decision
+                                                                                                                    <span>1</span></a>
+                                                                                                                <a class="nav-link"
+                                                                                                                    id="v-pills-ads6-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads6"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads6"
+                                                                                                                    aria-selected="false">Inspector</a>
+                                                                                                                <a class="nav-link"
+                                                                                                                    id="v-pills-ads7-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads7"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads7"
+                                                                                                                    aria-selected="false">Examiner</a>
+                                                                                                                <a class="nav-link"
+                                                                                                                    id="v-pills-ads8-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads8"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads8"
+                                                                                                                    aria-selected="false">Status</a>
+                                                                                                                <a class="nav-link"
+                                                                                                                    id="v-pills-ads9-tab"
+                                                                                                                    data-toggle="pill"
+                                                                                                                    href="#v-pills-ads9"
+                                                                                                                    role="tab"
+                                                                                                                    aria-controls="v-pills-ads9"
+                                                                                                                    aria-selected="false">Pipeline</a>
+                                                                                                            </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div>
-                                                                                                 <div class="col-8 ">
-                                                                                                    <div
-                                                                                                        class="advance-date-sec">
-                                                                                                        <div class="tab-content"
-                                                                                                            id="v-pills-tabContent">
-                                                                                                            <div class="tab-pane fade show active"
-                                                                                                                id="v-pills-ads1"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads1-tab">
-                                                                                                                1...
-                                                                                                            </div>
-                                                                                                            <!-- <div class="tab-pane fade"
+                                                                                                    <div class="col-8 ">
+                                                                                                        <div
+                                                                                                            class="advance-date-sec">
+                                                                                                            <div class="tab-content"
+                                                                                                                id="v-pills-tabContent">
+                                                                                                                <!-- <div class="tab-pane fade show active"
+                                                                                                                    id="v-pills-ads1"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads1-tab">
+                                                                                                                    1...
+                                                                                                                </div> -->
+                                                                                                                <!-- <div class="tab-pane fade"
                                                                                                                 id="v-pills-ads2"
                                                                                                                 role="tabpanel"
                                                                                                                 aria-labelledby="v-pills-ads2-tab">
                                                                                                                 2...
                                                                                                             </div> -->
-                                                                                                            <!-- <div class="tab-pane fade"
+                                                                                                                <!-- <div class="tab-pane fade"
                                                                                                                 id="v-pills-ads3"
                                                                                                                 role="tabpanel"
                                                                                                                 aria-labelledby="v-pills-ads3-tab">
                                                                                                                 3...
                                                                                                             </div> -->
-                                                                                                            <!-- <div class="tab-pane fade"
+                                                                                                                <!-- <div class="tab-pane fade"
                                                                                                                 id="v-pills-ads4"
                                                                                                                 role="tabpanel"
                                                                                                                 aria-labelledby="v-pills-ads4-tab">
                                                                                                                 4...
                                                                                                             </div> -->
-                                                                                                            <div class="tab-pane fade "
-                                                                                                                id="v-pills-ads5"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads5-tab">
+                                                                                                                <div class="tab-pane fade "
+                                                                                                                    id="v-pills-ads5"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads5-tab">
 
-                                                                                                                <div
-                                                                                                                    class="decisionFilter-Hd">
-                                                                                                                    <p
-                                                                                                                        class="hd-desion-check">
-                                                                                                                        Decision
-                                                                                                                    </p>
-                                                                                                                    <label
-                                                                                                                        class="containerdision mt-3" >Cancelled
+                                                                                                                    <div
+                                                                                                                        class="decisionFilter-Hd">
+                                                                                                                        <p
+                                                                                                                            class="hd-desion-check">
+                                                                                                                            Decision
+                                                                                                                        </p>
+
+                                                                                                                       
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3">Cancelled
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="cancelled_permit"
+                                                                                                                               >
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Permit
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="issue_permit">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Accept
+
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="accept">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Pending
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="pending">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Fail
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="fail">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Pass
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="pass">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                        class="containerdision">Incomplete
                                                                                                                         <input
-                                                                                                                            type="checkbox" (change) ="selectFilter($event.target)" value ="1"
-                                                                                                                            checked="checked">
+                                                                                                                            type="checkbox"
+                                                                                                                            (change)="selectFilter($event.target,'decision')"
+                                                                                                                            value="incomplete">
                                                                                                                         <span
                                                                                                                             class="checkmarkdision"></span>
                                                                                                                     </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Permit
-                                                                                                                        <input
-                                                                                                                            type="checkbox" (change) ="selectFilter($event.target)" value ="2">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Plan
-                                                                                                                        Review
-                                                                                                                        <input
-                                                                                                                            type="checkbox" (change) ="selectFilter($event.target)" value ="3">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Denied
-                                                                                                                        <input
-                                                                                                                            type="checkbox" (change) ="selectFilter($event.target)" value ="4">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                </div>
+                                                                                                                    </div>
 
 
-                                                                                                            </div>
-                                                                                                            <div class="tab-pane fade"
-                                                                                                                id="v-pills-ads6"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads6-tab">
-                                                                                                                <div
-                                                                                                                    class="decisionFilter-Hd">
-                                                                                                                    <p
-                                                                                                                        class="hd-desion-check">
-                                                                                                                        Inspector
-                                                                                                                    </p>
-                                                                                                                    <label
-                                                                                                                        class="containerdision mt-3">Cancelled
-                                                                                                                        <input
-                                                                                                                            type="checkbox"
-                                                                                                                            checked="checked">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Permit
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Plan
-                                                                                                                        Review
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Denied
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
                                                                                                                 </div>
-                                                                                                            </div>
-                                                                                                            <div class="tab-pane fade"
-                                                                                                                id="v-pills-ads7"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads7-tab">
-                                                                                                                <div
-                                                                                                                    class="decisionFilter-Hd">
-                                                                                                                    <p
-                                                                                                                        class="hd-desion-check">
-                                                                                                                        Examiner
-                                                                                                                    </p>
-                                                                                                                    <label
-                                                                                                                        class="containerdision mt-3">Cancelled
-                                                                                                                        <input
-                                                                                                                            type="checkbox"
-                                                                                                                            checked="checked">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Permit
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Plan
-                                                                                                                        Review
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Denied
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
+                                                                                                                <div class="tab-pane fade"
+                                                                                                                    id="v-pills-ads6"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads6-tab">
+                                                                                                                    <div
+                                                                                                                        class="decisionFilter-Hd">
+                                                                                                                        <p
+                                                                                                                            class="hd-desion-check">
+                                                                                                                            Inspector
+                                                                                                                        </p>
+                                                                                                                        <label *ngFor ="let ins of inspector"
+                                                                                                                            class="containerdision mt-3">{{ins?.name}}
+                                                                                                                            <input
+                                                                                                                                type="checkbox" value="{{ins?.id}}" (change)="selectFilter($event.target,'inspector')"
+                                                                                                                                >
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                       
+                                                                                                                        
+                                                                                                                      
+                                                                                                                    </div>
                                                                                                                 </div>
-                                                                                                            </div>
-                                                                                                            <div class="tab-pane fade "
-                                                                                                                id="v-pills-ads8"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads8-tab">
-                                                                                                                <div
-                                                                                                                    class="decisionFilter-Hd">
-                                                                                                                    <p
-                                                                                                                        class="hd-desion-check">
-                                                                                                                        Status
-                                                                                                                    </p>
-                                                                                                                    <label
-                                                                                                                        class="containerdision mt-3">Close
-                                                                                                                        <input
-                                                                                                                            type="checkbox"
-                                                                                                                            checked="checked">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                    class="containerdision mt-3">Open
-                                                                                                                    <input
-                                                                                                                        type="checkbox"
-                                                                                                                        >
-                                                                                                                    <span
-                                                                                                                        class="checkmarkdision"></span>
-                                                                                                                </label>
-                                                                                                                  
-                                                                                                                   
-                                                                                                                    
+                                                                                                                <div class="tab-pane fade"
+                                                                                                                    id="v-pills-ads7"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads7-tab">
+                                                                                                                    <div
+                                                                                                                        class="decisionFilter-Hd">
+                                                                                                                        <p
+                                                                                                                            class="hd-desion-check">
+                                                                                                                            Examiner
+                                                                                                                        </p>
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3">Cancelled
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                >
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Permit
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Plan
+                                                                                                                            Review
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Denied
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                    </div>
                                                                                                                 </div>
-                                                                                                            </div>
-                                                                                                            <div class="tab-pane fade"
-                                                                                                                id="v-pills-ads9"
-                                                                                                                role="tabpanel"
-                                                                                                                aria-labelledby="v-pills-ads9-tab">
-                                                                                                                <div
-                                                                                                                    class="decisionFilter-Hd">
-                                                                                                                    <p
-                                                                                                                        class="hd-desion-check">
-                                                                                                                        Pipeline
-                                                                                                                    </p>
-                                                                                                                    <label
-                                                                                                                        class="containerdision mt-3">Cancelled
-                                                                                                                        <input
-                                                                                                                            type="checkbox"
-                                                                                                                            checked="checked">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Permit
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Plan
-                                                                                                                        Review
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
-                                                                                                                    <label
-                                                                                                                        class="containerdision">Denied
-                                                                                                                        <input
-                                                                                                                            type="checkbox">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
+                                                                                                                <div class="tab-pane fade "
+                                                                                                                    id="v-pills-ads8"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads8-tab">
+                                                                                                                    <div
+                                                                                                                        class="decisionFilter-Hd">
+                                                                                                                        <p
+                                                                                                                            class="hd-desion-check">
+                                                                                                                            Status
+                                                                                                                        </p>
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3">Close
+                                                                                                                            <input
+                                                                                                                                type="checkbox" value="close"  (change)="selectFilter($event.target,'decision')"
+                                                                                                                                >
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3">Open
+                                                                                                                            <input
+                                                                                                                                type="checkbox" value="open"  (change)="selectFilter($event.target,'decision')">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+
+
+
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="tab-pane fade"
+                                                                                                                    id="v-pills-ads9"
+                                                                                                                    role="tabpanel"
+                                                                                                                    aria-labelledby="v-pills-ads9-tab">
+                                                                                                                    <div
+                                                                                                                        class="decisionFilter-Hd">
+                                                                                                                        <p
+                                                                                                                            class="hd-desion-check">
+                                                                                                                            Pipeline
+                                                                                                                        </p>
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3">Cancelled
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                checked="checked">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Permit
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Plan
+                                                                                                                            Review
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                        <label
+                                                                                                                            class="containerdision">Denied
+                                                                                                                            <input
+                                                                                                                                type="checkbox">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
+                                                                                                                    </div>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                </div> 
-                                                                                            </div>
-                                                                                            <div
-                                                                                                class="pipeline-border">
-                                                                                                <div class="row">
-                                                                                                    <div class="col-12">
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="pipeline-border">
+                                                                                                    <div class="row">
                                                                                                         <div
-                                                                                                            class="clearallapplyBtn">
-                                                                                                            <button
-                                                                                                                class="btnfltr">Clear
-                                                                                                                All</button>
-                                                                                                            <button
-                                                                                                                class="btnaply">Apply</button>
+                                                                                                            class="col-12">
+                                                                                                            <div
+                                                                                                                class="clearallapplyBtn">
+                                                                                                                <button
+                                                                                                                    class="btnfltr">Clear
+                                                                                                                    All</button>
+                                                                                                                <button
+                                                                                                                    class="btnaply" (click) ="getAllApplication(1)">Apply</button>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </div>
 
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+
                                                                                 </div>
-                                                                                
+                                                                            </div>
+
                                                                         </div>
-                                                                    </div>
 
-                                                                </div>
-
-                                                                <div class="col-2 more-index">
-                                                                    <!-- <div class="New-Project"><button> More 
+                                                                        <div class="col-2 more-index">
+                                                                            <!-- <div class="New-Project"><button> More 
                                                                                      <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                                                     </button></div> -->
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="row">
-                                                            <div class="col-12 filter_tbl">
-                                                                <div class="table-permit">
-                                                                    <table class="table table-bordered ">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Ref No</th>
-                                                                                <th>Location</th>
-                                                                                <th>Applicant</th>
-                                                                                <th>Type</th>
-                                                                                <th>Decision Status</th>
-                                                                                <th>Submit date</th>
-                                                                                <th>Expire Date</th>
-                                                                                <th>Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                <td [class] = "permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                    (click)="navigateToUpdatePage(permit?.id,'permit')">
-                                                                                    <!-- <strong class="reedunreedadmin"></strong> -->
-
-                                                                                   <a>{{permit?.reference_no}}</a> </td>
-                                                                                
-                                                                                <td >
-                                                                                    <p *ngIf ="permit?.address_id  && permit?.location_type == 1">  
-                                                                                                                                              {{permit?.address_details?.szFullAddress}}
-                                                                                       </p>
-                                                                                    <h6  *ngIf ="permit?.location_type == 2 && permit?.isSingleAddress" >
-                                                                                        <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>
-                           
-                                                                                        <h6  *ngIf ="permit?.location_type == 2 && !permit.isSingleAddress" >
-                                                                                               <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="permit?.location_type == 2 && permit.isSingleAddress && ( permit?.location &&  permit?.location.length > 1) ">Show More</strong>
-                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="permit?.location_type == 2 && !permit.isSingleAddress && ( permit?.location && permit?.location.length > 1) ">Show Less</strong>
-                           
-                           
-                                                                               </td>
-                                                                                <td>{{permit?.applicant_details?.applicant_name}}
-                                                                                    {{permit?.applicant_details?.applican_last_name}}
-                                                                                </td>
-                                                                                <td>{{ settings.getSetting('type',permit['type'])}}
-                                                                                </td>
-                                                                                <td class="submited-Btn green-txt-2">
-                                                                                    <button *ngIf ="permit?.decision == null" >Submitted</button>
-                                                                                    <button *ngIf ="permit?.decision == 2" >Accept</button>
-                                                                                    <button *ngIf ="permit?.decision == 1" >Incomplete</button></td>
-
-                                                                                <td>{{permit?.createdAt | date}}</td>
-                                                                                <td>-</td>
-
-                                                                                <td class="update-txt dropdown-action">
-                                                                                    <span> <i class="fa fa-angle-down"
-                                                                                            aria-hidden="true"></i></span>
-                                                                                    
-                                                                                </td>
-                                                                            </tr>
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <pagination-controls (pageChange)="paginate($event,1,'')">
-                                                        </pagination-controls>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-                                <div class="tab-pane fade" id="pills-DWL" role="tabpanel"
-                                    aria-labelledby="pills-DWL-tab">
-                                    <section class="table-sec daily-sec">
-                                        <div class="container p-0 container_full">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="table-Box pl-0 pr-0 border-0">
-                                                        <div class="permit-index">
-                                                            <div class="row">
-                                                                <div class="col-8">
-                                                                    <div class="row">
-                                                                        <div class="col-3 pr-0 adminpermit_hd">
-                                                                            <div class="permit-Hd">
-                                                                                DWL Index
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-5 filter-search">
-                                                                            <div class="header-input tbl-search-box">
-                                                                        <input type="text" placeholder="Search..." (input)="searchApplication()"
-                                                                        [(ngModel)]="searchString">
-                                                                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
-                                                                    </div>
-                                                                        </div>
-                                                                        <div class="col-2 pl-0">
-                                                               <div class="btn-filter"><button><span><img src="assets/images/filter.svg" alt=""></span> Filter</button></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-4 exportBtn">
-                                                                    <div class="New-Project">
-                                                                        <button class="mr-4"  (bsValueChange)="seelctDate($event)" #drp="bsDaterangepicker" bsDaterangepicker>
-                                                                     <span (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen"><i class="fa fa-calendar" aria-hidden="true"  ></i></span>
-                                                                      {{from ? (from | date :'dd/MM/yyyy') :'01/06/2020'}} - {{to ? (to | date :'dd/MM/yyyy') :'01/07/2020'}}
-                                                                    </button>
-                                                                    <button>
-                                                                        <span><img src="assets/images/upload-index.svg" alt=""></span>
-                                                                        Export
-                                                                       </button></div>     
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
 
-                                                        <div class="row">
-                                                            <div class="col-12 filter_tbl">
-                                                                <div class="table-permit">
-                                                                    <table class="table table-bordered ">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th>Ref No</th>
-                                                                                <th>Location</th>
-                                                                                <!-- <th>Applicant</th>
-                                                                                <th>Type</th> -->
-                                                                                <!-- <th>Decision Status</th> -->
-                                                                                <th>Submit date</th>
-                                                                                <th>Expire Date</th>
-                                                                                <th>Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                            <tr *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                <td [class] = "permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                
-                                                                                    (click)="navigateToUpdatePage(permit?.id,'dwl')">
-
-                                                                                  {{permit?.reference_no}}</td>
-                                                                                
-                                                                                <td >
-                                                                                    <p *ngIf ="permit?.address_id">                                                         {{permit?.address_details?.szFullAddress}}
-                                                                                       </p>
-                                                                                    <h6  *ngIf ="!permit?.address_id && permit?.isSingleAddress" >
-                                                                                        <p *ngIf ="permit?.location && permit?.location.length > 0" >{{permit?.location[0]?.street_one}} {{permit?.location[0]?.address_join == 1? 'To':'End'}} {{permit?.location[0]?.street_two}}</p></h6>
-                           
-                                                                                        <h6  *ngIf ="!permit?.address_id && !permit.isSingleAddress" >
-                                                                                               <p *ngFor ="let location of permit?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                       <strong  class="pointer-2" (click) = "showMoreLocation(false,permit?.id)" *ngIf ="!permit?.address_id && permit.isSingleAddress && ( permit?.location && permit?.location.length > 1 )">Show More</strong>
-                                                                                       <strong class="pointer-2" (click) = "showMoreLocation(true,permit?.id)"  *ngIf ="!permit?.address_id && !permit.isSingleAddress && (permit?.location && permit?.location.length > 1 )">Show Less</strong>
-                           
-                           
-                                                                               </td>
-                                                                                
-                                                                                <!-- <td class="submited-Btn green-txt-2">
-                                                                                    <button>Issued</button></td> -->
-                                                                                <td>{{permit?.submittedAt | date}}</td>
-                                                                                <td>-</td>
-
-                                                                                <td class="update-txt dropdown-action">
-                                                                                    <span> <i class="fa fa-angle-down"
-                                                                                            aria-hidden="true"></i></span>
-                                                                                    
-                                                                                </td>
-                                                                            </tr>
-
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <pagination-controls (pageChange)="paginate($event,2,'')">
-                                                        </pagination-controls>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </section>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
-                                aria-labelledby="pills-Inspection-admin-tab">
-
-
-                                <section class="table-sec daily-sec">
-                                    <div class="container p-0 container_full">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="table-Box pl-0 pr-0 border-0">
-                                                    <div class="permit-index">
-                                                        <div class="row">
-                                                            <div class="col-10">
                                                                 <div class="row">
-                                                                    <div class="col-2 pr-0 adminpermit_hd">
-                                                                        <div class="permit-Hd">
-                                                                            Inspections
+                                                                    <div class="col-12 filter_tbl">
+                                                                        <div class="table-permit">
+                                                                            <table class="table table-bordered ">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Ref No</th>
+                                                                                        <th>Location</th>
+                                                                                        <th>Applicant</th>
+                                                                                        <th>Type</th>
+                                                                                        <th>Decision Status</th>
+                                                                                        <th>Submit date</th>
+                                                                                        <th>Expire Date</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                        <td [class]="permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
+                                                                                            (click)="navigateToUpdatePage(permit?.id,'permit')">
+                                                                                            <!-- <strong class="reedunreedadmin"></strong> -->
+
+                                                                                            <a>{{permit?.reference_no}}</a>
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <p
+                                                                                                *ngIf="permit?.address_id  && permit?.location_type == 1">
+                                                                                                {{permit?.address_details?.szFullAddress}}
+                                                                                            </p>
+                                                                                            <h6
+                                                                                                *ngIf="permit?.location_type == 2 && permit?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngIf="permit?.location && permit?.location.length > 0">
+                                                                                                    {{permit?.location[0]?.street_one}}
+                                                                                                    {{permit?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                    {{permit?.location[0]?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+
+                                                                                            <h6
+                                                                                                *ngIf="permit?.location_type == 2 && !permit.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngFor="let location of permit?.location ">
+                                                                                                    {{location?.street_one}}
+                                                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                    {{location?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(false,permit?.id)"
+                                                                                                *ngIf="permit?.location_type == 2 && permit.isSingleAddress && ( permit?.location &&  permit?.location.length > 1) ">Show
+                                                                                                More</strong>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(true,permit?.id)"
+                                                                                                *ngIf="permit?.location_type == 2 && !permit.isSingleAddress && ( permit?.location && permit?.location.length > 1) ">Show
+                                                                                                Less</strong>
+
+
+                                                                                        </td>
+                                                                                        <td>{{permit?.applicant_details?.applicant_name}}
+                                                                                            {{permit?.applicant_details?.applican_last_name}}
+                                                                                        </td>
+                                                                                        <td>{{ settings.getSetting('type',permit['type'])}}
+                                                                                        </td>
+                                                                                        <td
+                                                                                            class="submited-Btn green-txt-2">
+                                                                                            <button
+                                                                                                *ngIf="permit?.decision == null">Submitted</button>
+                                                                                            <button
+                                                                                                *ngIf="permit?.decision == 2">Accept</button>
+                                                                                            <button
+                                                                                                *ngIf="permit?.decision == 1">Incomplete</button>
+                                                                                        </td>
+
+                                                                                        <td>{{permit?.createdAt | date}}
+                                                                                        </td>
+                                                                                        <td>-</td>
+
+                                                                                        <td
+                                                                                            class="update-txt dropdown-action">
+                                                                                            <span> <i
+                                                                                                    class="fa fa-angle-down"
+                                                                                                    aria-hidden="true"></i></span>
+
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-4 filter-search">
-                                                                        <div
-                                                                            class="header-input tbl-search-box">
-                                                                            <input type="text"
-                                                                                placeholder="Search...">
-                                                                            <span><i class="fa fa-search"
-                                                                                    aria-hidden="true"></i></span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-6 pl-0">
-                                                                        <div class="btn-filter">
-                                                                            <button><span><img
-                                                                                        src="assets/images/filter.svg"
-                                                                                        alt=""></span>
-                                                                                Filter</button></div>
-                                                                                
                                                                     </div>
                                                                 </div>
-
-                                                            </div>
-
-                                                            <div class="col-2 more-index">
-                                                                <!-- <div class="New-Project"><button> More 
-                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                            </button></div> -->
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,1,'')">
+                                                                </pagination-controls>
                                                             </div>
                                                         </div>
                                                     </div>
-
-
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-DWL" role="tabpanel"
+                                            aria-labelledby="pills-DWL-tab">
+                                            <section class="table-sec daily-sec">
+                                                <div class="container p-0 container_full">
                                                     <div class="row">
-                                                        <div class="col-12 filter_tbl">
-                                                            <div class="table-permit">
-                                                                <table class="table table-bordered ">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Permit Number</th>
-                                                                            <th>Location</th>
-                                                                            <th>Inspection Type</th>
-                                                                            <th>Date Requested</th>
-                                                                            <th>Inspector</th>
-                                                                         
-                                                                            <th>Decision</th>
-                                                                            <!-- <th>Status</th> -->
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody >
-                                                                        <tr *ngFor ="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                            <td >{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}</td>
-                                                                            <td >
-                                                                                <p *ngIf ="inspection?.application?.address_id">  
-                                                   {{inspection?.application?.address_details?.szFullAddress}}
-                                                                                   </p>
-                                                                                <h6  *ngIf ="!inspection?.application?.address_id && inspection?.isSingleAddress" >
-                                                                                    <p *ngIf ="inspection?.application?.location && inspection?.application?.location.length > 0" >{{inspection?.application?.location[0]?.street_one}} {{inspection?.application?.location[0]?.address_join == 1? 'To':'End'}} {{inspection?.application?.location[0]?.street_two}}</p></h6>
-                       
-                                                                                    <h6  *ngIf ="!inspection?.application?.address_id && !inspection?.isSingleAddress" >
-                                                                                           <p *ngFor ="let location of inspection?.application?.location " >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
-                                                                                   <strong  class="pointer-2" (click) = "showMoreLocation(false,inspection?.id)" *ngIf ="!inspection?.application?.address_id && inspection.isSingleAddress && ( inspection?.application?.location &&  inspection?.application?.location.length > 1) ">Show More</strong>
-                                                                                   <strong class="pointer-2" (click) = "showMoreLocation(true,inspection?.id)"  *ngIf ="!inspection?.application?.address_id && !inspection.isSingleAddress && ( inspection?.application?.location && inspection?.application?.location.length > 1) ">Show Less</strong>
-                       
-                       
-                                                                           </td>
-                                                                           <!-- <td>test</td> -->
-                                                                            <td>{{ settings.getSetting('inspection_type',inspection?.type)}}</td>
-                                                                            <td>{{inspection?.date | date}}</td>
-                                                                           <td>{{inspection?.staff?.name}}</td>
-                                                                            <td>{{ settings.getSetting('inspection_decision',inspection?.decision)}}</td>
-                                                                            <!-- <td>Pending</td> -->
-                                                                            <td
-                                                                                class="update-txt dropdown-action">
-                                                                                <span> <i
-                                                                                        class="fa fa-angle-down"
-                                                                                        aria-hidden="true"></i></span>
-                                                                                <div
-                                                                                    class="dropdown-contentable">
-                                                                                    <!-- <a href="#">Delete</a> -->
-                                                                                    <a (click) ="editInspection(inspection?.id,inspection?.application)">Modify</a>
-                                                                                    <!-- <a href="#">Inactive</a> -->
-                                                                                    <div class="triangle-left">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
+                                                                    <div class="row">
+                                                                        <div class="col-8">
+                                                                            <div class="row">
+                                                                                <div class="col-3 pr-0 adminpermit_hd">
+                                                                                    <div class="permit-Hd">
+                                                                                        DWL Index
                                                                                     </div>
                                                                                 </div>
-                                                                            </td>
+                                                                                <div class="col-5 filter-search">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            placeholder="Search..."
+                                                                                            (input)="searchApplication()"
+                                                                                            [(ngModel)]="searchString">
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-2 pl-0">
+                                                                                    <div class="btn-filter">
+                                                                                        <button><span><img
+                                                                                                    src="assets/images/filter.svg"
+                                                                                                    alt=""></span>
+                                                                                            Filter</button></div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4 exportBtn">
+                                                                            <div class="New-Project">
+                                                                                <button class="mr-4"
+                                                                                    (bsValueChange)="seelctDate($event)"
+                                                                                    #drp="bsDaterangepicker"
+                                                                                    bsDaterangepicker>
+                                                                                    <span (click)="drp.toggle()"
+                                                                                        [attr.aria-expanded]="drp.isOpen"><i
+                                                                                            class="fa fa-calendar"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                    {{from ? (from | date :'dd/MM/yyyy') :'01/06/2020'}}
+                                                                                    -
+                                                                                    {{to ? (to | date :'dd/MM/yyyy') :'01/07/2020'}}
+                                                                                </button>
+                                                                                <button>
+                                                                                    <span><img
+                                                                                            src="assets/images/upload-index.svg"
+                                                                                            alt=""></span>
+                                                                                    Export
+                                                                                </button></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                                        </tr>
-                                                                       
-                                                                    </tbody>
-                                                                </table>
+
+                                                                <div class="row">
+                                                                    <div class="col-12 filter_tbl">
+                                                                        <div class="table-permit">
+                                                                            <table class="table table-bordered ">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Ref No</th>
+                                                                                        <th>Location</th>
+                                                                                        <!-- <th>Applicant</th>
+                                                                                <th>Type</th> -->
+                                                                                        <!-- <th>Decision Status</th> -->
+                                                                                        <th>Submit date</th>
+                                                                                        <th>Expire Date</th>
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                        <td [class]="permit?.is_read_by_admin == 1 ? 'refTxt pointer':'refTxt pointer circle-round'"
+                                                                                            (click)="navigateToUpdatePage(permit?.id,'dwl')">
+
+                                                                                            {{permit?.reference_no}}
+                                                                                        </td>
+
+                                                                                        <td>
+                                                                                            <p
+                                                                                                *ngIf="permit?.address_id">
+                                                                                                {{permit?.address_details?.szFullAddress}}
+                                                                                            </p>
+                                                                                            <h6
+                                                                                                *ngIf="!permit?.address_id && permit?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngIf="permit?.location && permit?.location.length > 0">
+                                                                                                    {{permit?.location[0]?.street_one}}
+                                                                                                    {{permit?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                    {{permit?.location[0]?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+
+                                                                                            <h6
+                                                                                                *ngIf="!permit?.address_id && !permit.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngFor="let location of permit?.location ">
+                                                                                                    {{location?.street_one}}
+                                                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                    {{location?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(false,permit?.id)"
+                                                                                                *ngIf="!permit?.address_id && permit.isSingleAddress && ( permit?.location && permit?.location.length > 1 )">Show
+                                                                                                More</strong>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(true,permit?.id)"
+                                                                                                *ngIf="!permit?.address_id && !permit.isSingleAddress && (permit?.location && permit?.location.length > 1 )">Show
+                                                                                                Less</strong>
+
+
+                                                                                        </td>
+
+                                                                                        <!-- <td class="submited-Btn green-txt-2">
+                                                                                    <button>Issued</button></td> -->
+                                                                                        <td>{{permit?.submittedAt | date}}
+                                                                                        </td>
+                                                                                        <td>-</td>
+
+                                                                                        <td
+                                                                                            class="update-txt dropdown-action">
+                                                                                            <span> <i
+                                                                                                    class="fa fa-angle-down"
+                                                                                                    aria-hidden="true"></i></span>
+
+                                                                                        </td>
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,2,'')">
+                                                                </pagination-controls>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <pagination-controls (pageChange)="paginate($event,'','inspection')">
-                                                    </pagination-controls>
                                                 </div>
-                                            </div>
+                                            </section>
                                         </div>
-                                    </div>
-                                </section>
+
+                                        <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
+                                            aria-labelledby="pills-Inspection-admin-tab">
 
 
-                            </div>
-                                <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel" 
-                                    aria-labelledby="pills-Payment-admin-tab">
-                                    <section class="table-sec daily-sec">
-                                        <div class="container p-0 container_full">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <div class="table-Box pl-0 pr-0 border-0">
-                                                        <div class="permit-index">
-                                                            <div class="row">
-                                                                <div class="col-8">
+                                            <section class="table-sec daily-sec">
+                                                <div class="container p-0 container_full">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
                                                                     <div class="row">
-                                                                        <div class="col-2 pr-0 adminpermit_hd">
-                                                                            <div class="permit-Hd">
-                                                                                Inspections
+                                                                        <div class="col-10">
+                                                                            <div class="row">
+                                                                                <div class="col-2 pr-0 adminpermit_hd">
+                                                                                    <div class="permit-Hd">
+                                                                                        Inspections
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-4 filter-search">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            placeholder="Search...">
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-6 pl-0">
+                                                                                    <div class="btn-filter">
+                                                                                        <button><span><img
+                                                                                                    src="assets/images/filter.svg"
+                                                                                                    alt=""></span>
+                                                                                            Filter</button></div>
+
+                                                                                </div>
                                                                             </div>
+
                                                                         </div>
-                                                                        <div class="col-4 filter-search abc-search">
-                                                                            <div
-                                                                                class="header-input tbl-search-box">
-                                                                                <input type="text"
-                                                                                    placeholder="Search...">
-                                                                                <span><i class="fa fa-search"
-                                                                                        aria-hidden="true"></i></span>
-                                                                            </div>
+
+                                                                        <div class="col-2 more-index">
+                                                                            <!-- <div class="New-Project"><button> More 
+                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                            </button></div> -->
                                                                         </div>
-                                                                        <div class="col-4 pl-0">
-                                                                            <!-- <div class="btn-filter">
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="row">
+                                                                    <div class="col-12 filter_tbl">
+                                                                        <div class="table-permit">
+                                                                            <table class="table table-bordered ">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>Permit Number</th>
+                                                                                        <th>Location</th>
+                                                                                        <th>Inspection Type</th>
+                                                                                        <th>Date Requested</th>
+                                                                                        <th>Inspector</th>
+
+                                                                                        <th>Decision</th>
+                                                                                        <!-- <th>Status</th> -->
+                                                                                        <th>Action</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    <tr
+                                                                                        *ngFor="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                        <td>{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}
+                                                                                        </td>
+                                                                                        <td>
+                                                                                            <p
+                                                                                                *ngIf="inspection?.application?.address_id">
+                                                                                                {{inspection?.application?.address_details?.szFullAddress}}
+                                                                                            </p>
+                                                                                            <h6
+                                                                                                *ngIf="!inspection?.application?.address_id && inspection?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngIf="inspection?.application?.location && inspection?.application?.location.length > 0">
+                                                                                                    {{inspection?.application?.location[0]?.street_one}}
+                                                                                                    {{inspection?.application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                    {{inspection?.application?.location[0]?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+
+                                                                                            <h6
+                                                                                                *ngIf="!inspection?.application?.address_id && !inspection?.isSingleAddress">
+                                                                                                <p
+                                                                                                    *ngFor="let location of inspection?.application?.location ">
+                                                                                                    {{location?.street_one}}
+                                                                                                    {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                    {{location?.street_two}}
+                                                                                                </p>
+                                                                                            </h6>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(false,inspection?.id)"
+                                                                                                *ngIf="!inspection?.application?.address_id && inspection.isSingleAddress && ( inspection?.application?.location &&  inspection?.application?.location.length > 1) ">Show
+                                                                                                More</strong>
+                                                                                            <strong class="pointer-2"
+                                                                                                (click)="showMoreLocation(true,inspection?.id)"
+                                                                                                *ngIf="!inspection?.application?.address_id && !inspection.isSingleAddress && ( inspection?.application?.location && inspection?.application?.location.length > 1) ">Show
+                                                                                                Less</strong>
+
+
+                                                                                        </td>
+                                                                                        <!-- <td>test</td> -->
+                                                                                        <td>{{ settings.getSetting('inspection_type',inspection?.type)}}
+                                                                                        </td>
+                                                                                        <td>{{inspection?.date | date}}
+                                                                                        </td>
+                                                                                        <td>{{inspection?.staff?.name}}
+                                                                                        </td>
+                                                                                        <td>{{ settings.getSetting('inspection_decision',inspection?.decision)}}
+                                                                                        </td>
+                                                                                        <!-- <td>Pending</td> -->
+                                                                                        <td
+                                                                                            class="update-txt dropdown-action">
+                                                                                            <span> <i
+                                                                                                    class="fa fa-angle-down"
+                                                                                                    aria-hidden="true"></i></span>
+                                                                                            <div
+                                                                                                class="dropdown-contentable">
+                                                                                                <!-- <a href="#">Delete</a> -->
+                                                                                                <a
+                                                                                                    (click)="editInspection(inspection?.id,inspection?.application)">Modify</a>
+                                                                                                <!-- <a href="#">Inactive</a> -->
+                                                                                                <div
+                                                                                                    class="triangle-left">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </td>
+
+                                                                                    </tr>
+
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,'','inspection')">
+                                                                </pagination-controls>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-Payment-admin" role="tabpanel"
+                                            aria-labelledby="pills-Payment-admin-tab">
+                                            <section class="table-sec daily-sec">
+                                                <div class="container p-0 container_full">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
+                                                                    <div class="row">
+                                                                        <div class="col-8">
+                                                                            <div class="row">
+                                                                                <div class="col-2 pr-0 adminpermit_hd">
+                                                                                    <div class="permit-Hd">
+                                                                                        Inspections
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="col-4 filter-search abc-search">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            placeholder="Search...">
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-4 pl-0">
+                                                                                    <!-- <div class="btn-filter">
                                                                                 <button><span><img
                                                                                             src="assets/images/filter.svg"
                                                                                             alt=""></span>
                                                                                     Filter</button></div> -->
                                                                                     <div class="dropdown">
                                                                                         <!-- <button class="dropbtn">Dropdown</button> -->
-                                                                                        <div class="btn-filter dropbtn"><button><span><img
-                                                                                            src="assets/images/filter.svg"
-                                                                                            alt=""></span> Filter
-                                                                                   </button>
-                                                                                    
-                                                                                </div>
-                                                                                        <div class="dropdown-content">
-                                                                                          <a (click) ="paymentsSummary(1,'','')">All</a>
-                                                                                          <!-- <a (click) ="paymentsSummary(1,'','DWL')">DWL</a> -->
-                                                                                          <a (click) ="paymentsSummary(1,'','permit')">Permit</a>
-                                                                                          <a (click) ="paymentsSummary(1,'','paid')">Paid</a>
-                                                                                          <a (click) ="paymentsSummary(1,'','unpaid')">Unpaid</a>
+                                                                                        <div class="btn-filter dropbtn">
+                                                                                            <button><span><img
+                                                                                                        src="assets/images/filter.svg"
+                                                                                                        alt=""></span>
+                                                                                                Filter
+                                                                                            </button>
+
                                                                                         </div>
-                                                                                      </div>
+                                                                                        <div class="dropdown-content">
+                                                                                            <a
+                                                                                                (click)="paymentsSummary(1,'','')">All</a>
+                                                                                            <!-- <a (click) ="paymentsSummary(1,'','DWL')">DWL</a> -->
+                                                                                            <a
+                                                                                                (click)="paymentsSummary(1,'','permit')">Permit</a>
+                                                                                            <a
+                                                                                                (click)="paymentsSummary(1,'','paid')">Paid</a>
+                                                                                            <a
+                                                                                                (click)="paymentsSummary(1,'','unpaid')">Unpaid</a>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                        <div class="col-4 exportBtn">
+                                                                            <div class="d-flex justify-content-end">
+                                                                                <div class="New-Project"><button>
+                                                                                        <span><img
+                                                                                                src="assets/images/interface.svg"
+                                                                                                alt=""></span>
+                                                                                        Print
+                                                                                    </button></div>
+                                                                                <div class="New-Project ml-3"><button>
+                                                                                        <span><img
+                                                                                                src="assets/images/upload-index.svg"
+                                                                                                alt=""></span>
+                                                                                        Export
+                                                                                    </button></div>
+                                                                                <div class="New-Project"><button
+                                                                                        id="nrtn">
+                                                                                        New Request
+                                                                                    </button></div>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
 
-                                                                </div>
 
-                                                                <div class="col-4 exportBtn">
-                                                                    <div class="d-flex justify-content-end">
-                                                                        <div class="New-Project"><button>
-                                                                                <span><img
-                                                                                        src="assets/images/interface.svg"
-                                                                                        alt=""></span>
-                                                                                Print
-                                                                            </button></div>
-                                                                        <div class="New-Project ml-3"><button>
-                                                                                <span><img
-                                                                                        src="assets/images/upload-index.svg"
-                                                                                        alt=""></span>
-                                                                                Export
-                                                                            </button></div>
-                                                                        <div class="New-Project"><button id="nrtn">
-                                                                                New Request
-                                                                            </button></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                    <div class="row">
+                                                                        <div class="col-12 filter_tbl">
+                                                                            <div class="table-permit">
+                                                                                <table class="table table-bordered ">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Location</th>
+                                                                                            <th>Created By</th>
+                                                                                            <th>Status </th>
+                                                                                            <th>Pay Method</th>
+                                                                                            <th>Receipt No</th>
+                                                                                            <th>Ref No</th>
+                                                                                            <th>Amount</th>
+                                                                                            <th>Date</th>
 
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            *ngFor="let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td>
+                                                                                                <p
+                                                                                                    *ngIf="summary?.application?.address_id">
+                                                                                                    {{summary?.application?.address_details?.szFullAddress}}
+                                                                                                </p>
+                                                                                                <h6
+                                                                                                    *ngIf="!summary?.application?.address_id && summary?.isSingleAddress">
+                                                                                                    <p
+                                                                                                        *ngIf="summary?.application?.location && summary?.application?.location?.length  > 0">
+                                                                                                        {{summary?.application?.location[0]?.street_one}}
+                                                                                                        {{summary?.application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                        {{summary?.application?.location[0]?.street_two}}
+                                                                                                    </p>
+                                                                                                </h6>
 
-                                                            <div class="row">
-                                                                <div class="col-12 filter_tbl">
-                                                                    <div class="table-permit">
-                                                                        <table class="table table-bordered ">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th>Location</th>
-                                                                                    <th>Created By</th>
-                                                                                    <th>Status </th>
-                                                                                    <th>Pay Method</th>
-                                                                                    <th>Receipt No</th>
-                                                                                    <th>Ref No</th>
-                                                                                    <th>Amount</th>
-                                                                                    <th>Date</th>
-
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr *ngFor = "let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                    <td >
-                                                                                        <p *ngIf ="summary?.application?.address_id">                                                      {{summary?.application?.address_details?.szFullAddress}}
-                                                                                           </p>
-                                                                                        <h6  *ngIf ="!summary?.application?.address_id && summary?.isSingleAddress" >
-                                                                                            <p *ngIf ="summary?.application?.location && summary?.application?.location?.length  > 0" >{{summary?.application?.location[0]?.street_one}} {{summary?.application?.location[0]?.address_join == 1? 'To':'End'}} {{summary?.application?.location[0]?.street_two}}</p></h6>
-                               
-                                                                                            <!-- <h6  *ngIf ="!summary?.application?.address_id && !summary?.application?.isSingleAddress" >
+                                                                                                <!-- <h6  *ngIf ="!summary?.application?.address_id && !summary?.application?.isSingleAddress" >
                                                                                                    <p *ngFor ="let location of summary?.application?.location" >{{location?.street_one}} {{location?.address_join == 1 ?'To':'End'}} {{location?.street_two}}</p></h6>
                                                                                            <strong  class="pointer-2" (click) = "showMoreLocation(false,summary?.id)" *ngIf ="!summary?.summary?.application?.location?.address_id && summary.isSingleAddress && ( summary?.application?.location &&  summary?.application?.location.length > 1) ">Show More</strong>
                                                                                            <strong class="pointer-2" (click) = "showMoreLocation(true,summary?.id)"  *ngIf ="!summary?.summary?.application?.location?.address_id && !summary.isSingleAddress && ( summary?.application?.location && summary?.application?.location.length > 1) ">Show Less</strong>
                                 -->
-                               
-                                                                                   </td>
-                                                                                    <td>{{summary?.application?.applicant_details?.applicant_name}}{{summary?.application?.payment_status}}</td>
-                                                                                    <td
-                                                                                        class="submited-Btn green-txt-2">
-                                                                                        <button *ngIf = "summary?.payment_status == 1 && summary?.payment_status != null "
-                                                                                            class="pb-0 pt-0">Paid</button>
-                                                                                            <button *ngIf ="(summary?.payment_status == null || summary?.payment_status == 0)"
-                                                                                            class="pb-0 pt-0">Unpaid</button>
-                                                                                    </td>
-                                                                                    <td>Check</td>
-                                                                                    <td>{{summary?.reciept_no}}</td>
-                                                                                    <td>{{summary?.reference_no}}</td>
-                                                                                    <td>{{summary?.amount}}</td>
-                                                                                    <td>{{summary?.createdAt | date}}</td>
+
+                                                                                            </td>
+                                                                                            <td>{{summary?.application?.applicant_details?.applicant_name}}{{summary?.application?.payment_status}}
+                                                                                            </td>
+                                                                                            <td
+                                                                                                class="submited-Btn green-txt-2">
+                                                                                                <button
+                                                                                                    *ngIf="summary?.payment_status == 1 && summary?.payment_status != null "
+                                                                                                    class="pb-0 pt-0">Paid</button>
+                                                                                                <button
+                                                                                                    *ngIf="(summary?.payment_status == null || summary?.payment_status == 0)"
+                                                                                                    class="pb-0 pt-0">Unpaid</button>
+                                                                                            </td>
+                                                                                            <td>Check</td>
+                                                                                            <td>{{summary?.reciept_no}}
+                                                                                            </td>
+                                                                                            <td>{{summary?.reference_no}}
+                                                                                            </td>
+                                                                                            <td>{{summary?.amount}}</td>
+                                                                                            <td>{{summary?.createdAt | date}}
+                                                                                            </td>
 
 
 
-                                                                                </tr>
-                                                                               
-                                                                            </tbody>
-                                                                        </table>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,1,'payment')">
+                                                                </pagination-controls>
                                                             </div>
                                                         </div>
-                                                        <pagination-controls (pageChange)="paginate($event,1,'payment')">
-                                                        </pagination-controls>
                                                     </div>
                                                 </div>
-                                            </div>
+
+                                            </section>
+
                                         </div>
-                                            
-                                    </section>
-                                    
+                                        <div class="tab-pane fade" id="pills-Invoice-admin" role="tabpanel"
+                                            aria-labelledby="pills-Invoice-admin-tab"></div>
+                                        <div class="tab-pane fade" id="pills-Report-admin" role="tabpanel"
+                                            aria-labelledby="pills-Report-admin-tab"></div>
+
+
+                                    </div>
                                 </div>
-                                <div class="tab-pane fade" id="pills-Invoice-admin" role="tabpanel"
-                                    aria-labelledby="pills-Invoice-admin-tab"></div>
-                                <div class="tab-pane fade" id="pills-Report-admin" role="tabpanel"
-                                    aria-labelledby="pills-Report-admin-tab"></div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-<!-- </router-outlet>
+        </section>
+        <!-- </router-outlet>
         </app-admin> -->
-        </router-outlet>
-        </app-auth-layout>
+    </router-outlet>
+</app-auth-layout>
