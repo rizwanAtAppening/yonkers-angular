@@ -614,7 +614,7 @@ header {
     font-family: 'Poppins-Regular';
     border-left: 0px;
     vertical-align: middle;
-    color: #282d5bab;
+    color: #282d5b;
 }
 
 .table-permit table td.refTxt {
@@ -4610,6 +4610,9 @@ color: #282D5B99 !important;
         padding: 11px 18px 11px 18px;
         font-family: "Poppins-Medium";
         letter-spacing: 0.35px;
+        max-width: 530px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .JohnsmithTxt h6{
         cursor: pointer;
