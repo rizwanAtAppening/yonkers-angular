@@ -67,6 +67,7 @@ const adminUrl = {
   editDescription:`/application/update`,
   addDecision:`/application/manager/decision`,
   inspector:`/inspector`,
+  examiner:`/examiner`,
   inspection:`/inspection`,
   getInspection:`/inspection`,
   voidInspection:`/inspection/void`,

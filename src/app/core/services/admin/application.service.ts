@@ -32,6 +32,34 @@ export class ApplicationService {
     );
   }
 
+
+
+  inspector(): Observable<any> {
+    const href = `${environment['inspector']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  examiner(): Observable<any> {
+    const href = `${environment['examiner']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   getApplicationDetails(id): Observable<any> {
     const href = `${environment['permitDetals']}/${id}`
     return this.http.get<any>(href).pipe(
@@ -71,7 +99,7 @@ export class ApplicationService {
     );
   }
 
-  applicantUpdate(data,id) {
+  applicantUpdate(data, id) {
     const href = `${environment['updateApplicant']}/${id}`
     return this.http.post<any>(href, data).pipe(
       map(
@@ -83,7 +111,7 @@ export class ApplicationService {
       )
     );
   }
-  saveProjectInfo(data,id) {
+  saveProjectInfo(data, id) {
     const href = `${environment['saveprojectInfo']}/${id}`
     return this.http.post<any>(href, data).pipe(
       map(
@@ -132,7 +160,7 @@ export class ApplicationService {
           return rest;
         }
       )
-    ); 
+    );
   }
 
 

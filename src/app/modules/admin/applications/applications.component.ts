@@ -30,6 +30,7 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllApplication(this.application_Type);
     this.getUserInfo()
+    this.allInspector();
   }
 
 
@@ -43,15 +44,20 @@ export class ApplicationsComponent implements OnInit {
   public page = 1
   public offset = 10;
   public currentPage = 1;
-  public totalPagination: number
+  public totalPagination: number;
+  public modify = {
+    page: this.page,
+    application_type: this.application_Type
+  }
   getAllApplication(application_Type) {
+    debugger
     this.application_Type = application_Type
-
-    const data = {
-      page: this.page,
-      application_type: this.application_Type
-    }
-    this.applicationService.getApplications(data).subscribe(data => {
+    this.modify.application_type = application_Type
+    // const data = {
+    //   page: this.page,
+    //   application_type: this.application_Type
+    // }
+    this.applicationService.getApplications(this.modify).subscribe(data => {
       this.allApplications = data.response;
       this.currentPage = data.currentPage;
       this.offset = data.offset;
@@ -239,21 +245,56 @@ export class ApplicationsComponent implements OnInit {
     }
   }
 
-  public modify = {}
-  public value = 1;
-  public selectDecision = 'decision'
-  selectFilter(selectValue) {
-    debugger
-    if (selectValue.checked) {
-      // Object.keys(this.modify).forEach(data => {
-      //   if (data == this.selectDecision) {
-      //     delete this.modify[data]
 
-      //   }
-      // })
-      this.modify[this.selectDecision] = Number(selectValue.value);
+  // public value = 1;
+  // public selectDecision = 'decision'
+  public inspectorKey = "inspectorId"
+  selectFilter(selectValue, value) {
+    debugger
+    if (value == 'inspector') {
+      if (!selectValue.checked) {
+        Object.keys(this.modify).forEach(data => {
+          if (this.modify[this.inspectorKey] == selectValue.value) {
+            delete this.modify[data]
+
+          }
+        })
+      } else {
+
+        this.modify['inspectorId'] = selectValue.value;
+        
+      }
+
+
     }
-    console.log(this.modify, '+++++++++++++++++++++++++++++++++++++++++++')
+    else if (value == 'decision') {
+      if (!selectValue.checked) {
+        Object.keys(this.modify).forEach(data => {
+          if (data == selectValue.value) {
+            delete this.modify[data]
+
+          }
+        })
+      } else {
+        this.modify[selectValue.value] = 1;
+
+      }
+
+    }
+
   }
 
+  public inspector = []
+  public examiner = []
+  allInspector() {
+    debugger
+    this.applicationService.inspector().subscribe(data => {
+      this.inspector = data.response
+    })
+  }
+  allExaminer() {
+    this.applicationService.examiner().subscribe(data => {
+      this.examiner = data.response
+    })
+  }
 }
