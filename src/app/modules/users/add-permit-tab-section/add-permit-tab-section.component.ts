@@ -283,7 +283,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public licenseDetails = []
   getLicenseDetails() {
-debugger
+
     this.permitService.getLicenseDetails().subscribe(data => {
       this.licenseDetails = data.response
       var currentDate
@@ -457,7 +457,7 @@ debugger
 
 
   addPermitApplication(formGroup, nextTab) {
-debugger
+
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -587,7 +587,7 @@ debugger
     }
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
-debugger
+
       if ( (this.application.role == 2 || (this.application.role == 1 && this.application.type != 4) || (this.application.role == 3 &&  this.application.type != 4))) {
         this.contractorForm.value.model = 4
         this.data = this.contractorForm.value
@@ -784,7 +784,7 @@ debugger
   // }
   public isDisabled = false;
   contractorTab() {
-debugger
+
 //const application = this.permitService.getApplication()
     this.getApplication()
     this.authService.getUserInfo().subscribe(currentUser => {
@@ -808,7 +808,7 @@ debugger
       }
 
       this.getLicenseDetails();
-      debugger
+      
       this.contractorForm.controls.contractor_for_job.setValue(1)
       this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
@@ -838,7 +838,7 @@ debugger
   }
 
   fillDetails(){
-    debugger
+    
     //this.contractorForm.controls.contractor_for_job.setValue(1)
     if(this.contractorForm.value.contractor_for_job == 2){
       let value = this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name

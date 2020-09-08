@@ -8,7 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-public currentUser:any
+  public currentUser = {
+    role_id: null,
+    department: null,
+    email: null
+  }
   constructor(
     private adminAuthService: AuthenticationService,
     private router: Router,

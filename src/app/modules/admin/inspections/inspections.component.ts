@@ -38,20 +38,20 @@ export class InspectionsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      this.route.queryParams.subscribe(data => {
-        this.inspectionId = data.inspectionId;
+      // this.route.queryParams.subscribe(data => {
+      //   this.inspectionId = data.inspectionId;
 
-      })
+      // })
       this.inspections = (this.applicationDetails.inspections);
-      if (this.inspectionId) {
-        if (this.inspections.length > 0) {
-          this.inspections.map(data => {
-            if (data.id == this.inspectionId) {
-              this.fillInspectionDetails(data);
-            }
-          })
-        }
-      }
+     // if (this.inspectionId) {
+      //   if (this.inspections.length > 0) {
+      //     this.inspections.map(data => {
+      //       if (data.id == this.inspectionId) {
+      //         this.fillInspectionDetails(data);
+      //       }
+      //     })
+      //   }
+      // }
       if (this.inspections.length > 0) {
         this.inspections.map(data => {
           if (data.document != null)
@@ -93,29 +93,29 @@ export class InspectionsComponent implements OnInit {
     })
   }
 
-  fillInspectionDetails(inspectionDetails) {
+  // fillInspectionDetails(inspectionDetails) {
     
-    this.allImage = []
-    this.inspectionForm.controls.decision.setValue(inspectionDetails.decision);
-    this.inspectionForm.controls.type.setValue(inspectionDetails.type);
-    this.inspectionForm.controls.date.setValue(new Date(inspectionDetails.date));
-    this.inspectionForm.controls.amount.setValue(inspectionDetails.fee);
-    this.inspectionForm.controls.remark.setValue(inspectionDetails.remark);
-    var data = JSON.parse(inspectionDetails.document)
-    if (data.length == 1) {
-      this.allImage.push({ id: this.id, image: data[0].document })
-    } else {
-      data.map(value => {
-        this.newId = this.id + 1
-        this.id = this.newId
-        this.allImage.push({ id: this.id, image: value.document })
-      })
+  //   this.allImage = []
+  //   this.inspectionForm.controls.decision.setValue(inspectionDetails.decision);
+  //   this.inspectionForm.controls.type.setValue(inspectionDetails.type);
+  //   this.inspectionForm.controls.date.setValue(new Date(inspectionDetails.date));
+  //   this.inspectionForm.controls.amount.setValue(inspectionDetails.fee);
+  //   this.inspectionForm.controls.remark.setValue(inspectionDetails.remark);
+  //   var data = JSON.parse(inspectionDetails.document)
+  //   if (data.length == 1) {
+  //     this.allImage.push({ id: this.id, image: data[0].document })
+  //   } else {
+  //     data.map(value => {
+  //       this.newId = this.id + 1
+  //       this.id = this.newId
+  //       this.allImage.push({ id: this.id, image: value.document })
+  //     })
 
 
-    }
-    // this.allImage = data;
+  //   }
+  //   // this.allImage = data;
 
-  }
+  // }
 
   get inspection() { return this.inspectionForm.controls };
 

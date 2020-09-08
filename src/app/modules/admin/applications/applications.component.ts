@@ -52,7 +52,7 @@ export class ApplicationsComponent implements OnInit {
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    debugger
+    
     this.application_Type = application_Type
     this.modify.application_type = application_Type
     // const data = {
@@ -253,7 +253,7 @@ export class ApplicationsComponent implements OnInit {
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
-    debugger
+    
     if (value == 'inspector') {
       if (!selectValue.checked) {
         this.inspectorAndExaminerIdsArray.forEach((data, i) => {
@@ -304,7 +304,7 @@ export class ApplicationsComponent implements OnInit {
   public inspector = []
   public examiner = []
   allInspector() {
-    debugger
+    
     this.applicationService.inspector().subscribe(data => {
       this.inspector = data.response
     })

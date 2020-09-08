@@ -86,7 +86,7 @@ export class ContratorDetailsComponent implements OnInit {
 
   get contrator() { return this.contractorForm.controls }
   fillContractorForm() {
-debugger
+
     // this.contractorForm.controls.contractor_for_job.setValue(this.applicationDetails.contractor_details.contractor_for_job)
     if(this.applicationDetails.role != 2 && this.applicationDetails.type == 4){
       this.contractorForm.controls.contractor_name.setValue(this.applicationDetails.dumpsters_details.dumpster_first_name)
@@ -115,7 +115,7 @@ debugger
   public isContractor = false;
   public contractorData = {}
   updateContratorDetails() {
-    debugger
+    
     if (this.contractorForm.invalid) {
       this.isContractor = true
       return false
@@ -148,7 +148,7 @@ debugger
         application_id:this.applicationDetails.id
       }
     }
-    debugger
+    
     this.applicationService.updateContratorInfo(this.contractorData).subscribe(data => {
       this.updateCon.nativeElement.click();
       this.applicationDetails.contractor_details = data.response
@@ -308,7 +308,7 @@ debugger
 
   public isEmail = false;
   addEmialAndPickUp() {
-    debugger
+    
     if (this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_email) {
       this.emailFormGroup.controls.to.setValue(this.applicationDetails.applicant_details.applicant_email)
     }

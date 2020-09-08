@@ -20,7 +20,7 @@ export class ApplicationService {
   ) { }
 
   getApplications(data, array): Observable<any> {
-    debugger
+    
     // var page
     // var application_Type
     // page = data['page'],

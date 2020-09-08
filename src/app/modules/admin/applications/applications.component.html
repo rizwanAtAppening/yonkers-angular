@@ -238,14 +238,13 @@
                                                                                                                             Decision
                                                                                                                         </p>
 
-                                                                                                                       
+
                                                                                                                         <label
                                                                                                                             class="containerdision mt-3">Cancelled
                                                                                                                             <input
                                                                                                                                 type="checkbox"
                                                                                                                                 (change)="selectFilter($event.target,'decision')"
-                                                                                                                                value="cancelled_permit"
-                                                                                                                               >
+                                                                                                                                value="cancelled_permit">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
@@ -296,14 +295,14 @@
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
                                                                                                                         <label
-                                                                                                                        class="containerdision">Incomplete
-                                                                                                                        <input
-                                                                                                                            type="checkbox"
-                                                                                                                            (change)="selectFilter($event.target,'decision')"
-                                                                                                                            value="incomplete">
-                                                                                                                        <span
-                                                                                                                            class="checkmarkdision"></span>
-                                                                                                                    </label>
+                                                                                                                            class="containerdision">Incomplete
+                                                                                                                            <input
+                                                                                                                                type="checkbox"
+                                                                                                                                (change)="selectFilter($event.target,'decision')"
+                                                                                                                                value="incomplete">
+                                                                                                                            <span
+                                                                                                                                class="checkmarkdision"></span>
+                                                                                                                        </label>
                                                                                                                     </div>
 
 
@@ -318,17 +317,19 @@
                                                                                                                             class="hd-desion-check">
                                                                                                                             Inspector
                                                                                                                         </p>
-                                                                                                                        <label *ngFor ="let ins of inspector"
+                                                                                                                        <label
+                                                                                                                            *ngFor="let ins of inspector"
                                                                                                                             class="containerdision mt-3">{{ins?.name}}
                                                                                                                             <input
-                                                                                                                                type="checkbox" value="{{ins?.id}}" (change)="selectFilter($event.target,'inspector')"
-                                                                                                                                >
+                                                                                                                                type="checkbox"
+                                                                                                                                value="{{ins?.id}}"
+                                                                                                                                (change)="selectFilter($event.target,'inspector')">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
-                                                                                                                       
-                                                                                                                        
-                                                                                                                      
+
+
+
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="tab-pane fade"
@@ -341,17 +342,19 @@
                                                                                                                             class="hd-desion-check">
                                                                                                                             Examiner
                                                                                                                         </p>
-                                                                                                                        <label 
-                                                                                                                            class="containerdision mt-3" *ngFor = "let exm of examiner">{{exm?.name}}
+                                                                                                                        <label
+                                                                                                                            class="containerdision mt-3"
+                                                                                                                            *ngFor="let exm of examiner">{{exm?.name}}
                                                                                                                             <input
-                                                                                                                                type="checkbox" value="{{exm?.id}}" (change)="selectFilter($event.target,'examiner')"
-                                                                                                                                >
+                                                                                                                                type="checkbox"
+                                                                                                                                value="{{exm?.id}}"
+                                                                                                                                (change)="selectFilter($event.target,'examiner')">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
-                                                                                                                       
-                                                                                                                        
-                                                                                                                       
+
+
+
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 <div class="tab-pane fade "
@@ -367,15 +370,18 @@
                                                                                                                         <label
                                                                                                                             class="containerdision mt-3">Close
                                                                                                                             <input
-                                                                                                                                type="checkbox" value="close"  (change)="selectFilter($event.target,'decision')"
-                                                                                                                                >
+                                                                                                                                type="checkbox"
+                                                                                                                                value="close"
+                                                                                                                                (change)="selectFilter($event.target,'decision')">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
                                                                                                                         <label
                                                                                                                             class="containerdision mt-3">Open
                                                                                                                             <input
-                                                                                                                                type="checkbox" value="open"  (change)="selectFilter($event.target,'decision')">
+                                                                                                                                type="checkbox"
+                                                                                                                                value="open"
+                                                                                                                                (change)="selectFilter($event.target,'decision')">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
@@ -441,7 +447,8 @@
                                                                                                                     class="btnfltr">Clear
                                                                                                                     All</button>
                                                                                                                 <button
-                                                                                                                    class="btnaply" (click) ="getAllApplication(1)">Apply</button>
+                                                                                                                    class="btnaply"
+                                                                                                                    (click)="getAllApplication(1)">Apply</button>
                                                                                                             </div>
                                                                                                         </div>
 

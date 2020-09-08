@@ -35,7 +35,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     // console.error(error);
     const httpErrorCode = response['status'];
     const error = response['error']
-    debugger
+    
     switch (httpErrorCode) {
       case 401:
         this.router.navigateByUrl('/auth/login');
