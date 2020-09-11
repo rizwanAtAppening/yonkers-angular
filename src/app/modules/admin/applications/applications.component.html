@@ -398,38 +398,33 @@
                                                                                                                         class="decisionFilter-Hd">
                                                                                                                         <p
                                                                                                                             class="hd-desion-check">
-                                                                                                                            Pipeline
+                                                                                                                           Pipeline
                                                                                                                         </p>
                                                                                                                         <label
-                                                                                                                            class="containerdision mt-3">Cancelled
+                                                                                                                            class="containerdision mt-3">Non-Utility permits
                                                                                                                             <input
-                                                                                                                                type="checkbox"
-                                                                                                                                checked="checked">
+                                                                                                                                type="checkbox" value="non_utility_permits" (change)="selectFilter($event.target,'decision')"
+                                                                                                                                >
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
                                                                                                                         <label
-                                                                                                                            class="containerdision">Permit
+                                                                                                                            class="containerdision">Utility permits
                                                                                                                             <input
-                                                                                                                                type="checkbox">
+                                                                                                                                type="checkbox" value="utility_permits" (change)="selectFilter($event.target,'decision')">
                                                                                                                             <span
                                                                                                                                 class="checkmarkdision"></span>
                                                                                                                         </label>
+
                                                                                                                         <label
-                                                                                                                            class="containerdision">Plan
-                                                                                                                            Review
-                                                                                                                            <input
-                                                                                                                                type="checkbox">
-                                                                                                                            <span
-                                                                                                                                class="checkmarkdision"></span>
-                                                                                                                        </label>
-                                                                                                                        <label
-                                                                                                                            class="containerdision">Denied
-                                                                                                                            <input
-                                                                                                                                type="checkbox">
-                                                                                                                            <span
-                                                                                                                                class="checkmarkdision"></span>
-                                                                                                                        </label>
+                                                                                                                        class="containerdision">Pending Review
+                                                                                                                        <input
+                                                                                                                            type="checkbox" value="pending_review" (change)="selectFilter($event.target,'decision')">
+                                                                                                                        <span
+                                                                                                                            class="checkmarkdision"></span>
+                                                                                                                    </label>
+                                                                                                                       
+                                                                                                                       
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                             </div>
