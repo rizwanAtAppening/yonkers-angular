@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/core/services';
 import { Router } from '@angular/router';
+import { appToaster, settingConfig } from 'src/app/configs';
 
 @Component({
   selector: 'app-add-permit-application',
@@ -8,20 +9,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-permit-application.component.css']
 })
 export class AddPermitApplicationComponent implements OnInit {
-
+  public settings:any
   constructor(
     public userSrvice: UsersService,
     private router: Router,
-  ) { }
+  ) {
+    this.settings = settingConfig;
+  }
 
   ngOnInit() {
-    
     this.userSrvice.changeSaveAndExit(true)
   }
 
 
-  navigateToTab(permitType:number) {
-    this.router.navigate(['/dashboard/add-permit'],{queryParams:{tab:'what',permitType:permitType}})
+  navigateToTab(permitType: number,url,tab) {
+    this.router.navigate([url], { queryParams: { tab: tab, permitType: permitType } })
   }
 
 

@@ -15,6 +15,8 @@ import { AddPermitComponent } from './add-permit/add-permit.component';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AddMeterPermitComponent } from './meter-permits/add-meter-permit/add-meter-permit.component';
+import { AddHydrantPermitComponent } from './hydrant-permit/add-hydrant-permit/add-hydrant-permit.component';
 
 
 // const routes: Routes = [
@@ -58,6 +60,14 @@ const routes: Routes = [
             component: PermitComponent
           },
           {
+            path: 'add-meter-permit',
+            component: AddMeterPermitComponent
+          },
+          {
+            path: 'add-hydrant-permit',
+            component: AddHydrantPermitComponent
+          },
+          {
             path: 'add-permit-selectType',
             component: AddPermitApplicationComponent
           },
@@ -76,31 +86,31 @@ const routes: Routes = [
           {
             path: 'submit-application',
             component: SubmitApplicationComponent,
-          }, 
+          },
           {
             path: 'update-application',
             component: UpdatePermitComponent,
-          }, 
+          },
           {
             path: 'daily-work-location',
             component: AddDailyWorkLoactionComponent,
-          }, 
+          },
           {
             path: 'add-user-permit',
             component: AddPermitComponent,
-          }, 
+          },
           {
             path: 'add-team-member',
             component: AddTeamMemberComponent,
-          },  {
+          }, {
             path: 'show-team-member',
             component: ShowTeamMemberComponent,
-          }, 
+          },
           {
-            path:'payment',
-            component:PaymentComponent
+            path: 'payment',
+            component: PaymentComponent
           }
-         
+
 
 
         ]

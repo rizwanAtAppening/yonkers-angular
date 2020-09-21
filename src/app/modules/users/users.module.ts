@@ -21,6 +21,8 @@ import { AddPermitComponent } from './add-permit/add-permit.component';
 import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 import { ShowTeamMemberComponent } from './show-team-member/show-team-member.component';
 import { PaymentComponent } from './payment/payment.component';
+import { AddMeterPermitComponent } from './meter-permits/add-meter-permit/add-meter-permit.component';
+import { AddHydrantPermitComponent } from './hydrant-permit/add-hydrant-permit/add-hydrant-permit.component';
 // import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
@@ -43,7 +45,7 @@ import { PaymentComponent } from './payment/payment.component';
     AddPermitApplicationComponent, AddPermitTabSectionComponent, 
     UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, 
     UpdatePermitComponent, AddDailyWorkLoactionComponent, AddPermitComponent, 
-    AddTeamMemberComponent, ShowTeamMemberComponent, PaymentComponent],
+    AddTeamMemberComponent, ShowTeamMemberComponent, PaymentComponent, AddMeterPermitComponent, AddHydrantPermitComponent],
   providers: [
     UserAuthGuard
   ]

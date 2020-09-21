@@ -619,7 +619,7 @@ export const settingConfig = {
       key: 4,
       value: 'Inspector',
     },
-    
+
   ],
   department: [
 
@@ -635,6 +635,16 @@ export const settingConfig = {
       value: 'Accept Submission'
     }
   ],
+
+
+  permit_type: {
+    "Engineering": 1,
+    "Meter": 2,
+    "Hydrant": 3,
+    "Over-Sized": 4
+  },
+
+
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {
       key: condition

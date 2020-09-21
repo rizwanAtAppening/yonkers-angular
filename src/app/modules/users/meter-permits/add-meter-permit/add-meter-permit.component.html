@@ -1,0 +1,969 @@
+<header>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="search-box">
+                            <h2>Logo</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="profile-header">
+                    <div class="saveTxtbtn">
+                        <button> Save & Exit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="tabber">
+    <div class="tab-sec">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a [class] = "(currentTab == 'applicant')? 'active':''"  (click) ="hitOnTab('applicant','applicant')" id="meter-Applicant-tab" data-toggle="pill"  role="tab"
+                    aria-controls="meter-Applicant" aria-selected="false">Applicant<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class] = "(currentTab == 'meterDetails')? 'active':''"  id="meter-details-tab"  (click) ="hitOnTab('meterDetails','meterDetails')"  data-toggle="pill"role="tab"
+                    aria-controls="meter-details" aria-selected="false">Meter Details<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class] = "(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill"  role="tab"
+                    aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="what-box">
+        <div class="tab-content" id="pills-tabContent">
+            <div [class] ="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-Applicant" role="tabpanel"
+                aria-labelledby="meter-Applicant-tab">
+
+                <div class="what-bg applicant-details">
+                    <div class="job-location-Hd">
+                        <h3>Applicant Details</h3>
+                    </div>
+
+                    <div class="app-details">
+                        <div class="container p-0">
+                            <form [formGroup]="applicantForm">
+                         <div class="row">
+                                <div class="col-6">
+                                    <div class="bdp_email loction-adInput">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <div class="form-group">
+                                                    <input type="text" id="Project" formControlName="applicant_name"  [class]="meterApplicantCon.applicant_name.invalid && (meterApplicantCon.applicant_name.dirty ||meterApplicantCon.applicant_name.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                    <label class="form-control-placeholder" for="Project">Name</label>
+                                                </div>
+                                                <div
+                                                *ngIf="meterApplicantCon.applicant_name.invalid && (meterApplicantCon.applicant_name.dirty || meterApplicantCon.applicant_name.touched || isMerter)">
+                                                <p class="form-error"
+                                                    *ngIf="meterApplicantCon.applicant_name.errors['required']">
+                                                    Please enter name.
+                                                </p>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="bdp_email loction-adInput">
+                                        <div class="row">
+                                            <div class="col-12 ">
+                                                <div class="form-group">
+                                                    <input type="number" id="Email-app"   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" formControlName="applicant_phone"  [class]="meterApplicantCon.applicant_phone.invalid && (meterApplicantCon.applicant_phone.dirty ||meterApplicantCon.applicant_phone.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control" required>
+                                                    <label class="form-control-placeholder"
+                                                        for="Email-app">Phone</label>
+                                                </div>
+                                                <div
+                                                *ngIf="meterApplicantCon.applicant_phone.invalid && (meterApplicantCon.applicant_phone.dirty || meterApplicantCon.applicant_phone.touched || isMerter)">
+                                                <p class="form-error"
+                                                    *ngIf="meterApplicantCon.applicant_phone.errors['required']">
+                                                    Please enter applicant phone.
+                                                </p>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="bussiness-input">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text"  (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" formControlName="applicant_address"  [class]="meterApplicantCon.applicant_address.invalid && (meterApplicantCon.applicant_address.dirty ||meterApplicantCon.applicant_address.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control"  class="form-control"
+                                                            required>
+                                                        <label class="form-control-placeholder"
+                                                            for="id-address">Address</label>
+                                                    </div>
+                                                    <div
+                                                    *ngIf="meterApplicantCon.applicant_address.invalid && (meterApplicantCon.applicant_address.dirty || meterApplicantCon.applicant_address.touched || isMerter)">
+                                                    <p class="form-error"
+                                                        *ngIf="meterApplicantCon.applicant_address.errors['required']">
+                                                        Please enter applicant address.
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bussiness-input">
+                                <div class="row">
+                                    <!-- <div class="col-6">
+                                        <div class="property mt-0 mb_meter_select">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Do you have a contractor for this job?</label>
+                                                    <select formControlName="contractor_job"  [class]="meterApplicantCon.contractor_job.invalid && (meterApplicantCon.contractor_job.dirty ||meterApplicantCon.contractor_job.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control" >
+                                                        <option>Yes</option>
+                                                        <option>Work will be performed by owner</option>
+
+                                                    </select>
+                                                    <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    <div
+                                                    *ngIf="meterApplicantCon.contractor_job.invalid && (meterApplicantCon.contractor_job.dirty || meterApplicantCon.contractor_job.touched || isMerter)">
+                                                    <p class="form-error"
+                                                        *ngIf="meterApplicantCon.contractor_job.errors['required']">
+                                                        Please enter applicant contractor address.
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div> -->
+
+                                    <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" formControlName="applicant_job_location" [typeahead] ="jobAdress"  (typeaheadOnSelect) = "typeaheadOnSelect($event,'applicanjob')"   (input) ="exextAddress(applicanjob)" [class]="meterApplicantCon.applicant_job_location.invalid && (meterApplicantCon.applicant_job_location.dirty ||meterApplicantCon.applicant_job_location.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control"  id="City-id" class="form-control" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="City-id">Job Location</label>
+                                                                <div
+                                                                *ngIf="meterApplicantCon.applicant_job_location.invalid && (meterApplicantCon.applicant_job_location.dirty || meterApplicantCon.applicant_job_location.touched || isMerter)">
+                                                                <p class="form-error"
+                                                                    *ngIf="meterApplicantCon.applicant_job_location.errors['required']">
+                                                                    Please enter applicant  Job Location.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" formControlName="block"  [class]="meterApplicantCon.block.invalid && (meterApplicantCon.block.dirty ||meterApplicantCon.block.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control"  id="City-id" class="form-control" required>
+                                                        <label class="form-control-placeholder"
+                                                            for="City-id">Block</label>
+                                                            <div
+                                                            *ngIf="meterApplicantCon.block.invalid && (meterApplicantCon.block.dirty || meterApplicantCon.block.touched || isMerter)">
+                                                            <p class="form-error"
+                                                                *ngIf="meterApplicantCon.block.errors['required']">
+                                                                Please enter applicant block.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bussiness-input">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="ste-id" formControlName="lot"  [class]="meterApplicantCon.lot.invalid && (meterApplicantCon.applicant_phone.dirty ||meterApplicantCon.lot.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control"  class="form-control" required>
+                                                        <label class="form-control-placeholder" for="ste-id">Lot</label>
+                                                    </div>
+                                                    <div
+                                                    *ngIf="meterApplicantCon.lot.invalid && (meterApplicantCon.lot.dirty || meterApplicantCon.lot.touched || isMerter)">
+                                                    <p class="form-error"
+                                                        *ngIf="meterApplicantCon.lot.errors['required']">
+                                                        Please enter applicant lot.
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="Zip-id" formControlName="owner"  [class]="meterApplicantCon.owner.invalid && (meterApplicantCon.owner.dirty ||meterApplicantCon.owner.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control"  class="form-control" required>
+                                                        <label class="form-control-placeholder"
+                                                            for="Zip-id">Owner</label>
+                                                    </div>
+                                                    <div
+                                                    *ngIf="meterApplicantCon.owner.invalid && (meterApplicantCon.owner.dirty || meterApplicantCon.owner.touched || isMerter)">
+                                                    <p class="form-error"
+                                                        *ngIf="meterApplicantCon.owner.errors['required']">
+                                                        Please enter applicant owner.
+                                                    </p>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="btn-pre">
+                                <button>Previous</button>
+                                <button class="continue" type="submit" (click) ="addMeterPermit('applicant','meterDetails')">Continue</button>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  [class] ="(currentTab == 'meterDetails') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-details" role="tabpanel" aria-labelledby="meter-details-tab">
+                <div class="where-bg">
+                    <form [formGroup]="meterDeatilsForm">
+                    <div class="job-location-Hd">
+                        <h3>Meter Details</h3>
+                    </div>
+
+                    <div class="location-type-tab">
+                        <h3>Tap</h3>
+                    </div>
+
+                    <div class="bussiness-input mt-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="bdp_email loction-adInput">
+                                    <div class="row">
+                                        <div class="col-6 ">
+                                            <div class="form-group">
+                                                <input type="text" id="id-address" formControlName="tap_size" class="form-control" required>
+                                                <label class="form-control-placeholder" for="id-address">Size</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="location-type-tab">
+                        <h3>Meter Size</h3>
+                    </div>
+
+                    <div class="adrees-tab">
+                        <nav>
+                            <div class="nav" id="nav-tab" role="tablist">
+                                <a class="nav-item active" id="nav-meter-tab" data-toggle="tab" href="#nav-meter"
+                                    role="tab" aria-controls="nav-meter" aria-selected="true">New</a>
+                                <a class="nav-item " id="nav-Location-tab" data-toggle="tab" href="#nav-Location"
+                                    role="tab" aria-controls="nav-Location" aria-selected="false">Replacement</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-meter" role="tabpanel"
+                                aria-labelledby="nav-meter-tab">
+
+                                <div class="job-input">
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="meter_test_size" id="jobadd" class="form-control"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="jobadd">Size</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="meter_test_number"  id="lorem-Ipsum" class="form-control"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="lorem-Ipsum">Meter No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="location-type-tab">
+                                            <h3>Meter Test</h3>
+                                        </div>
+
+                                        <div class="bussiness-input mt-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-6 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="id-address" formControlName="new_meter_size"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">Size</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" formControlName="new_meter_number" id="id-address"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">Meter No</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <!-- <div class="tab-pane fade" id="nav-Location" role="tabpanel"
+                                aria-labelledby="nav-Location-tab">
+                                <div class="job-input">
+                                    <div class="job-input">
+                                        <div class="container p-0">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="jobadd" class="form-control"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="jobadd">Size 2</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="lorem-Ipsum"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="lorem-Ipsum">Meter No</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="location-type-tab">
+                                                <h3>Meter Test</h3>
+                                            </div>
+
+                                            <div class="bussiness-input mt-3">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-6 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="id-address"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="id-address">Size</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-6 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="id-address"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="id-address">Meter No</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="unit-txt">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="know_us">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <label>Unit No./Also Known as</label>
+                                                                        <textarea
+                                                                            placeholder="Type something here..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn-pre">
+                                                <button>Previous</button>
+                                                <button class="continue">Continue</button>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div> -->
+
+                        </div>
+                    </div>
+
+                    <div class="location-type-tab">
+                        <h3>Wet Connection</h3>
+                    </div>
+
+                    <div class="adrees-tab">
+                        <nav>
+                            <div class="nav" id="nav-tab" role="tablist">
+                                <a class="nav-item active" id="nav-fireline-tab" data-toggle="tab" href="#nav-fireline"
+                                    role="tab" aria-controls="nav-fireline" aria-selected="true">Fireline</a>
+                                <a class="nav-item " id="nav-domestic-tab" data-toggle="tab" href="#nav-domestic"
+                                    role="tab" aria-controls="nav-domestic" aria-selected="false">Domestic</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-fireline" role="tabpanel"
+                                aria-labelledby="nav-fireline-tab">
+
+                                <div class="job-input">
+                                    
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="jobadd" formControlName="fireline_size" class="form-control"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="jobadd">Size</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" formControlName="fireline_meter_number"  id="lorem-Ipsum" class="form-control"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="lorem-Ipsum">Meter No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="location-type-tab">
+                                            <h3>Hydrant Use</h3>
+                                        </div>
+
+                                        <div class="bussiness-input mt-3">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-6 hydrant_calendar ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="id-address" formControlName="hydrent_use_from"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">From</label>
+                                                                    <span> <i class="fa fa-calendar"
+                                                                            aria-hidden="true"></i> </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 hydrant_calendar ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="id-address"  formControlName="hydrent_use_to"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">To</label>
+                                                                    <span> <i class="fa fa-calendar"
+                                                                            aria-hidden="true"></i> </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="unit-txt">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="know_us">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <label>Location</label>
+                                                                    <textarea placeholder="Lorem Ipsum" formControlName="location"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="unit-txt">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="know_us">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <label>Total Amount</label>
+                                                                    <textarea class="bg_amount" formControlName="total_amount"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-pre">
+                                            <button type="submit" (click) ="addMeterPermit('meterDetails','applicant')">Previous</button>
+                                            <button class="continue" type="submit"  (click) ="addMeterPermit('meterDetails','reviews')">Continue</button>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <!-- <div class="tab-pane fade" id="nav-domestic" role="tabpanel"
+                                aria-labelledby="nav-domestic-tab">
+                                <div class="job-input">
+                                    <div class="job-input">
+                                        <div class="container p-0">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="jobadd" class="form-control"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="jobadd">Size 2</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="lorem-Ipsum"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="lorem-Ipsum">Meter No</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="location-type-tab">
+                                                <h3>Meter Test</h3>
+                                            </div>
+
+                                            <div class="bussiness-input mt-3">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-6 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="id-address"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="id-address">Size</label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-6 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="id-address"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="id-address">Meter No</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="unit-txt">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="know_us">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <label>Unit No./Also Known as</label>
+                                                                        <textarea
+                                                                            placeholder="Type something here..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn-pre">
+                                                <button>Previous</button>
+                                                <button class="continue" type="submit" (click) ="addMeterPermit('meterDetails','')">Continue</button>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div> -->
+
+                        </div>
+                    </div>
+</form>
+                </div>
+
+
+            </div>
+            <div  [class] ="(currentTab == 'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-Reviews" role="tabpanel" aria-labelledby="meter-Reviews-tab">
+
+                <div class="what-bg">
+
+                    <div class="container p-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="review-form-box">
+                                    <div class="r-hd">
+                                        <h3>Review Form</h3>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                                    </div>
+                                    <div class="box-acordine">
+                                        <div class="accordion" id="accordionExample">
+
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingThree">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Applicant
+                                                        </button>
+                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                alt="">
+                                                            Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseThree"
+                                                            aria-expanded="true" aria-controls="collapseThree"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Name</h2>
+                                                                    <p>Owner</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>47 W 13th St, New York, NY 10011, USA</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>City</h2>
+                                                                    <p>New York</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Lot</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Phone Number</h2>
+                                                                    <p>987-987-6543</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Job Location</h2>
+                                                                    <p>New York</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Block</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Owner</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingfour">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Meter Details
+                                                        </button>
+                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                alt="">
+                                                            Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsefour"
+                                                            aria-expanded="true" aria-controls="collapsefour"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="first-collepse-box">
+                                                            <div class="role-txt-collepse mb-4">
+                                                                <h2>Tap Size</h2>
+                                                                <p>Lorem Ipsum</p>
+                                                            </div>
+                                                            <div class="role-txt-collepse mb-4">
+                                                                <h2 class="size_txt">Meter Size</h2>
+                                                                <p>New</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Size</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Meter No</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="first-collepse-box mt-4 mb-2">
+                                                            <div class="role-txt-collepse">
+                                                                <h2 class="size_txt">Meter Test</h2>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Size</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Meter No</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+                                                        <div class="first-collepse-box mt-4 mb-2">
+                                                            <div class="role-txt-collepse">
+                                                                <h2 class="size_txt">Wet Connection</h2>
+                                                                <p>Fireline</p>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Size</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Meter No</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <div class="first-collepse-box mt-4 mb-2">
+                                                            <div class="role-txt-collepse">
+                                                                <h2 class="size_txt">Hydrant Use</h2>
+                                                                <p>Fireline</p>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>From</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Location</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Total Amount</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</section>

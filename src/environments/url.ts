@@ -131,6 +131,8 @@ const userUrl = {
   execAddress:`/address`,
   payment:`/application-payment`,
   showPaymentDetails:`/application-fee`,
+  addMeterPermit:`/application`,
+
 
 
 
