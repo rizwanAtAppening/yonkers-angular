@@ -4823,3 +4823,33 @@ padding: 10px 17px;
 .first-collepse-box h2.size_txt{
     font-size: 16px;
 }
+.table-permit table td {
+    max-width: 150px;
+}
+
+.decisionFilter-Hd{
+    overflow: auto;
+    max-height: 207px;
+}
+
+/* width */
+.decisionFilter-Hd::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  .decisionFilter-Hd::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 4px;
+  }
+   
+  /* Handle */
+  .decisionFilter-Hd::-webkit-scrollbar-thumb {
+    background: #2AABFA; 
+    border-radius: 4px;
+  }
+  
+  /* Handle on hover */
+  .decisionFilter-Hd::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+  }
