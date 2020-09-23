@@ -195,8 +195,8 @@ export class PermitComponent implements OnInit {
   }
 
   public application_type: number
+  public meterPermit = []
   getPermitApplication(dwlType) {
-
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -215,6 +215,14 @@ export class PermitComponent implements OnInit {
       //     return data
       //   }
       // })
+      debugger
+      this.meterPermit = this.applictionDetails.filter(data => {
+        if (data.permit_type == 2) {
+          return data;
+        }
+      
+      })
+      console.log(this.meterPermit,'++++++++++++++++++++++858+==================');
       this.applictionDetails.map(data => {
         data.isSingleAddress = true
       })
@@ -271,12 +279,11 @@ export class PermitComponent implements OnInit {
     }
   }
   getApplicationId(id) {
-
     this.applicationId = id
   }
 
   convertPermitApplication() {
-    
+
     this.permitService.convertPermitApplication(this.applicationId).subscribe(data => {
       this.confirmPopUp.nativeElement.click();
       this.toastService.success('Application have beed converted');
@@ -326,5 +333,9 @@ export class PermitComponent implements OnInit {
 
   navigateTopaymentPage(id) {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
+  }
+
+  updateMeterPermitAndHydrant(applicationId:number,value:string){
+this.router.navigate(['/dashboard/add-meter-permit'],{queryParams:{application_id:applicationId,tab:value}})
   }
 }

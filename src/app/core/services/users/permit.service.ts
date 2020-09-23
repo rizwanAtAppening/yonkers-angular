@@ -27,7 +27,7 @@ export class PermitService {
 
 
   addPermitApplication(data): Observable<any> {
-
+debugger
     const href = `${environment['application']}`;
     const applicationID = this.getApplicationID();
     if (applicationID) {

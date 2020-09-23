@@ -14,7 +14,7 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                        <button> Save & Exit</button>
+                        <button type="submit" (click)="saveAndExit()"> Save & Exit</button>
                     </div>
                 </div>
             </div>
@@ -32,14 +32,14 @@
             </li>
             <li class="nav-item">
                 <a [class]="(currentTab == 'meterDetails')? 'active':''" id="meter-details-tab"
-                    (click)="hitOnTab('meterDetails')" data-toggle="pill" role="tab"
-                    aria-controls="meter-details" aria-selected="false">Meter Details<span><i class="fa fa-angle-right"
+                    (click)="hitOnTab('meterDetails')" data-toggle="pill" role="tab" aria-controls="meter-details"
+                    aria-selected="false">Meter Details<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab"  (click)="hitOnTab('reviews')" data-toggle="pill" role="tab"
-                    aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
-                            aria-hidden="true"></i></span></a>
+                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" (click)="hitOnTab('reviews')"
+                    data-toggle="pill" role="tab" aria-controls="meter-Reviews" aria-selected="false">Review<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
         </ul>
     </div>
@@ -310,9 +310,18 @@
                                             <div class="col-6 ">
                                                 <div class="form-group">
                                                     <input type="text" id="id-address" formControlName="tap_size"
-                                                        class="form-control" required>
+                                                        class="form-control"
+                                                        [class]="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
+                                                        required>
                                                     <label class="form-control-placeholder"
                                                         for="id-address">Size</label>
+                                                </div>
+                                                <div
+                                                    *ngIf="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter)">
+                                                    <p class="form-error"
+                                                        *ngIf="meterControl.tap_size.errors['required']">
+                                                        Please enter tap size.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -354,9 +363,17 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" formControlName="meter_test_size"
+                                                                        [class]="meterControl.meter_test_size.invalid && (meterControl.meter_test_size.dirty || meterControl.meter_test_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         id="jobadd" class="form-control" required>
                                                                     <label class="form-control-placeholder"
                                                                         for="jobadd">Size</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="meterControl.tap_size.errors['required']">
+                                                                        Please enter meter test size.
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -370,9 +387,18 @@
                                                                 <div class="form-group">
                                                                     <input type="text"
                                                                         formControlName="meter_test_number"
-                                                                        id="lorem-Ipsum" class="form-control" required>
+                                                                        id="lorem-Ipsum" class="form-control"
+                                                                        [class]="meterControl.meter_test_number.invalid && (meterControl.meter_test_number.dirty || meterControl.meter_test_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
                                                                     <label class="form-control-placeholder"
                                                                         for="lorem-Ipsum">Meter No</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="meterControl.meter_test_number.invalid && (meterControl.meter_test_number.dirty || meterControl.meter_test_number.touched || isMerter)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="meterControl.meter_test_number.errors['required']">
+                                                                        Please enter meter test number.
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -393,9 +419,18 @@
                                                                     <div class="form-group">
                                                                         <input type="text" id="id-address"
                                                                             formControlName="new_meter_size"
-                                                                            class="form-control" required>
+                                                                            class="form-control"
+                                                                            [class]="meterControl.new_meter_size.invalid && (meterControl.new_meter_size.dirty || meterControl.new_meter_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
+                                                                            required>
                                                                         <label class="form-control-placeholder"
                                                                             for="id-address">Size</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="meterControl.new_meter_size.invalid && (meterControl.new_meter_size.dirty || meterControl.new_meter_size.touched || isMerter)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="meterControl.new_meter_size.errors['required']">
+                                                                            Please enter new meter size.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
 
@@ -403,10 +438,18 @@
                                                                     <div class="form-group">
                                                                         <input type="text"
                                                                             formControlName="new_meter_number"
+                                                                            [class]="meterControl.new_meter_number.invalid && (meterControl.new_meter_number.dirty || meterControl.new_meter_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                             id="id-address" class="form-control"
                                                                             required>
                                                                         <label class="form-control-placeholder"
                                                                             for="id-address">Meter No</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="meterControl.new_meter_number.invalid && (meterControl.new_meter_number.dirty || meterControl.new_meter_number.touched || isMerter)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="meterControl.new_meter_number.errors['required']">
+                                                                            Please enter new meter number.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -558,9 +601,17 @@
                                                                 <div class="form-group">
                                                                     <input type="text" id="jobadd"
                                                                         formControlName="fireline_size"
+                                                                        [class]="meterControl.fireline_size.invalid && (meterControl.fireline_size.dirty || meterControl.fireline_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control" required>
                                                                     <label class="form-control-placeholder"
                                                                         for="jobadd">Size</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="meterControl.fireline_size.invalid && (meterControl.fireline_size.dirty || meterControl.fireline_size.touched || isMerter)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="meterControl.fireline_size.errors['required']">
+                                                                        Please enter fireline size.
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -574,9 +625,17 @@
                                                                 <div class="form-group">
                                                                     <input type="text"
                                                                         formControlName="fireline_meter_number"
+                                                                        [class]="meterControl.fireline_meter_number.invalid && (meterControl.fireline_meter_number.dirty || meterControl.fireline_meter_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         id="lorem-Ipsum" class="form-control" required>
                                                                     <label class="form-control-placeholder"
                                                                         for="lorem-Ipsum">Meter No</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="meterControl.fireline_meter_number.invalid && (meterControl.fireline_meter_number.dirty || meterControl.fireline_meter_number.touched || isMerter)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="meterControl.fireline_meter_number.errors['required']">
+                                                                        Please enter tap fireline meter number.
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -595,27 +654,50 @@
                                                             <div class="row">
                                                                 <div class="col-6 hydrant_calendar ">
                                                                     <div class="form-group">
-                                                                        <input type="text" id="id-address" [minDate]="minDate" #dp="bsDatepicker" bsDatepicker
+                                                                        <input type="text" id="id-address"
+                                                                            [minDate]="minDate" #dp="bsDatepicker"
+                                                                            bsDatepicker
                                                                             formControlName="hydrent_use_from"
+                                                                            [class]="meterControl.hydrent_use_from.invalid && (meterControl.hydrent_use_from.dirty || meterControl.hydrent_use_from.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                             class="form-control" required>
                                                                         <label class="form-control-placeholder"
                                                                             for="id-address">From</label>
                                                                         <span (click)="dp.toggle()"
-                                                                        [attr.aria-expanded]="dp.isOpen"> <i class="fa fa-calendar" 
+                                                                            [attr.aria-expanded]="dp.isOpen"> <i
+                                                                                class="fa fa-calendar"
                                                                                 aria-hidden="true"></i> </span>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="meterControl.hydrent_use_from.invalid && (meterControl.hydrent_use_from.dirty || meterControl.hydrent_use_from.touched || isMerter)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="meterControl.hydrent_use_from.errors['required']">
+                                                                            Please enter date.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="col-6 hydrant_calendar ">
                                                                     <div class="form-group">
-                                                                        <input type="text" id="id-address" [minDate]="minDate" #dpto="bsDatepicker" bsDatepicker
+                                                                        <input type="text" id="id-address"
+                                                                            [minDate]="minDate" #dpto="bsDatepicker"
+                                                                            bsDatepicker
                                                                             formControlName="hydrent_use_to"
-                                                                            class="form-control" required>
+                                                                            class="form-control"
+                                                                            [class]="meterControl.hydrent_use_to.invalid && (meterControl.hydrent_use_to.dirty || meterControl.hydrent_use_to.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
+                                                                            required>
                                                                         <label class="form-control-placeholder"
                                                                             for="id-address">To</label>
                                                                         <span (click)="dpto.toggle()"
-                                                                        [attr.aria-expanded]="dpto.isOpen"> <i class="fa fa-calendar"
+                                                                            [attr.aria-expanded]="dpto.isOpen"> <i
+                                                                                class="fa fa-calendar"
                                                                                 aria-hidden="true"></i> </span>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="meterControl.hydrent_use_to.invalid && (meterControl.hydrent_use_to.dirty || meterControl.hydrent_use_to.touched || isMerter)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="meterControl.hydrent_use_to.errors['required']">
+                                                                            Please enter date.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -653,7 +735,15 @@
                                                                     <div class="form-group">
                                                                         <label>Total Amount</label>
                                                                         <textarea class="bg_amount"
+                                                                            [class]="meterControl.total_amount.invalid && (meterControl.total_amount.dirty || meterControl.total_amount.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                             formControlName="total_amount"></textarea>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="meterControl.total_amount.invalid && (meterControl.total_amount.dirty || meterControl.total_amount.touched || isMerter)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="meterControl.total_amount.errors['required']">
+                                                                            Please enter tap total amount.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -807,8 +897,8 @@
                                                         <button class="what-btn" type="button">
                                                             Applicant
                                                         </button>
-                                                        <button (click)="back('applicant')" class="edit-icon"><img src="../assets/images/edit.svg"
-                                                                alt="">
+                                                        <button (click)="back('applicant')" class="edit-icon"><img
+                                                                src="../assets/images/edit.svg" alt="">
                                                             Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapseThree"
                                                             aria-expanded="true" aria-controls="collapseThree"><i
@@ -870,8 +960,8 @@
                                                         <button class="what-btn" type="button">
                                                             Meter Details
                                                         </button>
-                                                        <button class="edit-icon" (click)="back('meterDetails')"><img src="../assets/images/edit.svg"
-                                                                alt="">
+                                                        <button class="edit-icon" (click)="back('meterDetails')"><img
+                                                                src="../assets/images/edit.svg" alt="">
                                                             Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefour"
                                                             aria-expanded="true" aria-controls="collapsefour"><i
@@ -946,7 +1036,9 @@
                                                         <div class="first-collepse-box mt-4 mb-2">
                                                             <div class="role-txt-collepse">
                                                                 <h2 class="size_txt">Wet Connection</h2>
-                                                                <p>{{application_metter_details?.meter_test_number}}</p>
+                                                                <p>{{application_metter_details?.wetConnctionType ==  1 ? 'Fireline
+                                                                    ':'Domestic' }}
+                                                                </p>
                                                             </div>
 
                                                         </div>

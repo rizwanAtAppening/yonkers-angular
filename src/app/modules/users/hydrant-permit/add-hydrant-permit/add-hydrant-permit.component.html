@@ -1,57 +1,59 @@
 <header>
-        <div class="container p-0">
-            <div class="row">
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-3">
-                            <div class="search-box">
-                                <h2>Logo</h2>
-                            </div>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="search-box">
+                            <h2>Logo</h2>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-6">
-                    <div class="profile-header">
-                        <div class="saveTxtbtn">
-                            <button> Save & Exit</button>
-                        </div>
+
+            </div>
+            <div class="col-6">
+                <div class="profile-header">
+                    <div class="saveTxtbtn">
+                        <button> Save & Exit</button>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 <section class="tabber">
-        <div class="tab-sec">
-            <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                    <a  class="active" id="meter-Applicant-tab" data-toggle="pill" href="#meter-Applicant" role="tab"
-                        aria-controls="meter-Applicant" aria-selected="false">Applicant<span><i
-                                class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                </li>
-                <li class="nav-item">
-                    <a id="meter-details-tab" data-toggle="pill" href="#meter-details" role="tab"
-                        aria-controls="meter-details" aria-selected="false">Hydrant<span><i
-                                class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-                </li>
-                <li class="nav-item">
-                    <a id="meter-Reviews-tab" data-toggle="pill" href="#meter-Reviews" role="tab"
-                        aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
-                                aria-hidden="true"></i></span></a>
-                </li>
-            </ul>
-        </div>
+    <div class="tab-sec">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <a [class]="(currentTab == 'applicant')? 'active':''" id="meter-Applicant-tab" data-toggle="pill"
+                    href="#meter-Applicant" role="tab" aria-controls="meter-Applicant"
+                    aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'hydrant')? 'active':''" id="meter-details-tab" data-toggle="pill"
+                    href="#meter-details" role="tab" aria-controls="meter-details" aria-selected="false">Hydrant<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill"
+                    href="#meter-Reviews" role="tab" aria-controls="meter-Reviews" aria-selected="false">Review<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+            </li>
+        </ul>
+    </div>
 
-        <div class="what-box">
-            <div class="tab-content" id="pills-tabContent">
-      <div class="tab-pane fade show active" id="meter-Applicant" role="tabpanel" aria-labelledby="meter-Applicant-tab">
+    <div class="what-box">
+        <div class="tab-content" id="pills-tabContent">
+            <div [class]="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
+                id="meter-Applicant" role="tabpanel" aria-labelledby="meter-Applicant-tab">
 
-                    <div class="what-bg applicant-details">
-                        <div class="job-location-Hd">
-                            <h3>Applicant Details</h3>
-                        </div>
+                <div class="what-bg applicant-details">
+                    <div class="job-location-Hd">
+                        <h3>Applicant Details</h3>
+                    </div>
 
-                        <div class="app-details">
+                    <div class="app-details">
+                        <form [formGroup]="applicantForm">
                             <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6">
@@ -59,8 +61,18 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Project" class="form-control" required>
-                                                        <label class="form-control-placeholder" for="Project">Name</label>
+                                                        <input type="text" id="Project" formControlName="applicant_name"
+                                                            [class]="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty ||applicantCon.applicant_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                            class="form-control" required>
+                                                        <label class="form-control-placeholder"
+                                                            for="Project">Name</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty || applicantCon.applicant_name.touched || isApplicant)">
+                                                        <p class="form-error"
+                                                            *ngIf="applicantCon.applicant_name.errors['required']">
+                                                            Please enter name.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -72,20 +84,30 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Email-app" class="form-control" required>
+                                                        <input type="text" id="Email-app" class="form-control"
+                                                            formControlName="applicant_email"
+                                                            [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                            required>
                                                         <label class="form-control-placeholder"
                                                             for="Email-app">Email</label>
                                                     </div>
+                                                    <div
+                                                        *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                        <p class="form-error"
+                                                            *ngIf="applicantCon.applicant_email.errors['required']">
+                                                            Please enter email.
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                             
-                            
-                             
 
-                             
+
+
+
+
                                 <div class="bussiness-input">
                                     <div class="row">
                                         <div class="col-6">
@@ -93,25 +115,42 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ste-id" class="form-control"
-                                                                required>
+                                                            <input type="number" id="Email-app"
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                maxlength="10" formControlName="applicant_phone"
+                                                                [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" required>
                                                             <label class="form-control-placeholder"
-                                                                for="ste-id">Phone</label>
+                                                                for="Email-app">Phone</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty || applicantCon.applicant_phone.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantCon.applicant_phone.errors['required']">
+                                                                Please enter applicant phone.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Zip-id" class="form-control"
-                                                                required>
+                                                            <input type="text" id="Zip-id" formControlName="fax"
+                                                                [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" required>
                                                             <label class="form-control-placeholder"
                                                                 for="Zip-id">Fax</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantCon.fax.errors['required']">
+                                                                Please enter applicant phone.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -124,12 +163,40 @@
                                         <div class="col-12">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
-                                                    <div class="col-12 ">
+                                                    <div class="col-6 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address" class="form-control"
-                                                                required>
+                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                            <input type="text" formControlName="applicant_address"
+                                                                [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" class="form-control" required>
                                                             <label class="form-control-placeholder"
                                                                 for="id-address">Address</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty || applicantCon.applicant_address.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantCon.applicant_address.errors['required']">
+                                                                Please enter applicant address.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-6 ">
+                                                        <div class="form-group">
+                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                            <input type="text" formControlName="applicant_last_name"
+                                                                [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" class="form-control" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="id-address">Last Name</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                                Please enter applicant last names.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -139,19 +206,24 @@
                                 </div>
                                 <div class="btn-pre">
                                     <button>Previous</button>
-                                    <button class="continue">Continue</button>
+                                    <button class="continue" type="submit"
+                                        (click)="addHydrant('applicant','hydrant')">Continue</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                </div>
-                <div class="tab-pane fade" id="meter-details" role="tabpanel" aria-labelledby="meter-details-tab">
-                    <div class="what-bg applicant-details">
-                        <div class="job-location-Hd">
-                            <h3>Hydrant</h3>
-                        </div>
 
-                        <div class="app-details">
+                </div>
+            </div>
+            <div [class]="(currentTab ==  'hydrant') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-details"
+                role="tabpanel" aria-labelledby="meter-details-tab">
+                <div class="what-bg applicant-details">
+                    <div class="job-location-Hd">
+                        <h3>Hydrant</h3>
+                    </div>
+
+                    <div class="app-details">
+                        <form [formGroup]="hydrantForm">
                             <div class="container p-0">
                                 <div class="row">
                                     <div class="col-6">
@@ -159,8 +231,11 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Project" class="form-control" required>
-                                                        <label class="form-control-placeholder" for="Project">Purpose</label>
+                                                        <input type="text" id="Project"
+                                                            formControlName="hydrant_purpose" class="form-control"
+                                                            required>
+                                                        <label class="form-control-placeholder"
+                                                            for="Project">Purpose</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -172,20 +247,22 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Email-app" class="form-control" required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Email-app">Hydrant Address</label>
+                                                        <input type="text" id="Email-app"
+                                                            formControlName="hydrant_address" class="form-control"
+                                                            required>
+                                                        <label class="form-control-placeholder" for="Email-app">Hydrant
+                                                            Address</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                             
-                            
-                             
 
-                             
+
+
+
+
                                 <div class="bussiness-input">
                                     <div class="row">
                                         <div class="col-6">
@@ -193,10 +270,10 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ste-id" class="form-control"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Hydrant Cross Street</label>
+                                                            <input type="text" formControlName="hydrant_cross_street"
+                                                                id="ste-id" class="form-control" required>
+                                                            <label class="form-control-placeholder" for="ste-id">Hydrant
+                                                                Cross Street</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -208,10 +285,10 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Zip-id" class="form-control"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Zip-id">Hydrant Id</label>
+                                                            <input type="text" formControlName="hydrant_id" id="Zip-id"
+                                                                class="form-control" required>
+                                                            <label class="form-control-placeholder" for="Zip-id">Hydrant
+                                                                Id</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -226,186 +303,209 @@
                                                 <div class="row">
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address" class="form-control" required="">
-                                                            <label class="form-control-placeholder" for="id-address">From</label>
-                                                                <span> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                                                            <input type="text" id="id-address" [minDate]="minDate"
+                                                                #dp="bsDatepicker" bsDatepicker formControlName="from"
+                                                                class="form-control" required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="id-address">From</label>
+                                                            <span (click)="dp.toggle()"
+                                                                [attr.aria-expanded]="dp.isOpen"> <i
+                                                                    class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address" class="form-control" required="">
-                                                            <label class="form-control-placeholder" for="id-address">To</label>
-                                                                <span> <i class="fa fa-calendar" aria-hidden="true"></i> </span>
+                                                            <input type="text" #dpto="bsDatepicker" bsDatepicker
+                                                                id="id-address" formControlName="to" [minDate]="minDate"
+                                                                class="form-control" required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="id-address">To</label>
+                                                            <span (click)="dpto.toggle()"
+                                                                [attr.aria-expanded]="dpto.isOpen"> <i
+                                                                    class="fa fa-calendar" aria-hidden="true"></i>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="btn-pre">
                                     <button>Previous</button>
-                                    <button class="continue">Continue</button>
+                                    <button class="continue" type="submit"
+                                        (click)="addHydrant('hydrantForm','reviews')">Continue</button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
 
-
                 </div>
-            <div class="tab-pane fade" id="meter-Reviews" role="tabpanel" aria-labelledby="meter-Reviews-tab">
-                  
+
+
+            </div>
+            <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-Reviews"
+                role="tabpanel" aria-labelledby="meter-Reviews-tab">
+
                 <div class="what-bg">
-                
+
                     <div class="container p-0">
                         <div class="row">
                             <div class="col-12">
-                       <div class="review-form-box">
-<div class="r-hd">
-    <h3>Review Form</h3>
-    <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
-</div>
-                <div class="box-acordine">
-                                <div class="accordion" id="accordionExample">
-                                 
-                                
-                                    <div class="card">
-                                      <div class="card-header" id="headingThree">
-                                        <h2 class="mb-0">
-                                            <button class="what-btn" type="button" >
-                                                Applicant
-                                            </button>
-                                            <button class="edit-icon"><img src="../assets/images/edit.svg" alt=""> Edit</button>
-                                            <span data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                          </h2>
-                                      </div>
-                                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                      
-                                          <div class="app-flex">
-                                                <div class="first-collepse-box">
-                                                    <div class="role-txt-collepse">
-                                                     <h2>Name</h2>
-                                                     <p>Owner</p>
-                                                    </div>
-        
-                                                 <div  class="role-txt-collepse-two">
-                                                    <h2>Phone</h2>
-                                                    <p>Lorem Ipsum</p>
-                                                 </div>
-                                                 <div  class="role-txt-collepse-two">
-                                                    <h2>Address</h2>
-                                                    <p>Lorem Ipsum</p>
-                                                 </div>
+                                <div class="review-form-box">
+                                    <div class="r-hd">
+                                        <h3>Review Form</h3>
+                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                                    </div>
+                                    <div class="box-acordine">
+                                        <div class="accordion" id="accordionExample">
 
-                                            
-                                            
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingThree">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Applicant
+                                                        </button>
+                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseThree"
+                                                            aria-expanded="true" aria-controls="collapseThree"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
                                                 </div>
-                                                <div class="first-collepse-box">
-                                                    <div class="role-txt-collepse">
-                                                     <h2>Email</h2>
-                                                     <p>Lorem Ipsum</p>
+                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Name</h2>
+                                                                    <p>Owner</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Phone</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Fax</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
-        
-                                                 <div  class="role-txt-collepse-two">
-                                                    <h2>Fax</h2>
-                                                    <p>Lorem Ipsum</p>
-                                                 </div>
-                                              
-                                        
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-header" id="headingfour">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Hydrant
+                                                        </button>
+                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapsefour"
+                                                            aria-expanded="true" aria-controls="collapsefour"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Purpose</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Hydrant Cross Street</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>From</h2>
+                                                                    <p>25 Aprl 2020</p>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Hydrant Address</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Hydrant Id</h2>
+                                                                    <p>Lorem Ipsum</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>To</h2>
+                                                                    <p>25 Aprl 2020</p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                    </div>
                                                 </div>
                                             </div>
 
 
+
+
+
+
+
+
+
+
                                         </div>
-                                      </div>
+
                                     </div>
-
-                                    <div class="card">
-                                        <div class="card-header" id="headingfour">
-                                          <h2 class="mb-0">
-                                              <button class="what-btn" type="button" >
-                                                Hydrant
-                                              </button>
-                                              <button class="edit-icon"><img src="../assets/images/edit.svg" alt=""> Edit</button>
-                                              <span data-toggle="collapse" data-target="#collapsefour" aria-expanded="true" aria-controls="collapsefour"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                            </h2>
-                                        </div>
-                                        <div id="collapsefour" class="collapse" aria-labelledby="headingfour" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                  
-
-
-                                                <div class="app-flex">
-                                                    <div class="first-collepse-box">
-                                                        <div class="role-txt-collepse">
-                                                         <h2>Purpose</h2>
-                                                         <p>Lorem Ipsum</p>
-                                                        </div>
-            
-                                                     <div  class="role-txt-collepse-two">
-                                                        <h2>Hydrant Cross Street</h2>
-                                                        <p>Lorem Ipsum</p>
-                                                     </div>
-                                                     <div  class="role-txt-collepse-two">
-                                                        <h2>From</h2>
-                                                        <p>25 Aprl 2020</p>
-                                                     </div>
-    
-                                                
-                                                
-                                                    </div>
-                                                    <div class="first-collepse-box">
-                                                        <div class="role-txt-collepse">
-                                                         <h2>Hydrant Address</h2>
-                                                         <p>Lorem Ipsum</p>
-                                                        </div>
-            
-                                                     <div  class="role-txt-collepse-two">
-                                                        <h2>Hydrant Id</h2>
-                                                        <p>Lorem Ipsum</p>
-                                                     </div>
-                                                     <div  class="role-txt-collepse-two">
-                                                        <h2>To</h2>
-                                                        <p>25 Aprl 2020</p>
-                                                     </div>
-                                            
-                                                    </div>
-                                                </div>
-
-
-
-      
-                                              </div>
-                                        </div>
-                                      </div>
-
-
-                                  
-
-
-
-                                  
-
-
-
-                                  </div>
-
-                                </div>
 
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                </div>
+
             </div>
-       
-        </div>
 
 
-         </div>
         </div>
-    </section>
-    
+    </div>
+</section>
