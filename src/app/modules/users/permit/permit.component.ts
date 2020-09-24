@@ -196,6 +196,7 @@ export class PermitComponent implements OnInit {
 
   public application_type: number
   public meterPermit = []
+  public hydrantPermit = []
   getPermitApplication(dwlType) {
     this.dwlType = dwlType
     this.currentUser()
@@ -218,6 +219,13 @@ export class PermitComponent implements OnInit {
       debugger
       this.meterPermit = this.applictionDetails.filter(data => {
         if (data.permit_type == 2) {
+          return data;
+        }
+      
+      })
+
+      this.hydrantPermit = this.applictionDetails.filter(data => {
+        if (data.permit_type == 3) {
           return data;
         }
       
@@ -335,7 +343,14 @@ export class PermitComponent implements OnInit {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
   }
 
-  updateMeterPermitAndHydrant(applicationId:number,value:string){
-this.router.navigate(['/dashboard/add-meter-permit'],{queryParams:{application_id:applicationId,tab:value}})
+  updateMeterPermitAndHydrant(applicationId:number,value:string,pemit:string){
+    if(pemit == 'meter'){
+      this.router.navigate(['/dashboard/add-meter-permit'],{queryParams:{application_id:applicationId,tab:value}})
+
+    }
+    else if(pemit == 'hydrant'){
+      this.router.navigate(['/dashboard/add-hydrant-permit'],{queryParams:{application_id:applicationId,tab:value}})
+
+    }
   }
 }

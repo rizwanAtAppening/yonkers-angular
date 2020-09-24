@@ -641,7 +641,7 @@ export const settingConfig = {
     "Engineering": 1,
     "Meter": 2,
     "Hydrant": 3,
-    "Over-Sized": 4
+    "OverSized": 4
   },
 
 

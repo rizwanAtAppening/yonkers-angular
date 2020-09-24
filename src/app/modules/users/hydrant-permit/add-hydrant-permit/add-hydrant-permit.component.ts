@@ -20,7 +20,8 @@ export class AddHydrantPermitComponent implements OnInit {
   public isApplicant = false;
   public currentTab: string
   public permit_type = 3;
-  public minDate:Date
+  public minDate: Date;
+  public application_id: number
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -32,15 +33,18 @@ export class AddHydrantPermitComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    debugger
     this.onInIt()
     this.minDate = new Date();
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab;
-      this.permit_type = data.permitType
+      this.permit_type = data.permitType;
+      this.application_id = data.application_id
     })
-    if(this.currentTab == 'applicant'){
+    if (this.currentTab == 'applicant') {
       this.getCurrentUser();
     }
+    this.getApplication()
   }
 
   onInIt() {
@@ -77,27 +81,36 @@ export class AddHydrantPermitComponent implements OnInit {
   public formValue: any
   addHydrant(formGroup: string, nextTab: string) {
     debugger
-    if (formGroup == 'applicant') {
+    if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
         return false
       }
-      this.applicantForm.value.permit_type =Number(this.permit_type? this.permit_type : 3)
+      this.applicantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
+      this.applicantForm.value.applican_last_name =this.applicantForm.value.applicant_last_name
+
       this.applicantForm.value.model = 3
-  
+
       this.formValue = this.applicantForm.value;
     }
-    else if(formGroup == 'hydrantForm'){
-      this.hydrantForm.value.permit_type = Number(this.permit_type? this.permit_type : 3)
+    else if (formGroup == 'hydrantForm' || this.currentTab == 'hydrant') {
+      this.hydrantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.hydrantForm.value.model = 8
-      
+      this.getApplication()
       this.formValue = this.hydrantForm.value;
     }
-   
+
 
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
-      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+      this.back(nextTab,'')
+      if (this.permitNavigateValue == 'fine') {
+        this.permitNavigateValue = ''
+        this.router.navigate(['/dashboard/permit'])
+
+      } else {
+        this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+      }
 
     })
   }
@@ -115,5 +128,105 @@ export class AddHydrantPermitComponent implements OnInit {
 
     })
   }
+
+
+  public applicantDetails: any;
+  public application_hydrant_details: any;
+  getApplication() {
+    debugger
+    this.application = this.permitService.getApplication();
+    if (this.application) {
+      this.applicantDetails = this.application.applicant_details;
+      this.application_hydrant_details = this.application.application_hydrant
+    }
+    if (this.application_id) {
+      this.permitService.updateApplication(this.application_id).subscribe(data => {
+        this.application = data.response;
+        this.applicantDetails = this.application.applicant_details;
+        this.application_hydrant_details = (this.application && this.application.application_hydrant)
+        if (this.application) {
+          sessionStorage.setItem('application', JSON.stringify(this.application));
+
+        }
+        this.back(this.currentTab,'')
+      })
+
+    }
+
+
+  }
+
+  back(tab, value: string) {
+    debugger
+    if (!this.application_id) {
+      this.getApplication();
+
+    }
+    if (value != 'ontab') {
+      this.currentTab = tab
+    }
+    if (tab == 'applicant') {
+      if (this.applicantDetails) {
+        this.applicantForm.controls.applicant_name.setValue(this.applicantDetails.applicant_name)
+        this.applicantForm.controls.applicant_last_name.setValue(this.applicantDetails.applican_last_name)
+        this.applicantForm.controls.fax.setValue(this.applicantDetails.fax)
+        this.applicantForm.controls.applicant_address.setValue(this.applicantDetails.applicant_address)
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantDetails.applicant_phone)
+        this.applicantForm.controls.applicant_email.setValue(this.applicantDetails.applicant_email)
+
+      }
+    }
+    if (tab == 'hydrant') {
+      if (this.application_hydrant_details) {
+        this.hydrantForm.controls.hydrant_address.setValue(this.application_hydrant_details.hydrant_address)
+        this.hydrantForm.controls.hydrant_cross_street.setValue(this.application_hydrant_details.hydrant_cross_street)
+        this.hydrantForm.controls.hydrant_purpose.setValue(this.application_hydrant_details.hydrant_purpose)
+        this.hydrantForm.controls.to.setValue(new Date(this.application_hydrant_details.to))
+        this.hydrantForm.controls.from.setValue(new Date(this.application_hydrant_details.from))
+        this.hydrantForm.controls.hydrant_id.setValue(this.application_hydrant_details.hydrant_id)
+      }
+    }
+    if (!this.application_id) {
+      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+
+    }
+
+  }
+
+  hitOnTab(tab) {
+    debugger
+    this.back(tab, 'ontab')
+    if (this.currentTab == 'applicant') {
+      if (this.applicantForm.invalid) {
+        this.isApplicant = true
+        return false
+      }
+      this.currentTab = tab
+      this.addHydrant('applicant', this.currentTab);
+      // this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+
+    }
+    else if (this.currentTab == 'hydrant') {
+      if (this.hydrantForm.invalid) {
+        this.isApplicant = true
+        return false
+      }
+      this.currentTab = tab;
+      this.addHydrant('hydrantForm', this.currentTab)
+      // this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+    }
+    if (tab == 'reviews') {
+      this.getApplication()
+    }
+
+  }
+  public permitNavigateValue: string
+  saveAndExit() {
+    debugger
+    this.addHydrant('', this.currentTab)
+    this.permitNavigateValue = 'fine'
+
+  }
+
 
 }

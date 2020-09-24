@@ -191,6 +191,20 @@
                                             </a>
                                         </li>
 
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-hydrant-tab" data-toggle="pill"
+                                                href="#pills-Daily-hydrant" role="tab" aria-controls="pills-Daily-hydrant"
+                                                aria-selected="false">Hydrant Permit
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-size-tab" data-toggle="pill"
+                                                href="#pills-Daily-size" role="tab" aria-controls="pills-Daily-size"
+                                                aria-selected="false">Size Permit
+                                            </a>
+                                        </li>
+
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="pills-Permit-loaction"
@@ -387,6 +401,290 @@
                                                                                 <div class="col-4 pr-0">
                                                                                     <div class="permit-Hd">
                                                                                         Meter Permit
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-7 pl-0">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            (input)="searchApplication()"
+                                                                                            placeholder="Search..."
+                                                                                            [(ngModel)]="searchString" />
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4"
+                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                            <div class="New-Project"><button> <span><img
+                                                                                            src="assets/images/plus.svg"
+                                                                                            alt=""></span> New
+                                                                                    Project</button></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="table-permit">
+
+                                                                                <table class="table table-bordered ">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Ref No</th>
+                                                                                            <th>Location</th>
+                                                                                            <!-- <th>Type</th> -->
+                                                                                            <!-- <th>Permit Status</th> -->
+                                                                                            <th>Application status</th>
+                                                                                            <th>Submit date</th>
+                                                                                            <!-- <th>Expire Date</th> -->
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            *ngFor="let application of meterPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','meter')">
+                                                                                                {{application?.reference_no}}
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <p>
+                                                                                                    {{application?.applicant_details?.applicant_job_location}}
+
+                                                                                                </p>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn"
+                                                                                                *ngIf="application?.status == null && application?.application_type ==1">
+                                                                                                <button>Draft</button>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn blue-txt-2"
+                                                                                                *ngIf="application?.status == 2 && application?.application_type ==1">
+                                                                                                <button>Submitted</button>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn blue-txt-2"
+                                                                                                *ngIf="application?.status == 3 && application?.application_type ==1">
+                                                                                                <button>Cancel</button>
+                                                                                            </td>
+
+                                                                                            <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
+                                                                                            </td>
+
+
+                                                                                            <td
+                                                                                                class="update-txt dropdown-action">
+                                                                                                <div
+                                                                                                    class="displayAlign">
+                                                                                                    <div class="time-btn"
+                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                        <button
+                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <span> <i
+                                                                                                            class="fa fa-angle-down"
+                                                                                                            aria-hidden="true"></i>
+                                                                                                        <div
+                                                                                                            class="dropdown-contentable">
+                                                                                                            <a class="pointer"
+                                                                                                                data-toggle="modal"
+                                                                                                                data-target="#cancel_application"
+                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                (click)="getApplicationId(application?.id)">Cancel
+                                                                                                            </a>
+                                                                                                            <a class="pointer"
+                                                                                                                data-toggle="modal"
+                                                                                                                data-target="#withdraw_application"
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null "
+                                                                                                                (click)="getApplicationId(application?.id)">Withdraw</a>
+
+                                                                                                            <div
+                                                                                                                class="triangle-left">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                </pagination-controls>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+                                        </div>
+
+                                        <div class="tab-pane fade show" id="pills-Daily-hydrant" role="tabpanel"
+                                            aria-labelledby="pills-hydrant-tab">
+                                            <section class="table-sec" *ngIf="userType != 3">
+                                                <div class="container container-tbl">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
+                                                                    <div class="row">
+                                                                        <div class="col-8">
+                                                                            <div class="row">
+                                                                                <div class="col-4 pr-0">
+                                                                                    <div class="permit-Hd">
+                                                                                        Hydrant Permit
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-7 pl-0">
+                                                                                    <div
+                                                                                        class="header-input tbl-search-box">
+                                                                                        <input type="text"
+                                                                                            (input)="searchApplication()"
+                                                                                            placeholder="Search..."
+                                                                                            [(ngModel)]="searchString" />
+                                                                                        <span><i class="fa fa-search"
+                                                                                                aria-hidden="true"></i></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-4"
+                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                            <div class="New-Project"><button> <span><img
+                                                                                            src="assets/images/plus.svg"
+                                                                                            alt=""></span> New
+                                                                                    Project</button></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="">
+                                                                    <div class="row">
+                                                                        <div class="col-12">
+                                                                            <div class="table-permit">
+
+                                                                                <table class="table table-bordered ">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th>Ref No</th>
+                                                                                            <th>Fax</th>
+                                                                                            <!-- <th>Type</th> -->
+                                                                                            <!-- <th>Permit Status</th> -->
+                                                                                            <th>Application status</th>
+                                                                                            <th>Submit date</th>
+                                                                                            <!-- <th>Expire Date</th> -->
+                                                                                            <th>Action</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr
+                                                                                            *ngFor="let application of hydrantPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','hydrant')">
+                                                                                                {{application?.reference_no}}
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <p>
+                                                                                                    {{application?.applicant_details?.fax}}
+
+                                                                                                </p>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn"
+                                                                                                *ngIf="application?.status == null && application?.application_type ==1">
+                                                                                                <button>Draft</button>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn blue-txt-2"
+                                                                                                *ngIf="application?.status == 2 && application?.application_type ==1">
+                                                                                                <button>Submitted</button>
+                                                                                            </td>
+                                                                                            <td class="submited-Btn blue-txt-2"
+                                                                                                *ngIf="application?.status == 3 && application?.application_type ==1">
+                                                                                                <button>Cancel</button>
+                                                                                            </td>
+
+                                                                                            <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
+                                                                                            </td>
+
+
+                                                                                            <td
+                                                                                                class="update-txt dropdown-action">
+                                                                                                <div
+                                                                                                    class="displayAlign">
+                                                                                                    <div class="time-btn"
+                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                        <button
+                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <span> <i
+                                                                                                            class="fa fa-angle-down"
+                                                                                                            aria-hidden="true"></i>
+                                                                                                        <div
+                                                                                                            class="dropdown-contentable">
+                                                                                                            <a class="pointer"
+                                                                                                                data-toggle="modal"
+                                                                                                                data-target="#cancel_application"
+                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                (click)="getApplicationId(application?.id)">Cancel
+                                                                                                            </a>
+                                                                                                            <a class="pointer"
+                                                                                                                data-toggle="modal"
+                                                                                                                data-target="#withdraw_application"
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null "
+                                                                                                                (click)="getApplicationId(application?.id)">Withdraw</a>
+
+                                                                                                            <div
+                                                                                                                class="triangle-left">
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                </pagination-controls>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+
+
+                                        </div>
+
+                                        <div class="tab-pane fade show" id="pills-Daily-size" role="tabpanel"
+                                            aria-labelledby="pills-size-tab">
+                                            <section class="table-sec" *ngIf="userType != 3">
+                                                <div class="container container-tbl">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="table-Box pl-0 pr-0 border-0">
+                                                                <div class="permit-index">
+                                                                    <div class="row">
+                                                                        <div class="col-8">
+                                                                            <div class="row">
+                                                                                <div class="col-4 pr-0">
+                                                                                    <div class="permit-Hd">
+                                                                                        Size Permit
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-7 pl-0">

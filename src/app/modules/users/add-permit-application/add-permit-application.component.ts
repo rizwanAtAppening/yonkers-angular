@@ -23,6 +23,7 @@ export class AddPermitApplicationComponent implements OnInit {
 
 
   navigateToTab(permitType: number,url,tab) {
+    debugger
     this.router.navigate([url], { queryParams: { tab: tab, permitType: permitType } })
   }
 

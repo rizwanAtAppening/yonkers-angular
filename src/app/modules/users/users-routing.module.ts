@@ -17,6 +17,7 @@ import { ShowTeamMemberComponent } from './show-team-member/show-team-member.com
 import { PaymentComponent } from './payment/payment.component';
 import { AddMeterPermitComponent } from './meter-permits/add-meter-permit/add-meter-permit.component';
 import { AddHydrantPermitComponent } from './hydrant-permit/add-hydrant-permit/add-hydrant-permit.component';
+import { OverSizePermitComponent } from './over_size-permit/over-size-permit/over-size-permit.component';
 
 
 // const routes: Routes = [
@@ -66,6 +67,10 @@ const routes: Routes = [
           {
             path: 'add-hydrant-permit',
             component: AddHydrantPermitComponent
+          },
+          {
+            path: 'add-oversize-permit',
+            component: OverSizePermitComponent
           },
           {
             path: 'add-permit-selectType',

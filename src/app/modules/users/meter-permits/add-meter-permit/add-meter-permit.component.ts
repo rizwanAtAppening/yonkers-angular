@@ -224,7 +224,8 @@ export class AddMeterPermitComponent implements OnInit {
         return false
       }
       this.currentTab = tab
-      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
+      this.addMeterPermit('applicant',this.currentTab)
+      //this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
 
     }
     else if (this.currentTab == 'meterDetails') {
@@ -233,7 +234,9 @@ export class AddMeterPermitComponent implements OnInit {
         return false
       }
       this.currentTab = tab
-      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
+      this.addMeterPermit('meterDetails',this.currentTab)
+
+     // this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
     }
     if (tab == 'reviews') {
       this.getApplication()
@@ -255,7 +258,8 @@ export class AddMeterPermitComponent implements OnInit {
     else if (value == 'domestic') {
       this.wetConnctionType = selectValue
     }
-  } public applicantDetails: any;
+  } 
+  public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
     debugger
