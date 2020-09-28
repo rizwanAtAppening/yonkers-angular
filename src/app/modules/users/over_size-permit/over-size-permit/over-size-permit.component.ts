@@ -86,7 +86,7 @@ export class OverSizePermitComponent implements OnInit {
   get oversize() { return this.oversizeForm.controls }
   public formValue
   addOverSize(formGroup: string, nextTab) {
-    if (formGroup == 'applicant') {
+    if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
         return false
@@ -97,7 +97,7 @@ export class OverSizePermitComponent implements OnInit {
 
       this.formValue = this.applicantForm.value;
     }
-    else if (formGroup == 'oversizeForm') {
+    else if (formGroup == 'oversizeForm' || this.currentTab == 'oversize') {
       if (this.oversizeForm.invalid) {
         this.isApplicant = true;
         return false
@@ -107,10 +107,18 @@ export class OverSizePermitComponent implements OnInit {
       this.formValue = this.oversizeForm.value;
 
     }
+    debugger
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
       this.getApplication()
-      this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { tab: this.currentTab } })
+      if (this.permitNavigateValue == 'fine') {
+        this.permitNavigateValue = ''
+        this.router.navigate(['/dashboard/permit'])
+
+      }else{
+        this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { tab: this.currentTab } })
+
+      }
     })
 
   }
@@ -226,6 +234,25 @@ export class OverSizePermitComponent implements OnInit {
     this.addOverSize('', this.currentTab)
     this.permitNavigateValue = 'fine'
 
+  }
+
+  phoneNumberFormate(value: string) {
+    var autoFillValue = '-'
+    if (value == 'address') {
+      if (this.applicantForm.value.applicant_phone.length === 3) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+      if (this.applicantForm.value.applicant_phone.length === 7) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+    } else if (value == 'fax') {
+      if (this.applicantForm.value.fax.length === 3) {
+        this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
+      }
+      if (this.applicantForm.value.fax.length === 7) {
+        this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
+      }
+    }
   }
 
 

@@ -179,27 +179,27 @@
                                 <div class="col-12">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="pills-Permit-loaction-tab" data-toggle="pill"
+                                            <a [class] = "currentTab == '1' ? 'nav-link active':'nav-link'" id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true">Engineering
                                                 Permit</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="pills-Daily-tab" data-toggle="pill"
+                                            <a [class] = "currentTab == '2' ? 'nav-link active':'nav-link'"  id="pills-Daily-tab" data-toggle="pill"
                                                 href="#pills-Daily" role="tab" aria-controls="pills-Daily"
                                                 aria-selected="false">Meter Permit
                                             </a>
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link" id="pills-hydrant-tab" data-toggle="pill"
+                                            <a  [class] = "currentTab == '3' ? 'nav-link active':'nav-link'"  id="pills-hydrant-tab" data-toggle="pill"
                                                 href="#pills-Daily-hydrant" role="tab" aria-controls="pills-Daily-hydrant"
                                                 aria-selected="false">Hydrant Permit
                                             </a>
                                         </li>
 
                                         <li class="nav-item">
-                                            <a class="nav-link" id="pills-size-tab" data-toggle="pill"
+                                            <a [class] = "currentTab == '4' ? 'nav-link active':'nav-link'"  id="pills-size-tab" data-toggle="pill"
                                                 href="#pills-Daily-size" role="tab" aria-controls="pills-Daily-size"
                                                 aria-selected="false">Size Permit
                                             </a>
@@ -207,7 +207,7 @@
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-Permit-loaction"
+                                        <div [class] = "currentTab == '1' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Permit-loaction"
                                             role="tabpanel" aria-labelledby="pills-Permit-loaction-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
@@ -387,7 +387,7 @@
                                                 </div>
                                             </section>
                                         </div>
-                                        <div class="tab-pane fade show" id="pills-Daily" role="tabpanel"
+                                        <div [class] = "currentTab == '2' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily" role="tabpanel"
                                             aria-labelledby="pills-Daily-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
@@ -529,7 +529,7 @@
 
                                         </div>
 
-                                        <div class="tab-pane fade show" id="pills-Daily-hydrant" role="tabpanel"
+                                        <div [class] = "currentTab == '3' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily-hydrant" role="tabpanel"
                                             aria-labelledby="pills-hydrant-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
@@ -671,7 +671,7 @@
 
                                         </div>
 
-                                        <div class="tab-pane fade show" id="pills-Daily-size" role="tabpanel"
+                                        <div [class] = "currentTab == '4' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily-size" role="tabpanel"
                                             aria-labelledby="pills-size-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
@@ -729,7 +729,7 @@
                                                                                     </thead>
                                                                                     <tbody>
                                                                                         <tr
-                                                                                            *ngFor="let application of meterPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            *ngFor="let application of sizePemit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
                                                                                                 (click)="updateMeterPermitAndHydrant(application?.id,'applicant','oversize')">
                                                                                                 {{application?.reference_no}}

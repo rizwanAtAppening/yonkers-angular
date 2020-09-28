@@ -319,7 +319,7 @@
                                         <div class="row">
                                             <div class="col-6 ">
                                                 <div class="form-group">
-                                                    <input type="text" id="id-address" formControlName="tap_size"
+                                                    <input type="text" id="id-address" formControlName="tap_size" (input) = "setTotalAmount('tapsize')"
                                                         class="form-control"
                                                         [class]="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                         required>
@@ -372,7 +372,7 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" formControlName="meter_test_size"
+                                                                    <input type="text" formControlName="meter_test_size"  (input) = "setTotalAmount('metertest')"
                                                                         [class]="meterControl.meter_test_size.invalid && (meterControl.meter_test_size.dirty || meterControl.meter_test_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         id="jobadd" class="form-control" required>
                                                                     <label class="form-control-placeholder"
@@ -396,7 +396,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text"
-                                                                        formControlName="meter_test_number"
+                                                                        formControlName="meter_test_number"  
                                                                         id="lorem-Ipsum" class="form-control"
                                                                         [class]="meterControl.meter_test_number.invalid && (meterControl.meter_test_number.dirty || meterControl.meter_test_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -427,7 +427,7 @@
                                                             <div class="row">
                                                                 <div class="col-6 ">
                                                                     <div class="form-group">
-                                                                        <input type="text" id="id-address"
+                                                                        <input type="text" id="id-address" (input) = "setTotalAmount('metertestsize')"
                                                                             formControlName="new_meter_size"
                                                                             class="form-control"
                                                                             [class]="meterControl.new_meter_size.invalid && (meterControl.new_meter_size.dirty || meterControl.new_meter_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
@@ -610,7 +610,7 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" id="jobadd"
-                                                                        formControlName="fireline_size"
+                                                                        formControlName="fireline_size" (input) = "setTotalAmount('fireline')"
                                                                         [class]="meterControl.fireline_size.invalid && (meterControl.fireline_size.dirty || meterControl.fireline_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control" required>
                                                                     <label class="form-control-placeholder"

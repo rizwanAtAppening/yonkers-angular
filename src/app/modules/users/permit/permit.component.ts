@@ -39,10 +39,15 @@ export class PermitComponent implements OnInit {
   }
 
   public dwlType: string = '1'
+  public currentTab: string = '1'
   ngOnInit() {
-    if (localStorage.getItem('dwlType')) {
+    debugger
+    if (localStorage.getItem('dwlType') || localStorage.getItem('currentTab')) {
       this.dwlType = (localStorage.getItem('dwlType'));
+      this.currentTab = (localStorage.getItem('currentTab'))
       localStorage.removeItem('dwlType');
+      localStorage.removeItem('currentTab');
+
     }
 
 
@@ -197,6 +202,8 @@ export class PermitComponent implements OnInit {
   public application_type: number
   public meterPermit = []
   public hydrantPermit = []
+  public engineeringPermit = []
+  public sizePemit = []
   getPermitApplication(dwlType) {
     this.dwlType = dwlType
     this.currentUser()
@@ -217,20 +224,32 @@ export class PermitComponent implements OnInit {
       //   }
       // })
       debugger
+      this.engineeringPermit = this.applictionDetails.filter(data => {
+        if (data.permit_type == 1) {
+          return data;
+        }
+
+      })
       this.meterPermit = this.applictionDetails.filter(data => {
         if (data.permit_type == 2) {
           return data;
         }
-      
+
       })
 
       this.hydrantPermit = this.applictionDetails.filter(data => {
         if (data.permit_type == 3) {
           return data;
         }
-      
+
       })
-      console.log(this.meterPermit,'++++++++++++++++++++++858+==================');
+      this.sizePemit = this.applictionDetails.filter(data => {
+        if (data.permit_type == 4) {
+          return data;
+        }
+
+      })
+      console.log(this.meterPermit, '++++++++++++++++++++++858+==================');
       this.applictionDetails.map(data => {
         data.isSingleAddress = true
       })
@@ -343,13 +362,13 @@ export class PermitComponent implements OnInit {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
   }
 
-  updateMeterPermitAndHydrant(applicationId:number,value:string,pemit:string){
-    if(pemit == 'meter'){
-      this.router.navigate(['/dashboard/add-meter-permit'],{queryParams:{application_id:applicationId,tab:value}})
+  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string) {
+    if (pemit == 'meter') {
+      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { application_id: applicationId, tab: value } })
 
     }
-    else if(pemit == 'hydrant'){
-      this.router.navigate(['/dashboard/add-hydrant-permit'],{queryParams:{application_id:applicationId,tab:value}})
+    else if (pemit == 'hydrant') {
+      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { application_id: applicationId, tab: value } })
 
     }
   }

@@ -49,6 +49,7 @@ export class AddHydrantPermitComponent implements OnInit {
       this.getCurrentUser();
     }
     this.getApplication()
+    this.back(this.currentTab,'')
   }
 
   onInIt() {

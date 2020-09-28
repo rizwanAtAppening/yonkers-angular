@@ -9,7 +9,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
   styleUrls: ['./add-permit-application.component.css']
 })
 export class AddPermitApplicationComponent implements OnInit {
-  public settings:any
+  public settings: any
   constructor(
     public userSrvice: UsersService,
     private router: Router,
@@ -22,9 +22,10 @@ export class AddPermitApplicationComponent implements OnInit {
   }
 
 
-  navigateToTab(permitType: number,url,tab) {
+  navigateToTab(permitType: any, url, tab) {
     debugger
     this.router.navigate([url], { queryParams: { tab: tab, permitType: permitType } })
+    localStorage.setItem('currentTab', permitType);
   }
 
 

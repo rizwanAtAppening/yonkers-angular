@@ -372,4 +372,48 @@ export class AddMeterPermitComponent implements OnInit {
       this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
     }
   }
+
+  public totalAmount: number = 0
+  public tapsize = 0
+  public metertest = 0
+  public metertestsize = 0
+  public fireline = 0
+  setTotalAmount(value) {
+    debugger
+    let ammount: number = 100
+
+    if (value == 'tapsize') {
+      if (this.meterDeatilsForm.value.tap_size) {
+        this.tapsize = ammount
+      } else if (!this.meterDeatilsForm.value.tap_size) {
+        this.tapsize = 0
+      }
+    }
+
+    if (value == 'metertest') {
+      if (this.meterDeatilsForm.value.meter_test_size) {
+        this.metertest = ammount
+      } else if (!this.meterDeatilsForm.value.meter_test_size) {
+        this.metertest = 0
+      }
+    }
+
+    if (value == 'metertestsize') {
+      if (this.meterDeatilsForm.value.new_meter_size) {
+        this.metertestsize = ammount
+      } else if (!this.meterDeatilsForm.value.new_meter_size) {
+        this.metertestsize = 0
+      }
+    }
+
+    if (value == 'fireline') {
+      if (this.meterDeatilsForm.value.fireline_size) {
+        this.fireline = ammount
+      } else if (!this.meterDeatilsForm.value.fireline_size) {
+        this.fireline = 0
+      }
+    }
+    var total = (this.tapsize + this.metertest + this.metertestsize + this.fireline)
+    this.meterDeatilsForm.controls.total_amount.setValue(total)
+  }
 }

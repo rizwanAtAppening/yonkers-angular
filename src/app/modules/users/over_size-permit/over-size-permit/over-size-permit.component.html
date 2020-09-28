@@ -13,7 +13,7 @@
             </div>
             <div class="col-6">
                 <div class="profile-header">
-                    <div class="saveTxtbtn">
+                    <div class="saveTxtbtn" (click) ="saveAndExit()">
                         <button> Save & Exit</button>
                     </div>
                 </div>
@@ -80,29 +80,34 @@
                                         </div>
 
                                     </div>
+                                     
+
                                     <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Email-app" class="form-control"
-                                                            formControlName="applicant_email"
-                                                            [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Email-app">Email</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_email.errors['required']">
-                                                            Please enter email.
-                                                        </p>
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                    <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                                    <input type="text" formControlName="applicant_last_name"
+                                                                        [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        class="form-control" class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">Last Name</label>
+                                                                </div>
+                                                                <div
+                                                                *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                                    Please enter applicant last names.
+                                                                </p>
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
+    
                                         </div>
-                                    </div>
+
+                                      
                                 </div>
 
 
@@ -116,9 +121,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="Email-app"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                maxlength="10" formControlName="applicant_phone"
+                                                            <input type="text" id="Email-app"
+                                                            (keypress)="phoneNumberFormate('address')"
+                                                                maxlength="12" formControlName="applicant_phone"
                                                                 [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required>
                                                             <label class="form-control-placeholder"
@@ -136,27 +141,29 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Zip-id" formControlName="fax"
-                                                                [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Zip-id">Fax</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.fax.errors['required']">
-                                                                Please enter applicant fax.
-                                                            </p>
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="Email-app" class="form-control"
+                                                                    formControlName="applicant_email"
+                                                                    [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                    required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="Email-app">Email</label>
+                                                            </div>
+                                                            <div
+                                                                *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantCon.applicant_email.errors['required']">
+                                                                    Please enter email.
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> 
+                    
                                     </div>
                                 </div>
                                 <div class="bussiness-input">
@@ -167,7 +174,7 @@
                                                     <div class="col-6 ">
                                                         <div class="form-group">
                                                             <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text" formControlName="applicant_address"
+                                                            <input type="text"  formControlName="applicant_address"
                                                                 [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" class="form-control" required>
                                                             <label class="form-control-placeholder"
@@ -182,23 +189,28 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-6 ">
-                                                        <div class="form-group">
-                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text" formControlName="applicant_last_name"
-                                                                [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">Last Name</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_last_name.errors['required']">
-                                                                Please enter applicant last names.
-                                                            </p>
-                                                        </div>
-                                                    </div>
+                                                        <div class="col-6">
+                                                                <div class="bdp_email loction-adInput">
+                                                                    <div class="row">
+                                                                        <div class="col-12 ">
+                                                                            <div class="form-group">
+                                                                                <input type="text" id="Zip-id" maxlength="12" formControlName="fax" (keypress)="phoneNumberFormate('fax')"
+                                                                                    [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    class="form-control" required>
+                                                                                <label class="form-control-placeholder"
+                                                                                    for="Zip-id">Fax</label>
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="applicantCon.fax.errors['required']">
+                                                                                    Please enter applicant fax.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -758,7 +770,7 @@
                                                                 <button class="what-btn" type="button">
                                                                     Applicant
                                                                 </button>
-                                                                <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                <button class="edit-icon" (click)="back('applicant')"><img src="../assets/images/edit.svg"
                                                                         alt=""> Edit</button>
                                                                 <span data-toggle="collapse" data-target="#collapseThree"
                                                                     aria-expanded="true" aria-controls="collapseThree"><i
@@ -820,7 +832,7 @@
                                                         <button class="what-btn" type="button">
                                                             OverSized Vehicles
                                                         </button>
-                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                        <button class="edit-icon" (click)="back('oversize')"><img src="../assets/images/edit.svg"
                                                                 alt=""> Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefour"
                                                             aria-expanded="true" aria-controls="collapsefour"><i
