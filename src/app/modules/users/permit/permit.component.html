@@ -731,7 +731,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of meterPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant')">
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','oversize')">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>

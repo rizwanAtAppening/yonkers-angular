@@ -21,7 +21,11 @@ export class AddHydrantPermitComponent implements OnInit {
   public currentTab: string
   public permit_type = 3;
   public minDate: Date;
-  public application_id: number
+  public application_id: number;
+  public selectadd = []
+  public jobAdress = new Subject<any>();
+  public address = new Subject<any>();
+
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -76,7 +80,8 @@ export class AddHydrantPermitComponent implements OnInit {
     })
   }
 
-  get applicantCon() { return this.applicantForm.controls }
+  get applicantCon() { return this.applicantForm.controls };
+  get hydrantCon() { return this.hydrantForm.controls }
 
   public formValue: any
   addHydrant(formGroup: string, nextTab: string) {
@@ -87,13 +92,17 @@ export class AddHydrantPermitComponent implements OnInit {
         return false
       }
       this.applicantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
-      this.applicantForm.value.applican_last_name =this.applicantForm.value.applicant_last_name
+      this.applicantForm.value.applican_last_name = this.applicantForm.value.applicant_last_name
 
       this.applicantForm.value.model = 3
 
       this.formValue = this.applicantForm.value;
     }
     else if (formGroup == 'hydrantForm' || this.currentTab == 'hydrant') {
+      if (this.hydrantForm.invalid) {
+        this.isApplicant = true;
+        return false
+      }
       this.hydrantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.hydrantForm.value.model = 8
       this.getApplication()
@@ -103,7 +112,7 @@ export class AddHydrantPermitComponent implements OnInit {
 
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
-      this.back(nextTab,'')
+      this.back(nextTab, '')
       if (this.permitNavigateValue == 'fine') {
         this.permitNavigateValue = ''
         this.router.navigate(['/dashboard/permit'])
@@ -148,7 +157,7 @@ export class AddHydrantPermitComponent implements OnInit {
           sessionStorage.setItem('application', JSON.stringify(this.application));
 
         }
-        this.back(this.currentTab,'')
+        this.back(this.currentTab, '')
       })
 
     }
@@ -215,8 +224,10 @@ export class AddHydrantPermitComponent implements OnInit {
       this.addHydrant('hydrantForm', this.currentTab)
       // this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
     }
-    if (tab == 'reviews') {
-      this.getApplication()
+    if (tab == 'reviews' || this.currentTab == 'reviews') {
+      this.currentTab = tab
+      this.getApplication();
+      this.addHydrant('hydrantForm', this.currentTab)
     }
 
   }
@@ -228,5 +239,78 @@ export class AddHydrantPermitComponent implements OnInit {
 
   }
 
+  phoneNumberFormate(value: string) {
+    var autoFillValue = '-'
+    if (value == 'address') {
+      if (this.applicantForm.value.applicant_phone.length === 3) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+      if (this.applicantForm.value.applicant_phone.length === 7) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+    } else if (value == 'fax') {
+      if (this.applicantForm.value.fax.length === 3) {
+        this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
+      }
+      if (this.applicantForm.value.fax.length === 7) {
+        this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
+      }
+    }
+  }
+
+  public exactAddress = []
+  exextAddress(value) {
+    if (value == 'applicanjob') { }
+    const data = {
+      query: value == 'address' ? this.hydrantForm.value.hydrant_address : this.hydrantForm.value.hydrant_address,
+    }
+    if (data.query.length > 1) {
+      this.permitService.exextAddress(data).subscribe(data => {
+        this.exactAddress = data.response;
+        if (value == 'address') {
+          if (this.exactAddress.length > 0) {
+            this.selectadd = this.exactAddress.map(data => {
+              return data.szFullAddress
+            })
+            this.address.next(this.selectadd)
+          } else {
+            this.address.next(null)
+          }
+        } else {
+          if (this.exactAddress.length > 0) {
+            this.selectadd = this.exactAddress.map(data => {
+              return data.szFullAddress
+            })
+            this.jobAdress.next(this.selectadd)
+          } else {
+            this.jobAdress.next(null)
+          }
+        }
+
+      })
+    }
+
+  }
+
+
+  addressId: number
+  typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
+    debugger
+    if (value == 'applicanjob') {
+      this.exactAddress.every(data => {
+        if (e.value == data.szFullAddress) {
+          this.addressId = data.id
+          // this.applicantForm.controls.block.setValue(data.szBlock)
+          // this.applicantForm.controls.lot.setValue(data.szLot)
+
+          console.log(this.addressId)
+          return false
+        } else {
+          return true
+        }
+      })
+    }
+
+  }
 
 }

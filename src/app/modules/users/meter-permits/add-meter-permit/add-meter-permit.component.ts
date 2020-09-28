@@ -71,8 +71,8 @@ export class AddMeterPermitComponent implements OnInit {
       applicant_last_name: ['', Validators.required],
       applicant_phone: ['', Validators.required],
       applicant_address: ['', Validators.required],
-      block: ['', Validators.required],
-      lot: ['', Validators.required],
+      block: [''],
+      lot: [''],
       owner: ['', Validators.required],
       applicant_job_location: ['', Validators.required]
     })
@@ -108,7 +108,7 @@ export class AddMeterPermitComponent implements OnInit {
 
 
   addMeterPermit(formGroup: string, nextTab) {
-   
+
     // this.getApplication();
     // if(this.application){
     //   this.back(nextTab)
@@ -185,15 +185,6 @@ export class AddMeterPermitComponent implements OnInit {
           }
         }
 
-        //   this.addressOne = this.exactAddress.map(data => {
-        //     return data.szStreet_name
-        //   })
-        //   this.addressTwo = this.exactAddress.map(data => {
-        //     return data.szStreet_name
-        //   })
-        // }
-
-        console.log(this.address)
       })
     }
 
@@ -201,11 +192,15 @@ export class AddMeterPermitComponent implements OnInit {
 
   addressId: number
   typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
-    if (value == 'address') {
+    debugger
+    if (value == 'applicanjob') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {
           //this.whereForm.value.address_id = data.id;
           this.addressId = data.id
+          this.applicantForm.controls.block.setValue(data.szBlock)
+          this.applicantForm.controls.lot.setValue(data.szLot)
+
           console.log(this.addressId)
           return false
         } else {
@@ -217,6 +212,7 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
+    debugger
     this.back(tab)
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -224,7 +220,7 @@ export class AddMeterPermitComponent implements OnInit {
         return false
       }
       this.currentTab = tab
-      this.addMeterPermit('applicant',this.currentTab)
+      this.addMeterPermit('applicant', this.currentTab)
       //this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
 
     }
@@ -234,9 +230,9 @@ export class AddMeterPermitComponent implements OnInit {
         return false
       }
       this.currentTab = tab
-      this.addMeterPermit('meterDetails',this.currentTab)
+      this.addMeterPermit('meterDetails', this.currentTab)
 
-     // this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
+      // this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
     }
     if (tab == 'reviews') {
       this.getApplication()
@@ -258,7 +254,7 @@ export class AddMeterPermitComponent implements OnInit {
     else if (value == 'domestic') {
       this.wetConnctionType = selectValue
     }
-  } 
+  }
   public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
@@ -365,5 +361,15 @@ export class AddMeterPermitComponent implements OnInit {
     this.addMeterPermit('', this.currentTab)
     this.permitNavigateValue = 'fine'
 
+  }
+
+  phoneNumberFormate() {
+    var autoFillValue = '-'
+    if (this.applicantForm.value.applicant_phone.length === 3) {
+      this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+    }
+    if (this.applicantForm.value.applicant_phone.length === 7) {
+      this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+    }
   }
 }

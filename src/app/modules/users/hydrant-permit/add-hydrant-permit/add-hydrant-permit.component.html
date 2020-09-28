@@ -14,7 +14,7 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                        <button (click) ="saveAndExit()"> Save & Exit</button>
+                        <button (click)="saveAndExit()"> Save & Exit</button>
                     </div>
                 </div>
             </div>
@@ -26,18 +26,18 @@
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li class="nav-item" (click)="hitOnTab('applicant')">
                 <a [class]="(currentTab == 'applicant')? 'active':''" id="meter-Applicant-tab" data-toggle="pill"
-                    role="tab" aria-controls="meter-Applicant"
-                    aria-selected="false">Applicant<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    role="tab" aria-controls="meter-Applicant" aria-selected="false">Applicant<span><i
+                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item" (click)="hitOnTab('hydrant')">
-                <a [class]="(currentTab == 'hydrant')? 'active':''" id="meter-details-tab" data-toggle="pill"
-                     role="tab" aria-controls="meter-details" aria-selected="false">Hydrant<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                <a [class]="(currentTab == 'hydrant')? 'active':''" id="meter-details-tab" data-toggle="pill" role="tab"
+                    aria-controls="meter-details" aria-selected="false">Hydrant<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item" (click)="hitOnTab('reviews')">
-                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill"
-                     role="tab" aria-controls="meter-Reviews" aria-selected="false">Review<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill" role="tab"
+                    aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
+                            aria-hidden="true"></i></span></a>
             </li>
         </ul>
     </div>
@@ -79,30 +79,36 @@
                                         </div>
 
                                     </div>
+
+
+
+
                                     <div class="col-6">
                                         <div class="bdp_email loction-adInput">
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Email-app" class="form-control"
-                                                            formControlName="applicant_email"
-                                                            [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Email-app">Email</label>
+                                                        <input type="text" formControlName="applicant_last_name"
+                                                            [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                            class="form-control" class="form-control" required>
+                                                        <label class="form-control-placeholder" for="id-address">Last
+                                                            Name</label>
                                                     </div>
                                                     <div
-                                                        *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                        *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
                                                         <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_email.errors['required']">
-                                                            Please enter email.
+                                                            *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                            Please enter applicant last names.
                                                         </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
+
                                 </div>
+
 
 
 
@@ -115,9 +121,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="Email-app"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                maxlength="10" formControlName="applicant_phone"
+                                                            <input type="text" id="Email-app"
+                                                                (keypress)="phoneNumberFormate('address')"
+                                                                maxlength="12" formControlName="applicant_phone"
                                                                 [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required>
                                                             <label class="form-control-placeholder"
@@ -134,22 +140,25 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Zip-id" formControlName="fax"
-                                                                [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
+                                                            <input type="text" id="Email-app" class="form-control"
+                                                                formControlName="applicant_email"
+                                                                [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                required>
                                                             <label class="form-control-placeholder"
-                                                                for="Zip-id">Fax</label>
+                                                                for="Email-app">Email</label>
                                                         </div>
                                                         <div
-                                                            *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
+                                                            *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
                                                             <p class="form-error"
-                                                                *ngIf="applicantCon.fax.errors['required']">
-                                                                Please enter applicant fax.
+                                                                *ngIf="applicantCon.applicant_email.errors['required']">
+                                                                Please enter email.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -182,21 +191,28 @@
                                                     </div>
 
 
-                                                    <div class="col-6 ">
-                                                        <div class="form-group">
-                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text" formControlName="applicant_last_name"
-                                                                [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">Last Name</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_last_name.errors['required']">
-                                                                Please enter applicant last names.
-                                                            </p>
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" maxlength="12" id="Zip-id"
+                                                                            formControlName="fax"
+                                                                            (keypress)="phoneNumberFormate('fax')"
+                                                                            [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="Zip-id">Fax</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="applicantCon.fax.invalid && (applicantCon.fax.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="applicantCon.fax.errors['required']">
+                                                                            Please enter applicant fax.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -232,10 +248,18 @@
                                                 <div class="col-12 ">
                                                     <div class="form-group">
                                                         <input type="text" id="Project"
-                                                            formControlName="hydrant_purpose" class="form-control"
+                                                            formControlName="hydrant_purpose"
+                                                            [class]="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                             required>
                                                         <label class="form-control-placeholder"
                                                             for="Project">Purpose</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant)">
+                                                        <p class="form-error"
+                                                            *ngIf="hydrantCon.hydrant_purpose.errors['required']">
+                                                            Please enter applicant hydrant purpose.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -247,11 +271,21 @@
                                             <div class="row">
                                                 <div class="col-12 ">
                                                     <div class="form-group">
-                                                        <input type="text" id="Email-app"
+                                                        <input type="text" id="Email-app" [typeahead]="jobAdress"
+                                                            [class]="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                            (typeaheadOnSelect)="typeaheadOnSelect($event,'applicanjob')"
+                                                            (input)="exextAddress('applicanjob')"
                                                             formControlName="hydrant_address" class="form-control"
                                                             required>
                                                         <label class="form-control-placeholder" for="Email-app">Hydrant
                                                             Address</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant)">
+                                                        <p class="form-error"
+                                                            *ngIf="hydrantCon.hydrant_address.errors['required']">
+                                                            Please enter hydrant address.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -271,9 +305,17 @@
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="hydrant_cross_street"
+                                                                [class]="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="ste-id" class="form-control" required>
                                                             <label class="form-control-placeholder" for="ste-id">Hydrant
                                                                 Cross Street</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="hydrantCon.hydrant_cross_street.errors['required']">
+                                                                Please enter hydrant cross street.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -286,9 +328,17 @@
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" formControlName="hydrant_id" id="Zip-id"
+                                                                [class]="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required>
                                                             <label class="form-control-placeholder" for="Zip-id">Hydrant
                                                                 Id</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="hydrantCon.hydrant_id.errors['required']">
+                                                                Please enter hydrant id.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -304,6 +354,7 @@
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
                                                             <input type="text" id="id-address" [minDate]="minDate"
+                                                                [class]="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 #dp="bsDatepicker" bsDatepicker formControlName="from"
                                                                 class="form-control" required="">
                                                             <label class="form-control-placeholder"
@@ -313,12 +364,20 @@
                                                                     class="fa fa-calendar" aria-hidden="true"></i>
                                                             </span>
                                                         </div>
+                                                        <div
+                                                            *ngIf="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="hydrantCon.from.errors['required']">
+                                                                Please enter date.
+                                                            </p>
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
                                                             <input type="text" #dpto="bsDatepicker" bsDatepicker
                                                                 id="id-address" formControlName="to" [minDate]="minDate"
+                                                                [class]="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required="">
                                                             <label class="form-control-placeholder"
                                                                 for="id-address">To</label>
@@ -326,6 +385,13 @@
                                                                 [attr.aria-expanded]="dpto.isOpen"> <i
                                                                     class="fa fa-calendar" aria-hidden="true"></i>
                                                             </span>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="hydrantCon.to.errors['required']">
+                                                                Please enter date.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -370,8 +436,8 @@
                                                         <button class="what-btn" type="button">
                                                             Applicant
                                                         </button>
-                                                        <button  (click)="back('applicant','')" class="edit-icon"><img src="../assets/images/edit.svg"
-                                                                alt=""> Edit</button>
+                                                        <button (click)="back('applicant','')" class="edit-icon"><img
+                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapseThree"
                                                             aria-expanded="true" aria-controls="collapseThree"><i
                                                                 class="fa fa-angle-down" aria-hidden="true"></i></span>
@@ -426,8 +492,8 @@
                                                         <button class="what-btn" type="button">
                                                             Hydrant
                                                         </button>
-                                                        <button (click)="back('hydrant','')" class="edit-icon"><img src="../assets/images/edit.svg"
-                                                                alt=""> Edit</button>
+                                                        <button (click)="back('hydrant','')" class="edit-icon"><img
+                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefour"
                                                             aria-expanded="true" aria-controls="collapsefour"><i
                                                                 class="fa fa-angle-down" aria-hidden="true"></i></span>
