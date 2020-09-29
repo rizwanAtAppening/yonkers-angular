@@ -178,27 +178,27 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
+                                        <li class="nav-item" (click) ="getPermitApplication(1,1)">
                                             <a [class] = "currentTab == '1' ? 'nav-link active':'nav-link'" id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true">Engineering
                                                 Permit</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <li class="nav-item" (click) ="getPermitApplication(1,2)">
                                             <a [class] = "currentTab == '2' ? 'nav-link active':'nav-link'"  id="pills-Daily-tab" data-toggle="pill"
                                                 href="#pills-Daily" role="tab" aria-controls="pills-Daily"
                                                 aria-selected="false">Meter Permit
                                             </a>
                                         </li>
 
-                                        <li class="nav-item">
+                                        <li class="nav-item" (click) ="getPermitApplication(1,3)">
                                             <a  [class] = "currentTab == '3' ? 'nav-link active':'nav-link'"  id="pills-hydrant-tab" data-toggle="pill"
                                                 href="#pills-Daily-hydrant" role="tab" aria-controls="pills-Daily-hydrant"
                                                 aria-selected="false">Hydrant Permit
                                             </a>
                                         </li>
 
-                                        <li class="nav-item">
+                                        <li class="nav-item" (click) ="getPermitApplication(1,4)">
                                             <a [class] = "currentTab == '4' ? 'nav-link active':'nav-link'"  id="pills-size-tab" data-toggle="pill"
                                                 href="#pills-Daily-size" role="tab" aria-controls="pills-Daily-size"
                                                 aria-selected="false">Size Permit
@@ -378,7 +378,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                <pagination-controls (pageChange)="paginate($event,'',1)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -447,7 +447,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of meterPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','meter')">
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','meter',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>
@@ -517,7 +517,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                <pagination-controls (pageChange)="paginate($event,'',2)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -576,6 +576,7 @@
                                                                                     <thead>
                                                                                         <tr>
                                                                                             <th>Ref No</th>
+                                                                                            <th>Location</th>
                                                                                             <th>Fax</th>
                                                                                             <!-- <th>Type</th> -->
                                                                                             <!-- <th>Permit Status</th> -->
@@ -589,9 +590,10 @@
                                                                                         <tr
                                                                                             *ngFor="let application of hydrantPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','hydrant')">
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','hydrant',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
+                                                                                            <td>{{application?.application_hydrant?.hydrant_address}}</td>
                                                                                             <td>
                                                                                                 <p>
                                                                                                     {{application?.applicant_details?.fax}}
@@ -659,7 +661,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                <pagination-controls (pageChange)="paginate($event,'',3)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -731,7 +733,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of sizePemit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','oversize')">
+                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','oversize',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>
@@ -801,7 +803,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'')">
+                                                                <pagination-controls (pageChange)="paginate($event,'',4)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -848,12 +850,12 @@
                                                 id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true"
-                                                (click)="getPermitApplication(1)">Permit</a>
+                                                (click)="getPermitApplication(1,'')">Permit</a>
                                         </li>
                                         <li class="nav-item">
                                             <a [class]="dwlType == '2'?'nav-link active':'nav-link'"
                                                 id="pills-Daily-tab" data-toggle="pill"
-                                                (click)="getPermitApplication(2)" href="#pills-Daily" role="tab"
+                                                (click)="getPermitApplication(2,'')" href="#pills-Daily" role="tab"
                                                 aria-controls="pills-Daily" aria-selected="false">Daily work
                                                 location</a>
                                         </li>
@@ -1007,7 +1009,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,1)">
+                                                                <pagination-controls (pageChange)="paginate($event,1,'')">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -1169,7 +1171,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,2)">
+                                                                <pagination-controls (pageChange)="paginate($event,2,'')">
                                                                 </pagination-controls>
 
                                                             </div>

@@ -37,7 +37,7 @@ export class AddHydrantPermitComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger
+    
     this.onInIt()
     this.minDate = new Date();
     this.route.queryParams.subscribe(data => {
@@ -49,7 +49,7 @@ export class AddHydrantPermitComponent implements OnInit {
       this.getCurrentUser();
     }
     this.getApplication()
-    this.back(this.currentTab,'')
+    this.back(this.currentTab, '')
   }
 
   onInIt() {
@@ -86,7 +86,7 @@ export class AddHydrantPermitComponent implements OnInit {
 
   public formValue: any
   addHydrant(formGroup: string, nextTab: string) {
-    debugger
+    
     if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
@@ -113,7 +113,7 @@ export class AddHydrantPermitComponent implements OnInit {
 
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
-      this.back(nextTab, '')
+      this.getApplication()
       if (this.permitNavigateValue == 'fine') {
         this.permitNavigateValue = ''
         this.router.navigate(['/dashboard/permit'])
@@ -143,11 +143,12 @@ export class AddHydrantPermitComponent implements OnInit {
   public applicantDetails: any;
   public application_hydrant_details: any;
   getApplication() {
-    debugger
+    
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
       this.application_hydrant_details = this.application.application_hydrant
+     // this.back(this.currentTab, '')
     }
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
@@ -167,7 +168,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   back(tab, value: string) {
-    debugger
+    
     if (!this.application_id) {
       this.getApplication();
 
@@ -204,7 +205,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    debugger
+    
     this.back(tab, 'ontab')
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -234,7 +235,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
   public permitNavigateValue: string
   saveAndExit() {
-    debugger
+    
     this.addHydrant('', this.currentTab)
     this.permitNavigateValue = 'fine'
 
@@ -296,7 +297,7 @@ export class AddHydrantPermitComponent implements OnInit {
 
   addressId: number
   typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
-    debugger
+    
     if (value == 'applicanjob') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {

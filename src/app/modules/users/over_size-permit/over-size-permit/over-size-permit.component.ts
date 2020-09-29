@@ -39,11 +39,12 @@ export class OverSizePermitComponent implements OnInit {
       this.permit_type = data.permitType;
       this.application_id = data.application_id
     })
+    this.getApplication();
     if (this.currentTab == 'applicant') {
       this.getCurrentUser()
     }
-    this.getApplication();
-    this.back(this.currentTab,'')
+   
+   
   }
 
 
@@ -107,7 +108,7 @@ export class OverSizePermitComponent implements OnInit {
       this.formValue = this.oversizeForm.value;
 
     }
-    debugger
+    
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
       this.getApplication()
@@ -125,7 +126,7 @@ export class OverSizePermitComponent implements OnInit {
 
   public currentUser: any
   getCurrentUser() {
-    debugger
+    
     this.authService.getUserInfo().subscribe(data => {
       this.currentUser = data;
       this.applicantForm.controls.applicant_name.setValue(this.currentUser.first_name)
@@ -140,22 +141,24 @@ export class OverSizePermitComponent implements OnInit {
   public applicantDetails: any;
   public application_vehicles: any;
   getApplication() {
-    debugger
+    
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
-      this.application_vehicles = this.application.application_vehicles
+      this.application_vehicles = this.application.application_vehicles;
+     // this.back(this.currentTab,'')
     }
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
         this.application = data.response;
         this.applicantDetails = this.application.applicant_details;
         this.application_vehicles = (this.application && this.application.application_vehicles)
+      //  this.back(this.currentTab,'')
         if (this.application) {
           sessionStorage.setItem('application', JSON.stringify(this.application));
 
         }
-        //  this.back(this.currentTab,'')
+          this.back(this.currentTab,'')
       })
 
     }
@@ -163,7 +166,7 @@ export class OverSizePermitComponent implements OnInit {
 
 
   back(tab, value: string) {
-    debugger
+    
     if (!this.application_id) {
       this.getApplication();
     }
@@ -202,7 +205,7 @@ export class OverSizePermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    debugger
+    
     this.back(tab, 'ontab')
     if (tab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -223,14 +226,15 @@ export class OverSizePermitComponent implements OnInit {
       this.addOverSize('oversizeForm', this.currentTab)
       // this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
     }
-    if (tab == 'reviews') {
-      this.getApplication()
+    if (tab == 'reviews' || this.currentTab == 'reviews') {
+      this.currentTab = tab
+      this.getApplication();
+      this.addOverSize('oversizeForm', this.currentTab)
     }
 
   }
   public permitNavigateValue: string
   saveAndExit() {
-    debugger
     this.addOverSize('', this.currentTab)
     this.permitNavigateValue = 'fine'
 

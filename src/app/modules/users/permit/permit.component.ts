@@ -41,7 +41,7 @@ export class PermitComponent implements OnInit {
   public dwlType: string = '1'
   public currentTab: string = '1'
   ngOnInit() {
-    debugger
+    
     if (localStorage.getItem('dwlType') || localStorage.getItem('currentTab')) {
       this.dwlType = (localStorage.getItem('dwlType'));
       this.currentTab = (localStorage.getItem('currentTab'))
@@ -53,7 +53,7 @@ export class PermitComponent implements OnInit {
 
     this.userService.changeSaveAndExit(true);
     this.permitService.deleteSessionApplication();
-    this.getPermitApplication(this.dwlType);
+    this.getPermitApplication(this.dwlType,this.currentTab ? this.currentTab : 1);
     this.onInIt();
     this.currentUser()
 
@@ -204,7 +204,7 @@ export class PermitComponent implements OnInit {
   public hydrantPermit = []
   public engineeringPermit = []
   public sizePemit = []
-  getPermitApplication(dwlType) {
+  getPermitApplication(dwlType:any,permit_type:any) {
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -216,14 +216,14 @@ export class PermitComponent implements OnInit {
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type }).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type ,permit_type:permit_type}).subscribe(data => {
       this.applictionDetails = data.response;
       // this.dwlApplication = this.applictionDetails.filter(data => {
       //   if (data.status == null && data.application_type == 2) {
       //     return data
       //   }
       // })
-      debugger
+      
       this.engineeringPermit = this.applictionDetails.filter(data => {
         if (data.permit_type == 1) {
           return data;
@@ -260,11 +260,11 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  paginate(page, dwlType) {
+  paginate(page, dwlType,permit_type) {
     this.dwlType = dwlType
 
     this.currentPage = page
-    this.getPermitApplication(this.dwlType)
+    this.getPermitApplication(this.dwlType,permit_type)
   }
   public searchString: string
   searchApplication() {
@@ -315,7 +315,7 @@ export class PermitComponent implements OnInit {
       this.confirmPopUp.nativeElement.click();
       this.toastService.success('Application have beed converted');
 
-      this.getPermitApplication(this.dwlType);
+      this.getPermitApplication(this.dwlType,'');
       //this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
@@ -343,7 +343,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.cancelPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application canceled');
-      this.getPermitApplication(this.dwlType);
+      this.getPermitApplication(this.dwlType,'');
       this.cancelConfirmPopUp.nativeElement.click();
     })
   }
@@ -352,7 +352,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application withdraw');
-      this.getPermitApplication(this.dwlType)
+      this.getPermitApplication(this.dwlType,'')
       this.withdrawConfirmPopUp.nativeElement.click();
 
     })
@@ -362,13 +362,19 @@ export class PermitComponent implements OnInit {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
   }
 
-  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string) {
+  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string,permit_type:any) {
+    localStorage.setItem('currentTab', permit_type);
     if (pemit == 'meter') {
       this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { application_id: applicationId, tab: value } })
 
     }
     else if (pemit == 'hydrant') {
       this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { application_id: applicationId, tab: value } })
+
+    }
+
+    else if (pemit == 'oversize') {
+      this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { application_id: applicationId, tab: value } })
 
     }
   }

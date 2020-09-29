@@ -532,6 +532,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           locations: this.locations,
           location_type: this.location_type,
+          permit_type: Number(this.permitType)
         }
       } else if (!this.isLocation && this.isAddressFound) {
         this.addLocationControls.controls.map((value, i) => {
@@ -551,6 +552,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           location_type: this.location_type,
           also_know_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
+          permit_type: Number(this.permitType)
 
 
         }
@@ -566,6 +568,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           address: (this.whereForm.value.address),
           location_type: 3,
+          permit_type: Number(this.permitType)
 
         }
 
@@ -590,7 +593,9 @@ export class AddPermitTabSectionComponent implements OnInit {
 
       if ( (this.application.role == 2 || (this.application.role == 1 && this.application.type != 4) || (this.application.role == 3 &&  this.application.type != 4))) {
         this.contractorForm.value.model = 4
+        this.contractorForm.value.permit_type =  Number(this.permitType)
         this.data = this.contractorForm.value
+        
       }
       else if (this.application.role != 2 && this.application.type == 4) {
         if (!this.dumpster_id) {
@@ -608,7 +613,8 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.data = {
           dumpster_id: this.dumpster_id,
           model: 4,
-          contractor_for_job: 0
+          contractor_for_job: 0,
+          permit_type : Number(this.permitType)
         }
       }
 
@@ -650,7 +656,10 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.projectDetailsForm.value.traffic_control == "") {
         this.projectDetailsForm.value.traffic_control = null
       }
+      this.projectDetailsForm.value.permit_type =  Number(this.permitType)
       this.data = this.projectDetailsForm.value
+       
+
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
       if (this.currentTab == 'where' || this.currentTab == 'contrator') {

@@ -157,13 +157,26 @@ export class AddMeterPermitComponent implements OnInit {
 
 
   //private subject = new Subject<any>();
+  public selectValue = {
+    query: null
+  }
   exextAddress(value) {
-    if (value == 'applicanjob') { }
-    const data = {
+    
+    if (value == 'applicanjob') {
+
+    }
+    this.selectValue = {
       query: value == 'address' ? this.applicantForm.value.applicant_address : this.applicantForm.value.applicant_job_location,
     }
-    if (data.query.length > 1) {
-      this.permitService.exextAddress(data).subscribe(data => {
+
+    if (value == 'location') {
+      this.selectValue = {
+        query: this.meterDeatilsForm.value.location,
+      }
+    }
+    
+    if (this.selectValue.query.length > 1) {
+      this.permitService.exextAddress(this.selectValue).subscribe(data => {
         this.exactAddress = data.response;
         if (value == 'address') {
           if (this.exactAddress.length > 0) {
@@ -192,7 +205,7 @@ export class AddMeterPermitComponent implements OnInit {
 
   addressId: number
   typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
-    debugger
+    
     if (value == 'applicanjob') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {
@@ -212,7 +225,7 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    debugger
+    
     this.back(tab)
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -258,7 +271,7 @@ export class AddMeterPermitComponent implements OnInit {
   public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
-    debugger
+    
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -308,7 +321,7 @@ export class AddMeterPermitComponent implements OnInit {
 
 
   back(tab) {
-    debugger
+    
     if (!this.application_id) {
       this.getApplication();
 
@@ -357,7 +370,7 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   saveAndExit() {
-    debugger
+    
     this.addMeterPermit('', this.currentTab)
     this.permitNavigateValue = 'fine'
 
@@ -379,7 +392,7 @@ export class AddMeterPermitComponent implements OnInit {
   public metertestsize = 0
   public fireline = 0
   setTotalAmount(value) {
-    debugger
+    
     let ammount: number = 100
 
     if (value == 'tapsize') {
