@@ -784,8 +784,8 @@
                                                                 <div class="app-flex">
                                                                     <div class="first-collepse-box">
                                                                         <div class="role-txt-collepse">
-                                                                            <h2>Name</h2>
-                                                                            <p>{{applicantDetails?.applicant_name}}</p>
+                                                                            <h2>Full Name</h2>
+                                                                            <p>{{applicantDetails?.applicant_name}} {{applicantDetails?.applican_last_name}}</p>
         
                                                                         </div>
         
@@ -816,7 +816,7 @@
                                                                         </div>
                                                                         <div class="role-txt-collepse-two">
                                                                             <h2>Application date</h2>
-                                                                            <p>{{applicantDetails?.application_date}}</p>                                                                </div>
+                                                                            <p>{{applicantDetails?.application_date | date}}</p>                                                                </div>
         
                                                                     </div>
                                                                 </div>
