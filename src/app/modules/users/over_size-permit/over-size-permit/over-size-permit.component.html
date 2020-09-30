@@ -13,7 +13,7 @@
             </div>
             <div class="col-6">
                 <div class="profile-header">
-                    <div class="saveTxtbtn" (click) ="saveAndExit()">
+                    <div class="saveTxtbtn" (click)="saveAndExit()">
                         <button> Save & Exit</button>
                     </div>
                 </div>
@@ -25,17 +25,17 @@
 <section class="tabber">
     <div class="tab-sec">
         <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li class="nav-item" (click) ="hitOnTab('applicant')">
+            <li class="nav-item" (click)="hitOnTab('applicant')">
                 <a [class]="(currentTab == 'applicant')? 'active':''" id="vehicle-Applicant-tab" data-toggle="pill"
                     role="tab" aria-controls="vehicle-Applicant" aria-selected="false">Applicant<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
-            <li class="nav-item" (click) ="hitOnTab('oversize')">
+            <li class="nav-item" (click)="hitOnTab('oversize')">
                 <a [class]="(currentTab == 'oversize')? 'active':''" id="vehicle-details-tab" data-toggle="pill"
                     role="tab" aria-controls="vehicle-details" aria-selected="false">Vehicle Detials<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
-            <li class="nav-item" (click) ="hitOnTab('reviews')">
+            <li class="nav-item" (click)="hitOnTab('reviews')">
                 <a [class]="(currentTab == 'reviews')? 'active':''" id="vehicle-Reviews-tab" data-toggle="pill"
                     role="tab" aria-controls="vehicle-Reviews" aria-selected="false">Review<span><i
                             class="fa fa-angle-right" aria-hidden="true"></i></span></a>
@@ -80,34 +80,34 @@
                                         </div>
 
                                     </div>
-                                     
+
 
                                     <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                            <div class="form-group">
-                                                                    <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                                    <input type="text" formControlName="applicant_last_name"
-                                                                        [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                        class="form-control" class="form-control" required>
-                                                                    <label class="form-control-placeholder"
-                                                                        for="id-address">Last Name</label>
-                                                                </div>
-                                                                <div
-                                                                *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
-                                                                <p class="form-error"
-                                                                    *ngIf="applicantCon.applicant_last_name.errors['required']">
-                                                                    Please enter applicant last names.
-                                                                </p>
-                                                            </div>
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                        <input type="text" formControlName="applicant_last_name"
+                                                            [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                            class="form-control" class="form-control" required>
+                                                        <label class="form-control-placeholder" for="id-address">Last
+                                                            Name</label>
+                                                    </div>
+                                                    <div
+                                                        *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
+                                                        <p class="form-error"
+                                                            *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                            Please enter applicant last names.
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
-    
                                         </div>
 
-                                      
+                                    </div>
+
+
                                 </div>
 
 
@@ -122,7 +122,7 @@
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" id="Email-app"
-                                                            (keypress)="phoneNumberFormate('address')"
+                                                                (keypress)="phoneNumberFormate('address')"
                                                                 maxlength="12" formControlName="applicant_phone"
                                                                 [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required>
@@ -141,29 +141,29 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                                <div class="bdp_email loction-adInput">
-                                                    <div class="row">
-                                                        <div class="col-12 ">
-                                                            <div class="form-group">
-                                                                <input type="text" id="Email-app" class="form-control"
-                                                                    formControlName="applicant_email"
-                                                                    [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                    required>
-                                                                <label class="form-control-placeholder"
-                                                                    for="Email-app">Email</label>
-                                                            </div>
-                                                            <div
-                                                                *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
-                                                                <p class="form-error"
-                                                                    *ngIf="applicantCon.applicant_email.errors['required']">
-                                                                    Please enter email.
-                                                                </p>
-                                                            </div>
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="Email-app" class="form-control"
+                                                                formControlName="applicant_email"
+                                                                [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                required>
+                                                            <label class="form-control-placeholder"
+                                                                for="Email-app">Email</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="applicantCon.applicant_email.errors['required']">
+                                                                Please enter email.
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> 
-                    
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="bussiness-input">
@@ -174,7 +174,7 @@
                                                     <div class="col-6 ">
                                                         <div class="form-group">
                                                             <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text"  formControlName="applicant_address"
+                                                            <input type="text" formControlName="applicant_address"
                                                                 [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" class="form-control" required>
                                                             <label class="form-control-placeholder"
@@ -189,28 +189,30 @@
                                                         </div>
                                                     </div>
 
-                                                        <div class="col-6">
-                                                                <div class="bdp_email loction-adInput">
-                                                                    <div class="row">
-                                                                        <div class="col-12 ">
-                                                                            <div class="form-group">
-                                                                                <input type="text" id="Zip-id" maxlength="12" formControlName="fax" (keypress)="phoneNumberFormate('fax')"
-                                                                                    [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                                    class="form-control" required>
-                                                                                <label class="form-control-placeholder"
-                                                                                    for="Zip-id">Fax</label>
-                                                                            </div>
-                                                                            <div
-                                                                                *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
-                                                                                <p class="form-error"
-                                                                                    *ngIf="applicantCon.fax.errors['required']">
-                                                                                    Please enter applicant fax.
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="Zip-id" maxlength="12"
+                                                                            formControlName="fax"
+                                                                            (keypress)="phoneNumberFormate('fax')"
+                                                                            [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                            class="form-control" required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="Zip-id">Fax</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="applicantCon.fax.errors['required']">
+                                                                            Please enter applicant fax.
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -256,12 +258,20 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="Zip-id"
+                                                            <!-- <input type="text" id="Zip-id"
                                                                 formControlName="application_time"
                                                                 [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 required>
                                                             <label class="form-control-placeholder"
-                                                                for="Zip-id">Application Time</label>
+                                                                for="Zip-id">Application Time</label> -->
+                                                                <!-- <label class="form-control-placeholder"
+                                                                for="Zip-id">Application Time</label> -->
+                                                            <select formControlName="application_time"
+                                                                [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'">
+                                                                <option value="" hidden> --Select Time-- </option>
+                                                                <option *ngFor="let time of settings?.time ">
+                                                                    {{time?.value}}</option>
+                                                            </select>
                                                         </div>
                                                         <div
                                                             *ngIf="applicantCon.application_time.invalid && (applicantCon.application_time.dirty || applicantCon.application_time.touched || isApplicant)">
@@ -277,7 +287,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-pre">
-                                    <button>Previous</button>
+                                    <!-- <button>Previous</button> -->
                                     <button class="continue" type="submit"
                                         (click)="addOverSize('applicant','oversize')">Continue</button>
                                 </div>
@@ -297,7 +307,7 @@
                         <form [formGroup]="oversizeForm">
                             <div class="container p-0">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-12">
                                         <div class="bdp_email loction-adInput">
                                             <div class="row">
                                                 <div class="col-12 ">
@@ -320,27 +330,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Email-app" formControlName="make"
-                                                            [class]="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Email-app">Make</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant)">
-                                                        <p class="form-error" *ngIf="oversize.make.errors['required']">
-                                                            Please enter make .
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
 
 
@@ -371,6 +361,28 @@
                                                 </div>
                                             </div>
 
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="Email-app" formControlName="make"
+                                                                [class]="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="Email-app">Make</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant)">
+                                                            <p class="form-error"
+                                                                *ngIf="oversize.make.errors['required']">
+                                                                Please enter make .
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -560,7 +572,7 @@
                                 </div>
                             </div> -->
                                 <div class="btn-pre">
-                                    <button type="button" (click) ="back('applicant','')">Previous</button>
+                                    <button type="button" (click)="back('applicant','')">Previous</button>
                                     <button class="continue" type="submit"
                                         (click)="addOverSize('oversizeForm','reviews')">Continue</button>
                                 </div>
@@ -764,67 +776,69 @@
                                         <div class="accordion" id="accordionExample">
 
 
-                                                <div class="card">
-                                                        <div class="card-header" id="headingThree">
-                                                            <h2 class="mb-0">
-                                                                <button class="what-btn" type="button">
-                                                                    Applicant
-                                                                </button>
-                                                                <button class="edit-icon" (click)="back('applicant','')"><img src="../assets/images/edit.svg"
-                                                                        alt=""> Edit</button>
-                                                                <span data-toggle="collapse" data-target="#collapseThree"
-                                                                    aria-expanded="true" aria-controls="collapseThree"><i
-                                                                        class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                            </h2>
-                                                        </div>
-                                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                                            data-parent="#accordionExample">
-                                                            <div class="card-body">
-        
-                                                                <div class="app-flex">
-                                                                    <div class="first-collepse-box">
-                                                                        <div class="role-txt-collepse">
-                                                                            <h2>Full Name</h2>
-                                                                            <p>{{applicantDetails?.applicant_name}} {{applicantDetails?.applican_last_name}}</p>
-        
-                                                                        </div>
-        
-                                                                        <div class="role-txt-collepse-two">
-                                                                            <h2>Phone</h2>
-                                                                            <p>{{applicantDetails?.applicant_phone}}</p>
-                                                                        </div>
-                                                                        <div class="role-txt-collepse-two">
-                                                                            <h2>Address</h2>
-                                                                            <p>{{applicantDetails?.applicant_address}}</p>
-                                                                        </div>
-                                                                        <div class="role-txt-collepse-two">
-                                                                            <h2>Application Time</h2>
-                                                                            <p>{{applicantDetails?.application_time}}</p>
-                                                                        </div>
-        
-        
-                                                                    </div>
-                                                                    <div class="first-collepse-box">
-                                                                        <div class="role-txt-collepse">
-                                                                            <h2>Email</h2>
-                                                                            <p>{{applicantDetails?.applicant_email}}</p>
-                                                                        </div>
-        
-                                                                        <div class="role-txt-collepse-two">
-                                                                            <h2>Fax</h2>
-                                                                            <p>{{applicantDetails?.fax}}</p>
-                                                                        </div>
-                                                                        <div class="role-txt-collepse-two">
-                                                                            <h2>Application date</h2>
-                                                                            <p>{{applicantDetails?.application_date | date}}</p>                                                                </div>
-        
-                                                                    </div>
+                                            <div class="card">
+                                                <div class="card-header" id="headingThree">
+                                                    <h2 class="mb-0">
+                                                        <button class="what-btn" type="button">
+                                                            Applicant
+                                                        </button>
+                                                        <button class="edit-icon" (click)="back('applicant','')"><img
+                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
+                                                        <span data-toggle="collapse" data-target="#collapseThree"
+                                                            aria-expanded="true" aria-controls="collapseThree"><i
+                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                    </h2>
+                                                </div>
+                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+
+                                                        <div class="app-flex">
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Full Name</h2>
+                                                                    <p>{{applicantDetails?.applicant_name}}
+                                                                        {{applicantDetails?.applican_last_name}}</p>
+
                                                                 </div>
-        
-        
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Phone</h2>
+                                                                    <p>{{applicantDetails?.applicant_phone}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Address</h2>
+                                                                    <p>{{applicantDetails?.applicant_address}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Application Time</h2>
+                                                                    <p>{{applicantDetails?.application_time}}</p>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="first-collepse-box">
+                                                                <div class="role-txt-collepse">
+                                                                    <h2>Email</h2>
+                                                                    <p>{{applicantDetails?.applicant_email}}</p>
+                                                                </div>
+
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Fax</h2>
+                                                                    <p>{{applicantDetails?.fax}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two">
+                                                                    <h2>Application date</h2>
+                                                                    <p>{{applicantDetails?.application_date | date}}</p>
+                                                                </div>
+
                                                             </div>
                                                         </div>
+
+
                                                     </div>
+                                                </div>
+                                            </div>
 
                                             <div class="card">
                                                 <div class="card-header" id="headingfour">
@@ -832,8 +846,8 @@
                                                         <button class="what-btn" type="button">
                                                             OverSized Vehicles
                                                         </button>
-                                                        <button class="edit-icon" (click)="back('oversize','')"><img src="../assets/images/edit.svg"
-                                                                alt=""> Edit</button>
+                                                        <button class="edit-icon" (click)="back('oversize','')"><img
+                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
                                                         <span data-toggle="collapse" data-target="#collapsefour"
                                                             aria-expanded="true" aria-controls="collapsefour"><i
                                                                 class="fa fa-angle-down" aria-hidden="true"></i></span>

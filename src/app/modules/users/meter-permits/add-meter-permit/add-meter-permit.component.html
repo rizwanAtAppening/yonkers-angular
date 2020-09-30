@@ -14,7 +14,7 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                        <button type="submit" (click)="saveAndExit()"> Save & Exit</button>
+                        <button type="button" (click)="saveAndExit()"> Save & Exit</button>
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <!-- <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
@@ -238,34 +238,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="ste-id" formControlName="lot"
-                                                                [class]="meterApplicantCon.lot.invalid && (meterApplicantCon.lot.dirty ||meterApplicantCon.lot.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Lot</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="meterApplicantCon.lot.invalid && (meterApplicantCon.lot.dirty || meterApplicantCon.lot.touched || isMerter)">
-                                                            <p class="form-error"
-                                                                *ngIf="meterApplicantCon.lot.errors['required']">
-                                                                Please enter applicant lot.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </div> -->
 
-                                        </div>
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
@@ -290,9 +264,37 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="ste-id" formControlName="lot"
+                                                                [class]="meterApplicantCon.lot.invalid && (meterApplicantCon.lot.dirty ||meterApplicantCon.lot.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
+                                                                class="form-control" class="form-control" required>
+                                                            <label class="form-control-placeholder"
+                                                                for="ste-id">Lot</label>
+                                                        </div>
+                                                        <div
+                                                            *ngIf="meterApplicantCon.lot.invalid && (meterApplicantCon.lot.dirty || meterApplicantCon.lot.touched || isMerter)">
+                                                            <p class="form-error"
+                                                                *ngIf="meterApplicantCon.lot.errors['required']">
+                                                                Please enter applicant lot.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                     
+                                    </div>
+                                </div> -->
 
                                 <div class="btn-pre">
-                                    <button>Previous</button>
+                                    <!-- <button>Previous</button> -->
                                     <button class="continue" type="submit"
                                         (click)="addMeterPermit('applicant','meterDetails')">Continue</button>
                                 </div>
@@ -347,7 +349,7 @@
 
 
                         <div class="location-type-tab">
-                            <h3>Meter Size</h3>
+                            <h3>Meter</h3>
                         </div>
 
                         <div class="adrees-tab">

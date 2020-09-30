@@ -16,6 +16,7 @@ import { AuthenticationService } from 'src/app/core/authentication/authenticatio
 export class AddMeterPermitComponent implements OnInit {
   public applicantForm: FormGroup;
   public application: any
+  public isExit = false
   public meterDeatilsForm: FormGroup;
   public permit_type: number
   public isMerter = false;
@@ -29,7 +30,12 @@ export class AddMeterPermitComponent implements OnInit {
   public jobAdress = new Subject<any>();
   public minDate: Date;
   public application_id: number;
-  public permitNavigateValue: string
+  public permitNavigateValue: string = null;
+  public totalAmount: number = 0
+  public tapsize = 0
+  public metertest = 0
+  public metertestsize = 0
+  public fireline = 0
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -108,14 +114,11 @@ export class AddMeterPermitComponent implements OnInit {
 
 
   addMeterPermit(formGroup: string, nextTab) {
-
-    // this.getApplication();
-    // if(this.application){
-    //   this.back(nextTab)
-    // }
+    debugger
     if (formGroup == 'applicant' || nextTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isMerter = true;
+        this.isExit = false
         return false
       }
       this.applicantForm.value.permit_type = this.permit_type ? this.permit_type : 2
@@ -129,6 +132,7 @@ export class AddMeterPermitComponent implements OnInit {
     else if (formGroup == 'meterDetails' || nextTab == 'meterDetails') {
       if (this.meterDeatilsForm.invalid) {
         this.isMerter = true;
+        this.isExit = false
         return false
       }
       this.meterDeatilsForm.value.permit_type = this.permit_type ? this.permit_type : 2
@@ -136,20 +140,17 @@ export class AddMeterPermitComponent implements OnInit {
       this.meterDeatilsForm.value.status = 7
       this.meterDeatilsForm.value.meterSizeType = this.meterSizeType,
         this.meterDeatilsForm.value.wetConnctionType = this.wetConnctionType,
-
-
         this.formValue = this.meterDeatilsForm.value
     }
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
-      //this.toasterService.success('')
-      //this.permitNavigateValue = 'fine'
       this.currentTab = nextTab;
       this.back(nextTab)
-
       this.getApplication()
-      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
-      if (this.permitNavigateValue == 'fine') {
+      if (this.isExit) {
         this.router.navigate(['/dashboard/permit'])
+      } else {
+        this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
+
       }
     })
 
@@ -161,7 +162,7 @@ export class AddMeterPermitComponent implements OnInit {
     query: null
   }
   exextAddress(value) {
-    
+
     if (value == 'applicanjob') {
 
     }
@@ -174,7 +175,7 @@ export class AddMeterPermitComponent implements OnInit {
         query: this.meterDeatilsForm.value.location,
       }
     }
-    
+
     if (this.selectValue.query.length > 1) {
       this.permitService.exextAddress(this.selectValue).subscribe(data => {
         this.exactAddress = data.response;
@@ -205,15 +206,11 @@ export class AddMeterPermitComponent implements OnInit {
 
   addressId: number
   typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
-    
+
     if (value == 'applicanjob') {
       this.exactAddress.every(data => {
         if (e.value == data.szFullAddress) {
-          //this.whereForm.value.address_id = data.id;
           this.addressId = data.id
-          this.applicantForm.controls.block.setValue(data.szBlock)
-          this.applicantForm.controls.lot.setValue(data.szLot)
-
           console.log(this.addressId)
           return false
         } else {
@@ -225,7 +222,6 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    
     this.back(tab)
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -271,7 +267,7 @@ export class AddMeterPermitComponent implements OnInit {
   public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
-    
+
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -307,21 +303,8 @@ export class AddMeterPermitComponent implements OnInit {
     })
   }
 
-  // updateAppliction() {
-  //   this.permitService.updateApplication(this.application_id).subscribe(data => {
-  //     this.application = data.response;
-  //     if(this.application){
-  //       sessionStorage.setItem('application', JSON.stringify(this.application));
-
-  //     }
-  //   })
-  // }
-
-
-
-
   back(tab) {
-    
+
     if (!this.application_id) {
       this.getApplication();
 
@@ -331,8 +314,6 @@ export class AddMeterPermitComponent implements OnInit {
       if (this.applicantDetails) {
         this.applicantForm.controls.applicant_name.setValue(this.applicantDetails.applicant_name)
         this.applicantForm.controls.applicant_last_name.setValue(this.applicantDetails.applican_last_name)
-        this.applicantForm.controls.block.setValue(this.applicantDetails.block)
-        this.applicantForm.controls.lot.setValue(this.applicantDetails.lot)
         this.applicantForm.controls.owner.setValue(this.applicantDetails.owner)
         this.applicantForm.controls.applicant_address.setValue(this.applicantDetails.applicant_address)
         this.applicantForm.controls.applicant_phone.setValue(this.applicantDetails.applicant_phone)
@@ -368,11 +349,10 @@ export class AddMeterPermitComponent implements OnInit {
     }
 
   }
-
   saveAndExit() {
-    
+    this.isExit = true
     this.addMeterPermit('', this.currentTab)
-    this.permitNavigateValue = 'fine'
+  
 
   }
 
@@ -386,15 +366,9 @@ export class AddMeterPermitComponent implements OnInit {
     }
   }
 
-  public totalAmount: number = 0
-  public tapsize = 0
-  public metertest = 0
-  public metertestsize = 0
-  public fireline = 0
-  setTotalAmount(value) {
-    
-    let ammount: number = 100
 
+  setTotalAmount(value) {
+    let ammount: number = 100
     if (value == 'tapsize') {
       if (this.meterDeatilsForm.value.tap_size) {
         this.tapsize = ammount

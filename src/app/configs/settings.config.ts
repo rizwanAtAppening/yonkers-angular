@@ -635,6 +635,56 @@ export const settingConfig = {
       value: 'Accept Submission'
     }
   ],
+  time:[
+    {value:'1AM'},
+    {value:'1PM'},
+    {value:'2AM'},
+    {value:'2PM'},
+    {value:'3AM'},
+    {value:'3PM'},
+    {value:'4AM'},
+    {value:'4PM'},
+    {value:'5AM'},
+    {value:'5PM'},
+    {value:'6AM'},
+    {value:'6PM'},
+    {value:'7AM'},
+    {value:'7PM'},
+    {value:'8AM'},
+    {value:'8PM'},
+    {value:'9AM'},
+    {value:'9PM'},
+    {value:'10AM'},
+    {value:'10PM'},
+    {value:'11AM'},
+    {value:'11PM'},
+    {value:'12AM'},
+    {value:'12PM'},
+    {value:'1:30AM'},
+    {value:'1:30PM'},
+    {value:'2:30AM'},
+    {value:'2:30PM'},
+    {value:'3:30AM'},
+    {value:'3:30PM'},
+    {value:'4:30AM'},
+    {value:'4:30PM'},
+    {value:'5:30AM'},
+    {value:'5:30PM'},
+    {value:'6:30AM'},
+    {value:'6:30PM'},
+    {value:'7:30AM'},
+    {value:'7:30PM'},
+    {value:'8:30AM'},
+    {value:'8:30PM'},
+    {value:'9:30AM'},
+    {value:'9:30PM'},
+    {value:'10:30AM'},
+    {value:'10:30PM'},
+    {value:'11:30AM'},
+    {value:'11:30PM'},
+    {value:'12:30AM'},
+    {value:'12:30PM'},
+  ],
 
 
   permit_type: {
@@ -644,6 +694,7 @@ export const settingConfig = {
     "OverSized": 4
   },
 
+  
 
   getSettingAsObservable(prop: any, condition: any): Observable<any> {
     const object = _.find(this[prop], {

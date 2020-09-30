@@ -7,6 +7,8 @@ import { Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/public_api';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { appToaster, settingConfig } from 'src/app/configs';
+
 @Component({
   selector: 'app-over-size-permit',
   templateUrl: './over-size-permit.component.html',
@@ -21,6 +23,7 @@ export class OverSizePermitComponent implements OnInit {
   public permit_type = 3;
   public minDate: Date;
   public application_id: number
+  public settings :any
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -29,7 +32,9 @@ export class OverSizePermitComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthenticationService,
-  ) { }
+  ) {
+    this.settings = settingConfig;
+   }
 
   ngOnInit(): void {
     this.onInIt();
@@ -90,6 +95,7 @@ export class OverSizePermitComponent implements OnInit {
     if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
+        this.permitNavigateValue = null
         return false
       }
       this.applicantForm.value.permit_type = this.permit_type ? this.permit_type : 4;
@@ -101,6 +107,7 @@ export class OverSizePermitComponent implements OnInit {
     else if (formGroup == 'oversizeForm' || this.currentTab == 'oversize') {
       if (this.oversizeForm.invalid) {
         this.isApplicant = true;
+        this.permitNavigateValue = null
         return false
       }
       this.oversizeForm.value.model = 9
@@ -235,9 +242,8 @@ export class OverSizePermitComponent implements OnInit {
   }
   public permitNavigateValue: string
   saveAndExit() {
-    this.addOverSize('', this.currentTab)
     this.permitNavigateValue = 'fine'
-
+    this.addOverSize('', this.currentTab)
   }
 
   phoneNumberFormate(value: string) {
