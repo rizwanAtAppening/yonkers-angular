@@ -16,6 +16,8 @@ export class AddStaffComponent implements OnInit {
   public departmentId = 1
   public EMAIL_REGEX = "[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*";
   public isEmailReadOnly = false;
+  public allRoles = []
+  public allDepartments = []
   constructor(
     private adminAuthService: AuthenticationService,
     private router: Router,
@@ -33,13 +35,15 @@ export class AddStaffComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.staffId = data.staffId
     })
-    
+
     if (this.staffId) {
       this.isEmailReadOnly = true
       this.getStaffById();
     }
 
     this.addStaffForm.controls.isActive.setValue(1)
+    this.allRole();
+    this.allDepartment()
   }
 
 
@@ -78,10 +82,9 @@ export class AddStaffComponent implements OnInit {
   public departments = [1]
   public status: number = 1
   addStaff() {
-    
     this.addStaffForm.controls.name.setErrors(null);
     this.addStaffForm.controls.phone.setErrors(null);
-   // this.addStaffForm.controls.name.setErrors(null);
+    // this.addStaffForm.controls.name.setErrors(null);
 
     if (this.addStaffForm.invalid) {
       this.isStaff = true;
@@ -93,13 +96,9 @@ export class AddStaffComponent implements OnInit {
     } else if (this.addStaffForm.value.isActive == true) {
       this.status = 1
     }
-    this.addStaffForm.value.departments = this.departments
-
-    // this.addStaffForm.value.role_id = 4;
-
     const data = {
-      role_id: 5,
-      departments: this.departments,
+      role_id:Number(this.addStaffForm.value.role_id),
+      department: Number(this.addStaffForm.value.departments),
       status: this.status,
       password: 123456,
       email: this.addStaffForm.value.email,
@@ -126,4 +125,22 @@ export class AddStaffComponent implements OnInit {
   }
 
   get staffControl() { return this.addStaffForm.controls }
+
+  public deptment_id: any
+  selectDepartments(value) {
+    this.deptment_id = value
+  }
+
+  allRole() {
+    debugger
+    this.adminAuthService.allRole().subscribe(data => {
+      this.allRoles = data.response
+    })
+  }
+
+  allDepartment() {
+    this.adminAuthService.allDepartments().subscribe(data => {
+      this.allDepartments = data.response
+    })
+  }
 }
