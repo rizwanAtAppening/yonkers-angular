@@ -14,6 +14,8 @@ import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
 })
 export class ApplicationService {
 
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
@@ -54,6 +56,9 @@ export class ApplicationService {
     );
   }
 
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
 
 
   inspector(): Observable<any> {

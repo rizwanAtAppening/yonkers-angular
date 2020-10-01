@@ -11,6 +11,7 @@ import { HeaderComponent } from './layouts/users/header/header.component';
 import { FooterComponent } from './layouts/users/footer/footer.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { AdminComponent } from './layouts/admin/admin.component';
+import { SideBarComponent } from './layouts/side-bar/side-bar.component';
 /** End COMPONENTS */
 
 
@@ -19,7 +20,8 @@ const COMPONENTS = [
   LayoutComponent,
   HeaderComponent,
   FooterComponent,
-  AdminComponent
+  AdminComponent,
+  SideBarComponent
 
 ];
 

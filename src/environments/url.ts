@@ -91,7 +91,9 @@ const adminUrl = {
   staffList:`/staff`,
   getStffById:`/staff`,
   updateStaff:`/staff/update`,
-  resendMail:`/staff/resend-password-link`
+  resendMail:`/staff/resend-password-link`,
+  allRoles:`/role`,
+  allDepartmets:`/departments`,
 
 
 };

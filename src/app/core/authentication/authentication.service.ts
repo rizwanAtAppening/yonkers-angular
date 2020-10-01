@@ -118,6 +118,34 @@ export class AuthenticationService {
     );
   }
 
+
+  allRole() {
+    const href = `${environment['allRoles']}`
+    return this.http.get<any>(href,).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+
+  allDepartments() {
+    const href = `${environment['allDepartmets']}`
+    return this.http.get<any>(href).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   getStaffById(staffId) {
     const href = `${environment['getStffById']}/${staffId}`
     return this.http.get<any>(href).pipe(

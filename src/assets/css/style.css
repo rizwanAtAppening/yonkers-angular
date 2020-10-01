@@ -4853,3 +4853,100 @@ padding: 10px 17px;
   .decisionFilter-Hd::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
   }
+
+  /* admin css  22/09/2020*/
+
+
+.side-nav-admin{
+    width: 258px;
+    background-color: #ffffff;
+    box-shadow: 0px 3px 10px #BEC2FF00;
+    z-index: 1000;
+    top: 0px;
+    border-right: 1px solid #00000026;
+    bottom: 0px;
+    position: fixed;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+}
+
+.logo-dark{
+    width: 65px;
+    height: 37px;
+    margin: 32px 0px 0px 40px;
+}
+
+.side-nav-inner ul li {
+    padding: 20px 32px;
+    margin-bottom: 10px;
+}
+.side-nav-inner ul li.active {
+   background: #EDF7FE;
+}
+.side-nav-inner ul li span.icon-holder {
+    position: relative;   
+    z-index: 999;
+}
+.side-nav-inner ul li span.icon-holder::before {
+     position: absolute;
+    content: '';
+    background: #E2ECFA;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    left: -9px;
+    top: -5px;
+    box-shadow: 0px 3px 10px #BEC2FF00;
+    border-radius: 50%;  
+}
+.side-nav-inner ul li span.icon-holder img{
+    z-index: 999;
+    position: relative; 
+    width: 14px;
+    height: 14px;
+}
+.side-nav-inner ul li.active span.icon-holder img{
+    z-index: 999;
+    position: relative; 
+    width: 14px;
+    height: 14px;
+}
+.side-nav-inner ul li.active span.icon-holder {
+    position: relative;   
+}
+.side-nav-inner ul li.active span.icon-holder::before{
+    position: absolute;
+    content: '';
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    left: -9px;
+    top: -5px;
+    box-shadow: 0px 3px 10px #BEC2FF00;
+    border-radius: 50%;
+}
+.side-nav-inner ul{
+    margin-top: 70px;
+}
+.side-nav-inner ul li a span.title{
+color: #282D5B;
+font-size: 15px;
+margin-left: 12px;
+font-family: "Poppins-Medium";
+}
+.side-nav-inner ul li a:hover{
+    text-decoration: none;
+}
+.main-content{
+    margin: 0px 38px;
+    padding-left: 258px;
+}
+
+.meter_index{
+    font-size: 20px !important;
+}
