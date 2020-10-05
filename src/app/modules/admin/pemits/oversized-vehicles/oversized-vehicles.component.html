@@ -438,7 +438,7 @@
                                                                                             <thead>
                                                                                                 <tr>
                                                                                                     <th>Ref No</th>
-                                                                                                    <th>Address</th>
+                                                                                                    <!-- <th>Address</th> -->
                                                                                                     <th>License Plate</th>
                                                                                                     <th>From</th>
                                                                                                     <th>To</th>
@@ -447,59 +447,31 @@
                                                                                                 </tr>
                                                                                             </thead>
                                                                                             <tbody>
-                                                                                                <tr>
-                                                                                                    <td class="refTxt">39465</td>
-                                                                                                    <td>47 W 13th St, New York <span
-                                                                                                            class="to-txt">To</span>
-                                                                                                        20
-                                                                                                        Cooper Square
-                                                                                                      
-                                                                                                    </td>
-                                                                                                    <td>RJ-1320 120 123456</td>
-                                                                                                    <td>25 Aprl 2020</td>
-                                                                                                    <td>30 Dec 2020</td>
-                                                                                                    <td
-                                                                                                        class="submited-Btn green-txt-2">
-                                                                                                        <button>Issued</button></td>
-            
-            
-            
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="refTxt">39465</td>
-                                                                                                    <td>47 W 13th St, New York <span
-                                                                                                            class="to-txt">End</span>
-                                                                                                        20
-                                                                                                        Cooper Square
-                                                                                                      
-            
-                                                                                                    </td>
-                                                                                                    <td>RJ-1320 120 123456</td>
-                                                                                                    <td>25 Aprl 2020</td>
-                                                                                                    <td>30 Dec 2020</td>
-                                                                                                    <td
-                                                                                                        class="submited-Btn orange-txt-2">
-                                                                                                        <button>Accepted</button>
-                                                                                                    </td>
-            
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="refTxt">39465</td>
-                                                                                                    <td>187 PARKER ST</td>
-                                                                                                    <td>RJ-1320 120 123456</td>
-                                                                                                    <td>25 Aprl 2020</td>
-                                                                                                    <td>30 Dec 2020</td>
-                                                                                                    <td
-                                                                                                        class="submited-Btn green-txt-2">
-                                                                                                        <button>Issued</button></td>
-            
-                                                                                                </tr>
+                                                                                                <tr
+                                                                                                *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                                <td class="refTxt">
+                                                                                                    <a>{{permit?.reference_no}}</a>
+                                                                                                </td>
+                                                                                                <!-- <td>
+                                                                                                    {{permit?.applicant_details?.applicant_job_location}}
+                                                                                                </td> -->
+                                                                                               <td>{{permit?.application_vehicles?.license_plate}}</td>
+                                                                                               <td>{{permit?.application_vehicles?.from | date}}</td>
+                                                                                               <td>{{permit?.application_vehicles?.to | date}}</td>
+                                                                                               <td>_</td>
+
+    
+    
+    
+                                                                                            </tr>
             
                                                                                             </tbody>
                                                                                         </table>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <pagination-controls (pageChange)="paginate($event,1,'')">
+                                                                            </pagination-controls>
                                                                         </div>
                                                                     </div>
                                                                 </div>

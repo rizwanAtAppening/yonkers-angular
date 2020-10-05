@@ -14,7 +14,7 @@ export class ApplicationsComponent implements OnInit {
   public settings: any;
   public application_Type = 1;
   public searchString: any;
-
+  public permit_type: Number = 1;
   public currentUser = {
     role_id: null,
     department: null,
@@ -29,6 +29,10 @@ export class ApplicationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.applicationService.currentMessage.subscribe((type:any) => {
+      this.permit_type = type
+    })
+
     this.getAllApplication(this.application_Type);
     this.getUserInfo()
     this.allInspector();
@@ -49,12 +53,15 @@ export class ApplicationsComponent implements OnInit {
   public totalPagination: number;
   public modify = {
     page: this.page,
+    permit_type : this.permit_type,
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    
+debugger
     this.application_Type = application_Type
     this.modify.application_type = application_Type
+    this.modify.permit_type = 1
+    this.modify.page = this.page
     // const data = {
     //   page: this.page,
     //   application_type: this.application_Type
@@ -135,18 +142,19 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-  paginate(page, value, stringValue) {
-    this.application_Type = value,
-      this.page = page
-    if (stringValue == 'inspection') {
-      this.paymentsSummary(1, 'inspection', '')
-    } else if (stringValue == 'payment') {
-      this.paymentsSummary(1, 'payment', '')
-    }
-    if (stringValue != 'inspection' && stringValue != 'payment')
-      this.getAllApplication(this.application_Type)
+    paginate(page, value, stringValue) {
+      debugger
+      this.application_Type = value,
+        this.page = page
+      if (stringValue == 'inspection') {
+        this.paymentsSummary(1, 'inspection', '')
+      } else if (stringValue == 'payment') {
+        this.paymentsSummary(1, 'payment', '')
+      }
+      if (stringValue != 'inspection' && stringValue != 'payment')
+        this.getAllApplication(this.application_Type)
 
-  }
+    }
 
   public isSingleAddress = true;
   public currentId: number
@@ -253,7 +261,7 @@ export class ApplicationsComponent implements OnInit {
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
-    
+
     if (value == 'inspector') {
       if (!selectValue.checked) {
         this.inspectorAndExaminerIdsArray.forEach((data, i) => {
@@ -276,7 +284,7 @@ export class ApplicationsComponent implements OnInit {
             this.inspectorAndExaminerIdsArray.splice(i, 1)
           }
         })
-      }else{
+      } else {
         this.inspectorAndExaminerIdsArray.push({ 'examiner': selectValue.value })
 
       }
@@ -304,7 +312,7 @@ export class ApplicationsComponent implements OnInit {
   public inspector = []
   public examiner = []
   allInspector() {
-    
+
     this.applicationService.inspector().subscribe(data => {
       this.inspector = data.response
     })
@@ -314,4 +322,8 @@ export class ApplicationsComponent implements OnInit {
       this.examiner = data.response
     })
   }
+
+  
+  
+
 }

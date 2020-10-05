@@ -6,15 +6,15 @@
                 </a>
             </div>
             <ul class="side-nav-menu_admin">
-                <li class="nav-item pointer">
+                <li [class] ="(childMessage == 1) ? 'nav-item active pointer' :'nav-item  pointer'">
                     <a class="mrg-top-30" >
                         <span class="icon-holder">
                             <img src="../assets/images/ep.svg" alt="">
                         </span>
-                        <span class="title">Engineering permits</span>
+                        <span class="title" (click) = "newMessage('/admin/permit/applications',settings?.permit_type?.Engineering,1)">Engineering permits </span>
                     </a>
                 </li>
-                <li class="nav-item active pointer" (click) = "newMessage('/admin/permit/meter-permit',settings?.permit_type?.Meter)">
+                <li [class] ="childMessage == 2 ? 'nav-item active pointer' :'nav-item  pointer'"  (click) = "newMessage('/admin/permit/meter-permit',settings?.permit_type?.Meter,2)">
                     <a >
                         <span class="icon-holder">
                             <img src="../assets/images/mp.svg" alt="">
@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <!-- (click) = "navigateByUrl('/admin/permit/hydrant-permit',settings?.permit_type?.Hydrant)" -->
-                <li class="nav-item pointer" (click) = "newMessage('/admin/permit/hydrant-permit',settings?.permit_type?.Hydrant)" >
+                <li [class] ="childMessage == 3 ? 'nav-item active pointer' :'nav-item  pointer'" (click) = "newMessage('/admin/permit/hydrant-permit',settings?.permit_type?.Hydrant,3)" >
                     <a >
                         <span class="icon-holder">
                             <img src="../assets/images/hp.svg" alt="">
@@ -31,7 +31,7 @@
                         <span class="title">Hydrant Permits</span>
                     </a>
                 </li>
-                <li class="nav-item pointer " (click) = "newMessage('/admin/permit/oversize-permit',settings?.permit_type?.OverSized)">
+                <li [class]  = "childMessage == 4 ? 'nav-item active pointer' :'nav-item  pointer'" (click) = "newMessage('/admin/permit/oversize-permit',settings?.permit_type?.OverSized,4)">
                     <a >
                         <span class="icon-holder">
                             <img src="../assets/images/delivery.svg" alt="">
