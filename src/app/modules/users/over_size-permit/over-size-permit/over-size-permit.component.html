@@ -257,7 +257,7 @@
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
-                                                        <div class="form-group">
+                                                        <div class="form-group" id="time_select_dropdown">
                                                             <!-- <input type="text" id="Zip-id"
                                                                 formControlName="application_time"
                                                                 [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
@@ -266,12 +266,16 @@
                                                                 for="Zip-id">Application Time</label> -->
                                                                 <!-- <label class="form-control-placeholder"
                                                                 for="Zip-id">Application Time</label> -->
-                                                            <select formControlName="application_time"
+                                                            <select formControlName="application_time" 
                                                                 [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'">
                                                                 <option value="" hidden> --Select Time-- </option>
                                                                 <option *ngFor="let time of settings?.time ">
                                                                     {{time?.value}}</option>
                                                             </select>
+
+<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+
+
                                                         </div>
                                                         <div
                                                             *ngIf="applicantCon.application_time.invalid && (applicantCon.application_time.dirty || applicantCon.application_time.touched || isApplicant)">
