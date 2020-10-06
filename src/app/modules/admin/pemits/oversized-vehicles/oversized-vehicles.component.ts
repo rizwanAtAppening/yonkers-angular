@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-oversized-vehicles',
@@ -17,6 +18,7 @@ export class OversizedVehiclesComponent implements OnInit {
   public offset: any
   constructor(
     private applicationService: ApplicationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -57,5 +59,8 @@ export class OversizedVehiclesComponent implements OnInit {
 
   }
 
+  navigateDetailsPage(applicationId) {
+    this.router.navigate(['/admin/permit/oversized-details'], { queryParams: { id: applicationId } })
+  }
 
 }

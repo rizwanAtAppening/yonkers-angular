@@ -455,8 +455,8 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt">
-                                                                                                <a>{{permit?.reference_no}}</a>
+                                                                                            <td class="refTxt pointer">
+                                                                                                <a (click) = "navigateDetailsPage(permit?.id)">   {{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>
                                                                                                 {{permit?.applicant_details?.applicant_job_location}}

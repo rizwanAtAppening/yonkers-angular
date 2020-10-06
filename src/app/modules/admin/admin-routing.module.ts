@@ -9,6 +9,9 @@ import { CreatePasswordComponent } from './staff/create-password/create-password
 import { MeterPemitComponent } from './pemits/meter-pemit/meter-pemit.component';
 import { OversizedVehiclesComponent } from './pemits/oversized-vehicles/oversized-vehicles.component';
 import { HydrantPemitComponent } from './pemits/hydrant-pemit/hydrant-pemit.component';
+import { MeterDetailsComponent } from './permitDetailsPage/meter-details/meter-details.component';
+import { HydrantDetailsComponent } from './permitDetailsPage/hydrant-details/hydrant-details.component';
+import { OversizedVehiclesDetailsComponent } from './permitDetailsPage/oversized-vehicles-details/oversized-vehicles-details.component';
 
 
 // const routes: Routes = [
@@ -41,9 +44,23 @@ const routes: Routes = [
       {
         path: 'oversize-permit',
          component: OversizedVehiclesComponent
-      }, {
+      },
+       {
         path: 'hydrant-permit',
          component: HydrantPemitComponent
+      },
+      {
+        path: 'meter-details',
+         component: MeterDetailsComponent
+      },
+   
+      {
+        path: 'hydrant-details',
+         component: HydrantDetailsComponent
+      },
+      {
+        path: 'oversized-details',
+         component: OversizedVehiclesDetailsComponent
       },
    
 

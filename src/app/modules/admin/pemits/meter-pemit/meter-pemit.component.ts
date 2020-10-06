@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-meter-pemit',
@@ -13,10 +14,11 @@ export class MeterPemitComponent implements OnInit {
   public page = 1
   public allApplications = []
   public currentPage = 1;
-  public totalPagination:any;
-  public offset:any
+  public totalPagination: any;
+  public offset: any
   constructor(
     private applicationService: ApplicationService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class MeterPemitComponent implements OnInit {
     this.modify.application_type = application_Type
     this.modify.permit_type = 2
     this.modify.page = this.page
-    this.applicationService.getApplications(this.modify,[]).subscribe(data => {
+    this.applicationService.getApplications(this.modify, []).subscribe(data => {
       this.allApplications = data.response;
       this.currentPage = data.currentPage;
       this.offset = data.offset;
@@ -64,4 +66,8 @@ export class MeterPemitComponent implements OnInit {
 
   }
 
+
+  navigateDetailsPage(applicationId) {
+    this.router.navigate(['/admin/permit/meter-details'], { queryParams: { id: applicationId } })
+  }
 }

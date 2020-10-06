@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hydrant-pemit',
@@ -18,6 +19,7 @@ public totalPagination:any;
 public offset:any
   constructor(
     private applicationService: ApplicationService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +64,10 @@ public offset:any
     if (stringValue != 'inspection' && stringValue != 'payment')
       this.getAllApplication(this.application_Type)
 
+  }
+
+  navigateDetailsPage(applicationId) {
+    this.router.navigate(['/admin/permit/hydrant-details'], { queryParams: { id: applicationId } })
   }
 
 }

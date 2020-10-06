@@ -20,11 +20,14 @@ import { CreatePasswordComponent } from './staff/create-password/create-password
 import { MeterPemitComponent } from './pemits/meter-pemit/meter-pemit.component';
 import { HydrantPemitComponent } from './pemits/hydrant-pemit/hydrant-pemit.component';
 import { OversizedVehiclesComponent } from './pemits/oversized-vehicles/oversized-vehicles.component';
+import { MeterDetailsComponent } from './permitDetailsPage/meter-details/meter-details.component';
+import { HydrantDetailsComponent } from './permitDetailsPage/hydrant-details/hydrant-details.component';
+import { OversizedVehiclesDetailsComponent } from './permitDetailsPage/oversized-vehicles-details/oversized-vehicles-details.component';
 
 @NgModule({
   declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent,
      InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent, StaffListComponent, CreatePasswordComponent,
-      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent],
+      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent],
   imports: [
   
     CommonModule,
