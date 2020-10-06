@@ -27,9 +27,15 @@ export class MeterDetailsComponent implements OnInit {
 
 
   permitDetails() {
+    debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
     })
+  }
+  
+  navigateIndexPage() {
+    this.applicationService.changeMessage('2');
+    this.router.navigate(['/admin/permit/meter-permit'])
   }
 
 }

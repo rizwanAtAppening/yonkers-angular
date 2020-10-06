@@ -132,7 +132,7 @@ export class PemitUpdateComponent implements OnInit {
 
   public isDescription = false;
 
-  
+
   saveProjectDescription() {
     this.projectDescriptionForm.controls.dig_safely_no.setErrors(null);
     this.projectDescriptionForm.controls.traffic_control.setErrors(null);
@@ -615,7 +615,9 @@ export class PemitUpdateComponent implements OnInit {
     })
   }
 
-  canclePopUp(){
+  canclePopUp() {
     this.deleteImagepop.nativeElement.click();
   }
+
+  
 } 

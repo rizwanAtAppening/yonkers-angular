@@ -20,7 +20,7 @@ export class HydrantDetailsComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
       if (this.applicationId) {
-     //   this.permitDetails();
+       this.permitDetails();
       }
     })
   }
@@ -31,5 +31,11 @@ export class HydrantDetailsComponent implements OnInit {
       this.applicationDetails = data.response;
     })
   }
+
+  navigateIndexPage() {
+    this.applicationService.changeMessage('3');
+    this.router.navigate(['/admin/permit/hydrant-permit'])
+  }
+
 
 }

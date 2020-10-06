@@ -48,7 +48,8 @@ export class OverSizePermitComponent implements OnInit {
     if (this.currentTab == 'applicant') {
       this.getCurrentUser()
     }
-   
+    this.back(this.currentTab, '')
+
    
   }
 
@@ -119,6 +120,7 @@ export class OverSizePermitComponent implements OnInit {
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
       this.getApplication()
+      this.back(this.currentTab, '')
       if (this.permitNavigateValue == 'fine') {
         this.permitNavigateValue = ''
         this.router.navigate(['/dashboard/permit'])

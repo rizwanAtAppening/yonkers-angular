@@ -20,7 +20,7 @@ export class OversizedVehiclesDetailsComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
       if (this.applicationId) {
-     //   this.permitDetails();
+        this.permitDetails();
       }
     })
   }
@@ -30,5 +30,10 @@ export class OversizedVehiclesDetailsComponent implements OnInit {
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
     })
+  }
+
+  navigateIndexPage() {
+    this.applicationService.changeMessage('4');
+    this.router.navigate(['/admin/permit/oversize-permit'])
   }
 }

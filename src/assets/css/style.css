@@ -4950,3 +4950,52 @@ font-family: "Poppins-Medium";
 .meter_index{
     font-size: 20px !important;
 }
+
+/* user meter permit css */
+
+.external_reviews_box{
+    background: #FFFFFF;
+    border: 1px solid #00000012;
+    padding: 30px 24px;
+    }
+    
+    .external_reviews_hd{
+        color: #282D5B;
+        font-family: "Poppins-Medium";
+        font-size: 18px;
+    }
+    
+    .external_reviews_box .card{
+    border: none;
+    border-radius: none;
+    margin-bottom: 24px;
+    }
+    
+    .external_reviews_box .card button{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #E9F6FE;
+    padding: 17px 16px;
+    
+        }
+        .external_reviews_box .card button h5{
+            font-size: 14px;
+            color: #282D5B;
+        }
+        .external_reviews_box .card button h6{
+            font-size: 14px;
+            color: #2AABFA;
+        }
+        .external_reviews_box  .card-header{
+    border: none;
+    padding: 0;
+        }
+    
+        .external_reviews_box   .btn:focus{
+            box-shadow:none;
+        }
+    
+        .external_reviews_box .accordion{
+    margin-top: 28px;
+        }
