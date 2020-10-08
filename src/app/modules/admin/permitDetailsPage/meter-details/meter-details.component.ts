@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { Router, Route, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-meter-details',
@@ -9,7 +10,8 @@ import { Router, Route, ActivatedRoute } from '@angular/router';
 })
 export class MeterDetailsComponent implements OnInit {
   public applicationDetails: any;
-  public applicationId: number
+  public applicationId: number;
+  public certificates: any = new Subject<any>();
   constructor(
     private applicationService: ApplicationService,
     private router: Router,
@@ -30,6 +32,8 @@ export class MeterDetailsComponent implements OnInit {
     debugger
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
+      this.certificates.next(this.applicationDetails)
+
     })
   }
   

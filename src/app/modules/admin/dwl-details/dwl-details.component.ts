@@ -161,9 +161,7 @@ export class DwlDetailsComponent implements OnInit {
   // get clerkCon() { return this.completIncompletForm.controls }
 
   permitDetails() {
-    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
-
       this.applicationDetails = data.response;
       if (this.applicationDetails.applicant_details) {
         this.allMails.push(this.applicationDetails.applicant_details.applicant_email)

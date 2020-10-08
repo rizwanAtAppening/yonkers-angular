@@ -1,0 +1,355 @@
+<div class="submision-review-box">
+    <div class="accordion" id="accordionExample">
+
+      <div class="card" *ngIf="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
+        <div id="headingOne-review">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" 
+              type="button" data-toggle="collapse" data-target="#Submissionone" aria-expanded="true"
+              aria-controls="Submissionone">
+              Submission Review
+              <span><i [class]="isDwonArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
+                  aria-hidden="true"></i></span>
+            </button>
+          </h2>
+        </div>
+
+        <div id="Submissionone" class="collapse show" aria-labelledby="headingOne-review"
+          data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="app-status-txt">
+              <form [formGroup]="completIncompletForm"
+                *ngIf="(applicationDetails?.decision == null || applicationDetails?.decision == 0 )">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="select-input-box">
+                      <div class="form-group">
+                        <label>Application Status</label>
+                        <select formControlName="decision"
+                          [class]="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept) ? 'form-control form-group-error' : 'form-control'"
+                          (change)="changeDecision($event.target.value)">
+                          <option value="" hidden>--Select--</option>
+                          <option *ngFor="let submission of settings?.submission_Application_status"
+                            value="{{submission?.key}}">{{submission?.value}}
+                          </option>
+
+                        </select>
+                        <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        <!-- <div class="form-error"
+                                                    *ngIf="clerkCon.decision.invalid && (clerkCon.decision.dirty || clerkCon.decision.touched || isAccept)">
+                                                    <span *ngIf="clerkCon.decision.errors['required']">
+                                                      Please select a decision
+                                                    </span>
+                                                   
+                                                  </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="comment-box-submision" *ngIf="isCompletApplication">
+                  <div class="form-group">
+                    <label>Commets</label>
+                    <textarea formControlName="message"
+                      placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                  </div>
+                </div>
+
+
+                <div class="user-input-colomn" *ngIf="isCompletApplication">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="email-userinput">
+                        <div class="form-group">
+                          <label>To</label>
+                          <input formControlName="to" placeholder="user6@gmail.com">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="email-userinput">
+                        <div class="form-group">
+                          <label>CC</label>
+                          <input formControlName="cc" type="text">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="submision-btn">
+                  <button type="submit" (click)="accepetOrDeclineApplication()">Submit</button>
+                </div>
+
+              </form>
+
+              <div class="plan-examiner-box submissionvoid"
+                *ngIf="applicationDetails?.submission_review?.length > 0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Application Status</th>
+                      <th>Description</th>
+                      <th>Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let submition of  applicationDetails?.submission_review">
+
+                      <td>{{settings.getSetting('submission_Application_status',submition?.decision)}}
+                        <span class="voidMsg" *ngIf="submition?.status == 1">(V)</span>
+                      </td>
+                      <td>{{submition?.message ? submition?.message:'__' }}</td>
+                      <td>
+                        <div class="dropdown_act">
+                          <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                          <div class="dropdown-content-void" *ngIf="submition?.status != 1">
+                            <a (click)="voidSubmition(submition?.id)">Void </a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div class="card">
+                    <div id="headingTwo">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button">
+                                Decisions
+                                <span data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                                    aria-controls="collapseTwo"><i class="fa fa-chevron-down"
+                                        aria-hidden="true"></i></span>
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad
+                            squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+                            quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+                            squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+                            craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
+                            butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth
+                            nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        </div>
+                    </div>
+                </div> -->
+
+      <!-- <app-permit-decisions (messageEvent)="receiveMessage($event)" 
+        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.manager)"
+        [certificatesChild]="certificates"></app-permit-decisions>
+      <app-inspections (messageEvent)="receiveMessage($event)"
+        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.inspector)"
+        [certificatesChild]="certificates"></app-inspections>
+      <app-contrator-details (messageEvent)="receiveMessage($event)"
+        *ngIf="(currentUser?.role_id == settings?.superAdmin || currentUser?.role_id == settings?.admin || currentUser?.role_id == settings?.clerk || currentUser?.role_id == settings?.inspector)"
+        [certificatesChild]="certificates"></app-contrator-details> -->
+      <!-- <div class="card" *ngIf="(currentUser?.role_id != settings?.inspector)">
+        <div id="FeeThree">
+          <h2 class="mb-0">
+            <button (click)="arrowRighDwon(isSubmition,'fee')" class="btn btn-link btn-block text-left collapsed"
+              data-toggle="collapse" data-target="#PaymentThree" aria-expanded="false" aria-controls="PaymentThree"
+              type="button">
+              Fee & Payment
+              <span><i [class]="!isSubmition?'fa fa-chevron-right':'fa fa-chevron-down'"
+                  aria-hidden="true"></i></span>
+            </button>
+          </h2>
+        </div>
+        <div id="PaymentThree" class="collapse" aria-labelledby="FeeThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="decisions_box-collepse">
+
+              <div class="expiration-date-box-2">
+                <form [formGroup]="addFeeForm">
+                  <div class="row">
+
+                    <div class="col-4">
+                      <div class="app-status-slect">
+                        <div class="form-group">
+                          <label>Fee Type</label>
+                          <select formControlName="feeType" (change)="feeType($event.target.value)"
+                            [class]="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+                            <option value="" hidden>--Select--</option>
+                            <option value="{{type?.key}}" *ngFor="let type of settings?.fee_Type">
+                              {{type?.value}}</option>
+
+                          </select>
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          <div *ngIf="fee.feeType.invalid && (fee.feeType.dirty || fee.feeType.touched || isFee)">
+                            <p class="form-error" *ngIf="fee.paymetType.errors['required']">
+                              Please select fee type
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4" *ngIf="selectfeeType == 2">
+                      <div class="app-status-slect">
+                        <div class="form-group">
+                          <label>Payment Type</label>
+                          <select formControlName="paymetType"
+                            [class]="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+                            <option value="" hidden>--Select--</option>
+                            <option value="{{type?.key}}" *ngFor="let type of settings?.peyments_TypeForFee">
+                              {{type?.value}}</option>
+
+                          </select>
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          <div
+                            *ngIf="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee)">
+                            <p class="form-error" *ngIf="fee.paymetType.errors['required']">
+                              Please select paymet type
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-4" *ngIf="selectfeeType == 1">
+                      <div class="app-status-slect">
+                        <div class="form-group">
+                          <label>Payment Type</label>
+                          <select formControlName="paymetType"
+                            [class]="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+                            <option value="" hidden>--Select--</option>
+                            <option value="{{type?.key}}" *ngFor="let type of settings?.peyments_TypeForDeposit">
+                              {{type?.value}}</option>
+
+                          </select>
+                          <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                          <div
+                            *ngIf="fee.paymetType.invalid && (fee.paymetType.dirty || fee.paymetType.touched || isFee)">
+                            <p class="form-error" *ngIf="fee.paymetType.errors['required']">
+                              Please select paymet type
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="app-status-slect">
+                        <div class="form-group">
+                          <label>Amount</label>
+                          <input type="text" placeholder="0.00" formControlName="amount"
+                            [class]="fee.amount.invalid && (fee.amount.dirty || fee.amount.touched || isFee) ? 'form-control form-group-error' : 'form-control'">
+
+                        </div>
+                        <div *ngIf="fee.amount.invalid && (fee.amount.dirty || fee.amount.touched || isFee)">
+                          <p class="form-error" *ngIf="fee.amount.errors['required']">
+                            Please enter amount
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="dicision-submit_btn"><button type="submit" (click)="addFee()">Submit</button></div>
+                </form>
+              </div>
+              <div class="plan-examiner-box">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Payment Type</th>
+                      <th>Fee Type</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let fee of applicationDetails?.application_fees">
+                      <td>
+                        {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):settings.getSetting('peyments_TypeForFee',fee?.type)}}
+                      </td>
+                      <td>{{ settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
+                      <td>{{fee?.amount}}</td>
+                      <td>
+                        <div class="dropdown_act">
+                          <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                          <div class="dropdown-content-void">
+                            <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
+                              data-target="#withdraw_application">Delete</a>
+                            <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="card" >
+        <div id="contractors-seven">
+          <h2 class="mb-0">
+            <button data-toggle="collapse" class="btn btn-link btn-block text-left collapsed" type="button"
+              (click)="arrowRighDwon(isDwonArrow,'permit')" data-target="#con-seven" aria-expanded="false"
+              aria-controls="con-seven">
+              Related Permits
+              <span><i [class]="!isReletedPermitArrow?'fa fa-chevron-right':'fa fa-chevron-down'"
+                  aria-hidden="true"></i></span>
+            </button>
+          </h2>
+        </div>
+        <div id="con-seven" class="collapse" aria-labelledby="contractors-seven" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="decisions_box-collepse">
+              <div class="plan-examiner-box mt-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Ref Number</th>
+                      <th>Type</th>
+                      <th>Contractor</th>
+                      <th>Submitted</th>
+                      <th>Expires</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let permit of reletedPermits">
+                      <td>{{permit?.reference_no}}</td>
+                      <td>{{ settings.getSetting('type',permit['type'])}}</td>
+                      <td>{{permit?.reference_no}}</td>
+                      <td>{{permit?.createdAt | date}}</td>
+                      <td>{{permit?.reference_no}}</td>
+
+
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="Add__New_inspection">
+                <h4 data-toggle="modal" data-target="#relatedpermits-modal"> <span><img
+                      src="assets/images/plusn.svg" alt=""></span> Add New</h4>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+
+    </div>
+  </div>

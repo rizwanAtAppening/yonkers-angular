@@ -23,11 +23,12 @@ import { OversizedVehiclesComponent } from './pemits/oversized-vehicles/oversize
 import { MeterDetailsComponent } from './permitDetailsPage/meter-details/meter-details.component';
 import { HydrantDetailsComponent } from './permitDetailsPage/hydrant-details/hydrant-details.component';
 import { OversizedVehiclesDetailsComponent } from './permitDetailsPage/oversized-vehicles-details/oversized-vehicles-details.component';
+import { AcceptSubmissionReviewComponent } from './accept-submission-review/accept-submission-review.component';
 
 @NgModule({
   declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent,
      InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent, StaffListComponent, CreatePasswordComponent,
-      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent],
+      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent, AcceptSubmissionReviewComponent],
   imports: [
   
     CommonModule,

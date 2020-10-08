@@ -372,7 +372,7 @@
                                 </div>
 
 
-                                <div class="submision-review-box">
+                                <!-- <div class="submision-review-box">
                                     <div class="accordion" id="accordionExample">
 
                                         <div class="card">
@@ -490,7 +490,10 @@
 
 
                                     </div>
-                                </div>
+                                </div> -->
+                                <app-accept-submission-review (messageEvent)="receiveMessage($event)"
+                             
+                                [certificatesChild]="certificates"></app-accept-submission-review>
                             </div>
                         </div>
 

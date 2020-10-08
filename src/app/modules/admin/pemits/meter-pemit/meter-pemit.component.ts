@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-meter-pemit',
@@ -16,6 +17,8 @@ export class MeterPemitComponent implements OnInit {
   public currentPage = 1;
   public totalPagination: any;
   public offset: any
+  // public certificates: any = new Subject<any>();
+
   constructor(
     private applicationService: ApplicationService,
     private router: Router
@@ -70,4 +73,13 @@ export class MeterPemitComponent implements OnInit {
   navigateDetailsPage(applicationId) {
     this.router.navigate(['/admin/permit/meter-details'], { queryParams: { id: applicationId } })
   }
+
+  //  public message: any
+  receiveMessage(event) {
+    // this.message = event
+    // this.isDwonArrow = true;
+    // this.isSubmition = false;
+    this.ngOnInit();
+  }
+
 }
