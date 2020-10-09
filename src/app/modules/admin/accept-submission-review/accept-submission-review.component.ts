@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject, Observable } from 'rxjs';
@@ -13,8 +13,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AcceptSubmissionReviewComponent implements OnInit {
   @Input() certificatesChild: Observable<any>;
-  public applicationDetails:any
+  public applicationDetails: any;
+  @Output() messageEvent = new EventEmitter<string>();
+  public feeId: any
+  public fee_Type: any;
+  public type: any
+  public addFeeForm: any;
   public settings: any;
+  public isFee = false;
+  public desicionForm: FormGroup;
+
   public currentUser = {
     role_id: null,
     department: null,
@@ -35,19 +43,21 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   ngOnInit(): void {
     debugger
     this.completeIncompletCon()
+    this.feeControls()
+    this.desicionControls()
     this.getUserInfo()
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
-      // this.contractorState = Number  ( this.applicationDetails.contractor_details && this.applicationDetails.contractor_details.contractor_state);
-      // this.dumsterState = Number  ( this.applicationDetails.dumpsters_details && this.applicationDetails.dumpsters_details.dumpster_state);
-
-      // if (this.applicationDetails) {
-      //   this.compareDate();
-      //   this.emailFormGroup.controls.to.setValue(null);
-      //   this.emailFormGroup.controls.from.setValue(null)
-
-      // }
     });
+  }
+
+  desicionControls() {
+    this.desicionForm = this.FB.group({
+      permit_decision: [''],
+      inspector: [''],
+      remarks: [''],
+
+    })
   }
 
   completeIncompletCon() {
@@ -58,7 +68,15 @@ export class AcceptSubmissionReviewComponent implements OnInit {
       cc: [''],
     })
   }
+  feeControls() {
+    this.addFeeForm = this.FB.group({
+      message: [''],
+      amount: ['', Validators.required],
+    })
+  }
 
+  get fee() { return this.addFeeForm.controls }
+  get desicion() { return this.desicionForm.controls };
   get clerkCon() { return this.completIncompletForm.controls }
 
   getUserInfo() {
@@ -76,9 +94,9 @@ export class AcceptSubmissionReviewComponent implements OnInit {
       return false
     }
 
-   this.completIncompletForm.value.application_id = this.applicationDetails.id
+    this.completIncompletForm.value.application_id = this.applicationDetails.id
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
-      //this.permitDetails();
+      this.messageEvent.emit('hello')
       this.completIncompletForm.reset();
       this.isCompletApplication = false;
       this.toasterService.success('Application has been accepted');
@@ -87,7 +105,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
     })
   }
 
-   changeDecision(value) {
+  changeDecision(value) {
     if (value == 1) {
       this.isCompletApplication = true
     }
@@ -95,4 +113,73 @@ export class AcceptSubmissionReviewComponent implements OnInit {
       this.isCompletApplication = false
     }
   }
+
+  addFee() {
+    if (this.addFeeForm.invalid) {
+      this.isFee = true;
+      return false
+    }
+    this.addFeeForm.value.application_id = this.applicationDetails.id
+    this.addFeeForm.value.type = this.addFeeForm.value.paymetType
+    this.addFeeForm.value.fee_Type = this.addFeeForm.value.feeType
+
+    this.applicationService.addFee(this.addFeeForm.value).subscribe(data => {
+      this.addFeeForm.reset()
+      this.messageEvent.emit('hello')
+    })
+  }
+
+
+  getFeeId(id, value) {
+    this.feeId = id;
+    this.fee_Type = value.fee_Type,
+      this.type = value.type
+  }
+
+  VoidFee(feeId) {
+    this.applicationService.voidPaymentFee({ id: feeId }).subscribe(data => {
+      this.toasterService.success('Fee have voided')
+    })
+  }
+
+  public isDecision = false;
+  public data: any;
+  decision() {
+
+    if (this.desicionForm.invalid) {
+      this.isDecision = true
+      return false
+    }
+    this.data = {
+      permit_decision: this.desicionForm.value.permit_decision,
+      application_id: this.applicationDetails.id,
+      remark: this.desicionForm.value.remarks,
+
+      // expiration_date: this.desicionForm.value.expiration_date,
+      // expiration_days: this.desicionForm.value.expiration_days,
+      // inspector: this.desicionForm.value.inspector,
+
+    }
+    this.applicationService.addDecision(this.data).subscribe(data => {
+      console.log(data);
+      this.desicionForm.reset()
+      this.settings.conditions.map((data, i) => {
+        data.isChecked = false
+      })
+      this.messageEvent.emit('hello');
+    }, error => {
+      this.settings.conditions.map((data, i) => {
+        data.isChecked = false
+      })
+
+      this.desicionForm.reset()
+    })
+  }
+
+  voidDecision(id) {
+    this.applicationService.voidPaymentFee({ id: id }).subscribe(data => {
+      this.toasterService.success('Decision have voided')
+    })
+  }
+
 }

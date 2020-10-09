@@ -42,4 +42,10 @@ export class MeterDetailsComponent implements OnInit {
     this.router.navigate(['/admin/permit/meter-permit'])
   }
 
+  receiveMessage(event) {
+    // this.message = event
+    // this.isDwonArrow = true;
+    // this.isSubmition = false;
+    this.ngOnInit();
+  }
 }

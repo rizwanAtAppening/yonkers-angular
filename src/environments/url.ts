@@ -94,6 +94,8 @@ const adminUrl = {
   resendMail:`/staff/resend-password-link`,
   allRoles:`/role`,
   allDepartmets:`/departments`,
+  voidPaymentFee:`/application/manager/fee/delete`,
+  voidDecision:`/application/manager/decision/void`,
 
 
 };

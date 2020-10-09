@@ -363,4 +363,30 @@ export class ApplicationService {
   }
 
 
+  voidPaymentFee(data) {
+    const href = `${environment['voidPaymentFee']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  voidDecision(data) {
+    const href = `${environment['voidDecision']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
 }
