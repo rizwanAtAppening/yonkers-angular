@@ -1,7 +1,7 @@
 <div class="submision-review-box">
   <div class="accordion" id="accordionExample">
 
-    <div class="card" *ngIf="currentUser?.role_id == 4 || currentUser?.role_id == 2 || currentUser?.role_id == 1">
+    <div class="card" >
       <div id="headingOne-review">
         <h2 class="mb-0">
           <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
@@ -16,7 +16,7 @@
         <div class="card-body">
           <div class="app-status-txt">
             <form [formGroup]="completIncompletForm"
-              *ngIf="(applicationDetails?.decision == null || applicationDetails?.decision == 0 )">
+              >
               <div class="row">
                 <div class="col-3">
                   <div class="select-input-box">
@@ -210,7 +210,8 @@
                 <tbody>
                   <tr *ngFor="let fee of applicationDetails?.application_fees">
                     <td>
-                      {{fee?.payment_status == 0 ? 'Unpaid':'PaidF'}}
+                      {{fee?.payment_status == 0 ? 'Unpaid':'Paid'}} <span *ngIf="fee?.status == 4"
+                      class="voidMsg">(v)</span>
                     </td>
 
                     <td>{{fee?.amount}}</td>
@@ -222,7 +223,7 @@
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
                             data-target="#withdraw_application">Delete</a> -->
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal" data-target="#Edit-Fee">Edit</a> -->
-                          <a (click)="VoidFee(fee?.id)">Void</a>
+                          <a *ngIf="fee?.status != 4" (click)="VoidFee(fee?.id)">Void</a>
                         </div>
                       </div>
                     </td>
@@ -302,15 +303,16 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let data of applicationDetails?.application_issue_permits">
-                    <td>{{data?.staff?.name ? data?.staff?.name:'_'}}</td>
+                    <td>{{data?.staff?.name ? data?.staff?.name:'_'}} <span *ngIf="data?.status == 1"
+                      class="voidMsg">(v)</span></td>
                     <td>Permit Issue</td>
-                    <td>{{data?.expiration_date | date}}</td>
+                    <td>{{data?.createdAt | date}}</td>
                     <td>
                       <div class="dropdown_act">
                         <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                         <div class="dropdown-content-void leftSide">
                           <!-- <a  (click) ="editDecision(data)">Edit</a> -->
-                          <a (click)="voidDecision(data?.id)">Void</a>
+                          <a *ngIf="data?.status == 0" (click)="voidDecision(data?.id)">Void</a>
                         </div>
                       </div>
                     </td>

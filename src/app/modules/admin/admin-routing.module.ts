@@ -12,6 +12,8 @@ import { HydrantPemitComponent } from './pemits/hydrant-pemit/hydrant-pemit.comp
 import { MeterDetailsComponent } from './permitDetailsPage/meter-details/meter-details.component';
 import { HydrantDetailsComponent } from './permitDetailsPage/hydrant-details/hydrant-details.component';
 import { OversizedVehiclesDetailsComponent } from './permitDetailsPage/oversized-vehicles-details/oversized-vehicles-details.component';
+import { MeterFireDetailsComponent } from './permitDetailsPage/meter-fire-details/meter-fire-details.component';
+import { MeterWaterDetailsComponent } from './permitDetailsPage/meter-water-details/meter-water-details.component';
 
 
 // const routes: Routes = [
@@ -27,42 +29,50 @@ const routes: Routes = [
     children: [
       {
         path: 'applications',
-         component: ApplicationsComponent
+        component: ApplicationsComponent
       },
       {
         path: 'permitDetails',
-         component: PemitUpdateComponent
+        component: PemitUpdateComponent
       },
       {
         path: 'dwlDetails',
-         component: DwlDetailsComponent
+        component: DwlDetailsComponent
       },
       {
         path: 'meter-permit',
-         component: MeterPemitComponent
+        component: MeterPemitComponent
       },
       {
         path: 'oversize-permit',
-         component: OversizedVehiclesComponent
+        component: OversizedVehiclesComponent
       },
-       {
+      {
         path: 'hydrant-permit',
-         component: HydrantPemitComponent
+        component: HydrantPemitComponent
       },
       {
         path: 'meter-details',
-         component: MeterDetailsComponent
+        component: MeterDetailsComponent
       },
-   
+
       {
         path: 'hydrant-details',
-         component: HydrantDetailsComponent
+        component: HydrantDetailsComponent
       },
       {
         path: 'oversized-details',
-         component: OversizedVehiclesDetailsComponent
+        component: OversizedVehiclesDetailsComponent
       },
-   
+      {
+        path: 'meter-fire-details',
+        component: MeterFireDetailsComponent
+      },
+      {
+        path: 'meter-water-details',
+        component: MeterWaterDetailsComponent
+      },
+
 
 
     ]
@@ -70,17 +80,17 @@ const routes: Routes = [
 
   {
     path: 'add-staff',
-     component: AddStaffComponent
+    component: AddStaffComponent
   },
   {
     path: 'staff-list',
-     component: StaffListComponent
+    component: StaffListComponent
   },
   {
     path: 'create-password',
-     component: CreatePasswordComponent
+    component: CreatePasswordComponent
   },
- 
+
 ];
 
 
@@ -88,7 +98,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { 
+export class AdminRoutingModule {
   static components = [
     ApplicationsComponent
   ]

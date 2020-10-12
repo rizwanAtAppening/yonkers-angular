@@ -456,7 +456,9 @@
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td class="refTxt pointer">
-                                                                                                <a (click) = "navigateDetailsPage(permit?.id)">   {{permit?.reference_no}}</a>
+                                                                                                <a
+                                                                                                (click)="navigateDetailsPage('/admin/permit/meter-details',permit?.id)">
+                                                                                                    {{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>
                                                                                                 {{permit?.applicant_details?.applicant_job_location}}
@@ -481,7 +483,8 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <pagination-controls (pageChange)="paginate($event,1,'')">
+                                                                    <pagination-controls
+                                                                        (pageChange)="paginate($event,1,'')">
                                                                     </pagination-controls>
                                                                 </div>
                                                             </div>
@@ -903,70 +906,46 @@
                                                                                         <tr>
                                                                                             <th>Ref No</th>
                                                                                             <th>Address</th>
-                                                                                            <th>Fire Company</th>
-                                                                                            <th>Date Received</th>
+                                                                                            <th>Meter Size</th>
+                                                                                            <th>Wet Connection</th>
                                                                                             <th>Decision Status</th>
 
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
+                                                                                        <tr
+                                                                                            *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td class="refTxt pointer">
+                                                                                                <a
+                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id)">
+                                                                                                    {{permit?.reference_no}}</a>
                                                                                             </td>
-                                                                                            <td>47 W 13th St, New York
-                                                                                                <span
-                                                                                                    class="to-txt">To</span>
-                                                                                                20
-                                                                                                Cooper Square
-
+                                                                                            <td>
+                                                                                                {{permit?.applicant_details?.applicant_job_location}}
                                                                                             </td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
+                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New':'Replacement'}}
+                                                                                            </td>
+                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline':'Domestic'}}
+                                                                                            </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
-                                                                                                <button>Issued</button>
+                                                                                                <!-- <button>Issued</button> -->
+                                                                                                _
                                                                                             </td>
 
 
 
                                                                                         </tr>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
-                                                                                            </td>
-                                                                                            <td>47 W 13th St, New York
-                                                                                                <span
-                                                                                                    class="to-txt">End</span>
-                                                                                                20
-                                                                                                Cooper Square
 
-
-                                                                                            </td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
-                                                                                            <td
-                                                                                                class="submited-Btn orange-txt-2">
-                                                                                                <button>Accepted</button>
-                                                                                            </td>
-
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
-                                                                                            </td>
-                                                                                            <td>187 PARKER ST</td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
-                                                                                            <td
-                                                                                                class="submited-Btn green-txt-2">
-                                                                                                <button>Issued</button>
-                                                                                            </td>
-
-                                                                                        </tr>
 
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <pagination-controls
+                                                                        (pageChange)="paginate($event,1,'')">
+                                                                    </pagination-controls>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1390,70 +1369,46 @@
                                                                                         <tr>
                                                                                             <th>Ref No</th>
                                                                                             <th>Address</th>
-                                                                                            <th>Architect</th>
-                                                                                            <th>Date Received</th>
+                                                                                            <th>Meter Size</th>
+                                                                                            <th>Wet Connection</th>
                                                                                             <th>Decision Status</th>
 
                                                                                         </tr>
                                                                                     </thead>
                                                                                     <tbody>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
+                                                                                        <tr
+                                                                                            *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td class="refTxt pointer">
+                                                                                                <a
+                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id)">
+                                                                                                    {{permit?.reference_no}}</a>
                                                                                             </td>
-                                                                                            <td>47 W 13th St, New York
-                                                                                                <span
-                                                                                                    class="to-txt">To</span>
-                                                                                                20
-                                                                                                Cooper Square
-
+                                                                                            <td>
+                                                                                                {{permit?.applicant_details?.applicant_job_location}}
                                                                                             </td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
+                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New':'Replacement'}}
+                                                                                            </td>
+                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline':'Domestic'}}
+                                                                                            </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
-                                                                                                <button>Issued</button>
+                                                                                                <!-- <button>Issued</button> -->
+                                                                                                _
                                                                                             </td>
 
 
 
                                                                                         </tr>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
-                                                                                            </td>
-                                                                                            <td>47 W 13th St, New York
-                                                                                                <span
-                                                                                                    class="to-txt">End</span>
-                                                                                                20
-                                                                                                Cooper Square
 
-
-                                                                                            </td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
-                                                                                            <td
-                                                                                                class="submited-Btn orange-txt-2">
-                                                                                                <button>Accepted</button>
-                                                                                            </td>
-
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td class="refTxt">39465
-                                                                                            </td>
-                                                                                            <td>187 PARKER ST</td>
-                                                                                            <td>Lorem Ipsum</td>
-                                                                                            <td>25 Aprl 2020</td>
-                                                                                            <td
-                                                                                                class="submited-Btn green-txt-2">
-                                                                                                <button>Issued</button>
-                                                                                            </td>
-
-                                                                                        </tr>
 
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <pagination-controls
+                                                                        (pageChange)="paginate($event,1,'')">
+                                                                    </pagination-controls>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1468,7 +1423,7 @@
                     </div>
                 </div>
             </section>
-           
+
         </main>
     </router-outlet>
 </app-auth-layout>

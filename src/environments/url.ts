@@ -95,7 +95,7 @@ const adminUrl = {
   allRoles:`/role`,
   allDepartmets:`/departments`,
   voidPaymentFee:`/application/manager/fee/delete`,
-  voidDecision:`/application/manager/decision/void`,
+  voidDecision:`/application/manager/decision/cancelled`,
 
 
 };

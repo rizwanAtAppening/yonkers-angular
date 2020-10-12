@@ -5,6 +5,7 @@ import { Subject, Observable } from 'rxjs';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { ToastrService } from 'ngx-toastr';
+import { PermitService } from 'src/app/core/services/users/permit.service';
 
 @Component({
   selector: 'app-accept-submission-review',
@@ -36,6 +37,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
     private FB: FormBuilder,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
+    private permitService:PermitService
   ) {
     this.settings = settingConfig;
   }
@@ -137,7 +139,11 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   }
 
   VoidFee(feeId) {
-    this.applicationService.voidPaymentFee({ id: feeId }).subscribe(data => {
+    const data = {
+      id:feeId,
+      application_id:this.applicationDetails.id
+    }
+    this.applicationService.voidPaymentFee(data).subscribe(data => {
       this.toasterService.success('Fee have voided')
     })
   }
@@ -177,8 +183,24 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   }
 
   voidDecision(id) {
-    this.applicationService.voidPaymentFee({ id: id }).subscribe(data => {
+    const data = {
+      id:id,
+      application_id:this.applicationDetails.id
+    }
+    this.applicationService.voidDecision(data).subscribe(data => {
       this.toasterService.success('Decision have voided')
+    })
+  }
+
+  voidSubmition(id) {
+
+    const data = {
+      application_id: this.applicationDetails.id,
+      id: id,
+    }
+    this.permitService.voidSubmition(data).subscribe(data => {
+      this.toasterService.success('Submition is voided');
+      this.messageEvent.emit('hello')
     })
   }
 

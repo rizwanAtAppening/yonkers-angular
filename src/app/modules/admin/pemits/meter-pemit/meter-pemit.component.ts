@@ -70,8 +70,8 @@ export class MeterPemitComponent implements OnInit {
   }
 
 
-  navigateDetailsPage(applicationId) {
-    this.router.navigate(['/admin/permit/meter-details'], { queryParams: { id: applicationId } })
+  navigateDetailsPage(url,applicationId) {
+    this.router.navigate([url], { queryParams: { id: applicationId } })
   }
 
   //  public message: any

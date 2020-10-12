@@ -114,7 +114,8 @@ const routes: Routes = [
           {
             path: 'payment',
             component: PaymentComponent
-          }
+          },
+        
 
 
 
