@@ -5010,3 +5010,17 @@ font-family: "Poppins-Medium";
     top: 16px;
     font-size: 26px;
 }
+
+/* submit review  css */
+
+
+#date_act{
+    left: 0;
+}
+.hydrant_input{
+    padding: 30px 0px 0px 0px;
+}
+.hydrant_input .container-curb{
+    padding-bottom: 10px;
+}
+

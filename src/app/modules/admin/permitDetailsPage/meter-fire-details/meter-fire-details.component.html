@@ -1,4 +1,344 @@
 <app-auth-layout>
     <router-outlet>
-        </router-outlet>
-        </app-auth-layout>
+
+
+
+        <body class="bg-color">
+
+
+
+            <section class="bg-dashbord">
+
+                <div class="container p-0 container_full">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="back-txt m-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="ml-0"  (click) = "navigateIndexPage()" ><span><img src="assets/images/left-arrow.svg" alt=""></span>
+                                            Back to List
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section class="updateprofile pt-0">
+
+                <div class="container p-0 container_full">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="box-engrining-admin">
+                                <div class="schedule_admin">
+
+                                    <div class="heading-permit">
+                                        <h2>Permit Update</h2>
+
+                                    </div>
+                                    <div class="submision-review-box">
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card">
+                                                <div id="headinge-review">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button">
+                                                            Submit Review
+                                                            <span data-toggle="collapse" data-target="#Submitnone"
+                                                                aria-expanded="true" aria-controls="Submitnone"><i
+                                                                    class="fa fa-chevron-down"
+                                                                    aria-hidden="true"></i></span>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="Submitnone" class="collapse show "
+                                                    aria-labelledby="headinge-review" data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="app-status-txt">
+                                                            <form [formGroup]="fireForm">
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <!-- <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Recived By</label>
+                                                                                <select formControlName="received_by">
+                                                                                    <option value="" hidden>--Select--
+                                                                                    </option>
+                                                                                    <option
+                                                                                        *ngFor="let submission of settings?.submission_Application_status"
+                                                                                        value="{{submission?.key}}">
+                                                                                        {{submission?.value}}
+                                                                                    </option>
+                                                                                </select>
+                                                                                <span><i class="fa fa-angle-down"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                        </div> -->
+                                                                        <div class="email-userinput">
+                                                                            <div class="form-group">
+                                                                                <label>Received By</label>
+                                                                                <input placeholder="Received By"
+                                                                                    formControlName="received_by"
+                                                                                    [class]="firCon.received_by.invalid && (firCon.received_by.dirty || firCon.received_by.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="firCon.received_by.invalid && (firCon.received_by.dirty || firCon.received_by.touched || isSubmit)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="firCon.received_by.errors['required']">
+                                                                                    Please select Received By
+                                                                                </p>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <!-- <div class="select-input-box">
+                                                                        <div class="form-group">
+                                                                            <label>Date Received</label>
+                                                                            <select  #permitend="bsDatepicker" bsDatepicker placeholder="04/28/2020">
+                                                                                
+                                                                            </select>
+                                                                            <span><i class="fa fa-calendar"
+                                                                                (click)="permitend.toggle()" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    </div> -->
+
+                                                                        <div class="email-userinput">
+                                                                            <div class="form-group">
+                                                                                <label>Date Received</label>
+                                                                                <input #permitend="bsDatepicker"
+                                                                                    formControlName="received_date"
+                                                                                    [class]="firCon.received_date.invalid && (firCon.received_date.dirty || firCon.received_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    bsDatepicker
+                                                                                    placeholder="04/28/2020">
+                                                                                <span><i class="fa fa-calendar"
+                                                                                        (click)="permitend.toggle()"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="firCon.received_date.invalid && (firCon.received_date.dirty || firCon.received_date.touched || isSubmit)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="firCon.received_date.errors['required']">
+                                                                                    Please select received date
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="hydrant_input">
+                                                                    <div class="add_more-spacial">
+                                                                        <label class="container-curb mt-2">Yes, Hydrant
+                                                                            is
+                                                                            in good condition and ok for use by
+                                                                            contractor,
+                                                                            with minimal or no effect on Fire Dept
+                                                                            Operations
+                                                                            <input type="checkbox"
+                                                                                (change)="checkedCondition($event,1)"
+                                                                                formControlName="check_condition"
+                                                                                checked="checked">
+                                                                            <span class="checkmark-replacement"></span>
+                                                                        </label>
+                                                                        <label class="container-curb">Yes, Hydrant can
+                                                                            be
+                                                                            used with the following restrictions:
+                                                                            <input type="checkbox"
+                                                                                (change)="checkedCondition($event,2)"
+                                                                                formControlName="check_condition">
+                                                                            <span class="checkmark-replacement"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="comment-box-submision">
+                                                                    <div class="form-group">
+                                                                        <label>Restrictions</label>
+                                                                        <textarea formControlName="message"
+                                                                            placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="hydrant_input">
+                                                                    <div class="add_more-spacial">
+                                                                        <label class="container-curb mt-2">No, Hydrant
+                                                                            cannot be used
+                                                                            <input type="checkbox"
+                                                                                (change)="checkedCondition($event,3)"
+                                                                                formControlName="check_condition">
+                                                                            <span class="checkmark-replacement"></span>
+                                                                        </label>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="user-input-colomn">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="email-userinput">
+                                                                                <div class="form-group">
+                                                                                    <label>Date Approved</label>
+                                                                                    <input #dateapproved="bsDatepicker"
+                                                                                        [class]="firCon.approved_date.invalid && (firCon.approved_date.dirty || firCon.approved_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                        formControlName="approved_date"
+                                                                                        bsDatepicker
+                                                                                        placeholder="04/28/2020">
+                                                                                    <span><i class="fa fa-calendar"
+                                                                                            (click)="dateapproved.toggle()"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                </div>
+                                                                                <div
+                                                                                    *ngIf="firCon.received_by.invalid && (firCon.approved_date.dirty || firCon.approved_date.touched || isSubmit)">
+                                                                                    <p class="form-error"
+                                                                                        *ngIf="firCon.approved_date.errors['required']">
+                                                                                        Please select approved date
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="email-userinput">
+                                                                                <div class="form-group">
+                                                                                    <label>Approved By</label>
+                                                                                    <input type="text"
+                                                                                        [class]="firCon.approved_by.invalid && (firCon.approved_by.dirty || firCon.approved_by.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                        formControlName="approved_by"
+                                                                                        placeholder="Approved By">
+                                                                                </div>
+                                                                                <div
+                                                                                    *ngIf="firCon.approved_by.invalid && (firCon.approved_by.dirty || firCon.approved_by.touched || isSubmit)">
+                                                                                    <p class="form-error"
+                                                                                        *ngIf="firCon.approved_by.errors['required']">
+                                                                                        Please select Approved By
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="submision-btn">
+                                                                        <button type="submit"
+                                                                            (click)="submitReview()">Submit</button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                            <div class="plan-examiner-box submissionvoid">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Recived By</th>
+                                                                            <th>Description</th>
+                                                                            <th>Date Approved</th>
+                                                                            <th>Action</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr
+                                                                            *ngFor="let review of applicationDetails?.fire_submission_review">
+
+                                                                            <td>{{review?.received_date | date}} <span
+                                                                                    *ngIf="review?.status == 1"
+                                                                                    class="voidMsg">(v)</span></td>
+                                                                            <td>{{review?.message ? review?.message  :'_'}}
+                                                                            </td>
+                                                                            <td>{{review?.approved_date | date}}</td>
+                                                                            <td>
+                                                                                <div class="dropdown_act">
+                                                                                    <h6><i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></h6>
+                                                                                    <div class="dropdown-content-void"
+                                                                                        id="date_act">
+                                                                                        <a (click)="voidMeterFireReview(review?.id)"
+                                                                                            *ngIf="review?.status != 1">Void
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <div class="col-3">
+                  <div class="external_reviews_box">
+            
+                    <div class="external_reviews_hd">External Reviews</div>
+            
+            
+                    <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           <h5>Fire &nbsp;  <img src="assets/images/tick (6).svg" alt=""></h5>
+                           <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                            </button>
+                          </h2>
+                        </div>
+                    
+                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn  text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <h5>Water &nbsp; <img src="assets/images/tick (6).svg" alt=""></h5>
+                           <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim 
+                          </div>
+                        </div>
+                      </div>
+                   
+                    </div>
+            
+            
+            
+            
+                  </div>
+                </div> -->
+                    </div>
+                </div>
+            </section>
+
+            <script src="assets/js/jquery-3.3.1.min.js" type="text/javascript"></script>
+            <script src="assets/js/poper.js" type="text/javascript"></script>
+            <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="assets/js/custom.js" type="text/javascript"></script>
+        </body>
+
+
+
+
+
+
+
+
+
+
+    </router-outlet>
+</app-auth-layout>

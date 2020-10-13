@@ -126,6 +126,34 @@ export class ApplicationService {
     );
   }
 
+  submitMeterFireReviewAndWaterReview(data) {
+    const href = `${environment['meterFireReviewAndWater']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+
+  voidMeterFireAndWaterReview(data) {
+    const href = `${environment['voidMeterFireAndWaterReview']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+ 
   applicantUpdate(data, id) {
     const href = `${environment['updateApplicant']}/${id}`
     return this.http.post<any>(href, data).pipe(
