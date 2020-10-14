@@ -5011,6 +5011,8 @@ font-family: "Poppins-Medium";
     font-size: 26px;
 }
 
+
+
 /* submit review  css */
 
 
@@ -5023,4 +5025,25 @@ font-family: "Poppins-Medium";
 .hydrant_input .container-curb{
     padding-bottom: 10px;
 }
+.date_recevied{
+    position: relative;
+}
+.date_recevied input{
+width: 100%;
+height: 40px;
+padding: 10px 15px;
+background: #FFFFFF;
+border: 0.5px solid #9CA6C08C;
+}
+
+.date_recevied span{
+    position: absolute;
+    right: 20px;
+    top: 35px;
+}
+
+
+
+
+
 

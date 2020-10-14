@@ -15,7 +15,9 @@ import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
 export class ApplicationService {
 
   private messageSource = new BehaviorSubject('default message');
+  private meterPermit = new BehaviorSubject('0');
   currentMessage = this.messageSource.asObservable();
+  getMeterPermitValue = this.meterPermit.asObservable();
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
@@ -58,6 +60,10 @@ export class ApplicationService {
 
   changeMessage(message: string) {
     this.messageSource.next(message)
+  }
+
+  meterPermitValue(message: string) {
+    this.meterPermit.next(message)
   }
 
 

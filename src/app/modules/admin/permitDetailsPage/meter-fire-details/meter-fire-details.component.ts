@@ -23,7 +23,7 @@ export class MeterFireDetailsComponent implements OnInit {
     private applicationService: ApplicationService,
     private route: ActivatedRoute,
     private ts: ToastrService,
-    private router:Router
+    private router: Router
 
   ) {
     this.settings = settingConfig;
@@ -84,7 +84,8 @@ export class MeterFireDetailsComponent implements OnInit {
     this.fireForm.value.received_by = 1
     this.fireForm.value.status = 0
     this.applicationService.submitMeterFireReviewAndWaterReview(this.fireForm.value).subscribe(data => {
-
+      this.fireForm.reset();
+      this.permitDetails();
     })
   }
 
@@ -95,11 +96,13 @@ export class MeterFireDetailsComponent implements OnInit {
       department_type: 1
     }
     this.applicationService.voidMeterFireAndWaterReview(data).subscribe(data => {
-      this.ts.success('SFubmission voided')
+      this.ts.success('Submission voided')
+      this.permitDetails()
     })
   }
   navigateIndexPage() {
     this.applicationService.changeMessage('2');
+    this.applicationService.meterPermitValue('1')
     this.router.navigate(['/admin/permit/meter-permit'])
   }
 

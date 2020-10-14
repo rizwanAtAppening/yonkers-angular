@@ -1,7 +1,421 @@
 <app-auth-layout>
-        <router-outlet> 
+    <router-outlet>
 
 
+
+        <body class="bg-color">
+
+
+
+            <section class="bg-dashbord">
+
+                <div class="container p-0 container_full">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="back-txt m-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 class="ml-0" (click)="navigateIndexPage()"><span><img
+                                                    src="assets/images/left-arrow.svg" alt=""></span>
+                                            Back to List
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section class="updateprofile pt-0">
+
+                <div class="container p-0 container_full">
+                    <div class="row">
+                        <div class="col-9">
+                            <div class="box-engrining-admin">
+                                <div class="schedule_admin">
+
+                                    <div class="heading-permit">
+                                        <h2>Permit Update</h2>
+
+                                    </div>
+                                    <div class="submision-review-box">
+                                        <div class="accordion" id="accordionExample">
+                                            <div class="card">
+                                                <div id="headinge_water-review">
+                                                    <h2 class="mb-0">
+                                                        <button class="btn btn-link btn-block text-left" type="button">
+                                                            Submit Review
+                                                            <span data-toggle="collapse" data-target="#Submitnone_water"
+                                                                aria-expanded="true" aria-controls="Submitnone_water"><i
+                                                                    class="fa fa-chevron-down"
+                                                                    aria-hidden="true"></i></span>
+                                                        </button>
+                                                    </h2>
+                                                </div>
+
+                                                <div id="Submitnone_water" class="collapse show"
+                                                    aria-labelledby="headinge_water-review"
+                                                    data-parent="#accordionExample">
+                                                    <div class="card-body">
+                                                        <div class="app-status-txt">
+                                                            <form [formGroup]="waterForm">
+                                                                <div class="row">
+                                                                    <div class="col-6 date_recevied">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Name</label>
+                                                                                <input type="text"
+                                                                                    [class]="waterCon.name.invalid && (waterCon.name.dirty || waterCon.name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    formControlName="name"
+                                                                                    placeholder="name">
+
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="waterCon.name.invalid && (waterCon.name.dirty || waterCon.name.touched || isSubmit)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="waterCon.name.errors['required']">
+                                                                                    Please enter
+                                                                                    name
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6 date_recevied">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Address</label>
+                                                                                <input type="text"
+                                                                                    formControlName="address"  [class]="waterCon.address.invalid && (waterCon.address.dirty || waterCon.address.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    placeholder="47 W 13th St, New York">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.name.invalid && (waterCon.name.dirty || waterCon.name.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.name.errors['required']">
+                                                                                Please enter
+                                                                                name
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row mt-4  date_recevied">
+                                                                    <div class="col-6">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Date Received</label>
+                                                                                <input type="text"  [class]="waterCon.received_date.invalid && (waterCon.received_date.dirty || waterCon.received_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    formControlName="received_date"
+                                                                                    #daterecived="bsDatepicker"
+                                                                                    bsDatepicker
+                                                                                    placeholder="received_date">
+                                                                                <span><i class="fa fa-calendar"
+                                                                                        (click)="daterecived.toggle()"
+                                                                                        aria-hidden="true"></i></span>
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.received_date.invalid && (waterCon.received_date.dirty || waterCon.received_date.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.received_date.errors['required']">
+                                                                                Please select
+                                                                                received by
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6 date_recevied">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Architect</label>
+                                                                                <input type="text"  [class]="waterCon.architeck.invalid && (waterCon.architeck.dirty || waterCon.architeck.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    formControlName="architeck"
+                                                                                    placeholder="47 W 13th St, New York">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.architeck.invalid && (waterCon.architeck.dirty || waterCon.architeck.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.architeck.errors['required']">
+                                                                                Please enter
+                                                                                architeck
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-4  date_recevied">
+                                                                    <div class="col-6">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Block</label>
+                                                                                <input type="text"  [class]="waterCon.block.invalid && (waterCon.block.dirty || waterCon.block.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    formControlName="block"
+                                                                                    placeholder="block">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.block.invalid && (waterCon.block.dirty || waterCon.block.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.block.errors['required']">
+                                                                                Please enter
+                                                                                block
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6 date_recevied">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Lot</label>
+                                                                                <input type="text" formControlName="lot"  [class]="waterCon.lot.invalid && (waterCon.lot.dirty || waterCon.lot.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    placeholder="lot">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.lot.invalid && (waterCon.lot.dirty || waterCon.lot.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.lot.errors['required']">
+                                                                                Please enter
+                                                                                lot
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-4  date_recevied">
+                                                                    <div class="col-6">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Model</label>
+                                                                                <input type="text"  [class]="waterCon.model.invalid && (waterCon.model.dirty || waterCon.model.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    formControlName="model"
+                                                                                    placeholder="model">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.model.invalid && (waterCon.model.dirty || waterCon.model.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.model.errors['required']">
+                                                                                Please enter
+                                                                                model
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-6 date_recevied">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Serial</label>
+                                                                                <input type="text"
+                                                                                    formControlName="serial"  [class]="waterCon.serial.invalid && (waterCon.serial.dirty || waterCon.serial.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    placeholder="serial">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.serial.invalid && (waterCon.serial.dirty || waterCon.serial.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.serial.errors['required']">
+                                                                                Please enter
+                                                                                serial
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mt-4  date_recevied">
+                                                                    <div class="col-6">
+                                                                        <div class="select-input-box">
+                                                                            <div class="form-group">
+                                                                                <label>Size</label>
+                                                                                <input type="text"
+                                                                                    formControlName="size"  [class]="waterCon.size.invalid && (waterCon.size.dirty || waterCon.size.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    placeholder="size">
+
+                                                                            </div>
+                                                                            <div
+                                                                            *ngIf="waterCon.size.invalid && (waterCon.size.dirty || waterCon.size.touched || isSubmit)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="waterCon.size.errors['required']">
+                                                                                Please enter
+                                                                                size
+                                                                            </p>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="comment-box-submision">
+                                                                    <div class="form-group">
+                                                                        <label>Comments</label>
+                                                                        <textarea formControlName="comment"
+                                                                            placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="user-input-colomn">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="email-userinput">
+                                                                                <div class="form-group">
+                                                                                    <label>Date Approved</label>
+                                                                                    <input placeholder="12 May 2020"  [class]="waterCon.approved_date.invalid && (waterCon.approved_date.dirty || waterCon.approved_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                        #dateapproved="bsDatepicker"
+                                                                                        bsDatepicker
+                                                                                        formControlName="approved_date">
+
+                                                                                    <span><i class="fa fa-calendar"
+                                                                                            (click)="dateapproved.toggle()"
+                                                                                            aria-hidden="true"></i></span>
+                                                                                </div>
+                                                                                <div
+                                                                                *ngIf="waterCon.approved_date.invalid && (waterCon.approved_date.dirty || waterCon.approved_date.touched || isSubmit)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="waterCon.approved_date.errors['required']">
+                                                                                    Please secect
+                                                                                    approved date
+                                                                                </p>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6 ">
+                                                                            <div class="email-userinput">
+                                                                                <div class="form-group">
+                                                                                    <label>Approved By</label>
+                                                                                    <input type="text"
+                                                                                        formControlName="approved_by"  [class]="waterCon.approved_by.invalid && (waterCon.approved_by.dirty || waterCon.approved_by.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                                                                                        placeholder="Lorem Ipsum">
+                                                                                </div>
+                                                                                <div
+                                                                                *ngIf="waterCon.approved_by.invalid && (waterCon.approved_by.dirty || waterCon.approved_by.touched || isSubmit)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="waterCon.approved_by.errors['required']">
+                                                                                    Please enter
+                                                                                    approved by
+                                                                                </p>
+                                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="submision-btn">
+                                                                        <button type="submit" (click)="submitReview()">
+                                                                            Submit</button>
+                                                                    </div>
+
+                                                                </div>
+                                                            </form>
+                                                            <div class="plan-examiner-box submissionvoid">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Description</th>
+                                                                            <th>Date Approved</th>
+                                                                            <th>Action</th>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr
+                                                                            *ngFor="let water of applicationDetails?.water_submission_review">
+
+                                                                            <td>{{water?.name}} <span
+                                                                                    *ngIf="water?.status == 1"
+                                                                                    class="voidMsg">(v)</span></td>
+                                                                            <td>{{water?.comment}}</td>
+                                                                            <td>{{water?.approved_date | date}}</td>
+                                                                            <td>
+                                                                                <div class="dropdown_act">
+                                                                                    <h6><i class="fa fa-angle-down"
+                                                                                            aria-hidden="true"></i></h6>
+                                                                                    <div class="dropdown-content-void"
+                                                                                        id="date_act">
+                                                                                        <a (click)="voidMeterFireReview(water?.id)"
+                                                                                            *ngIf="water?.status != 1">Void
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- <div class="col-3">
+                  <div class="external_reviews_box">
             
-            </router-outlet>
-            </app-auth-layout>
+                    <div class="external_reviews_hd">External Reviews</div>
+            
+            
+                    <div class="accordion" id="accordionExample">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h2 class="mb-0">
+                            <button class="btn text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           <h5>Fire &nbsp;  <img src="assets/images/tick (6).svg" alt=""></h5>
+                           <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                            </button>
+                          </h2>
+                        </div>
+                    
+                        <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                            <button class="btn  text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <h5>Water &nbsp; <img src="assets/images/tick (6).svg" alt=""></h5>
+                           <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
+                            </button>
+                          </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                          <div class="card-body">
+                            Anim pariatur cliche reprehenderit, enim 
+                          </div>
+                        </div>
+                      </div>
+                   
+                    </div>
+            
+            
+            
+            
+                  </div>
+                </div> -->
+                    </div>
+                </div>
+            </section>
+
+
+        </body>
+
+
+
+
+
+
+
+
+
+
+    </router-outlet>
+</app-auth-layout>

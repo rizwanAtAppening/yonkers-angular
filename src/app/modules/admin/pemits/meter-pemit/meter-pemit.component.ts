@@ -17,6 +17,7 @@ export class MeterPemitComponent implements OnInit {
   public currentPage = 1;
   public totalPagination: any;
   public offset: any
+  public meterPermitTab = '0'
   // public certificates: any = new Subject<any>();
 
   constructor(
@@ -26,8 +27,12 @@ export class MeterPemitComponent implements OnInit {
 
   ngOnInit(): void {
     debugger
+ //   this.applicationService.meterPermitValue(permit_type);
     this.applicationService.currentMessage.subscribe(type => {
       this.permit_type = type
+    })
+    this.applicationService.getMeterPermitValue.subscribe(type => {
+      this.meterPermitTab = type
     })
     this.getAllApplication(this.application_Type);
   }
