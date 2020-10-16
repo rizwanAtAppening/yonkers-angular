@@ -18,6 +18,7 @@ export class MeterFireDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false
+  public type: number
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
@@ -33,6 +34,7 @@ export class MeterFireDetailsComponent implements OnInit {
     this.fireControls();
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
+      this.type = data.type
     })
     if (this.applicationId) {
       this.permitDetails();
@@ -101,7 +103,12 @@ export class MeterFireDetailsComponent implements OnInit {
     })
   }
   navigateIndexPage() {
-    this.applicationService.changeMessage('2');
+    if (this.type == 3) {
+      this.applicationService.changeMessage('3');
+    } else {
+      this.applicationService.changeMessage('2');
+    }
+
     this.applicationService.meterPermitValue('1')
     this.router.navigate(['/admin/permit/meter-permit'])
   }

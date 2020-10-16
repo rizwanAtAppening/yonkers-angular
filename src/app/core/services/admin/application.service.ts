@@ -14,7 +14,7 @@ import { of as observableOf, Observable, BehaviorSubject } from 'rxjs';
 })
 export class ApplicationService {
 
-  private messageSource = new BehaviorSubject('default message');
+  private messageSource = new BehaviorSubject('1');
   private meterPermit = new BehaviorSubject('0');
   currentMessage = this.messageSource.asObservable();
   getMeterPermitValue = this.meterPermit.asObservable();

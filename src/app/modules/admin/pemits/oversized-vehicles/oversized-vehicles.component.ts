@@ -22,6 +22,7 @@ export class OversizedVehiclesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.applicationService.changeMessage('4');
     this.applicationService.currentMessage.subscribe(type => {
       this.permit_type = type
     })

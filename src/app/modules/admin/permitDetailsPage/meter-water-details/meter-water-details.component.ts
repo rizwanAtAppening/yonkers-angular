@@ -16,7 +16,8 @@ export class MeterWaterDetailsComponent implements OnInit {
   public waterForm: FormGroup;
   public settings: any;
   public checkedValue: number = null;
-  public isSubmit = false
+  public isSubmit = false;
+  public type:number
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
@@ -32,6 +33,9 @@ export class MeterWaterDetailsComponent implements OnInit {
     this.waterControls();
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
+    })
+    this.route.queryParams.subscribe(data => {
+      this.type = data.type;
     })
     if (this.applicationId) {
       this.permitDetails();
@@ -121,7 +125,11 @@ export class MeterWaterDetailsComponent implements OnInit {
     })
   }
   navigateIndexPage() {
-    this.applicationService.changeMessage('2');
+    if (this.type == 3) {
+      this.applicationService.changeMessage('3');
+    } else {
+      this.applicationService.changeMessage('2');
+    }
     this.applicationService.meterPermitValue('2')
 
     this.router.navigate(['/admin/permit/meter-permit'])

@@ -17,14 +17,19 @@ public allApplications = []
 public currentPage = 1;
 public totalPagination:any;
 public offset:any
+public meterPermitTab:any = '0'
   constructor(
     private applicationService: ApplicationService,
     private router:Router
   ) { }
 
   ngOnInit(): void {
+    this.applicationService.changeMessage('3');
     this.applicationService.currentMessage.subscribe(type => {
       this.permit_type = type
+    })
+    this.applicationService.getMeterPermitValue.subscribe(type => {
+      this.meterPermitTab = type
     })
     this.getAllApplication(this.application_Type);
   }
@@ -66,8 +71,8 @@ public offset:any
 
   }
 
-  navigateDetailsPage(applicationId) {
-    this.router.navigate(['/admin/permit/hydrant-details'], { queryParams: { id: applicationId } })
+  navigateDetailsPage(url,applicationId,type) {
+    this.router.navigate([url], { queryParams: { id: applicationId,type:type } })
   }
 
 }

@@ -11,17 +11,17 @@
                                             <div class="col-12">
                                                 <ul class="nav nav-pills" id="pills-tab" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" id="pills-admin-Permit-loaction-tab"
+                                                        <a [class]="meterPermitTab == 0 ? 'nav-link active':'nav-link' " id="pills-admin-Permit-loaction-tab"
                                                             data-toggle="pill" href="#pills-admin-Permit-loaction" role="tab"
                                                             aria-controls="pills-admin-Permit-loaction"
                                                             aria-selected="true">Hydrant</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
+                                                        <a [class]="meterPermitTab == 1 ? 'nav-link active':'nav-link' " id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
                                                             role="tab" aria-controls="pills-DWL" aria-selected="false">Fire</a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
+                                                        <a [class]="meterPermitTab == 2 ? 'nav-link active':'nav-link' " id="pills-Inspection-admin-tab" data-toggle="pill"
                                                             href="#pills-Inspection-admin" role="tab"
                                                             aria-controls="pills-Inspection-admin" aria-selected="false">Water</a>
                                                     </li>
@@ -29,7 +29,7 @@
             
                                                 </ul>
                                                 <div class="tab-content" id="pills-tabContent">
-                                                    <div class="tab-pane fade show active" id="pills-admin-Permit-loaction"
+                                                    <div  [class]="meterPermitTab == '0' ?'tab-pane fade show active':'tab-pane fade'" id="pills-admin-Permit-loaction"
                                                         role="tabpanel" aria-labelledby="pills-admin-Permit-loaction-tab">
                                                         <section class="table-sec daily-sec">
                                                             <div class="container p-0 container_full">
@@ -449,7 +449,7 @@
                                                                                                 <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td class="refTxt pointer">
-                                                                                                <a (click) ="navigateDetailsPage(permit?.id)">{{permit?.reference_no}}</a>
+                                                                                                <a (click) ="navigateDetailsPage('/admin/permit/hydrant-details',permit?.id,'')">{{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>{{permit?.application_hydrant?.hydrant_address}}</td>
                                                                                             <td>
@@ -481,7 +481,7 @@
                                                             </div>
                                                         </section>
                                                     </div>
-                                                    <div class="tab-pane fade" id="pills-DWL" role="tabpanel"
+                                                    <div [class]="meterPermitTab == '1' ?'tab-pane fade show active':'tab-pane fade'" id="pills-DWL" role="tabpanel"
                                                         aria-labelledby="pills-DWL-tab">
                                                         <section class="table-sec daily-sec">
                                                             <div class="container p-0 container_full">
@@ -901,7 +901,7 @@
                                                                                                         <tr
                                                                                                     *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                                     <td class="refTxt pointer">
-                                                                                                        <a (click) ="navigateDetailsPage(permit?.id)">{{permit?.reference_no}}</a>
+                                                                                                        <a (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id,3)">{{permit?.reference_no}}</a>
                                                                                                     </td>
                                                                                                     <td>{{permit?.application_hydrant?.hydrant_address}}</td>
                                                                                                     <td>
@@ -934,7 +934,7 @@
                                                         </section>
                                                     </div>
             
-                                                    <div class="tab-pane fade" id="pills-Inspection-admin" role="tabpanel"
+                                                    <div  [class]="meterPermitTab == '2' ?'tab-pane fade show active':'tab-pane fade'" id="pills-Inspection-admin" role="tabpanel"
                                                         aria-labelledby="pills-Inspection-admin-tab">
             
             
@@ -1356,7 +1356,7 @@
                                                                                                         <tr
                                                                                                     *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                                     <td class="refTxt pointer">
-                                                                                                        <a (click) ="navigateDetailsPage(permit?.id)">{{permit?.reference_no}}</a>
+                                                                                                        <a  (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id,3)">{{permit?.reference_no}}</a>
                                                                                                     </td>
                                                                                                     <td>{{permit?.application_hydrant?.hydrant_address}}</td>
                                                                                                     <td>
