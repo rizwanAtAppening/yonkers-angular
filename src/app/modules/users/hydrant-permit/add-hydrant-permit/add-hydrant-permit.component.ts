@@ -113,11 +113,15 @@ export class AddHydrantPermitComponent implements OnInit {
       this.hydrantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.hydrantForm.value.model = 8
       this.getApplication()
+     
       this.formValue = this.hydrantForm.value;
     }
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
+     
+     
       this.getApplication()
+      this.back(this.currentTab, '')
       if (this.permitNavigateValue == 'fine') {
         this.permitNavigateValue = ''
         this.router.navigate(['/dashboard/permit'])
@@ -143,6 +147,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   getApplication() {
+    debugger
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -167,7 +172,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   back(tab, value: string) {
-
+debugger
     if (!this.application_id) {
       this.getApplication();
 

@@ -30,17 +30,21 @@ export class ApplicationService {
     // page = data['page'],
     // application_Type = data.a
     // const actors = ['Elvis', 'Jane', 'Frances'];
-    const actors = array
+    let actors = []
+    actors = array
     let params = new HttpParams();
     // for (const actor of actors) {
     //   params = params.append('actors', actor);
     // }
-    actors.map(actor => {
-      Object.keys(actor).forEach(obj => {
-        params = params.append(obj,actor[obj]);
-
+    if(actors.length > 0){
+      actors.map(actor => {
+        Object.keys(actor).forEach(obj => {
+          params = params.append(obj,actor[obj]);
+  
+        })
       })
-    })
+    }
+   
     Object.keys(data).forEach(value => {
 
       params = params.append(value,data[value])

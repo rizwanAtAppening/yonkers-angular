@@ -93,6 +93,7 @@ export class OverSizePermitComponent implements OnInit {
   get oversize() { return this.oversizeForm.controls }
   public formValue
   addOverSize(formGroup: string, nextTab) {
+    debugger
     if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true

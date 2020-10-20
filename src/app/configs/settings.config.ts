@@ -680,10 +680,10 @@ export const settingConfig = {
     { value: '11PM' },
     { value: '11:30AM' },
     { value: '11:30PM' },
-    { value: '12AM' },
-    { value: '12PM' },
-    { value: '12:30AM' },
-    { value: '12:30PM' },
+    { value: '00:00AM' },
+    { value: '00:00PM' },
+    { value: '00:30AM' },
+    { value: '00:30PM' },
 
   ],
 

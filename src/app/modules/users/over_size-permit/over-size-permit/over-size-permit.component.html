@@ -229,7 +229,7 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="ste-id" [minDate]="minDate"
+                                                            <input type="text" id="ste-id" 
                                                                 #dp="bsDatepicker" bsDatepicker
                                                                 formControlName="application_date"
                                                                 [class]="applicantCon.application_date.invalid && (applicantCon.application_date.dirty ||applicantCon.application_date.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
@@ -505,7 +505,7 @@
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
                                                             <input type="text" id="id-address" formControlName="from"
-                                                                [minDate]="minDate" #dpfrom="bsDatepicker" bsDatepicker
+                                                                #dpfrom="bsDatepicker" bsDatepicker
                                                                 [class]="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 required="">
                                                             <label class="form-control-placeholder"
@@ -527,7 +527,7 @@
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
                                                             <input type="text" id="id-address" formControlName="to"
-                                                                [minDate]="minDate" #dpto="bsDatepicker" bsDatepicker
+                                                                #dpto="bsDatepicker" bsDatepicker
                                                                 [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 required="">
                                                             <label class="form-control-placeholder"

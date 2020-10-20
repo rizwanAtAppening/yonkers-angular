@@ -17,8 +17,9 @@ export class MeterPemitComponent implements OnInit {
   public currentPage = 1;
   public totalPagination: any;
   public offset: any
-  public meterPermitTab:any = '0'
+  public meterPermitTab: any = '0'
   // public certificates: any = new Subject<any>();
+  public searchString: any;
 
   constructor(
     private applicationService: ApplicationService,
@@ -35,6 +36,7 @@ export class MeterPemitComponent implements OnInit {
       this.meterPermitTab = type
     })
     this.getAllApplication(this.application_Type);
+    this.allInspector();
   }
 
 
@@ -49,7 +51,7 @@ export class MeterPemitComponent implements OnInit {
     this.modify.application_type = application_Type
     this.modify.permit_type = 2
     this.modify.page = this.page
-    this.applicationService.getApplications(this.modify, []).subscribe(data => {
+    this.applicationService.getApplications(this.modify, this.inspectorAndExaminerIdsArray).subscribe(data => {
       this.allApplications = data.response;
       this.currentPage = data.currentPage;
       this.offset = data.offset;
@@ -75,16 +77,93 @@ export class MeterPemitComponent implements OnInit {
   }
 
 
-  navigateDetailsPage(url,applicationId) {
+  navigateDetailsPage(url, applicationId) {
     this.router.navigate([url], { queryParams: { id: applicationId } })
   }
 
   //  public message: any
   receiveMessage(event) {
-    // this.message = event
-    // this.isDwonArrow = true;
-    // this.isSubmition = false;
     this.ngOnInit();
+  }
+
+  searchApplication() {
+    debugger
+    const data = {
+      search_query: String(this.searchString),
+      application_type: this.application_Type
+    }
+    this.applicationService.getApplications(data, '').subscribe(data => {
+      this.allApplications = data.response;
+      // console.log(this.dwlApplication)
+      this.offset = data.offset;
+      this.totalPagination = data.total
+      this.currentPage = data.currentPage;
+    })
+  }
+
+  public inspector = []
+  public examiner = []
+  allInspector() {
+
+    this.applicationService.inspector().subscribe(data => {
+      this.inspector = data.response
+    })
+  }
+  allExaminer() {
+    this.applicationService.examiner().subscribe(data => {
+      this.examiner = data.response
+    })
+  }
+
+  public inspectorKey = "inspectorAndExaminerIdsArray"
+  public inspectorAndExaminerIdsArray = []
+  selectFilter(selectValue, value) {
+
+    if (value == 'inspector') {
+      if (!selectValue.checked) {
+        this.inspectorAndExaminerIdsArray.forEach((data, i) => {
+          if (selectValue.value == data.inspector) {
+
+            this.inspectorAndExaminerIdsArray.splice(i, 1)
+          }
+        })
+      } else {
+        this.inspectorAndExaminerIdsArray.push({ 'inspector': selectValue.value })
+      }
+
+    }
+
+    else if (value == 'examiner') {
+      if (!selectValue.checked) {
+        this.inspectorAndExaminerIdsArray.forEach((data, i) => {
+          if (selectValue.value == data.examiner) {
+
+            this.inspectorAndExaminerIdsArray.splice(i, 1)
+          }
+        })
+      } else {
+        this.inspectorAndExaminerIdsArray.push({ 'examiner': selectValue.value })
+
+      }
+
+    }
+    else if (value == 'decision') {
+      if (!selectValue.checked) {
+        Object.keys(this.modify).forEach(data => {
+          if (data == selectValue.value) {
+            delete this.modify[data]
+
+          }
+        })
+      } else {
+        this.modify[selectValue.value] = 1;
+
+      }
+      // this.inspectorAndExaminerIdsArray.push(selectValue.value = 1)
+      // console.log(this.inspectorAndExaminerIdsArray)
+
+    }
+
   }
 
 }

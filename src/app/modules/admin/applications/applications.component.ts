@@ -256,8 +256,7 @@ debugger
   }
 
 
-  // public value = 1;
-  // public selectDecision = 'decision'
+ 
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {

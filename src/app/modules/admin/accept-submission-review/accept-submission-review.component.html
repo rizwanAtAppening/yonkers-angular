@@ -210,7 +210,7 @@
                 <tbody>
                   <tr *ngFor="let fee of applicationDetails?.application_fees">
                     <td>
-                      {{fee?.payment_status == 0 ? 'Unpaid':'Paid'}} <span *ngIf="fee?.status == 4"
+                      {{fee?.payment_status == 0 ? 'Unpaid':'Paid'}} <span *ngIf="fee?.payment_status == 4"
                       class="voidMsg">(v)</span>
                     </td>
 
@@ -303,7 +303,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let data of applicationDetails?.application_issue_permits">
-                    <td>{{data?.staff?.name ? data?.staff?.name:'_'}} <span *ngIf="data?.status == 1"
+                    <td>{{data?.staff}} <span *ngIf="data?.status == 1"
                       class="voidMsg">(v)</span></td>
                     <td>Permit Issue</td>
                     <td>{{data?.createdAt | date}}</td>

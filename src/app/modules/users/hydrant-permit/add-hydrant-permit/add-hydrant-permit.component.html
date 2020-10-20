@@ -353,7 +353,7 @@
                                                 <div class="row">
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address" [minDate]="minDate"
+                                                            <input type="text" id="id-address" 
                                                                 [class]="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 #dp="bsDatepicker" bsDatepicker formControlName="from"
                                                                 class="form-control" required="">
@@ -376,7 +376,7 @@
                                                     <div class="col-6 hydrant_calendar ">
                                                         <div class="form-group">
                                                             <input type="text" #dpto="bsDatepicker" bsDatepicker
-                                                                id="id-address" formControlName="to" [minDate]="minDate"
+                                                                id="id-address" formControlName="to" 
                                                                 [class]="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                 class="form-control" required="">
                                                             <label class="form-control-placeholder"
