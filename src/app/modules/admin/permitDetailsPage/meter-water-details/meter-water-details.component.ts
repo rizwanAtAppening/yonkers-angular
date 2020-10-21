@@ -108,6 +108,7 @@ export class MeterWaterDetailsComponent implements OnInit {
     this.waterForm.value.status = 0
     this.waterForm.value.received_by = null
     this.applicationService.submitMeterFireReviewAndWaterReview(this.waterForm.value).subscribe(data => {
+      this.isSubmit = false;
       this.waterForm.reset();
       this.permitDetails();
     })

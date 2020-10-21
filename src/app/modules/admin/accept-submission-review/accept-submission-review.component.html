@@ -303,7 +303,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let data of applicationDetails?.application_issue_permits">
-                    <td>{{data?.staff}} <span *ngIf="data?.status == 1"
+                    <td>{{data?.updatedBy?.name}} <span *ngIf="data?.status == 1"
                       class="voidMsg">(v)</span></td>
                     <td>Permit Issue</td>
                     <td>{{data?.createdAt | date}}</td>
