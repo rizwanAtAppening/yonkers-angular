@@ -4482,7 +4482,7 @@ color: #282D5B99 !important;
       /* new html changes css 03/06/2020 */
     
       .submissionvoid .dropdown-content-void{
-        right: 143px !important;
+       left: 0;
       }
       .actiondelet {
         display: flex;

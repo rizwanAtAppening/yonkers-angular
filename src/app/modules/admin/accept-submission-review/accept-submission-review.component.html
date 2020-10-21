@@ -98,9 +98,9 @@
                     </td>
                     <td>{{submition?.message ? submition?.message:'__' }}</td>
                     <td>
-                      <div class="dropdown_act">
+                      <div class="dropdown_act" >
                         <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
-                        <div class="dropdown-content-void" *ngIf="submition?.status != 1">
+                        <div  id="left_void" class="dropdown-content-void" *ngIf="submition?.status != 1">
                           <a (click)="voidSubmition(submition?.id)">Void </a>
                         </div>
                       </div>
