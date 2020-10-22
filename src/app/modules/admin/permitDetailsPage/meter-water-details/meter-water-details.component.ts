@@ -4,6 +4,7 @@ import { ApplicationService } from 'src/app/core/services/admin/application.serv
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { appToaster, settingConfig } from 'src/app/configs';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-meter-water-details',
@@ -17,14 +18,13 @@ export class MeterWaterDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false;
-  public type:number
+  public type: number
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
     private route: ActivatedRoute,
     private ts: ToastrService,
-    private router: Router
-
+    private router: Router,
   ) {
     this.settings = settingConfig;
   }
@@ -82,7 +82,7 @@ export class MeterWaterDetailsComponent implements OnInit {
       size: ['', Validators.required],
       comment: ['', Validators.required],
       approved_date: ['', Validators.required],
-      approved_by: ['', Validators.required],
+      approved_by: [''],
       status: [''],
     })
   }
@@ -136,4 +136,6 @@ export class MeterWaterDetailsComponent implements OnInit {
     this.router.navigate(['/admin/permit/meter-permit'])
   }
 
+ 
+ 
 }

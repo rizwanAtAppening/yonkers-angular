@@ -5,6 +5,7 @@ import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
   selector: 'app-meter-fire-details',
@@ -18,13 +19,17 @@ export class MeterFireDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false
-  public type: number
+  public type: number;
+  public currentUser: {
+    name: null
+  }
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
     private route: ActivatedRoute,
     private ts: ToastrService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
 
   ) {
     this.settings = settingConfig;
@@ -39,6 +44,7 @@ export class MeterFireDetailsComponent implements OnInit {
     if (this.applicationId) {
       this.permitDetails();
     }
+    this.getCurrentUser()
   }
 
   checkedCondition(event, checkedValue: number) {
@@ -57,7 +63,7 @@ export class MeterFireDetailsComponent implements OnInit {
       received_by: ['', Validators.required],
       received_date: ['', Validators.required],
       approved_date: ['', Validators.required],
-      approved_by: ['', Validators.required],
+      approved_by: [''],
       check_condition: [''],
       message: [''],
       status: ['',]
@@ -111,6 +117,16 @@ export class MeterFireDetailsComponent implements OnInit {
 
     this.applicationService.meterPermitValue('1')
     this.router.navigate(['/admin/permit/meter-permit'])
+  }
+
+  getCurrentUser() {
+    debugger
+    this.authService.getUserInfo().subscribe(data => {
+      this.currentUser = data
+      if (this.currentUser.name) {
+        this.fireForm.controls.received_by.setValue(this.currentUser.name)
+      }
+    })
   }
 
 }
