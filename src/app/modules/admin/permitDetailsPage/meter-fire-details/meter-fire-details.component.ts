@@ -20,9 +20,11 @@ export class MeterFireDetailsComponent implements OnInit {
   public checkedValue: number = null;
   public isSubmit = false
   public type: number;
+  public permtType:string
   public currentUser: {
     name: null
   }
+  public checkBoxValue:string;
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
@@ -39,7 +41,8 @@ export class MeterFireDetailsComponent implements OnInit {
     this.fireControls();
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
-      this.type = data.type
+      this.type = data.type;
+      this.permtType = data.permtType
     })
     if (this.applicationId) {
       this.permitDetails();
@@ -53,6 +56,10 @@ export class MeterFireDetailsComponent implements OnInit {
       this.checkedValue = checkedValue
     } else {
       this.checkedValue = null
+    }
+    if(event.target.value){
+      this.checkBoxValue = event.target.value
+      console.log(this.checkBoxValue)
     }
 
   }

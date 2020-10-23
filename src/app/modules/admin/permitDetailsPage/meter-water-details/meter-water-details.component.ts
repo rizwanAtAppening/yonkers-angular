@@ -18,7 +18,8 @@ export class MeterWaterDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false;
-  public type: number
+  public type: number;
+  public permtType:string
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
@@ -33,6 +34,7 @@ export class MeterWaterDetailsComponent implements OnInit {
     this.waterControls();
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
+      this.permtType = data.permtType
     })
     this.route.queryParams.subscribe(data => {
       this.type = data.type;

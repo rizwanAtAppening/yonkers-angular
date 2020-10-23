@@ -40,6 +40,562 @@
                                         <h2>Permit Update</h2>
 
                                     </div>
+                                    
+                                <div class="adminjob-details-box" *ngIf = "permtType == 'meter'">
+                                        <div class="tabs-admin-update">
+                                            <nav>
+                                                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                                    <a class="nav-item  active" id="nav-adminapdate-one-tab"
+                                                        data-toggle="tab" href="#nav-adminapdate-one" role="tab"
+                                                        aria-controls="nav-adminapdate-one" aria-selected="true">Job
+                                                        Location</a>
+                                                    <a class="nav-item " id="nav-adminapdate-five-tab" data-toggle="tab"
+                                                        href="#nav-adminapdate-five" role="tab"
+                                                        aria-controls="nav-adminapdate-five"
+                                                        aria-selected="false">Applicant</a>
+                                                    <a class="nav-item " id="nav-adminapdate-two-tab" data-toggle="tab"
+                                                        href="#nav-adminapdate-two" role="tab"
+                                                        aria-controls="nav-adminapdate-two" aria-selected="false">Meter
+                                                        Details</a>
+                                                    <!-- <a class="nav-item " id="nav-adminapdate-three-tab" data-toggle="tab" href="#nav-adminapdate-three"
+                                      role="tab" aria-controls="nav-adminapdate-three" aria-selected="false">Document</a> -->
+                                                    <!-- <a class="nav-item " id="nav-adminapdate-four-tab" data-toggle="tab" href="#nav-adminapdate-four"
+                                      role="tab" aria-controls="nav-adminapdate-four" aria-selected="false">Property Profile</a>-->
+    
+                                                </div>
+                                            </nav>
+                                            <div class="tab-content" id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="nav-adminapdate-one"
+                                                    role="tabpanel" aria-labelledby="nav-adminapdate-one-tab">
+    
+    
+                                                    <div class="jobdetails-txt">
+                                                        <div class="col-12 p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h5>Job Location</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Lot</h5>
+                                                                                    </li>
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.applicant_job_location}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.lot}}
+                                                                                        </h6>
+                                                                                    </li>
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="col-md-4 pl-0">
+                                                                    <div class="row">
+                                                                        <div class="col-5">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h5>Block</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Owner</h5>
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-7">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.block}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.owner}}
+                                                                                        </h6>
+                                                                                    </li>
+    
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+    
+                                                    </div>
+                                                </div>
+    
+                                                <div class="tab-pane fade" id="nav-adminapdate-five" role="tabpanel"
+                                                    aria-labelledby="nav-adminapdate-five-tab">
+                                                    <div class="jobdetails-txt">
+                                                        <div class="col-12 p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-8">
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h5>Name</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Address</h5>
+                                                                                    </li>
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.applicant_name}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.applicant_address}}
+                                                                                        </h6>
+                                                                                    </li>
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h5>Phone</h5>
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.applicant_details?.applicant_phone}}
+                                                                                        </h6>
+                                                                                    </li>
+    
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+    
+                                                                    </div>
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="nav-adminapdate-two" role="tabpanel"
+                                                    aria-labelledby="nav-adminapdate-two-tab">
+                                                    <div class="jobdetails-txt">
+                                                        <div class="col-12 p-0">
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <div class="row">
+                                                                        <div class="col-4">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h5>Tap Size</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Meter Size</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Meter No</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Meter No</h5>
+                                                                                    </li>
+                                                                                   
+                                                                                    <li>
+                                                                                        <h5>Hydrant Use form</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Location</h5>
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.tap_size}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.meterSizeType  == 1 ?'New':'Replacement'}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.meter_test_number}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.meter_test_number}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                   
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.hydrent_use_from | date}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.location}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+    
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="row">
+                                                                        <div class="col-6">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <!-- <li>
+                                                                                            <h6>{{applicationDetails?.application_metter_details?.hydrent_use_from | date}}
+                                                                                                </h6>
+                                                                                    </li> -->
+                                                                                    <li>
+                                                                                        <h5>Size</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Meter Test Size</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Wet Connection</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Meter No</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Hydrant Use to</h5>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h5>Total Amount</h5>
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <div class="no-ref-txt">
+                                                                                <ul>
+                                                                                    <!-- <li>
+                                                                                        <h6>987-987-6543</h6>
+                                                                                    </li> -->
+                                                                                    <li>
+                                                                                        <h6>size</h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.meter_test_size}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.wetConnctionType ? 'Fireline':'Domestice'}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.new_meter_number}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.hydrent_use_to | date}}
+                                                                                        </h6>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <h6>{{applicationDetails?.application_metter_details?.total_amount}}
+                                                                                        </h6>
+    
+                                                                                    </li>
+                                                                                </ul>
+    
+                                                                            </div>
+                                                                        </div>
+    
+                                                                    </div>
+    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+    
+    
+                                                    </div>
+                                                </div>
+    
+    
+    
+                                            </div>
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="adminjob-details-box"  *ngIf = "permtType == 'hydrant'" >
+                                            <div class="tabs-admin-update">
+                                                <nav>
+                                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        
+                                                        <a class="nav-item active" id="nav-adminapdate-five-tab"
+                                                            data-toggle="tab" href="#nav-adminapdate-five" role="tab"
+                                                            aria-controls="nav-adminapdate-five"
+                                                            aria-selected="false">Applicant</a>
+                                                        <a class="nav-item " id="nav-adminapdate-two-tab" data-toggle="tab"
+                                                            href="#nav-adminapdate-two" role="tab"
+                                                            aria-controls="nav-adminapdate-two" aria-selected="false">Hydrant
+                                                            Details</a>
+                                                        <!-- <a class="nav-item " id="nav-adminapdate-three-tab" data-toggle="tab" href="#nav-adminapdate-three"
+                                              role="tab" aria-controls="nav-adminapdate-three" aria-selected="false">Document</a> -->
+                                                        <!-- <a class="nav-item " id="nav-adminapdate-four-tab" data-toggle="tab" href="#nav-adminapdate-four"
+                                              role="tab" aria-controls="nav-adminapdate-four" aria-selected="false">Property Profile</a>-->
+        
+                                                    </div>
+                                                </nav>
+                                                <div class="tab-content" id="nav-tabContent">
+        
+        
+                                                    <div class="tab-pane fade show active" id="nav-adminapdate-five"
+                                                        role="tabpanel" aria-labelledby="nav-adminapdate-five-tab">
+                                                        <div class="jobdetails-txt">
+                                                            <div class="col-12 p-0">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <div class="row">
+                                                                            <div class="col-3">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <h5>Name</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>Phone</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>Email</h5>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-9">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.applicant_details?.applicant_name}}
+                                                                                            </h6>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.applicant_details?.applicant_phone}}
+                                                                                            </h6>
+                                                                                        </li>
+                                                                                        <li>
+        
+                                                                                            <h6>{{applicationDetails?.applicant_details?.applicant_email}}
+                                                                                            </h6>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+        
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <h5>Address</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>Fax</h5>
+                                                                                        </li>
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.applicant_details?.applicant_address}}
+                                                                                            </h6>
+        
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.applicant_details?.fax}}
+                                                                                            </h6>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+        
+                                                                        </div>
+        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="nav-adminapdate-two" role="tabpanel"
+                                                        aria-labelledby="nav-adminapdate-two-tab">
+                                                        <div class="jobdetails-txt">
+                                                            <div class="col-12 p-0">
+                                                                <div class="row">
+                                                                    <div class="col-md-7">
+                                                                        <div class="row">
+                                                                            <div class="col-4">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <li>
+                                                                                            <h5>Address</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>Cross Street</h5>
+                                                                                        </li>
+        
+                                                                                        <li>
+                                                                                            <h5>From</h5>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-8">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+        
+        
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.application_hydrant?.hydrant_address}}
+                                                                                            </h6>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.application_hydrant?.hydrant_cross_street}}
+                                                                                            </h6>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.application_hydrant?.from | date}}
+                                                                                            </h6>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+        
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+                                                                                        <!-- <li>
+                                                                                                    <h6>{{applicationDetails?.application_metter_details?.hydrent_use_from | date}}
+                                                                                                        </h6>
+                                                                                            </li> -->
+                                                                                        <li>
+                                                                                            <h5>Hydrant Purpose</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>Hydrant Id</h5>
+                                                                                        </li>
+                                                                                        <li>
+                                                                                            <h5>To</h5>
+                                                                                        </li>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <div class="no-ref-txt">
+                                                                                    <ul>
+        
+        
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.application_hydrant?.hydrant_purpose}}
+                                                                                            </h6>
+                                                                                        </li>
+        
+                                                                                        <li>
+                                                                                            <h6>{{applicationDetails?.application_hydrant?.hydrant_id}}
+                                                                                            </h6>
+                                                                                        </li>
+                                                                                        <h6>{{applicationDetails?.application_hydrant?.to | date}}
+                                                                                        </h6>
+        
+                                                                                    </ul>
+        
+                                                                                </div>
+                                                                            </div>
+        
+                                                                        </div>
+        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+        
+        
+        
+                                                        </div>
+                                                    </div>
+        
+        
+        
+                                                </div>
+                                            </div>
+        
+                                        </div>
+    
                                     <div class="submision-review-box">
                                         <div class="accordion" id="accordionExample">
                                             <div class="card">
@@ -133,6 +689,18 @@
                                                                 </div>
 
                                                                 <div class="hydrant_input">
+                                                                        <div class="hydrant_input">
+                                                                                <div class="add_more-spacial">
+                                                                                    <label class="container-curb mt-2">No, Hydrant
+                                                                                        cannot be used
+                                                                                        <input type="radio" [checked] = "true" value="hydrant" name="check_condition"
+                                                                                            (change)="checkedCondition($event,3)"
+                                                                                            formControlName="check_condition">
+                                                                                        <span class="checkmark-replacement"></span>
+                                                                                    </label>
+            
+                                                                                </div>
+                                                                            </div>
                                                                     <div class="add_more-spacial">
                                                                         <label class="container-curb mt-2">Yes, Hydrant
                                                                             is
@@ -140,7 +708,7 @@
                                                                             contractor,
                                                                             with minimal or no effect on Fire Dept
                                                                             Operations
-                                                                            <input type="checkbox"
+                                                                            <input type="radio" name="check_condition"  value="hydrant1"
                                                                                 (change)="checkedCondition($event,1)"
                                                                                 formControlName="check_condition"
                                                                                 checked="checked">
@@ -149,7 +717,7 @@
                                                                         <label class="container-curb">Yes, Hydrant can
                                                                             be
                                                                             used with the following restrictions:
-                                                                            <input type="checkbox"
+                                                                            <input type="radio" name="check_condition" value="hydrant2"
                                                                                 (change)="checkedCondition($event,2)"
                                                                                 formControlName="check_condition">
                                                                             <span class="checkmark-replacement"></span>
@@ -158,25 +726,14 @@
                                                                 </div>
 
 
-                                                                <div class="comment-box-submision">
-                                                                    <div class="form-group">
+                                                                <div class="comment-box-submision" >
+                                                                    <div class="form-group" *ngIf = "checkBoxValue == 'hydrant2'">
                                                                         <label>Restrictions</label>
                                                                         <textarea formControlName="message"
                                                                             placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <div class="hydrant_input">
-                                                                    <div class="add_more-spacial">
-                                                                        <label class="container-curb mt-2">No, Hydrant
-                                                                            cannot be used
-                                                                            <input type="checkbox"
-                                                                                (change)="checkedCondition($event,3)"
-                                                                                formControlName="check_condition">
-                                                                            <span class="checkmark-replacement"></span>
-                                                                        </label>
-
-                                                                    </div>
-                                                                </div>
+                                                               
                                                                 <div class="user-input-colomn">
                                                                     <div class="row">
                                                                         <div class="col-6">
