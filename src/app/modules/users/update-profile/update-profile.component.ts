@@ -20,10 +20,10 @@ export class UpdateProfileComponent implements OnInit {
     private authService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private toastService:ToastrService
+    private toastService: ToastrService
 
   ) {
-  this.settings = settingConfig;
+    this.settings = settingConfig;
   }
 
   ngOnInit(): void {
@@ -54,7 +54,7 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   getCurrenrUser() {
-    
+
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser;
       if (this.currentUserInfo) {
@@ -79,7 +79,7 @@ export class UpdateProfileComponent implements OnInit {
 
   public isSubmit = false;
   updateProfile() {
-    
+
     if (this.profileForm.invalid) {
       this.isSubmit = true
       return false
@@ -93,6 +93,28 @@ export class UpdateProfileComponent implements OnInit {
     })
   }
   public currentUserInfo: any
+
+
+  phoneNumberFormate(value: string) {
+    debugger
+    var autoFillValue = '-'
+    if (value == 'phone') {
+      if (this.profileForm.value.phone_number.length === 3) {
+        this.profileForm.controls.phone_number.setValue(this.profileForm.value.phone_number.concat(autoFillValue))
+      }
+      if (this.profileForm.value.phone_number.length === 7) {
+        this.profileForm.controls.phone_number.setValue(this.profileForm.value.phone_number.concat(autoFillValue))
+      }
+    }
+    else if (value == 'mobile') {
+      if (this.profileForm.value.mobile_number.length === 3) {
+        this.profileForm.controls.mobile_number.setValue(this.profileForm.value.mobile_number.concat(autoFillValue))
+      }
+      if (this.profileForm.value.mobile_number.length === 7) {
+        this.profileForm.controls.mobile_number.setValue(this.profileForm.value.mobile_number.concat(autoFillValue))
+      }
+    }
+  }
 
 
 }

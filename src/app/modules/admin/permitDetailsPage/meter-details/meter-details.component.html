@@ -79,9 +79,9 @@
                                                                                 <li>
                                                                                     <h5>Job Location</h5>
                                                                                 </li>
-                                                                                <li>
+                                                                                <!-- <li>
                                                                                     <h5>Lot</h5>
-                                                                                </li>
+                                                                                </li> -->
 
                                                                             </ul>
 
@@ -94,10 +94,10 @@
                                                                                     <h6>{{applicationDetails?.applicant_details?.applicant_job_location}}
                                                                                     </h6>
                                                                                 </li>
-                                                                                <li>
+                                                                                <!-- <li>
                                                                                     <h6>{{applicationDetails?.applicant_details?.lot}}
                                                                                     </h6>
-                                                                                </li>
+                                                                                </li> -->
 
                                                                             </ul>
 
@@ -114,9 +114,9 @@
                                                                                 <li>
                                                                                     <h5>Block</h5>
                                                                                 </li>
-                                                                                <li>
+                                                                                <!-- <li>
                                                                                     <h5>Owner</h5>
-                                                                                </li>
+                                                                                </li> -->
                                                                             </ul>
 
                                                                         </div>
@@ -128,10 +128,10 @@
                                                                                     <h6>{{applicationDetails?.applicant_details?.block}}
                                                                                     </h6>
                                                                                 </li>
-                                                                                <li>
+                                                                                <!-- <li>
                                                                                     <h6>{{applicationDetails?.applicant_details?.owner}}
                                                                                     </h6>
-                                                                                </li>
+                                                                                </li> -->
 
 
                                                                             </ul>
@@ -372,125 +372,6 @@
                                 </div>
 
 
-                                <!-- <div class="submision-review-box">
-                                    <div class="accordion" id="accordionExample">
-
-                                        <div class="card">
-                                            <div id="headingOne-review">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" type="button">
-                                                        Submission Review
-                                                        <span data-toggle="collapse" data-target="#Submissionone"
-                                                            aria-expanded="true" aria-controls="Submissionone"><i
-                                                                class="fa fa-chevron-down"
-                                                                aria-hidden="true"></i></span>
-                                                    </button>
-                                                </h2>
-                                            </div>
-
-                                            <div id="Submissionone" class="collapse "
-                                                aria-labelledby="headingOne-review" data-parent="#accordionExample">
-                                                <div class="card-body">
-                                                    <div class="app-status-txt">
-                                                        <div class="row">
-                                                            <div class="col-3">
-                                                                <div class="select-input-box">
-                                                                    <div class="form-group">
-                                                                        <label>Application Status</label>
-                                                                        <select>
-                                                                            <option>Incomplete</option>
-                                                                            <option>2</option>
-                                                                            <option>3</option>
-                                                                            <option>4</option>
-                                                                            <option>5</option>
-                                                                        </select>
-                                                                        <span><i class="fa fa-angle-down"
-                                                                                aria-hidden="true"></i></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="comment-box-submision">
-                                                            <div class="form-group">
-                                                                <label>Commets</label>
-                                                                <textarea
-                                                                    placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div class="user-input-colomn">
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <div class="email-userinput">
-                                                                        <div class="form-group">
-                                                                            <label>To</label>
-                                                                            <input placeholder="user6@gmail.com">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <div class="email-userinput">
-                                                                        <div class="form-group">
-                                                                            <label>CC</label>
-                                                                            <input type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="submision-btn">
-                                                                <button>Submit</button>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="plan-examiner-box submissionvoid">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Application Status</th>
-                                                                        <th>Description</th>
-                                                                        <th>Action</th>
-
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-
-                                                                        <td>Incomplete</td>
-                                                                        <td>Lorem Ipsum</td>
-                                                                        <td>
-                                                                            <div class="dropdown_act">
-                                                                                <h6><i class="fa fa-angle-down"
-                                                                                        aria-hidden="true"></i></h6>
-                                                                                <div class="dropdown-content-void">
-                                                                                    <a href="#">Void </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                                    </div>
-                                </div> -->
                                 <app-accept-submission-review (messageEvent)="receiveMessage($event)"
                              
                                 [certificatesChild]="certificates"></app-accept-submission-review>

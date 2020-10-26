@@ -252,6 +252,7 @@ export class AddMeterPermitComponent implements OnInit {
   public meterSizeType: number = 1;
   public wetConnctionType: number = 1;
   selectType(value: string, selectValue) {
+    debugger
     if (value == 'new') {
       this.meterSizeType = selectValue
     } else if (value == 'replacement') {

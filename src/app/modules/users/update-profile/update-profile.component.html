@@ -81,9 +81,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="ud4" class="form-control"
-                                                                formControlName="mobile_number" maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="text" id="ud4" class="form-control"
+                                                                formControlName="mobile_number" maxlength="12"
+                                                                (keypress)="phoneNumberFormate('mobile')"
                                                                 [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                             <label [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud4">
                                                                 Mobile Number</label>
@@ -223,15 +223,34 @@
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="number" id="ud9" class="form-control"
-                                                                maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                formControlName="phone_number">
+                                                        <!-- <div class="form-group">
+                                                            <input type="text" id="ud9" class="form-control"
+                                                                maxlength="12" formControlName="phone_number"  (keypress)="phoneNumberFormate('phone')">
+                                                              
+                                                                
                                                             <label class="form-control-placeholder"
                                                                 for="ud9">Phone</label>
+                                                        </div> -->
+
+                                                        <div class="form-group">
+                                                            <input type="text" id="ud4" class="form-control"
+                                                                formControlName="phone_number" maxlength="12"
+                                                                (keypress)="phoneNumberFormate('phone')"
+                                                                [class]="profile.phone_number.invalid && (profile.phone_number.dirty ||profile.phone_number.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                                            <label [class]="profile.phone_number.invalid && (profile.phone_number.dirty ||profile.phone_number.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud4">
+                                                                Phone</label>
+                                                            <div
+                                                                *ngIf="profile.phone_number.invalid && (profile.phone_number.dirty || profile.phone_number.touched || isSubmit)">
+                                                                <p class="form-error"
+                                                                    *ngIf="profile.phone_number.errors['required']">
+                                                                    Please enter phone number.
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                     </div>
+
+
+                                                    
                                                 </div>
                                             </div>
                                         </div>
