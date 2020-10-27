@@ -144,7 +144,8 @@ export class AcceptSubmissionReviewComponent implements OnInit {
       application_id:this.applicationDetails.id
     }
     this.applicationService.voidPaymentFee(data).subscribe(data => {
-      this.toasterService.success('Fee have voided')
+      this.toasterService.success('Fee have voided');
+      this.messageEvent.emit('hello')
     })
   }
 
