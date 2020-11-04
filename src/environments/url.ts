@@ -97,7 +97,11 @@ const adminUrl = {
   voidPaymentFee:`/application/manager/fee/delete`,
   voidDecision:`/application/manager/decision/cancelled`,
   meterFireReviewAndWater:`/application/clerk-fire-water/submission`,
-  voidMeterFireAndWaterReview:`/application/clerk-fire-water/submission/void`
+  voidMeterFireAndWaterReview:`/application/clerk-fire-water/submission/void`,
+  addCityAdmin:`/city-admin/create`,
+  getCityAdmin:`/city-admin`,
+  getSingleCityAdmin:`/city-admin/update`,
+  updateCityAdmin:`/city-admin/update`
 
 
 };

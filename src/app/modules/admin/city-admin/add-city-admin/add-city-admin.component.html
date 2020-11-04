@@ -1,0 +1,205 @@
+<app-auth-layout>
+    <router-outlet>
+        <section class="bg-dashbord">
+            <div class="dash-back">
+                <div class="container p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="back-txt m-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h3 routerLink="/admin/city-admin-list"><span><img src="assets/images/left-arrow.svg"
+                                                    alt=""></span> Back</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="updateprofile pt-0">
+            <div class="box-engrining-2">
+                <form [formGroup]="addStaffForm">
+                    <div class="applicant-details">
+                        <div class="job-location-Hd d-flex justify-content-between">
+                            <h3 class="w-100">Add New City Admin</h3>
+                            <h6 class="activeswitch">
+                                <span>Active</span>
+                                <label class="switchs">
+                                    <input type="checkbox"  formControlName="status">
+                                    <span class="slides rounds"></span>
+                                </label>
+                            </h6>
+                        </div>
+
+                        <div class="app-details">
+                            <div class="container p-0">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text" id="ans1" class="form-control"
+                                                            formControlName="city_name"  [class]="staffControl.city_name.invalid && (staffControl.city_name.dirty || staffControl.city_name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'" required="">
+                                                        <label class="form-control-placeholder" for="ans1">
+                                                            City name</label>
+                                                    </div>
+                                                    <div class="form-error"
+                                                    *ngIf="staffControl.city_name.invalid && (staffControl.city_name.dirty || staffControl.city_name.touched || isStaff)">
+                                                    <span *ngIf="staffControl.city_name.errors['required']">
+                                                        Please enter city city_name
+                                                    </span>
+                                                  
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div [class]="isEmailReadOnly? 'col-6 slectInputBox':'col-6' ">
+                                        <div class="bdp_email loction-adInput">
+                                            <div class="row">
+                                                <div class="col-12 ">
+                                                    <div class="form-group">
+                                                        <input type="text"
+                                                            [attr.disabled]="isEmailReadOnly ? 'true': null" id="ans2"
+                                                            class="form-control"
+                                                            [class]="staffControl.email.invalid && (staffControl.email.dirty || staffControl.email.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"
+                                                            formControlName="email" required="">
+                                                        <label class="form-control-placeholder" for="ans2">Email</label>
+                                                    </div>
+                                                    <div class="form-error"
+                                                        *ngIf="staffControl.email.invalid && (staffControl.email.dirty || staffControl.email.touched || isStaff)">
+                                                        <span *ngIf="staffControl.email.errors['required']">
+                                                            Please select a Email
+                                                        </span>
+                                                        <span *ngIf="staffControl.email.errors['maxlength']">
+                                                            Please enter a Email no more than 250 characters.
+                                                        </span>
+                                                        <span *ngIf="staffControl.email.errors['pattern']">
+                                                            Please enter a valid Email .
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bussiness-input">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="ans3" class="form-control"
+                                                                formControlName="phone" (keypress) = "phoneNumberFormate()"  maxlength = "12" 
+                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="ans3">Phone</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="bdp_email loction-adInput">
+                                                <div class="row">
+                                                    <div class="col-12 ">
+                                                        <div class="form-group">
+                                                            <input type="text" id="ans3" class="form-control"
+                                                                formControlName="name"   [class]="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"
+                                                                required="">
+                                                            <label class="form-control-placeholder"
+                                                                for="ans3">Admin name</label>
+                                                        </div>
+                                                        <div class="form-error"
+                                                        *ngIf="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff)">
+                                                        <span *ngIf="staffControl.name.errors['required']">
+                                                            Please enter city admin name
+                                                        </span>
+                                                      
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- <div class="col-6">
+                                            <div class="bdp_email loction-adInput position-relative">
+                                                <div class="row">
+                                                    <div class="col-12 s-dpt">
+                                                        <div class="form-group">
+                                                            <label>Role</label>
+                                                            <select formControlName="role_id" (change)="selectDepartments($event.target.value)"
+                                                                [class]="staffControl.role_id.invalid && (staffControl.role_id.dirty || staffControl.role_id.touched || isStaff) ? 'form-control form-group-error' : 'form-control'">
+                                                                <option value="" hidden>--Select Role--</option>
+                                                                <option  value="{{role?.id}}"
+                                                            *ngFor="let role of allRoles">
+                                                            {{role?.city_name}}
+                                                        </option>
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+
+
+                                <!-- <div class="bussiness-input mt-5">
+                                    <div class="row">
+                                        <div class="col-6" *ngIf ="deptment_id == 6">
+                                            <div class="bdp_email loction-adInput position-relative">
+                                                <div class="row">
+                                                    <div class="col-12 s-dpt">
+                                                        <div class="form-group">
+                                                            <label>Select Department</label>
+                                                            <select formControlName="departments"
+                                                                [class]="staffControl.departments.invalid && (staffControl.departments.dirty || staffControl.departments.touched || isStaff) ? 'form-control form-group-error' : 'form-control'">
+                                                                <option value="" hidden>--Select Department--</option>
+                                                                <option  value="{{department?.id}}"
+                                                                *ngFor="let department of allDepartments">
+                                                                {{department?.city_name}}
+                                                            </option>
+                                                                
+
+                                                            </select>
+                                                            <span><i class="fa fa-angle-down"
+                                                                    aria-hidden="true"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div> -->
+
+
+
+                                <div class="btn-pre">
+
+                                    <button class="continue mr-0 invite-btn" type="submit"  *ngIf="!staffId"
+                                       (click) ="addCityAdmin()" >Submit</button>
+                                    <button class="continue mr-0 invite-btn" type="submit" *ngIf="staffId"
+                                        (click)="updateCityAdmin()">Update</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </router-outlet>
+</app-auth-layout>

@@ -24,6 +24,8 @@
                     <div class="drop-content">
                             <!-- <a (click)="mavigateByUrl('/admin/add-staff')">Add Staff</a> -->
                             <a *ngIf ="(currentUser?.role_id == 1 || currentUser?.role_id == 2)" (click)="mavigateByUrl('/admin/staff-list')">Manage Staff</a>
+                            <a *ngIf ="(currentUser?.role_id == 1 || currentUser?.role_id == 2)" (click)="mavigateByUrl('/admin/city-admin-list')">Add City Admin</a>
+
                         <a (click)="logoutUser()">Log Out</a>
 
                     </div>

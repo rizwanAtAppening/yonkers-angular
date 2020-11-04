@@ -27,11 +27,13 @@ import { AcceptSubmissionReviewComponent } from './accept-submission-review/acce
 import { MeterFireDetailsComponent } from './permitDetailsPage/meter-fire-details/meter-fire-details.component';
 import { MeterWaterDetailsComponent } from './permitDetailsPage/meter-water-details/meter-water-details.component';
 import { AdvanceSearchComponent } from './advance-search/advance-search.component';
+import { AddCityAdminComponent } from './city-admin/add-city-admin/add-city-admin.component';
+import { CityAdminListComponent } from './city-admin/city-admin-list/city-admin-list.component';
 
 @NgModule({
   declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent,
      InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent, StaffListComponent, CreatePasswordComponent,
-      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent, AcceptSubmissionReviewComponent, MeterFireDetailsComponent, MeterWaterDetailsComponent, AdvanceSearchComponent],
+      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent, AcceptSubmissionReviewComponent, MeterFireDetailsComponent, MeterWaterDetailsComponent, AdvanceSearchComponent, AddCityAdminComponent, CityAdminListComponent],
   imports: [
   
     CommonModule,

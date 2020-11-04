@@ -14,6 +14,8 @@ import { HydrantDetailsComponent } from './permitDetailsPage/hydrant-details/hyd
 import { OversizedVehiclesDetailsComponent } from './permitDetailsPage/oversized-vehicles-details/oversized-vehicles-details.component';
 import { MeterFireDetailsComponent } from './permitDetailsPage/meter-fire-details/meter-fire-details.component';
 import { MeterWaterDetailsComponent } from './permitDetailsPage/meter-water-details/meter-water-details.component';
+import { AddCityAdminComponent } from './city-admin/add-city-admin/add-city-admin.component';
+import { CityAdminListComponent } from './city-admin/city-admin-list/city-admin-list.component';
 
 
 // const routes: Routes = [
@@ -81,6 +83,14 @@ const routes: Routes = [
   {
     path: 'add-staff',
     component: AddStaffComponent
+  },
+  {
+    path: 'add-city-admin',
+    component: AddCityAdminComponent
+  },
+  {
+    path: 'city-admin-list',
+    component: CityAdminListComponent
   },
   {
     path: 'staff-list',
