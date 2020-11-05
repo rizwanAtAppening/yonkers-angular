@@ -36,6 +36,7 @@ export class AddMeterPermitComponent implements OnInit {
   public metertest = 0
   public metertestsize = 0
   public fireline = 0
+  public cityId:number
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -54,6 +55,7 @@ export class AddMeterPermitComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.permit_type = Number(data.permitType),
         this.currentTab = data.tab;
+        this.cityId = data.cityId
       this.application_id = Number(data.application_id)
       this.getApplication()
       if (this.currentTab && !this.application_id) {
@@ -114,7 +116,7 @@ export class AddMeterPermitComponent implements OnInit {
 
 
   addMeterPermit(formGroup: string, nextTab) {
-    debugger
+    
     if (formGroup == 'applicant' || nextTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isMerter = true;
@@ -124,7 +126,7 @@ export class AddMeterPermitComponent implements OnInit {
       this.applicantForm.value.permit_type = this.permit_type ? this.permit_type : 2
       this.applicantForm.value.applican_last_name = this.applicantForm.value.applicant_last_name
       this.applicantForm.value.address_id = this.addressId
-
+      this.applicantForm.value.city_admin_id = this.cityId ? this.cityId:this.application.city_admin_id
       this.applicantForm.value.model = 3
 
       this.formValue = this.applicantForm.value
@@ -252,7 +254,7 @@ export class AddMeterPermitComponent implements OnInit {
   public meterSizeType: number = 1;
   public wetConnctionType: number = 1;
   selectType(value: string, selectValue) {
-    debugger
+    
     if (value == 'new') {
       this.meterSizeType = selectValue
     } else if (value == 'replacement') {
@@ -345,7 +347,7 @@ export class AddMeterPermitComponent implements OnInit {
 
     }
     if (!this.application_id) {
-      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab } })
+      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { tab: this.currentTab,cityId:this.cityId } })
 
     }
 
@@ -359,10 +361,10 @@ export class AddMeterPermitComponent implements OnInit {
 
   phoneNumberFormate() {
     var autoFillValue = '-'
-    if (this.applicantForm.value.applicant_phone.length === 3) {
+    if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
       this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
     }
-    if (this.applicantForm.value.applicant_phone.length === 7) {
+    if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
       this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
     }
   }

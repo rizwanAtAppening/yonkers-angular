@@ -420,6 +420,20 @@ export class PermitService {
   }
 
 
+  cityAdminList(): Observable<any> {
+    const href = `${environment['cityAdmin']}`;
+    return this.http.get<any>(href).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
+
 
   convertPermitApplication(id): Observable<any> {
     const href = `${environment['converPermitApplication']}/${id}`;

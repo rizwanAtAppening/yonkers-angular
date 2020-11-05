@@ -31,7 +31,7 @@ export class AddCityAdminComponent implements OnInit {
     this.settings = settingConfig;
 
   }
-
+public isChecked = true
   ngOnInit(): void {
     this.addStaffCon();
     this.addStaffForm.controls.status.setValue(1)
@@ -42,7 +42,7 @@ export class AddCityAdminComponent implements OnInit {
       this.isEmailReadOnly = true
       this.getStaffById();
     }
-
+    this.addStaffForm.controls.payment_account_type.setValue(true)
 
   }
   addStaffCon() {
@@ -57,7 +57,8 @@ export class AddCityAdminComponent implements OnInit {
       // phone: ['', [Validators.required, Validators.pattern('^[0-9]{3}-[0-9]{3}-[0-9]{4}$')]],
       // department_id: ['', [Validators.required]],
       // role_id: ['', [Validators.required]],
-      // stripe_account_id: [''],
+      payment_account_type: [''],
+      stripe_account_id: [''],
       city_name: [''],
       status: [''],
     })
@@ -107,7 +108,7 @@ export class AddCityAdminComponent implements OnInit {
 
   public singleStaffDetails: any
   getStaffById() {
-    debugger
+
     this.cityAdminService.getSingleCityAdmin(this.staffId).subscribe(data => {
       this.singleStaffDetails = data.response;
       if (this.singleStaffDetails) {
@@ -118,7 +119,7 @@ export class AddCityAdminComponent implements OnInit {
 
 
   fillStaffInfo(value) {
-    debugger
+
     this.addStaffForm.controls.email.setValue(value.email);
     this.addStaffForm.controls.name.setValue(value.name);
     this.addStaffForm.controls.city_name.setValue(value.name);
@@ -126,6 +127,18 @@ export class AddCityAdminComponent implements OnInit {
     this.addStaffForm.controls.status.setValue(value.status);
     this.addStaffForm.controls.phone.setValue(value.phone);
 
+  }
+  public isStripe = true
+  selectStripAc(value: string) {
+    if (value == '1') {
+      this.addStaffForm.controls.payment_account_type.setValue(1)
+      this.isStripe = true
+    }
+    else if (value == '2') {
+      this.addStaffForm.controls.payment_account_type.setValue(2)
+      this.isStripe = false
+
+    }
   }
 
 }

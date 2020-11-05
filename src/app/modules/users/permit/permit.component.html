@@ -219,7 +219,7 @@
                                                                         <div class="col-8">
                                                                             <div class="row">
                                                                                 <div class="col-4 pr-0">
-                                                                                    <div class="permit-Hd" data-toggle="modal" data-target="#withdselect">
+                                                                                    <div class="permit-Hd" >
                                                                                         Engineering Permit 
                                                                                     </div>
                                                                                 </div>
@@ -237,7 +237,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4"
-                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                            data-toggle="modal" data-target="#withdselect"> 
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -417,7 +417,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4"
-                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                        data-toggle="modal" data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -559,7 +559,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4"
-                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                        data-toggle="modal" data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -703,7 +703,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4"
-                                                                            routerLink="/dashboard/add-permit-selectType">
+                                                                        data-toggle="modal" data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -1604,23 +1604,25 @@
 
 
 
-        <div class="modal fade ng-Per" id="withdselect" tabindex="-1" role="dialog" #withdrawConfirmPopUp
+        <div class="modal fade ng-Per" id="withdselect" tabindex="-1" role="dialog" #adminCity
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered " role="document">
                 <div class="modal-content s_add">
 
                     <div class="form-group">
                         <label >Password</label>
-                        <select>
-                            <option>Lorem</option>
-                            <option>Lorem</option>
-                            <option>Lorem</option>
+                        <select (change) ="selectCity($event.target.value)">
+                            <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
+                           
                         </select>
+                        <span>
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
                       </div>
 
 
                     <div class="modal-footer p-0 border-0">
-                        <button type="button" class="secondary" data-dismiss="modal">submit</button>
+                        <button type="button" class="secondary"  (click) ="selectType()">submit</button>
                        
                     </div>
 

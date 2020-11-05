@@ -26,7 +26,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addInsuranseForm: FormGroup
   public duplimesterForm: FormGroup
   public uploadForm: FormGroup
-
+  public cityId: number
   public imageBasePath: string = `${environment.host}${environment.imageBasePath}`;
   @ViewChild('checklist', { static: false }) checklist: ElementRef;
   @ViewChild('licensePopUp', { static: false }) licensePopUp: ElementRef;
@@ -82,6 +82,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     this.getDuplimester();
     this.route.queryParams.subscribe(data => {
       this.application_id = data.id;
+      this.cityId = data.cityId
     })
     if (this.application_id) {
       this.updateAppliction()
@@ -128,7 +129,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isDrawing = false;
   public isCertificate = false;
   public contractorDetails: any
-  public dumsterState:number
+  public dumsterState: number
   getApplication() {
     this.application = this.permitService.getApplication();
     this.addressId = this.addressId ? this.addressId : this.application.address_id
@@ -139,7 +140,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (this.application.contractor_details) {
       this.contractorDetails = Number(this.application.contractor_details.contractor_state)
     }
-    if(this.application.dumpsters_details){
+    if (this.application.dumpsters_details) {
       this.dumsterState = Number(this.application.dumpsters_details.dumpster_state)
 
     }
@@ -505,14 +506,17 @@ export class AddPermitTabSectionComponent implements OnInit {
           type: Number(this.whatForm.value.type),
           model: 1,
           id: Number(this.application_id),
-          permit_type: Number(this.permitType)
+          permit_type: Number(this.permitType),
+          city_admin_id:this.cityId
         }
       } else {
         this.data = {
           role: Number(this.whatForm.value.role),
           type: Number(this.whatForm.value.type),
           model: 1,
-          permit_type: Number(this.permitType)
+          permit_type: Number(this.permitType),
+          city_admin_id:this.cityId
+
         }
       }
 
@@ -548,7 +552,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 2,
           // address_id: (this.whereForm.value.address_id),
           address_id: this.addressId,
-          address:this.selectedValue,
+          address: this.selectedValue,
           location_type: this.location_type,
           also_know_as: this.whereForm.value.also_known_as,
           locations: this.whereForm.controls.addlocation.value,
@@ -591,11 +595,11 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
 
-      if ( (this.application.role == 2 || (this.application.role == 1 && this.application.type != 4) || (this.application.role == 3 &&  this.application.type != 4))) {
+      if ((this.application.role == 2 || (this.application.role == 1 && this.application.type != 4) || (this.application.role == 3 && this.application.type != 4))) {
         this.contractorForm.value.model = 4
-        this.contractorForm.value.permit_type =  Number(this.permitType)
+        this.contractorForm.value.permit_type = Number(this.permitType)
         this.data = this.contractorForm.value
-        
+
       }
       else if (this.application.role != 2 && this.application.type == 4) {
         if (!this.dumpster_id) {
@@ -614,7 +618,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           dumpster_id: this.dumpster_id,
           model: 4,
           contractor_for_job: 0,
-          permit_type : Number(this.permitType)
+          permit_type: Number(this.permitType)
         }
       }
 
@@ -656,9 +660,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.projectDetailsForm.value.traffic_control == "") {
         this.projectDetailsForm.value.traffic_control = null
       }
-      this.projectDetailsForm.value.permit_type =  Number(this.permitType)
+      this.projectDetailsForm.value.permit_type = Number(this.permitType)
       this.data = this.projectDetailsForm.value
-       
+
 
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
@@ -680,7 +684,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
 
-  
+
   windowScroll() {
     window.scroll(0, 0)
   }
@@ -794,7 +798,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public isDisabled = false;
   contractorTab() {
 
-//const application = this.permitService.getApplication()
+    //const application = this.permitService.getApplication()
     this.getApplication()
     this.authService.getUserInfo().subscribe(currentUser => {
       this.currentUserInfo = currentUser
@@ -804,7 +808,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.getDuplimester();
 
     }
-    if(this.currentUserInfo && (this.application.role == 1) && !this.application.contractor_details){
+    if (this.currentUserInfo && (this.application.role == 1) && !this.application.contractor_details) {
       this.contractorForm.controls.contractor_for_job.setValue(1)
 
     }
@@ -817,7 +821,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
 
       this.getLicenseDetails();
-      
+
       this.contractorForm.controls.contractor_for_job.setValue(1)
       this.contractorForm.controls.contractor_name.setValue(this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name)
       this.contractorForm.controls.contractor_email.setValue(this.currentUserInfo.email)
@@ -846,10 +850,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
 
-  fillDetails(){
-    
+  fillDetails() {
+
     //this.contractorForm.controls.contractor_for_job.setValue(1)
-    if(this.contractorForm.value.contractor_for_job == 2){
+    if (this.contractorForm.value.contractor_for_job == 2) {
       let value = this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name
       console.log(value)
       this.contractorForm.controls.contractor_name.setValue(value)
@@ -859,8 +863,8 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorForm.controls.contractor_phone.setValue(this.currentUserInfo.phone_number)
       this.contractorForm.controls.contractor_city.setValue(this.currentUserInfo.city)
       this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.state)
-      this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip) 
-    }else{
+      this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip)
+    } else {
       this.contractorForm.controls.contractor_name.setValue(null)
       this.contractorForm.controls.contractor_email.setValue(null)
       this.contractorForm.controls.contractor_business.setValue(null)
@@ -868,9 +872,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorForm.controls.contractor_phone.setValue(null)
       this.contractorForm.controls.contractor_city.setValue(null)
       this.contractorForm.controls.contractor_state.setValue(null)
-      this.contractorForm.controls.contractor_zip.setValue(null) 
+      this.contractorForm.controls.contractor_zip.setValue(null)
     }
-     
+
   }
 
 
@@ -1229,7 +1233,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   updateAppliction() {
     this.permitService.updateApplication(this.application_id).subscribe(data => {
       this.application = data.response;
-      if(this.application){
+      if (this.application) {
         sessionStorage.setItem('application', JSON.stringify(this.application));
 
       }

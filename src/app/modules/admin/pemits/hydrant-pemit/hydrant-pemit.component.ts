@@ -43,7 +43,7 @@ public meterPermitTab:any = '0'
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    debugger
+    
     this.application_Type = application_Type
     this.modify.application_type = application_Type
     this.modify.permit_type = 3
@@ -60,7 +60,7 @@ public meterPermitTab:any = '0'
   }
 
   paginate(page, value, stringValue) {
-    debugger
+    
     this.application_Type = value,
       this.page = page
     // if (stringValue == 'inspection') {
@@ -79,7 +79,7 @@ public meterPermitTab:any = '0'
 
   public searchString:any
   searchApplication() {
-    debugger
+    
     const data = {
       search_query: String(this.searchString),
       application_type: this.application_Type

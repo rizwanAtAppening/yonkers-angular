@@ -51,7 +51,7 @@ export class MeterFireDetailsComponent implements OnInit {
   }
 
   checkedCondition(event, checkedValue: number) {
-    debugger
+    
     if (event.target.checked) {
       this.checkedValue = checkedValue
     } else {
@@ -80,7 +80,7 @@ export class MeterFireDetailsComponent implements OnInit {
   get firCon() { return this.fireForm.controls }
 
   permitDetails() {
-    debugger
+    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
       //  this.certificates.next(this.applicationDetails)
@@ -127,7 +127,7 @@ export class MeterFireDetailsComponent implements OnInit {
   }
 
   getCurrentUser() {
-    debugger
+    
     this.authService.getUserInfo().subscribe(data => {
       this.currentUser = data
       if (this.currentUser.name) {

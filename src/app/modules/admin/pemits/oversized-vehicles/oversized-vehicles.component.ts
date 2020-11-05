@@ -37,7 +37,7 @@ export class OversizedVehiclesComponent implements OnInit {
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    debugger
+    
     this.application_Type = application_Type
     this.modify.application_type = application_Type
     this.modify.permit_type = 4
@@ -54,7 +54,7 @@ export class OversizedVehiclesComponent implements OnInit {
   }
 
   paginate(page, value, stringValue) {
-    debugger
+    
     this.application_Type = value,
       this.page = page
     if (stringValue != 'inspection' && stringValue != 'payment')
@@ -68,7 +68,7 @@ export class OversizedVehiclesComponent implements OnInit {
 
   public searchString:any
   searchApplication() {
-    debugger
+    
     const data = {
       search_query: String(this.searchString),
       application_type: this.application_Type

@@ -142,6 +142,7 @@ const userUrl = {
   payment:`/application-payment`,
   showPaymentDetails:`/application-fee`,
   addMeterPermit:`/application`,
+  cityAdmin:`/city-admins`
 
 
 

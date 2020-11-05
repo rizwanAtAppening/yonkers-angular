@@ -26,12 +26,12 @@
                         <div class="job-location-Hd d-flex justify-content-between">
                             <h3 class="w-100">Add New City Admin</h3>
                             <h4 id="newadd_radiobtn">
-                                <label class="contcity">One
-                                    <input type="radio" checked="checked" name="radio">
+                                <label class="contcity">Strip
+                                    <input type="radio" value="1"  (change) ="selectStripAc($event.target.value)" checked="checked" name="radio">
                                     <span class="check-c"></span>
                                   </label>
-                                  <label class="contcity">Two
-                                    <input type="radio" name="radio">
+                                  <label class="contcity">FIS
+                                    <input type="radio" value="2"   (change) ="selectStripAc($event.target.value)" name="radio">
                                     <span class="check-c"></span>
                                   </label>
                             </h4>
@@ -101,22 +101,22 @@
 
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <!-- <div class="col-6">
+                                        <div class="col-6" *ngIf ="isStripe">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" id="ans3" class="form-control"
-                                                                formControlName="phone" (keypress) = "phoneNumberFormate()"  maxlength = "12" 
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                formControlName="stripe_account_id" 
+                                                               
                                                                 required="">
                                                             <label class="form-control-placeholder"
-                                                                for="ans3">Phone</label>
+                                                                for="ans3">Strip Id</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
 
                                         <div class="col-6">
                                             <div class="bdp_email loction-adInput">

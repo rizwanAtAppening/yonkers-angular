@@ -27,7 +27,7 @@ export class SideBarComponent implements OnInit {
 
 
   newMessage(url, permit_type,activeTab) {
-    debugger
+    
   
     this.applicationService.changeMessage(permit_type);
     this.permitType = activeTab

@@ -43,7 +43,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
     this.completeIncompletCon()
     this.feeControls()
     this.desicionControls()
