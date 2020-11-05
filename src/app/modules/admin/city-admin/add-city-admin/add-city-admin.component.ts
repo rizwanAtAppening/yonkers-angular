@@ -54,7 +54,7 @@ export class AddCityAdminComponent implements OnInit {
       // isActive: [''],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      phone: ['', [Validators.required, Validators.pattern('^[0-9]{3}-[0-9]{3}-[0-9]{4}$')]],
+      // phone: ['', [Validators.required, Validators.pattern('^[0-9]{3}-[0-9]{3}-[0-9]{4}$')]],
       // department_id: ['', [Validators.required]],
       // role_id: ['', [Validators.required]],
       // stripe_account_id: [''],
@@ -72,6 +72,7 @@ export class AddCityAdminComponent implements OnInit {
       return false
     }
     this.addStaffForm.value.city = this.addStaffForm.value.city_name
+    // this.addStaffForm.value.phone =  '656-455-5858'
     this.cityAdminService.addCityAdmin(this.addStaffForm.value).subscribe(data => {
       this.TS.success("Staff added");
       this.addStaffForm.reset();
