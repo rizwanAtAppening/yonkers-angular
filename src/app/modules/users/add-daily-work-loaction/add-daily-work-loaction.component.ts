@@ -16,6 +16,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public dwlForm: FormGroup;
   public settings: any;
   public isPermit = false;
+  public cityId: any
   constructor(
     private fb: FormBuilder,
     private permitService: PermitService,
@@ -35,6 +36,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     this.getPermitApplication();
     this.route.queryParams.subscribe(data => {
       this.id = data.id
+      this.cityId = data.cityId
       this.applicationId = data.id
       this.dwlType = data.type;
       if (this.dwlType) {
@@ -125,16 +127,19 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-
+debugger
     if (this.applicationId) {
       this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
-        application: this.updateValueDwl
+        application: this.updateValueDwl,
+       
+
       }
     }
     else {
       this.submitApplication = {
-        application: this.dwlApplication
+        application: this.dwlApplication,
+       
       }
     }
     this.permitService.submitDailyWorkLocation(this.submitApplication).subscribe(data => {
@@ -175,7 +180,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
         address_id: this.addressId ? this.addressId : this.editValue.address_id,
-        address:this.selectedValue ? this.selectedValue : this.editValue.address,
+        address: this.selectedValue ? this.selectedValue : this.editValue.address,
         layout_number: this.dwlForm.value.layout_number,
         permit_number: this.dwlForm.value.permit_number,
         permit_type: this.dwlForm.value.permit_type,
@@ -189,6 +194,8 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         location_type: this.location_type,
         id: this.id ? this.id : null,
         dwl_id: this.dwl_id ? this.dwl_id : null,
+        city_admin_id:this.cityId,
+
       }
 
     }
@@ -206,7 +213,9 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         location_type: this.location_type,
         id: this.id ? this.id : null,
         dwl_id: this.dwl_id ? this.dwl_id : null,
-        locations: this.dwlForm.controls.addlocation.value
+        locations: this.dwlForm.controls.addlocation.value,
+        city_admin_id:this.cityId,
+
 
       }
     }
@@ -232,7 +241,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   getPermitApplication() {
 
     this.allLayOutNumber = []
-    this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
+    this.permitService.getPermitApplication({ application_type: this.application_type,permit_type:2 }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 2) {

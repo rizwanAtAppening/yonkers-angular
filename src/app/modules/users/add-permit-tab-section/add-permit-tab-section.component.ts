@@ -588,8 +588,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.applicantForm.invalid) {
         this.isSubmit = true;
         return false
-      }
+      } 
       this.applicantForm.value.model = 3
+      this.applicantForm.value.permit_type = Number(this.permitType),
       this.data = this.applicantForm.value
     }
 

@@ -23,6 +23,7 @@ export class AddPermitComponent implements OnInit {
   public licenseFile: any
   public image: any
   public name: any = []
+  public cityId: any
   public formData
   constructor(
     private fb: FormBuilder,
@@ -44,6 +45,7 @@ export class AddPermitComponent implements OnInit {
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id,
         this.id = data.id;
+      this.cityId = data.cityId;
       this.dwlType = data.type;
       if (this.dwlType) {
         localStorage.setItem('dwlType', this.dwlType);
@@ -166,6 +168,7 @@ export class AddPermitComponent implements OnInit {
     if (this.id) {
       this.permitForm.value.id = this.id
     }
+
     this.permitForm.value.location_type = this.location_type
     this.permitForm.value.layout_number = this.permitForm.value.layout
     this.permitForm.value.permit_type = 1
@@ -173,6 +176,7 @@ export class AddPermitComponent implements OnInit {
       "type",
       this.permitForm.value.type
     );
+    
     if (this.id) {
       this.formData.append(
         "id",
@@ -223,6 +227,10 @@ export class AddPermitComponent implements OnInit {
       "location_type",
       this.location_type
     );
+    this.formData.append(
+      "city_admin_id",
+      this.cityId
+    );
     if (this.location_type == 2) {
 
       this.permitForm.value.addlocation.forEach((data, i) => {
@@ -231,17 +239,9 @@ export class AddPermitComponent implements OnInit {
         this.formData.append('locations[' + i + '][address_join]', data.address_join)
 
       })
-      // var array = this.permitForm.value.addlocation;
-      // for (var i = 0; i < array.length; i++) {
-      //     //this.formData.append('locations[]', array[i]);
-      //     this.formData.append('locations[]', array[i])
-
-      // }
-      // // this.formData.append(
-      // //   'location',
-      // //   this.permitForm.value.addlocation
-      // // )
-    } else if (this.location_type == 1) {
+      
+    }
+     else if (this.location_type == 1) {
       this.formData.append(
         "address_id",
         (this.addressId ? this.addressId : this.editValue.address_id)
@@ -338,7 +338,7 @@ export class AddPermitComponent implements OnInit {
   public allLayOutNumber = []
   getPermitApplication() {
     this.allLayOutNumber = []
-    this.permitService.getPermitApplication({ application_type: this.application_type }).subscribe(data => {
+    this.permitService.getPermitApplication({ application_type: this.application_type,permit_type:1 }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 1) {
@@ -386,7 +386,7 @@ export class AddPermitComponent implements OnInit {
   public editValue: any
   public isEdit = false
   editAppliction(value) {
-    
+
     this.isEdit = true
     this.dwlApplication.map(data => {
       if (value.id == data.id) {
@@ -504,7 +504,7 @@ export class AddPermitComponent implements OnInit {
   }
 
   location(value) {
-    
+
     this.layOutData = value
     this.editValue = this.layOutData
     if (this.layOutData) {

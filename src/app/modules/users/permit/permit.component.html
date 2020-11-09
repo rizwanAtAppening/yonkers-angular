@@ -850,12 +850,12 @@
                                                 id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true"
-                                                (click)="getPermitApplication(1,'')">Permit</a>
+                                                (click)="getPermitApplication(1,1)">Permit</a>
                                         </li>
                                         <li class="nav-item">
                                             <a [class]="dwlType == '2'?'nav-link active':'nav-link'"
                                                 id="pills-Daily-tab" data-toggle="pill"
-                                                (click)="getPermitApplication(2,'')" href="#pills-Daily" role="tab"
+                                                (click)="getPermitApplication(2,2)" href="#pills-Daily" role="tab"
                                                 aria-controls="pills-Daily" aria-selected="false">Daily work
                                                 location</a>
                                         </li>
@@ -893,10 +893,10 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project"
+                                                                            <div class="New-Project"  data-toggle="modal" data-target="#withdselect2"
                                                                                 (click)="navigate(1)"><button>
-                                                                                    <span><img
-                                                                                            src="assets/images/plus.svg"
+                                                                                    <span><img 
+                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
                                                                                     Project</button></div>
                                                                         </div>
@@ -1048,7 +1048,7 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project"
+                                                                            <div class="New-Project"  data-toggle="modal" data-target="#withdselect2"
                                                                                 (click)="navigate(2)"><button>
                                                                                     <span><img
                                                                                             src="assets/images/plus.svg"
@@ -1630,6 +1630,34 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade ng-Per" id="withdselect2" tabindex="-1" role="dialog" #adminCity2
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content s_add">
+
+                <div class="form-group">
+                    <label >Password</label>
+                    <select (change) ="selectCity($event.target.value)">
+                        <!-- <option *ngIf = "value == ''">--Select--</option> -->
+                        <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
+                       
+                    </select>
+                    <span>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                  </div>
+
+
+                <div class="modal-footer p-0 border-0">
+                    <button type="button" class="secondary"  (click) ="navigatetoDwl()">submit</button>
+                   
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 
 

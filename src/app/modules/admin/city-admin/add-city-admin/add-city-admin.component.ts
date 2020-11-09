@@ -19,7 +19,8 @@ export class AddCityAdminComponent implements OnInit {
   public allRoles = []
   public allDepartments = []
   public isStaff = false;
-  public staffId: number
+  public staffId: number;
+  public isChecked = true
   constructor(
     private adminAuthService: AuthenticationService,
     private router: Router,
@@ -31,7 +32,7 @@ export class AddCityAdminComponent implements OnInit {
     this.settings = settingConfig;
 
   }
-public isChecked = true
+  // public isChecked = true
   ngOnInit(): void {
     this.addStaffCon();
     this.addStaffForm.controls.status.setValue(1)
@@ -58,8 +59,8 @@ public isChecked = true
       // department_id: ['', [Validators.required]],
       // role_id: ['', [Validators.required]],
       payment_account_type: [''],
-      stripe_account_id: [''],
-      city_name: [''],
+      stripe_account_id: ['', Validators.required],
+      city_name: ['', Validators.required],
       status: [''],
     })
   }
@@ -68,27 +69,56 @@ public isChecked = true
 
 
   addCityAdmin() {
+    debugger
+    if (this.addStaffForm.value.payment_account_type == 2) {
+      this.addStaffForm.controls.stripe_account_id.setErrors(null)
+    }
     if (this.addStaffForm.invalid) {
       this.isStaff = true
       return false
+    }
+    if (this.addStaffForm.value.payment_account_type) {
+      this.addStaffForm.value.payment_account_type = 1
+    }
+    if (this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 1
+    } else if (!this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 0
     }
     this.addStaffForm.value.city = this.addStaffForm.value.city_name
     // this.addStaffForm.value.phone =  '656-455-5858'
     this.cityAdminService.addCityAdmin(this.addStaffForm.value).subscribe(data => {
       this.TS.success("Staff added");
+      this.isStaff = false;
+      this.router.navigate(['/admin/city-admin-list'])
       this.addStaffForm.reset();
     })
   }
 
 
   updateCityAdmin() {
+    debugger
+    if (this.addStaffForm.value.payment_account_type == 2) {
+      this.addStaffForm.controls.stripe_account_id.setErrors(null)
+     // this.addStaffForm.controls.stripe_account_id.setValue(null)
+
+    }
     if (this.addStaffForm.invalid) {
       this.isStaff = true
       return false
     }
+    if (this.addStaffForm.value.payment_account_type) {
+      this.addStaffForm.value.payment_account_type = 1
+    }
+    if (this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 1
+    } else if (!this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 0
+    }
     this.addStaffForm.value.city = this.addStaffForm.value.city_name
     this.cityAdminService.updateCityAdmin(this.addStaffForm.value, this.staffId).subscribe(data => {
       this.TS.success("Staff update");
+      this.isStaff = false
       this.router.navigate(['/admin/city-admin-list'])
       this.addStaffForm.reset();
     })
@@ -119,13 +149,18 @@ public isChecked = true
 
 
   fillStaffInfo(value) {
-
+    debugger
     this.addStaffForm.controls.email.setValue(value.email);
     this.addStaffForm.controls.name.setValue(value.name);
     this.addStaffForm.controls.city_name.setValue(value.name);
 
     this.addStaffForm.controls.status.setValue(value.status);
-    this.addStaffForm.controls.phone.setValue(value.phone);
+    this.addStaffForm.controls.stripe_account_id.setValue(value.stripe_account_id);
+    if (value.payment_account_type == 1) {
+      this.isChecked = true
+    } else {
+      this.isChecked = false
+    }
 
   }
   public isStripe = true
@@ -136,6 +171,7 @@ public isChecked = true
     }
     else if (value == '2') {
       this.addStaffForm.controls.payment_account_type.setValue(2)
+      this.addStaffForm.controls.stripe_account_id.setValue(null)
       this.isStripe = false
 
     }

@@ -18,6 +18,7 @@ export class PermitComponent implements OnInit {
   @ViewChild('withdrawConfirmPopUp', { static: false }) withdrawConfirmPopUp: ElementRef;
   @ViewChild('adminCity', { static: false }) adminCity: ElementRef;
 
+  @ViewChild('adminCity2', { static: false }) adminCity2: ElementRef;
 
   public applicationId: number;
 
@@ -294,18 +295,28 @@ export class PermitComponent implements OnInit {
 
     this.router.navigate(['/dashboard/update-application'], { queryParams: { id: applicationId } });
   }
+  public navigaetValue: any
   navigate(value) {
-    if (value == 1) {
-      this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: value } })
-      localStorage.setItem('dwlType', '1');
+    this.navigaetValue = value
+  }
+  navigatetoDwl() {
+    if (this.cityId) {
+      this.adminCity2.nativeElement.click()
+      if (this.navigaetValue == 1) {
+        this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: this.navigaetValue, cityId: this.cityId } })
+        localStorage.setItem('dwlType', '1');
 
+      }
+      else {
+        this.router.navigate(['/dashboard/daily-work-location'], { queryParams: { type: this.navigaetValue, cityId: this.cityId } })
+        localStorage.setItem('dwlType', '2');
+
+
+      }
+    } else {
+      this.toastService.error('Please select city')
     }
-    else {
-      this.router.navigate(['/dashboard/daily-work-location'], { queryParams: { type: value } })
-      localStorage.setItem('dwlType', '2');
 
-
-    }
   }
   getApplicationId(id) {
     this.applicationId = id
@@ -317,7 +328,7 @@ export class PermitComponent implements OnInit {
       this.confirmPopUp.nativeElement.click();
       this.toastService.success('Application have beed converted');
 
-      this.getPermitApplication(this.dwlType, '');
+      this.getPermitApplication(this.dwlType,'');
       //this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
@@ -398,7 +409,7 @@ export class PermitComponent implements OnInit {
 
   public cityAdmin = []
   cityAdminList() {
-    
+
     this.permitService.cityAdminList().subscribe(data => {
       this.cityAdmin = data.response;
     })
