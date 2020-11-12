@@ -1610,8 +1610,9 @@
                 <div class="modal-content s_add">
 
                     <div class="form-group">
-                        <label >Password</label>
+                        <label >Select City</label>
                         <select (change) ="selectCity($event.target.value)">
+                                <option value="" hidden>--Select--</option>
                             <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
                            
                         </select>
@@ -1637,9 +1638,9 @@
             <div class="modal-content s_add">
 
                 <div class="form-group">
-                    <label >Password</label>
+                    <label >Select City</label>
                     <select (change) ="selectCity($event.target.value)">
-                        <!-- <option *ngIf = "value == ''">--Select--</option> -->
+                        <option value="" hidden>--Select--</option>
                         <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
                        
                     </select>

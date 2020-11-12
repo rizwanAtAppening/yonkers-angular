@@ -77,9 +77,9 @@ export class AddCityAdminComponent implements OnInit {
       this.isStaff = true
       return false
     }
-    if (this.addStaffForm.value.payment_account_type) {
-      this.addStaffForm.value.payment_account_type = 1
-    }
+    // if (this.addStaffForm.value.payment_account_type) {
+    //   this.addStaffForm.value.payment_account_type = 1
+    // }
     if (this.addStaffForm.value.status) {
       this.addStaffForm.value.status = 1
     } else if (!this.addStaffForm.value.status) {
@@ -100,7 +100,7 @@ export class AddCityAdminComponent implements OnInit {
     debugger
     if (this.addStaffForm.value.payment_account_type == 2) {
       this.addStaffForm.controls.stripe_account_id.setErrors(null)
-     // this.addStaffForm.controls.stripe_account_id.setValue(null)
+      // this.addStaffForm.controls.stripe_account_id.setValue(null)
 
     }
     if (this.addStaffForm.invalid) {
@@ -138,7 +138,6 @@ export class AddCityAdminComponent implements OnInit {
 
   public singleStaffDetails: any
   getStaffById() {
-
     this.cityAdminService.getSingleCityAdmin(this.staffId).subscribe(data => {
       this.singleStaffDetails = data.response;
       if (this.singleStaffDetails) {
@@ -160,11 +159,13 @@ export class AddCityAdminComponent implements OnInit {
       this.isChecked = true
     } else {
       this.isChecked = false
+      this.isStripe = false
     }
 
   }
   public isStripe = true
   selectStripAc(value: string) {
+    debugger
     if (value == '1') {
       this.addStaffForm.controls.payment_account_type.setValue(1)
       this.isStripe = true

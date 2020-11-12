@@ -185,7 +185,6 @@ debugger
         permit_number: this.dwlForm.value.permit_number,
         permit_type: this.dwlForm.value.permit_type,
         parcel_number: this.dwlForm.value.parcel_number,
-
         sub_contractor: this.dwlForm.value.sub_contractor,
         sub_contractor_phone: this.dwlForm.value.sub_contractor_phone,
         work_category: Number(this.dwlForm.value.work_category),
@@ -215,8 +214,6 @@ debugger
         dwl_id: this.dwl_id ? this.dwl_id : null,
         locations: this.dwlForm.controls.addlocation.value,
         city_admin_id:this.cityId,
-
-
       }
     }
 
