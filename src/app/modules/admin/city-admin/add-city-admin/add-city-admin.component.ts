@@ -77,9 +77,9 @@ export class AddCityAdminComponent implements OnInit {
       this.isStaff = true
       return false
     }
-    // if (this.addStaffForm.value.payment_account_type) {
-    //   this.addStaffForm.value.payment_account_type = 1
-    // }
+    if (this.addStaffForm.value.payment_account_type == true) {
+      this.addStaffForm.value.payment_account_type = 1
+    }
     if (this.addStaffForm.value.status) {
       this.addStaffForm.value.status = 1
     } else if (!this.addStaffForm.value.status) {
@@ -107,7 +107,7 @@ export class AddCityAdminComponent implements OnInit {
       this.isStaff = true
       return false
     }
-    if (this.addStaffForm.value.payment_account_type) {
+    if (this.addStaffForm.value.payment_account_type == true) {
       this.addStaffForm.value.payment_account_type = 1
     }
     if (this.addStaffForm.value.status) {
