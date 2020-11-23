@@ -14,6 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class PaymentComponent implements OnInit {
   public cardForm: FormGroup;
   private card;
+  public isDisabled = false;
 
   public paymentDetails: any
   constructor(
@@ -43,7 +44,7 @@ export class PaymentComponent implements OnInit {
       zip: [''],
       cvv: [''],
       year: [''],
-      isTermAndCondition: [''],
+      isTermAndCondition: ['', Validators.required],
     });
   }
 
@@ -84,7 +85,7 @@ export class PaymentComponent implements OnInit {
     // (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
     // (<any>window).initStripe(this.strip_account);
     // this.stripe = (<any>window).stripe;
-    (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
+    (<any>window).initStripe('acct_1HcReyKyghvyDdkJ');
     // (<any>window).initStripe(this.strip_account);
     this.stripe = (<any>window).stripe
     console.log(this.stripe)
@@ -203,17 +204,156 @@ export class PaymentComponent implements OnInit {
       this.isSubmit = false
     })
   }
-
-
+  public isInvalidCard = false;
+  public isInValidDate = false;
+  public isInValidCvc = false;
+  public clientSe
   genrateIntent() {
     debugger
+    this.isSubmit = true;
+
+    this.cardNumber.on('change', (event) => {
+      if (event.complete) {
+        this.isInvalidCard = false;
+      } else {
+        this.isInvalidCard = true;
+      }
+    });
+
+    this.cardExpiry.on('change', (event) => {
+      if (event.complete) {
+        this.isInValidDate = false;
+      } else {
+        this.isInValidDate = true;
+      }
+    });
+
+    this.cardCvc.on('change', (event) => {
+      if (event.complete) {
+        this.isInValidCvc = false;
+      } else {
+        this.isInValidCvc = true;
+      }
+    });
+
+    var inputs = document.querySelectorAll('.cell.example.example2 .input');
+    if (inputs[1].classList[2] == 'invalid' || inputs[1].classList[2] == 'empty' || inputs[1].classList[1] == 'empty') {
+      this.isInvalidCard = true;
+      return false
+    } else {
+      this.isInvalidCard = false
+
+    }
+
+    if (inputs[2].classList[2] == 'invalid' || inputs[2].classList[2] == 'empty' || inputs[2].classList[1] == 'empty') {
+      this.isInValidDate = true;
+      return false
+    } else {
+      this.isInValidDate = false;
+
+    }
+
+    if (inputs[3].classList[2] == 'invalid' || inputs[3].classList[2] == 'empty' || inputs[2].classList[1] == 'empty') {
+      this.isInValidCvc = true;
+      return false
+    } else {
+      this.isInValidCvc = false;
+
+    }
+    console.log(inputs)
+    // console.log(elements)
+
+    // elements.on('change', ({ error }) => {
+    //   const displayError = document.getElementById('example2-card-number');
+    //   if (error) {
+    //     displayError.textContent = error.message;
+    //   }
+    // });
+    if (this.cardForm.invalid) {
+      this.isDisabled = false;
+      return false
+
+    }
+    this.isDisabled = true
     const data = {
       application_id: this.applicationId,
       fee_Type: 3
     }
     this.permitService.genrateIntent(data).subscribe(data => {
       console.log(data)
+      this.pay(data.response.client_secret, data.response.stripe_account);
       this.toasterService.success('genrate secret')
+    },error=>{
+      this.isDisabled = false;
+
     })
   }
+
+  public stripeAccount;
+  private async pay(secret: string, stripe_account) {
+
+    const clientSecret = secret;
+    // this.stripeAccount = stripe_account;
+
+    // var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx', {
+    //   stripeAccount: "{{CONNECTED_STRIPE_ACCOUNT_ID}}"
+    // });
+    // var stripe;
+    // (<any>window).initStripe();
+    // const form = document.getElementById('payment-form');
+
+    // form.addEventListener('submit', function (ev) {
+    //   ev.preventDefault();
+    //   stripe.confirmCardPayment(clientSecret, {
+    //     payment_method: {
+    //       card: card,
+    //       billing_details: {
+    //         name: 'Jenny Rosen'
+    //       }
+    //     }
+    //   }).then(function (result) {
+    //     if (result.error) {
+    //       // Show error to your customer (e.g., insufficient funds)
+    //       console.log(result.error.message);
+    //     } else {
+    //       // The payment has been processed!
+    //       if (result.paymentIntent.status === 'succeeded') {
+    //         // Show a success message to your customer
+    //         // There's a risk of the customer closing the window before callback
+    //         // execution. Set up a webhook or plugin to listen for the
+    //         // payment_intent.succeeded event that handles any business critical
+    //         // post-payment actions.
+    //       }
+    //     }
+    //   });
+    // });
+
+    this.stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: this.card,
+        billing_details: {
+          name: 'Jenny Rosen'
+        }
+
+      }
+
+
+    }).then((result) => {
+
+      if (result.error) {
+
+        this.isDisabled = false;
+
+      } else {
+        if (result.paymentIntent.status === 'succeeded') {
+          this.toasterService.success('Paymets is Success');
+          this.router.navigate(['/dashboard/successfull']);
+
+
+        }
+      }
+    })
+
+  }
+
 }
