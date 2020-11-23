@@ -5150,3 +5150,10 @@ border: 0.5px solid #9CA6C08C;
     margin-top: 30px;
     border-radius: 4px;
 }
+
+.ng-Per .form-group span{
+    position: absolute;
+    top: 38px;
+    right: 19px;
+    font-size: 20px;
+}
