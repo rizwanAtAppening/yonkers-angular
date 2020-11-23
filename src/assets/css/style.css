@@ -5191,7 +5191,7 @@ border: 0.5px solid #9CA6C08C;
     font-family: "Poppins-Medium";
     font-size: 14px;
     padding: 13px 30px;
-   
+   cursor: pointer;
 }
 .bb-button .submit{
     background-color: #31A9FA;
@@ -5199,6 +5199,7 @@ border: 0.5px solid #9CA6C08C;
     color: #fff;
     font-size: 14px;
     padding: 13px 30px;
+    cursor: pointer;
 }
 .binput-card input{
     width: 100%;
@@ -5292,12 +5293,67 @@ border: 0.5px solid #9CA6C08C;
     transform: rotate(45deg);
   }
 
-  .tc_txt5{
+  .paymentInputBox_card .tc_txt5{
     padding-left: 30px;
     font-size: 14px;
     font-weight: 900;
     color: #000000;
   }
-  .tc_txt5 span{
+ .paymentInputBox_card .tc_txt5 a{
     color: #2aabfa !important;
   }
+
+ .paymentInputBox_card .bg_assessment_bx{
+    background: #f1f6f7;
+}
+.paymentInputBox_card .right-sidebaar .certificate-toggel {
+    padding: 23px 0 0px 0 !important;
+}
+
+.paymentInputBox_card .bg_assessment_bx h5 {
+    color: #000;
+    font-size: 19px;
+    line-height: 24px;
+    font-family: gilroy-semibold;
+    padding-bottom: 10px;
+}
+.paymentInputBox_card .property-top .toggel-this {
+    padding: 22px 0 26px 0;
+}
+.paymentInputBox_card .toggel-this {
+    background-color: #fff;
+}
+.paymentInputBox_card .asses-bor {
+    border-bottom: 1px solid #ccc;
+    padding: 16px 13px;
+}
+
+.paymentInputBox_card .Assessment-inner_two ul li p{
+    font-family: 'Poppins-Regular';
+    font-size: 16px;
+    color: #41445a;
+    line-height: 29px;
+}
+.paymentInputBox_card .Assessment-inner_two ul li h4 {
+    font-size: 18px;
+    color: #262628;
+    font-family: "Poppins-Medium";
+    line-height: 28px;
+    text-align: right;
+}
+.paymentInputBox_card .schedule-top {
+    border: 0.6000000238418579px solid #D5D5DC;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.paymentInputBox_card .asses-bor:last-child {
+    border-bottom: none !important;
+  
+}
+.paymentInputBox_card .Assessment-inner_two ul li{
+    font-size: 14px;
+}
+
+.paymentInputBox_card .Assessment-inner_two ul li h4.fess-total-txt {
+    font-family: "Poppins-Bold" !important;
+}
