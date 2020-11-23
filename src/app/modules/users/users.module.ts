@@ -24,6 +24,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { AddMeterPermitComponent } from './meter-permits/add-meter-permit/add-meter-permit.component';
 import { AddHydrantPermitComponent } from './hydrant-permit/add-hydrant-permit/add-hydrant-permit.component';
 import { OverSizePermitComponent } from './over_size-permit/over-size-permit/over-size-permit.component';
+import { PaymentSuccessfulComponent } from './payment/payment-successful/payment-successful.component';
 // import { FilterPipe } from 'src/app/core/pipe/search.pipe';
 
 //import {typeahead} from '/ngx-bootstrap/typeahead'
@@ -46,7 +47,7 @@ import { OverSizePermitComponent } from './over_size-permit/over-size-permit/ove
     AddPermitApplicationComponent, AddPermitTabSectionComponent, 
     UpdateProfileComponent, ChangePasswordComponent, SubmitApplicationComponent, 
     UpdatePermitComponent, AddDailyWorkLoactionComponent, AddPermitComponent, 
-    AddTeamMemberComponent, ShowTeamMemberComponent, PaymentComponent, AddMeterPermitComponent, AddHydrantPermitComponent, OverSizePermitComponent],
+    AddTeamMemberComponent, ShowTeamMemberComponent, PaymentComponent, AddMeterPermitComponent, AddHydrantPermitComponent, OverSizePermitComponent, PaymentSuccessfulComponent],
   providers: [
     UserAuthGuard
   ]

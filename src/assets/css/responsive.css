@@ -1,0 +1,14 @@
+@media (max-width: 375px) {
+    .mt-upload {
+        margin-top: 20px;
+    }
+    .upload_submit-Btn button {
+        padding: 15px 148px;
+    }
+    .image-box-padding img {
+        margin: 0 auto;
+        display: block;
+        padding: 32px 42px 100px 42px;
+    }
+
+}
