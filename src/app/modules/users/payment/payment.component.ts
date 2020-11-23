@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
   public strip_account: string
   public stripe;
   callStripe() {
-debugger
+    debugger
     // this.stripeAccount
     // (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
     // this.stripe = (<any>window).stripe;
@@ -85,7 +85,7 @@ debugger
     // (<any>window).initStripe(this.strip_account);
     // this.stripe = (<any>window).stripe;
     (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
-   // (<any>window).initStripe(this.strip_account);
+    // (<any>window).initStripe(this.strip_account);
     this.stripe = (<any>window).stripe
     console.log(this.stripe)
     var elements = this.stripe.elements()
@@ -204,4 +204,16 @@ debugger
     })
   }
 
+
+  genrateIntent() {
+    debugger
+    const data = {
+      application_id: this.applicationId,
+      fee_Type: 3
+    }
+    this.permitService.genrateIntent(data).subscribe(data => {
+      console.log(data)
+      this.toasterService.success('genrate secret')
+    })
+  }
 }
