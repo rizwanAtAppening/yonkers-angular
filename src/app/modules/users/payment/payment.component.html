@@ -1,7 +1,7 @@
 
 <app-layout>
     <router-outlet>
-       <div class="container row d-flex justify-content-center mt-4">
+       <!-- <div class="container row d-flex justify-content-center mt-4">
            <div class="col-8">
                 <table class="table">
                         <thead class="thead-dark">
@@ -25,7 +25,7 @@
            </div>
            
                  
-       </div>
+       </div> -->
 
        <div class="paymentInputBox_card">
 
@@ -217,17 +217,17 @@
                         <div class="Assessment-info">
                             <div class="row">
                                 <ul class="col-12">
-                                    <div class="asses-bor">
+                                    <div class="asses-bor" *ngFor = "let fee of paymentsDetailsWithKey">
                                         <div class="row ">
                                             <li class="col-5">
-                                                <p>Certificate fee</p>
+                                                <p>{{fee?.key}}</p>
                                             </li>
                                             <li class="col-7">
-                                                <h4> $434.00</h4>
+                                                <h4>{{fee?.amount}}</h4>
                                             </li>
                                         </div>
                                     </div>
-                                    <div class="asses-bor">
+                                    <!-- <div class="asses-bor">
                                         <div class="row ">
                                             <li class="col-5">
                                                 <p>Fire fee</p>
@@ -246,13 +246,13 @@
                                             <h4> $34.17</h4>
                                         </li>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="asses-bor">
                                     <div class="row ">
                                         <li class="col-5">
                                             <p>Total</p>
                                         </li><li class="col-7">
-                                            <h4 class="fess-total-txt"> $618.17</h4>
+                                            <h4 class="fess-total-txt"> {{totalFee}}</h4>
                                         </li>
                                     </div>
                                 </div>

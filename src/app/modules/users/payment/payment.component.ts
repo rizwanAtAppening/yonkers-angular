@@ -15,8 +15,14 @@ export class PaymentComponent implements OnInit {
   public cardForm: FormGroup;
   private card;
   public isDisabled = false;
-
-  public paymentDetails: any
+  public isInvalidCard = false;
+  public isInValidDate = false;
+  public isInValidCvc = false;
+  public clientSecret
+  public isSubmit = false;
+  public paymentDetails: any;
+  public paymentsDetailsWithKey = []
+  public totalFee: number
   constructor(
     private permitService: PermitService,
     private route: ActivatedRoute,
@@ -167,9 +173,9 @@ export class PaymentComponent implements OnInit {
 
   }
 
-  public paymentsDetailsWithKey = []
-  showPayment() {
 
+  showPayment() {
+    this.totalFee = 0
     const data = {
       fee_Type: 3,
       application_id: this.applicationId
@@ -180,6 +186,8 @@ export class PaymentComponent implements OnInit {
         this.paymentDetails.application_fee.map(data => {
           Object.keys(this.paymentDetails.application_fees_config).map(type => {
             if (data.type == type) {
+              this.totalFee += data.amount
+              console.log(this.totalFee)
               this.paymentsDetailsWithKey.push({ key: this.paymentDetails.application_fees_config[type], amount: data.amount, fee_Type: data.feeType })
             }
           })
@@ -189,25 +197,22 @@ export class PaymentComponent implements OnInit {
     })
   }
 
-  public isSubmit = false;
-  payment() {
+  // public isSubmit = false;
+  // payment() {
 
-    this.isSubmit = true
-    const data = {
-      fee_Type: 3,
-      application_id: this.applicationId
-    }
-    this.permitService.payment(data).subscribe(data => {
-      this.toasterService.success('Payment succesfull');
-      this.router.navigate(['/dashboard/permit'])
-    }, error => {
-      this.isSubmit = false
-    })
-  }
-  public isInvalidCard = false;
-  public isInValidDate = false;
-  public isInValidCvc = false;
-  public clientSe
+  //   this.isSubmit = true
+  //   const data = {
+  //     fee_Type: 3,
+  //     application_id: this.applicationId
+  //   }
+  //   this.permitService.payment(data).subscribe(data => {
+  //     this.toasterService.success('Payment succesfull');
+  //     this.router.navigate(['/dashboard/permit'])
+  //   }, error => {
+  //     this.isSubmit = false
+  //   })
+  // }
+
   genrateIntent() {
     debugger
     this.isSubmit = true;
@@ -283,7 +288,7 @@ export class PaymentComponent implements OnInit {
       console.log(data)
       this.pay(data.response.client_secret, data.response.stripe_account);
       this.toasterService.success('genrate secret')
-    },error=>{
+    }, error => {
       this.isDisabled = false;
 
     })
@@ -336,8 +341,6 @@ export class PaymentComponent implements OnInit {
         }
 
       }
-
-
     }).then((result) => {
 
       if (result.error) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-payment-successful',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentSuccessfulComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  navigatePermit() {
+    this.router.navigate(['/dashboard/permit'])
   }
 
 }
