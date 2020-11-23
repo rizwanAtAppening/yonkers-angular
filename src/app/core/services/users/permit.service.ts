@@ -96,6 +96,19 @@ export class PermitService {
     );
   }
 
+  genrateIntent(data: OccupancyApplication): Observable<any> {
+    const href = `${environment['genrateIntent']}`;
+    return this.http.post<any>(href, data).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
+
   showPayment(data): Observable<any> {
     const href = `${environment['showPaymentDetails']}`;
     return this.http.get<any>(href, { params: data }).pipe(

@@ -479,6 +479,8 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (nextTab == 'review' && this.application) {
       this.currentTab = nextTab
       this.getApplication()
+      this.completeApplication()
+
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       return false
 
@@ -507,7 +509,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           model: 1,
           id: Number(this.application_id),
           permit_type: Number(this.permitType),
-          city_admin_id:this.cityId
+          city_admin_id: this.cityId
         }
       } else {
         this.data = {
@@ -515,7 +517,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           type: Number(this.whatForm.value.type),
           model: 1,
           permit_type: Number(this.permitType),
-          city_admin_id:this.cityId
+          city_admin_id: this.cityId
 
         }
       }
@@ -588,10 +590,10 @@ export class AddPermitTabSectionComponent implements OnInit {
       if (this.applicantForm.invalid) {
         this.isSubmit = true;
         return false
-      } 
+      }
       this.applicantForm.value.model = 3
       this.applicantForm.value.permit_type = Number(this.permitType),
-      this.data = this.applicantForm.value
+        this.data = this.applicantForm.value
     }
 
     else if (formGroup == 'contractorForm' || this.currentTab == 'contrator') {
@@ -667,6 +669,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
+      debugger
       if (this.currentTab == 'where' || this.currentTab == 'contrator') {
         this.getApplication()
       }
@@ -680,6 +683,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
 
       }
+      
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       // this.permitService.saveCurrentTab(this.currentTab);
     })
@@ -1522,6 +1526,15 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
 
+  completeApplication() {
+    debugger
+    const data = {
+      application_id: this.application.id
+    }
+    this.userService.completeApplication(data).subscribe(data => {
+      console.log(data)
+    })
+  }
 
 
 }

@@ -144,7 +144,9 @@ const userUrl = {
   payment:`/application-payment`,
   showPaymentDetails:`/application-fee`,
   addMeterPermit:`/application`,
-  cityAdmin:`/city-admins`
+  cityAdmin:`/city-admins`,
+  completeApplication:`/application/submitted`,
+  genrateIntent:`/application-payment`
 
 
 
