@@ -26,19 +26,19 @@
                         <div class="job-location-Hd d-flex justify-content-between">
                             <h3 class="w-100">Add New City Admin</h3>
                             <h4 id="newadd_radiobtn">
-                                <label class="contcity">One
-                                    <input type="radio" checked="checked" name="radio">
+                                <label class="contcity">Strip
+                                    <input type="radio" value="1"  (change) ="selectStripAc($event.target.value)" [checked]=" (isChecked)" name="radio">
                                     <span class="check-c"></span>
                                   </label>
-                                  <label class="contcity">Two
-                                    <input type="radio" name="radio">
+                                  <label class="contcity">FIS
+                                    <input type="radio" value="2"   (change) ="selectStripAc($event.target.value)" [checked]=" (!isChecked)" name="radio">
                                     <span class="check-c"></span>
                                   </label>
                             </h4>
                             <h6 class="activeswitch">
                                 <span>Active</span>
                                 <label class="switchs">
-                                    <input type="checkbox"  formControlName="status">
+                                    <input type="checkbox"   formControlName="status">
                                     <span class="slides rounds"></span>
                                 </label>
                             </h6>
@@ -60,7 +60,7 @@
                                                     <div class="form-error"
                                                     *ngIf="staffControl.city_name.invalid && (staffControl.city_name.dirty || staffControl.city_name.touched || isStaff)">
                                                     <span *ngIf="staffControl.city_name.errors['required']">
-                                                        Please enter city city_name
+                                                        Please enter city name
                                                     </span>
                                                   
                                                 </div>
@@ -101,38 +101,44 @@
 
                                 <div class="bussiness-input">
                                     <div class="row">
-                                        <!-- <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="ans3" class="form-control"
-                                                                formControlName="phone" (keypress) = "phoneNumberFormate()"  maxlength = "12" 
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-                                                                required="">
-                                                            <label class="form-control-placeholder"
-                                                                for="ans3">Phone</label>
+                                            <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="ans3" class="form-control"
+                                                                        formControlName="name"   [class]="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required="">
+                                                                    <label class="form-control-placeholder"
+                                                                        for="ans3">Admin name</label>
+                                                                </div>
+                                                                <div class="form-error"
+                                                                *ngIf="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff)">
+                                                                <span *ngIf="staffControl.name.errors['required']">
+                                                                    Please enter city admin name
+                                                                </span>
+                                                              
+                                                            </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div> -->
-
-                                        <div class="col-6">
+                                        <div class="col-6" *ngIf ="isStripe">
                                             <div class="bdp_email loction-adInput">
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
                                                             <input type="text" id="ans3" class="form-control"
-                                                                formControlName="name"   [class]="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"
+                                                                formControlName="stripe_account_id"   [class]="staffControl.stripe_account_id.invalid && (staffControl.stripe_account_id.dirty || staffControl.stripe_account_id.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"
+                                                               
                                                                 required="">
                                                             <label class="form-control-placeholder"
-                                                                for="ans3">Admin name</label>
+                                                                for="ans3">Strip Id</label>
                                                         </div>
                                                         <div class="form-error"
-                                                        *ngIf="staffControl.name.invalid && (staffControl.name.dirty || staffControl.name.touched || isStaff)">
-                                                        <span *ngIf="staffControl.name.errors['required']">
-                                                            Please enter city admin name
+                                                        *ngIf="staffControl.stripe_account_id.invalid && (staffControl.stripe_account_id.dirty || staffControl.stripe_account_id.touched || isStaff)">
+                                                        <span *ngIf="staffControl.stripe_account_id.errors['required']">
+                                                            Please enter stripe account id
                                                         </span>
                                                       
                                                     </div>
@@ -140,6 +146,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                      
 
 
                                         <!-- <div class="col-6">

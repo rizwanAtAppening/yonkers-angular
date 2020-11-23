@@ -33,7 +33,8 @@ import { CityAdminListComponent } from './city-admin/city-admin-list/city-admin-
 @NgModule({
   declarations: [ApplicationsComponent,FilterPipe, PemitUpdateComponent, PermitDecisionsComponent,
      InspectionsComponent, ContratorDetailsComponent, DwlDetailsComponent, AddStaffComponent, StaffListComponent, CreatePasswordComponent,
-      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent, AcceptSubmissionReviewComponent, MeterFireDetailsComponent, MeterWaterDetailsComponent, AdvanceSearchComponent, AddCityAdminComponent, CityAdminListComponent],
+      MeterPemitComponent, HydrantPemitComponent, OversizedVehiclesComponent, MeterDetailsComponent, HydrantDetailsComponent, OversizedVehiclesDetailsComponent, AcceptSubmissionReviewComponent, MeterFireDetailsComponent, MeterWaterDetailsComponent,
+       AdvanceSearchComponent, AddCityAdminComponent, CityAdminListComponent],
   imports: [
   
     CommonModule,

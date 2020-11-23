@@ -96,7 +96,7 @@ export class UpdateProfileComponent implements OnInit {
 
 
   phoneNumberFormate(value: string) {
-    debugger
+    
     var autoFillValue = '-'
     if (value == 'phone') {
       if (this.profileForm.value.phone_number.length === 3) {

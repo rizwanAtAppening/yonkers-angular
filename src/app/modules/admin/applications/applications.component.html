@@ -623,7 +623,7 @@
                                                                                     -
                                                                                     {{to ? (to | date :'dd/MM/yyyy') :'01/07/2020'}}
                                                                                 </button>
-                                                                                <button>
+                                                                                <button type="button" (click) ="exportCSV()"  target="_blank"  >
                                                                                     <span><img
                                                                                             src="assets/images/upload-index.svg"
                                                                                             alt=""></span>
@@ -941,7 +941,8 @@
                                                                                                 alt=""></span>
                                                                                         Print
                                                                                     </button></div>
-                                                                                <div class="New-Project ml-3"><button>
+                                                                                   
+                                                                                <div class="New-Project ml-3"><button type="button" (click) ="exportCSV()"  target="_blank"  >
                                                                                         <span><img
                                                                                                 src="assets/images/upload-index.svg"
                                                                                                 alt=""></span>

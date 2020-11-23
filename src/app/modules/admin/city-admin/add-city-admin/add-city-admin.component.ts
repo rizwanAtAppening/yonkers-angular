@@ -19,7 +19,8 @@ export class AddCityAdminComponent implements OnInit {
   public allRoles = []
   public allDepartments = []
   public isStaff = false;
-  public staffId: number
+  public staffId: number;
+  public isChecked = true
   constructor(
     private adminAuthService: AuthenticationService,
     private router: Router,
@@ -31,7 +32,7 @@ export class AddCityAdminComponent implements OnInit {
     this.settings = settingConfig;
 
   }
-
+  // public isChecked = true
   ngOnInit(): void {
     this.addStaffCon();
     this.addStaffForm.controls.status.setValue(1)
@@ -42,7 +43,7 @@ export class AddCityAdminComponent implements OnInit {
       this.isEmailReadOnly = true
       this.getStaffById();
     }
-
+    this.addStaffForm.controls.payment_account_type.setValue(true)
 
   }
   addStaffCon() {
@@ -57,8 +58,9 @@ export class AddCityAdminComponent implements OnInit {
       // phone: ['', [Validators.required, Validators.pattern('^[0-9]{3}-[0-9]{3}-[0-9]{4}$')]],
       // department_id: ['', [Validators.required]],
       // role_id: ['', [Validators.required]],
-      // stripe_account_id: [''],
-      city_name: [''],
+      payment_account_type: [''],
+      stripe_account_id: ['', Validators.required],
+      city_name: ['', Validators.required],
       status: [''],
     })
   }
@@ -67,27 +69,56 @@ export class AddCityAdminComponent implements OnInit {
 
 
   addCityAdmin() {
+    debugger
+    if (this.addStaffForm.value.payment_account_type == 2) {
+      this.addStaffForm.controls.stripe_account_id.setErrors(null)
+    }
     if (this.addStaffForm.invalid) {
       this.isStaff = true
       return false
+    }
+    if (this.addStaffForm.value.payment_account_type == true) {
+      this.addStaffForm.value.payment_account_type = 1
+    }
+    if (this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 1
+    } else if (!this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 0
     }
     this.addStaffForm.value.city = this.addStaffForm.value.city_name
     // this.addStaffForm.value.phone =  '656-455-5858'
     this.cityAdminService.addCityAdmin(this.addStaffForm.value).subscribe(data => {
       this.TS.success("Staff added");
+      this.isStaff = false;
+      this.router.navigate(['/admin/city-admin-list'])
       this.addStaffForm.reset();
     })
   }
 
 
   updateCityAdmin() {
+    debugger
+    if (this.addStaffForm.value.payment_account_type == 2) {
+      this.addStaffForm.controls.stripe_account_id.setErrors(null)
+      // this.addStaffForm.controls.stripe_account_id.setValue(null)
+
+    }
     if (this.addStaffForm.invalid) {
       this.isStaff = true
       return false
     }
+    if (this.addStaffForm.value.payment_account_type == true) {
+      this.addStaffForm.value.payment_account_type = 1
+    }
+    if (this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 1
+    } else if (!this.addStaffForm.value.status) {
+      this.addStaffForm.value.status = 0
+    }
     this.addStaffForm.value.city = this.addStaffForm.value.city_name
     this.cityAdminService.updateCityAdmin(this.addStaffForm.value, this.staffId).subscribe(data => {
       this.TS.success("Staff update");
+      this.isStaff = false
       this.router.navigate(['/admin/city-admin-list'])
       this.addStaffForm.reset();
     })
@@ -107,7 +138,6 @@ export class AddCityAdminComponent implements OnInit {
 
   public singleStaffDetails: any
   getStaffById() {
-    debugger
     this.cityAdminService.getSingleCityAdmin(this.staffId).subscribe(data => {
       this.singleStaffDetails = data.response;
       if (this.singleStaffDetails) {
@@ -124,8 +154,28 @@ export class AddCityAdminComponent implements OnInit {
     this.addStaffForm.controls.city_name.setValue(value.name);
 
     this.addStaffForm.controls.status.setValue(value.status);
-    this.addStaffForm.controls.phone.setValue(value.phone);
+    this.addStaffForm.controls.stripe_account_id.setValue(value.stripe_account_id);
+    if (value.payment_account_type == 1) {
+      this.isChecked = true
+    } else {
+      this.isChecked = false
+      this.isStripe = false
+    }
 
+  }
+  public isStripe = true
+  selectStripAc(value: string) {
+    debugger
+    if (value == '1') {
+      this.addStaffForm.controls.payment_account_type.setValue(1)
+      this.isStripe = true
+    }
+    else if (value == '2') {
+      this.addStaffForm.controls.payment_account_type.setValue(2)
+      this.addStaffForm.controls.stripe_account_id.setValue(null)
+      this.isStripe = false
+
+    }
   }
 
 }

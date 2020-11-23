@@ -5157,3 +5157,147 @@ border: 0.5px solid #9CA6C08C;
     right: 19px;
     font-size: 20px;
 }
+
+/* ///////////////////////////////////////////   payment card css  ////////////////////////////////////////////////// */
+
+.paymentInputBox_card{
+    margin-top: 50px;
+}
+
+.paymentInputBox_card .zip-txt{
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Poppins-Regular';
+    margin-bottom: 7px;
+}
+
+.paymentInputBox_card  .boxborder-card{
+    border: 0.6000000238418579px solid #D5D5DC;
+    background-color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 32px 32px 32px;
+    margin-bottom: 50px;
+}
+
+.bb-button{
+    text-align: right;
+    margin-top: 40px;
+}
+.bb-button .close-need{
+    margin-right: 20px;
+    border: 1px solid #cfcfcf;
+    background: rgb(236, 236, 236);
+    font-family: "Poppins-Medium";
+    font-size: 14px;
+    padding: 13px 30px;
+   
+}
+.bb-button .submit{
+    background-color: #31A9FA;
+    font-family: "Poppins-Medium";
+    color: #fff;
+    font-size: 14px;
+    padding: 13px 30px;
+}
+.binput-card input{
+    width: 100%;
+    height: 45px;
+    margin: auto;
+    border: .5px solid #0000001f;
+    border-radius: 4px;
+    padding: 0px 20px;
+}
+.binput-card input::placeholder{
+    color: #D3DBE2;
+    font-family: "Poppins-SemiBold";
+    font-size: 14px;
+}
+.binput-card2 .field{
+    padding: 13px 20px;
+    border: 1px solid #0000001f;
+    height: 45px;
+    margin: 0;
+    border-radius: 4px;
+}
+
+ .exp-date-inputmt{
+    margin-top: 40px;
+}
+
+/* The container */
+.container4 {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container4 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmarkcard {
+    position: absolute;
+        border: solid 1px rgba(0, 0, 0, 0.25);
+    top: 0;
+    left: 0;
+    border-radius: 17%;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container4:hover input ~ .checkmarkcard {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container4 input:checked ~ .checkmarkcard {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .container4 .checkmarkcard:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container4 input:checked ~ .checkmarkcard:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container4 .checkmarkcard:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  .tc_txt5{
+    padding-left: 30px;
+    font-size: 14px;
+    font-weight: 900;
+    color: #000000;
+  }
+  .tc_txt5 span{
+    color: #2aabfa !important;
+  }

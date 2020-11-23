@@ -30,7 +30,7 @@ export class AddHydrantPermitComponent implements OnInit {
   public currentUser: any
   public addressId: number;
   public permitNavigateValue: string
-
+  public cityId: number
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -47,6 +47,8 @@ export class AddHydrantPermitComponent implements OnInit {
     this.minDate = new Date();
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab;
+      this.cityId = data.cityId
+
       this.permit_type = data.permitType;
       this.application_id = data.application_id
     })
@@ -99,7 +101,7 @@ export class AddHydrantPermitComponent implements OnInit {
       }
       this.applicantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.applicantForm.value.applican_last_name = this.applicantForm.value.applicant_last_name
-
+      this.applicantForm.value.city_admin_id = this.cityId ? this.cityId:this.application.city_admin_id
       this.applicantForm.value.model = 3
 
       this.formValue = this.applicantForm.value;
@@ -113,13 +115,13 @@ export class AddHydrantPermitComponent implements OnInit {
       this.hydrantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.hydrantForm.value.model = 8
       this.getApplication()
-     
+
       this.formValue = this.hydrantForm.value;
     }
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
-     
-     
+
+
       this.getApplication()
       this.back(this.currentTab, '')
       if (this.permitNavigateValue == 'fine') {
@@ -147,7 +149,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   getApplication() {
-    debugger
+    
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -172,7 +174,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   back(tab, value: string) {
-debugger
+    
     if (!this.application_id) {
       this.getApplication();
 
@@ -202,7 +204,7 @@ debugger
       }
     }
     if (!this.application_id) {
-      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab } })
+      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab,cityId:this.cityId } })
 
     }
 
@@ -245,17 +247,17 @@ debugger
   phoneNumberFormate(value: string) {
     var autoFillValue = '-'
     if (value == 'address') {
-      if (this.applicantForm.value.applicant_phone.length === 3) {
+      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
-      if (this.applicantForm.value.applicant_phone.length === 7) {
+      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
     } else if (value == 'fax') {
-      if (this.applicantForm.value.fax.length === 3) {
+      if ( this.applicantForm.value.fax && this.applicantForm.value.fax.length === 3) {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
-      if (this.applicantForm.value.fax.length === 7) {
+      if (this.applicantForm.value.fax && this.applicantForm.value.fax.length === 7) {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
     }

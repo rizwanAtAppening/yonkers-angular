@@ -16,6 +16,9 @@ export class PermitComponent implements OnInit {
   @ViewChild('confirmPopUp', { static: false }) confirmPopUp: ElementRef;
   @ViewChild('cancelConfirmPopUp', { static: false }) cancelConfirmPopUp: ElementRef;
   @ViewChild('withdrawConfirmPopUp', { static: false }) withdrawConfirmPopUp: ElementRef;
+  @ViewChild('adminCity', { static: false }) adminCity: ElementRef;
+
+  @ViewChild('adminCity2', { static: false }) adminCity2: ElementRef;
 
   public applicationId: number;
 
@@ -41,7 +44,7 @@ export class PermitComponent implements OnInit {
   public dwlType: string = '1'
   public currentTab: string = '1'
   ngOnInit() {
-    
+
     if (localStorage.getItem('dwlType') || localStorage.getItem('currentTab')) {
       this.dwlType = (localStorage.getItem('dwlType'));
       this.currentTab = (localStorage.getItem('currentTab'))
@@ -53,10 +56,10 @@ export class PermitComponent implements OnInit {
 
     this.userService.changeSaveAndExit(true);
     this.permitService.deleteSessionApplication();
-    this.getPermitApplication(this.dwlType,this.currentTab ? this.currentTab : 1);
+    this.getPermitApplication(this.dwlType, this.currentTab ? this.currentTab : 1);
     this.onInIt();
     this.currentUser()
-
+    this.cityAdminList()
   }
 
   onInIt() {
@@ -204,7 +207,7 @@ export class PermitComponent implements OnInit {
   public hydrantPermit = []
   public engineeringPermit = []
   public sizePemit = []
-  getPermitApplication(dwlType:any,permit_type:any) {
+  getPermitApplication(dwlType: any, permit_type: any) {
     this.dwlType = dwlType
     this.currentUser()
     if (this.dwlType == '1') {
@@ -216,14 +219,14 @@ export class PermitComponent implements OnInit {
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type ,permit_type:permit_type}).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type, permit_type: permit_type }).subscribe(data => {
       this.applictionDetails = data.response;
       // this.dwlApplication = this.applictionDetails.filter(data => {
       //   if (data.status == null && data.application_type == 2) {
       //     return data
       //   }
       // })
-      
+
       this.engineeringPermit = this.applictionDetails.filter(data => {
         if (data.permit_type == 1) {
           return data;
@@ -260,11 +263,11 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  paginate(page, dwlType,permit_type) {
+  paginate(page, dwlType, permit_type) {
     this.dwlType = dwlType
 
     this.currentPage = page
-    this.getPermitApplication(this.dwlType,permit_type)
+    this.getPermitApplication(this.dwlType, permit_type)
   }
   public searchString: string
   searchApplication() {
@@ -292,18 +295,28 @@ export class PermitComponent implements OnInit {
 
     this.router.navigate(['/dashboard/update-application'], { queryParams: { id: applicationId } });
   }
+  public navigaetValue: any
   navigate(value) {
-    if (value == 1) {
-      this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: value } })
-      localStorage.setItem('dwlType', '1');
+    this.navigaetValue = value
+  }
+  navigatetoDwl() {
+    if (this.cityId) {
+      this.adminCity2.nativeElement.click()
+      if (this.navigaetValue == 1) {
+        this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: this.navigaetValue, cityId: this.cityId } })
+        localStorage.setItem('dwlType', '1');
 
+      }
+      else {
+        this.router.navigate(['/dashboard/daily-work-location'], { queryParams: { type: this.navigaetValue, cityId: this.cityId } })
+        localStorage.setItem('dwlType', '2');
+
+
+      }
+    } else {
+      this.toastService.error('Please select city')
     }
-    else {
-      this.router.navigate(['/dashboard/daily-work-location'], { queryParams: { type: value } })
-      localStorage.setItem('dwlType', '2');
 
-
-    }
   }
   getApplicationId(id) {
     this.applicationId = id
@@ -343,7 +356,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.cancelPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application canceled');
-      this.getPermitApplication(this.dwlType,'');
+      this.getPermitApplication(this.dwlType, '');
       this.cancelConfirmPopUp.nativeElement.click();
     })
   }
@@ -352,7 +365,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application withdraw');
-      this.getPermitApplication(this.dwlType,'')
+      this.getPermitApplication(this.dwlType, '')
       this.withdrawConfirmPopUp.nativeElement.click();
 
     })
@@ -362,7 +375,7 @@ export class PermitComponent implements OnInit {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
   }
 
-  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string,permit_type:any) {
+  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string, permit_type: any) {
     localStorage.setItem('currentTab', permit_type);
     if (pemit == 'meter') {
       this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { application_id: applicationId, tab: value } })
@@ -377,5 +390,28 @@ export class PermitComponent implements OnInit {
       this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { application_id: applicationId, tab: value } })
 
     }
+  }
+  public cityId: number
+  selectCity(cityId) {
+    this.cityId = cityId
+
+  }
+  selectType() {
+    if (this.cityId) {
+      this.adminCity.nativeElement.click()
+      this.router.navigate(['/dashboard/add-permit-selectType'], { queryParams: { cityId: this.cityId } })
+    } else {
+      this.toastService.error('Please select city');
+
+    }
+
+  }
+
+  public cityAdmin = []
+  cityAdminList() {
+
+    this.permitService.cityAdminList().subscribe(data => {
+      this.cityAdmin = data.response;
+    })
   }
 }

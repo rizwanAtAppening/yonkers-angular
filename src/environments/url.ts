@@ -101,7 +101,9 @@ const adminUrl = {
   addCityAdmin:`/city-admin/create`,
   getCityAdmin:`/city-admin`,
   getSingleCityAdmin:`/city-admin/update`,
-  updateCityAdmin:`/city-admin/update`
+  updateCityAdmin:`/city-admin/update`,
+  exportCSV:`/application-file-export`,
+  
 
 
 };
@@ -142,6 +144,7 @@ const userUrl = {
   payment:`/application-payment`,
   showPaymentDetails:`/application-fee`,
   addMeterPermit:`/application`,
+  cityAdmin:`/city-admins`
 
 
 

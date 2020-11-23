@@ -29,7 +29,7 @@ export class MeterDetailsComponent implements OnInit {
 
 
   permitDetails() {
-    debugger
+    
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
       this.certificates.next(this.applicationDetails)

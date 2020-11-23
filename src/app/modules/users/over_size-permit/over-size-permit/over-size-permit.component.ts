@@ -24,6 +24,7 @@ export class OverSizePermitComponent implements OnInit {
   public minDate: Date;
   public application_id: number
   public settings :any
+  public cityId:number
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -41,6 +42,7 @@ export class OverSizePermitComponent implements OnInit {
     this.minDate = new Date();
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab;
+      this.cityId = data.cityId
       this.permit_type = data.permitType;
       this.application_id = data.application_id
     })
@@ -93,7 +95,7 @@ export class OverSizePermitComponent implements OnInit {
   get oversize() { return this.oversizeForm.controls }
   public formValue
   addOverSize(formGroup: string, nextTab) {
-    debugger
+    
     if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
@@ -103,7 +105,7 @@ export class OverSizePermitComponent implements OnInit {
       this.applicantForm.value.permit_type = this.permit_type ? this.permit_type : 4;
       this.applicantForm.value.applican_last_name =  this.applicantForm.value.applicant_last_name 
       this.applicantForm.value.model = 3
-
+      this.applicantForm.value.city_admin_id = this.cityId ? this.cityId:this.application.city_admin_id
       this.formValue = this.applicantForm.value;
     }
     else if (formGroup == 'oversizeForm' || this.currentTab == 'oversize') {
@@ -209,7 +211,7 @@ export class OverSizePermitComponent implements OnInit {
       }
     }
     if (!this.application_id) {
-      this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { tab: this.currentTab } })
+      this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { tab: this.currentTab,cityId:this.cityId } })
     }
 
   }
@@ -250,19 +252,20 @@ export class OverSizePermitComponent implements OnInit {
   }
 
   phoneNumberFormate(value: string) {
+    
     var autoFillValue = '-'
     if (value == 'address') {
-      if (this.applicantForm.value.applicant_phone.length === 3) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
       if (this.applicantForm.value.applicant_phone.length === 7) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
     } else if (value == 'fax') {
-      if (this.applicantForm.value.fax.length === 3) {
+      if ( this.applicantForm.value.fax && (this.applicantForm.value.fax.length === 3)) {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
-      if (this.applicantForm.value.fax.length === 7) {
+      if (this.applicantForm.value.fax && this.applicantForm.value.fax.length === 7) {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
     }

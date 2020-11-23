@@ -132,7 +132,7 @@ export class AddStaffComponent implements OnInit {
   }
 
   allRole() {
-    debugger
+    
     this.adminAuthService.allRole().subscribe(data => {
       this.allRoles = data.response
     })

@@ -27,7 +27,7 @@ export class MeterPemitComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger
+    
     this.applicationService.changeMessage('2');
     this.applicationService.currentMessage.subscribe(type => {
       this.permit_type = type
@@ -46,7 +46,7 @@ export class MeterPemitComponent implements OnInit {
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    debugger
+    
     this.application_Type = application_Type
     this.modify.application_type = application_Type
     this.modify.permit_type = 2
@@ -63,7 +63,7 @@ export class MeterPemitComponent implements OnInit {
   }
 
   paginate(page, value, stringValue) {
-    debugger
+    
     this.application_Type = value,
       this.page = page
     // if (stringValue == 'inspection') {
@@ -87,7 +87,7 @@ export class MeterPemitComponent implements OnInit {
   }
 
   searchApplication() {
-    debugger
+    
     const data = {
       search_query: String(this.searchString),
       application_type: this.application_Type
@@ -164,6 +164,13 @@ export class MeterPemitComponent implements OnInit {
 
     }
 
+  }
+
+  exportCSV() {
+    let body: any = {}
+    body.page = this.page;
+    body.permit_type = this.permit_type
+    this.applicationService.exportCSV(body)
   }
 
 }
