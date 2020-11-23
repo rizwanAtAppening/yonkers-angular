@@ -4,6 +4,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { HttpParams } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-applications',
@@ -20,6 +21,9 @@ export class ApplicationsComponent implements OnInit {
     department: null,
     email: null
   }
+     public export = "/api/admin/application-file-export"
+
+  public env: any;
   constructor(
     private applicationService: ApplicationService,
     private router: Router,
@@ -29,7 +33,7 @@ export class ApplicationsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.applicationService.currentMessage.subscribe((type:any) => {
+    this.applicationService.currentMessage.subscribe((type: any) => {
       this.permit_type = type
     })
 
@@ -53,7 +57,7 @@ export class ApplicationsComponent implements OnInit {
   public totalPagination: number;
   public modify = {
     page: this.page,
-    permit_type : this.permit_type,
+    permit_type: this.permit_type,
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
@@ -142,19 +146,19 @@ export class ApplicationsComponent implements OnInit {
 
   }
 
-    paginate(page, value, stringValue) {
-      
-      this.application_Type = value,
-        this.page = page
-      if (stringValue == 'inspection') {
-        this.paymentsSummary(1, 'inspection', '')
-      } else if (stringValue == 'payment') {
-        this.paymentsSummary(1, 'payment', '')
-      }
-      if (stringValue != 'inspection' && stringValue != 'payment')
-        this.getAllApplication(this.application_Type)
+  paginate(page, value, stringValue) {
 
+    this.application_Type = value,
+      this.page = page
+    if (stringValue == 'inspection') {
+      this.paymentsSummary(1, 'inspection', '')
+    } else if (stringValue == 'payment') {
+      this.paymentsSummary(1, 'payment', '')
     }
+    if (stringValue != 'inspection' && stringValue != 'payment')
+      this.getAllApplication(this.application_Type)
+
+  }
 
   public isSingleAddress = true;
   public currentId: number
@@ -256,11 +260,11 @@ export class ApplicationsComponent implements OnInit {
   }
 
 
- 
+
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
-
+    debugger
     if (value == 'inspector') {
       if (!selectValue.checked) {
         this.inspectorAndExaminerIdsArray.forEach((data, i) => {
@@ -322,7 +326,14 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
+
   
-  
+  exportCSV() {
+    debugger
+    let body: any = {}
+    body.page = this.page;
+    body.permit_type = this.permit_type
+    this.applicationService.exportCSV(body)
+  }
 
 }

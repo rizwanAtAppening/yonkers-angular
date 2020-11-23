@@ -146,4 +146,11 @@ export class OversizedVehiclesComponent implements OnInit {
     }
 
   }
+
+  exportCSV() {
+    let body: any = {}
+    body.page = this.page;
+    body.permit_type = this.permit_type
+    this.applicationService.exportCSV(body)
+  }
 }

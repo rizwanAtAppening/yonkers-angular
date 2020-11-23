@@ -30,7 +30,23 @@
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAkq7DnUBTkddWXddoHAX02Srw6570ktx8">
   </script>
   <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript" >
+    function initStripe(stripeAccount) {
+        debugger
+        window.stripe = Stripe('pk_test_4QS3Yr8j6vwnt5iWtcIFZDFP');
+        if (stripeAccount) {
 
+            window.stripe = Stripe('pk_test_4QS3Yr8j6vwnt5iWtcIFZDFP', { stripeAccount: stripeAccount });
+        }
+    }
+     //Stripe('pk_test_4QS3Yr8j6vwnt5iWtcIFZDFP');
+     Stripe.setPublishableKey('pk_test_4QS3Yr8j6vwnt5iWtcIFZDFP')
+
+    // initStripe();
+  
+</script>
 
   <!-- <script src="https://rawgit.com/web-animations/web-animations-js/master/web-animations.min.js"></script> -->
 </body>

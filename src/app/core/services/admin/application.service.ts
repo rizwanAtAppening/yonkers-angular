@@ -24,7 +24,7 @@ export class ApplicationService {
   ) { }
 
   getApplications(data, array): Observable<any> {
-    
+
     // var page
     // var application_Type
     // page = data['page'],
@@ -36,18 +36,18 @@ export class ApplicationService {
     // for (const actor of actors) {
     //   params = params.append('actors', actor);
     // }
-    if(actors.length > 0){
+    if (actors.length > 0) {
       actors.map(actor => {
         Object.keys(actor).forEach(obj => {
-          params = params.append(obj,actor[obj]);
-  
+          params = params.append(obj, actor[obj]);
+
         })
       })
     }
-   
+
     Object.keys(data).forEach(value => {
 
-      params = params.append(value,data[value])
+      params = params.append(value, data[value])
     })
     // data[''] = params
     const href = `${environment['getApplication']}`
@@ -136,6 +136,42 @@ export class ApplicationService {
     );
   }
 
+  // exportCSV(data) {
+  //   const href = `${environment['exportCSV']}`
+  //   return this.http.get<any>(href, data).pipe(
+  //     map(
+  //       ({ status, ...rest }) => {
+  //         if (status === 'success') {
+  //         }
+  //         return rest;
+  //       }
+  //     )
+  //   );
+  // }
+
+  // exportCSV(): Observable<any> {
+  //   const href = `${environment['exportCSV']}`
+  //   return this.http.get<any>(href).pipe(
+  //     map(
+  //       ({ status, ...rest }) => {
+  //         if (status === 'success') {
+  //         }
+  //         return rest;
+  //       }
+  //     )
+  //   );
+  // }
+  public downloadFile: string;
+
+  exportCSV(data: any): void {
+    debugger
+    let params = new HttpParams();
+    params = params.set('permit_type', data.permit_type) 
+    params = params.set('page', data.page)
+    this.downloadFile = `${environment.host}` + `${environment['exportCSV']}?`+ params.toString();;
+    window.open(this.downloadFile, '_blank');
+  }
+
   submitMeterFireReviewAndWaterReview(data) {
     const href = `${environment['meterFireReviewAndWater']}`
     return this.http.post<any>(href, data).pipe(
@@ -163,7 +199,7 @@ export class ApplicationService {
     );
   }
 
- 
+
   applicantUpdate(data, id) {
     const href = `${environment['updateApplicant']}/${id}`
     return this.http.post<any>(href, data).pipe(
