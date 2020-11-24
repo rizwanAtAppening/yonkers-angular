@@ -1,0 +1,33 @@
+.Payment_Successful_box {
+    margin: 0 auto;
+    max-width: 341px;
+}
+
+.Payment_Successful_box h2 {
+    color: #2AABFA;
+    font-size: 26px;
+    line-height: 31px;
+    font-family: 'gilroy-medium';
+}
+
+.Payment_Successful_box h6 {
+    color: #404040;
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 12px;
+}
+
+.Payment_Successful_box button {
+    font-size: 13px;
+    line-height: 20px;
+    font-family: 'gilroy-regular';
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    padding: 10px 40px;
+    border: none;
+    background: #2AABFA;
+    border-radius: 4px;
+    margin-top: 30px;
+    cursor: pointer;
+}

@@ -224,6 +224,7 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
+    debugger
     this.back(tab)
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -270,7 +271,7 @@ export class AddMeterPermitComponent implements OnInit {
   public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
-
+debugger
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;

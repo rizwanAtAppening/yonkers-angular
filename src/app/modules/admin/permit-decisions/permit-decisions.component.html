@@ -118,14 +118,16 @@
                         </thead>
                         <tbody>
                             <tr *ngFor ="let data of applicationDetails?.application_issue_permits"> 
-                                <td>{{data?.staff?.name ? data?.staff?.name:'_'}}</td>
+                                <td>{{data?.staff?.name ? data?.staff?.name:'_'}}
+                                    <span class="voidMsg" *ngIf="data?.status == 4">(V)</span>
+                                </td>
                                 <td>Permit Issue</td>
                                 <td>{{data?.expiration_date | date}}</td>
                                 <td>
                                     <div class="dropdown_act">
                                       <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                                       <div class="dropdown-content-void leftSide">
-                                        <a  (click) ="editDecision(data)">Edit</a>
+                                        <a *ngIf="data?.status != 4" (click) ="voidDecision(data?.id)">Void</a>
                                       </div>
                                     </div>
                                   </td>                            </tr>

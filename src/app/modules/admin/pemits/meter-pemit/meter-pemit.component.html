@@ -442,7 +442,7 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt pointer">
+                                                                                            <td [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
                                                                                                 (click)="navigateDetailsPage('/admin/permit/meter-details',permit?.id)">
                                                                                                     {{permit?.reference_no}}</a>
@@ -450,9 +450,9 @@
                                                                                             <td>
                                                                                                 {{permit?.applicant_details?.applicant_job_location}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New':'Replacement'}}
+                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New': permit?.application_metter_details?.meterSizeType == 2 ? 'Replacement':'_'}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline':'Domestic'}}
+                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline': permit?.application_metter_details?.meterSizeType == 2 ? 'Domestic':'_'}}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
@@ -844,7 +844,7 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt pointer">
+                                                                                            <td [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
                                                                                                     (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id)">
                                                                                                     {{permit?.reference_no}}</a>
@@ -852,9 +852,9 @@
                                                                                             <td>
                                                                                                 {{permit?.applicant_details?.applicant_job_location}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New':'Replacement'}}
+                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New': permit?.application_metter_details?.meterSizeType == 2 ? 'Replacement':'_'}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline':'Domestic'}}
+                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline': permit?.application_metter_details?.meterSizeType == 2 ? 'Domestic':'_'}}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
@@ -1246,7 +1246,7 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt pointer">
+                                                                                            <td  [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
                                                                                                     (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id)">
                                                                                                     {{permit?.reference_no}}</a>
@@ -1254,9 +1254,9 @@
                                                                                             <td>
                                                                                                 {{permit?.applicant_details?.applicant_job_location}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New':'Replacement'}}
+                                                                                            <td>{{permit?.application_metter_details?.meterSizeType == 1 ? 'New': permit?.application_metter_details?.meterSizeType == 2 ? 'Replacement':'_'}}
                                                                                             </td>
-                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline':'Domestic'}}
+                                                                                            <td>{{permit?.application_metter_details?.wetConnctionType == 1 ? 'Fireline': permit?.application_metter_details?.meterSizeType == 2 ? 'Domestic':'_'}}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">

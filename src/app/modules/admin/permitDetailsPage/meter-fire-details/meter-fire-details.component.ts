@@ -20,11 +20,11 @@ export class MeterFireDetailsComponent implements OnInit {
   public checkedValue: number = null;
   public isSubmit = false
   public type: number;
-  public permtType:string
+  public permtType: string
   public currentUser: {
     name: null
   }
-  public checkBoxValue:string;
+  public checkBoxValue: string;
   constructor(
     private FB: FormBuilder,
     private applicationService: ApplicationService,
@@ -51,13 +51,13 @@ export class MeterFireDetailsComponent implements OnInit {
   }
 
   checkedCondition(event, checkedValue: number) {
-    
+
     if (event.target.checked) {
       this.checkedValue = checkedValue
     } else {
       this.checkedValue = null
     }
-    if(event.target.value){
+    if (event.target.value) {
       this.checkBoxValue = event.target.value
       console.log(this.checkBoxValue)
     }
@@ -80,7 +80,7 @@ export class MeterFireDetailsComponent implements OnInit {
   get firCon() { return this.fireForm.controls }
 
   permitDetails() {
-    
+
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
       this.applicationDetails = data.response;
       //  this.certificates.next(this.applicationDetails)
@@ -100,6 +100,7 @@ export class MeterFireDetailsComponent implements OnInit {
     this.fireForm.value.status = 0
     this.applicationService.submitMeterFireReviewAndWaterReview(this.fireForm.value).subscribe(data => {
       this.fireForm.reset();
+      this.isSubmit = false;
       this.permitDetails();
     })
   }
@@ -127,7 +128,7 @@ export class MeterFireDetailsComponent implements OnInit {
   }
 
   getCurrentUser() {
-    
+
     this.authService.getUserInfo().subscribe(data => {
       this.currentUser = data
       if (this.currentUser.name) {

@@ -103,6 +103,7 @@ const adminUrl = {
   getSingleCityAdmin:`/city-admin/update`,
   updateCityAdmin:`/city-admin/update`,
   exportCSV:`/application-file-export`,
+  voidengDecision:`/application/manager/decision/void`
   
 
 

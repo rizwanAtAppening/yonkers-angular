@@ -4,6 +4,7 @@ import { appToaster, settingConfig } from 'src/app/configs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-permit-decisions',
@@ -20,7 +21,8 @@ export class PermitDecisionsComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private adminAuthService: AuthenticationService,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private _TS:ToastrService
   ) {
     this.settings = settingConfig;
   }
@@ -205,6 +207,16 @@ export class PermitDecisionsComponent implements OnInit {
 
     }
 
+  }
+
+  voidDecision(id) {
+    const data = {
+      id:id,
+      application_id:this.applicationDetails.id
+    }
+    this.applicationService.voidEngDecision(data).subscribe(data => {
+      this._TS.success('Decision have voided')
+    })
   }
 
 }

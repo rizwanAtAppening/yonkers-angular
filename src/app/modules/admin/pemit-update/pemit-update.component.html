@@ -228,9 +228,9 @@
               <div class="jobdetails-txt">
                 <div class="col-12 p-0">
                   <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                       <div class="row">
-                        <div class="col-7">
+                        <div class="col-4">
                           <div class="no-ref-txt">
                             <ul>
                               <li>
@@ -258,7 +258,7 @@
 
                           </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-8">
                           <div class="no-ref-txt">
                             <ul>
                               <li>
@@ -298,7 +298,7 @@
                       </div>
 
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                       <div class="row">
                         <div class="col-6">
                           <div class="no-ref-txt">
@@ -418,7 +418,7 @@
                                 </span> Delete</a>
 
                               <a href="{{ env?.host + env?.imageBasePath + file?.name }}" target="_blank"> <span> <img
-                                    src="assets/images/d3.svg"> </span> View</a>
+                                    src="assets/images/mid-view.png"> </span> View</a>
                             </div>
                           </div>
                         </td>
@@ -627,9 +627,9 @@
                               </li>
                               <li>
                                 <!-- {{applicationDetails?.applicant_details?.applicant_role}} -->
-                                <h6>
+                                <!-- <h6>
                                   {{settings.getSetting('role',applicationDetails?.applicant_details?.applicant_role)}}
-                                </h6>
+                                </h6> -->
                                 <h6 *ngIf="applicationDetails?.type == 1">Property Owner</h6>
                                 <h6 *ngIf="applicationDetails?.type == 2">Contrator</h6>
 
@@ -1531,7 +1531,7 @@
 
                 <div class="btn-pre pop-Btn">
                   <button data-dismiss="modal" aria-label="Close" id="cBtn-modal">Cancel</button>
-                  <button class="continue mr-0" type="submit" (click)="saveProjectDescription()">Save</button>
+                  <button class="continue" style="margin-right: 0px !important;" type="submit" (click)="saveProjectDescription()">Save</button>
                 </div>
               </div>
             </div>
