@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="container p-0">
         <div class="row">
             <div class="col-6">
@@ -20,195 +20,274 @@
             </div>
         </div>
     </div>
-</header>
-<section class="tabber">
-    <div class="tab-sec">
-        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li class="nav-item" (click)="hitOnTab('applicant')">
-                <a [class]="(currentTab == 'applicant')? 'active':''" id="meter-Applicant-tab" data-toggle="pill"
-                    role="tab" aria-controls="meter-Applicant" aria-selected="false">Applicant<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            </li>
-            <li class="nav-item" (click)="hitOnTab('hydrant')">
-                <a [class]="(currentTab == 'hydrant')? 'active':''" id="meter-details-tab" data-toggle="pill" role="tab"
-                    aria-controls="meter-details" aria-selected="false">Hydrant<span><i class="fa fa-angle-right"
-                            aria-hidden="true"></i></span></a>
-            </li>
-            <li class="nav-item" (click)="hitOnTab('reviews')">
-                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill" role="tab"
-                    aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
-                            aria-hidden="true"></i></span></a>
-            </li>
-        </ul>
-    </div>
+</header> -->
 
-    <div class="what-box">
-        <div class="tab-content" id="pills-tabContent">
-            <div [class]="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
-                id="meter-Applicant" role="tabpanel" aria-labelledby="meter-Applicant-tab">
-
-                <div class="what-bg applicant-details">
-                    <div class="job-location-Hd">
-                        <h3>Applicant Details</h3>
+<app-add-application-header>
+    <router-outlet>
+            <section class="tabber">
+                    <div class="tab-sec">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item" (click)="hitOnTab('applicant')">
+                                <a [class]="(currentTab == 'applicant')? 'active':''" id="meter-Applicant-tab" data-toggle="pill"
+                                    role="tab" aria-controls="meter-Applicant" aria-selected="false">Applicant<span><i
+                                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                            </li>
+                            <li class="nav-item" (click)="hitOnTab('hydrant')">
+                                <a [class]="(currentTab == 'hydrant')? 'active':''" id="meter-details-tab" data-toggle="pill" role="tab"
+                                    aria-controls="meter-details" aria-selected="false">Hydrant<span><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i></span></a>
+                            </li>
+                            <li class="nav-item" (click)="hitOnTab('reviews')">
+                                <a [class]="(currentTab == 'reviews')? 'active':''" id="meter-Reviews-tab" data-toggle="pill" role="tab"
+                                    aria-controls="meter-Reviews" aria-selected="false">Review<span><i class="fa fa-angle-right"
+                                            aria-hidden="true"></i></span></a>
+                            </li>
+                        </ul>
                     </div>
-
-                    <div class="app-details">
-                        <form [formGroup]="applicantForm">
-                            <div class="container p-0">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Project" formControlName="applicant_name"
-                                                            [class]="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty ||applicantCon.applicant_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Project">Name</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty || applicantCon.applicant_name.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_name.errors['required']">
-                                                            Please enter name.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                
+                    <div class="what-box">
+                        <div class="tab-content" id="pills-tabContent">
+                            <div [class]="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
+                                id="meter-Applicant" role="tabpanel" aria-labelledby="meter-Applicant-tab">
+                
+                                <div class="what-bg applicant-details">
+                                    <div class="job-location-Hd">
+                                        <h3>Applicant Details</h3>
                                     </div>
-
-
-
-
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" formControlName="applicant_last_name"
-                                                            [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" class="form-control" required>
-                                                        <label class="form-control-placeholder" for="id-address">Last
-                                                            Name</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_last_name.errors['required']">
-                                                            Please enter applicant last names.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
-
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
+                
+                                    <div class="app-details">
+                                        <form [formGroup]="applicantForm">
+                                            <div class="container p-0">
                                                 <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Email-app"
-                                                                (keypress)="phoneNumberFormate('address')"
-                                                                maxlength="12" formControlName="applicant_phone"
-                                                                [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Email-app">Phone</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty || applicantCon.applicant_phone.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_phone.errors['required']">
-                                                                Please enter applicant phone.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Email-app" class="form-control"
-                                                                formControlName="applicant_email"
-                                                                [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Email-app">Email</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_email.errors['required']">
-                                                                Please enter email.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-6 ">
-                                                        <div class="form-group">
-                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text" formControlName="applicant_address"
-                                                                [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">Address</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty || applicantCon.applicant_address.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_address.errors['required']">
-                                                                Please enter applicant address.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-
                                                     <div class="col-6">
                                                         <div class="bdp_email loction-adInput">
                                                             <div class="row">
                                                                 <div class="col-12 ">
                                                                     <div class="form-group">
-                                                                        <input type="text" maxlength="12" id="Zip-id"
-                                                                            formControlName="fax"
-                                                                            (keypress)="phoneNumberFormate('fax')"
-                                                                            [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        <input type="text" id="Project" formControlName="applicant_name"
+                                                                            [class]="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty ||applicantCon.applicant_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                             class="form-control" required>
                                                                         <label class="form-control-placeholder"
-                                                                            for="Zip-id">Fax</label>
+                                                                            for="Project">Name</label>
                                                                     </div>
                                                                     <div
-                                                                        *ngIf="applicantCon.fax.invalid && (applicantCon.fax.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                        *ngIf="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty || applicantCon.applicant_name.touched || isApplicant)">
                                                                         <p class="form-error"
-                                                                            *ngIf="applicantCon.fax.errors['required']">
-                                                                            Please enter applicant fax.
+                                                                            *ngIf="applicantCon.applicant_name.errors['required']">
+                                                                            Please enter name.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                                                    </div>
+                
+                
+                
+                
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" formControlName="applicant_last_name"
+                                                                            [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                            class="form-control" class="form-control" required>
+                                                                        <label class="form-control-placeholder" for="id-address">Last
+                                                                            Name</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                                            Please enter applicant last names.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                                                    </div>
+                
+                                                </div>
+                
+                
+                
+                
+                
+                
+                                                <div class="bussiness-input">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" id="Email-app"
+                                                                                (keypress)="phoneNumberFormate('address')"
+                                                                                maxlength="12" formControlName="applicant_phone"
+                                                                                [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                class="form-control" required>
+                                                                            <label class="form-control-placeholder"
+                                                                                for="Email-app">Phone</label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty || applicantCon.applicant_phone.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="applicantCon.applicant_phone.errors['required']">
+                                                                                Please enter applicant phone.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                
+                                                        <div class="col-6">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" id="Email-app" class="form-control"
+                                                                                formControlName="applicant_email"
+                                                                                [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                required>
+                                                                            <label class="form-control-placeholder"
+                                                                                for="Email-app">Email</label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="applicantCon.applicant_email.errors['required']">
+                                                                                Please enter email.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bussiness-input">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-6 ">
+                                                                        <div class="form-group">
+                                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                                            <input type="text" formControlName="applicant_address"
+                                                                                [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                class="form-control" class="form-control" required>
+                                                                            <label class="form-control-placeholder"
+                                                                                for="id-address">Address</label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty || applicantCon.applicant_address.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="applicantCon.applicant_address.errors['required']">
+                                                                                Please enter applicant address.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                
+                
+                                                                    <div class="col-6">
+                                                                        <div class="bdp_email loction-adInput">
+                                                                            <div class="row">
+                                                                                <div class="col-12 ">
+                                                                                    <div class="form-group">
+                                                                                        <input type="text" maxlength="12" id="Zip-id"
+                                                                                            formControlName="fax"
+                                                                                            (keypress)="phoneNumberFormate('fax')"
+                                                                                            [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                            class="form-control" required>
+                                                                                        <label class="form-control-placeholder"
+                                                                                            for="Zip-id">Fax</label>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        *ngIf="applicantCon.fax.invalid && (applicantCon.fax.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                                        <p class="form-error"
+                                                                                            *ngIf="applicantCon.fax.errors['required']">
+                                                                                            Please enter applicant fax.
+                                                                                        </p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="btn-pre">
+                                                    <!-- <button>Previous</button> -->
+                                                    <button class="continue" type="submit"
+                                                        (click)="addHydrant('applicant','hydrant')">Continue</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                
+                                </div>
+                            </div>
+                            <div [class]="(currentTab ==  'hydrant') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-details"
+                                role="tabpanel" aria-labelledby="meter-details-tab">
+                                <div class="what-bg applicant-details">
+                                    <div class="job-location-Hd">
+                                        <h3>Hydrant</h3>
+                                    </div>
+                
+                                    <div class="app-details">
+                                        <form [formGroup]="hydrantForm">
+                                            <div class="container p-0">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="Project"
+                                                                            formControlName="hydrant_purpose"
+                                                                            [class]="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                            required>
+                                                                        <label class="form-control-placeholder"
+                                                                            for="Project">Purpose</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="hydrantCon.hydrant_purpose.errors['required']">
+                                                                            Please enter applicant hydrant purpose.
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="bdp_email loction-adInput">
+                                                            <div class="row">
+                                                                <div class="col-12 ">
+                                                                    <div class="form-group">
+                                                                        <input type="text" id="Email-app" [typeahead]="jobAdress"
+                                                                            [class]="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                            (typeaheadOnSelect)="typeaheadOnSelect($event,'applicanjob')"
+                                                                            (input)="exextAddress('applicanjob')"
+                                                                            formControlName="hydrant_address" class="form-control"
+                                                                            required>
+                                                                        <label class="form-control-placeholder" for="Email-app">Hydrant
+                                                                            Address</label>
+                                                                    </div>
+                                                                    <div
+                                                                        *ngIf="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant)">
+                                                                        <p class="form-error"
+                                                                            *ngIf="hydrantCon.hydrant_address.errors['required']">
+                                                                            Please enter hydrant address.
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -216,365 +295,291 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                
+                
+                
+                
+                
+                                                <div class="bussiness-input">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" formControlName="hydrant_cross_street"
+                                                                                [class]="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                id="ste-id" class="form-control" required>
+                                                                            <label class="form-control-placeholder" for="ste-id">Hydrant
+                                                                                Cross Street</label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="hydrantCon.hydrant_cross_street.errors['required']">
+                                                                                Please enter hydrant cross street.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" formControlName="hydrant_id" id="Zip-id"
+                                                                                [class]="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                class="form-control" required>
+                                                                            <label class="form-control-placeholder" for="Zip-id">Hydrant
+                                                                                Id</label>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="hydrantCon.hydrant_id.errors['required']">
+                                                                                Please enter hydrant id.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bussiness-input">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-6 hydrant_calendar ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" id="id-address" 
+                                                                                [class]="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                #dp="bsDatepicker" bsDatepicker formControlName="from"
+                                                                                class="form-control" required="">
+                                                                            <label class="form-control-placeholder"
+                                                                                for="id-address">From</label>
+                                                                            <span (click)="dp.toggle()"
+                                                                                [attr.aria-expanded]="dp.isOpen"> <i
+                                                                                    class="fa fa-calendar" aria-hidden="true"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="hydrantCon.from.errors['required']">
+                                                                                Please enter date.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                
+                                                                    <div class="col-6 hydrant_calendar ">
+                                                                        <div class="form-group">
+                                                                            <input type="text" #dpto="bsDatepicker" bsDatepicker
+                                                                                id="id-address" formControlName="to" 
+                                                                                [class]="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                class="form-control" required="">
+                                                                            <label class="form-control-placeholder"
+                                                                                for="id-address">To</label>
+                                                                            <span (click)="dpto.toggle()"
+                                                                                [attr.aria-expanded]="dpto.isOpen"> <i
+                                                                                    class="fa fa-calendar" aria-hidden="true"></i>
+                                                                            </span>
+                                                                        </div>
+                                                                        <div
+                                                                            *ngIf="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant)">
+                                                                            <p class="form-error"
+                                                                                *ngIf="hydrantCon.to.errors['required']">
+                                                                                Please enter date.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                
+                                                    </div>
+                                                </div>
+                                                <div class="btn-pre">
+                                                    <button type="submit" (click)="back('applicant','')">Previous</button>
+                                                    <button class="continue" type="submit"
+                                                        (click)="addHydrant('hydrantForm','reviews')">Continue</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
+                
                                 </div>
-                                <div class="btn-pre">
-                                    <!-- <button>Previous</button> -->
-                                    <button class="continue" type="submit"
-                                        (click)="addHydrant('applicant','hydrant')">Continue</button>
-                                </div>
+                
+                
                             </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-            <div [class]="(currentTab ==  'hydrant') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-details"
-                role="tabpanel" aria-labelledby="meter-details-tab">
-                <div class="what-bg applicant-details">
-                    <div class="job-location-Hd">
-                        <h3>Hydrant</h3>
-                    </div>
-
-                    <div class="app-details">
-                        <form [formGroup]="hydrantForm">
-                            <div class="container p-0">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Project"
-                                                            formControlName="hydrant_purpose"
-                                                            [class]="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Project">Purpose</label>
+                            <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-Reviews"
+                                role="tabpanel" aria-labelledby="meter-Reviews-tab">
+                
+                                <div class="what-bg">
+                
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="review-form-box">
+                                                    <div class="r-hd">
+                                                        <h3>Review Form</h3>
+                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
                                                     </div>
-                                                    <div
-                                                        *ngIf="hydrantCon.hydrant_purpose.invalid && (hydrantCon.hydrant_purpose.dirty || hydrantCon.hydrant_purpose.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="hydrantCon.hydrant_purpose.errors['required']">
-                                                            Please enter applicant hydrant purpose.
-                                                        </p>
+                                                    <div class="box-acordine">
+                                                        <div class="accordion" id="accordionExample">
+                
+                
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingThree">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="what-btn" type="button">
+                                                                            Applicant
+                                                                        </button>
+                                                                        <button (click)="back('applicant','')" class="edit-icon"><img
+                                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
+                                                                        <span data-toggle="collapse" data-target="#collapseThree"
+                                                                            aria-expanded="true" aria-controls="collapseThree"><i
+                                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                                    data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                
+                                                                        <div class="app-flex">
+                                                                            <div class="first-collepse-box">
+                                                                                <div class="role-txt-collepse">
+                                                                                    <h2>Full Name</h2>
+                                                                                    <p>{{applicantDetails?.applicant_name}} {{applicantDetails?.applican_last_name}}</p>
+                                                                                </div>
+                
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>Phone</h2>
+                                                                                    <p>{{applicantDetails?.applicant_phone}}</p>
+                                                                                </div>
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>Address</h2>
+                                                                                    <p>{{applicantDetails?.applicant_address}}</p>
+                                                                                </div>
+                
+                
+                
+                                                                            </div>
+                                                                            <div class="first-collepse-box">
+                                                                                <div class="role-txt-collepse">
+                                                                                    <h2>Email</h2>
+                                                                                    <p>{{applicantDetails?.applicant_email}}</p>
+                                                                                </div>
+                
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>Fax</h2>
+                                                                                    <p>{{applicantDetails?.fax}}</p>
+                                                                                </div>
+                
+                
+                                                                            </div>
+                                                                        </div>
+                
+                
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingfour">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="what-btn" type="button">
+                                                                            Hydrant
+                                                                        </button>
+                                                                        <button (click)="back('hydrant','')" class="edit-icon"><img
+                                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
+                                                                        <span data-toggle="collapse" data-target="#collapsefour"
+                                                                            aria-expanded="true" aria-controls="collapsefour"><i
+                                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                    </h2>
+                                                                </div>
+                                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                                    data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                
+                
+                
+                                                                        <div class="app-flex">
+                                                                            <div class="first-collepse-box">
+                                                                                <div class="role-txt-collepse">
+                                                                                    <h2>Purpose</h2>
+                                                                                    <p>{{application_hydrant_details?.hydrant_purpose}}
+                                                                                    </p>
+                                                                                </div>
+                
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>Hydrant Cross Street</h2>
+                                                                                    <p>{{application_hydrant_details?.hydrant_cross_street}}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>From</h2>
+                                                                                    <p>{{application_hydrant_details?.from | date}}</p>
+                                                                                </div>
+                
+                
+                
+                                                                            </div>
+                                                                            <div class="first-collepse-box">
+                                                                                <div class="role-txt-collepse">
+                                                                                    <h2>Hydrant Address</h2>
+                                                                                    <p>{{application_hydrant_details?.hydrant_address}}
+                                                                                    </p>
+                                                                                </div>
+                
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>Hydrant Id</h2>
+                                                                                    <p>{{application_hydrant_details?.hydrant_id}}</p>
+                                                                                </div>
+                                                                                <div class="role-txt-collepse-two">
+                                                                                    <h2>To</h2>
+                                                                                    <p>{{application_hydrant_details?.to | date}}</p>
+                                                                                </div>
+                
+                                                                            </div>
+                                                                        </div>
+                
+                
+                
+                
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                                                        </div>
+                
                                                     </div>
+                
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Email-app" [typeahead]="jobAdress"
-                                                            [class]="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            (typeaheadOnSelect)="typeaheadOnSelect($event,'applicanjob')"
-                                                            (input)="exextAddress('applicanjob')"
-                                                            formControlName="hydrant_address" class="form-control"
-                                                            required>
-                                                        <label class="form-control-placeholder" for="Email-app">Hydrant
-                                                            Address</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="hydrantCon.hydrant_address.invalid && (hydrantCon.hydrant_address.dirty || hydrantCon.hydrant_address.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="hydrantCon.hydrant_address.errors['required']">
-                                                            Please enter hydrant address.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                
                                 </div>
-
-
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="hydrant_cross_street"
-                                                                [class]="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                id="ste-id" class="form-control" required>
-                                                            <label class="form-control-placeholder" for="ste-id">Hydrant
-                                                                Cross Street</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="hydrantCon.hydrant_cross_street.invalid && (hydrantCon.hydrant_cross_street.dirty || hydrantCon.hydrant_cross_street.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="hydrantCon.hydrant_cross_street.errors['required']">
-                                                                Please enter hydrant cross street.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="hydrant_id" id="Zip-id"
-                                                                [class]="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
-                                                            <label class="form-control-placeholder" for="Zip-id">Hydrant
-                                                                Id</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="hydrantCon.hydrant_id.invalid && (hydrantCon.hydrant_id.dirty || hydrantCon.hydrant_id.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="hydrantCon.hydrant_id.errors['required']">
-                                                                Please enter hydrant id.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-6 hydrant_calendar ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="id-address" 
-                                                                [class]="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                #dp="bsDatepicker" bsDatepicker formControlName="from"
-                                                                class="form-control" required="">
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">From</label>
-                                                            <span (click)="dp.toggle()"
-                                                                [attr.aria-expanded]="dp.isOpen"> <i
-                                                                    class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="hydrantCon.from.invalid && (hydrantCon.from.dirty || hydrantCon.from.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="hydrantCon.from.errors['required']">
-                                                                Please enter date.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-6 hydrant_calendar ">
-                                                        <div class="form-group">
-                                                            <input type="text" #dpto="bsDatepicker" bsDatepicker
-                                                                id="id-address" formControlName="to" 
-                                                                [class]="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required="">
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">To</label>
-                                                            <span (click)="dpto.toggle()"
-                                                                [attr.aria-expanded]="dpto.isOpen"> <i
-                                                                    class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="hydrantCon.to.invalid && (hydrantCon.to.dirty || hydrantCon.to.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="hydrantCon.to.errors['required']">
-                                                                Please enter date.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="btn-pre">
-                                    <button type="submit" (click)="back('applicant','')">Previous</button>
-                                    <button class="continue" type="submit"
-                                        (click)="addHydrant('hydrantForm','reviews')">Continue</button>
-                                </div>
+                
                             </div>
-                        </form>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="meter-Reviews"
-                role="tabpanel" aria-labelledby="meter-Reviews-tab">
-
-                <div class="what-bg">
-
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="review-form-box">
-                                    <div class="r-hd">
-                                        <h3>Review Form</h3>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
-                                    </div>
-                                    <div class="box-acordine">
-                                        <div class="accordion" id="accordionExample">
-
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingThree">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            Applicant
-                                                        </button>
-                                                        <button (click)="back('applicant','')" class="edit-icon"><img
-                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapseThree"
-                                                            aria-expanded="true" aria-controls="collapseThree"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Full Name</h2>
-                                                                    <p>{{applicantDetails?.applicant_name}} {{applicantDetails?.applican_last_name}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Phone</h2>
-                                                                    <p>{{applicantDetails?.applicant_phone}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Address</h2>
-                                                                    <p>{{applicantDetails?.applicant_address}}</p>
-                                                                </div>
-
-
-
-                                                            </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Email</h2>
-                                                                    <p>{{applicantDetails?.applicant_email}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Fax</h2>
-                                                                    <p>{{applicantDetails?.fax}}</p>
-                                                                </div>
-
-
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingfour">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            Hydrant
-                                                        </button>
-                                                        <button (click)="back('hydrant','')" class="edit-icon"><img
-                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapsefour"
-                                                            aria-expanded="true" aria-controls="collapsefour"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Purpose</h2>
-                                                                    <p>{{application_hydrant_details?.hydrant_purpose}}
-                                                                    </p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Hydrant Cross Street</h2>
-                                                                    <p>{{application_hydrant_details?.hydrant_cross_street}}
-                                                                    </p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>From</h2>
-                                                                    <p>{{application_hydrant_details?.from | date}}</p>
-                                                                </div>
-
-
-
-                                                            </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Hydrant Address</h2>
-                                                                    <p>{{application_hydrant_details?.hydrant_address}}
-                                                                    </p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Hydrant Id</h2>
-                                                                    <p>{{application_hydrant_details?.hydrant_id}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>To</h2>
-                                                                    <p>{{application_hydrant_details?.to | date}}</p>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-
-
-
-
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
+                
+                
                         </div>
                     </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-    </div>
-</section>
+                </section>
+    </router-outlet>
+</app-add-application-header>

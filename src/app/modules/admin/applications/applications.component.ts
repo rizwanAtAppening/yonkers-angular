@@ -264,7 +264,7 @@ export class ApplicationsComponent implements OnInit {
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
-    debugger
+    
     if (value == 'inspector') {
       if (!selectValue.checked) {
         this.inspectorAndExaminerIdsArray.forEach((data, i) => {
@@ -329,7 +329,7 @@ export class ApplicationsComponent implements OnInit {
 
   
   exportCSV() {
-    debugger
+    
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type

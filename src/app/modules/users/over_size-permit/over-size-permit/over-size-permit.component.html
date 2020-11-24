@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
     <div class="container p-0">
         <div class="row">
             <div class="col-6">
@@ -20,934 +20,972 @@
             </div>
         </div>
     </div>
-</header>
+</header> -->
 
-<section class="tabber">
-    <div class="tab-sec">
-        <ul class="nav nav-pills" id="pills-tab" role="tablist">
-            <li class="nav-item" (click)="hitOnTab('applicant')">
-                <a [class]="(currentTab == 'applicant')? 'active':''" id="vehicle-Applicant-tab" data-toggle="pill"
-                    role="tab" aria-controls="vehicle-Applicant" aria-selected="false">Applicant<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            </li>
-            <li class="nav-item" (click)="hitOnTab('oversize')">
-                <a [class]="(currentTab == 'oversize')? 'active':''" id="vehicle-details-tab" data-toggle="pill"
-                    role="tab" aria-controls="vehicle-details" aria-selected="false">Vehicle Detials<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            </li>
-            <li class="nav-item" (click)="hitOnTab('reviews')">
-                <a [class]="(currentTab == 'reviews')? 'active':''" id="vehicle-Reviews-tab" data-toggle="pill"
-                    role="tab" aria-controls="vehicle-Reviews" aria-selected="false">Review<span><i
-                            class="fa fa-angle-right" aria-hidden="true"></i></span></a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="what-box">
-        <div class="tab-content" id="pills-tabContent">
-            <div [class]="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
-                id="vehicle-Applicant" role="tabpanel" aria-labelledby="vehicle-Applicant-tab">
-
-                <div class="what-bg applicant-details">
-                    <div class="job-location-Hd">
-                        <h3>Applicant Details</h3>
-                    </div>
-
-                    <div class="app-details">
-                        <form [formGroup]="applicantForm">
-                            <div class="container p-0">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Project" formControlName="applicant_name"
-                                                            [class]="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty ||applicantCon.applicant_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" required>
-                                                        <label class="form-control-placeholder"
-                                                            for="Project">Name</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty || applicantCon.applicant_name.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_name.errors['required']">
-                                                            Please enter name.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="col-6">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                        <input type="text" formControlName="applicant_last_name"
-                                                            [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" class="form-control" required>
-                                                        <label class="form-control-placeholder" for="id-address">Last
-                                                            Name</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="applicantCon.applicant_last_name.errors['required']">
-                                                            Please enter applicant last names.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-
-
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Email-app"
-                                                                (keypress)="phoneNumberFormate('address')"
-                                                                maxlength="12" formControlName="applicant_phone"
-                                                                [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Email-app">Phone</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty || applicantCon.applicant_phone.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_phone.errors['required']">
-                                                                Please enter applicant phone.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Email-app" class="form-control"
-                                                                formControlName="applicant_email"
-                                                                [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Email-app">Email</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_email.errors['required']">
-                                                                Please enter email.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-6 ">
-                                                        <div class="form-group">
-                                                            <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
-                                                            <input type="text" formControlName="applicant_address"
-                                                                [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">Address</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty || applicantCon.applicant_address.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.applicant_address.errors['required']">
-                                                                Please enter applicant address.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-6">
-                                                        <div class="bdp_email loction-adInput">
-                                                            <div class="row">
-                                                                <div class="col-12 ">
-                                                                    <div class="form-group">
-                                                                        <input type="text" id="Zip-id" maxlength="12"
-                                                                            formControlName="fax"
-                                                                            (keypress)="phoneNumberFormate('fax')"
-                                                                            [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                            class="form-control" required>
-                                                                        <label class="form-control-placeholder"
-                                                                            for="Zip-id">Fax</label>
-                                                                    </div>
-                                                                    <div
-                                                                        *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
-                                                                        <p class="form-error"
-                                                                            *ngIf="applicantCon.fax.errors['required']">
-                                                                            Please enter applicant fax.
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6 hydrant_calendar">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="ste-id" 
-                                                                #dp="bsDatepicker" bsDatepicker
-                                                                formControlName="application_date"
-                                                                [class]="applicantCon.application_date.invalid && (applicantCon.application_date.dirty ||applicantCon.application_date.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Application date</label>
-                                                            <span (click)="dp.toggle()"
-                                                                [attr.aria-expanded]="dp.isOpen"> <i
-                                                                    class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.application_date.invalid && (applicantCon.application_date.dirty || applicantCon.application_date.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.application_date.errors['required']">
-                                                                Please enter applicant date.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group" id="time_select_dropdown">
-                                                            <!-- <input type="text" id="Zip-id"
-                                                                formControlName="application_time"
-                                                                [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Zip-id">Application Time</label> -->
-                                                                <!-- <label class="form-control-placeholder"
-                                                                for="Zip-id">Application Time</label> -->
-                                                            <select formControlName="application_time" 
-                                                                [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'">
-                                                                <option value="" hidden> --Select Time-- </option>
-                                                                <option *ngFor="let time of settings?.time ">
-                                                                    {{time?.value}}</option>
-                                                            </select>
-
-<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
-
-
-                                                        </div>
-                                                        <div
-                                                            *ngIf="applicantCon.application_time.invalid && (applicantCon.application_time.dirty || applicantCon.application_time.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="applicantCon.application_time.errors['required']">
-                                                                Please enter applicant time.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="btn-pre">
-                                    <!-- <button>Previous</button> -->
-                                    <button class="continue" type="submit"
-                                        (click)="addOverSize('applicant','oversize')">Continue</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<app-add-application-header>
+    <router-outlet>
+        <section class="tabber">
+            <div class="tab-sec">
+                <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                    <li class="nav-item" (click)="hitOnTab('applicant')">
+                        <a [class]="(currentTab == 'applicant')? 'active':''" id="vehicle-Applicant-tab"
+                            data-toggle="pill" role="tab" aria-controls="vehicle-Applicant"
+                            aria-selected="false">Applicant<span><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item" (click)="hitOnTab('oversize')">
+                        <a [class]="(currentTab == 'oversize')? 'active':''" id="vehicle-details-tab" data-toggle="pill"
+                            role="tab" aria-controls="vehicle-details" aria-selected="false">Vehicle Detials<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li class="nav-item" (click)="hitOnTab('reviews')">
+                        <a [class]="(currentTab == 'reviews')? 'active':''" id="vehicle-Reviews-tab" data-toggle="pill"
+                            role="tab" aria-controls="vehicle-Reviews" aria-selected="false">Review<span><i
+                                    class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                    </li>
+                </ul>
             </div>
-            <div [class]="(currentTab ==  'oversize') ? 'tab-pane fade show active':'tab-pane fade'"
-                id="vehicle-details" role="tabpanel" aria-labelledby="vehicle-details-tab">
-                <div class="what-bg applicant-details">
-                    <div class="job-location-Hd">
-                        <h3>OverSized Vehicles</h3>
-                    </div>
 
-                    <div class="app-details">
-                        <form [formGroup]="oversizeForm">
-                            <div class="container p-0">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <input type="text" id="Project" formControlName="license_plate"
-                                                            [class]="oversize.license_plate.invalid && (oversize.license_plate.dirty || oversize.license_plate.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                            class="form-control" required>
-                                                        <label class="form-control-placeholder" for="Project">License
-                                                            Plate</label>
-                                                    </div>
-                                                    <div
-                                                        *ngIf="oversize.license_plate.invalid && (oversize.license_plate.dirty || oversize.license_plate.touched || isApplicant)">
-                                                        <p class="form-error"
-                                                            *ngIf="oversize.license_plate.errors['required']">
-                                                            Please enter license plate .
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+            <div class="what-box">
+                <div class="tab-content" id="pills-tabContent">
+                    <div [class]="(currentTab ==  'applicant') ? 'tab-pane fade show active':'tab-pane fade'"
+                        id="vehicle-Applicant" role="tabpanel" aria-labelledby="vehicle-Applicant-tab">
 
-                                    </div>
-
-                                </div>
-
-
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="ste-id" formControlName="year"
-                                                                [class]="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Year</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.year.errors['required']">
-                                                                Please enter year.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Email-app" formControlName="make"
-                                                                [class]="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                class="form-control" required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Email-app">Make</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.make.errors['required']">
-                                                                Please enter make .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="ste-id" formControlName="height"
-                                                                [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Height</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.height.invalid && (oversize.height.dirty || oversize.height.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.height.errors['required']">
-                                                                Please enter height .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Zip-id" formControlName="width"
-                                                                [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Zip-id">Width</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.width.errors['required']">
-                                                                Please enter width .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" formControlName="length" id="ste-id"
-                                                                [class]="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="ste-id">Length</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.length.errors['required']">
-                                                                Please enter length .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-12 ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="Zip-id" formControlName="weight"
-                                                                [class]="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required>
-                                                            <label class="form-control-placeholder"
-                                                                for="Zip-id">Weight</label>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.weight.errors['required']">
-                                                                Please enter weight .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="bussiness-input">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="bdp_email loction-adInput">
-                                                <div class="row">
-                                                    <div class="col-6 hydrant_calendar ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="id-address" formControlName="from"
-                                                                #dpfrom="bsDatepicker" bsDatepicker
-                                                                [class]="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required="">
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">From</label>
-                                                            <span (click)="dpfrom.toggle()"
-                                                                [attr.aria-expanded]="dpfrom.isOpen"> <i
-                                                                    class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.from.errors['required']">
-                                                                Please enter from .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-6 hydrant_calendar ">
-                                                        <div class="form-group">
-                                                            <input type="text" id="id-address" formControlName="to"
-                                                                #dpto="bsDatepicker" bsDatepicker
-                                                                [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
-                                                                required="">
-                                                            <label class="form-control-placeholder"
-                                                                for="id-address">To</label>
-                                                            <span (click)="dpto.toggle()"
-                                                                [attr.aria-expanded]="dpto.isOpen"> <i
-                                                                    class="fa fa-calendar" aria-hidden="true"></i>
-                                                            </span>
-                                                        </div>
-                                                        <div
-                                                            *ngIf="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant)">
-                                                            <p class="form-error"
-                                                                *ngIf="oversize.to.errors['required']">
-                                                                Please enter to .
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <!-- <div class="bussiness-input" id="via">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="bdp_email loction-adInput">
-                                            <div class="row">
-                                                <div class="col-12 ">
-                                                    <div class="form-group">
-                                                        <label>Via</label>
-                                                        <textarea placeholder="Type something here..."></textarea>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div> -->
-                                <div class="btn-pre">
-                                    <button type="button" (click)="back('applicant','')">Previous</button>
-                                    <button class="continue" type="submit"
-                                        (click)="addOverSize('oversizeForm','reviews')">Continue</button>
-                                </div>
+                        <div class="what-bg applicant-details">
+                            <div class="job-location-Hd">
+                                <h3>Applicant Details</h3>
                             </div>
-                        </form>
-                    </div>
-                </div>
 
-
-            </div>
-            <!-- <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="vehicle-Reviews"
-                role="tabpanel" aria-labelledby="vehicle-Reviews-tab">
-
-                <div class="what-bg">
-
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="review-form-box">
-                                    <div class="r-hd">
-                                        <h3>Review Form</h3>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
-                                    </div>
-                                    <div class="box-acordine">
-                                        <div class="accordion" id="accordionExample">
-
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingThree">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            Applicant
-                                                        </button>
-                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
-                                                                alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapseThree"
-                                                            aria-expanded="true" aria-controls="collapseThree"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Name</h2>
-                                                                    <p>{{applicantDetails?.applicant_name}}</p>
-
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Phone</h2>
-                                                                    <p>{{applicantDetails?.applicant_phone}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Address</h2>
-                                                                    <p>{{applicantDetails?.applicant_address}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Application Time</h2>
-                                                                    <p>{{applicantDetails?.application_time}}</p>
-                                                                </div>
-
-
+                            <div class="app-details">
+                                <form [formGroup]="applicantForm">
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="Project"
+                                                                    formControlName="applicant_name"
+                                                                    [class]="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty ||applicantCon.applicant_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                    class="form-control" required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="Project">Name</label>
                                                             </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Email</h2>
-                                                                    <p>{{applicantDetails?.applicant_email}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Fax</h2>
-                                                                    <p>{{applicantDetails?.fax}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Application date</h2>
-                                                                    <p>{{applicantDetails?.application_date}}</p>                                                                </div>
-
+                                                            <div
+                                                                *ngIf="applicantCon.applicant_name.invalid && (applicantCon.applicant_name.dirty || applicantCon.applicant_name.touched || isApplicant)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantCon.applicant_name.errors['required']">
+                                                                    Please enter name.
+                                                                </p>
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
+
                                             </div>
 
-                                            <div class="card">
-                                                <div class="card-header" id="headingfour">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            OverSized Vehicles
-                                                        </button>
-                                                        <button class="edit-icon"><img src="../assets/images/edit.svg"
-                                                                alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapsefour"
-                                                            aria-expanded="true" aria-controls="collapsefour"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
 
-
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>License Plate</h2>
-                                                                    <p>dd</p>                                                                </div>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Year</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Height</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Length</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>From</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Via</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-
-
-
+                                            <div class="col-6">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                                <input type="text" formControlName="applicant_last_name"
+                                                                    [class]="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty ||applicantCon.applicant_last_name.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                    class="form-control" class="form-control" required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="id-address">Last
+                                                                    Name</label>
                                                             </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Make</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2 class="invisible">Width</h2>
-                                                                    <p class="invisible">Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Width</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Weight</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>To</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div>
+                                                            <div
+                                                                *ngIf="applicantCon.applicant_last_name.invalid && (applicantCon.applicant_last_name.dirty || applicantCon.applicant_last_name.touched || isApplicant)">
+                                                                <p class="form-error"
+                                                                    *ngIf="applicantCon.applicant_last_name.errors['required']">
+                                                                    Please enter applicant last names.
+                                                                </p>
                                                             </div>
                                                         </div>
-
-
-
-
                                                     </div>
                                                 </div>
+
                                             </div>
+
 
                                         </div>
 
-                                    </div>
 
-                                </div>
+
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Email-app"
+                                                                        (keypress)="phoneNumberFormate('address')"
+                                                                        maxlength="12" formControlName="applicant_phone"
+                                                                        [class]="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty ||applicantCon.applicant_phone.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Email-app">Phone</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="applicantCon.applicant_phone.invalid && (applicantCon.applicant_phone.dirty || applicantCon.applicant_phone.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantCon.applicant_phone.errors['required']">
+                                                                        Please enter applicant phone.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Email-app"
+                                                                        class="form-control"
+                                                                        formControlName="applicant_email"
+                                                                        [class]="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty ||applicantCon.applicant_email.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Email-app">Email</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="applicantCon.applicant_email.invalid && (applicantCon.applicant_email.dirty || applicantCon.applicant_email.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantCon.applicant_email.errors['required']">
+                                                                        Please enter email.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-6 ">
+                                                                <div class="form-group">
+                                                                    <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'address')"  [typeahead]="address" id="id-address" (input) ="exextAddress('address')" -->
+                                                                    <input type="text"
+                                                                        formControlName="applicant_address"
+                                                                        [class]="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty ||applicantCon.applicant_address.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        class="form-control" class="form-control"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">Address</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="applicantCon.applicant_address.invalid && (applicantCon.applicant_address.dirty || applicantCon.applicant_address.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantCon.applicant_address.errors['required']">
+                                                                        Please enter applicant address.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6">
+                                                                <div class="bdp_email loction-adInput">
+                                                                    <div class="row">
+                                                                        <div class="col-12 ">
+                                                                            <div class="form-group">
+                                                                                <input type="text" id="Zip-id"
+                                                                                    maxlength="12" formControlName="fax"
+                                                                                    (keypress)="phoneNumberFormate('fax')"
+                                                                                    [class]="applicantCon.fax.invalid && (applicantCon.fax.dirty ||applicantCon.fax.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    class="form-control" required>
+                                                                                <label class="form-control-placeholder"
+                                                                                    for="Zip-id">Fax</label>
+                                                                            </div>
+                                                                            <div
+                                                                                *ngIf="applicantCon.fax.invalid && (applicantCon.applicant_phone.dirty || applicantCon.fax.touched || isApplicant)">
+                                                                                <p class="form-error"
+                                                                                    *ngIf="applicantCon.fax.errors['required']">
+                                                                                    Please enter applicant fax.
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6 hydrant_calendar">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="ste-id" #dp="bsDatepicker"
+                                                                        bsDatepicker formControlName="application_date"
+                                                                        [class]="applicantCon.application_date.invalid && (applicantCon.application_date.dirty ||applicantCon.application_date.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="ste-id">Application date</label>
+                                                                    <span (click)="dp.toggle()"
+                                                                        [attr.aria-expanded]="dp.isOpen"> <i
+                                                                            class="fa fa-calendar"
+                                                                            aria-hidden="true"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="applicantCon.application_date.invalid && (applicantCon.application_date.dirty || applicantCon.application_date.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantCon.application_date.errors['required']">
+                                                                        Please enter applicant date.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group" id="time_select_dropdown">
+                                                                    <!-- <input type="text" id="Zip-id"
+                                                                                    formControlName="application_time"
+                                                                                    [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                                    required>
+                                                                                <label class="form-control-placeholder"
+                                                                                    for="Zip-id">Application Time</label> -->
+                                                                    <!-- <label class="form-control-placeholder"
+                                                                                    for="Zip-id">Application Time</label> -->
+                                                                    <select formControlName="application_time"
+                                                                        [class]="applicantCon.application_time.invalid && (applicantCon.application_time.dirty ||applicantCon.application_time.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'">
+                                                                        <option value="" hidden> --Select Time--
+                                                                        </option>
+                                                                        <option *ngFor="let time of settings?.time ">
+                                                                            {{time?.value}}</option>
+                                                                    </select>
+
+                                                                    <span><i class="fa fa-angle-down"
+                                                                            aria-hidden="true"></i></span>
+
+
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="applicantCon.application_time.invalid && (applicantCon.application_time.dirty || applicantCon.application_time.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="applicantCon.application_time.errors['required']">
+                                                                        Please enter applicant time.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="btn-pre">
+                                            <!-- <button>Previous</button> -->
+                                            <button class="continue" type="submit"
+                                                (click)="addOverSize('applicant','oversize')">Continue</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <div [class]="(currentTab ==  'oversize') ? 'tab-pane fade show active':'tab-pane fade'"
+                        id="vehicle-details" role="tabpanel" aria-labelledby="vehicle-details-tab">
+                        <div class="what-bg applicant-details">
+                            <div class="job-location-Hd">
+                                <h3>OverSized Vehicles</h3>
+                            </div>
 
-                </div> -->
-
-            <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="vehicle-Reviews"
-                role="tabpanel" aria-labelledby="vehicle-Reviews-tab">
-
-                <div class="what-bg">
-
-                    <div class="container p-0">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="review-form-box">
-                                    <div class="r-hd">
-                                        <h3>Review Form</h3>
-                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
-                                    </div>
-                                    <div class="box-acordine">
-                                        <div class="accordion" id="accordionExample">
-
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingThree">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            Applicant
-                                                        </button>
-                                                        <button class="edit-icon" (click)="back('applicant','')"><img
-                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapseThree"
-                                                            aria-expanded="true" aria-controls="collapseThree"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Full Name</h2>
-                                                                    <p>{{applicantDetails?.applicant_name}}
-                                                                        {{applicantDetails?.applican_last_name}}</p>
-
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Phone</h2>
-                                                                    <p>{{applicantDetails?.applicant_phone}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Address</h2>
-                                                                    <p>{{applicantDetails?.applicant_address}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Application Time</h2>
-                                                                    <p>{{applicantDetails?.application_time}}</p>
-                                                                </div>
-
-
+                            <div class="app-details">
+                                <form [formGroup]="oversizeForm">
+                                    <div class="container p-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="bdp_email loction-adInput">
+                                                    <div class="row">
+                                                        <div class="col-12 ">
+                                                            <div class="form-group">
+                                                                <input type="text" id="Project"
+                                                                    formControlName="license_plate"
+                                                                    [class]="oversize.license_plate.invalid && (oversize.license_plate.dirty || oversize.license_plate.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                    class="form-control" required>
+                                                                <label class="form-control-placeholder"
+                                                                    for="Project">License
+                                                                    Plate</label>
                                                             </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Email</h2>
-                                                                    <p>{{applicantDetails?.applicant_email}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Fax</h2>
-                                                                    <p>{{applicantDetails?.fax}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Application date</h2>
-                                                                    <p>{{applicantDetails?.application_date | date}}</p>
-                                                                </div>
-
+                                                            <div
+                                                                *ngIf="oversize.license_plate.invalid && (oversize.license_plate.dirty || oversize.license_plate.touched || isApplicant)">
+                                                                <p class="form-error"
+                                                                    *ngIf="oversize.license_plate.errors['required']">
+                                                                    Please enter license plate .
+                                                                </p>
                                                             </div>
                                                         </div>
-
-
                                                     </div>
                                                 </div>
+
                                             </div>
-
-                                            <div class="card">
-                                                <div class="card-header" id="headingfour">
-                                                    <h2 class="mb-0">
-                                                        <button class="what-btn" type="button">
-                                                            OverSized Vehicles
-                                                        </button>
-                                                        <button class="edit-icon" (click)="back('oversize','')"><img
-                                                                src="../assets/images/edit.svg" alt=""> Edit</button>
-                                                        <span data-toggle="collapse" data-target="#collapsefour"
-                                                            aria-expanded="true" aria-controls="collapsefour"><i
-                                                                class="fa fa-angle-down" aria-hidden="true"></i></span>
-                                                    </h2>
-                                                </div>
-                                                <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
-                                                    data-parent="#accordionExample">
-                                                    <div class="card-body">
-
-
-
-                                                        <div class="app-flex">
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>License Plate</h2>
-                                                                    <p>{{application_vehicles?.license_plate}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Year</h2>
-                                                                    <p>{{application_vehicles?.year}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Height</h2>
-                                                                    <p>{{application_vehicles?.height}}</p>
-                                                                </div>
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Length</h2>
-                                                                    <p>{{application_vehicles?.length}}</p>
-                                                                </div>
-
-
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>From</h2>
-                                                                    <p>{{application_vehicles?.from | date}}</p>
-                                                                </div>
-
-
-                                                                <!-- <div class="role-txt-collepse-two">
-                                                                    <h2>Via</h2>
-                                                                    <p>Lorem Ipsum</p>
-                                                                </div> -->
-
-
-
-                                                            </div>
-                                                            <div class="first-collepse-box">
-                                                                <div class="role-txt-collepse">
-                                                                    <h2>Make</h2>
-                                                                    <p>{{application_vehicles?.make}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2 class="invisible">Width</h2>
-                                                                    <p class="invisible">Lorem Ipsum</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Width</h2>
-                                                                    <p>{{application_vehicles?.width}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>Weight</h2>
-                                                                    <p>{{application_vehicles?.weight}}</p>
-                                                                </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <h2>To</h2>
-                                                                    <p>{{application_vehicles?.to | date}}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
 
                                         </div>
 
-                                    </div>
 
-                                </div>
+
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="ste-id"
+                                                                        formControlName="year"
+                                                                        [class]="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="ste-id">Year</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.year.errors['required']">
+                                                                        Please enter year.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Email-app"
+                                                                        formControlName="make"
+                                                                        [class]="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        class="form-control" required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Email-app">Make</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.make.errors['required']">
+                                                                        Please enter make .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="ste-id"
+                                                                        formControlName="height"
+                                                                        [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="ste-id">Height</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.height.invalid && (oversize.height.dirty || oversize.height.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.height.errors['required']">
+                                                                        Please enter height .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Zip-id"
+                                                                        formControlName="width"
+                                                                        [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Zip-id">Width</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.width.errors['required']">
+                                                                        Please enter width .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" formControlName="length"
+                                                                        id="ste-id"
+                                                                        [class]="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="ste-id">Length</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.length.errors['required']">
+                                                                        Please enter length .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-12 ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="Zip-id"
+                                                                        formControlName="weight"
+                                                                        [class]="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required>
+                                                                    <label class="form-control-placeholder"
+                                                                        for="Zip-id">Weight</label>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.weight.errors['required']">
+                                                                        Please enter weight .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="bussiness-input">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="bdp_email loction-adInput">
+                                                        <div class="row">
+                                                            <div class="col-6 hydrant_calendar ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="id-address"
+                                                                        formControlName="from" #dpfrom="bsDatepicker"
+                                                                        bsDatepicker
+                                                                        [class]="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required="">
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">From</label>
+                                                                    <span (click)="dpfrom.toggle()"
+                                                                        [attr.aria-expanded]="dpfrom.isOpen"> <i
+                                                                            class="fa fa-calendar"
+                                                                            aria-hidden="true"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.from.errors['required']">
+                                                                        Please enter from .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-6 hydrant_calendar ">
+                                                                <div class="form-group">
+                                                                    <input type="text" id="id-address"
+                                                                        formControlName="to" #dpto="bsDatepicker"
+                                                                        bsDatepicker
+                                                                        [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
+                                                                        required="">
+                                                                    <label class="form-control-placeholder"
+                                                                        for="id-address">To</label>
+                                                                    <span (click)="dpto.toggle()"
+                                                                        [attr.aria-expanded]="dpto.isOpen"> <i
+                                                                            class="fa fa-calendar"
+                                                                            aria-hidden="true"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <div
+                                                                    *ngIf="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="oversize.to.errors['required']">
+                                                                        Please enter to .
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <!-- <div class="bussiness-input" id="via">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="bdp_email loction-adInput">
+                                                                <div class="row">
+                                                                    <div class="col-12 ">
+                                                                        <div class="form-group">
+                                                                            <label>Via</label>
+                                                                            <textarea placeholder="Type something here..."></textarea>
+                                                                        </div>
+                                                                    </div>
+                    
+                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                    
+                                                    </div>
+                                                </div> -->
+                                        <div class="btn-pre">
+                                            <button type="button" (click)="back('applicant','')">Previous</button>
+                                            <button class="continue" type="submit"
+                                                (click)="addOverSize('oversizeForm','reviews')">Continue</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
+
+
+                    </div>
+                    <!-- <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="vehicle-Reviews"
+                                    role="tabpanel" aria-labelledby="vehicle-Reviews-tab">
+                    
+                                    <div class="what-bg">
+                    
+                                        <div class="container p-0">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="review-form-box">
+                                                        <div class="r-hd">
+                                                            <h3>Review Form</h3>
+                                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                                                        </div>
+                                                        <div class="box-acordine">
+                                                            <div class="accordion" id="accordionExample">
+                    
+                    
+                                                                <div class="card">
+                                                                    <div class="card-header" id="headingThree">
+                                                                        <h2 class="mb-0">
+                                                                            <button class="what-btn" type="button">
+                                                                                Applicant
+                                                                            </button>
+                                                                            <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                                    alt=""> Edit</button>
+                                                                            <span data-toggle="collapse" data-target="#collapseThree"
+                                                                                aria-expanded="true" aria-controls="collapseThree"><i
+                                                                                    class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                        </h2>
+                                                                    </div>
+                                                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                                                        data-parent="#accordionExample">
+                                                                        <div class="card-body">
+                    
+                                                                            <div class="app-flex">
+                                                                                <div class="first-collepse-box">
+                                                                                    <div class="role-txt-collepse">
+                                                                                        <h2>Name</h2>
+                                                                                        <p>{{applicantDetails?.applicant_name}}</p>
+                    
+                                                                                    </div>
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Phone</h2>
+                                                                                        <p>{{applicantDetails?.applicant_phone}}</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Address</h2>
+                                                                                        <p>{{applicantDetails?.applicant_address}}</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Application Time</h2>
+                                                                                        <p>{{applicantDetails?.application_time}}</p>
+                                                                                    </div>
+                    
+                    
+                                                                                </div>
+                                                                                <div class="first-collepse-box">
+                                                                                    <div class="role-txt-collepse">
+                                                                                        <h2>Email</h2>
+                                                                                        <p>{{applicantDetails?.applicant_email}}</p>
+                                                                                    </div>
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Fax</h2>
+                                                                                        <p>{{applicantDetails?.fax}}</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Application date</h2>
+                                                                                        <p>{{applicantDetails?.application_date}}</p>                                                                </div>
+                    
+                                                                                </div>
+                                                                            </div>
+                    
+                    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                    
+                                                                <div class="card">
+                                                                    <div class="card-header" id="headingfour">
+                                                                        <h2 class="mb-0">
+                                                                            <button class="what-btn" type="button">
+                                                                                OverSized Vehicles
+                                                                            </button>
+                                                                            <button class="edit-icon"><img src="../assets/images/edit.svg"
+                                                                                    alt=""> Edit</button>
+                                                                            <span data-toggle="collapse" data-target="#collapsefour"
+                                                                                aria-expanded="true" aria-controls="collapsefour"><i
+                                                                                    class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                                        </h2>
+                                                                    </div>
+                                                                    <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
+                                                                        data-parent="#accordionExample">
+                                                                        <div class="card-body">
+                    
+                    
+                    
+                                                                            <div class="app-flex">
+                                                                                <div class="first-collepse-box">
+                                                                                    <div class="role-txt-collepse">
+                                                                                        <h2>License Plate</h2>
+                                                                                        <p>dd</p>                                                                </div>
+                                                                                    </div>
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Year</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Height</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Length</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                    
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>From</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                    
+                    
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Via</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                    
+                    
+                    
+                                                                                </div>
+                                                                                <div class="first-collepse-box">
+                                                                                    <div class="role-txt-collepse">
+                                                                                        <h2>Make</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2 class="invisible">Width</h2>
+                                                                                        <p class="invisible">Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Width</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>Weight</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                    <div class="role-txt-collepse-two">
+                                                                                        <h2>To</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                    
+                    
+                    
+                    
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                    
+                                                            </div>
+                    
+                                                        </div>
+                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                    
+                                    </div> -->
+
+                    <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'"
+                        id="vehicle-Reviews" role="tabpanel" aria-labelledby="vehicle-Reviews-tab">
+
+                        <div class="what-bg">
+
+                            <div class="container p-0">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="review-form-box">
+                                            <div class="r-hd">
+                                                <h3>Review Form</h3>
+                                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing</p>
+                                            </div>
+                                            <div class="box-acordine">
+                                                <div class="accordion" id="accordionExample">
+
+
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingThree">
+                                                            <h2 class="mb-0">
+                                                                <button class="what-btn" type="button">
+                                                                    Applicant
+                                                                </button>
+                                                                <button class="edit-icon"
+                                                                    (click)="back('applicant','')"><img
+                                                                        src="../assets/images/edit.svg" alt="">
+                                                                    Edit</button>
+                                                                <span data-toggle="collapse"
+                                                                    data-target="#collapseThree" aria-expanded="true"
+                                                                    aria-controls="collapseThree"><i
+                                                                        class="fa fa-angle-down"
+                                                                        aria-hidden="true"></i></span>
+                                                            </h2>
+                                                        </div>
+                                                        <div id="collapseThree" class="collapse"
+                                                            aria-labelledby="headingThree"
+                                                            data-parent="#accordionExample">
+                                                            <div class="card-body">
+
+                                                                <div class="app-flex">
+                                                                    <div class="first-collepse-box">
+                                                                        <div class="role-txt-collepse">
+                                                                            <h2>Full Name</h2>
+                                                                            <p>{{applicantDetails?.applicant_name}}
+                                                                                {{applicantDetails?.applican_last_name}}
+                                                                            </p>
+
+                                                                        </div>
+
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Phone</h2>
+                                                                            <p>{{applicantDetails?.applicant_phone}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Address</h2>
+                                                                            <p>{{applicantDetails?.applicant_address}}
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Application Time</h2>
+                                                                            <p>{{applicantDetails?.application_time}}
+                                                                            </p>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <div class="first-collepse-box">
+                                                                        <div class="role-txt-collepse">
+                                                                            <h2>Email</h2>
+                                                                            <p>{{applicantDetails?.applicant_email}}</p>
+                                                                        </div>
+
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Fax</h2>
+                                                                            <p>{{applicantDetails?.fax}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Application date</h2>
+                                                                            <p>{{applicantDetails?.application_date | date}}
+                                                                            </p>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card">
+                                                        <div class="card-header" id="headingfour">
+                                                            <h2 class="mb-0">
+                                                                <button class="what-btn" type="button">
+                                                                    OverSized Vehicles
+                                                                </button>
+                                                                <button class="edit-icon"
+                                                                    (click)="back('oversize','')"><img
+                                                                        src="../assets/images/edit.svg" alt="">
+                                                                    Edit</button>
+                                                                <span data-toggle="collapse" data-target="#collapsefour"
+                                                                    aria-expanded="true" aria-controls="collapsefour"><i
+                                                                        class="fa fa-angle-down"
+                                                                        aria-hidden="true"></i></span>
+                                                            </h2>
+                                                        </div>
+                                                        <div id="collapsefour" class="collapse"
+                                                            aria-labelledby="headingfour"
+                                                            data-parent="#accordionExample">
+                                                            <div class="card-body">
+
+
+
+                                                                <div class="app-flex">
+                                                                    <div class="first-collepse-box">
+                                                                        <div class="role-txt-collepse">
+                                                                            <h2>License Plate</h2>
+                                                                            <p>{{application_vehicles?.license_plate}}
+                                                                            </p>
+                                                                        </div>
+
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Year</h2>
+                                                                            <p>{{application_vehicles?.year}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Height</h2>
+                                                                            <p>{{application_vehicles?.height}}</p>
+                                                                        </div>
+
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Length</h2>
+                                                                            <p>{{application_vehicles?.length}}</p>
+                                                                        </div>
+
+
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>From</h2>
+                                                                            <p>{{application_vehicles?.from | date}}</p>
+                                                                        </div>
+
+
+                                                                        <!-- <div class="role-txt-collepse-two">
+                                                                                        <h2>Via</h2>
+                                                                                        <p>Lorem Ipsum</p>
+                                                                                    </div> -->
+
+
+
+                                                                    </div>
+                                                                    <div class="first-collepse-box">
+                                                                        <div class="role-txt-collepse">
+                                                                            <h2>Make</h2>
+                                                                            <p>{{application_vehicles?.make}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2 class="invisible">Width</h2>
+                                                                            <p class="invisible">Lorem Ipsum</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Width</h2>
+                                                                            <p>{{application_vehicles?.width}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>Weight</h2>
+                                                                            <p>{{application_vehicles?.weight}}</p>
+                                                                        </div>
+                                                                        <div class="role-txt-collepse-two">
+                                                                            <h2>To</h2>
+                                                                            <p>{{application_vehicles?.to | date}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
 
+
             </div>
-
-        </div>
-
-
-    </div>
-</section>
+        </section>
+    </router-outlet>
+</app-add-application-header>

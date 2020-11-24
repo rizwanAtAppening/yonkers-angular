@@ -164,7 +164,7 @@ export class ApplicationService {
   public downloadFile: string;
 
   exportCSV(data: any): void {
-    debugger
+    
     let params = new HttpParams();
     params = params.set('permit_type', data.permit_type) 
     params = params.set('page', data.page)

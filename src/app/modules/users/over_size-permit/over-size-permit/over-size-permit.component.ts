@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/public_api';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { appToaster, settingConfig } from 'src/app/configs';
+import { UsersService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-over-size-permit',
@@ -33,6 +34,7 @@ export class OverSizePermitComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthenticationService,
+    private userService:UsersService
   ) {
     this.settings = settingConfig;
    }
@@ -122,6 +124,9 @@ export class OverSizePermitComponent implements OnInit {
     
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
+      if(this.currentTab == 'reviews'){
+        this.completeApplication();
+      }
       this.getApplication()
       this.back(this.currentTab, '')
       if (this.permitNavigateValue == 'fine') {
@@ -163,12 +168,13 @@ export class OverSizePermitComponent implements OnInit {
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
         this.application = data.response;
+      
         this.applicantDetails = this.application.applicant_details;
         this.application_vehicles = (this.application && this.application.application_vehicles)
       //  this.back(this.currentTab,'')
         if (this.application) {
           sessionStorage.setItem('application', JSON.stringify(this.application));
-
+          this.permitService.changeMessage(this.application.status)
         }
           this.back(this.currentTab,'')
       })
@@ -269,6 +275,16 @@ export class OverSizePermitComponent implements OnInit {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
     }
+  }
+
+  completeApplication() {
+    
+    const data = {
+      application_id: this.application.id
+    }
+    this.userService.completeApplication(data).subscribe(data => {
+      console.log(data)
+    })
   }
 
 

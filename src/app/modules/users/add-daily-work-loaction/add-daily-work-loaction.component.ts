@@ -127,7 +127,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public submitApplication = {}
   public updateValueDwl = []
   submitDailyWorkLocation() {
-debugger
+
     if (this.applicationId) {
       this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {

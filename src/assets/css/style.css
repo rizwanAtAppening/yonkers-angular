@@ -2045,6 +2045,21 @@ text-align: center;
     margin-top: 3px;
     cursor: pointer;
 }
+
+.saveTxtbtn1{
+    background: #4AB5F1 0% 0% no-repeat padding-box;
+    padding: 11px 30px 15px 30px;
+    font-family: 'Poppins-Regular';
+    color: #fff;
+    font-size: 18px;
+    line-height: 21px;
+    margin-right: 30px;
+    border: none;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+
 #dfemail input{
     background: none;
     pointer-events: none;

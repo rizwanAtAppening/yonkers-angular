@@ -69,7 +69,7 @@ export class AddCityAdminComponent implements OnInit {
 
 
   addCityAdmin() {
-    debugger
+    
     if (this.addStaffForm.value.payment_account_type == 2) {
       this.addStaffForm.controls.stripe_account_id.setErrors(null)
     }
@@ -97,7 +97,7 @@ export class AddCityAdminComponent implements OnInit {
 
 
   updateCityAdmin() {
-    debugger
+    
     if (this.addStaffForm.value.payment_account_type == 2) {
       this.addStaffForm.controls.stripe_account_id.setErrors(null)
       // this.addStaffForm.controls.stripe_account_id.setValue(null)
@@ -148,7 +148,7 @@ export class AddCityAdminComponent implements OnInit {
 
 
   fillStaffInfo(value) {
-    debugger
+    
     this.addStaffForm.controls.email.setValue(value.email);
     this.addStaffForm.controls.name.setValue(value.name);
     this.addStaffForm.controls.city_name.setValue(value.name);
@@ -165,7 +165,7 @@ export class AddCityAdminComponent implements OnInit {
   }
   public isStripe = true
   selectStripAc(value: string) {
-    debugger
+    
     if (value == '1') {
       this.addStaffForm.controls.payment_account_type.setValue(1)
       this.isStripe = true

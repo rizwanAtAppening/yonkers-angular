@@ -62,7 +62,7 @@ export class PaymentComponent implements OnInit {
   public strip_account: string
   public stripe;
   callStripe() {
-    debugger
+    
     // this.stripeAccount
     // (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
     // this.stripe = (<any>window).stripe;
@@ -214,7 +214,7 @@ export class PaymentComponent implements OnInit {
   // }
 
   genrateIntent() {
-    debugger
+    
     this.isSubmit = true;
 
     this.cardNumber.on('change', (event) => {

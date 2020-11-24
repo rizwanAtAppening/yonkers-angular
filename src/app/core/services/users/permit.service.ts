@@ -16,7 +16,8 @@ import { query } from '@angular/animations';
 export class PermitService {
 
   public sessionApplication = 'application';
-
+  private messageSource = new BehaviorSubject('default message');
+  currentMessage = this.messageSource.asObservable();
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationService
@@ -24,7 +25,9 @@ export class PermitService {
 
 
 
-
+  changeMessage(message: string) {
+    this.messageSource.next(message)
+  }
 
   addPermitApplication(data): Observable<any> {
 

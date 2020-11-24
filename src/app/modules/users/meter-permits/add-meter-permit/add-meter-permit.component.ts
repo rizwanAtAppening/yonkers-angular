@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/public_api';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { UsersService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-add-meter-permit',
@@ -45,6 +46,7 @@ export class AddMeterPermitComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthenticationService,
+    private userService:UsersService
 
 
   ) { }
@@ -146,6 +148,9 @@ export class AddMeterPermitComponent implements OnInit {
     }
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
+      if(this.currentTab == 'reviews'){
+        this.completeApplication()
+      }
       this.back(nextTab)
       this.getApplication()
       if (this.isExit) {
@@ -224,7 +229,7 @@ export class AddMeterPermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    debugger
+    
     this.back(tab)
     if (this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -271,7 +276,7 @@ export class AddMeterPermitComponent implements OnInit {
   public applicantDetails: any;
   public application_metter_details: any;
   getApplication() {
-debugger
+
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -280,10 +285,12 @@ debugger
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
         this.application = data.response;
+      
         this.applicantDetails = this.application.applicant_details;
         this.application_metter_details = (this.application && this.application.application_metter_details)
         if (this.application) {
           sessionStorage.setItem('application', JSON.stringify(this.application));
+          this.permitService.changeMessage(this.application.status);
 
         }
         this.back(this.currentTab)
@@ -406,5 +413,15 @@ debugger
     }
     var total = (this.tapsize + this.metertest + this.metertestsize + this.fireline)
     this.meterDeatilsForm.controls.total_amount.setValue(total)
+  }
+
+  completeApplication() {
+    
+    const data = {
+      application_id: this.application.id
+    }
+    this.userService.completeApplication(data).subscribe(data => {
+      console.log(data)
+    })
   }
 }

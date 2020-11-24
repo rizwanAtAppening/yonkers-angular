@@ -669,7 +669,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
-      debugger
+      
       if (this.currentTab == 'where' || this.currentTab == 'contrator') {
         this.getApplication()
       }
@@ -1527,7 +1527,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   completeApplication() {
-    debugger
+    
     const data = {
       application_id: this.application.id
     }

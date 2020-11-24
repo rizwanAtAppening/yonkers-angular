@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/public_api';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
+import { UsersService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-add-hydrant-permit',
@@ -39,6 +40,7 @@ export class AddHydrantPermitComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthenticationService,
+    private userService: UsersService
   ) { }
 
   ngOnInit(): void {
@@ -101,7 +103,7 @@ export class AddHydrantPermitComponent implements OnInit {
       }
       this.applicantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
       this.applicantForm.value.applican_last_name = this.applicantForm.value.applicant_last_name
-      this.applicantForm.value.city_admin_id = this.cityId ? this.cityId:this.application.city_admin_id
+      this.applicantForm.value.city_admin_id = this.cityId ? this.cityId : this.application.city_admin_id
       this.applicantForm.value.model = 3
 
       this.formValue = this.applicantForm.value;
@@ -120,7 +122,10 @@ export class AddHydrantPermitComponent implements OnInit {
     }
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
-
+      this.permitService.changeMessage(data.status)
+      if (this.currentTab == 'reviews') {
+        this.completeApplication();
+      }
 
       this.getApplication()
       this.back(this.currentTab, '')
@@ -149,7 +154,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   getApplication() {
-    
+
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -159,10 +164,12 @@ export class AddHydrantPermitComponent implements OnInit {
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
         this.application = data.response;
+       
         this.applicantDetails = this.application.applicant_details;
         this.application_hydrant_details = (this.application && this.application.application_hydrant)
         if (this.application) {
           sessionStorage.setItem('application', JSON.stringify(this.application));
+          this.permitService.changeMessage(this.application.status)
 
         }
         this.back(this.currentTab, '')
@@ -174,7 +181,7 @@ export class AddHydrantPermitComponent implements OnInit {
   }
 
   back(tab, value: string) {
-    
+
     if (!this.application_id) {
       this.getApplication();
 
@@ -204,7 +211,7 @@ export class AddHydrantPermitComponent implements OnInit {
       }
     }
     if (!this.application_id) {
-      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab,cityId:this.cityId } })
+      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { tab: this.currentTab, cityId: this.cityId } })
 
     }
 
@@ -247,14 +254,14 @@ export class AddHydrantPermitComponent implements OnInit {
   phoneNumberFormate(value: string) {
     var autoFillValue = '-'
     if (value == 'address') {
-      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
-      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
     } else if (value == 'fax') {
-      if ( this.applicantForm.value.fax && this.applicantForm.value.fax.length === 3) {
+      if (this.applicantForm.value.fax && this.applicantForm.value.fax.length === 3) {
         this.applicantForm.controls.fax.setValue(this.applicantForm.value.fax.concat(autoFillValue))
       }
       if (this.applicantForm.value.fax && this.applicantForm.value.fax.length === 7) {
@@ -312,5 +319,13 @@ export class AddHydrantPermitComponent implements OnInit {
     }
 
   }
-
+  completeApplication() {
+    
+    const data = {
+      application_id: this.application.id
+    }
+    this.userService.completeApplication(data).subscribe(data => {
+      console.log(data)
+    })
+  }
 }
