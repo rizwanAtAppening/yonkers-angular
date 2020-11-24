@@ -443,7 +443,7 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td class="refTxt pointer">
+                                                                                            <td [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
                                                                                                     (click)="navigateDetailsPage(permit?.id)">{{permit?.reference_no}}</a>
                                                                                             </td>

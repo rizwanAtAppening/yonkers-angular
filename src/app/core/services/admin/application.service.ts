@@ -463,4 +463,18 @@ export class ApplicationService {
     );
   }
 
+
+  voidEngDecision(data) {
+    const href = `${environment['voidengDecision']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
 }
