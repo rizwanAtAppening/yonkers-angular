@@ -1,0 +1,27 @@
+<header>
+    <div class="container p-0">
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="search-box">
+                            <h2>Logo</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-6">
+                <div class="profile-header">
+                    <div class="saveTxtbtn1" *ngIf="application?.status == 2">
+                        <button (click)="payNow()"> Pay Now</button>
+                    </div><br>
+                    <div class="saveTxtbtn">
+                        <button (click)="saveAndExit()"> Save & Exit {{application?.status}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<ng-content select="router-outlet"></ng-content>
