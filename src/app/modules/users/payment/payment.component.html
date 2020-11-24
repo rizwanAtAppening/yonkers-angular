@@ -1,276 +1,275 @@
-
 <app-layout>
-    <router-outlet>
-       <!-- <div class="container row d-flex justify-content-center mt-4">
-           <div class="col-8">
-                <table class="table">
-                        <thead class="thead-dark">
-                          <tr>
-                            <th scope="col">Type</th>
-                            <th scope="col">Amount</th>
-                           
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor = "let fee of paymentsDetailsWithKey">
-                            <th scope="row">{{fee?.key}}</th>
-                            <td>{{fee?.amount}}</td>
-                           
-                          </tr>
+  <router-outlet>
+     <!-- <div class="container row d-flex justify-content-center mt-4">
+         <div class="col-8">
+              <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Type</th>
+                          <th scope="col">Amount</th>
                          
-                        </tbody>
-                      </table>
-                      <button type="button" class="btn btn-primary float-right mt-2" [disabled] = "isSubmit" (click) ="payment()">Submit</button>
-   
-           </div>
-           
-                 
-       </div> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor = "let fee of paymentsDetailsWithKey">
+                          <th scope="row">{{fee?.key}}</th>
+                          <td>{{fee?.amount}}</td>
+                         
+                        </tr>
+                       
+                      </tbody>
+                    </table>
+                    <button type="button" class="btn btn-primary float-right mt-2" [disabled] = "isSubmit" (click) ="payment()">Submit</button>
+ 
+         </div>
+         
+               
+     </div> -->
 
-       <div class="paymentInputBox_card">
+     <div class="paymentInputBox_card">
 
-    <div class="container">
+  <div class="container">
 <div class="row">
-    <div class="col-12">
-        <div class="row">
-           
-                <div class="col-8">
-                    <div class="boxborder-card">
-                    <div id="credit-card" class=" tab-pane active">
-                        <form [formGroup]="cardForm">
-                            <br>
-            
-                            <div class="submission-inner  p-0">
-                                <div class="submission-inner-two four mb-2">
-                                    <!-- -------------------------------------------------- New design---------------------- ---------------------------------->
-            
-                                    <div class="cell example example2 mt-3" id="example-2">
-                                        <form>
-                                            <div data-locale-reversible>
-                                                <div class="row" data-locale-reversible>
-                                                    <div class="col-6 binput-card">
-                                                        <p class="zip-txt">Zip</p>
-                                                        <div class="field ">
-                                                            <input id="example2-zip"
-                                                                maxlength="6"
-                                                                data-tid="elements_examples.form.postal_code_placeholder"
-                                                                class="input empty" type="text"
-                                                                onlyNumber placeholder="94107"
-                                                                required=""
-                                                                autocomplete="postal-code">
-                                                           
-                                                            <div class="baseline"></div>
-                                                            <div class="form-error pm_terms"
-                                                                *ngIf="getControls.zip.invalid && (getControls.zip.dirty || getControls.zip.touched || isSubmit)">
-                                                                <small
-                                                                    *ngIf="getControls.zip.errors['required']"
-                                                                    class="msg">
-                                                                    Please Valid Zip Code
-                                                                </small>
-            
-                                                            </div>
-                                                        </div>
-            
-                                                    </div>
-                                                    <div class="col-6 binput-card2">
-                                                        <p class="zip-txt">Card Number</p>
-                                                        <div class="field">
-                                                            <div id="example2-card-number"
-                                                                class="input empty"></div>
-                                                           
-                                                            <div class="baseline"></div>
-                                                        </div>
-                                                        <div>
-                                                            <span *ngIf="isInvalidCard"
-                                                                class="msg">
-                                                                Please enter valid card number
-                                                            </span>
-                                                        </div>
-            
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-            
-                                            <div class="row exp-date-input exp-date-inputmt">
-                                                <div class="col-6 binput-card2">
-                                                    <p class="zip-txt">Expiry Date</p>
-                                                    <div class="field half-width">
-                                                        <div id="example2-card-expiry"
-                                                            class="input empty"></div>
-                                                      
-                                                        <div class="baseline"></div>
-                                                    </div>
-                                                    <div>
-                                                        <span *ngIf="isInValidDate" class="msg">
-                                                            Please enter valid expiry
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 binput-card2">
-                                                    <p class="zip-txt">CVV</p>
-                                                    <div class="field half-width">
-                                                        <div id="example2-card-cvc"
-                                                            class="input empty"></div>
-                                                       
-                                                        <div class="baseline"></div>
-                                                    </div>
-                                                    <div>
-                                                        <span *ngIf="isInValidCvc" class="msg">
-                                                            Please enter valid Cvc number
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-            
-                                        </form>
-            
-            
-            
-                                    </div>
-            
-            
-                                   
-                                </div>
-                                <div class="submission-inner-two four mb-2 ">
-                                    <div class="col-12 mt-4 p-0">
-                                        <div class="row">
-            
-                                            <div class="col-12">
-                                                <div class="methode-check sign-up conditions ">
+  <div class="col-12">
+      <div class="row">
+         
+              <div class="col-8">
+                  <div class="boxborder-card">
+                  <div id="credit-card" class=" tab-pane active">
+                      <form [formGroup]="cardForm">
+                          <br>
+          
+                          <div class="submission-inner  p-0">
+                              <div class="submission-inner-two four mb-2">
+                                  <!-- -------------------------------------------------- New design---------------------- ---------------------------------->
+          
+                                  <div class="cell example example2 mt-3" id="example-2">
+                                      <form>
+                                          <div data-locale-reversible>
+                                              <div class="row" data-locale-reversible>
+                                                  <div class="col-6 binput-card">
+                                                      <p class="zip-txt">Zip</p>
+                                                      <div class="field ">
+                                                          <input id="example2-zip"
+                                                              maxlength="6"
+                                                              data-tid="elements_examples.form.postal_code_placeholder"
+                                                              class="input empty" type="text"
+                                                              onlyNumber placeholder="94107"
+                                                              required=""
+                                                              autocomplete="postal-code">
+                                                         
+                                                          <div class="baseline"></div>
+                                                          <div class="form-error pm_terms"
+                                                              *ngIf="getControls.zip.invalid && (getControls.zip.dirty || getControls.zip.touched || isSubmit)">
+                                                              <small
+                                                                  *ngIf="getControls.zip.errors['required']"
+                                                                  class="msg">
+                                                                  Please Valid Zip Code
+                                                              </small>
+          
+                                                          </div>
+                                                      </div>
+          
+                                                  </div>
+                                                  <div class="col-6 binput-card2">
+                                                      <p class="zip-txt">Card Number</p>
+                                                      <div class="field">
+                                                          <div id="example2-card-number"
+                                                              class="input empty"></div>
+                                                         
+                                                          <div class="baseline"></div>
+                                                      </div>
+                                                      <div>
+                                                          <span *ngIf="isInvalidCard"
+                                                              class="msg">
+                                                              Please enter valid card number
+                                                          </span>
+                                                      </div>
+          
+                                                  </div>
+          
+                                              </div>
+                                          </div>
+          
+                                          <div class="row exp-date-input exp-date-inputmt">
+                                              <div class="col-6 binput-card2">
+                                                  <p class="zip-txt">Expiry Date</p>
+                                                  <div class="field half-width">
+                                                      <div id="example2-card-expiry"
+                                                          class="input empty"></div>
+                                                    
+                                                      <div class="baseline"></div>
+                                                  </div>
+                                                  <div>
+                                                      <span *ngIf="isInValidDate" class="msg">
+                                                          Please enter valid expiry
+                                                      </span>
+                                                  </div>
+                                              </div>
+                                              <div class="col-6 binput-card2">
+                                                  <p class="zip-txt">CVV</p>
+                                                  <div class="field half-width">
+                                                      <div id="example2-card-cvc"
+                                                          class="input empty"></div>
+                                                     
+                                                      <div class="baseline"></div>
+                                                  </div>
+                                                  <div>
+                                                      <span *ngIf="isInValidCvc" class="msg">
+                                                          Please enter valid Cvc number
+                                                      </span>
+                                                  </div>
+                                              </div>
+                                          </div>
+          
+                                      </form>
+          
+          
+          
+                                  </div>
+          
+          
+                                 
+                              </div>
+                              <div class="submission-inner-two four mb-2 ">
+                                  <div class="col-12 mt-4 p-0">
+                                      <div class="row">
+          
+                                          <div class="col-12">
+                                              <div class="methode-check sign-up conditions ">
 
 
 
-                                                    <label class="container4">
-                                                        <input type="checkbox" (change)="ckeckBoxValidation($event)"
-                                                        formControlName="isTermAndCondition"
-                                                        [class]="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
-                                                        <span class="checkmarkcard"></span>
-                                                      </label>
+                                                  <label class="container4">
+                                                      <input type="checkbox" (change)="ckeckBoxValidation($event)"
+                                                      formControlName="isTermAndCondition"
+                                                      [class]="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
+                                                      <span class="checkmarkcard"></span>
+                                                    </label>
 
 
-                                                    <div class="radio">
-                                                        <div
-                                                            class="radio-main d-fle chekbox-tc">
-                                                            <!-- <input type="checkbox"
-                                                                (change)="ckeckBoxValidation($event)"
-                                                                formControlName="isTermAndCondition"
-                                                                [class]="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"> -->
-                                                            <!-- <span
-                                                                class="radio-class new_rcb"></span> -->
-                                                            <p class="accept tc_txt5"><span>I
-                                                                    agree
-                                                                    to
-                                                                    the </span><a
-                                                                    class="pop-click" href="#"
-                                                                    data-toggle="modal"
-                                                                    data-target="#payment-popup">Terms
-                                                                    and Conditions.</a></p>
-                                                            <div class="form-error pm_terms"
-                                                                *ngIf="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit)">
-                                                                <small
-                                                                    *ngIf="getControls.isTermAndCondition.errors['required']"
-                                                                    class="">
-                                                                    Please agree to the terms
-                                                                    and conditions to continue
-                                                                </small>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- (click)="genrateCardToken()"  -->
-                                            <div class="col-12 bb-button">
-                                                <div class="pop-up-button">
-                                                    <button class="btn close-need" type="button"
-                                                        data-dismiss="modal"
-                                                        (click)="cancelForm()">
-                                                        Cancel </button>
-                                                    <button class="btn submit " type="submit"
-                                                        [disabled]="isDisabled"
-                                                   (click) ="genrateIntent()"    >
-                                                        Proceed
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-            
-                </div>
-            </div>
-            <div class="col-4 right-sidebaar">
-                <div class="ass-one col-lg-12 p-0 certificate-toggel-top  schedule-top">
-                    <div class="Assessment certificate-toggel pb-0 bg_assessment_bx">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h5>Your Fees</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Assessment-inner toggel-this pb-0 Assessment-inner_two">
-                        <div class="Assessment-info">
-                            <div class="row">
-                                <ul class="col-12">
-                                    <div class="asses-bor" *ngFor = "let fee of paymentsDetailsWithKey">
-                                        <div class="row ">
-                                            <li class="col-5">
-                                                <p>{{fee?.key}}</p>
-                                            </li>
-                                            <li class="col-7">
-                                                <h4>{{fee?.amount}}</h4>
-                                            </li>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="asses-bor">
-                                        <div class="row ">
-                                            <li class="col-5">
-                                                <p>Fire fee</p>
-                                            </li>
-                                            <li class="col-7">
-                                                <h4> $150.00</h4>
-                                            </li>
-                                        </div>
-                                    </div>
-                                    <div class="asses-bor">
-                                    <div class="row ">
-                                        <li class="col-5">
-                                            <p>Processing fee</p>
-                                        </li>
-                                        <li class="col-7">
-                                            <h4> $34.17</h4>
-                                        </li>
-                                    </div>
-                                </div> -->
-                                <div class="asses-bor">
-                                    <div class="row ">
-                                        <li class="col-5">
-                                            <p>Total</p>
-                                        </li><li class="col-7">
-                                            <h4 class="fess-total-txt"> {{totalFee}}</h4>
-                                        </li>
-                                    </div>
-                                </div>
-                            </ul>
-                            </div>
-                         
-                </div>
-            </div>
-        </div>
-            </div>
-        </div>
-    </div>
-   
+                                                  <div class="radio">
+                                                      <div
+                                                          class="radio-main d-fle chekbox-tc">
+                                                          <!-- <input type="checkbox"
+                                                              (change)="ckeckBoxValidation($event)"
+                                                              formControlName="isTermAndCondition"
+                                                              [class]="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"> -->
+                                                          <!-- <span
+                                                              class="radio-class new_rcb"></span> -->
+                                                          <p class="accept tc_txt5"><span>I
+                                                                  agree
+                                                                  to
+                                                                  the </span><a
+                                                                  class="pop-click" href="#"
+                                                                  data-toggle="modal"
+                                                                  data-target="#payment-popup">Terms
+                                                                  and Conditions.</a></p>
+                                                          <div class="form-error pm_terms"
+                                                              *ngIf="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit)">
+                                                              <small
+                                                                  *ngIf="getControls.isTermAndCondition.errors['required']"
+                                                                  class="">
+                                                                  Please agree to the terms
+                                                                  and conditions to continue
+                                                              </small>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                          <!-- (click)="genrateCardToken()"  -->
+                                          <div class="col-12 bb-button">
+                                              <div class="pop-up-button">
+                                                  <button class="btn close-need" type="button"
+                                                      data-dismiss="modal"
+                                                      (click)="cancelForm()">
+                                                      Cancel </button>
+                                                  <button class="btn submit " type="submit"
+                                                      [disabled]="isDisabled"
+                                                 (click) ="genrateIntent()"    >
+                                                      Proceed
+                                                  </button>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+          
+              </div>
+          </div>
+          <div class="col-4 right-sidebaar">
+              <div class="ass-one col-lg-12 p-0 certificate-toggel-top  schedule-top">
+                  <div class="Assessment certificate-toggel pb-0 bg_assessment_bx">
+                      <div class="col-sm-12">
+                          <div class="row">
+                              <div class="col-sm-12">
+                                  <h5>Your Fees</h5>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="Assessment-inner toggel-this pb-0 Assessment-inner_two">
+                      <div class="Assessment-info">
+                          <div class="row">
+                              <ul class="col-12">
+                                  <div class="asses-bor" *ngFor = "let fee of paymentsDetailsWithKey">
+                                      <div class="row ">
+                                          <li class="col-5">
+                                              <p>{{fee?.key}}</p>
+                                          </li>
+                                          <li class="col-7">
+                                              <h4>{{fee?.amount}}</h4>
+                                          </li>
+                                      </div>
+                                  </div>
+                                  <!-- <div class="asses-bor">
+                                      <div class="row ">
+                                          <li class="col-5">
+                                              <p>Fire fee</p>
+                                          </li>
+                                          <li class="col-7">
+                                              <h4> $150.00</h4>
+                                          </li>
+                                      </div>
+                                  </div>
+                                  <div class="asses-bor">
+                                  <div class="row ">
+                                      <li class="col-5">
+                                          <p>Processing fee</p>
+                                      </li>
+                                      <li class="col-7">
+                                          <h4> $34.17</h4>
+                                      </li>
+                                  </div>
+                              </div> -->
+                              <div class="asses-bor">
+                                  <div class="row ">
+                                      <li class="col-5">
+                                          <p>Total</p>
+                                      </li><li class="col-7">
+                                          <h4 class="fess-total-txt"> {{totalFee}}</h4>
+                                      </li>
+                                  </div>
+                              </div>
+                          </ul>
+                          </div>
+                       
+              </div>
+          </div>
+      </div>
+          </div>
+      </div>
+  </div>
+ 
 
 </div>
 
 
-    </div>
-    </div>
-    </router-outlet>
+  </div>
+  </div>
+  </router-outlet>
 </app-layout>

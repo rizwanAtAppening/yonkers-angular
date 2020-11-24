@@ -3088,14 +3088,14 @@ height: 47px;
 
 
 .dash-back-two {
-    max-width: 1004px;
+    max-width: 1100px;
     margin: 0 auto;
     background: #F9FAFB;
 }
 .box-engrining-admin {
     background: #fff;
 padding: 25px 27px 0px 27px;
-    max-width: 1004px;
+    max-width: 1100px;
     margin: 0 auto;
     display: block;
     border: 1px solid #00000012;
@@ -5371,4 +5371,14 @@ border: 0.5px solid #9CA6C08C;
 
 .paymentInputBox_card .Assessment-inner_two ul li h4.fess-total-txt {
     font-family: "Poppins-Bold" !important;
+}
+
+.date_recevied input::placeholder{
+    color: #cacaca8c !important;
+}
+.comment-box-submision textarea::placeholder{
+    color: #cacaca8c !important;
+}
+.email-userinput input::placeholder{
+    color: #cacaca8c !important;
 }
