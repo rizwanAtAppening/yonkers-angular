@@ -82,7 +82,8 @@ public meterPermitTab:any = '0'
     
     const data = {
       search_query: String(this.searchString),
-      application_type: this.application_Type
+      //application_type: this.application_Type
+      permit_type: this.permit_type
     }
     this.applicationService.getApplications(data, '').subscribe(data => {
       this.allApplications = data.response;

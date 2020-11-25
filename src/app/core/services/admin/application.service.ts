@@ -84,6 +84,9 @@ export class ApplicationService {
     );
   }
 
+
+  
+
   examiner(): Observable<any> {
     const href = `${environment['examiner']}`
     return this.http.get<any>(href).pipe(

@@ -441,9 +441,9 @@
                                                                                                             class="col-12">
                                                                                                             <div
                                                                                                                 class="clearallapplyBtn">
-                                                                                                                <button
+                                                                                                                <!-- <button
                                                                                                                     class="btnfltr">Clear
-                                                                                                                    All</button>
+                                                                                                                    All</button> -->
                                                                                                                 <button
                                                                                                                     class="btnaply"
                                                                                                                     (click)="getAllApplication(1)">Apply</button>
@@ -746,20 +746,21 @@
                                                                                 <div class="col-4 filter-search">
                                                                                     <div
                                                                                         class="header-input tbl-search-box">
-                                                                                        <input type="text"
+                                                                                        <input type="text" (input)="searchInspectionAndPyment('inspection')"
+                                                                                        [(ngModel)]="searchString"
                                                                                             placeholder="Search...">
                                                                                         <span><i class="fa fa-search"
                                                                                                 aria-hidden="true"></i></span>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-6 pl-0">
+                                                                                <!-- <div class="col-6 pl-0">
                                                                                     <div class="btn-filter">
                                                                                         <button><span><img
                                                                                                     src="assets/images/filter.svg"
                                                                                                     alt=""></span>
                                                                                             Filter</button></div>
 
-                                                                                </div>
+                                                                                </div> -->
                                                                             </div>
 
                                                                         </div>
@@ -894,7 +895,8 @@
                                                                                 <div class="col-5 filter-search abc-search">
                                                                                     <div
                                                                                         class="header-input tbl-search-box">
-                                                                                        <input type="text"
+                                                                                        <input type="text" (input)="searchInspectionAndPyment('payment')"
+                                                                                        [(ngModel)]="searchString"
                                                                                             placeholder="Search...">
                                                                                         <span><i class="fa fa-search"
                                                                                                 aria-hidden="true"></i></span>

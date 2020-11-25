@@ -21,7 +21,7 @@ export class ApplicationsComponent implements OnInit {
     department: null,
     email: null
   }
-     public export = "/api/admin/application-file-export"
+  public export = "/api/admin/application-file-export"
 
   public env: any;
   constructor(
@@ -240,7 +240,8 @@ export class ApplicationsComponent implements OnInit {
   searchApplication() {
     const data = {
       search_query: String(this.searchString),
-      application_type: this.application_Type
+      application_type: this.application_Type,
+      permit_type: this.permit_type
     }
     this.applicationService.getApplications(data, '').subscribe(data => {
       this.allApplications = data.response;
@@ -251,6 +252,33 @@ export class ApplicationsComponent implements OnInit {
     })
   }
 
+  public searchData = {}
+  searchInspectionAndPyment(value:string){
+    // const data = {
+    //   search_query: String(this.searchString),
+    //   // application_type: this.application_Type,
+    //   // permit_type: this.permit_type
+    // }
+    if(value == 'inspection'){
+      this.searchData = {
+        search_query: String(this.searchString),
+        inspection:1
+      }
+    }
+     else if(value == 'payment'){
+        this.searchData = {
+          search_query: String(this.searchString),
+          payment:1
+        }
+    }
+    this.applicationService.getApplications(this.searchData, '').subscribe(data => {
+      this.allApplications = data.response;
+      // console.log(this.dwlApplication)
+      this.offset = data.offset;
+      this.totalPagination = data.total
+      this.currentPage = data.currentPage;
+    })
+  }
   editInspection(inspectionId, application) {
     if (application.application_type == 1) {
       this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: application.id, inspectionId: inspectionId } })
@@ -264,7 +292,7 @@ export class ApplicationsComponent implements OnInit {
   public inspectorKey = "inspectorAndExaminerIdsArray"
   public inspectorAndExaminerIdsArray = []
   selectFilter(selectValue, value) {
-    
+
     if (value == 'inspector') {
       if (!selectValue.checked) {
         this.inspectorAndExaminerIdsArray.forEach((data, i) => {
@@ -327,9 +355,9 @@ export class ApplicationsComponent implements OnInit {
   }
 
 
-  
+
   exportCSV() {
-    
+
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type

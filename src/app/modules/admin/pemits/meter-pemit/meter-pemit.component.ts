@@ -27,7 +27,7 @@ export class MeterPemitComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.applicationService.changeMessage('2');
     this.applicationService.currentMessage.subscribe(type => {
       this.permit_type = type
@@ -46,7 +46,7 @@ export class MeterPemitComponent implements OnInit {
     application_type: this.application_Type
   }
   getAllApplication(application_Type) {
-    
+
     this.application_Type = application_Type
     this.modify.application_type = application_Type
     this.modify.permit_type = 2
@@ -63,7 +63,7 @@ export class MeterPemitComponent implements OnInit {
   }
 
   paginate(page, value, stringValue) {
-    
+
     this.application_Type = value,
       this.page = page
     // if (stringValue == 'inspection') {
@@ -78,7 +78,7 @@ export class MeterPemitComponent implements OnInit {
 
 
   navigateDetailsPage(url, applicationId) {
-    this.router.navigate([url], { queryParams: { id: applicationId,permtType:'meter'}})
+    this.router.navigate([url], { queryParams: { id: applicationId, permtType: 'meter' } })
   }
 
   //  public message: any
@@ -87,10 +87,11 @@ export class MeterPemitComponent implements OnInit {
   }
 
   searchApplication() {
-    
+
     const data = {
       search_query: String(this.searchString),
-      application_type: this.application_Type
+     // application_type: this.application_Type,
+      permit_type: this.permit_type
     }
     this.applicationService.getApplications(data, '').subscribe(data => {
       this.allApplications = data.response;
