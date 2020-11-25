@@ -18,20 +18,25 @@ export class AddApplicationHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+
     this.permitService.currentMessage.subscribe(data => {
       this.applicationStatus = data;
-      if(this.applicationStatus == 2){
+      if (this.applicationStatus == 2) {
         this.application = JSON.parse(sessionStorage.getItem('application')) ? JSON.parse(sessionStorage.getItem('application')) : this.application;
         console.log(this.application)
       }
     })
-   
-  
+
+
   }
 
   payNow() {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: this.application.id } })
   }
 
+  saveAndExit() {
+    // this.permitNavigateValue = 'fine'
+    // this.addHydrant('', this.currentTab)
+    this.router.navigate(['/dashboard/permit'])
+  }
 }

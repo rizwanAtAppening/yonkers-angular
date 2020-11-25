@@ -358,5 +358,8 @@ export class PaymentComponent implements OnInit {
     })
 
   }
+  cancelForm(){
+    this.cardForm.reset()
+  }
 
 }
