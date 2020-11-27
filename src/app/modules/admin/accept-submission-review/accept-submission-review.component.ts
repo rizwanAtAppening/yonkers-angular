@@ -37,13 +37,13 @@ export class AcceptSubmissionReviewComponent implements OnInit {
     private FB: FormBuilder,
     private applicationService: ApplicationService,
     private toasterService: ToastrService,
-    private permitService:PermitService
+    private permitService: PermitService
   ) {
     this.settings = settingConfig;
   }
 
   ngOnInit(): void {
-    
+
     this.completeIncompletCon()
     this.feeControls()
     this.desicionControls()
@@ -91,6 +91,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   public isAccept = false;
   public isCompletApplication = false;
   accepetOrDeclineApplication() {
+    debugger
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -99,9 +100,13 @@ export class AcceptSubmissionReviewComponent implements OnInit {
     this.completIncompletForm.value.application_id = this.applicationDetails.id
     this.applicationService.acceptApplicationByClerk(this.completIncompletForm.value).subscribe(data => {
       this.messageEvent.emit('hello')
+      if (this.completIncompletForm.value.decision == 1) {
+        this.toasterService.success('Application has been accepted Submission Incomplete.');
+      } else {
+        this.toasterService.success('Application has been accepted  Submission.');
+      }
       this.completIncompletForm.reset();
       this.isCompletApplication = false;
-      this.toasterService.success('Application has been accepted');
     }, error => {
       console.log(error)
     })
@@ -140,8 +145,8 @@ export class AcceptSubmissionReviewComponent implements OnInit {
 
   VoidFee(feeId) {
     const data = {
-      id:feeId,
-      application_id:this.applicationDetails.id
+      id: feeId,
+      application_id: this.applicationDetails.id
     }
     this.applicationService.voidPaymentFee(data).subscribe(data => {
       this.toasterService.success('Fee have voided');
@@ -185,8 +190,8 @@ export class AcceptSubmissionReviewComponent implements OnInit {
 
   voidDecision(id) {
     const data = {
-      id:id,
-      application_id:this.applicationDetails.id
+      id: id,
+      application_id: this.applicationDetails.id
     }
     this.applicationService.voidDecision(data).subscribe(data => {
       this.toasterService.success('Decision have voided')
@@ -207,5 +212,5 @@ export class AcceptSubmissionReviewComponent implements OnInit {
 
 
 
-  
+
 }
