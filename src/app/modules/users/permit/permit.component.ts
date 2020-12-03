@@ -21,7 +21,7 @@ export class PermitComponent implements OnInit {
   @ViewChild('adminCity2', { static: false }) adminCity2: ElementRef;
 
   public applicationId: number;
-
+  public intialFeeType = 3
   public settings: any;
   public applictionDetails = []
   public dwlForm: FormGroup;
@@ -260,7 +260,29 @@ export class PermitComponent implements OnInit {
       this.offset = data.offset;
       this.totalPagination = data.total
       this.currentPage = data.currentPage;
+      this.checkPayments()
     })
+  }
+
+
+  checkPayments() {
+
+debugger
+    this.applictionDetails.forEach(value => {
+      value.addByAdminPayment = []
+      if (value.application_fees.length > 0) {
+        value.application_fees.every(paymentValue => {
+          if ((paymentValue.fee_Type == 1 || paymentValue.fee_Type == 2) && paymentValue.payment_status != 3) {
+            value.addByAdminPayment.push(paymentValue)
+            return false
+          }else{
+            return true
+          }
+        })
+      }
+
+    })
+    console.log(this.applictionDetails, "_++++++++++_+_____________+_++_+_+_+_+_+_+-=-")
   }
 
   paginate(page, dwlType, permit_type) {
@@ -280,7 +302,8 @@ export class PermitComponent implements OnInit {
     }
     const data = {
       search_query: String(this.searchString),
-      application_type: this.application_type
+      application_type: this.application_type,
+      permit_type: 1
     }
     this.permitService.searchApplication(data).subscribe(data => {
       this.applictionDetails = data.response;
@@ -328,7 +351,7 @@ export class PermitComponent implements OnInit {
       this.confirmPopUp.nativeElement.click();
       this.toastService.success('Application have beed converted');
 
-      this.getPermitApplication(this.dwlType,'');
+      this.getPermitApplication(this.dwlType, '');
       //this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
@@ -371,8 +394,10 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  navigateTopaymentPage(id) {
-    this.router.navigate(['/dashboard/payment'], { queryParams: { id: id } })
+  navigateTopaymentPage(id, permit_type,fee_Type) {
+    localStorage.setItem('currentTab', permit_type);
+
+    this.router.navigate(['/dashboard/payment'], { queryParams: { id: id,fee_type:fee_Type } })
   }
 
   updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string, permit_type: any) {

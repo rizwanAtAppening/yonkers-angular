@@ -178,37 +178,41 @@
                             <div class="row">
                                 <div class="col-12">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item" (click) ="getPermitApplication(1,1)">
-                                            <a [class] = "currentTab == '1' ? 'nav-link active':'nav-link'" id="pills-Permit-loaction-tab" data-toggle="pill"
+                                        <li class="nav-item" (click)="getPermitApplication(1,1)">
+                                            <a [class]="currentTab == '1' ? 'nav-link active':'nav-link'"
+                                                id="pills-Permit-loaction-tab" data-toggle="pill"
                                                 href="#pills-Permit-loaction" role="tab"
                                                 aria-controls="pills-Permit-loaction" aria-selected="true">Engineering
                                                 Permit</a>
                                         </li>
-                                        <li class="nav-item" (click) ="getPermitApplication(1,2)">
-                                            <a [class] = "currentTab == '2' ? 'nav-link active':'nav-link'"  id="pills-Daily-tab" data-toggle="pill"
-                                                href="#pills-Daily" role="tab" aria-controls="pills-Daily"
-                                                aria-selected="false">Meter Permit
+                                        <li class="nav-item" (click)="getPermitApplication(1,2)">
+                                            <a [class]="currentTab == '2' ? 'nav-link active':'nav-link'"
+                                                id="pills-Daily-tab" data-toggle="pill" href="#pills-Daily" role="tab"
+                                                aria-controls="pills-Daily" aria-selected="false">Meter Permit
                                             </a>
                                         </li>
 
-                                        <li class="nav-item" (click) ="getPermitApplication(1,3)">
-                                            <a  [class] = "currentTab == '3' ? 'nav-link active':'nav-link'"  id="pills-hydrant-tab" data-toggle="pill"
-                                                href="#pills-Daily-hydrant" role="tab" aria-controls="pills-Daily-hydrant"
+                                        <li class="nav-item" (click)="getPermitApplication(1,3)">
+                                            <a [class]="currentTab == '3' ? 'nav-link active':'nav-link'"
+                                                id="pills-hydrant-tab" data-toggle="pill" href="#pills-Daily-hydrant"
+                                                role="tab" aria-controls="pills-Daily-hydrant"
                                                 aria-selected="false">Hydrant Permit
                                             </a>
                                         </li>
 
-                                        <li class="nav-item" (click) ="getPermitApplication(1,4)">
-                                            <a [class] = "currentTab == '4' ? 'nav-link active':'nav-link'"  id="pills-size-tab" data-toggle="pill"
-                                                href="#pills-Daily-size" role="tab" aria-controls="pills-Daily-size"
+                                        <li class="nav-item" (click)="getPermitApplication(1,4)">
+                                            <a [class]="currentTab == '4' ? 'nav-link active':'nav-link'"
+                                                id="pills-size-tab" data-toggle="pill" href="#pills-Daily-size"
+                                                role="tab" aria-controls="pills-Daily-size"
                                                 aria-selected="false">OverSize vehicle permit
                                             </a>
                                         </li>
 
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
-                                        <div [class] = "currentTab == '1' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Permit-loaction"
-                                            role="tabpanel" aria-labelledby="pills-Permit-loaction-tab">
+                                        <div [class]="currentTab == '1' ? 'tab-pane fade show active':'tab-pane fade show'"
+                                            id="pills-Permit-loaction" role="tabpanel"
+                                            aria-labelledby="pills-Permit-loaction-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
                                                     <div class="row">
@@ -219,8 +223,8 @@
                                                                         <div class="col-8">
                                                                             <div class="row">
                                                                                 <div class="col-4 pr-0">
-                                                                                    <div class="permit-Hd" >
-                                                                                        Engineering Permit 
+                                                                                    <div class="permit-Hd">
+                                                                                        Engineering Permit
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="col-7 pl-0">
@@ -236,8 +240,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-4"
-                                                                            data-toggle="modal" data-target="#withdselect"> 
+                                                                        <div class="col-4" data-toggle="modal"
+                                                                            data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -258,6 +262,7 @@
                                                                                             <th>Type</th>
                                                                                             <th>Permit Status</th>
                                                                                             <th>Application status</th>
+                                                                                            <th>Payment status</th>
                                                                                             <th>Submit date</th>
                                                                                             <th>Expire Date</th>
                                                                                             <th>Action</th>
@@ -329,7 +334,7 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
-
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
                                                                                             <td>_</td>
@@ -339,9 +344,17 @@
                                                                                                 <div
                                                                                                     class="displayAlign">
                                                                                                     <div class="time-btn"
-                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                        *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
+                                                                                                        <button 
+                                                                                                            (click)="navigateTopaymentPage(application?.id,1,intialFeeType)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="time-btn"
+                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
                                                                                                         <button
-                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+                                                                                                            (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
                                                                                                             Pay Now
                                                                                                         </button>
@@ -378,7 +391,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'',1)">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,'',1)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -387,8 +401,8 @@
                                                 </div>
                                             </section>
                                         </div>
-                                        <div [class] = "currentTab == '2' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily" role="tabpanel"
-                                            aria-labelledby="pills-Daily-tab">
+                                        <div [class]="currentTab == '2' ? 'tab-pane fade show active':'tab-pane fade show'"
+                                            id="pills-Daily" role="tabpanel" aria-labelledby="pills-Daily-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
                                                     <div class="row">
@@ -416,8 +430,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-4"
-                                                                        data-toggle="modal" data-target="#withdselect">
+                                                                        <div class="col-4" data-toggle="modal"
+                                                                            data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -438,6 +452,7 @@
                                                                                             <!-- <th>Type</th> -->
                                                                                             <!-- <th>Permit Status</th> -->
                                                                                             <th>Application status</th>
+                                                                                            <th>Payment Status</th>
                                                                                             <th>Submit date</th>
                                                                                             <!-- <th>Expire Date</th> -->
                                                                                             <th>Action</th>
@@ -468,6 +483,7 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -478,9 +494,18 @@
                                                                                                 <div
                                                                                                     class="displayAlign">
                                                                                                     <div class="time-btn"
-                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
-                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+                                                                                                            (click)="navigateTopaymentPage(application?.id,2,intialFeeType)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+
+                                                                                                    <div class="time-btn"
+                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        <button
+                                                                                                            (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
                                                                                                             Pay Now
                                                                                                         </button>
@@ -517,7 +542,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'',2)">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,'',2)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -529,7 +555,8 @@
 
                                         </div>
 
-                                        <div [class] = "currentTab == '3' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily-hydrant" role="tabpanel"
+                                        <div [class]="currentTab == '3' ? 'tab-pane fade show active':'tab-pane fade show'"
+                                            id="pills-Daily-hydrant" role="tabpanel"
                                             aria-labelledby="pills-hydrant-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
@@ -558,8 +585,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-4"
-                                                                        data-toggle="modal" data-target="#withdselect">
+                                                                        <div class="col-4" data-toggle="modal"
+                                                                            data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -581,6 +608,7 @@
                                                                                             <!-- <th>Type</th> -->
                                                                                             <!-- <th>Permit Status</th> -->
                                                                                             <th>Application status</th>
+                                                                                            <th>Payment Status</th>
                                                                                             <th>Submit date</th>
                                                                                             <!-- <th>Expire Date</th> -->
                                                                                             <th>Action</th>
@@ -593,7 +621,8 @@
                                                                                                 (click)="updateMeterPermitAndHydrant(application?.id,'applicant','hydrant',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
-                                                                                            <td>{{application?.application_hydrant?.hydrant_address}}</td>
+                                                                                            <td>{{application?.application_hydrant?.hydrant_address}}
+                                                                                            </td>
                                                                                             <td>
                                                                                                 <p>
                                                                                                     {{application?.applicant_details?.fax}}
@@ -612,6 +641,7 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -622,9 +652,17 @@
                                                                                                 <div
                                                                                                     class="displayAlign">
                                                                                                     <div class="time-btn"
-                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
-                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+                                                                                                            (click)="navigateTopaymentPage(application?.id,3,intialFeeType)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="time-btn"
+                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        <button
+                                                                                                            (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
                                                                                                             Pay Now
                                                                                                         </button>
@@ -661,7 +699,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'',3)">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,'',3)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -673,8 +712,8 @@
 
                                         </div>
 
-                                        <div [class] = "currentTab == '4' ? 'tab-pane fade show active':'tab-pane fade show'" id="pills-Daily-size" role="tabpanel"
-                                            aria-labelledby="pills-size-tab">
+                                        <div [class]="currentTab == '4' ? 'tab-pane fade show active':'tab-pane fade show'"
+                                            id="pills-Daily-size" role="tabpanel" aria-labelledby="pills-size-tab">
                                             <section class="table-sec" *ngIf="userType != 3">
                                                 <div class="container container-tbl">
                                                     <div class="row">
@@ -702,8 +741,8 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="col-4"
-                                                                        data-toggle="modal" data-target="#withdselect">
+                                                                        <div class="col-4" data-toggle="modal"
+                                                                            data-target="#withdselect">
                                                                             <div class="New-Project"><button> <span><img
                                                                                             src="assets/images/plus.svg"
                                                                                             alt=""></span> New
@@ -724,6 +763,7 @@
                                                                                             <!-- <th>Type</th> -->
                                                                                             <!-- <th>Permit Status</th> -->
                                                                                             <th>Application status</th>
+                                                                                            <th>Payment Status</th>
                                                                                             <th>Submit date</th>
                                                                                             <!-- <th>Expire Date</th> -->
                                                                                             <th>Action</th>
@@ -754,6 +794,7 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -764,9 +805,17 @@
                                                                                                 <div
                                                                                                     class="displayAlign">
                                                                                                     <div class="time-btn"
-                                                                                                        *ngIf="application?.payment_status == null">
+                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
-                                                                                                            (click)="navigateTopaymentPage(application?.id)">
+                                                                                                            (click)="navigateTopaymentPage(application?.id,4,intialFeeType)">
+
+                                                                                                            Pay Now
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="time-btn"
+                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        <button
+                                                                                                            (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
                                                                                                             Pay Now
                                                                                                         </button>
@@ -803,7 +852,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,'',4)">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,'',4)">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -893,10 +943,11 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project"  data-toggle="modal" data-target="#withdselect2"
+                                                                            <div class="New-Project" data-toggle="modal"
+                                                                                data-target="#withdselect2"
                                                                                 (click)="navigate(1)"><button>
-                                                                                    <span><img 
-                                                                                             src="assets/images/plus.svg"
+                                                                                    <span><img
+                                                                                            src="assets/images/plus.svg"
                                                                                             alt=""></span> New
                                                                                     Project</button></div>
                                                                         </div>
@@ -1009,7 +1060,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,1,'')">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,1,'')">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -1048,7 +1100,8 @@
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-4">
-                                                                            <div class="New-Project"  data-toggle="modal" data-target="#withdselect2"
+                                                                            <div class="New-Project" data-toggle="modal"
+                                                                                data-target="#withdselect2"
                                                                                 (click)="navigate(2)"><button>
                                                                                     <span><img
                                                                                             src="assets/images/plus.svg"
@@ -1171,7 +1224,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <pagination-controls (pageChange)="paginate($event,2,'')">
+                                                                <pagination-controls
+                                                                    (pageChange)="paginate($event,2,'')">
                                                                 </pagination-controls>
 
                                                             </div>
@@ -1610,21 +1664,21 @@
                 <div class="modal-content s_add">
 
                     <div class="form-group">
-                        <label >Select City</label>
-                        <select (change) ="selectCity($event.target.value)">
-                                <option value="" hidden>--Select--</option>
-                            <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
-                           
+                        <label>Select City</label>
+                        <select (change)="selectCity($event.target.value)">
+                            <option value="" hidden>--Select--</option>
+                            <option value="{{city?.id}}" *ngFor="let city of cityAdmin">{{city?.city_name}}</option>
+
                         </select>
                         <span>
                             <i class="fa fa-angle-down" aria-hidden="true"></i>
-                            </span>
-                      </div>
+                        </span>
+                    </div>
 
 
                     <div class="modal-footer p-0 border-0">
-                        <button type="button" class="secondary"  (click) ="selectType()">submit</button>
-                       
+                        <button type="button" class="secondary" (click)="selectType()">submit</button>
+
                     </div>
 
 
@@ -1633,32 +1687,32 @@
         </div>
 
         <div class="modal fade ng-Per" id="withdselect2" tabindex="-1" role="dialog" #adminCity2
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content s_add">
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered " role="document">
+                <div class="modal-content s_add">
 
-                <div class="form-group">
-                    <label >Select City</label>
-                    <select (change) ="selectCity($event.target.value)">
-                        <option value="" hidden>--Select--</option>
-                        <option value="{{city?.id}}" *ngFor ="let city of cityAdmin">{{city?.city_name}}</option>
-                       
-                    </select>
-                    <span>
-                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    <div class="form-group">
+                        <label>Select City</label>
+                        <select (change)="selectCity($event.target.value)">
+                            <option value="" hidden>--Select--</option>
+                            <option value="{{city?.id}}" *ngFor="let city of cityAdmin">{{city?.city_name}}</option>
+
+                        </select>
+                        <span>
+                            <i class="fa fa-angle-down" aria-hidden="true"></i>
                         </span>
-                  </div>
+                    </div>
 
 
-                <div class="modal-footer p-0 border-0">
-                    <button type="button" class="secondary"  (click) ="navigatetoDwl()">submit</button>
-                   
+                    <div class="modal-footer p-0 border-0">
+                        <button type="button" class="secondary" (click)="navigatetoDwl()">submit</button>
+
+                    </div>
+
+
                 </div>
-
-
             </div>
         </div>
-    </div>
 
 
 

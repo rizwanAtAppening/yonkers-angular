@@ -9,7 +9,8 @@ import { PermitService } from 'src/app/core/services/users/permit.service';
 })
 export class AddApplicationHeaderComponent implements OnInit {
   public application: any = {
-    status: null
+    status: null,
+    payment_status:null,
   }
   public applicationStatus: any
   constructor(
@@ -22,6 +23,7 @@ export class AddApplicationHeaderComponent implements OnInit {
     this.permitService.currentMessage.subscribe(data => {
       this.applicationStatus = data;
       if (this.applicationStatus == 2) {
+        debugger
         this.application = JSON.parse(sessionStorage.getItem('application')) ? JSON.parse(sessionStorage.getItem('application')) : this.application;
         console.log(this.application)
       }

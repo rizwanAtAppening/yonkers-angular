@@ -972,6 +972,7 @@
                         <tr *ngFor="let fee of applicationDetails?.application_fees">
                           <td>
                             {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):settings.getSetting('peyments_TypeForFee',fee?.type)}}
+                            <span class="voidMsg" *ngIf="fee?.payment_status == 4">(V)</span>
                           </td>
                           <td>{{ settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
                           <td>{{fee?.amount}}</td>
@@ -979,9 +980,9 @@
                             <div class="dropdown_act">
                               <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                               <div class="dropdown-content-void">
-                                <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
-                                  data-target="#withdraw_application">Delete</a>
-                                <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
+                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4" data-toggle="modal"
+                                  data-target="#withdraw_application">Void</a>
+                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
                               </div>
                             </div>
                           </td>

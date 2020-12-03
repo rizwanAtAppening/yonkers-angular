@@ -272,7 +272,7 @@ export class ApplicationsComponent implements OnInit {
         }
     }
     this.applicationService.getApplications(this.searchData, '').subscribe(data => {
-      this.allApplications = data.response;
+      this.paymentSummary = data.response;
       // console.log(this.dwlApplication)
       this.offset = data.offset;
       this.totalPagination = data.total

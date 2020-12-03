@@ -229,7 +229,7 @@ export class AddPermitComponent implements OnInit {
     );
     this.formData.append(
       "city_admin_id",
-      this.cityId
+      this.cityId?this.cityId:this.applicationDetail.city_admin_id
     );
     if (this.location_type == 2) {
 

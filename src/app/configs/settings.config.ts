@@ -611,7 +611,8 @@ export const settingConfig = {
     {
       key: 2,
       value: 'Fee & Payments',
-    }
+    },
+  
   ],
 
   department_Role: [
@@ -687,7 +688,7 @@ export const settingConfig = {
 
   ],
  
-
+ 
 
   permit_type: {
     "Engineering": 1,

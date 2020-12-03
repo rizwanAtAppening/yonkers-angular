@@ -23,6 +23,7 @@ export class PaymentComponent implements OnInit {
   public paymentDetails: any;
   public paymentsDetailsWithKey = []
   public totalFee: number
+  public fee_Type:number
   constructor(
     private permitService: PermitService,
     private route: ActivatedRoute,
@@ -36,7 +37,8 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.onInItForm();
     this.route.queryParams.subscribe(data => {
-      this.applicationId = data.id
+      this.applicationId = data.id;
+      this.fee_Type = data.fee_type
     })
     if (this.applicationId) {
       this.showPayment();
@@ -177,7 +179,7 @@ export class PaymentComponent implements OnInit {
   showPayment() {
     this.totalFee = 0
     const data = {
-      fee_Type: 3,
+      fee_Type: this.fee_Type,
       application_id: this.applicationId
     }
     this.permitService.showPayment(data).subscribe(data => {
@@ -282,12 +284,12 @@ export class PaymentComponent implements OnInit {
     this.isDisabled = true
     const data = {
       application_id: this.applicationId,
-      fee_Type: 3
+      fee_Type: this.fee_Type
     }
     this.permitService.genrateIntent(data).subscribe(data => {
       console.log(data)
       this.pay(data.response.client_secret, data.response.stripe_account);
-      this.toasterService.success('genrate secret')
+     // this.toasterService.success('genrate secret')
     }, error => {
       this.isDisabled = false;
 

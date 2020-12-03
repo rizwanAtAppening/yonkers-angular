@@ -531,10 +531,10 @@
 
 
                                                                                         </td>
-                                                                                        <td>{{permit?.applicant_details?.applicant_name}}
-                                                                                            {{permit?.applicant_details?.applican_last_name}}
+                                                                                        <td>{{permit?.applicant_details?.applicant_name ?permit?.applicant_details?.applicant_name :'_'}}
+                                                                                            {{permit?.applicant_details?.applican_last_name ? permit?.applicant_details?.applican_last_name : null}}
                                                                                         </td>
-                                                                                        <td>{{ settings.getSetting('type',permit['type'])}}
+                                                                                        <td>{{ permit?.type? settings.getSetting('type',permit['type']):'_'}}
                                                                                         </td>
                                                                                         <td
                                                                                             class="submited-Btn green-txt-2">
@@ -964,13 +964,14 @@
                                                                             <div class="table-permit">
                                                                                 <table class="table table-bordered ">
                                                                                     <thead>
-                                                                                        <tr>
+                                                                                        <tr> 
+                                                                                            <th>Ref No</th>
                                                                                             <th>Location</th>
                                                                                             <th>Created By</th>
                                                                                             <th>Status </th>
                                                                                             <th>Pay Method</th>
                                                                                             <th>Receipt No</th>
-                                                                                            <th>Ref No</th>
+                                                                                           
                                                                                             <th>Amount</th>
                                                                                             <th>Date</th>
 
@@ -979,6 +980,8 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
+                                                                                            <td>{{summary?.reference_no}}
+                                                                                                </td>
                                                                                             <td>
                                                                                                 <p
                                                                                                     *ngIf="summary?.application?.address_id">
@@ -1015,8 +1018,7 @@
                                                                                             <td>Check</td>
                                                                                             <td>{{summary?.reciept_no}}
                                                                                             </td>
-                                                                                            <td>{{summary?.reference_no}}
-                                                                                            </td>
+                                                                                          
                                                                                             <td>{{summary?.amount}}</td>
                                                                                             <td>{{summary?.createdAt | date}}
                                                                                             </td>

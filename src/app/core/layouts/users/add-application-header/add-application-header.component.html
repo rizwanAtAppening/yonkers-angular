@@ -13,11 +13,11 @@
             </div>
             <div class="col-6">
                 <div class="profile-header">
-                    <div class="saveTxtbtn1" *ngIf="application?.status == 2">
-                        <button (click)="payNow()"> Pay Now</button>
+                    <div  *ngIf="application?.status == 2 && application?.payment_status != 3" >
+                        <button class="saveTxtbtn1" (click)="payNow()"> Pay Now</button>
                     </div><br>
                     <div class="saveTxtbtn">
-                        <button (click)="saveAndExit()"> Save & Exit {{application?.status}}</button>
+                        <button (click)="saveAndExit()"> Save & Exit</button>
                     </div>
                 </div>
             </div>
