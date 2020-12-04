@@ -253,24 +253,41 @@ export class ApplicationsComponent implements OnInit {
   }
 
   public searchData = {}
+  public paymentsearchString:any
   searchInspectionAndPyment(value:string){
     // const data = {
     //   search_query: String(this.searchString),
     //   // application_type: this.application_Type,
     //   // permit_type: this.permit_type
     // }
-    if(value == 'inspection'){
-      this.searchData = {
-        search_query: String(this.searchString),
-        inspection:1
+    if(this.paymentsearchString.length > 0){
+      if(value == 'inspection'){
+        this.searchData = {
+          search_query: String(this.paymentsearchString),
+          inspection:1
+        }
+      }
+       else if(value == 'payment'){
+          this.searchData = {
+            search_query: String(this.paymentsearchString),
+            payment_summary:1
+          }
+      }
+    }else{
+      if(value == 'inspection'){
+        this.searchData = {
+        
+          inspection:1
+        }
+      }
+       else if(value == 'payment'){
+          this.searchData = {
+            
+            payment_summary:1
+          }
       }
     }
-     else if(value == 'payment'){
-        this.searchData = {
-          search_query: String(this.searchString),
-          payment:1
-        }
-    }
+  
     this.applicationService.getApplications(this.searchData, '').subscribe(data => {
       this.paymentSummary = data.response;
       // console.log(this.dwlApplication)

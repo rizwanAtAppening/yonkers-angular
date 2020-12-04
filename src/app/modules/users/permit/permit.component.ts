@@ -267,20 +267,28 @@ export class PermitComponent implements OnInit {
 
   checkPayments() {
 
-debugger
+    debugger
     this.applictionDetails.forEach(value => {
-      value.addByAdminPayment = []
+      value.addByAdminPayment = [];
+      value.expirtDate = []
       if (value.application_fees.length > 0) {
         value.application_fees.every(paymentValue => {
-          if ((paymentValue.fee_Type == 1 || paymentValue.fee_Type == 2) && paymentValue.payment_status != 3) {
+          if ((paymentValue.fee_Type == 1 || paymentValue.fee_Type == 2 || paymentValue.fee_Type == 4) && paymentValue.payment_status != 3) {
             value.addByAdminPayment.push(paymentValue)
             return false
-          }else{
+          } else {
             return true
           }
         })
       }
-
+      value.application_issue_permits.every(exp => {
+        if (exp.status == 0) {
+          value.expirtDate.push(exp)
+          return false
+        }else{
+          return true
+        }
+      })
     })
     console.log(this.applictionDetails, "_++++++++++_+_____________+_++_+_+_+_+_+_+-=-")
   }
@@ -394,10 +402,10 @@ debugger
     })
   }
 
-  navigateTopaymentPage(id, permit_type,fee_Type) {
+  navigateTopaymentPage(id, permit_type, fee_Type) {
     localStorage.setItem('currentTab', permit_type);
 
-    this.router.navigate(['/dashboard/payment'], { queryParams: { id: id,fee_type:fee_Type } })
+    this.router.navigate(['/dashboard/payment'], { queryParams: { id: id, fee_type: fee_Type } })
   }
 
   updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string, permit_type: any) {

@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   public paymentDetails: any;
   public paymentsDetailsWithKey = []
   public totalFee: number
-  public fee_Type:number
+  public fee_Type: number
   constructor(
     private permitService: PermitService,
     private route: ActivatedRoute,
@@ -64,7 +64,7 @@ export class PaymentComponent implements OnInit {
   public strip_account: string
   public stripe;
   callStripe() {
-    
+
     // this.stripeAccount
     // (<any>window).initStripe('acct_18uMSLJ28BYG31uZ');
     // this.stripe = (<any>window).stripe;
@@ -196,6 +196,8 @@ export class PaymentComponent implements OnInit {
         })
       }
       console.log(this.paymentsDetailsWithKey)
+    }, error => {
+      this.router.navigate(['/dashboard/permit'])
     })
   }
 
@@ -216,7 +218,7 @@ export class PaymentComponent implements OnInit {
   // }
 
   genrateIntent() {
-    
+
     this.isSubmit = true;
 
     this.cardNumber.on('change', (event) => {
@@ -289,7 +291,7 @@ export class PaymentComponent implements OnInit {
     this.permitService.genrateIntent(data).subscribe(data => {
       console.log(data)
       this.pay(data.response.client_secret, data.response.stripe_account);
-     // this.toasterService.success('genrate secret')
+      // this.toasterService.success('genrate secret')
     }, error => {
       this.isDisabled = false;
 
@@ -360,7 +362,7 @@ export class PaymentComponent implements OnInit {
     })
 
   }
-  cancelForm(){
+  cancelForm() {
     this.cardForm.reset()
   }
 

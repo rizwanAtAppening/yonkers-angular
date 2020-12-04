@@ -122,13 +122,14 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   }
 
   addFee() {
+    debugger
     if (this.addFeeForm.invalid) {
       this.isFee = true;
       return false
     }
     this.addFeeForm.value.application_id = this.applicationDetails.id
     this.addFeeForm.value.type = this.addFeeForm.value.paymetType
-    this.addFeeForm.value.fee_Type = this.addFeeForm.value.feeType
+    this.addFeeForm.value.fee_Type = this.addFeeForm.value.feeType?this.addFeeForm.value.feeType:4
 
     this.applicationService.addFee(this.addFeeForm.value).subscribe(data => {
       this.addFeeForm.reset()
