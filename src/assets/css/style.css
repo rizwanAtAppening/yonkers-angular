@@ -643,6 +643,7 @@ header {
     color: #fff;
     padding: 2px 8px;
     cursor: pointer;
+    /* margin: 0 15px 0 auto; */
 }
 
 .table-sec {
@@ -3757,7 +3758,7 @@ padding: 20px 28px 15px 28px;
   }
   
   .dropdown-content-void a {
-    color: black;
+    color: black !important;
     padding: 8px 13px;
     text-decoration: none;
     display: block;
@@ -5381,4 +5382,23 @@ border: 0.5px solid #9CA6C08C;
 }
 .email-userinput input::placeholder{
     color: #cacaca8c !important;
+}
+
+#payalign{
+    justify-content: flex-end;
+    padding-right: 15px;
+}
+
+#payalign2{
+    justify-content: flex-end;
+    padding-right: 96px;
+}
+#payalign3{
+    justify-content: flex-end;
+    padding-right: 70px;
+}
+
+#payalign4{
+    justify-content: flex-end;
+    padding-right: 105px;
 }
