@@ -223,7 +223,7 @@
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
                             data-target="#withdraw_application">Delete</a> -->
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal" data-target="#Edit-Fee">Edit</a> -->
-                          <a *ngIf="fee?.status != 4" (click)="VoidFee(fee?.id)">Void</a>
+                          <a *ngIf="fee?.payment_status != 4" (click)="VoidFee(fee?.id)">Void</a>
                         </div>
                       </div>
                     </td>
