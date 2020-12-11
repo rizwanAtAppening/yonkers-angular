@@ -285,7 +285,7 @@ export class PermitComponent implements OnInit {
         if (exp.status == 0) {
           value.expirtDate.push(exp)
           return false
-        }else{
+        } else {
           return true
         }
       })
@@ -300,6 +300,9 @@ export class PermitComponent implements OnInit {
     this.getPermitApplication(this.dwlType, permit_type)
   }
   public searchString: string
+  public searchData = {}
+
+
   searchApplication() {
 
     if (this.dwlType == '1') {
@@ -308,12 +311,20 @@ export class PermitComponent implements OnInit {
       this.application_type = 2
 
     }
-    const data = {
-      search_query: String(this.searchString),
-      application_type: this.application_type,
-      permit_type: 1
+    if (this.searchString.length > 0) {
+      this.searchData = {
+        search_query: String(this.searchString),
+        application_type: this.application_type,
+        permit_type: 1
+      }
+    } else {
+      this.searchData = {
+        application_type: this.application_type,
+        permit_type: 1
+      }
     }
-    this.permitService.searchApplication(data).subscribe(data => {
+
+    this.permitService.searchApplication(this.searchData).subscribe(data => {
       this.applictionDetails = data.response;
       // console.log(this.dwlApplication)
       this.offset = data.offset;

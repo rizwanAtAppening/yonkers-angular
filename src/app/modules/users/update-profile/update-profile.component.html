@@ -1,7 +1,22 @@
 <app-layout>
     <router-outlet>
-
+        
         <section class="updateprofile">
+                <section>
+                        <div class="container p-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="back-txt">
+                                        <div class="row">
+                                            <div class="col-12" routerLink = "/dashboard/permit">
+                                                <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
             <div class="box-engrining-2">
 
                 <div class="applicant-details">
@@ -83,7 +98,7 @@
                                                         <div class="form-group">
                                                             <input type="text" id="ud4" class="form-control"
                                                                 formControlName="mobile_number" maxlength="12"
-                                                                (keypress)="phoneNumberFormate('mobile')"
+                                                                (keypress)= "(profilevalue.mobile_number && profilevalue.mobile_number.length) > 2 ? phoneNumberFormate('mobile'):''"
                                                                 [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                             <label [class]="profile.mobile_number.invalid && (profile.mobile_number.dirty ||profile.mobile_number.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud4">
                                                                 Mobile Number</label>
@@ -235,7 +250,7 @@
                                                         <div class="form-group">
                                                             <input type="text" id="ud4" class="form-control"
                                                                 formControlName="phone_number" maxlength="12"
-                                                                (keypress)="phoneNumberFormate('phone')"
+                                                                (keypress)= "(profilevalue.phone_number && profilevalue.phone_number.length) > 2 ? phoneNumberFormate('phone'):''"
                                                                 [class]="profile.phone_number.invalid && (profile.phone_number.dirty ||profile.phone_number.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                             <label [class]="profile.phone_number.invalid && (profile.phone_number.dirty ||profile.phone_number.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'" for="ud4">
                                                                 Phone</label>

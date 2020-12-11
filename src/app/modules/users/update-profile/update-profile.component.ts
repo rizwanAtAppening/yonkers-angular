@@ -62,8 +62,8 @@ export class UpdateProfileComponent implements OnInit {
         this.profileForm.controls.address.setValue(this.currentUserInfo.address);
         this.profileForm.controls.email.setValue(this.currentUserInfo.email);
         this.profileForm.controls.last_name.setValue(this.currentUserInfo.last_name);
-        this.profileForm.controls.mobile_number.setValue(this.currentUserInfo.mobile_number);
-        this.profileForm.controls.phone_number.setValue(this.currentUserInfo.phone_number);
+        this.profileForm.controls.mobile_number.setValue(this.currentUserInfo.mobile_number ? this.currentUserInfo.mobile_number : null);
+        this.profileForm.controls.phone_number.setValue(this.currentUserInfo.phone_number ? this.currentUserInfo.phone_number :null);
         this.profileForm.controls.company.setValue(this.currentUserInfo.company);
         this.profileForm.controls.job_title.setValue(this.currentUserInfo.job_title);
         this.profileForm.controls.state.setValue(this.currentUserInfo.state);
@@ -76,6 +76,7 @@ export class UpdateProfileComponent implements OnInit {
   }
 
   get profile() { return this.profileForm.controls }
+  get profilevalue() { return this.profileForm.value }
 
   public isSubmit = false;
   updateProfile() {
@@ -96,23 +97,32 @@ export class UpdateProfileComponent implements OnInit {
 
 
   phoneNumberFormate(value: string) {
-    
+    debugger
     var autoFillValue = '-'
     if (value == 'phone') {
+      if (this.profileForm.value.phone_number === null) {
+        this.profileForm.controls.phone_number.setValue(this.profileForm.value.phone_number)
+      }
       if (this.profileForm.value.phone_number.length === 3) {
+        
         this.profileForm.controls.phone_number.setValue(this.profileForm.value.phone_number.concat(autoFillValue))
       }
       if (this.profileForm.value.phone_number.length === 7) {
         this.profileForm.controls.phone_number.setValue(this.profileForm.value.phone_number.concat(autoFillValue))
       }
+    
     }
     else if (value == 'mobile') {
+      if (this.profileForm.value.mobile_number === null) {
+      this.profileForm.controls.mobile_number.setValue(this.profileForm.value.mobile_number)
+       }
       if (this.profileForm.value.mobile_number.length === 3) {
         this.profileForm.controls.mobile_number.setValue(this.profileForm.value.mobile_number.concat(autoFillValue))
       }
       if (this.profileForm.value.mobile_number.length === 7) {
         this.profileForm.controls.mobile_number.setValue(this.profileForm.value.mobile_number.concat(autoFillValue))
       }
+     
     }
   }
 

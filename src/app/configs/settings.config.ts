@@ -363,10 +363,10 @@ export const settingConfig = {
       value: 'Yonkers License'
     },
     {
-      key: 1,
+      key: 2,
       value: 'General Liability'
     }, {
-      key: 1,
+      key: 3,
       value: 'Bond'
     },
   ],

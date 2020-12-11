@@ -1,6 +1,6 @@
 <app-layout>
     <router-outlet>
-        <section *ngIf="userType != 3">
+        <section *ngIf="userType == 1">
             <div class="container p-0">
                 <div class="row">
                     <div class="col-12">
@@ -170,7 +170,7 @@
 
 
 
-        <section *ngIf="userType != 3">
+        <section *ngIf="userType == 1">
             <div class="container p-0 container_full">
                 <div class="row">
                     <div class="col-12">
@@ -213,7 +213,7 @@
                                         <div [class]="currentTab == '1' ? 'tab-pane fade show active':'tab-pane fade show'"
                                             id="pills-Permit-loaction" role="tabpanel"
                                             aria-labelledby="pills-Permit-loaction-tab">
-                                            <section class="table-sec" *ngIf="userType != 3">
+                                            <section class="table-sec" *ngIf="(userType == 1 )">
                                                 <div class="container container-tbl">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -337,7 +337,7 @@
                                                                                             <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
-                                                                                            <td>{{application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'dd/MM/yyyy') : '_' }}</td>
+                                                                                            <td>{{application?.expirtDate && application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'dd/MM/yyyy') : '_' }}</td>
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">
@@ -403,7 +403,7 @@
                                         </div>
                                         <div [class]="currentTab == '2' ? 'tab-pane fade show active':'tab-pane fade show'"
                                             id="pills-Daily" role="tabpanel" aria-labelledby="pills-Daily-tab">
-                                            <section class="table-sec" *ngIf="userType != 3">
+                                            <section class="table-sec" *ngIf="userType == 1">
                                                 <div class="container container-tbl">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -558,7 +558,7 @@
                                         <div [class]="currentTab == '3' ? 'tab-pane fade show active':'tab-pane fade show'"
                                             id="pills-Daily-hydrant" role="tabpanel"
                                             aria-labelledby="pills-hydrant-tab">
-                                            <section class="table-sec" *ngIf="userType != 3">
+                                            <section class="table-sec" *ngIf="userType == 1">
                                                 <div class="container container-tbl">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -714,7 +714,7 @@
 
                                         <div [class]="currentTab == '4' ? 'tab-pane fade show active':'tab-pane fade show'"
                                             id="pills-Daily-size" role="tabpanel" aria-labelledby="pills-size-tab">
-                                            <section class="table-sec" *ngIf="userType != 3">
+                                            <section class="table-sec" *ngIf="userType == 1">
                                                 <div class="container container-tbl">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -887,7 +887,7 @@
 
 
 
-        <section *ngIf="userType == 3">
+        <section *ngIf="(userType == 3 || userType == 2 )">
             <div class="container p-0 container_full">
                 <div class="row">
                     <div class="col-12">

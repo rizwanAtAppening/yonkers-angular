@@ -307,7 +307,7 @@
                                                                         <!-- (typeaheadOnSelect) = "typeaheadOnSelect($event,'location','addressOne')" -->
 
                                                                     <input type="text" id="Street"
-                                                                        class="form-control"   [typeahead]="addressOne" (input) ="searchAddress('location',i)"
+                                                                        class="form-control"    (input) ="searchAddress('location',i)" [typeahead]="addressOne" 
                                                                         formControlName="street_one"
                                                                         [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
@@ -655,9 +655,8 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="applicant_phone"
-                                                                maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="text" formControlName="applicant_phone"
+                                                            (keypress)="phoneNumberFormate('app')" maxlength="12"
                                                                 [class]="applicantControls.applicant_phone.invalid && (applicantControls.applicant_phone.dirty || applicantControls.applicant_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="namProject" class="form-control" id="Phone-id"
                                                                 required>
@@ -925,9 +924,8 @@
                                                     <div class="col-12 ">
 
                                                         <div class="form-group">
-                                                            <input type="number" formControlName="contractor_phone"
-                                                                [readonly]="isDisabled" maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="text" formControlName="contractor_phone"
+                                                            (keypress)="phoneNumberFormate('con')" maxlength="12"
                                                                 [class]="contratorControl.contractor_phone.invalid && (contratorControl.contractor_phone.dirty || contratorControl.contractor_phone.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                 id="Project">
                                                             <label

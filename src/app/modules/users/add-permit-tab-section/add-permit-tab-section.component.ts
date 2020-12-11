@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormArray, EmailValidator } from '@
 import { PermitService } from 'src/app/core/services/users/permit.service';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { of, Subject } from 'rxjs';
+import { of, Subject, observable, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -695,7 +695,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
   public currentUserInfo: any
   getCurrentUser() {
-
+debugger
     const application = this.permitService.getApplication()
     this.applicantForm.controls.applicant_role.setValue(application.role);
     if (application.applicant_details) {
@@ -1415,6 +1415,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
+    debugger
     //this.address = []
     var value: string
 
@@ -1422,7 +1423,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       value = this.whereForm.value.address_id
       this.searchString = value;
 
-      if (this.searchString.length > 1) {
+      if (this.searchString.length > 0) {
         this.exextAddress(this.searchString)
       }
 
@@ -1435,7 +1436,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           this.searchString = (data.street_one).toString()
         }
       })
-      if (this.searchString.length > 1) {
+      if (this.searchString.length > 0) {
         this.exextAddress(this.searchString)
       }
     }
@@ -1447,7 +1448,7 @@ export class AddPermitTabSectionComponent implements OnInit {
           this.searchString = (data.street_two).toString()
         }
       })
-      if (this.searchString.length > 1) {
+      if (this.searchString.length > 0) {
         this.exextAddress(this.searchString)
       }
     }
@@ -1459,6 +1460,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressOne = [];
   public addressTwo = []
   public selectadd = []
+  public newOneAdree
   //private subject = new Subject<any>();
   exextAddress(value) {
     const data = {
@@ -1474,6 +1476,21 @@ export class AddPermitTabSectionComponent implements OnInit {
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })
+
+        // function fromEvent(target, eventName) {
+        //   return new Observable((observer) => {
+        //     const handler = (e) => observer.next(e);
+        
+        //     // Add the event handler to the target
+        //     target.addEventListener(eventName, handler);
+        
+        //     return () => {
+        //       // Detach the event handler from the target
+        //       target.removeEventListener(eventName, handler);
+        //     };
+        //   });
+        // }
+
         this.addressTwo = this.exactAddress.map(data => {
           return data.szStreet_name
         })
@@ -1536,5 +1553,26 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
 
+  
+  phoneNumberFormate(value: string) {
+    debugger
+    var autoFillValue = '-'
+    if (value == 'app') {
+      if (this.applicantForm.value.applicant_phone.length === 3) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+      if (this.applicantForm.value.applicant_phone.length === 7) {
+        this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
+      }
+    }
+    else if (value == 'con') {
+      if (this.contractorForm.value.contractor_phone.length === 3) {
+        this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
+      }
+      if (this.contractorForm.value.contractor_phone.length === 7) {
+        this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
+      }
+    }
+  }
 
 }
