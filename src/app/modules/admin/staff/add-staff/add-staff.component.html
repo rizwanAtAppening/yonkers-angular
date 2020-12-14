@@ -125,9 +125,9 @@
                                                 <div class="row">
                                                     <div class="col-12 ">
                                                         <div class="form-group">
-                                                            <input type="number" id="ans3" class="form-control"
-                                                                formControlName="phone" maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="text" id="ans3" class="form-control" maxlength="12"
+                                                            (keypress)= "phoneNumberFormate()"
+                                                                formControlName="phone" 
                                                                 required="">
                                                             <label class="form-control-placeholder"
                                                                 for="ans3">Phone</label>

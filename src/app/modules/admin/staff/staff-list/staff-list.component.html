@@ -71,15 +71,15 @@
                                                 <tbody>
                                                     <tr *ngFor ="let staff of staffList | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                
-                                                        <td>{{staff?.name ? staff?.name :'_'}}</td>
-                                                        <td>{{staff?.email}}</td>
-                                                        <td class="submited-Btn blue-txt" *ngIf ="staff?.status == 1"><button>Active</button></td>
-                                                        <td class="submited-Btn red-txt" *ngIf ="staff?.status == 0"><button>InActive</button></td>
+                                                        <td>{{staff?.city_staff?.name ? staff?.city_staff?.name :'_'}}</td>
+                                                        <td>{{staff?.city_staff?.email}}</td>
+                                                        <td class="submited-Btn blue-txt" *ngIf ="staff?.city_staff?.status == 1"><button>Active</button></td>
+                                                        <td class="submited-Btn red-txt" *ngIf ="staff?.city_staff?.status == 0"><button>InActive</button></td>
 
                                                         <td class="actionImg">
-                                                            <img src="assets/images/mg.svg" alt="" (click) ="reSendMail(staff?.id)"> 
+                                                            <img src="assets/images/mg.svg" alt="" (click) ="reSendMail(staff?.city_staff?.id)"> 
                                                             <!-- <img src="assets/images/ly.svg" alt=""> -->
-                                                            <img src="assets/images/eb.svg" alt="" (click) ="editStaff(staff?.id)">  
+                                                            <img src="assets/images/eb.svg" alt="" (click) ="editStaff(staff?.city_staff?.id)">  
                                                             <!-- <img src="assets/images/dr.svg" alt="">  -->
                                                         </td>
                                                     </tr>

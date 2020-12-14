@@ -334,25 +334,27 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
-                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}
+                                                                                            </td>
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
-                                                                                            <td>{{application?.expirtDate && application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'dd/MM/yyyy') : '_' }}</td>
+                                                                                            <td>{{application?.expirtDate && application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'dd/MM/yyyy') : '_' }}
+                                                                                            </td>
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">
-                                                                                                <div
-                                                                                                    class="displayAlign" id="payalign">
+                                                                                                <div class="displayAlign"
+                                                                                                    id="payalign">
                                                                                                     <div class="time-btn"
                                                                                                         *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
-                                                                                                        <button 
+                                                                                                        <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,1,intialFeeType)">
 
                                                                                                             Pay Now
                                                                                                         </button>
                                                                                                     </div>
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,1,application?.addByAdminPayment[0]?.fee_Type)">
 
@@ -483,7 +485,8 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
-                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}
+                                                                                            </td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -491,10 +494,10 @@
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">
-                                                                                                <div
-                                                                                                    class="displayAlign" id="payalign2">
+                                                                                                <div class="displayAlign"
+                                                                                                    id="payalign2">
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
+                                                                                                        *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,2,intialFeeType)">
 
@@ -503,7 +506,7 @@
                                                                                                     </div>
 
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
@@ -641,7 +644,8 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
-                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}
+                                                                                            </td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -649,10 +653,10 @@
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">
-                                                                                                <div
-                                                                                                    class="displayAlign" id="payalign3">
+                                                                                                <div class="displayAlign"
+                                                                                                    id="payalign3">
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
+                                                                                                        *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,3,intialFeeType)">
 
@@ -660,7 +664,7 @@
                                                                                                         </button>
                                                                                                     </div>
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
@@ -794,7 +798,8 @@
                                                                                                 *ngIf="application?.status == 3 && application?.application_type ==1">
                                                                                                 <button>Cancel</button>
                                                                                             </td>
-                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}</td>
+                                                                                            <td>{{application?.payment_status == 3 ? 'Paid':application?.payment_status == 2?'Failed':application?.payment_status == 1?'Processing':'Not Paid'}}
+                                                                                            </td>
 
                                                                                             <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                             </td>
@@ -802,10 +807,10 @@
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">
-                                                                                                <div
-                                                                                                    class="displayAlign" id="payalign4">
+                                                                                                <div class="displayAlign"
+                                                                                                    id="payalign4">
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
+                                                                                                        *ngIf="(application?.payment_status == null || application?.payment_status == 2) && application.status == 2">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,4,intialFeeType)">
 
@@ -813,7 +818,7 @@
                                                                                                         </button>
                                                                                                     </div>
                                                                                                     <div class="time-btn"
-                                                                                                    *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
+                                                                                                        *ngIf="(application?.payment_status == 3 &&  application?.addByAdminPayment?.length > 0)">
                                                                                                         <button
                                                                                                             (click)="navigateTopaymentPage(application?.id,2,application?.addByAdminPayment[0]?.fee_Type)">
 
@@ -968,7 +973,7 @@
                                                                                         <th>Application Status</th>
                                                                                         <!-- <th>Layout No</th> -->
                                                                                         <th>Submit date</th>
-                                                                                        <th>Expire Date</th>
+                                                                                        <!-- <th>Expire Date</th> -->
                                                                                         <th>Action</th>
                                                                                     </tr>
                                                                                 </thead>
@@ -1033,8 +1038,8 @@
                                                                                         <!-- <td>{{application?.application_daily_work_location?.layout_number ? application?.application_daily_work_location?.layout_number :'_'}}</td> -->
                                                                                         <td>{{application?.createdAt | date :'dd/MM/yyyy'}}
                                                                                         </td>
-                                                                                        <td>_
-                                                                                        </td>
+                                                                                        <!-- <td>_
+                                                                                        </td> -->
                                                                                         <td
                                                                                             class="update-txt dropdown-action">
                                                                                             <span> <i

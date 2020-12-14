@@ -207,8 +207,11 @@ export class PermitComponent implements OnInit {
   public hydrantPermit = []
   public engineeringPermit = []
   public sizePemit = []
+  public permit_type:any
   getPermitApplication(dwlType: any, permit_type: any) {
+    
     this.dwlType = dwlType
+    this.permit_type = permit_type
     this.currentUser()
     if (this.dwlType == '1') {
       this.application_type = 1
@@ -219,7 +222,7 @@ export class PermitComponent implements OnInit {
     // const data = {
     //   page: this.currentPage
     // }
-    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type, permit_type: permit_type }).subscribe(data => {
+    this.permitService.getPermitApplication({ page: this.currentPage, application_type: this.application_type, permit_type: this.permit_type }).subscribe(data => {
       this.applictionDetails = data.response;
       // this.dwlApplication = this.applictionDetails.filter(data => {
       //   if (data.status == null && data.application_type == 2) {
@@ -267,7 +270,7 @@ export class PermitComponent implements OnInit {
 
   checkPayments() {
 
-    debugger
+    
     this.applictionDetails.forEach(value => {
       value.addByAdminPayment = [];
       value.expirtDate = []
@@ -370,7 +373,7 @@ export class PermitComponent implements OnInit {
       this.confirmPopUp.nativeElement.click();
       this.toastService.success('Application have beed converted');
 
-      this.getPermitApplication(this.dwlType, '');
+      this.getPermitApplication(this.dwlType, this.permit_type);
       //this.router.navigate(['/dashboard/add-user-permit'], { queryParams: { type: 1 } })
     })
   }
@@ -398,7 +401,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.cancelPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application canceled');
-      this.getPermitApplication(this.dwlType, '');
+      this.getPermitApplication(this.dwlType, this.permit_type);
       this.cancelConfirmPopUp.nativeElement.click();
     })
   }
@@ -407,7 +410,7 @@ export class PermitComponent implements OnInit {
 
     this.permitService.withDrawPermit(this.applicationId).subscribe(data => {
       this.toastService.success('Application withdraw');
-      this.getPermitApplication(this.dwlType, '')
+      this.getPermitApplication(this.dwlType, this.permit_type)
       this.withdrawConfirmPopUp.nativeElement.click();
 
     })

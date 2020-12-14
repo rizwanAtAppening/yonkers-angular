@@ -364,6 +364,7 @@ export class PaymentComponent implements OnInit {
   }
   cancelForm() {
     this.cardForm.reset()
+    this.router.navigate(['/dashboard/permit'])
   }
 
 }

@@ -78,8 +78,7 @@
                                                         <td class="submited-Btn blue-txt" *ngIf ="staff?.status == 1"><button>Active</button></td>
                                                         <td class="submited-Btn red-txt" *ngIf ="staff?.status == 0"><button>InActive</button></td>
                                                         <td class="actionImg">
-                                                            <!-- = -->
-                                                            <!-- <img src="assets/images/ly.svg" alt=""> -->
+                                                            <img src="assets/images/mg.svg" alt="" (click) ="reSendMail(staff?.id)">
                                                             <img src="assets/images/eb.svg" alt="" (click) ="editStaff(staff?.id)">  
                                                             <!-- <img src="assets/images/dr.svg" alt="">  -->
                                                         </td>

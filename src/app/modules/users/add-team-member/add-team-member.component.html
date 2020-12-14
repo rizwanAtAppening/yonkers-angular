@@ -102,7 +102,8 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="ad4" formControlName="mobile_number" [class]="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"  class="form-control" required="">
+                                                                    <input type="text" id="ad4" maxlength="12"
+                                                                    (keypress)= "phoneNumberFormate()" formControlName="mobile_number" [class]="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff) ? 'form-control form-group-error' : 'form-control'"  class="form-control" required="">
                                                                     <label  [class]="staffCon.mobile_number.invalid && (staffCon.mobile_number.dirty || staffCon.mobile_number.touched || isStaff) ? ' form-control-placeholder msg' : 'form-control-placeholder'" for="ad4">Phone Number</label>
                                                                 </div>
                                                                 <div class="form-error"

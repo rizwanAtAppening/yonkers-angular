@@ -695,7 +695,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
   public currentUserInfo: any
   getCurrentUser() {
-debugger
+
     const application = this.permitService.getApplication()
     this.applicantForm.controls.applicant_role.setValue(application.role);
     if (application.applicant_details) {
@@ -1415,7 +1415,7 @@ debugger
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    debugger
+    
     //this.address = []
     var value: string
 
@@ -1555,21 +1555,21 @@ debugger
 
   
   phoneNumberFormate(value: string) {
-    debugger
+    
     var autoFillValue = '-'
     if (value == 'app') {
-      if (this.applicantForm.value.applicant_phone.length === 3) {
+      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
-      if (this.applicantForm.value.applicant_phone.length === 7) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
     }
     else if (value == 'con') {
-      if (this.contractorForm.value.contractor_phone.length === 3) {
+      if ( this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 3) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
-      if (this.contractorForm.value.contractor_phone.length === 7) {
+      if ( this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
     }

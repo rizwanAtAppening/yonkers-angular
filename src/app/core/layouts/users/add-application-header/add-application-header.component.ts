@@ -23,7 +23,7 @@ export class AddApplicationHeaderComponent implements OnInit {
     this.permitService.currentMessage.subscribe(data => {
       this.applicationStatus = data;
       if (this.applicationStatus == 2) {
-        debugger
+        
         this.application = JSON.parse(sessionStorage.getItem('application')) ? JSON.parse(sessionStorage.getItem('application')) : this.application;
         console.log(this.application)
       }
@@ -33,7 +33,7 @@ export class AddApplicationHeaderComponent implements OnInit {
   }
 
   payNow() {
-    this.router.navigate(['/dashboard/payment'], { queryParams: { id: this.application.id } })
+    this.router.navigate(['/dashboard/payment'], { queryParams: { id: this.application.id,fee_type:3 } })
   }
 
   saveAndExit() {

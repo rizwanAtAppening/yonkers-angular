@@ -57,9 +57,9 @@ export class PermitDecisionsComponent implements OnInit {
     this.desicionForm = this.fb.group({
       permit_decision: ['', Validators.required],
       expiration_date: ['', Validators.required],
-      inspector: [''],
+      inspector: ['',Validators.required],
       remarks: [''],
-      expiration_days: [],
+      expiration_days: ['',Validators.required],
     })
   }
 

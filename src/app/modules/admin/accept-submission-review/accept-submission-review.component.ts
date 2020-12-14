@@ -91,7 +91,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   public isAccept = false;
   public isCompletApplication = false;
   accepetOrDeclineApplication() {
-    debugger
+    
     if (this.completIncompletForm.invalid) {
       this.isAccept = true
       return false
@@ -122,7 +122,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
   }
 
   addFee() {
-    debugger
+    
     if (this.addFeeForm.invalid) {
       this.isFee = true;
       return false

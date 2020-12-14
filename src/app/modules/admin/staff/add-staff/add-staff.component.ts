@@ -72,6 +72,7 @@ export class AddStaffComponent implements OnInit {
 
   fillStaffInfo(value) {
     this.addStaffForm.controls.email.setValue(value.email);
+    this.addStaffForm.controls.role_id.setValue(value.role_id);
     this.addStaffForm.controls.name.setValue(value.name);
     this.addStaffForm.controls.isActive.setValue(value.status);
     this.addStaffForm.controls.phone.setValue(value.phone);
@@ -97,7 +98,7 @@ export class AddStaffComponent implements OnInit {
       this.status = 1
     }
     const data = {
-      role_id:Number(this.addStaffForm.value.role_id),
+      role_id: Number(this.addStaffForm.value.role_id),
       department: Number(this.addStaffForm.value.departments),
       status: this.status,
       password: 123456,
@@ -132,9 +133,15 @@ export class AddStaffComponent implements OnInit {
   }
 
   allRole() {
-    
+
     this.adminAuthService.allRole().subscribe(data => {
-      this.allRoles = data.response
+     // this.allRoles = data.response
+      this.allRoles = data.response.filter(data => {
+        if (data.id != 1 && data.id != 2) {
+          return data
+        }
+      })
+      console.log(this.allRoles)
     })
   }
 
@@ -142,5 +149,25 @@ export class AddStaffComponent implements OnInit {
     this.adminAuthService.allDepartments().subscribe(data => {
       this.allDepartments = data.response
     })
+  }
+
+
+  phoneNumberFormate() {
+    
+    var autoFillValue = '-'
+    //if (value == 'phone') {
+      if (this.addStaffForm.value.phone === null) {
+        this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone)
+      }
+      if (this.addStaffForm.value.phone.length === 3) {
+        
+        this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone.concat(autoFillValue))
+      }
+      if (this.addStaffForm.value.phone.length === 7) {
+        this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone.concat(autoFillValue))
+      }
+    
+   // }
+  
   }
 }

@@ -264,7 +264,7 @@ export class OverSizePermitComponent implements OnInit {
       if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
-      if (this.applicantForm.value.applicant_phone.length === 7) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
     } else if (value == 'fax') {

@@ -78,4 +78,21 @@ public staffId:number
 
     })
   }
+  phoneNumberFormate() {
+    var autoFillValue = '-'
+    //if (value == 'phone') {
+      if (this.addStaffForm.value.mobile_number === null) {
+        this.addStaffForm.controls.mobile_number.setValue(this.addStaffForm.value.mobile_number)
+      }
+      if (this.addStaffForm.value.mobile_number.length === 3) {
+        
+        this.addStaffForm.controls.mobile_number.setValue(this.addStaffForm.value.mobile_number.concat(autoFillValue))
+      }
+      if (this.addStaffForm.value.mobile_number.length === 7) {
+        this.addStaffForm.controls.mobile_number.setValue(this.addStaffForm.value.mobile_number.concat(autoFillValue))
+      }
+    
+   // }
+  
+  }
 }
