@@ -995,8 +995,8 @@
                                                                                                 </td>
                                                                                             <td>
                                                                                                 <p
-                                                                                                    *ngIf="summary?.application?.address_id">
-                                                                                                    {{summary?.application?.address_details?.szFullAddress}}
+                                                                                                  >
+                                                                                                    {{summary?.application?.address ? summary?.application?.address :'_' }}
                                                                                                 </p>
                                                                                                 <h6
                                                                                                     *ngIf="!summary?.application?.address_id && summary?.isSingleAddress">

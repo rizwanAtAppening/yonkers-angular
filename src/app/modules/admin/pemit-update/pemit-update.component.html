@@ -979,9 +979,9 @@
                             <div class="dropdown_act">
                               <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                               <div class="dropdown-content-void">
-                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4" data-toggle="modal"
+                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4 && (fee.payment_status != 3)" data-toggle="modal"
                                   data-target="#withdraw_application">Void</a>
-                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
+                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4 && (fee.payment_status != 3)" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
                               </div>
                             </div>
                           </td>

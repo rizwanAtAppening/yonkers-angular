@@ -115,6 +115,7 @@ export class AddHydrantPermitComponent implements OnInit {
         return false
       }
       this.hydrantForm.value.permit_type = Number(this.permit_type ? this.permit_type : 3)
+      this.hydrantForm.value.address_id = this.addressId
       this.hydrantForm.value.model = 8
       this.getApplication()
 

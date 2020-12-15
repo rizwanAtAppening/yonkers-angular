@@ -55,7 +55,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
 
   desicionControls() {
     this.desicionForm = this.FB.group({
-      permit_decision: [''],
+      permit_decision: ['',Validators.required],
       inspector: [''],
       remarks: [''],
 
@@ -176,6 +176,7 @@ export class AcceptSubmissionReviewComponent implements OnInit {
     this.applicationService.addDecision(this.data).subscribe(data => {
       console.log(data);
       this.desicionForm.reset()
+      this.isDecision = false
       this.settings.conditions.map((data, i) => {
         data.isChecked = false
       })
@@ -194,7 +195,8 @@ export class AcceptSubmissionReviewComponent implements OnInit {
       id: id,
       application_id: this.applicationDetails.id
     }
-    this.applicationService.voidDecision(data).subscribe(data => {
+    this.applicationService.voidMeterAndHYdrantOverDecision(data).subscribe(data => {
+      this.messageEvent.emit('hello');
       this.toasterService.success('Decision have voided')
     })
   }

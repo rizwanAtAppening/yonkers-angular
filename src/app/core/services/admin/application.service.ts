@@ -167,10 +167,11 @@ export class ApplicationService {
   public downloadFile: string;
 
   exportCSV(data: any): void {
-    
+    debugger
     let params = new HttpParams();
     params = params.set('permit_type', data.permit_type) 
     params = params.set('page', data.page)
+    params = params.set('application_type', data.application_type)
     this.downloadFile = `${environment.host}` + `${environment['exportCSV']}?`+ params.toString();;
     window.open(this.downloadFile, '_blank');
   }
@@ -455,6 +456,19 @@ export class ApplicationService {
 
   voidDecision(data) {
     const href = `${environment['voidDecision']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
+  voidMeterAndHYdrantOverDecision(data) {
+    const href = `${environment['voidMHODecision']}`
     return this.http.post<any>(href, data).pipe(
       map(
         ({ status, ...rest }) => {

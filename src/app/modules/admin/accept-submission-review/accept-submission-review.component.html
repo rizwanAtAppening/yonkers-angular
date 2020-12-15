@@ -210,7 +210,7 @@
                 <tbody>
                   <tr *ngFor="let fee of applicationDetails?.application_fees">
                     <td>
-                      {{fee?.payment_status == 0 ? 'Unpaid':'Paid'}} <span *ngIf="fee?.payment_status == 4"
+                      {{(fee?.payment_status == 0  || fee?.payment_status == 4)? 'Unpaid':'Paid'}} <span *ngIf="fee?.payment_status == 4"
                       class="voidMsg">(v)</span>
                     </td>
 
@@ -223,7 +223,7 @@
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal"
                             data-target="#withdraw_application">Delete</a> -->
                           <!-- <a (click)="getFeeId(fee?.id,fee)" data-toggle="modal" data-target="#Edit-Fee">Edit</a> -->
-                          <a *ngIf="fee?.payment_status != 4" (click)="VoidFee(fee?.id)">Void</a>
+                          <a *ngIf="fee?.payment_status != 4 &&  (fee.payment_status != 3)" (click)="VoidFee(fee?.id)">Void</a>
                         </div>
                       </div>
                     </td>
@@ -266,6 +266,11 @@
                           {{desicion?.value}}</option>
 
                       </select>
+                      <div *ngIf="desicion.permit_decision.invalid && (desicion.permit_decision.dirty || desicion.permit_decision.touched || isDecision)">
+                        <p class="form-error" *ngIf="desicion.permit_decision.errors['required']">
+                          Please select permit
+                        </p>
+                      </div>
                       <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                     </div>
                   </div>
@@ -303,7 +308,7 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let data of applicationDetails?.application_issue_permits">
-                    <td>{{data?.updatedBy?.name}} <span *ngIf="data?.status == 1"
+                    <td>{{data?.updatedBy?.name}} <span *ngIf="data?.status == 4"
                       class="voidMsg">(v)</span></td>
                     <td>Permit Issue</td>
                     <td>{{data?.createdAt | date}}</td>

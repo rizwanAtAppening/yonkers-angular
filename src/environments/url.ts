@@ -96,6 +96,7 @@ const adminUrl = {
   allDepartmets:`/departments`,
   voidPaymentFee:`/application/manager/fee/delete`,
   voidDecision:`/application/manager/decision/cancelled`,
+  voidMHODecision:`/application/manager/decision/void`,
   meterFireReviewAndWater:`/application/clerk-fire-water/submission`,
   voidMeterFireAndWaterReview:`/application/clerk-fire-water/submission/void`,
   addCityAdmin:`/city-admin/create`,
