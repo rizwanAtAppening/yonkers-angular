@@ -360,7 +360,7 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="ste-id"
+                                                                    <input type="number" id="ste-id" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                         formControlName="year"
                                                                         [class]="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>

@@ -163,6 +163,7 @@ public meterPermitTab:any = '0'
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type
+    body.application_type = this.application_Type
     this.applicationService.exportCSV(body)
   }
 

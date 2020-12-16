@@ -589,7 +589,7 @@ export const settingConfig = {
 
   peyments_TypeForDeposit: [
     {
-      key: 5,
+      key: 4,
       value: 'Bond',
     },
     {

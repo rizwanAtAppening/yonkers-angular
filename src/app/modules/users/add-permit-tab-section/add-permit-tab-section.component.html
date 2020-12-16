@@ -1323,9 +1323,9 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <input type="number" id="pop4"
-                                                                formControlName="dumpster_phone" maxlength="10"
-                                                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                            <input type="text" id="pop4"
+                                                                formControlName="dumpster_phone" (keypress)="phoneNumberFormate('dum')" maxlength="12"
+                                                               
                                                                 [class]="duplimesterCon.dumpster_phone.invalid && (duplimesterCon.dumpster_phone.dirty || duplimesterCon.dumpster_phone.touched || isDuplimester) ? 'form-control form-group-error' : 'form-control'"
                                                                 required="">
                                                             <label
@@ -2057,7 +2057,7 @@
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Address</h2>
-                                                                    <p>{{application?.applicant_details?.applicant_name}}
+                                                                    <p>{{application?.applicant_details?.applicant_address}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
@@ -2122,7 +2122,7 @@
                                                                     <!-- <p>{{application?.contractor_details?.contractor_state}}
                                                                     </p> -->
                                                                     <!-- <p *ngIf ="application?.contractor_details?.contractor_state">{{settings?.getSetting('userState',contractorDetails)}}</p> -->
-                                                                    <p >{{settings?.getSetting('userState',dumsterState)}}</p>
+                                                                    <p > {{dumsterState}}</p>
 
 
                                                                 </div>
@@ -2203,7 +2203,7 @@
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
-                                                                    <h2>State</h2>
+                                                                    <h2>State </h2>
                                                                     <!-- <p>{{application?.contractor_details?.contractor_state}}
                                                                     </p> -->
                                                                     <p *ngIf ="application?.contractor_details?.contractor_state">{{settings?.getSetting('userState',contractorDetails)}}</p>
@@ -2275,14 +2275,15 @@
                                                                     <p>{{application?.project_detail?.length}}</p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
-                                                                    <h2>Depth</h2>
-                                                                    <p>{{application?.project_detail?.depth}}</p>
+                                                                        <h2>Start Date</h2>
+                                                                        <p>{{application?.project_detail?.start_date | date :'dd/MM/yyyy'}}
+                                                                        </p>
+                                                                  
                                                                 </div>
 
                                                                 <div class="role-txt-collepse-two">
-                                                                    <h2>Start Date</h2>
-                                                                    <p>{{application?.project_detail?.start_date | date :'dd/MM/yyyy'}}
-                                                                    </p>
+                                                                        <h2>Depth</h2>
+                                                                        <p>{{application?.project_detail?.depth}}</p>
                                                                 </div>
                                                                 <!-- <div class="role-txt-collepse-two">
                                                                     <h2>Detailed Description</h2>
@@ -2302,8 +2303,8 @@
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
-                                                                    <h2>Width</h2>
-                                                                    <p>{{application?.project_detail?.width}}</p>
+                                                                    <!-- <h2>Width</h2>
+                                                                    <p>{{application?.project_detail?.width}}</p> -->
                                                                 </div>
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>End Date</h2>

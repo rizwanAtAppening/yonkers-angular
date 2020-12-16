@@ -969,11 +969,11 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let fee of applicationDetails?.application_fees">
-                          <td>
-                            {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):settings.getSetting('peyments_TypeForFee',fee?.type)}}
+                          <td >
+                            {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):fee?.fee_Type == 3 ? 'Initail':settings.getSetting('peyments_TypeForFee',fee?.type)}}
                             <span class="voidMsg" *ngIf="fee?.payment_status == 4">(V)</span>
                           </td>
-                          <td>{{ settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
+                          <td>{{ fee?.fee_Type == 3 ?'_':settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
                           <td>{{fee?.amount}}</td>
                           <td>
                             <div class="dropdown_act">

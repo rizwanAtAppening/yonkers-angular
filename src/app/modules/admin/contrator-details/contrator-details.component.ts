@@ -37,6 +37,7 @@ export class ContratorDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
+      console.log(this.applicationDetails)
       this.contractorState = Number  ( this.applicationDetails.contractor_details && this.applicationDetails.contractor_details.contractor_state);
       this.dumsterState = Number  ( this.applicationDetails.dumpsters_details && this.applicationDetails.dumpsters_details.dumpster_state);
 

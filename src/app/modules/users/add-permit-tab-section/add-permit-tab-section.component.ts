@@ -141,7 +141,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorDetails = Number(this.application.contractor_details.contractor_state)
     }
     if (this.application.dumpsters_details) {
-      this.dumsterState = Number(this.application.dumpsters_details.dumpster_state)
+      this.dumsterState = (this.application.dumpsters_details.dumpster_state)
 
     }
     if (this.application.upload_detail && this.application.upload_detail.length > 0) {
@@ -1571,6 +1571,15 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
       if ( this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
+      }
+    }
+
+    else if (value == 'dum') {
+      if ( this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 3) {
+        this.duplimesterForm.controls.dumpster_phone.setValue(this.duplimesterForm.value.dumpster_phone.concat(autoFillValue))
+      }
+      if ( this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 7) {
+        this.duplimesterForm.controls.dumpster_phone.setValue(this.duplimesterForm.value.dumpster_phone.concat(autoFillValue))
       }
     }
   }
