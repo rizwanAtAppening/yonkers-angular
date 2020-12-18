@@ -274,6 +274,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     this.permitService.addLicenseDetails(formData).subscribe(data => {
       this.addInsuranseForm.reset();
+      this.allImage = [{ name: null }]
       this.getLicenseDetails()
       this.licensePopUp.nativeElement.click()
       this.image = null
@@ -669,7 +670,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
     this.permitService.addPermitApplication(this.data).subscribe(data => {
-      
+
       if (this.currentTab == 'where' || this.currentTab == 'contrator') {
         this.getApplication()
       }
@@ -683,7 +684,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
 
       }
-      
+
       this.router.navigate(['/dashboard/add-permit'], { queryParams: { tab: this.currentTab } })
       // this.permitService.saveCurrentTab(this.currentTab);
     })
@@ -856,7 +857,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   fillDetails() {
-
+    this.application
     //this.contractorForm.controls.contractor_for_job.setValue(1)
     if (this.contractorForm.value.contractor_for_job == 2) {
       let value = this.currentUserInfo.first_name + " " + this.currentUserInfo.last_name
@@ -870,14 +871,15 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.contractorForm.controls.contractor_state.setValue(this.currentUserInfo.state)
       this.contractorForm.controls.contractor_zip.setValue(this.currentUserInfo.zip)
     } else {
-      this.contractorForm.controls.contractor_name.setValue(null)
-      this.contractorForm.controls.contractor_email.setValue(null)
-      this.contractorForm.controls.contractor_business.setValue(null)
-      this.contractorForm.controls.contractor_address.setValue(null)
-      this.contractorForm.controls.contractor_phone.setValue(null)
-      this.contractorForm.controls.contractor_city.setValue(null)
-      this.contractorForm.controls.contractor_state.setValue(null)
-      this.contractorForm.controls.contractor_zip.setValue(null)
+      let contractor = (this.application && this.application.contractor_details)
+      this.contractorForm.controls.contractor_name.setValue((contractor && contractor.contractor_name) ? contractor.contractor_name : null)
+      this.contractorForm.controls.contractor_email.setValue((contractor && contractor.contractor_email) ? contractor.contractor_email : null)
+      this.contractorForm.controls.contractor_business.setValue((contractor && contractor.contractor_business) ? contractor.contractor_business : null)
+      this.contractorForm.controls.contractor_address.setValue((contractor && contractor.contractor_address) ? contractor.contractor_address : null)
+      this.contractorForm.controls.contractor_phone.setValue((contractor && contractor.contractor_phone) ? contractor.contractor_phone : null)
+      this.contractorForm.controls.contractor_city.setValue((contractor && contractor.contractor_city) ? contractor.contractor_city : null)
+      this.contractorForm.controls.contractor_state.setValue((contractor && contractor.contractor_state) ? contractor.contractor_state : null)
+      this.contractorForm.controls.contractor_zip.setValue((contractor && contractor.contractor_zip) ? contractor.contractor_zip : null)
     }
 
   }
@@ -1201,13 +1203,24 @@ export class AddPermitTabSectionComponent implements OnInit {
     if (this.submitApplicationValue.length == 7) {
       this.checklist.nativeElement.click()
       this.submitApplications()
-      this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } });
+      // this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } });
+
 
     }
     else {
       this.toasterService.error('Please review all tab then submit application')
     }
   }
+
+  submitApplications() {
+
+    this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
+      //  this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } })
+      this.router.navigate(['/dashboard/payment'], { queryParams: { id: this.application.id, fee_type: 3 } });
+
+    })
+  }
+
 
   deleteImage(id, i) {
 
@@ -1306,12 +1319,6 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
 
-  submitApplications() {
-
-    this.permitService.submitAppliction({ application_id: this.application.id }).subscribe(data => {
-      this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.application.id } })
-    })
-  }
 
   public allImage = [{ name: null }]
   addMoreImage() {
@@ -1415,7 +1422,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   public searchString: string
   searchAddress(sendValue: string, index) {
-    
+
     //this.address = []
     var value: string
 
@@ -1480,10 +1487,10 @@ export class AddPermitTabSectionComponent implements OnInit {
         // function fromEvent(target, eventName) {
         //   return new Observable((observer) => {
         //     const handler = (e) => observer.next(e);
-        
+
         //     // Add the event handler to the target
         //     target.addEventListener(eventName, handler);
-        
+
         //     return () => {
         //       // Detach the event handler from the target
         //       target.removeEventListener(eventName, handler);
@@ -1544,7 +1551,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   completeApplication() {
-    
+
     const data = {
       application_id: this.application.id
     }
@@ -1553,12 +1560,12 @@ export class AddPermitTabSectionComponent implements OnInit {
     })
   }
 
-  
+
   phoneNumberFormate(value: string) {
-    
+
     var autoFillValue = '-'
     if (value == 'app') {
-      if ( this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
+      if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
         this.applicantForm.controls.applicant_phone.setValue(this.applicantForm.value.applicant_phone.concat(autoFillValue))
       }
       if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 7) {
@@ -1566,19 +1573,19 @@ export class AddPermitTabSectionComponent implements OnInit {
       }
     }
     else if (value == 'con') {
-      if ( this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 3) {
+      if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 3) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
-      if ( this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
+      if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
     }
 
     else if (value == 'dum') {
-      if ( this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 3) {
+      if (this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 3) {
         this.duplimesterForm.controls.dumpster_phone.setValue(this.duplimesterForm.value.dumpster_phone.concat(autoFillValue))
       }
-      if ( this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 7) {
+      if (this.duplimesterForm.value.dumpster_phone && this.duplimesterForm.value.dumpster_phone.length === 7) {
         this.duplimesterForm.controls.dumpster_phone.setValue(this.duplimesterForm.value.dumpster_phone.concat(autoFillValue))
       }
     }

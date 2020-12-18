@@ -365,4 +365,22 @@ export class ContratorDetailsComponent implements OnInit {
     })
   }
 
+  phoneNumberFormate() {
+    debugger
+    var autoFillValue = '-'
+    //if (value == 'phone') {
+      if (this.contractorForm.value.contractor_phone === null) {
+        this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone)
+      }
+      if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 3) {
+        
+        this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
+      }
+      if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
+        this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
+      }
+    
+    //}
+  
+  }
 }

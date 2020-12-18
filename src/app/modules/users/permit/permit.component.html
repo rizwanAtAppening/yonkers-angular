@@ -369,13 +369,13 @@
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#cancel_application"
-                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                *ngIf="application?.payment_status != 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Cancel
                                                                                                             </a>
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#withdraw_application"
-                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status != 3"
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status == 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Withdraw</a>
 
                                                                                                             <div
@@ -521,13 +521,13 @@
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#cancel_application"
-                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                *ngIf="application?.payment_status != 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Cancel
                                                                                                             </a>
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#withdraw_application"
-                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status != 3 "
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status == 3 "
                                                                                                                 (click)="getApplicationId(application?.id)">Withdraw</a>
 
                                                                                                             <div
@@ -679,13 +679,13 @@
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#cancel_application"
-                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                *ngIf="application?.payment_status != 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Cancel
                                                                                                             </a>
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#withdraw_application"
-                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status != 3"
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status == 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Withdraw</a>
 
                                                                                                             <div
@@ -833,13 +833,13 @@
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#cancel_application"
-                                                                                                                *ngIf="application?.status != 3"
+                                                                                                                *ngIf="application?.payment_status != 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Cancel
                                                                                                             </a>
                                                                                                             <a class="pointer"
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#withdraw_application"
-                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status != 3"
+                                                                                                                *ngIf="application?.status != 4 && application?.status != null && application?.payment_status == 3"
                                                                                                                 (click)="getApplicationId(application?.id)">Withdraw</a>
 
                                                                                                             <div

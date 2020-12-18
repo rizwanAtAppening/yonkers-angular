@@ -16,8 +16,8 @@
             <div class="col-6">
                 <div class="profile-header">
                     <div class="saveTxtbtn">
-                        <button *ngIf="currentTab == 'review'" class="submitTxtbtn" data-toggle="modal"
-                            data-target="#exampleModal-3">Submit</button>
+                        <button *ngIf="(application?.status == 2 && application?.payment_status == null)" class="submitTxtbtn" data-toggle="modal"
+                            data-target="#exampleModal-3">Submit & Pay</button>
                         <button (click)="saveAndExit(true)"> Save & Exit</button>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':(whereControls.address_id.value || ( application.address_id || application.location && application.location.length > 0))?'':'gray_color'"
+                <a [class]="(currentTab == 'where') ? 'active':(whereControls?.address_id?.value || ( application?.address_id || application?.location && application?.location.length > 0))?'':'gray_color'"
                     id="pills-Where-tab" (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
@@ -45,13 +45,13 @@
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'contrator') ? 'active':((contratorControl.contractor_for_job.value) ||  (application.dumpster_id) || (application?.contractor_details && application?.contractor_details?.contractor_for_job))?'':'gray_color'"
+                <a [class]="(currentTab == 'contrator') ? 'active':((contratorControl?.contractor_for_job.value) ||  (application?.dumpster_id) || (application?.contractor_details && application?.contractor_details?.contractor_for_job))?'':'gray_color'"
                     id="pills-Contractor-tab" (click)="hitOnTab('contractorForm','contrator')" role="tab"
                     aria-controls="pills-Contractor" aria-selected="false">Contractor<span><i class="fa fa-angle-right"
                             aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'projectDetail') ? 'active':(projectDetail.purpose.value || (application?.project_detail && application?.project_detail?.purpose))?'':'gray_color'"
+                <a [class]="(currentTab == 'projectDetail') ? 'active':(projectDetail?.purpose.value || (application?.project_detail && application?.project_detail?.purpose))?'':'gray_color'"
                     id="pills-Project-tab" (click)="hitOnTab('projectDetailsForm','projectDetail')" role="tab"
                     aria-controls="pills-Project" aria-selected="false">Project
                     Details<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
@@ -819,7 +819,7 @@
 
                                             <div class="form-group">
                                                 <label>Do you have a contractor for this job?</label>
-                                                <select formControlName="contractor_for_job" (click) = "fillDetails()">
+                                                <select formControlName="contractor_for_job" (change) = "fillDetails()">
                                                     <option value="" hidden>--Select--</option>
                                                     <option [value]="value?.key" [hidden]="isDisabled"
                                                         *ngFor="let value of settings?.contractor_for_job">

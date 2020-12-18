@@ -354,7 +354,9 @@ export class PaymentComponent implements OnInit {
       } else {
         if (result.paymentIntent.status === 'succeeded') {
           this.toasterService.success('Paymets is Success');
-          this.router.navigate(['/dashboard/successfull']);
+          //this.router.navigate(['/dashboard/successfull']);
+        this.router.navigate(['/dashboard/submit-application'], { queryParams: { id: this.applicationId } })
+
 
 
         }
