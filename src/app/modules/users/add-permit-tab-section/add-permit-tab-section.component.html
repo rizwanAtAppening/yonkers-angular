@@ -1480,7 +1480,7 @@
                                                     {{value?.value}}</option>
 
                                             </select>
-                                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                            <span style="top: 39px;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                             <div
                                                 *ngIf="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit)">
                                                 <p class="form-error" *ngIf="projectDetail.purpose.errors['required']">
@@ -1506,13 +1506,13 @@
                                                         *ngFor="let value of settings?.traffic">{{value?.value}}
                                                     </option>
                                                 </select>
-                                                <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                                <span style="top: 39px;"><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="col-6" *ngIf="application?.type != 4">
-                                        <div class="bdp_email loction-adInput lenth-pt">
+                                        <div class="bdp_email loction-adInput lenth-pt" style="margin-top: 20px;">
                                             <div class="row">
                                                 <div class="col-12">
                                                     <div class="form-group">
