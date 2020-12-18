@@ -60,3 +60,40 @@ margin-top: 2px !important
 .form-control{
     border-radius: 0px !important;
 }
+
+#dd-label{
+    background: #fff;
+    padding-bottom: 0px;
+    position: relative;
+    top: 13px;
+    left: 20px;
+    color: #282D5B;
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    padding: 0px 3px;
+}
+
+#st-label{
+    top: 11px;
+    position: relative;
+    left:20px;
+    background: #fff;
+    opacity: 1;
+    color: #282D5B;
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    padding: 0px 3px;
+}
+
+
+#st-label2{
+    top: 11px;
+    position: relative;
+    left:20px;
+    background: #fff;
+    opacity: 1;
+    color: #282D5B;
+    font-size: 16px;
+    font-family: "Poppins-Medium";
+    padding: 0px 3px;
+}

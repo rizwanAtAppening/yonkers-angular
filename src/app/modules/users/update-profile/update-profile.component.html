@@ -1,12 +1,12 @@
 <app-layout>
     <router-outlet>
         
-        <section class="updateprofile">
+        <section class="updateprofile pt-5">
                 <section>
                         <div class="container p-0">
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="back-txt">
+                                    <div class="back-txt mt-0" style="padding-left:72px; padding-bottom: 40px;">
                                         <div class="row">
                                             <div class="col-12" routerLink = "/dashboard/permit">
                                                 <h3><span><img src="assets/images/left-arrow.svg" alt=""></span> Back</h3>
@@ -292,7 +292,7 @@
 
                                 <div class="btn-pre">
                                     <button type="button" (click)="back()">Cancel</button>
-                                    <button class="continue mr-0" (click)="updateProfile()">Save</button>
+            <button class="continue " (click)="updateProfile()" style="margin-right: 0px !important; padding: 13px 30px 12px 30px !important;">Save</button>
                                 </div>
                             </form>
                         </div>
