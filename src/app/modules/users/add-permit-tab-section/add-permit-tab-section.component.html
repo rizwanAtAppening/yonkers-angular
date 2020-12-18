@@ -1469,7 +1469,7 @@
                                 <div class="col-12">
                                     <div class="property  mt-3">
                                         <div class="form-group">
-                                            <label>Purpose</label>
+                                            <label id="st-label">Purpose</label>
 
                                             <!-- <label
                                                 [class]="projectDetail.purpose.invalid && (projectDetail.purpose.dirty || projectDetail.purpose.touched || isSubmit) ? 'msg ' : ''">Purpose</label> -->
@@ -1499,7 +1499,7 @@
                                         <div class="property  loction-adInput">
 
                                             <div class="form-group">
-                                                <label>Will this work impact traffic?</label>
+                                                <label id="st-label2">Will this work impact traffic?</label>
                                                 <select formControlName="traffic_control">
                                                     <option value="" hidden> --Select--</option>
                                                     <option value="{{value.key}}"
@@ -1649,7 +1649,7 @@
                                                     class="form-control" required>
                                                 <label
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    for="sda1">Start Date</label>
+                                                    for="sda1" >Start Date</label>
                                                 <div
                                                     *ngIf="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit)">
                                                     <p class="form-error"
@@ -1698,7 +1698,7 @@
                                     <div class="col-12">
                                         <div class="bdp_email loction-adInput lenth-pt">
                                             <div class="form-group">
-                                                <label class="detaild-txt">Detailed Description</label>
+                                                <label  id="dd-label">Detailed Description </label>
                                                 <textarea placeholder="Type something here..."
                                                     formControlName="description"
                                                     [class]="projectDetail.description.invalid && (projectDetail.description.dirty || projectDetail.description.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"></textarea>
