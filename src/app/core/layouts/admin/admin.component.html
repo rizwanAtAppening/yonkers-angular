@@ -24,8 +24,8 @@
                     <div class="drop-content">
                             <!-- <a (click)="mavigateByUrl('/admin/add-staff')">Add Staff</a> -->
                             <a *ngIf ="(currentUser?.role_id == 2)" (click)="mavigateByUrl('/admin/staff-list')">Manage Staff</a>
-                            <a *ngIf ="(currentUser?.role_id == 1)" (click)="mavigateByUrl('/admin/city-admin-list')">Add City Admin</a>
-
+                            <a *ngIf ="(currentUser?.role_id == 1)" (click)="mavigateByUrl('/admin/city-admin-list')">Add City Admin </a>
+<a href="#" data-toggle="modal" data-target="#exampleModal-upload">Upload Documents</a>
                         <a (click)="logoutUser()">Log Out</a>
 
                     </div>
@@ -33,4 +33,57 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade  modal_uploadFile" id="exampleModal-upload">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ud-txt">Upload Documents</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+ <div class="content-popup">
+
+<div class="file-docBox">
+<input type="file">
+<button><i class="fa fa-cloud-upload" aria-hidden="true"></i>  Upload File</button>
+</div>
+
+
+      </div>
+    
+
+
+<div class="btnGroupFile">
+<button class="btnGroupFile-one">Cancel </button>
+<button  class="btnGroupFile-two">Submit</button>
+</div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
 </header>

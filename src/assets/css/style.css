@@ -5402,3 +5402,76 @@ border: 0.5px solid #9CA6C08C;
     justify-content: flex-end;
     padding-right: 105px;
 }
+
+
+/* //////////////////////     Upload document css 22/12/2020      ///////////////////////////// */
+
+.ud-txt{
+    font-family: "Poppins-Medium";
+    margin-left: 14px;
+}
+
+.modal_uploadFile .modal-content{
+    border: none !important;
+    border-radius: 10px !important;
+}
+.modal_uploadFile  .modal-dialog {
+    max-width: 550px!important;
+}
+.content-popup{
+    padding: 30px 30px 10px;
+}
+.content-popup .file-docBox{
+border: 1px dotted #4AB5F1;
+height: 150px;
+border-radius: 4px;
+width: 100%;
+position: relative;
+}
+
+.content-popup .file-docBox input{
+opacity: 0;
+width: 100%;
+height: 150px;
+z-index: 9999;
+position: relative;
+}
+.content-popup .file-docBox button{
+    position: absolute;
+    left: 38%;
+    top: 38%;
+    background: none;
+    font-family: "Poppins-Medium";
+    border: 1px dotted #4ab5f1;
+    border-radius: 4px;
+    padding: 8px 17px;
+    color: #4ab5f1;
+    font-size: 14px;
+}
+.btnGroupFile{
+    text-align: right;
+    margin-right: 25px;
+    padding: 20px 0px 30px 0px;
+}
+.btnGroupFile-one{
+    background: none;
+    border: 1px solid #575757;
+    padding: 12px 28px;
+    color: #575757;
+    font-size: 14px;
+    font-family: "Poppins-Medium";
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.btnGroupFile-two{
+    border: 1px solid #4ab5f1;
+    padding: 12px 28px;
+    background: #4ab5f1;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 6px;
+    font-family: "Poppins-Medium";
+    cursor: pointer;
+}
