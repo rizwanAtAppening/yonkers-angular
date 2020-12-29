@@ -42,47 +42,65 @@
                         <div class="work-loaction-tab">
                             <div class="row">
                                 <div class="col-12">
-                                    <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="pills-admin-Permit-loaction-tab"
-                                                data-toggle="pill" href="#pills-admin-Permit-loaction" role="tab"
-                                                aria-controls="pills-admin-Permit-loaction" aria-selected="true"
-                                                (click)="getAllApplication(1)">Permit</a>
+
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="pills-admin-Permit-loaction-tab"
+                                                        data-toggle="pill" href="#pills-admin-Permit-loaction" role="tab"
+                                                        aria-controls="pills-admin-Permit-loaction" aria-selected="true"
+                                                        (click)="getAllApplication(1)">Permit </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
+                                                        role="tab" aria-controls="pills-DWL" aria-selected="false"
+                                                        (click)="getAllApplication(2)">DWL</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
+                                                        (click)="paymentsSummary(1,'inspection','')"
+                                                        href="#pills-Inspection-admin" role="tab"
+                                                        aria-controls="pills-Inspection-admin"
+                                                        aria-selected="false">Inspection</a>
+                                                </li>
+                                                <li class="nav-item"
+                                                    *ngIf="((currentUser && currentUser?.role_id) != settings?.inspector)">
+                                                    <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill"
+                                                        (click)="paymentsSummary(1,'payment','')" href="#pills-Payment-admin"
+                                                        role="tab" aria-controls="pills-Payment-admin"
+                                                        aria-selected="false">Payment</a>
+                                                </li>
+                                                <!-- <li class="nav-item">
+                                            <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill"
+                                                href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin"
+                                                aria-selected="false">Utility Invoice</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" id="pills-DWL-tab" data-toggle="pill" href="#pills-DWL"
-                                                role="tab" aria-controls="pills-DWL" aria-selected="false"
-                                                (click)="getAllApplication(2)">DWL</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="pills-Inspection-admin-tab" data-toggle="pill"
-                                                (click)="paymentsSummary(1,'inspection','')"
-                                                href="#pills-Inspection-admin" role="tab"
-                                                aria-controls="pills-Inspection-admin"
-                                                aria-selected="false">Inspection</a>
-                                        </li>
-                                        <li class="nav-item"
-                                            *ngIf="((currentUser && currentUser?.role_id) != settings?.inspector)">
-                                            <a class="nav-link" id="pills-Payment-admin-tab" data-toggle="pill"
-                                                (click)="paymentsSummary(1,'payment','')" href="#pills-Payment-admin"
-                                                role="tab" aria-controls="pills-Payment-admin"
-                                                aria-selected="false">Payment</a>
-                                        </li>
-                                        <!-- <li class="nav-item">
-                                    <a class="nav-link" id="pills-Invoice-admin-tab" data-toggle="pill"
-                                        href="#pills-Invoice-admin" role="tab" aria-controls="pills-Invoice-admin"
-                                        aria-selected="false">Utility Invoice</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="pills-Report-admin-tab" data-toggle="pill"
-                                        href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin"
-                                        aria-selected="false">Report</a>
-                                </li> -->
-                                    </ul>
+                                            <a class="nav-link" id="pills-Report-admin-tab" data-toggle="pill"
+                                                href="#pills-Report-admin" role="tab" aria-controls="pills-Report-admin"
+                                                aria-selected="false">Report</a>
+                                        </li> -->
+                                            </ul>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="btn-filter dropdownfilter text-right"  data-toggle="modal" data-target="#exampleModal-upload">
+                                                <button>
+                                                    <span><i class="fa fa-upload" aria-hidden="true"></i></span>
+                                                    Upload Document
+                                                </button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                 
+                                </div>
+
+
+                                    <div class="col-12">
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="pills-admin-Permit-loaction"
                                             role="tabpanel" aria-labelledby="pills-admin-Permit-loaction-tab">
-                                            <section class="table-sec daily-sec">
+                                            <section class="table-sec daily-sec mt-0">
                                                 <div class="container p-0 container_full">
                                                     <div class="row">
                                                         <div class="col-12">
@@ -96,7 +114,7 @@
                                                                                         Permit Index 
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-4 filter-search">
+                                                                                <div class="col-5 filter-search">
                                                                                     <div
                                                                                         class="header-input tbl-search-box">
                                                                                         <input type="text"
@@ -457,8 +475,8 @@
                                                                                     </div>
                                                                                 
                                                                                 </div>
-                                                                          <div class="col-3 exportBtn">
-                                                                            <div class="New-Project text-left">
+                                                                          <div class="col-2 exportBtn">
+                                                                            <div class="New-Project ">
                                                                                 <button type="button" (click) ="exportCSV()"  target="_blank"  >
                                                                                         <span><img
                                                                                                 src="assets/images/upload-index.svg"
@@ -1058,6 +1076,7 @@
 
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -1068,5 +1087,87 @@
         <!-- </router-outlet>
         </app-admin> -->
     </main>
+
+
+ <!-- Modal -->
+ <!-- <div class="modal fade  modal_uploadFile" id="exampleModal-upload">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ud-txt">Upload Documents</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+ <div class="content-popup">
+
+<div class="file-docBox">
+<input type="file">
+<button><i class="fa fa-cloud-upload" aria-hidden="true"></i>  Upload File</button>
+</div>
+
+
+      </div>
+    
+
+
+<div class="btnGroupFile">
+<button class="btnGroupFile-one">Cancel </button>
+<button  class="btnGroupFile-two">Submit</button>
+</div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div> -->
+
+
+ <!-- Modal -->
+ <div class="modal fade  modal_uploadFile" id="exampleModal-upload">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title ud-txt">Upload Documents</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+ <div class="content-popup">
+
+<div class="atch-docFile-name">
+<h3>Attach Documents</h3>
+
+<div class="filename-show">
+<h4>sdfdsfdgd00.csv</h4>
+<span><i class="fa fa-times" aria-hidden="true"></i></span>
+</div>
+
+</div>
+      </div>
+    
+
+
+<div class="btnGroupFile">
+<button class="btnGroupFile-one">Cancel </button>
+<button  class="btnGroupFile-two">Submit</button>
+</div>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
     </router-outlet>
 </app-auth-layout>
