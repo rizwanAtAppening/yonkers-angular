@@ -98,8 +98,9 @@ export class AddCityAdminComponent implements OnInit {
 
   updateCityAdmin() {
     
-    if (this.addStaffForm.value.payment_account_type == 2) {
+    if (this.addStaffForm.value.payment_account_type == 2 || this.singleStaffDetails.payment_account_type == 2) {
       this.addStaffForm.controls.stripe_account_id.setErrors(null)
+      this.addStaffForm.value.payment_account_type = 2
       // this.addStaffForm.controls.stripe_account_id.setValue(null)
 
     }
@@ -107,7 +108,7 @@ export class AddCityAdminComponent implements OnInit {
       this.isStaff = true
       return false
     }
-    if (this.addStaffForm.value.payment_account_type == true) {
+    if (this.addStaffForm.value.payment_account_type == true && this.singleStaffDetails.payment_account_type == 2) {
       this.addStaffForm.value.payment_account_type = 1
     }
     if (this.addStaffForm.value.status) {
