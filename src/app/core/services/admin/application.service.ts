@@ -139,6 +139,19 @@ export class ApplicationService {
     );
   }
 
+  uploadCSVAddress(data) {
+    const href = `${environment['uploadCSVAddress']}`
+    return this.http.post<any>(href, data).pipe(
+      map(
+        ({ status, ...rest }) => {
+          if (status === 'success') {
+          }
+          return rest;
+        }
+      )
+    );
+  }
+
   // exportCSV(data) {
   //   const href = `${environment['exportCSV']}`
   //   return this.http.get<any>(href, data).pipe(

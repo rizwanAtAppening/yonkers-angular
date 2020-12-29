@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ApplicationService } from 'src/app/core/services/admin/application.service';
 import { appToaster, settingConfig } from 'src/app/configs';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-applications',
@@ -12,6 +13,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./applications.component.css']
 })
 export class ApplicationsComponent implements OnInit {
+  @ViewChild('uploadCSV', { static: false }) uploadCSV: ElementRef;
+
   public settings: any;
   public application_Type = 1;
   public searchString: any;
@@ -19,7 +22,8 @@ export class ApplicationsComponent implements OnInit {
   public currentUser = {
     role_id: null,
     department: null,
-    email: null
+    email: null,
+    id: null
   }
   public export = "/api/admin/application-file-export"
 
@@ -27,7 +31,8 @@ export class ApplicationsComponent implements OnInit {
   constructor(
     private applicationService: ApplicationService,
     private router: Router,
-    private adminAuthService: AuthenticationService
+    private adminAuthService: AuthenticationService,
+    private _TS: ToastrService
   ) {
     this.settings = settingConfig;
   }
@@ -253,41 +258,41 @@ export class ApplicationsComponent implements OnInit {
   }
 
   public searchData = {}
-  public paymentsearchString:any
-  searchInspectionAndPyment(value:string){
+  public paymentsearchString: any
+  searchInspectionAndPyment(value: string) {
     // const data = {
     //   search_query: String(this.searchString),
     //   // application_type: this.application_Type,
     //   // permit_type: this.permit_type
     // }
-    if(this.paymentsearchString.length > 0){
-      if(value == 'inspection'){
+    if (this.paymentsearchString.length > 0) {
+      if (value == 'inspection') {
         this.searchData = {
           search_query: String(this.paymentsearchString),
-          inspection:1
+          inspection: 1
         }
       }
-       else if(value == 'payment'){
-          this.searchData = {
-            search_query: String(this.paymentsearchString),
-            payment_summary:1
-          }
-      }
-    }else{
-      if(value == 'inspection'){
+      else if (value == 'payment') {
         this.searchData = {
-        
-          inspection:1
+          search_query: String(this.paymentsearchString),
+          payment_summary: 1
         }
       }
-       else if(value == 'payment'){
-          this.searchData = {
-            
-            payment_summary:1
-          }
+    } else {
+      if (value == 'inspection') {
+        this.searchData = {
+
+          inspection: 1
+        }
+      }
+      else if (value == 'payment') {
+        this.searchData = {
+
+          payment_summary: 1
+        }
       }
     }
-  
+
     this.applicationService.getApplications(this.searchData, '').subscribe(data => {
       this.paymentSummary = data.response;
       // console.log(this.dwlApplication)
@@ -374,12 +379,46 @@ export class ApplicationsComponent implements OnInit {
 
 
   exportCSV() {
-debugger
+    debugger
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type,
-    body.application_type = this.application_Type
+      body.application_type = this.application_Type
     this.applicationService.exportCSV(body)
   }
 
+  public selectCSVFile: File
+  public imageName: any
+  public imgURL: any
+  selectCSV(files) {
+    debugger
+    console.log(files);
+    if (files && files.length > 0) {
+      let file: File = files.item(0);
+      this.selectCSVFile = file
+      console.log(file.name);
+      this.imageName = file.name;
+      console.log(file.size);
+      console.log(file.type);
+      var reader = new FileReader();
+      reader.readAsDataURL(files[0]);
+      reader.onload = (_event) => {
+        this.imgURL = reader.result;
+      }
+    }
+  }
+
+  hideImage() {
+    this.imgURL = null
+  }
+  uploadCSVAddress() {
+    let formData = new FormData()
+    formData.append('id', this.currentUser.id),
+      formData.append('city_address', this.selectCSVFile)
+    this.applicationService.uploadCSVAddress(formData).subscribe(data => {
+      this._TS.success('Upload CSV');
+      this.imgURL = null,
+        this.uploadCSV.nativeElement.click()
+    })
+  }
 }

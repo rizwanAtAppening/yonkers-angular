@@ -166,7 +166,8 @@ export class AddMeterPermitComponent implements OnInit {
 
   //private subject = new Subject<any>();
   public selectValue = {
-    query: null
+    query: null,
+    admin_id:null
   }
   exextAddress(value) {
 
@@ -175,11 +176,14 @@ export class AddMeterPermitComponent implements OnInit {
     }
     this.selectValue = {
       query: value == 'address' ? this.applicantForm.value.applicant_address : this.applicantForm.value.applicant_job_location,
+      admin_id: this.cityId
     }
 
     if (value == 'location') {
       this.selectValue = {
         query: this.meterDeatilsForm.value.location,
+        admin_id: this.cityId
+
       }
     }
 
@@ -189,7 +193,7 @@ export class AddMeterPermitComponent implements OnInit {
         if (value == 'address') {
           if (this.exactAddress.length > 0) {
             this.selectadd = this.exactAddress.map(data => {
-              return data.szFullAddress
+              return data.property_location
             })
             this.address.next(this.selectadd)
           } else {
@@ -198,7 +202,7 @@ export class AddMeterPermitComponent implements OnInit {
         } else {
           if (this.exactAddress.length > 0) {
             this.selectadd = this.exactAddress.map(data => {
-              return data.szFullAddress
+              return data.property_location
             })
             this.jobAdress.next(this.selectadd)
           } else {
@@ -216,7 +220,7 @@ export class AddMeterPermitComponent implements OnInit {
 
     if (value == 'applicanjob') {
       this.exactAddress.every(data => {
-        if (e.value == data.szFullAddress) {
+        if (e.value == data.property_location) {
           this.addressId = data.id
           console.log(this.addressId)
           return false

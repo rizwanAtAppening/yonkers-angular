@@ -271,10 +271,14 @@ export class AddHydrantPermitComponent implements OnInit {
     }
   }
 
-  public exactAddress = []
+  public exactAddress = [];
+  public storageData:any;
   exextAddress(value) {
+    this.storageData = JSON.parse(sessionStorage.getItem('application'))
+
     if (value == 'applicanjob') { }
     const data = {
+      admin_id: this.storageData.city_admin_id,
       query: value == 'address' ? this.hydrantForm.value.hydrant_address : this.hydrantForm.value.hydrant_address,
     }
     if (data.query.length > 1) {
@@ -283,7 +287,7 @@ export class AddHydrantPermitComponent implements OnInit {
         if (value == 'address') {
           if (this.exactAddress.length > 0) {
             this.selectadd = this.exactAddress.map(data => {
-              return data.szFullAddress
+              return data.property_location
             })
             this.address.next(this.selectadd)
           } else {
@@ -292,7 +296,7 @@ export class AddHydrantPermitComponent implements OnInit {
         } else {
           if (this.exactAddress.length > 0) {
             this.selectadd = this.exactAddress.map(data => {
-              return data.szFullAddress
+              return data.property_location
             })
             this.jobAdress.next(this.selectadd)
           } else {
@@ -310,7 +314,7 @@ export class AddHydrantPermitComponent implements OnInit {
   typeaheadOnSelect(e: TypeaheadMatch, value: string, ): void {
     if (value == 'applicanjob') {
       this.exactAddress.every(data => {
-        if (e.value == data.szFullAddress) {
+        if (e.value == data.property_location) {
           this.addressId = data.id
           return false
         } else {

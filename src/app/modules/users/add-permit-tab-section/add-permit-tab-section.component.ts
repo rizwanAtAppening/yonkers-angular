@@ -1430,6 +1430,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       value = this.whereForm.value.address_id
       this.searchString = value;
 
+
       if (this.searchString.length > 0) {
         this.exextAddress(this.searchString)
       }
@@ -1469,35 +1470,24 @@ export class AddPermitTabSectionComponent implements OnInit {
   public selectadd = []
   public newOneAdree
   //private subject = new Subject<any>();
+  public storageData: any
   exextAddress(value) {
+    debugger
+    this.storageData = JSON.parse(sessionStorage.getItem('application'))
     const data = {
       query: value,
+      admin_id: this.storageData.city_admin_id
     }
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
         this.selectadd = this.exactAddress.map(data => {
-          return data.szFullAddress
+          return data.property_location
         })
         this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
           return data.szStreet_name
         })
-
-        // function fromEvent(target, eventName) {
-        //   return new Observable((observer) => {
-        //     const handler = (e) => observer.next(e);
-
-        //     // Add the event handler to the target
-        //     target.addEventListener(eventName, handler);
-
-        //     return () => {
-        //       // Detach the event handler from the target
-        //       target.removeEventListener(eventName, handler);
-        //     };
-        //   });
-        // }
-
         this.addressTwo = this.exactAddress.map(data => {
           return data.szStreet_name
         })
@@ -1512,10 +1502,11 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
+    debugger
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
-        if (e.value == data.szFullAddress) {
+        if (e.value == data.property_location) {
           //this.whereForm.value.address_id = data.id;
           this.addressId = data.id
           return false
