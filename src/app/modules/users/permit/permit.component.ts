@@ -207,9 +207,9 @@ export class PermitComponent implements OnInit {
   public hydrantPermit = []
   public engineeringPermit = []
   public sizePemit = []
-  public permit_type:any
+  public permit_type: any
   getPermitApplication(dwlType: any, permit_type: any) {
-    
+
     this.dwlType = dwlType
     this.permit_type = permit_type
     this.currentUser()
@@ -270,7 +270,7 @@ export class PermitComponent implements OnInit {
 
   checkPayments() {
 
-    
+
     this.applictionDetails.forEach(value => {
       value.addByAdminPayment = [];
       value.expirtDate = []
@@ -336,9 +336,12 @@ export class PermitComponent implements OnInit {
     })
   }
 
-  updateApplication(applicationId) {
-
-    this.router.navigate(['/dashboard/update-application'], { queryParams: { id: applicationId } });
+  updateApplication(application) {
+    if (application.status != 3) {
+      this.router.navigate(['/dashboard/update-application'], { queryParams: { id: application.id } });
+    } else if (application.status == 3) {
+      this.toastService.error('You can not modify your application, because application have cancled.')
+    }
   }
   public navigaetValue: any
   navigate(value) {
@@ -422,21 +425,27 @@ export class PermitComponent implements OnInit {
     this.router.navigate(['/dashboard/payment'], { queryParams: { id: id, fee_type: fee_Type } })
   }
 
-  updateMeterPermitAndHydrant(applicationId: number, value: string, pemit: string, permit_type: any) {
+  updateMeterPermitAndHydrant(application: any, value: string, pemit: string, permit_type: any) {
     localStorage.setItem('currentTab', permit_type);
-    if (pemit == 'meter') {
-      this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { application_id: applicationId, tab: value } })
+    if(application.status != 3){
+      if (pemit == 'meter') {
+        this.router.navigate(['/dashboard/add-meter-permit'], { queryParams: { application_id: application.id, tab: value } })
+  
+      }
+      else if (pemit == 'hydrant') {
+        this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { application_id: application.id, tab: value } })
+  
+      }
+  
+      else if (pemit == 'oversize') {
+        this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { application_id: application.id, tab: value } })
+  
+      }
+    }else{
+      this.toastService.error('You can not modify your application, because application have cancled.')
 
     }
-    else if (pemit == 'hydrant') {
-      this.router.navigate(['/dashboard/add-hydrant-permit'], { queryParams: { application_id: applicationId, tab: value } })
-
-    }
-
-    else if (pemit == 'oversize') {
-      this.router.navigate(['/dashboard/add-oversize-permit'], { queryParams: { application_id: applicationId, tab: value } })
-
-    }
+    
   }
   public cityId: number
   selectCity(cityId) {

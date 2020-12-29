@@ -272,7 +272,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of applictionDetails | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateApplication(application?.id)">
+                                                                                                (click)="updateApplication(application)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>
@@ -464,7 +464,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of meterPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','meter',application.permit_type)">
+                                                                                                (click)="updateMeterPermitAndHydrant(application,'applicant','meter',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>
@@ -621,7 +621,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of hydrantPermit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','hydrant',application.permit_type)">
+                                                                                                (click)="updateMeterPermitAndHydrant(application,'applicant','hydrant',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>{{application?.application_hydrant?.hydrant_address}}
@@ -777,7 +777,7 @@
                                                                                         <tr
                                                                                             *ngFor="let application of sizePemit | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="application?.is_read_by_user == '1' ? 'refTxt pointer':'refTxt pointer circle-round'"
-                                                                                                (click)="updateMeterPermitAndHydrant(application?.id,'applicant','oversize',application.permit_type)">
+                                                                                                (click)="updateMeterPermitAndHydrant(application,'applicant','oversize',application.permit_type)">
                                                                                                 {{application?.reference_no}}
                                                                                             </td>
                                                                                             <td>

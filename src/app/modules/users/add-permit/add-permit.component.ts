@@ -527,6 +527,7 @@ export class AddPermitComponent implements OnInit {
       } else {
         this.permitForm.controls.description.setValue(this.layOutData.application_daily_work_location.work_description)
         this.permitForm.controls.layout.setValue(this.layOutData.application_daily_work_location.layout_number)
+        this.permitForm.controls.purpose.setValue(this.layOutData.application_daily_work_location.work_category)
 
       }
 
