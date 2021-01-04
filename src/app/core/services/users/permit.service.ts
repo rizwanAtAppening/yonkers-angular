@@ -358,11 +358,27 @@ export class PermitService {
 
 
   exextAddress(data): Observable<any> {
+    debugger
     const href = `${environment['execAddress']}`;
     return this.http.get<any>(href, { params: data }).pipe(
       tap(
         (data) => {
-          if (data.status === 'success') {
+          if (data.status === 'success' && Object.keys(data.response).length > 0) {
+            data.response.map((res: any) => {
+              // if (res.address) {
+              //   res.singleAddress = res.address
+              //   res.address = `${res.address} [SBL: ${res.sbl}]`
+              // }
+              // if (res.street) {
+              //   res.singleStreet = res.street
+              //   res.address = `${res.street} [SBL: ${res.sbl}]`
+              // }
+              if (res.property_location) {
+                res.streetAddress = res.property_location
+                res.property_location = `${res.property_location},${res.city_state_zip}`
+              }
+             
+            });
           }
           return data;
         }

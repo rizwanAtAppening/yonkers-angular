@@ -1486,10 +1486,10 @@ export class AddPermitTabSectionComponent implements OnInit {
         })
         this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
         this.addressTwo = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
       }
 

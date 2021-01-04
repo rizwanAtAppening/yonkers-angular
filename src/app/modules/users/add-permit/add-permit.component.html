@@ -848,7 +848,7 @@
                             <tbody>
                                 <tr *ngFor ="let data of dwlApplication	">
                                         <td >
-                                                <p *ngIf ="data?.address_id && data?.location_type == 1">                                                         {{data?.address_details?.szFullAddress}}
+                                                <p *ngIf ="data?.address_id && data?.location_type == 1">                                                         {{data?.address}}
                                                    </p>
                                                 <h6  *ngIf ="data?.isSingleAddress && data?.location_type == 2" >
                                                     <p *ngIf ="data?.location && data?.location.length > 0" >{{data?.location[0]?.street_one}} {{data.location[0]?.address_join == 1 ? 'To':'End'}} {{data.location[0]?.street_two}}</p></h6>

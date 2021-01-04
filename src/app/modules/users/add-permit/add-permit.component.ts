@@ -176,7 +176,7 @@ export class AddPermitComponent implements OnInit {
       "type",
       this.permitForm.value.type
     );
-    
+
     if (this.id) {
       this.formData.append(
         "id",
@@ -229,7 +229,7 @@ export class AddPermitComponent implements OnInit {
     );
     this.formData.append(
       "city_admin_id",
-      this.cityId?this.cityId:this.applicationDetail.city_admin_id
+      this.cityId ? this.cityId : this.applicationDetail.city_admin_id
     );
     if (this.location_type == 2) {
 
@@ -239,9 +239,9 @@ export class AddPermitComponent implements OnInit {
         this.formData.append('locations[' + i + '][address_join]', data.address_join)
 
       })
-      
+
     }
-     else if (this.location_type == 1) {
+    else if (this.location_type == 1) {
       this.formData.append(
         "address_id",
         (this.addressId ? this.addressId : this.editValue.address_id)
@@ -338,7 +338,7 @@ export class AddPermitComponent implements OnInit {
   public allLayOutNumber = []
   getPermitApplication() {
     this.allLayOutNumber = []
-    this.permitService.getPermitApplication({ application_type: this.application_type,permit_type:1 }).subscribe(data => {
+    this.permitService.getPermitApplication({ application_type: this.application_type, permit_type: 1 }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 1) {
@@ -444,7 +444,7 @@ export class AddPermitComponent implements OnInit {
     }
     else if (this.location_type == 1) {
 
-      this.permitForm.controls.address_id.setValue(value.address_details.szFullAddress);
+      this.permitForm.controls.address_id.setValue(value.address);
       this.permitForm.controls.type.setValue(value.type);
       this.permitForm.controls.start_date.setValue(new Date(value.project_detail.start_date));
       this.permitForm.controls.end_date.setValue(new Date(value.project_detail.end_date));
@@ -564,7 +564,7 @@ export class AddPermitComponent implements OnInit {
         }
       } else {
         if (this.layOutData) {
-          this.permitForm.controls.address_id.setValue(this.layOutData.address_details.szFullAddress)
+          this.permitForm.controls.address_id.setValue(this.layOutData.address)
 
         }
       }
@@ -634,19 +634,21 @@ export class AddPermitComponent implements OnInit {
   exextAddress() {
     const data = {
       query: this.searchString,
+      admin_id: this.cityId ? this.cityId : this.applicationDetail.city_admin_id
+
     }
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
         this.selectadd = this.exactAddress.map(data => {
-          return data.szFullAddress
+          return data.property_location
         })
         this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
         this.addressTwo = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
       }
 
@@ -701,7 +703,7 @@ export class AddPermitComponent implements OnInit {
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
-        if (e.value == data.szFullAddress) {
+        if (e.value == data.property_location) {
           //this.whereForm.value.address_id = data.id;
           this.addressId = data.id
           return false

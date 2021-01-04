@@ -312,7 +312,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.dwlForm.controls.parcel_number.setValue(value.application_daily_work_location.parcel_number)
       this.dwlForm.controls.permit_number.setValue(value.application_daily_work_location.permit_number)
       this.dwlForm.controls.layout_number.setValue(value.application_daily_work_location.layout_number)
-      this.dwlForm.controls.address_id.setValue(value.address_details.szFullAddress)
+      this.dwlForm.controls.address_id.setValue(value.address)
 
 
     }
@@ -408,7 +408,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           })
         }
       } else {
-        this.dwlForm.controls.address_id.setValue(this.layOutData.address_details.szFullAddress)
+        this.dwlForm.controls.address_id.setValue(this.layOutData.address)
 
       }
     }
@@ -452,19 +452,21 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   exextAddress() {
     const data = {
       query: this.searchString,
+      admin_id: this.cityId ? this.cityId : this.applicationDetail.city_admin_id
+
     }
     this.permitService.exextAddress(data).subscribe(data => {
       this.exactAddress = data.response;
       if (this.exactAddress.length > 0) {
         this.selectadd = this.exactAddress.map(data => {
-          return data.szFullAddress
+          return data.property_location
         })
         this.address.next(this.selectadd)
         this.addressOne = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
         this.addressTwo = this.exactAddress.map(data => {
-          return data.szStreet_name
+          return data.streetAddress
         })
       }
 
@@ -519,7 +521,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
-        if (e.value == data.szFullAddress) {
+        if (e.value == data.property_location) {
           //this.whereForm.value.address_id = data.id;
           this.addressId = data.id
           return false
@@ -530,7 +532,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
     } else if (value == 'location') {
       if (address == 'addressTwo') {
         this.exactAddress.every(data => {
-          if (e.value == data.szFullAddress) {
+          if (e.value == data.streetAddress) {
             //this.whereForm.value.address_id = data.id;
             this.addressTwo = data.id
             return false
@@ -541,7 +543,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       }
       else if (address == 'addressOne') {
         this.exactAddress.every(data => {
-          if (e.value == data.szFullAddress) {
+          if (e.value == data.streetAddress) {
             //this.whereForm.value.address_id = data.id;
             this.addressOne = data.id
             return false

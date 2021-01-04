@@ -987,7 +987,7 @@
                                                                                         <td>
                                                                                             <p
                                                                                                 *ngIf="application?.address_id && application.location_type == 1">
-                                                                                                {{application?.address_details?.szFullAddress}}
+                                                                                                {{application?.address}}
                                                                                             </p>
                                                                                             <h6
                                                                                                 *ngIf="application.location_type == 2 && application?.isSingleAddress">
@@ -1144,7 +1144,7 @@
                                                                                         <td>
                                                                                             <p
                                                                                                 *ngIf="application?.address_id && application.location_type == 1">
-                                                                                                {{application?.address_details?.szFullAddress}}
+                                                                                                {{application?.address}}
                                                                                             </p>
                                                                                             <h6
                                                                                                 *ngIf="application.location_type == 2 && application?.isSingleAddress">
