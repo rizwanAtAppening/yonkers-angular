@@ -730,7 +730,6 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whereTab() {
-
     const application = this.permitService.getApplication()
     if (application.location_type) {
       this.location_type = application.location_type
@@ -743,7 +742,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       return false
     }
     if (application.location_type == 1) {
-      this.whereForm.controls.address_id.setValue(application.address_details.szFullAddress);
+      this.whereForm.controls.address_id.setValue(application.address);
       this.whereForm.controls.also_known_as.setValue(application.also_know_as);
       this.addLocationControls.controls.map((value, i) => {
         value['controls'].street_one.setErrors(null)
@@ -791,6 +790,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whatTab() {
+    debugger
     // const application = this.permitService.getApplication()
     this.whatForm.controls.role.setValue(this.application.role);
     this.whatForm.controls.type.setValue(this.application.type);
@@ -1069,6 +1069,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   checkTab(tab) {
+    this.getApplication()
     if (tab == 'what') {
       this.whatTab();
     }

@@ -9,13 +9,18 @@ import { Router } from '@angular/router';
 })
 export class OversizedVehiclesComponent implements OnInit {
   message: any;
-  public permit_type: any
+  public permit_type:any
   public application_Type = 1
   public page = 1
   public allApplications = []
   public currentPage = 1;
   public totalPagination: any;
   public offset: any
+  public modify = {
+    page: this.page,
+    permit_type: this.permit_type,
+    application_type: this.application_Type
+  }
   constructor(
     private applicationService: ApplicationService,
     private router: Router
@@ -31,11 +36,7 @@ export class OversizedVehiclesComponent implements OnInit {
     this.allExaminer()
   }
 
-  public modify = {
-    page: this.page,
-    permit_type: this.permit_type,
-    application_type: this.application_Type
-  }
+  
   getAllApplication(application_Type) {
     
     this.application_Type = application_Type
@@ -151,7 +152,8 @@ export class OversizedVehiclesComponent implements OnInit {
   exportCSV() {
     let body: any = {}
     body.page = this.page;
-    body.permit_type = this.permit_type
+    body.permit_type = this.permit_type;
+    body.application_type = this.application_Type
     this.applicationService.exportCSV(body)
   }
 }

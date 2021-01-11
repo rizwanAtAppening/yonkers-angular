@@ -1019,7 +1019,7 @@
 
 
                                                                                         </td>
-                                                                                        <td> {{application?.type ? settings.getSetting('type',application['type']) : '_'}}
+                                                                                        <td> {{application?.type ? settings.getSetting('type',application['type']) : settings.getSetting('type',application['permit_type'])}}
                                                                                         </td>
                                                                                         <td [class]="application?.decision == 3 ? 'submited-Btn blue-txt-2':'submited-Btn'"
                                                                                             class="submited-Btn">
