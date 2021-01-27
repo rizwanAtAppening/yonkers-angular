@@ -71,10 +71,10 @@
                                                     </thead>
                                                     <tbody>
                                                         <tr *ngFor = "let decision of applicationDetails?.application_issue_permits">
-                                                            <td>{{decision}}</td>
+                                                            <td>Issue Permit</td>
                                                             <td>{{decision?.createdAt | date}}</td>
                                                             <td>{{decision?.staff?.name}}</td>
-                                                            <td></td>
+                                                            <td>{{decision?.staff?.name}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

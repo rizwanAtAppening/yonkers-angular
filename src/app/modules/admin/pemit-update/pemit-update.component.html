@@ -239,20 +239,20 @@
                               <li>
                                 <h5>Width</h5>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h5>Gas Leak Number</h5>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h5>Dig Safely No</h5>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h5>Area of Opening</h5>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h5>Layout Number</h5>
-                              </li>
+                              </li> -->
                               <li>
-                                <h5>Opning Size</h5>
+                                <h5>Start Date</h5>
                               </li>
                             </ul>
 
@@ -269,26 +269,26 @@
                                   {{applicationDetails?.project_detail?.width?applicationDetails?.project_detail?.width:'_'}}
                                 </h6>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h6>{{applicationDetails?.project_detail?.gas_leak_number?applicationDetails?.project_detail?.gas_leak_number:'_'}}</h6>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h6>
                                   {{applicationDetails?.project_detail?.dig_safely_no ? applicationDetails?.project_detail?.dig_safely_no:'_'}}
                                 </h6>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h6>
                                   {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
                                 </h6>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h6>
                                   {{applicationDetails?.project_detail?.layout_number ? applicationDetails?.project_detail?.layout_number:'_'}}
                                 </h6>
-                              </li>
+                              </li> -->
                               <li>
-                                <h6>{{applicationDetails?.project_detail?.opening_size}}</h6>
+                                <h6>{{applicationDetails?.project_detail?.start_date ? (applicationDetails?.project_detail?.start_date | date):'_'}}</h6>
                               </li>
 
                             </ul>
@@ -306,18 +306,18 @@
                               <li>
                                 <h5>Will this work impact traffic?</h5>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h5>Number of Openings</h5>
-                              </li>
-                              <li>
+                              </li> -->
+                              <!-- <li>
                                 <h5>Start Date</h5>
-                              </li>
+                              </li> -->
                               <li>
                                 <h5>Length</h5>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h5>Pavement Type</h5>
-                              </li>
+                              </li> -->
                               <li>
                                 <h5>End Date</h5>
                               </li>
@@ -335,26 +335,24 @@
                                   </h6>
                                   <h6 *ngIf="!applicationDetails?.project_detail?.traffic_control">_</h6>
                                 </li>
-                                <li>
+                                <!-- <li>
                                   <h6>
                                     {{applicationDetails?.project_detail?.opening_number ? applicationDetails?.project_detail?.opening_number:'_'}}
                                   </h6>
-                                </li>
-                                <li>
-                                  <h6>{{applicationDetails?.project_detail?.start_date ? (applicationDetails?.project_detail?.start_date | date):'_'}}</h6>
-                                </li>
+                                </li> -->
+                               
                                 <li>
                                   <h6>
                                     {{applicationDetails?.project_detail?.length ? applicationDetails?.project_detail?.length:'_'}}
                                   </h6>
                                 </li>
-                                <li>
+                                <!-- <li>
                                   <h6 *ngIf="applicationDetails?.project_detail?.pavement_type">
                                     {{settings.getSetting('preventType',applicationDetails?.project_detail?.pavement_type)}} 
                                   </h6>
                                   <h6 *ngIf="!applicationDetails?.project_detail?.pavement_type">_</h6>
   
-                                </li>
+                                </li> -->
                                 <li>
                                   <h6>{{applicationDetails?.project_detail?.end_date | date}}</h6>
                                 </li>
@@ -629,10 +627,10 @@
                                 <!-- <h6>
                                   {{settings.getSetting('role',applicationDetails?.applicant_details?.applicant_role)}}
                                 </h6> -->
-                                <h6 *ngIf="applicationDetails?.type == 1">Property Owner</h6>
-                                <h6 *ngIf="applicationDetails?.type == 2">Contrator</h6>
+                                <h6 *ngIf="applicationDetails?.role == 1">Property Owner</h6>
+                                <h6 *ngIf="applicationDetails?.role == 2">Contrator</h6>
 
-                                <h6 *ngIf="applicationDetails?.type == 3">Agent</h6>
+                                <h6 *ngIf="applicationDetails?.role == 3">Agent</h6>
                                 <h6 *ngIf="applicationDetails?.type == null">_</h6>
 
 
@@ -981,7 +979,7 @@
                               <div class="dropdown-content-void">
                                 <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4 && (fee.payment_status != 3)" data-toggle="modal"
                                   data-target="#withdraw_application">Void</a>
-                                <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4 && (fee.payment_status != 3)" data-toggle="modal" data-target="#Edit-Fee">Edit</a>
+                                <!-- <a (click)="getFeeId(fee?.id,fee)" *ngIf ="fee?.payment_status != 4 && (fee.payment_status != 3)" data-toggle="modal" data-target="#Edit-Fee">Edit</a> -->
                               </div>
                             </div>
                           </td>

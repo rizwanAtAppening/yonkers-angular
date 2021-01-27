@@ -1984,7 +1984,7 @@
                                                           
                                                             <div class="role-txt-collepse-two" *ngIf ="application.location_type == 1">
                                                                 <h2>Address</h2>
-                                                                <p>    {{application?.address_details?.szFullAddress}}</p>
+                                                                <p>    {{application?.address}}</p>
                                                             </div>
                                                             <div class="role-txt-collepse-two">
                                                                 <h2>Unit No./Also Known as</h2>
@@ -2270,7 +2270,7 @@
                                                                     </p>
                                                                 </div>
 
-                                                                <div class="role-txt-collepse-two">
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.type != 4">
                                                                     <h2>Length</h2>
                                                                     <p>{{application?.project_detail?.length}}</p>
                                                                 </div>
@@ -2302,14 +2302,15 @@
                                                                     <p>{{application?.project_detail?.traffic_control ? settings?.getSetting('traffic',application?.project_detail?.traffic_control):'_'}}
                                                                     </p>
                                                                 </div>
-                                                                <div class="role-txt-collepse-two">
-                                                                    <!-- <h2>Width</h2>
-                                                                    <p>{{application?.project_detail?.width}}</p> -->
-                                                                </div>
+                                                              
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>End Date</h2>
                                                                     <p>{{application?.project_detail?.end_date | date :'dd/MM/yyyy'}}
                                                                     </p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.type != 4">
+                                                                    <h2>Width</h2>
+                                                                    <p>{{application?.project_detail?.width}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
