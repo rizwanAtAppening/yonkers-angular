@@ -158,8 +158,9 @@ export class InspectionsComponent implements OnInit {
         this.router.navigate(['/admin/permit/permitDetails'], { queryParams: { id: this.applicationDetails.id } })
       }
     }, error => {
-      this.formData = new FormData()
+      this.formData = new FormData() 
       this.allImage = []
+      this.isInspection = false
 
     })
   }

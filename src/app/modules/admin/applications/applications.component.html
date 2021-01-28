@@ -981,8 +981,8 @@
                                                                                             </div>
                                                                                             <div
                                                                                                 class="dropdown-content">
-                                                                                                <a
-                                                                                                    (click)="paymentsSummary(1,'','')">All</a>
+                                                                                                <!-- <a
+                                                                                                    (click)="paymentsSummary(1,'','')">All</a> -->
                                                                                                 <!-- <a (click) ="paymentsSummary(1,'','DWL')">DWL</a> -->
                                                                                                 <a
                                                                                                     (click)="paymentsSummary(1,'','permit')">Permit</a>
@@ -999,12 +999,12 @@
 
                                                                             <div class="col-5 exportBtn">
                                                                                 <div class="d-flex justify-content-end">
-                                                                                    <div class="New-Project"><button>
+                                                                                    <!-- <div class="New-Project"><button>
                                                                                             <span><img
                                                                                                     src="assets/images/interface.svg"
                                                                                                     alt=""></span>
                                                                                             Print
-                                                                                        </button></div>
+                                                                                        </button></div> -->
 
                                                                                     <div class="New-Project ml-3">
                                                                                         <button type="button"
@@ -1046,7 +1046,7 @@
                                                                                         <tbody>
                                                                                             <tr
                                                                                                 *ngFor="let summary of paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                                <td>{{summary?.reference_no}}
+                                                                                                <td>{{summary?.application?.reference_no}}
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     <p>

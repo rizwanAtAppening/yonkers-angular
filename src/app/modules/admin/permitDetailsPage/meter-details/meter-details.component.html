@@ -392,8 +392,8 @@
                                             <button class="btn text-left" type="button" data-toggle="collapse"
                                                 data-target="#collapseOne" aria-expanded="true"
                                                 aria-controls="collapseOne">
-                                                <h5>Fire &nbsp; <img *ngIf = "applicationDetails?.fire_submission_review?.length > 0" src="assets/images/tick (6).svg" alt="">
-                                                    <img *ngIf = "applicationDetails?.fire_submission_review?.length == 0"  src="assets/images/cancel-min.png" alt="">
+                                                <h5>Fire &nbsp; <img *ngIf = "applicationDetails?.fire_submission_review?.length > 0 && applicationDetails?.fire_submission_review[applicationDetails?.fire_submission_review?.length - 1]?.status == 0" src="assets/images/tick (6).svg" alt="">
+                                                    <img *ngIf = "applicationDetails?.fire_submission_review?.length == 0 || (applicationDetails?.fire_submission_review?.length > 0 && applicationDetails?.fire_submission_review[applicationDetails?.fire_submission_review?.length- 1]?.status == 1)"  src="assets/images/cancel-min.png" alt="">
                                                 </h5>
                                                 <!-- <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6> -->
                                             </button>
@@ -415,8 +415,9 @@
                                             <button class="btn  text-left collapsed" type="button"
                                                 data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
                                                 aria-controls="collapseTwo">
-                                                <h5>Water &nbsp; <img  *ngIf = "applicationDetails?.water_submission_review?.length > 0"  src="assets/images/tick (6).svg" alt=""> 
-                                                    <img  *ngIf = "applicationDetails?.water_submission_review?.length == 0"  src="assets/images/cancel-min.png" alt=""></h5>
+                                                <h5>Water &nbsp; <img  *ngIf = "applicationDetails?.water_submission_review?.length > 0 && applicationDetails?.water_submission_review[applicationDetails?.water_submission_review?.length - 1]?.status == 0"  src="assets/images/tick (6).svg" alt=""> 
+                                                    <img  *ngIf = "applicationDetails?.water_submission_review?.length == 0 || (applicationDetails?.fire_submission_review?.length > 0 && applicationDetails?.water_submission_review[applicationDetails?.water_submission_review?.length- 1]?.status == 1)"  src="assets/images/cancel-min.png" alt="">
+                                                </h5>
                                                 <!-- <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6> -->
                                             </button>
                                         </h2>

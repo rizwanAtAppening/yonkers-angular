@@ -85,7 +85,7 @@
                 <thead>
                   <tr>
                     <th>Application Status</th>
-                    <th>Description</th>
+                    <!-- <th>Description</th> -->
                     <th>Action</th>
 
                   </tr>
@@ -96,7 +96,7 @@
                     <td>{{settings.getSetting('submission_Application_status',submition?.decision)}}
                       <span class="voidMsg" *ngIf="submition?.status == 1">(V)</span>
                     </td>
-                    <td>{{submition?.message ? submition?.message:'__' }}</td>
+                    <!-- <td>{{submition?.message ? submition?.message:'__' }}</td> -->
                     <td>
                       <div class="dropdown_act" >
                         <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>

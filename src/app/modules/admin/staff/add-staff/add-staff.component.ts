@@ -152,22 +152,19 @@ export class AddStaffComponent implements OnInit {
   }
 
 
+  
   phoneNumberFormate() {
-    
     var autoFillValue = '-'
-    //if (value == 'phone') {
+    
       if (this.addStaffForm.value.phone === null) {
         this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone)
       }
-      if (this.addStaffForm.value.phone.length === 3) {
+      if ( this.addStaffForm.value.phone && this.addStaffForm.value.phone.length === 3) {
         
         this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone.concat(autoFillValue))
       }
-      if (this.addStaffForm.value.phone.length === 7) {
+      if (this.addStaffForm.value.phone && this.addStaffForm.value.phone.length === 7) {
         this.addStaffForm.controls.phone.setValue(this.addStaffForm.value.phone.concat(autoFillValue))
       }
-    
-   // }
-  
   }
 }

@@ -170,19 +170,20 @@ export class AddMeterPermitComponent implements OnInit {
     admin_id:null
   }
   exextAddress(value) {
-
+debugger
     if (value == 'applicanjob') {
 
     }
+    this.application = this.permitService.getApplication();
     this.selectValue = {
       query: value == 'address' ? this.applicantForm.value.applicant_address : this.applicantForm.value.applicant_job_location,
-      admin_id: this.cityId
+      admin_id: this.cityId ? this.cityId : this.application['city_admin_id']
     }
 
     if (value == 'location') {
       this.selectValue = {
         query: this.meterDeatilsForm.value.location,
-        admin_id: this.cityId
+        admin_id: this.cityId ? this.cityId : this.application['city_admin_id']
 
       }
     }
