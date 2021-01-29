@@ -223,7 +223,7 @@ export class PemitUpdateComponent implements OnInit {
       application_id: this.applicationDetails.id
     }
     this.applicationService.feeDelete(data).subscribe(data => {
-      this.toasterService.success('Fee has been deleted')
+      this.toasterService.success('Fee has been Voided')
       this.deleteFeePopoUp.nativeElement.click()
       this.feeId = null
       this.permitDetails();
