@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 })
 export class MeterPemitComponent implements OnInit {
   message: any;
-  public permit_type: any
+  public permit_type: any;
   public application_Type = 1
   public page = 1
   public allApplications = []
@@ -20,7 +20,11 @@ export class MeterPemitComponent implements OnInit {
   public meterPermitTab: any = '0'
   // public certificates: any = new Subject<any>();
   public searchString: any;
-
+  public modify = {
+    page: this.page,
+    permit_type: this.permit_type,
+    application_type: this.application_Type
+  }
   constructor(
     private applicationService: ApplicationService,
     private router: Router
@@ -40,11 +44,7 @@ export class MeterPemitComponent implements OnInit {
   }
 
 
-  public modify = {
-    page: this.page,
-    permit_type: this.permit_type,
-    application_type: this.application_Type
-  }
+  
   getAllApplication(application_Type) {
 
     this.application_Type = application_Type
@@ -77,8 +77,8 @@ export class MeterPemitComponent implements OnInit {
   }
 
 
-  navigateDetailsPage(url, applicationId) {
-    this.router.navigate([url], { queryParams: { id: applicationId, permtType: 'meter' } })
+  navigateDetailsPage(url, applicationId,type) {
+    this.router.navigate([url], { queryParams: { id: applicationId, permtType: 'meter',type:type } })
   }
 
   //  public message: any
@@ -168,7 +168,7 @@ export class MeterPemitComponent implements OnInit {
   }
 
   exportCSV() {
-    debugger
+    
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type

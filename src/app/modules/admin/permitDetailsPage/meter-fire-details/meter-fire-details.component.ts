@@ -19,7 +19,7 @@ export class MeterFireDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false
-  public type: number;
+  public type: any;
   public permtType: string
   public currentUser: {
     name: null
@@ -38,10 +38,11 @@ export class MeterFireDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.fireControls();
     this.route.queryParams.subscribe(data => {
       this.applicationId = data.id;
-      this.type = data.type;
+      this.type = (data.type);
       this.permtType = data.permtType
     })
     if (this.applicationId) {
@@ -117,14 +118,18 @@ export class MeterFireDetailsComponent implements OnInit {
     })
   }
   navigateIndexPage() {
-    if (this.type == 3) {
+    
+    if (this.permtType == 'hydrant') {
       this.applicationService.changeMessage('3');
+      this.applicationService.meterPermitValue(this.type)
+      this.router.navigate(['/admin/permit/hydrant-permit'])
+
     } else {
       this.applicationService.changeMessage('2');
+      this.applicationService.meterPermitValue(this.type)
+      this.router.navigate(['/admin/permit/meter-permit'])
     }
-
-    this.applicationService.meterPermitValue('1')
-    this.router.navigate(['/admin/permit/meter-permit'])
+    // this.router.navigate(['/admin/permit/meter-permit'])
   }
 
   getCurrentUser() {

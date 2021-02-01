@@ -74,7 +74,7 @@ public meterPermitTab:any = '0'
   }
 
   navigateDetailsPage(url,applicationId,type) {
-    this.router.navigate([url], { queryParams: { id: applicationId,permtType:'hydrant' } })
+    this.router.navigate([url], { queryParams: { id: applicationId,permtType:'hydrant',type:type } })
   }
 
   public searchString:any

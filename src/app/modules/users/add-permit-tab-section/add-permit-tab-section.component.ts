@@ -790,7 +790,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whatTab() {
-    debugger
+    
     // const application = this.permitService.getApplication()
     this.whatForm.controls.role.setValue(this.application.role);
     this.whatForm.controls.type.setValue(this.application.type);
@@ -1473,7 +1473,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   //private subject = new Subject<any>();
   public storageData: any
   exextAddress(value) {
-    debugger
+    
     this.storageData = JSON.parse(sessionStorage.getItem('application'))
     const data = {
       query: value,
@@ -1503,7 +1503,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-    debugger
+    
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {

@@ -170,7 +170,7 @@ export class AddMeterPermitComponent implements OnInit {
     admin_id:null
   }
   exextAddress(value) {
-debugger
+
     if (value == 'applicanjob') {
 
     }

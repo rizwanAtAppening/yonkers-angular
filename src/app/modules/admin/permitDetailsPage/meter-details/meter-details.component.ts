@@ -39,6 +39,7 @@ export class MeterDetailsComponent implements OnInit {
   
   navigateIndexPage() {
     this.applicationService.changeMessage('2');
+    this.applicationService.meterPermitValue('0')
     this.router.navigate(['/admin/permit/meter-permit'])
   }
 

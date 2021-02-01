@@ -18,7 +18,7 @@ export class MeterWaterDetailsComponent implements OnInit {
   public settings: any;
   public checkedValue: number = null;
   public isSubmit = false;
-  public type: number;
+  public type: string;
   public permtType:string
   constructor(
     private FB: FormBuilder,
@@ -128,14 +128,26 @@ export class MeterWaterDetailsComponent implements OnInit {
     })
   }
   navigateIndexPage() {
-    if (this.type == 3) {
+    
+    // if (this.type == 3) {
+    //   this.applicationService.changeMessage('3');
+    // } else {
+    //   this.applicationService.changeMessage('2');
+    // }
+    // this.applicationService.meterPermitValue('2')
+//    this.router.navigate(['/admin/permit/meter-permit'])
+
+    if (this.permtType == 'hydrant') {
       this.applicationService.changeMessage('3');
+      this.applicationService.meterPermitValue(this.type)
+      this.router.navigate(['/admin/permit/hydrant-permit'])
+
     } else {
       this.applicationService.changeMessage('2');
+      this.applicationService.meterPermitValue(this.type)
+      this.router.navigate(['/admin/permit/meter-permit'])
     }
-    this.applicationService.meterPermitValue('2')
 
-    this.router.navigate(['/admin/permit/meter-permit'])
   }
 
  

@@ -444,7 +444,7 @@
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
-                                                                                                (click)="navigateDetailsPage('/admin/permit/meter-details',permit?.id)">
+                                                                                                (click)="navigateDetailsPage('/admin/permit/meter-details',permit?.id,0)">
                                                                                                     {{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>
@@ -846,7 +846,7 @@
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
-                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id)">
+                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id,1)">
                                                                                                     {{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>
@@ -1248,7 +1248,7 @@
                                                                                             *ngFor="let permit of allApplications | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
                                                                                             <td  [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                                                                 <a
-                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id)">
+                                                                                                    (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id,2)">
                                                                                                     {{permit?.reference_no}}</a>
                                                                                             </td>
                                                                                             <td>

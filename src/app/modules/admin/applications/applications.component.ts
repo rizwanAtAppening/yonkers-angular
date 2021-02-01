@@ -379,7 +379,7 @@ export class ApplicationsComponent implements OnInit {
 
 
   exportCSV() {
-    debugger
+    
     let body: any = {}
     body.page = this.page;
     body.permit_type = this.permit_type,
@@ -391,7 +391,7 @@ export class ApplicationsComponent implements OnInit {
   public imageName: any
   public imgURL: any
   selectCSV(files) {
-    debugger
+    
     console.log(files);
     if (files && files.length > 0) {
       let file: File = files.item(0);

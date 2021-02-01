@@ -366,7 +366,7 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   phoneNumberFormate() {
-    debugger
+    
     var autoFillValue = '-'
     //if (value == 'phone') {
       if (this.contractorForm.value.contractor_phone === null) {

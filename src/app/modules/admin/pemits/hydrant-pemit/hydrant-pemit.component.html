@@ -368,7 +368,7 @@
                                               <td
                                                 [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                 <a
-                                                  (click)="navigateDetailsPage('/admin/permit/hydrant-details',permit?.id,'')">{{permit?.reference_no}}</a>
+                                                  (click)="navigateDetailsPage('/admin/permit/hydrant-details',permit?.id,0)">{{permit?.reference_no}}</a>
                                               </td>
                                               <td>{{permit?.application_hydrant?.hydrant_address}}
                                               </td>
@@ -697,7 +697,7 @@
                                               <td
                                                 [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                 <a
-                                                  (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id,3)">{{permit?.reference_no}}</a>
+                                                  (click)="navigateDetailsPage('/admin/permit/meter-fire-details',permit?.id,1)">{{permit?.reference_no}}</a>
                                               </td>
                                               <td>{{permit?.application_hydrant?.hydrant_address}}
                                               </td>
@@ -1026,7 +1026,7 @@
                                               <td
                                                 [class]="permit?.is_read_by_admin == '1' ? 'refTxt pointer':'refTxt pointer circle-round'">
                                                 <a
-                                                  (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id,3)">{{permit?.reference_no}}</a>
+                                                  (click)="navigateDetailsPage('/admin/permit/meter-water-details',permit?.id,2)">{{permit?.reference_no}}</a>
                                               </td>
                                               <td>{{permit?.application_hydrant?.hydrant_address}}
                                               </td>
