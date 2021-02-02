@@ -1273,7 +1273,9 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     this.permitService.getDuplimester().subscribe(data => {
       this.duplimester = data.response;
+      
       this.duplimester.map(data => {
+        data.dumpster_state = Number(data.dumpster_state)
         data.checked = false
       })
       if (this.application.dumpster_id) {
@@ -1311,6 +1313,8 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     }
     this.duplimesterForm.value.dumpster_mobile = 7858254585
+    this.duplimesterForm.value.dumpster_state = Number(this.duplimesterForm.value.dumpster_state)
+
     this.permitService.addDuplimester(this.duplimesterForm.value).subscribe(data => {
       this.duplimesterForm.reset();
       this.isDuplimester = false;
