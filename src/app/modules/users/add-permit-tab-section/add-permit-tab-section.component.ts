@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { thistle } from 'color-name';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -1594,4 +1595,15 @@ export class AddPermitTabSectionComponent implements OnInit {
     }
   }
 
+ // @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+debugger
+  console.log(event);
+   event.returnValue = false;
+   event.preventDefault();
+
+   //or
+   //do something
+
+}
 }
