@@ -459,7 +459,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-
+    debugger
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -551,6 +551,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
         this.whereForm.controls.address.setErrors(null)
 
+        if (this.addressId == null) {
+          this.toasterService.error('Please select address');
+          return false
+        }
         this.data = {
           model: 2,
           // address_id: (this.whereForm.value.address_id),
@@ -606,6 +610,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
       }
       else if (this.application.role != 2 && this.application.type == 4) {
+        if (this.dumpster_id == null) {
+          this.toasterService.error('Please select dumpster');
+          return false
+        }
         if (!this.dumpster_id) {
           this.dumpster_id = this.application.dumpster_id
         }
@@ -790,7 +798,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   whatTab() {
-    
+
     // const application = this.permitService.getApplication()
     this.whatForm.controls.role.setValue(this.application.role);
     this.whatForm.controls.type.setValue(this.application.type);
@@ -1177,7 +1185,6 @@ export class AddPermitTabSectionComponent implements OnInit {
   public submitApplicationValue = []
   public index: number
   submitApplication(value, form) {
-
     if (this.submitApplicationValue.length == 0) {
       this.submitApplicationValue.push({ value: value, key: form })
     }
@@ -1273,7 +1280,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
     this.permitService.getDuplimester().subscribe(data => {
       this.duplimester = data.response;
-      
+
       this.duplimester.map(data => {
         data.dumpster_state = Number(data.dumpster_state)
         data.checked = false
@@ -1477,7 +1484,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   //private subject = new Subject<any>();
   public storageData: any
   exextAddress(value) {
-    
+
     this.storageData = JSON.parse(sessionStorage.getItem('application'))
     const data = {
       query: value,
@@ -1507,7 +1514,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-    
+
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {

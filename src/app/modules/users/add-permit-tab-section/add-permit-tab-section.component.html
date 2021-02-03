@@ -34,7 +34,7 @@
                     aria-selected="true">What <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
             <li class="nav-item">
-                <a [class]="(currentTab == 'where') ? 'active':(whereControls?.address_id?.value || ( application?.address_id || application?.location && application?.location.length > 0))?'':'gray_color'"
+                <a [class]="(currentTab == 'where') ? 'active':(whereControls?.address_id?.value || ( application?.address_id || application?.location && application?.location.length > 0) || (application.location_type == 3 && application.address))?'':'gray_color'"
                     id="pills-Where-tab" (click)="hitOnTab('whereForm','where')" role="tab" aria-controls="pills-Where"
                     aria-selected="false">Where <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
             </li>
