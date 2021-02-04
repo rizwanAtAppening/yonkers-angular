@@ -1661,8 +1661,7 @@
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label
-                                                    [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    for="sda1" class="start_dateLabel">Start Date </label>
+                                                     class="start_dateLabel">Start Date </label>
                                                 <div
                                                     *ngIf="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit)">
                                                     <p style="top: 61px;  position: absolute;"  class="form-error"
@@ -1685,7 +1684,7 @@
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label
-                                                    [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
+                                                    
                                                     class="start_dateLabel">End Date</label>
                                                 <div
                                                     *ngIf="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit)">
