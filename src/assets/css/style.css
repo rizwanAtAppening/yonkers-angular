@@ -4100,9 +4100,7 @@ color: #282D5B99 !important;
     .description_edit-txt h3{
         text-transform: uppercase;
     }
-    .btn-pre button{
-        margin-right: 15px !important;
-    }
+   
     .documentFileType .select-input-box{
         max-width: 181px;
     }
@@ -5508,4 +5506,24 @@ position: relative;
         right: 10px;
         font-size: 14px;
         cursor: pointer;
+    }
+
+
+    .eyeSlash-icon{
+        position: absolute;
+        top: 22px;
+        right: 22px;    
+        cursor: pointer;
+    }
+
+    .start_dateLabel{
+        top: -73px;
+        position: relative;
+        left: 20px;
+        background: #fff;
+        opacity: 1;
+        color: #282D5B;
+        font-size: 16px;
+        font-family: "Poppins-Medium";
+        padding: 0px 3px;
     }

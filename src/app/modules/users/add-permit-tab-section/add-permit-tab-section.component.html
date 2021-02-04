@@ -1471,7 +1471,7 @@
                 <div class="what-bg">
                     <form [formGroup]="projectDetailsForm">
                         <div class="job-location-Hd">
-                            <h3>Project Description
+                            <h3>Project Description 
                                 <span>Please provide the following details about your project.</span>
                             </h3>
 
@@ -1656,16 +1656,16 @@
                                         <div class="bdp_email loction-adInput lenth-pt">
 
                                             <div class="form-group position-relative">
-                                                <input type="text" [readonly] = "true"  id="sda1" #dp="bsDatepicker" bsDatepicker
+                                                <input type="text" [readonly] = "true"   #dp="bsDatepicker" bsDatepicker
                                                     formControlName="start_date" [minDate]="minDate"
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    for="sda1">Start Date</label>
+                                                    for="sda1" class="start_dateLabel">Start Date </label>
                                                 <div
                                                     *ngIf="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit)">
-                                                    <p class="form-error"
+                                                    <p style="top: 61px;  position: absolute;"  class="form-error"
                                                         *ngIf="projectDetail.start_date.errors['required']">
                                                         Please Enter Date
                                                     </p>
@@ -1674,24 +1674,22 @@
                                                 <span class="togle-calnder-Btn" (click)="dp.toggle()"
                                                     [attr.aria-expanded]="dp.isOpen"><i class="fa fa-calendar"
                                                         aria-hidden="true"></i></span>
-
                                             </div>
-
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="bdp_email loction-adInput lenth-pt ">
                                             <div class="form-group">
-                                                <input type="text" [readonly] = "true" id="eda1" #dp1="bsDatepicker" bsDatepicker
+                                                <input type="text" [readonly] = "true"  #dp1="bsDatepicker" bsDatepicker
                                                     formControlName="end_date"
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                    >End Date</label>
+                                                    class="start_dateLabel">End Date</label>
                                                 <div
                                                     *ngIf="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit)">
-                                                    <p class="form-error"
+                                                    <p style="top: 61px;  position: absolute;" class="form-error"
                                                         *ngIf="projectDetail.end_date.errors['required']">
                                                         Please Enter Date
                                                     </p>
@@ -1699,9 +1697,7 @@
                                                 <span class=" togle-calnder-Btn" (click)="dp1.toggle()"
                                                     [attr.aria-expanded]="dp.isOpen" type="button"><i
                                                         class="fa fa-calendar" aria-hidden="true"></i></span>
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -1709,7 +1705,7 @@
                             <div class="imact-trafic">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="bdp_email loction-adInput lenth-pt">
+                                        <div class="bdp_email loction-adInput">
                                             <div class="form-group">
                                                 <label id="dd-label">Detailed Description </label>
                                                 <textarea placeholder="Type something here..."

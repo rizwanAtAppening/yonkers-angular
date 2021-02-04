@@ -106,6 +106,12 @@
                           <input type="password" id="password" (input)="passwordMatch('pass')"  formControlName="password" id="password" class="form-control password"
                           [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
                           <label  [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'" for="password">Password</label>
+
+<span class="eyeSlash-icon">
+  <i class="fa fa-eye-slash" aria-hidden="true"></i>
+  <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+</span>
+
                         </div>
                       </div>
                     </div>
@@ -128,6 +134,10 @@
                           [class]="confirmPassword.invalid  &&  (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                           class="form-control password" required>
                           <label  [class]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="conform-password">Confirm Password</label>
+                          <span class="eyeSlash-icon">
+                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -160,10 +170,10 @@
                     </div>
                   </div>
 
-                  <div class="btn-sign-in">
+                  <div class="btn-sign-in ">
                     <div class="row">
-                      <div class="col-12">
-                        <button type="submit">Register</button>
+                      <div class="col-12 mb-5">
+                        <button type="submit mb-5">Register</button>
                       </div>
                     </div>
                   </div>
