@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { thistle } from 'color-name';
 import { HostListener } from '@angular/core';
+import { DATE } from 'ngx-bootstrap/chronos/units/constants';
 
 @Component({
   selector: 'app-add-permit-tab-section',
@@ -77,9 +78,10 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   }
   public minDate: Date;
+  public secondMinDate: any
+  //date.setDate(date.getDate() + 1);
   ngOnInit() {
     this.minDate = new Date();
-
     this.getDuplimester();
     this.route.queryParams.subscribe(data => {
       this.application_id = data.id;
@@ -1515,7 +1517,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-debugger
+    debugger
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
@@ -1595,15 +1597,23 @@ debugger
     }
   }
 
- // @HostListener('document:keydown', ['$event'])
+  // @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-debugger
-  console.log(event);
-   event.returnValue = false;
-   event.preventDefault();
+    debugger
+    console.log(event);
+    event.returnValue = false;
+    event.preventDefault();
 
-   //or
-   //do something
+    //or
+    //do something
 
-}
+  }
+
+  onValueChange(value: Date): void {
+    var selectDate
+    selectDate = value;
+    var date = new Date()
+      selectDate.setDate(selectDate.getDate() + 1);
+     this.secondMinDate  = selectDate
+  }
 }

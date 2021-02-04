@@ -1656,7 +1656,7 @@
                                         <div class="bdp_email loction-adInput lenth-pt">
 
                                             <div class="form-group position-relative">
-                                                <input type="text" [readonly] = "true"   #dp="bsDatepicker" bsDatepicker
+                                                <input type="text" [readonly] = "true" (bsValueChange)="onValueChange($event)"   #dp="bsDatepicker" bsDatepicker
                                                     formControlName="start_date" [minDate]="minDate"
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
@@ -1679,7 +1679,7 @@
                                     <div class="col-6">
                                         <div class="bdp_email loction-adInput lenth-pt ">
                                             <div class="form-group">
-                                                <input type="text" [readonly] = "true"  #dp1="bsDatepicker" bsDatepicker
+                                                <input type="text"  [readonly] = "true"  [minDate]="secondMinDate"  #dp1="bsDatepicker" bsDatepicker
                                                     formControlName="end_date"
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
