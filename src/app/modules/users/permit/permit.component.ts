@@ -342,7 +342,7 @@ export class PermitComponent implements OnInit {
     } else if (application.status == 3) {
       this.toastService.error('You can not modify your application, because application have cancled.')
     }else if(application.payment_status == 3){
-      this.toastService.error('You can not modify your application, before payment')
+      this.toastService.error('You can not modify your application, after payment')
     }
   }
   public navigaetValue: any

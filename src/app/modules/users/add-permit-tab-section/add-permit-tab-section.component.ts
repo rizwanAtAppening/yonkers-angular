@@ -1515,7 +1515,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-
+debugger
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
