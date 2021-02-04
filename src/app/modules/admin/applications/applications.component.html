@@ -86,7 +86,7 @@
                                         </li> -->
                                                 </ul>
                                             </div>
-                                            <div class="col-4" *ngIf = "currentUser?.role_id == 2">
+                                            <div class="col-4" *ngIf="currentUser?.role_id == 2">
                                                 <div class="btn-filter dropdownfilter text-right" data-toggle="modal"
                                                     data-target="#exampleModal-upload">
                                                     <button>
@@ -200,13 +200,13 @@
                                                                                                                         role="tab"
                                                                                                                         aria-controls="v-pills-ads6"
                                                                                                                         aria-selected="false">Inspector</a>
-                                                                                                                    <a class="nav-link"
+                                                                                                                    <!-- <a class="nav-link"
                                                                                                                         id="v-pills-ads7-tab"
                                                                                                                         data-toggle="pill"
                                                                                                                         href="#v-pills-ads7"
                                                                                                                         role="tab"
                                                                                                                         aria-controls="v-pills-ads7"
-                                                                                                                        aria-selected="false">Examiner</a>
+                                                                                                                        aria-selected="false">Examiner</a> -->
                                                                                                                     <a class="nav-link"
                                                                                                                         id="v-pills-ads8-tab"
                                                                                                                         data-toggle="pill"
@@ -214,13 +214,13 @@
                                                                                                                         role="tab"
                                                                                                                         aria-controls="v-pills-ads8"
                                                                                                                         aria-selected="false">Status</a>
-                                                                                                                    <a class="nav-link"
+                                                                                                                    <!-- <a class="nav-link"
                                                                                                                         id="v-pills-ads9-tab"
                                                                                                                         data-toggle="pill"
                                                                                                                         href="#v-pills-ads9"
                                                                                                                         role="tab"
                                                                                                                         aria-controls="v-pills-ads9"
-                                                                                                                        aria-selected="false">Pipeline</a>
+                                                                                                                        aria-selected="false">Pipeline</a> -->
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -267,7 +267,7 @@
                                                                                                                             </p>
 
 
-                                                                                                                            <label
+                                                                                                                            <!-- <label
                                                                                                                                 class="containerdision mt-3">Cancelled
                                                                                                                                 <input
                                                                                                                                     type="checkbox"
@@ -275,7 +275,7 @@
                                                                                                                                     value="cancelled_permit">
                                                                                                                                 <span
                                                                                                                                     class="checkmarkdision"></span>
-                                                                                                                            </label>
+                                                                                                                            </label> -->
                                                                                                                             <label
                                                                                                                                 class="containerdision">Permit
                                                                                                                                 <input
@@ -296,7 +296,7 @@
                                                                                                                                     class="checkmarkdision"></span>
                                                                                                                             </label>
                                                                                                                             <label
-                                                                                                                                class="containerdision">Pending
+                                                                                                                                class="containerdision">Pending Inspection
                                                                                                                                 <input
                                                                                                                                     type="checkbox"
                                                                                                                                     (change)="selectFilter($event.target,'decision')"
@@ -305,7 +305,7 @@
                                                                                                                                     class="checkmarkdision"></span>
                                                                                                                             </label>
                                                                                                                             <label
-                                                                                                                                class="containerdision">Fail
+                                                                                                                                class="containerdision">Fail Inspection
                                                                                                                                 <input
                                                                                                                                     type="checkbox"
                                                                                                                                     (change)="selectFilter($event.target,'decision')"
@@ -314,7 +314,7 @@
                                                                                                                                     class="checkmarkdision"></span>
                                                                                                                             </label>
                                                                                                                             <label
-                                                                                                                                class="containerdision">Pass
+                                                                                                                                class="containerdision">Pass Inspection
                                                                                                                                 <input
                                                                                                                                     type="checkbox"
                                                                                                                                     (change)="selectFilter($event.target,'decision')"
@@ -527,6 +527,8 @@
                                                                                             <th>Applicant</th>
                                                                                             <th>Type</th>
                                                                                             <th>Decision Status</th>
+                                                                                            <th>Inspection Status</th>
+
                                                                                             <th>Submit date</th>
                                                                                             <th>Expire Date</th>
                                                                                             <!-- <th>Action</th> -->
@@ -546,6 +548,10 @@
                                                                                                 <p
                                                                                                     *ngIf="permit?.address_id  && (permit?.location_type == 1 || permit?.location_type == null)">
                                                                                                     {{permit?.address}}
+                                                                                                </p >
+
+                                                                                                <p *ngIf="!permit?.address_id && permit.location_type == 3">
+                                                                                                    {{permit?.address}}
                                                                                                 </p>
 
                                                                                                 <h6
@@ -553,7 +559,9 @@
                                                                                                     <p
                                                                                                         *ngIf="permit?.location && permit?.location.length > 0">
                                                                                                         {{permit?.location[0]?.street_one}}
-                                                                                                        {{permit?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                        {{permit?.location[0]?.address_join
+                                                                                                        == 1?
+                                                                                                        'To':'End'}}
                                                                                                         {{permit?.location[0]?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -563,7 +571,9 @@
                                                                                                     <p
                                                                                                         *ngFor="let location of permit?.location ">
                                                                                                         {{location?.street_one}}
-                                                                                                        {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                        {{location?.address_join
+                                                                                                        == 1
+                                                                                                        ?'To':'End'}}
                                                                                                         {{location?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -580,22 +590,40 @@
 
 
                                                                                             </td>
-                                                                                            <td>{{permit?.applicant_details?.applicant_name ?permit?.applicant_details?.applicant_name :'_'}}
-                                                                                                {{permit?.applicant_details?.applican_last_name ? permit?.applicant_details?.applican_last_name : null}}
+                                                                                            <td>{{permit?.applicant_details?.applicant_name
+                                                                                                ?permit?.applicant_details?.applicant_name
+                                                                                                :'_'}}
+                                                                                                {{permit?.applicant_details?.applican_last_name
+                                                                                                ?
+                                                                                                permit?.applicant_details?.applican_last_name
+                                                                                                : null}}
                                                                                             </td>
-                                                                                            <td>{{ permit?.type? settings.getSetting('type',permit['type']):'_'}}
+                                                                                            <td>{{ permit?.type?
+                                                                                                settings.getSetting('type',permit['type']):'_'}}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="submited-Btn green-txt-2">
                                                                                                 <button
-                                                                                                    *ngIf="permit?.decision == null">Submitted</button>
+                                                                                                    *ngIf="permit?.decision == null">Pending
+                                                                                                    Review</button>
                                                                                                 <button
                                                                                                     *ngIf="permit?.decision == 2">Accept</button>
                                                                                                 <button
                                                                                                     *ngIf="permit?.decision == 1">Incomplete</button>
+                                                                                                <button
+                                                                                                    *ngIf="permit?.decision == 3">Issue
+                                                                                                    permit</button>
                                                                                             </td>
 
-                                                                                            <td>{{permit?.createdAt | date}}
+                                                                                            <td
+                                                                                                class="submited-Btn green-txt-2">
+                                                                                                <button >{{
+                                                                                                    settings.getSetting('inspection_decision',permit?.ispection_status)}}</button>
+
+                                                                                            </td>
+
+                                                                                            <td>{{permit?.createdAt |
+                                                                                                date}}
                                                                                             </td>
                                                                                             <td>-</td>
 
@@ -655,7 +683,8 @@
                                                                                             <button><span><img
                                                                                                         src="assets/images/filter.svg"
                                                                                                         alt=""></span>
-                                                                                                Filter</button></div>
+                                                                                                Filter</button>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -669,9 +698,11 @@
                                                                                             [attr.aria-expanded]="drp.isOpen"><i
                                                                                                 class="fa fa-calendar"
                                                                                                 aria-hidden="true"></i></span>
-                                                                                        {{from ? (from | date :'dd/MM/yyyy') :'01/06/2020'}}
+                                                                                        {{from ? (from | date
+                                                                                        :'dd/MM/yyyy') :'01/06/2020'}}
                                                                                         -
-                                                                                        {{to ? (to | date :'dd/MM/yyyy') :'01/07/2020'}}
+                                                                                        {{to ? (to | date :'dd/MM/yyyy')
+                                                                                        :'01/07/2020'}}
                                                                                     </button>
                                                                                     <button type="button"
                                                                                         (click)="exportCSV()"
@@ -680,7 +711,8 @@
                                                                                                 src="assets/images/upload-index.svg"
                                                                                                 alt=""></span>
                                                                                         Export
-                                                                                    </button></div>
+                                                                                    </button>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -721,7 +753,9 @@
                                                                                                     <p
                                                                                                         *ngIf="permit?.location && permit?.location.length > 0">
                                                                                                         {{permit?.location[0]?.street_one}}
-                                                                                                        {{permit?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                        {{permit?.location[0]?.address_join
+                                                                                                        == 1?
+                                                                                                        'To':'End'}}
                                                                                                         {{permit?.location[0]?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -731,7 +765,9 @@
                                                                                                     <p
                                                                                                         *ngFor="let location of permit?.location ">
                                                                                                         {{location?.street_one}}
-                                                                                                        {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                        {{location?.address_join
+                                                                                                        == 1
+                                                                                                        ?'To':'End'}}
                                                                                                         {{location?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -751,7 +787,8 @@
 
                                                                                             <!-- <td class="submited-Btn green-txt-2">
                                                                                     <button>Issued</button></td> -->
-                                                                                            <td>{{permit?.submittedAt | date}}
+                                                                                            <td>{{permit?.submittedAt |
+                                                                                                date}}
                                                                                             </td>
                                                                                             <td>-</td>
 
@@ -850,7 +887,10 @@
                                                                                     <tbody>
                                                                                         <tr
                                                                                             *ngFor="let inspection of  paymentSummary | paginate: {itemsPerPage: offset, currentPage: currentPage, totalItems: totalPagination};">
-                                                                                            <td>{{inspection?.application?.permit_number ? inspection?.application?.permit_number :'_' }}
+                                                                                            <td>{{inspection?.application?.permit_number
+                                                                                                ?
+                                                                                                inspection?.application?.permit_number
+                                                                                                :'_' }}
                                                                                             </td>
                                                                                             <td>
                                                                                                 <p
@@ -862,7 +902,9 @@
                                                                                                     <p
                                                                                                         *ngIf="inspection?.application?.location && inspection?.application?.location.length > 0">
                                                                                                         {{inspection?.application?.location[0]?.street_one}}
-                                                                                                        {{inspection?.application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                        {{inspection?.application?.location[0]?.address_join
+                                                                                                        == 1?
+                                                                                                        'To':'End'}}
                                                                                                         {{inspection?.application?.location[0]?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -872,7 +914,9 @@
                                                                                                     <p
                                                                                                         *ngFor="let location of inspection?.application?.location ">
                                                                                                         {{location?.street_one}}
-                                                                                                        {{location?.address_join == 1 ?'To':'End'}}
+                                                                                                        {{location?.address_join
+                                                                                                        == 1
+                                                                                                        ?'To':'End'}}
                                                                                                         {{location?.street_two}}
                                                                                                     </p>
                                                                                                 </h6>
@@ -890,13 +934,16 @@
 
                                                                                             </td>
                                                                                             <!-- <td>test</td> -->
-                                                                                            <td>{{ settings.getSetting('inspection_type',inspection?.type)}}
+                                                                                            <td>{{
+                                                                                                settings.getSetting('inspection_type',inspection?.type)}}
                                                                                             </td>
-                                                                                            <td>{{inspection?.date | date}}
+                                                                                            <td>{{inspection?.date |
+                                                                                                date}}
                                                                                             </td>
                                                                                             <td>{{inspection?.staff?.name}}
                                                                                             </td>
-                                                                                            <td>{{ settings.getSetting('inspection_decision',inspection?.decision)}}
+                                                                                            <td>{{
+                                                                                                settings.getSetting('inspection_decision',inspection?.decision)}}
                                                                                             </td>
                                                                                             <!-- <td>Pending</td> -->
                                                                                             <td
@@ -969,14 +1016,15 @@
                                                                                             src="assets/images/filter.svg"
                                                                                             alt=""></span>
                                                                                     Filter</button></div> -->
-                                                                                    <div class="dropdown">
-                                                                                        <!-- <button class="dropbtn">Dropdown</button> -->
-                                                                                        <div class="btn-filter dropbtn p-0">
-                                                                                            <button><span><img
-                                                                                                        src="assets/images/filter.svg"
-                                                                                                        alt=""></span>
-                                                                                                Filter
-                                                                                            </button>
+                                                                                        <div class="dropdown">
+                                                                                            <!-- <button class="dropbtn">Dropdown</button> -->
+                                                                                            <div
+                                                                                                class="btn-filter dropbtn p-0">
+                                                                                                <button><span><img
+                                                                                                            src="assets/images/filter.svg"
+                                                                                                            alt=""></span>
+                                                                                                    Filter
+                                                                                                </button>
 
                                                                                             </div>
                                                                                             <div
@@ -1014,7 +1062,8 @@
                                                                                                     src="assets/images/upload-index.svg"
                                                                                                     alt=""></span>
                                                                                             Export
-                                                                                        </button></div>
+                                                                                        </button>
+                                                                                    </div>
                                                                                     <!-- <div class="New-Project"><button
                                                                                         id="nrtn">
                                                                                         New Request
@@ -1050,14 +1099,19 @@
                                                                                                 </td>
                                                                                                 <td>
                                                                                                     <p>
-                                                                                                        {{summary?.application?.address ? summary?.application?.address :'_' }}
+                                                                                                        {{summary?.application?.address
+                                                                                                        ?
+                                                                                                        summary?.application?.address
+                                                                                                        :'_' }}
                                                                                                     </p>
                                                                                                     <h6
                                                                                                         *ngIf="!summary?.application?.address_id && summary?.isSingleAddress">
                                                                                                         <p
                                                                                                             *ngIf="summary?.application?.location && summary?.application?.location?.length  > 0">
                                                                                                             {{summary?.application?.location[0]?.street_one}}
-                                                                                                            {{summary?.application?.location[0]?.address_join == 1? 'To':'End'}}
+                                                                                                            {{summary?.application?.location[0]?.address_join
+                                                                                                            == 1?
+                                                                                                            'To':'End'}}
                                                                                                             {{summary?.application?.location[0]?.street_two}}
                                                                                                         </p>
                                                                                                     </h6>
@@ -1075,15 +1129,21 @@
                                                                                                     class="submited-Btn green-txt-2">
 
                                                                                                     <button
-                                                                                                        class="pb-0 pt-0">{{summary?.payment_status == 3 ? 'Paid':'Unpaid'}}</button>
+                                                                                                        class="pb-0 pt-0">{{summary?.payment_status
+                                                                                                        == 3 ?
+                                                                                                        'Paid':'Unpaid'}}</button>
                                                                                                 </td>
                                                                                                 <td>Check</td>
-                                                                                                <td>{{summary?.reciept_no ? summary?.reciept_no :'_' }}
+                                                                                                <td>{{summary?.reciept_no
+                                                                                                    ?
+                                                                                                    summary?.reciept_no
+                                                                                                    :'_' }}
                                                                                                 </td>
 
                                                                                                 <td>{{summary?.amount}}
                                                                                                 </td>
-                                                                                                <td>{{summary?.createdAt | date}}
+                                                                                                <td>{{summary?.createdAt
+                                                                                                    | date}}
                                                                                                 </td>
 
 
@@ -1190,7 +1250,8 @@
 
                             <div class="filename-show" *ngIf="imgURL">
                                 <h4>{{imageName}}</h4>
-                                <span (click)="hideImage()"><i class="fa fa-times" aria-hidden="true" (click)="hideImage()"></i></span>
+                                <span (click)="hideImage()"><i class="fa fa-times" aria-hidden="true"
+                                        (click)="hideImage()"></i></span>
                             </div>
 
                         </div>
@@ -1200,7 +1261,7 @@
 
                     <div class="btnGroupFile">
                         <button class="btnGroupFile-one" data-dismiss="modal" aria-label="Close">Cancel </button>
-                        <button class="btnGroupFile-two"  (click) = "uploadCSVAddress()"> Submit</button>
+                        <button class="btnGroupFile-two" (click)="uploadCSVAddress()"> Submit</button>
                     </div>
 
 

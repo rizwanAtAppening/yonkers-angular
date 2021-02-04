@@ -174,7 +174,7 @@ export class PermitDecisionsComponent implements OnInit {
 
   arrowRighDwon(value) {
     this.messageEvent.emit('decision')
-    this.applicationDetails.isDecision = !value
+    this.applicationDetails['isDecision'] = !value
   }
   public actualValue: number;
   public currentDate;
