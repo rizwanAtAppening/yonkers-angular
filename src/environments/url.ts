@@ -150,7 +150,8 @@ const userUrl = {
   addMeterPermit: `/application`,
   cityAdmin: `/city-admins`,
   completeApplication: `/application/submitted`,
-  genrateIntent: `/application-payment`
+  genrateIntent: `/application-payment`,
+  fetchDatByPermit:`/search-permit-number`,
 
 
 

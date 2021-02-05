@@ -532,6 +532,18 @@ export class PermitService {
     );
   }
 
+  getDataByPermitNumber(search_query:any): Observable<any> {
+    const href = `${environment['fetchDatByPermit']}`;
+    return this.http.get<any>(href,{params:search_query}).pipe(
+      tap(
+        (data) => {
+          if (data.status === 'success') {
+          }
+          return data;
+        }
+      )
+    );
+  }
 
 }
 

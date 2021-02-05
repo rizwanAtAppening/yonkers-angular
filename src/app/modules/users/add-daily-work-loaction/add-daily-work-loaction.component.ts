@@ -132,14 +132,14 @@ export class AddDailyWorkLoactionComponent implements OnInit {
       this.updateValueDwl = [{ id: this.applicationId }]
       this.submitApplication = {
         application: this.updateValueDwl,
-       
+
 
       }
     }
     else {
       this.submitApplication = {
         application: this.dwlApplication,
-       
+
       }
     }
     this.permitService.submitDailyWorkLocation(this.submitApplication).subscribe(data => {
@@ -177,6 +177,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
 
     if (this.location_type == 1) {
+      debugger
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
         address_id: this.addressId ? this.addressId : this.editValue.address_id,
@@ -193,7 +194,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         location_type: this.location_type,
         id: this.id ? this.id : null,
         dwl_id: this.dwl_id ? this.dwl_id : null,
-        city_admin_id:this.cityId,
+        city_admin_id: this.cityId,
 
       }
 
@@ -213,7 +214,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         id: this.id ? this.id : null,
         dwl_id: this.dwl_id ? this.dwl_id : null,
         locations: this.dwlForm.controls.addlocation.value,
-        city_admin_id:this.cityId,
+        city_admin_id: this.cityId,
       }
     }
 
@@ -238,7 +239,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   getPermitApplication() {
 
     this.allLayOutNumber = []
-    this.permitService.getPermitApplication({ application_type: this.application_type,permit_type:2 }).subscribe(data => {
+    this.permitService.getPermitApplication({ application_type: this.application_type, permit_type: 2 }).subscribe(data => {
       this.applictionDetails = data.response;
       this.dwlApplication = this.applictionDetails.filter(data => {
         if (data.status == null && data.application_type == 2) {
@@ -553,6 +554,82 @@ export class AddDailyWorkLoactionComponent implements OnInit {
         })
       }
     }
+
+  }
+
+  // public  = []
+
+  public permitNumber = new Subject<any>();
+  public allPermit = []
+  getPermitData() {
+    debugger
+    if (this.dwlForm.value.permit_number) {
+      const data = {
+        search_query: this.dwlForm.value.permit_number
+      }
+      const permitNumber = []
+      this.permitService.getDataByPermitNumber(data).subscribe(data => {
+        this.allPermit = data.response
+        data.response.forEach((permit => {
+          if (permit.permit_number) {
+            permitNumber.push(permit.permit_number)
+          }
+        }))
+        this.permitNumber.next(permitNumber)
+
+      })
+    }
+
+  }
+
+  fillDataByPermit(value: any) {
+    debugger
+    console.log(value)
+    this.allPermit.forEach(data => {
+      if (value.item == data.permit_number) {
+        this.location_type =( data.location_type == 1 || data.location_type == 2) ? data.location_type:1
+       this.dwlForm.controls.also_know_as.setValue(data.also_know_as)
+         this.dwlForm.controls.permit_type.setValue(data.type)
+
+         if (data.location_type == 2) {
+          if (data.location.length > 1) {
+            for (let index = 0; index < data.location.length - 1; index++) {
+              if (data.location.length != this.addLocationControls.value.length) {
+                this.addLocationControls.push(this.addLocationFormGroup())
+              }
+              data.location.map((data1, i) => {
+                this.addLocationControls.controls.map((value, j) => {
+                  if (i == j) {
+                    value['controls'].street_one.setValue(data1.street_one)
+                    value['controls'].street_two.setValue(data1.street_two)
+                    value['controls'].address_join.setValue(data1.address_join)
+                  }
+                })
+              })
+  
+            }
+          }
+          else {
+            data.location.map((data2, i) => {
+              this.addLocationControls.controls.map((value, j) => {
+                if (i == j) {
+  
+                  value['controls'].street_one.setValue(data2.street_one)
+                  value['controls'].street_two.setValue(data2.street_two)
+                  value['controls'].address_join.setValue(data2.address_join)
+                }
+              })
+            })
+          }
+        } else {
+          this.addressId = data.address_id
+          this.selectedValue = data.address
+          this.dwlForm.controls.address_id.setValue(data.address)
+  
+        }
+         
+      }
+    })
 
   }
 }

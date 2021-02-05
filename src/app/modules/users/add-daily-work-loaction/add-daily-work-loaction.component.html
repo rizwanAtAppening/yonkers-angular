@@ -46,10 +46,11 @@
                                 <div class="col-6">
                                     <div class="bdp_email loction-adInput">
                                         <div class="row">
+                                            <!-- [typeahead]="allLayOutNumber" -->
                                             <div class="col-12 ">
                                                 <div class="form-group">
-                                                    <input type="number" id="pn2" disabled class="form-control"
-                                                        formControlName="permit_number">
+                                                    <input type="text" id="pn2"  class="form-control"
+                                                        formControlName="permit_number" (typeaheadOnSelect) = "fillDataByPermit($event)" [typeahead]="permitNumber" (input)="getPermitData()"  >
                                                     <label class="form-control-placeholder" for="pn2">Permit
                                                         Number</label>
                                                 </div>
