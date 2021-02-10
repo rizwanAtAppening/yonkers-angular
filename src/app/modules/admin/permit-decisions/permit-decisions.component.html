@@ -134,7 +134,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Plan Examiner</th>
+                                <th>Plan Examiner5</th>
+                                <th>Permit Number</th>
                                 <th>Action Taken</th>
                                 <th>Review Date</th>
                                 <th>Actions</th>
@@ -145,6 +146,8 @@
                                 <td>{{data?.staff?.name ? data?.staff?.name:'_'}}
                                     <span class="voidMsg" *ngIf="data?.status == 4">(V)</span>
                                 </td>
+                                <td>{{applicationDetails?.permit_number}}</td>
+
                                 <td>Permit Issue</td>
                                 <td>{{data?.expiration_date | date}}</td>
                                 <td>

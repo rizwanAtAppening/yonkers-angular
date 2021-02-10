@@ -259,6 +259,7 @@
                                                                                         <tr>
                                                                                             <th>Ref No</th>
                                                                                             <th>Location</th>
+                                                                                            <th>Permit Number</th>
                                                                                             <th>Type</th>
                                                                                             <th>Permit Status</th>
                                                                                             <th>Application status</th>
@@ -314,6 +315,7 @@
 
 
                                                                                             </td>
+                                                                                            <td>{{application?.permit_number ? application?.permit_number : '_' }}</td>
                                                                                             <td> {{ settings.getSetting('type',application['type'])}}
                                                                                             </td>
 
@@ -969,6 +971,7 @@
                                                                                     <tr>
                                                                                         <th>Ref No</th>
                                                                                         <th>Location</th>
+                                                                                        <th>Permit Number</th>
                                                                                         <th>Type</th>
                                                                                         <th>Permit Status</th>
                                                                                         <th>Application Status</th>
@@ -1020,6 +1023,8 @@
 
 
                                                                                         </td>
+                                                                                        <td>{{application?.permit_number ? application?.permit_number : '_' }}</td>
+
                                                                                         <td> {{application?.type ? settings.getSetting('type',application['type']) : settings.getSetting('type',application['permit_type'])}}
                                                                                         </td>
                                                                                         <td [class]="application?.decision == 3 ? 'submited-Btn blue-txt-2':'submited-Btn'"
