@@ -10,7 +10,7 @@ export const settingConfig = {
     },
     {
       key: 2,
-      value: "Contrator"
+      value: "contactor"
     },
     {
       key: 3,

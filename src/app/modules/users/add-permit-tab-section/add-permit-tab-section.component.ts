@@ -1613,7 +1613,15 @@ export class AddPermitTabSectionComponent implements OnInit {
     var selectDate
     selectDate = value;
     var date = new Date()
+    if(selectDate){
       selectDate.setDate(selectDate.getDate() + 1);
-     this.secondMinDate  = selectDate
+      this.secondMinDate  = selectDate
+    }
+     
+  }
+
+  clear(){
+    this.addInsuranseForm.reset()
+    this.imageEmpty()
   }
 }

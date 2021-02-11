@@ -1856,7 +1856,7 @@
                                                     <button *ngIf="!image?.imageName && !image?.name ">
                                                         <span><img src="assets/images/b-upload.svg" alt=""></span>
                                                         Upload file
-                                                        <input type='file' (change)="media($event,i,'upload')">
+                                                        <input type='file'  accept=".png, .jpg, .jpeg, .svg" (change)="media($event,i,'upload')">
                                                     </button>
                                                     <p *ngIf="image?.imageName">{{image?.imageName}}</p>
                                                     <p *ngIf="image?.name">{{image?.name}}</p>
@@ -1967,7 +1967,7 @@
                                                     data-parent="#accordionExample">
                                                     <div class="card-body">
                                                         <div class="first-collepse-box">
-                                                            <div class="role-txt-collepse">
+                                                            <div class="role-txt-collepse" *ngIf ="(application.location_type == 1 || application.location_type == 2)">
                                                                 <h2>Location Type</h2>
                                                                 <p *ngIf="application.location_type == 1">Exact Address
                                                                 </p>
@@ -2018,7 +2018,7 @@
 
 
                                                             <div class="role-txt-collepse-two"
-                                                                *ngIf="application.location_type == 1">
+                                                                *ngIf="(application.location_type == 1 || application.location_type == 3)">
                                                                 <h2>Address</h2>
                                                                 <p> {{application?.address}}</p>
                                                             </div>
@@ -2339,10 +2339,14 @@
                                                                     <h2>Depth</h2>
                                                                     <p>{{application?.project_detail?.depth}}</p>
                                                                 </div>
-                                                                <!-- <div class="role-txt-collepse-two">
-                                                                    <h2>Detailed Description</h2>
-                                                                    <p>{{application?.project_detail?.description}}</p>
-                                                                </div> -->
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.project_detail?.dig_safely_no">
+                                                                    <h2>Dig Safty Number</h2>
+                                                                    <p>{{application?.project_detail?.dig_safely_no}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.project_detail?.opening_size">
+                                                                    <h2>Number of opening</h2>
+                                                                    <p>{{application?.project_detail?.opening_size}}</p>
+                                                                </div>
                                                             </div>
                                                             <div class="first-collepse-box">
                                                                 <div class="role-txt-collepse-two">
@@ -2368,6 +2372,14 @@
                                                                     *ngIf="application?.type != 4">
                                                                     <h2>Width</h2>
                                                                     <p>{{application?.project_detail?.width}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.project_detail?.opening_number">
+                                                                    <h2>Area of opening</h2>
+                                                                    <p>{{application?.project_detail?.opening_number}}</p>
+                                                                </div>
+                                                                <div class="role-txt-collepse-two" *ngIf ="application?.project_detail?.pavement_type">
+                                                                    <h2>Pavement Type</h2>
+                                                                    <p>{{settings?.getSetting('preventType',application?.project_detail?.pavement_type)}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2747,7 +2759,7 @@
 
 
                                 <div class="btn-pre pop-Btn">
-                                    <button data-dismiss="modal" aria-label="Close">Cancel</button>
+                                    <button data-dismiss="modal" aria-label="Close" (click) ="clear()">Cancel</button>
                                     <button class="continue mr-0" type="submit" (click)="addLicense()">Save</button>
                                 </div>
                             </form>

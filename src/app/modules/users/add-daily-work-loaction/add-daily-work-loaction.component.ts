@@ -625,7 +625,6 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           this.addressId = data.address_id
           this.selectedValue = data.address
           this.dwlForm.controls.address_id.setValue(data.address)
-  
         }
          
       }

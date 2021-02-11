@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
   //get address() { return this.registerForm.get('address') }
   get agree() { return this.registerForm.get('agree') }
 
-  
+
   private initForm(): void {
     const formValidations = {
       'first_name': new FormControl('', [
@@ -119,6 +119,28 @@ export class RegisterComponent implements OnInit {
         }
       });
 
+  }
+  public isPasswordShow = true
+  public isCNFPassword = true
+  public type: string = 'password'
+  public cnfType:string = 'password'
+  typeChange(value: boolean, type: string) {
+    if (type == 'pass') {
+      this.isPasswordShow = value
+      if(this.isPasswordShow){
+        this.type = 'password'
+      }else{
+        this.type = 'text'
+      }
+    }
+    if (type == 'cnf') {
+      this.isCNFPassword = value
+      if(this.isCNFPassword){
+        this.cnfType = 'password'
+      }else{
+        this.cnfType = 'text'
+      }
+    }
   }
 
 }

@@ -1,11 +1,11 @@
 <!-- <app-auth-layout>
   <router-outlet> -->
-    <div class="body_bg">
-      <div class="process_section">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-7 topbar_process">
-              <!-- <div class="same_spacebox">
+<div class="body_bg">
+  <div class="process_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-7 topbar_process">
+          <!-- <div class="same_spacebox">
                 <div class="logo_process">
                   <a href="#"> <img src="/assets/images/process-logo.png" alt="" /> </a>
                 </div>
@@ -14,178 +14,196 @@
                         <div  data-value="16.67"></div>
                       </div> 
               </div> -->
-            </div>
-          </div>
+        </div>
+      </div>
 
-          <form (submit)="onSubmit()" name="registerForm" [formGroup]="registerForm">
-            <section class="dept-portal">
-              <div class="bdp-box">
-                <div class="container p-0">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="bdp-logo">
-                        <h2>BDP</h2>
-                        <h3>Building Dept Portal</h3>
-                      </div>
+      <form (submit)="onSubmit()" name="registerForm" [formGroup]="registerForm">
+        <section class="dept-portal">
+          <div class="bdp-box">
+            <div class="container p-0">
+              <div class="row">
+                <div class="col-12">
+                  <div class="bdp-logo">
+                    <h2>BDP</h2>
+                    <h3>Building Dept Portal</h3>
+                  </div>
 
-                      <div class="sign-in">
-                        <h4>Create your account information</h4>
-                        <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                  <div class="sign-in">
+                    <h4>Create your account information</h4>
+                    <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
                           invidunt ut labore et dolore</p> -->
-                      </div>
-
-                    </div>
                   </div>
-
-
-                  <div class="bdp_email">
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="form-group">
-                          <input type="text" id="rname2" class="form-control" formControlName="first_name" class="form-control"
-                          [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label  [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="rname2">First Name</label>
-                          <div class="form-error"
-                          *ngIf="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit)">
-                          <span *ngIf="first_name.errors['required']">
-                            Please select a First Name
-                          </span>
-                          <span *ngIf="first_name.errors['minlength']">
-                            Please enter a First Name no more than 250 characters.
-                          </span>
-                        </div>
-                        </div>
-                      </div>
-                      <div class="col-6">
-                        <div class="form-group">
-                          <input type="text" id="last_name" class="form-control" formControlName="last_name" id="last_name" class="form-control"
-                          [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label  [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="last_name">Last Name</label>
-                        </div>
-                        <div class="form-error"
-                        *ngIf="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit)">
-                        <span *ngIf="last_name.errors['required']">
-                          Please select a Last Name
-                        </span>
-                        <span *ngIf="last_name.errors['minlength']">
-                          Please enter a Last Name more than 3 characters.
-                        </span>
-                      </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <div class="new-passwordInput">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <input type="text" id="Email2" class="form-control" class="form-control check-in" formControlName="email" 
-                          [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label  [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="Email2">Email</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
-                        <span *ngIf="email.errors['required']">
-                          Please select a Email
-                        </span>
-                        <span *ngIf="email.errors['maxlength']">
-                          Please enter a Email no more than 250 characters.
-                        </span>
-                        <span *ngIf="email.errors['pattern']">
-                          Please enter a valid Email .
-                        </span>
-                      </div>
-                  </div>
-
-                  <div class="new-passwordInput creat-pass ">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <input type="password" id="password" (input)="passwordMatch('pass')"  formControlName="password" id="password" class="form-control password"
-                          [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'" required>
-                          <label  [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'" for="password">Password</label>
-
-<span class="eyeSlash-icon">
-  <i class="fa fa-eye-slash" aria-hidden="true"></i>
-  <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
-</span>
-
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-error"
-                          *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
-                          <span *ngIf="password.errors['required']">
-                            Please select a Password
-                          </span>
-                          <span *ngIf="password.errors['minLength']">
-                            Please enter a Password more than 6 characters.
-                          </span>
-                        </div>
-                  </div>
-                  <div class="new-passwordInput creat-pass">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="form-group">
-                          <input type="password" id="conform-password" (input)="passwordMatch('conpass')" class="form-control" formControlName="confirmPassword" 
-                         
-                          [class]="confirmPassword.invalid  &&  (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
-                          class="form-control password" required>
-                          <label  [class]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"  for="conform-password">Confirm Password</label>
-                          <span class="eyeSlash-icon">
-                            <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                            <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-error"
-                    *ngIf="confirmPassword.invalid  && (confirmPassword.dirty || confirmPassword.touched || isSubmit)">
-                    <span>
-                      Password Not Matched
-                    </span>
-                  </div>
-                  </div>
-
-                  <div class="term-use">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="trems">
-                          <label class="container-btn">
-                            I you agree to Lorem's <a href="#"> Terms of Use &amp; Privacy Policy </a>
-                            <input type="checkbox" formControlName="agree" id="agree"  [class]="agree.invalid && (isSubmit) ? 'radio-class form-group-error' : 'radio-class'">
-                            <span class="check-m"></span>
-                     <span class="radio-class" *ngIf = " agree.invalid && (isSubmit)" class="form-error"
-                                >Please accept term && condition</span>
-                          </label>
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="account">
-                          <h3>Already have an account? <a [routerLink]="['/auth/login']"> Sign in </a></h3>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="btn-sign-in ">
-                    <div class="row">
-                      <div class="col-12 mb-5">
-                        <button type="submit mb-5">Register</button>
-                      </div>
-                    </div>
-                  </div>
-
-
 
                 </div>
               </div>
 
-            </section>
 
-            <!-- <div class="form_section">
+              <div class="bdp_email">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input type="text" id="rname2" class="form-control" formControlName="first_name"
+                        class="form-control"
+                        [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                        required>
+                      <label
+                        [class]="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
+                        for="rname2">First Name</label>
+                      <div class="form-error"
+                        *ngIf="first_name.invalid && (first_name.dirty || first_name.touched || isSubmit)">
+                        <span *ngIf="first_name.errors['required']">
+                          Please select a First Name
+                        </span>
+                        <span *ngIf="first_name.errors['minlength']">
+                          Please enter a First Name no more than 250 characters.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <input type="text" id="last_name" class="form-control" formControlName="last_name" id="last_name"
+                        class="form-control"
+                        [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                        required>
+                      <label
+                        [class]="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
+                        for="last_name">Last Name</label>
+                    </div>
+                    <div class="form-error"
+                      *ngIf="last_name.invalid && (last_name.dirty || last_name.touched || isSubmit)">
+                      <span *ngIf="last_name.errors['required']">
+                        Please select a Last Name
+                      </span>
+                      <span *ngIf="last_name.errors['minlength']">
+                        Please enter a Last Name more than 3 characters.
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="new-passwordInput">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="text" id="Email2" class="form-control" class="form-control check-in"
+                        formControlName="email"
+                        [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                        required>
+                      <label
+                        [class]="email.invalid && (email.dirty || email.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
+                        for="Email2">Email</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-error" *ngIf="email.invalid && (email.dirty || email.touched || isSubmit)">
+                  <span *ngIf="email.errors['required']">
+                    Please select a Email
+                  </span>
+                  <span *ngIf="email.errors['maxlength']">
+                    Please enter a Email no more than 250 characters.
+                  </span>
+                  <span *ngIf="email.errors['pattern']">
+                    Please enter a valid Email .
+                  </span>
+                </div>
+              </div>
+
+              <div class="new-passwordInput creat-pass ">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="{{type}}" id="password" (input)="passwordMatch('pass')" formControlName="password"
+                        id="password" class="form-control password"
+                        [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                        required>
+                      <label
+                        [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
+                        for="password">Password</label>
+
+                      <span class="eyeSlash-icon" (click)="typeChange(!isPasswordShow,'pass')">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                      </span>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="form-error" *ngIf="password.invalid && (password.dirty || password.touched || isSubmit)">
+                  <span *ngIf="password.errors['required']">
+                    Please select a Password
+                  </span>
+                  <span *ngIf="password.errors['minLength']">
+                    Please enter a Password more than 6 characters.
+                  </span>
+                </div>
+              </div>
+              <div class="new-passwordInput creat-pass">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <input type="{{cnfType}}" id="conform-password" (input)="passwordMatch('conpass')"
+                        class="form-control" formControlName="confirmPassword"
+                        [class]="confirmPassword.invalid  &&  (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
+                        class="form-control password" required>
+                      <label
+                        [class]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
+                        for="conform-password">Confirm Password</label>
+                      <span class="eyeSlash-icon" (click)="typeChange(!isCNFPassword,'cnf')">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-error"
+                  *ngIf="confirmPassword.invalid  && (confirmPassword.dirty || confirmPassword.touched || isSubmit)">
+                  <span>
+                    Password Not Matched
+                  </span>
+                </div>
+              </div>
+
+              <div class="term-use">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="trems">
+                      <label class="container-btn">
+                        I you agree to Lorem's <a href="#"> Terms of Use &amp; Privacy Policy </a>
+                        <input type="checkbox" formControlName="agree" id="agree"
+                          [class]="agree.invalid && (isSubmit) ? 'radio-class form-group-error' : 'radio-class'">
+                        <span class="check-m"></span>
+                        <span class="radio-class" *ngIf=" agree.invalid && (isSubmit)" class="form-error">Please accept
+                          term && condition</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="account">
+                      <h3>Already have an account? <a [routerLink]="['/auth/login']"> Sign in </a></h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-sign-in ">
+                <div class="row">
+                  <div class="col-12 mb-5">
+                    <button type="submit mb-5">Register</button>
+                  </div>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+
+        </section>
+
+        <!-- <div class="form_section">
               <div class="row justify-content-between sign-up  step3 sign-up">
                 <div class="col-lg-7 bg_colorwhite">
                   <div class="center_stepprocess">
@@ -355,10 +373,10 @@
 
               </div>
             </div> -->
-          </form>
-        </div>
-      </div>
-
+      </form>
     </div>
-  <!-- </router-outlet>
+  </div>
+
+</div>
+<!-- </router-outlet>
 </app-auth-layout> -->
