@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class PermitDecisionsComponent implements OnInit {
   @Input() certificatesChild: Observable<any>;
   @Output() messageEvent = new EventEmitter<string>();
-   term:string;
+  term: string;
   public applicationDetails: any;
   public settings: any;
   public desicionForm: FormGroup;
@@ -22,13 +22,13 @@ export class PermitDecisionsComponent implements OnInit {
     private fb: FormBuilder,
     private adminAuthService: AuthenticationService,
     private applicationService: ApplicationService,
-    private _TS:ToastrService
+    private _TS: ToastrService
   ) {
     this.settings = settingConfig;
   }
 
   ngOnInit(): void {
-    
+
     this.certificatesChild.subscribe(data => {
       this.applicationDetails = data;
     })
@@ -57,9 +57,9 @@ export class PermitDecisionsComponent implements OnInit {
     this.desicionForm = this.fb.group({
       permit_decision: ['', Validators.required],
       expiration_date: ['', Validators.required],
-      inspector: ['',Validators.required],
+      inspector: ['', Validators.required],
       remarks: [''],
-      expiration_days: ['',Validators.required],
+      expiration_days: ['', Validators.required],
     })
   }
 
@@ -82,7 +82,7 @@ export class PermitDecisionsComponent implements OnInit {
   public isDecision = false;
   public data: any;
   decision() {
-    
+
     if (this.desicionForm.invalid) {
       this.isDecision = true
       return false
@@ -115,17 +115,17 @@ export class PermitDecisionsComponent implements OnInit {
       console.log(data);
       this.desicionForm.reset()
       this.settings.conditions.map((data, i) => {
-          data.isChecked = false
+        data.isChecked = false
       })
       this.special_conditions = []
       this.messageEvent.emit(this.message);
 
-    },error=>{
+    }, error => {
       this.settings.conditions.map((data, i) => {
         data.isChecked = false
-    })
-    this.special_conditions = []
-    this.desicionForm.reset()
+      })
+      this.special_conditions = []
+      this.desicionForm.reset()
     })
   }
 
@@ -147,7 +147,7 @@ export class PermitDecisionsComponent implements OnInit {
           data.isChecked = true
         }
       })
-      this.special_conditions.push({ point: value.value, key: value.key, isChecked: true,status:value.status })
+      this.special_conditions.push({ point: value.value, key: value.key, isChecked: true, status: value.status })
 
     } else {
       if (this.special_conditions.length > 0) {
@@ -182,7 +182,7 @@ export class PermitDecisionsComponent implements OnInit {
   public currntMonth;
   public dayMonthYearName: string
   getDay(value) {
-    
+
     this.currentDate = new Date()
     this.settings.days.map(data => {
       if (data.key == value) {
@@ -211,12 +211,17 @@ export class PermitDecisionsComponent implements OnInit {
 
   voidDecision(id) {
     const data = {
-      id:id,
-      application_id:this.applicationDetails.id
+      id: id,
+      application_id: this.applicationDetails.id
     }
     this.applicationService.voidEngDecision(data).subscribe(data => {
       this._TS.success('Decision have voided')
     })
   }
 
+  unCheacked() {
+    this.settings?.conditions.forEach(condititon => {
+      condititon.isChecked = false;
+    })
+  }
 }
