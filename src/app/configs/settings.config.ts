@@ -638,8 +638,8 @@ export const settingConfig = {
   ],
 
   time:[
-    { value: '00:00AM' },
-    { value: '00:30AM' },
+    { value: '12:00AM' },
+    { value: '12:30AM' },
     { value: '01:00AM' },
     { value: '01:30AM' },
     { value: '02:00AM' },

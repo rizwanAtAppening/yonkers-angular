@@ -163,7 +163,14 @@
                                                                                 *ngIf="applicantCon.applicant_email.errors['required']">
                                                                                 Please enter email.
                                                                             </p>
+                                                                            <p  class="form-error" *ngIf="applicantCon.applicant_email.errors['maxlength']">
+                                                                                Please enter a Email no more than 250 characters.
+                                                                            </p>
+                                                                              <p class="form-error" *ngIf="applicantCon.applicant_email.errors['pattern']">
+                                                                                Please enter a valid Email .
+                                                                              </p>
                                                                         </div>
+                                                                        
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -523,7 +530,7 @@
                                                                                 </div>
                                                                                 <div class="role-txt-collepse-two">
                                                                                     <h2>From</h2>
-                                                                                    <p>{{application_hydrant_details?.from | date}}</p>
+                                                                                    <p>{{application_hydrant_details?.from | date :'MM/dd/yyyy' }}</p>
                                                                                 </div>
                 
                 
@@ -542,7 +549,7 @@
                                                                                 </div>
                                                                                 <div class="role-txt-collepse-two">
                                                                                     <h2>To</h2>
-                                                                                    <p>{{application_hydrant_details?.to | date}}</p>
+                                                                                    <p>{{application_hydrant_details?.to | date :'MM/dd/yyyy'}}</p>
                                                                                 </div>
                 
                                                                             </div>

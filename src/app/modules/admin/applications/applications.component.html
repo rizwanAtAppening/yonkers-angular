@@ -1231,7 +1231,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title ud-txt">Upload Address</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" (click)="hideImage()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -1260,7 +1260,7 @@
 
 
                     <div class="btnGroupFile">
-                        <button class="btnGroupFile-one" data-dismiss="modal" aria-label="Close">Cancel </button>
+                        <button class="btnGroupFile-one" data-dismiss="modal" (click)="hideImage()" aria-label="Close">Cancel </button>
                         <button class="btnGroupFile-two" (click)="uploadCSVAddress()"> Submit</button>
                     </div>
 

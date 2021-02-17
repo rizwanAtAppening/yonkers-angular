@@ -32,6 +32,8 @@ export class AddHydrantPermitComponent implements OnInit {
   public addressId: number;
   public permitNavigateValue: string
   public cityId: number
+  public EMAIL_REGEX = "[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}";
+
   constructor(
     private _FB: FormBuilder,
     private meterService: MeterServiceService,
@@ -71,7 +73,8 @@ export class AddHydrantPermitComponent implements OnInit {
       applicant_name: ['', Validators.required],
       applicant_last_name: ['', Validators.required],
       applicant_phone: ['', Validators.required],
-      applicant_email: ['', Validators.required],
+      applicant_email: ['', [Validators.required, Validators.maxLength(250),
+        Validators.pattern(this.EMAIL_REGEX)]],
       fax: ['', Validators.required],
       applicant_address: ['', Validators.required],
 

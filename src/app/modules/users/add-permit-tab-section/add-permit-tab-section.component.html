@@ -173,7 +173,7 @@
                     </div>
 
                     <div class="btn-pre">
-                        <button type="submit" (click)="goToBack('whatForm','')">Previous</button>
+                        <!-- <button type="submit" (click)="goToBack('whatForm','')">Previous</button> -->
                         <button class="continue" type="submit"
                             (click)="addPermitApplication('whatForm','where')">Continue</button>
                     </div>
@@ -563,7 +563,7 @@
                                                                 id="namProject" class="form-control" required>
                                                             <label
                                                                 [class]="applicantControls.applicant_name.invalid && (applicantControls.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit) ? 'form-control-placeholder msg' : 'form-control-placeholder'"
-                                                                for="namProject">Name</label>
+                                                                for="namProject">First Name</label>
                                                             <div
                                                                 *ngIf="applicantControls.applicant_name.invalid && (applicantControls.applicant_name.dirty || applicantControls.applicant_name.touched || isSubmit)">
                                                                 <p class="form-error"
@@ -1114,7 +1114,7 @@
                                                         <table class="table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>City</th>
+                                                                    <!-- <th>City</th> -->
                                                                     <th>License Type</th>
                                                                     <th>License Number</th>
                                                                     <th>Status</th>
@@ -1123,7 +1123,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr *ngFor="let license of licenseDetails">
-                                                                    <td>Yonkers</td>
+                                                                    <!-- <td>Yonkers</td> -->
                                                                     <td>{{
                                                                         settings.getSetting('policyType',license['type'])}}
                                                                     </td>
@@ -2330,7 +2330,7 @@
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>Start Date</h2>
                                                                     <p>{{application?.project_detail?.start_date | date
-                                                                        :'dd/MM/yyyy'}}
+                                                                        :'MM/dd/yyyy'}}
                                                                     </p>
 
                                                                 </div>
@@ -2365,7 +2365,7 @@
                                                                 <div class="role-txt-collepse-two">
                                                                     <h2>End Date</h2>
                                                                     <p>{{application?.project_detail?.end_date | date
-                                                                        :'dd/MM/yyyy'}}
+                                                                        :'MM/dd/yyyy'}}
                                                                     </p>
                                                                 </div>
                                                                 <div class="role-txt-collepse-two"
@@ -2645,7 +2645,7 @@
             <div class="modal-content text-addpopup">
                 <div class="modal-header p-0 pb-2 ">
                     <h5>Add Insurance/License</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" (click) ="clear()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
