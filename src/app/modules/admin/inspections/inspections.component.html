@@ -16,7 +16,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th>Inspections Required</th>
+                <th>Inspections Required </th>
                 <th>Status</th>
                 <th>Action</th>
 
@@ -138,11 +138,8 @@
                     <tr *ngFor="let img of allImage">
                       <td>{{img?.image}}</td>
                       <td>
-                        <div class="actiondelet">
-                          <!-- <h3 data-toggle="modal" data-target="#confirmpasswordmodalName">
-                            <i class="fa fa-eye"
-                              aria-hidden="true">View</i>
-                             </h3> -->
+                        <div class="actiondelet" style="padding-right: 122px;">
+                     
                           <h4 (click)="imageEmpty(img)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</h4>
                         </div>
                       </td>

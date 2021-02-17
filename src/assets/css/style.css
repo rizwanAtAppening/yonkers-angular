@@ -5527,3 +5527,15 @@ position: relative;
         font-family: "Poppins-Medium";
         padding: 0px 3px;
     }
+
+    .align_select select{
+height: 42px;
+    }
+    .align_select span{ 
+font-size: 18px;
+    }
+
+  .newcollapsed  .collapsed span{
+        -ms-transform: rotate(88deg);
+        transform: rotate(88deg)
+    }
