@@ -337,13 +337,14 @@ export class PermitComponent implements OnInit {
   }
 
   updateApplication(application) {
-    if (application.status != 3 && application.payment_status != 3) {
+    // if (application.status != 3 && application.payment_status != 3) {
       this.router.navigate(['/dashboard/update-application'], { queryParams: { id: application.id } });
-    } else if (application.status == 3) {
-      this.toastService.error('You can not modify your application, because application have cancled.')
-    }else if(application.payment_status == 3){
-      this.toastService.error('You can not modify your application, after payment')
-    }
+   // } 
+    // else if (application.status == 3) {
+    //   this.toastService.error('You can not modify your application, because application have canceled.')
+    // }else if(application.payment_status == 3){
+    //   this.toastService.error('You can not modify your application, after payment')
+    // }
   }
   public navigaetValue: any
   navigate(value) {
