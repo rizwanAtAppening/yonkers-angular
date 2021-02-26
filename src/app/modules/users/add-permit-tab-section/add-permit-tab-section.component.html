@@ -1654,9 +1654,9 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="bdp_email loction-adInput lenth-pt">
-
+                                            <!-- (bsValueChange)="onValueChange($event)" -->
                                             <div class="form-group position-relative">
-                                                <input type="text" [readonly] = "true" (bsValueChange)="onValueChange($event)"   #dp="bsDatepicker" bsDatepicker
+                                                <input type="text" [readonly] = "true"    #dp="bsDatepicker" bsDatepicker
                                                     formControlName="start_date" [minDate]="minDate"
                                                     [class]="projectDetail.start_date.invalid && (projectDetail.start_date.dirty || projectDetail.start_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>

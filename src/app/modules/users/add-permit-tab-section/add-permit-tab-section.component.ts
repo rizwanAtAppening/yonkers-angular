@@ -660,6 +660,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
       }
       this.projectDetailsForm.value.model = 5
+      debugger
       if (this.application.role != 2) {
         this.projectDetailsForm.value.pavement_type = null
       }

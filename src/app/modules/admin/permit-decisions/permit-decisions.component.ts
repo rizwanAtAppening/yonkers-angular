@@ -222,6 +222,7 @@ export class PermitDecisionsComponent implements OnInit {
   unCheacked() {
     this.settings?.conditions.forEach(condititon => {
       condititon.isChecked = false;
+      this.special_conditions = []
     })
   }
 }
