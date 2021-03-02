@@ -177,7 +177,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
 
     if (this.location_type == 1) {
-      debugger
+      
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
         address_id: this.addressId ? this.addressId : this.editValue.address_id,
@@ -562,7 +562,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public permitNumber = new Subject<any>();
   public allPermit = []
   getPermitData() {
-    debugger
+    
     if (this.dwlForm.value.permit_number) {
       const data = {
         search_query: this.dwlForm.value.permit_number
@@ -583,7 +583,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   fillDataByPermit(value: any) {
-    debugger
+    
     console.log(value)
     this.allPermit.forEach(data => {
       if (value.item == data.permit_number) {

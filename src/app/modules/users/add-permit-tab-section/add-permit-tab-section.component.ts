@@ -462,7 +462,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    debugger
+    
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -660,7 +660,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
       }
       this.projectDetailsForm.value.model = 5
-      debugger
+      
       if (this.application.role != 2) {
         this.projectDetailsForm.value.pavement_type = null
       }
@@ -1518,7 +1518,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-    debugger
+    
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
@@ -1600,7 +1600,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   // @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    debugger
+    
     console.log(event);
     event.returnValue = false;
     event.preventDefault();

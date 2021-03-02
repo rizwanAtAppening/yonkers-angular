@@ -265,7 +265,7 @@
                                                                                             <th>Application status</th>
                                                                                             <th>Payment status</th>
                                                                                             <th>Submit date</th>
-                                                                                            <th>Expire Date</th>
+                                                                                            <!-- <th>Expire Date</th> -->
                                                                                             <th>Action</th>
                                                                                         </tr>
                                                                                     </thead>
@@ -341,8 +341,8 @@
                                                                                             </td>
                                                                                             <td>{{application?.createdAt | date :'MM/dd/yyyy'}}
                                                                                             </td>
-                                                                                            <td>{{application?.expirtDate && application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'MM/dd/yyyy') : '_' }}
-                                                                                            </td>
+                                                                                            <!-- <td>{{application?.expirtDate && application?.expirtDate[0]?.expiration_date ? (application?.expirtDate[0]?.expiration_date | date:'MM/dd/yyyy') : '_' }}
+                                                                                            </td> -->
 
                                                                                             <td
                                                                                                 class="update-txt dropdown-action">

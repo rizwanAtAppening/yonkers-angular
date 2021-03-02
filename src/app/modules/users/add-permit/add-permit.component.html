@@ -334,7 +334,7 @@
                                                 <table class="table">
                                                     <thead>
                                                         <tr>
-                                                            <th>File Type</th>
+                                                            <th>File Type7</th>
                                                             <th>Names</th>
                                                             <th>Action</th>
                                                         </tr>
@@ -346,7 +346,7 @@
                                                                 <div class="file_slect-input">
                                                                     <div class="form-group">
                                                                         <select (change) = "selectImageType($event.target.value)" [(ngModel)] ="image.type">
-                                                                            <option value="" hidden>--Select--</option>
+                                                                            <option value = "undefined" hidden>--Select--</option>
                                                                             <option value="{{type?.key}}" *ngFor ="let type of settings?.imageType">{{type?.value}}</option>
                                                                         </select>
                                                                         <span><i class="fa fa-angle-down"
