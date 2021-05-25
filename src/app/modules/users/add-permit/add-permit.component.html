@@ -782,7 +782,8 @@
                                                                                 alt=""></span> Upload file
                                                                         <input type="file" (change)="media($event,i)">
                                                                     </button>
-                                                                    <p *ngIf ="image?.imageName || image?.name">{{image?.imageName ? image?.imageName : image?.name}}</p>
+                                                                    <p style="    word-break: break-all;
+                                                                    " *ngIf ="image?.imageName || image?.name">{{image?.imageName ? image?.imageName : image?.name}}</p>
                                                                 </td>
                                                                 <td class="acton-Btn">
                                                                     <!-- <button> <span
