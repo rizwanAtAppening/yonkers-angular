@@ -2668,7 +2668,7 @@
                                                 <label>License or Policy Type</label>
                                                 <select formControlName="type"
                                                     [class]="licenseCon.type.invalid && (licenseCon.type.dirty || licenseCon.type.touched || isLicense) ? 'form-control form-group-error' : 'form-control'">
-                                                    <!-- <option value="null" hidden>--Select--</option> -->
+                                                    <option value="null" hidden>--Select--</option>
                                                     <option value="{{type?.key}}"
                                                         *ngFor="let type of settings?.policyType">{{type?.value}}
                                                     </option>

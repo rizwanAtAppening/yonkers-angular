@@ -98,9 +98,9 @@
                               <li>
                                 <h5>Applicant</h5>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h5>Estimated Cost</h5>
-                              </li>
+                              </li> -->
                               <li>
                                 <h5>Location</h5>
                               </li>
@@ -119,9 +119,9 @@
                                   {{applicationDetails?.applicant_details?.applicant_name ? applicationDetails?.applicant_details?.applicant_name :'_'  }} {{applicationDetails?.applicant_details?.applican_last_name}}
                                 </h6>
                               </li>
-                              <li>
+                              <!-- <li>
                                 <h6>$00.00</h6>
-                              </li>
+                              </li> -->
                               <li
                                 *ngIf="applicationDetails && applicationDetails?.address_details && applicationDetails?.address_details.szFullAddress && applicationDetails?.location_type == 1">
                                 {{applicationDetails?.address_details.szFullAddress}}
@@ -749,7 +749,7 @@
                       <div class="form-group">
                         <label>Commets</label>
                         <textarea formControlName="message"
-                          placeholder="Lorem ipsum dolor sit amet,at, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."></textarea>
+                          placeholder="Comment"></textarea>
                       </div>
                     </div>
 
@@ -1125,7 +1125,7 @@
 
         <div class="soure-delete-txt">
           <h3>Void Fee</h3>
-          <h4>Are you sure you want to Void fee</h4>
+          <h4>Are you sure you want to Void fee ?</h4>
         </div>
 
 
@@ -1548,7 +1548,7 @@
       <div class="modal-body border-0">
         <div class="deleteHd-app">
           <h6>Delete Application</h6>
-          <p>Are you sure you want to Delete Application</p>
+          <p>Are you sure you want to Delete Application ?</p>
           <div class="delete-appBtn">
             <button class="cancle-req" (click)  ="canclePopUp()">Cancel</button>
             <button class="confirme-req" (click)="deleteDocuments()">Confirm</button>
