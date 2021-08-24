@@ -11,6 +11,8 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
+
 // export class HomeComponent implements OnInit {
 
 //   constructor() { }
@@ -21,6 +23,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 // }
 
 export class HomeComponent implements OnInit {
+  public isPasswordShowable: boolean = false;
 
   public loginForm: FormGroup;
   public isSubmit: boolean = false;
@@ -53,6 +56,14 @@ export class HomeComponent implements OnInit {
 
   }
 
+  passwordToggle(field: any) {
+    if (field.type == 'password') {
+      this.isPasswordShowable = true;
+    }
+    if (field.type == 'text') {
+      this.isPasswordShowable = false;
+    }
+  }
   admin(value) {
     
     this.isAdmin = value.target.checked

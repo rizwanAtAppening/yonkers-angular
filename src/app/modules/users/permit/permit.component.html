@@ -204,7 +204,7 @@
                                             <a [class]="currentTab == '4' ? 'nav-link active':'nav-link'"
                                                 id="pills-size-tab" data-toggle="pill" href="#pills-Daily-size"
                                                 role="tab" aria-controls="pills-Daily-size"
-                                                aria-selected="false">OverSize vehicle permit
+                                                aria-selected="false">Oversize Vehicle Permit
                                             </a>
                                         </li>
 
@@ -262,8 +262,8 @@
                                                                                             <th>Permit Number</th>
                                                                                             <th>Type</th>
                                                                                             <th>Permit Status</th>
-                                                                                            <th>Application status</th>
-                                                                                            <th>Payment status</th>
+                                                                                            <th>Application Status</th>
+                                                                                            <th>Payment Status</th>
                                                                                             <th>Submit date</th>
                                                                                             <!-- <th>Expire Date</th> -->
                                                                                             <th>Action</th>
@@ -379,7 +379,7 @@
                                                                                                                 data-toggle="modal"
                                                                                                                 data-target="#withdraw_application"
                                                                                                                 *ngIf="application?.status != 4 && application?.status != null && application?.payment_status == 3 && application?.ispection_status == null"
-                                                                                                                (click)="getApplicationId(application?.id)"> coWithdraw</a>
+                                                                                                                (click)="getApplicationId(application?.id)"> Withdraw</a>
 
                                                                                                             <div
                                                                                                                 class="triangle-left">
@@ -456,7 +456,7 @@
                                                                                             <th>Location</th>
                                                                                             <!-- <th>Type</th> -->
                                                                                             <!-- <th>Permit Status</th> -->
-                                                                                            <th>Application status</th>
+                                                                                            <th>Application Status</th>
                                                                                             <th>Payment Status</th>
                                                                                             <th>Submit date</th>
                                                                                             <!-- <th>Expire Date</th> -->
@@ -1607,7 +1607,7 @@
 
                     <div class="soure-delete-txt">
                         <h3>Convert Application</h3>
-                        <h4>Are you sure you want to convert Application</h4>
+                        <h4>Are you sure you want to convert Application ?</h4>
                     </div>
 
 
@@ -1649,7 +1649,7 @@
 
                     <div class="soure-delete-txt">
                         <h3>Withdraw Application</h3>
-                        <h4>Are you sure you want to withdraw Application</h4>
+                        <h4>Are you sure you want to withdraw Application ?</h4>
                     </div>
 
 
@@ -1688,7 +1688,7 @@
 
 
                     <div class="modal-footer p-0 border-0">
-                        <button type="button" class="secondary" (click)="selectType()">submit</button>
+                        <button type="button" class="secondary" (click)="selectType()">Submit</button>
 
                     </div>
 
@@ -1716,7 +1716,7 @@
 
 
                     <div class="modal-footer p-0 border-0">
-                        <button type="button" class="secondary" (click)="navigatetoDwl()">submit</button>
+                        <button type="button" class="secondary" (click)="navigatetoDwl()">Submit</button>
 
                     </div>
 

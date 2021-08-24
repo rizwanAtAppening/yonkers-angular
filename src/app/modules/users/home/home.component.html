@@ -858,16 +858,22 @@
                     <div class="row">
                       <div class="col-12">
                         <div class="form-group">
-                          <input type="password"
+                          <input [type]="!isPasswordShowable ? 'password' : 'text'"
                             [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'form-control  form-group-error ' : 'form-control '"
                             [style]="!password.invalid ? 'background: none;' : ''" id="emailbox"
-                            class="form-control password" id="password" formControlName="password" required>
+                            class="form-control password" id="password" formControlName="password" #passwordField required>
                           <label for="password"
                             [class]="password.invalid && (password.dirty || password.touched || isSubmit) ? 'msg form-control-placeholder' : 'form-control-placeholder '">Password</label>
-                            <span class="eyeSlash-icon">
-                              <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                              <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
+                            <span class="eyeSlash-icon" (click)="passwordToggle(passwordField)">
+                              <i class="fa fa-eye-slash" [class]="!isPasswordShowable ? 'fa fa-eye field-icon' : 'fa fa-eye-slash field-icon'" aria-hidden="true"></i>
                             </span>
+                            <!-- <span [class]="!isPasswordShowable ? 'show' : 'hide'">Show</span>
+                          <span [class]="!isPasswordShowable ? 'hide' : 'show'">Hide</span> -->
+                            <!-- <span toggle="#password-field" class="toggle-password"
+                            (click)="passwordToggle(passwordField)"><i
+                              [class]="!isPasswordShowable ? 'fa fa-eye field-icon' : 'fa fa-eye-slash field-icon'"></i></span>
+                          <span [class]="!isPasswordShowable ? 'show' : 'hide'">Show</span>
+                          <span [class]="!isPasswordShowable ? 'hide' : 'show'">Hide</span> -->
                         </div>
                       </div>
                     </div>
@@ -897,7 +903,7 @@
                           <div class="col-6 signIn-checkbox">
                             <div class="custom-control custom-checkbox">
                               <input type="checkbox" (change) ="admin($event)" [checked] ="isAdmin" class="custom-control-input" id="defaultUnchecked">
-                              <label class="custom-control-label" for="defaultUnchecked">Sign in as admin</label>
+                              <label class="custom-control-label" for="defaultUnchecked">Sign In as Admin</label>
                             </div>
                           </div>
                        
