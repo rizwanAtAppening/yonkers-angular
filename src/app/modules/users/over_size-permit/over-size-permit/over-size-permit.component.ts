@@ -56,13 +56,14 @@ export class OverSizePermitComponent implements OnInit {
     }
     this.back(this.currentTab, '')
 
-   
+
   }
 
 
   onInIt() {
     this.applicantFormControl();
     this.overSizeCont()
+    console.log(this.oversize, 'hhhhhhhhhhhh')
   }
 
   applicantFormControl() {
@@ -81,7 +82,6 @@ export class OverSizePermitComponent implements OnInit {
 
   get applicantCon() { return this.applicantForm.controls }
 
-
   overSizeCont() {
     this.oversizeForm = this._FB.group({
       license_plate: ['', Validators.required],
@@ -95,12 +95,14 @@ export class OverSizePermitComponent implements OnInit {
       from: ['', Validators.required],
 
     })
+        this.oversizeForm.controls.from.setValue(new Date())
   }
 
   get oversize() { return this.oversizeForm.controls }
+
   public formValue
   addOverSize(formGroup: string, nextTab) {
-    
+
     if (formGroup == 'applicant' || this.currentTab == 'applicant') {
       if (this.applicantForm.invalid) {
         this.isApplicant = true
@@ -108,7 +110,7 @@ export class OverSizePermitComponent implements OnInit {
         return false
       }
       this.applicantForm.value.permit_type = this.permit_type ? this.permit_type : 4;
-      this.applicantForm.value.applican_last_name =  this.applicantForm.value.applicant_last_name 
+      this.applicantForm.value.applican_last_name =  this.applicantForm.value.applicant_last_name
       this.applicantForm.value.model = 3
       this.applicantForm.value.city_admin_id = this.cityId ? this.cityId:this.application.city_admin_id
       this.formValue = this.applicantForm.value;
@@ -124,7 +126,7 @@ export class OverSizePermitComponent implements OnInit {
       this.formValue = this.oversizeForm.value;
 
     }
-    
+
     this.permitService.addPermitApplication(this.formValue).subscribe(data => {
       this.currentTab = nextTab;
       if(this.currentTab == 'reviews'){
@@ -146,7 +148,7 @@ export class OverSizePermitComponent implements OnInit {
 
   public currentUser: any
   getCurrentUser() {
-    
+
     this.authService.getUserInfo().subscribe(data => {
       this.currentUser = data;
       this.applicantForm.controls.applicant_name.setValue(this.currentUser.first_name)
@@ -161,7 +163,7 @@ export class OverSizePermitComponent implements OnInit {
   public applicantDetails: any;
   public application_vehicles: any;
   getApplication() {
-    
+
     this.application = this.permitService.getApplication();
     if (this.application) {
       this.applicantDetails = this.application.applicant_details;
@@ -171,7 +173,7 @@ export class OverSizePermitComponent implements OnInit {
     if (this.application_id) {
       this.permitService.updateApplication(this.application_id).subscribe(data => {
         this.application = data.response;
-      
+
         this.applicantDetails = this.application.applicant_details;
         this.application_vehicles = (this.application && this.application.application_vehicles)
       //  this.back(this.currentTab,'')
@@ -187,7 +189,7 @@ export class OverSizePermitComponent implements OnInit {
 
 
   back(tab, value: string) {
-    
+
     if (!this.application_id) {
       this.getApplication();
     }
@@ -226,7 +228,7 @@ export class OverSizePermitComponent implements OnInit {
   }
 
   hitOnTab(tab) {
-    
+
     this.back(tab, 'ontab')
     if (tab == 'applicant') {
       if (this.applicantForm.invalid) {
@@ -261,7 +263,7 @@ export class OverSizePermitComponent implements OnInit {
   }
 
   phoneNumberFormate(value: string) {
-    
+
     var autoFillValue = '-'
     if (value == 'address') {
       if (this.applicantForm.value.applicant_phone && this.applicantForm.value.applicant_phone.length === 3) {
@@ -281,7 +283,7 @@ export class OverSizePermitComponent implements OnInit {
   }
 
   completeApplication() {
-    
+
     const data = {
       application_id: this.application.id
     }

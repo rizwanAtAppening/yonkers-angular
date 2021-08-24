@@ -555,6 +555,7 @@
                                                                     <input type="text" id="id-address"
                                                                         formControlName="to" #dpto="bsDatepicker"
                                                                         bsDatepicker
+                                                                        [minDate]="oversize.from"
                                                                         [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
@@ -566,8 +567,7 @@
                                                                     </span>
                                                                 </div>
                                                                 <div
-                                                                    *ngIf="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant)">
-                                                                    <p class="form-error"
+                                                                    *ngIf="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant)">                                                                    <p class="form-error"
                                                                         *ngIf="oversize.to.errors['required']">
                                                                         Please enter to .
                                                                     </p>
@@ -595,12 +595,12 @@
                                                                             <textarea placeholder="Type something here..."></textarea>
                                                                         </div>
                                                                     </div>
-                    
-                    
+
+
                                                                 </div>
                                                             </div>
                                                         </div>
-                    
+
                                                     </div>
                                                 </div> -->
                                         <div class="btn-pre">
@@ -617,9 +617,9 @@
                     </div>
                     <!-- <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'" id="vehicle-Reviews"
                                     role="tabpanel" aria-labelledby="vehicle-Reviews-tab">
-                    
+
                                     <div class="what-bg">
-                    
+
                                         <div class="container p-0">
                                             <div class="row">
                                                 <div class="col-12">
@@ -630,8 +630,8 @@
                                                         </div>
                                                         <div class="box-acordine">
                                                             <div class="accordion" id="accordionExample">
-                    
-                    
+
+
                                                                 <div class="card">
                                                                     <div class="card-header" id="headingThree">
                                                                         <h2 class="mb-0">
@@ -648,15 +648,15 @@
                                                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
                                                                         data-parent="#accordionExample">
                                                                         <div class="card-body">
-                    
+
                                                                             <div class="app-flex">
                                                                                 <div class="first-collepse-box">
                                                                                     <div class="role-txt-collepse">
                                                                                         <h2>Name</h2>
                                                                                         <p>{{applicantDetails?.applicant_name}}</p>
-                    
+
                                                                                     </div>
-                    
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Phone</h2>
                                                                                         <p>{{applicantDetails?.applicant_phone}}</p>
@@ -669,15 +669,15 @@
                                                                                         <h2>Application Time</h2>
                                                                                         <p>{{applicantDetails?.application_time}}</p>
                                                                                     </div>
-                    
-                    
+
+
                                                                                 </div>
                                                                                 <div class="first-collepse-box">
                                                                                     <div class="role-txt-collepse">
                                                                                         <h2>Email</h2>
                                                                                         <p>{{applicantDetails?.applicant_email}}</p>
                                                                                     </div>
-                    
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Fax</h2>
                                                                                         <p>{{applicantDetails?.fax}}</p>
@@ -685,15 +685,15 @@
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Application date</h2>
                                                                                         <p>{{applicantDetails?.application_date}}</p>                                                                </div>
-                    
+
                                                                                 </div>
                                                                             </div>
-                    
-                    
+
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="card">
                                                                     <div class="card-header" id="headingfour">
                                                                         <h2 class="mb-0">
@@ -710,16 +710,16 @@
                                                                     <div id="collapsefour" class="collapse" aria-labelledby="headingfour"
                                                                         data-parent="#accordionExample">
                                                                         <div class="card-body">
-                    
-                    
-                    
+
+
+
                                                                             <div class="app-flex">
                                                                                 <div class="first-collepse-box">
                                                                                     <div class="role-txt-collepse">
                                                                                         <h2>License Plate</h2>
                                                                                         <p>dd</p>                                                                </div>
                                                                                     </div>
-                    
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Year</h2>
                                                                                         <p>Lorem Ipsum</p>
@@ -728,26 +728,26 @@
                                                                                         <h2>Height</h2>
                                                                                         <p>Lorem Ipsum</p>
                                                                                     </div>
-                    
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Length</h2>
                                                                                         <p>Lorem Ipsum</p>
                                                                                     </div>
-                    
-                    
+
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>From</h2>
                                                                                         <p>Lorem Ipsum</p>
                                                                                     </div>
-                    
-                    
+
+
                                                                                     <div class="role-txt-collepse-two">
                                                                                         <h2>Via</h2>
                                                                                         <p>Lorem Ipsum</p>
                                                                                     </div>
-                    
-                    
-                    
+
+
+
                                                                                 </div>
                                                                                 <div class="first-collepse-box">
                                                                                     <div class="role-txt-collepse">
@@ -772,23 +772,23 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                    
-                    
-                    
-                    
+
+
+
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                             </div>
-                    
+
                                                         </div>
-                    
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                    
+
                                     </div> -->
 
                     <div [class]="(currentTab ==  'reviews') ? 'tab-pane fade show active':'tab-pane fade'"

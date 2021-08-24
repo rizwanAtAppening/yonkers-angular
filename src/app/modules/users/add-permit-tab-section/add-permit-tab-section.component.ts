@@ -75,7 +75,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     private toasterService: ToastrService,
   ) {
     this.settings = settingConfig;
-
+    console.log(this.settings, 'settings')
   }
   public minDate: Date;
   public secondMinDate: any
@@ -367,7 +367,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     return this.formBuilder.group({
       street_one: ['', Validators.required],
       street_two: ['', Validators.required],
-      address_join: ['', Validators.required]
+      address_join: [1, Validators.required]
     })
   }
 
@@ -462,7 +462,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
 
   addPermitApplication(formGroup, nextTab) {
-    
+
     if (this.currentTab == 'upload' && (this.allImage && this.allImage[0].name == null)) {
       this.toasterService.error('Please upload image')
       return false
@@ -660,7 +660,7 @@ export class AddPermitTabSectionComponent implements OnInit {
         return false
       }
       this.projectDetailsForm.value.model = 5
-      
+
       if (this.application.role != 2) {
         this.projectDetailsForm.value.pavement_type = null
       }
@@ -720,7 +720,9 @@ export class AddPermitTabSectionComponent implements OnInit {
       this.applicantForm.controls.applicant_address.setValue(application.applicant_details.applicant_address)
       this.applicantForm.controls.applicant_phone.setValue(application.applicant_details.applicant_phone)
       this.applicantForm.controls.applicant_city.setValue(application.applicant_details.applicant_city)
-      this.applicantForm.controls.applicant_state.setValue(application.applicant_details.applicant_state)
+      if(application.applicant_details?.applicant_state){
+        this.applicantForm.controls.applicant_state.setValue(application.applicant_details.applicant_state)
+      }
       this.applicantForm.controls.applicant_zip.setValue(application.applicant_details.applicant_zip)
     } else {
       this.authService.getUserInfo().subscribe(currentUser => {
@@ -809,7 +811,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   }
 
   // getApplicationFormSessionStorage() {
-  //   
+  //
   //   const application = this.permitService.getApplication()
   //   this.applicantForm.controls.applicant_role.setValue(application.role)
   // }
@@ -1518,7 +1520,7 @@ export class AddPermitTabSectionComponent implements OnInit {
   public addressTwoId: number;
   public selectedValue: any;
   typeaheadOnSelect(e: TypeaheadMatch, value: string, address: string): void {
-    
+
     this.selectedValue = e.value
     if (value == 'exact') {
       this.exactAddress.every(data => {
@@ -1600,7 +1602,7 @@ export class AddPermitTabSectionComponent implements OnInit {
 
   // @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    
+
     console.log(event);
     event.returnValue = false;
     event.preventDefault();
@@ -1618,7 +1620,7 @@ export class AddPermitTabSectionComponent implements OnInit {
       selectDate.setDate(selectDate.getDate() + 1);
       this.secondMinDate  = selectDate
     }
-     
+
   }
 
   clear(){

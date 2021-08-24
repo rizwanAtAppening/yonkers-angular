@@ -1,6 +1,6 @@
 <app-layout>
     <router-outlet>
-        
+
         <section class="updateprofile pt-5">
                 <section>
                         <div class="container p-0">
@@ -186,12 +186,12 @@
                                                             </label>
                                                             <select type="text" id="ud8" class="form-control"
                                                                 formControlName="state">
-                                                                <option value="" hidden>--Select--</option>
+                                                                <option selected value="" hidden>--Select--</option>
                                                                 <option value="{{state?.key}}"
                                                                     *ngFor="let state of settings?.userState">
                                                                     {{state?.value}}</option>
                                                             </select>
-                                                           
+
                                                             <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                         </div>
                                                     </div>
@@ -241,8 +241,8 @@
                                                         <!-- <div class="form-group">
                                                             <input type="text" id="ud9" class="form-control"
                                                                 maxlength="12" formControlName="phone_number"  (keypress)="phoneNumberFormate('phone')">
-                                                              
-                                                                
+
+
                                                             <label class="form-control-placeholder"
                                                                 for="ud9">Phone</label>
                                                         </div> -->
@@ -265,7 +265,7 @@
                                                     </div>
 
 
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -284,9 +284,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                    
+
                                             </div>
-                        
+
                                         </div>
                                     </div> -->
 
@@ -301,6 +301,6 @@
 
             </div>
         </section>
- 
+
     </router-outlet>
 </app-layout>
