@@ -95,7 +95,7 @@ export class OverSizePermitComponent implements OnInit {
       from: ['', Validators.required],
 
     })
-        this.oversizeForm.controls.from.setValue(new Date())
+        this.oversizeForm.controls.from.setValue(this.minDate)
   }
 
   get oversize() { return this.oversizeForm.controls }
@@ -210,6 +210,7 @@ export class OverSizePermitComponent implements OnInit {
     }
     if (tab == 'oversize') {
       if (this.application_vehicles) {
+        console.log("🚀 ~ file: over-size-permit.component.ts ~ line 213 ~ OverSizePermitComponent ~ back ~ this.application_vehicles", this.application_vehicles)
         this.oversizeForm.controls.license_plate.setValue(this.application_vehicles.license_plate)
         this.oversizeForm.controls.make.setValue(this.application_vehicles.make)
         this.oversizeForm.controls.year.setValue(this.application_vehicles.year)

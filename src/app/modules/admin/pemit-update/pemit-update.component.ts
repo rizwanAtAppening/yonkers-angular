@@ -235,6 +235,7 @@ export class PemitUpdateComponent implements OnInit {
     this.applicationService.getApplicationDetails(this.applicationId).subscribe(data => {
 
       this.applicationDetails = data.response;
+      console.log(this.applicationDetails, 'this.applicationDetails')
       this.allMails = []
       if (this.applicationDetails.applicant_details) {
         this.allMails.push(this.applicationDetails.applicant_details.applicant_email)
@@ -619,5 +620,5 @@ export class PemitUpdateComponent implements OnInit {
     this.deleteImagepop.nativeElement.click();
   }
 
-  
-} 
+
+}

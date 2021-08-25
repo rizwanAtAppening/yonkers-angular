@@ -332,12 +332,12 @@
                                                     <div class="row">
                                                         <div class="col-12 ">
                                                             <div class="form-group">
-                                                                <input type="text" id="Project"
+                                                                <input type="text" id="license-plate"
                                                                     formControlName="license_plate"
                                                                     [class]="oversize.license_plate.invalid && (oversize.license_plate.dirty || oversize.license_plate.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                     class="form-control" required>
                                                                 <label class="form-control-placeholder"
-                                                                    for="Project">License
+                                                                    for="license-plate">License
                                                                     Plate</label>
                                                             </div>
                                                             <div
@@ -366,12 +366,12 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="number" id="ste-id" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                                    <input type="number" id="year-input" maxlength="4" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
                                                                         formControlName="year"
                                                                         [class]="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="ste-id">Year</label>
+                                                                        for="year-input">Year</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.year.invalid && (oversize.year.dirty || oversize.year.touched || isApplicant)">
@@ -390,12 +390,12 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Email-app"
+                                                                    <input type="text" id="mark-input"
                                                                         formControlName="make"
                                                                         [class]="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control" required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="Email-app">Make</label>
+                                                                        for="mark-input">Make</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.make.invalid && (oversize.make.dirty || oversize.make.touched || isApplicant)">
@@ -421,12 +421,12 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="ste-id"
+                                                                    <input type="text" id="height-input"
                                                                         formControlName="height"
                                                                         [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="ste-id">Height</label>
+                                                                        for="height-input">Height</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.height.invalid && (oversize.height.dirty || oversize.height.touched || isApplicant)">
@@ -445,12 +445,12 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Zip-id"
+                                                                    <input type="text" id="wight-input"
                                                                         formControlName="width"
                                                                         [class]="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="Zip-id">Width</label>
+                                                                        for="wight-input">Width</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.width.invalid && (oversize.width.dirty || oversize.width.touched || isApplicant)">
@@ -475,11 +475,11 @@
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
                                                                     <input type="text" formControlName="length"
-                                                                        id="ste-id"
+                                                                        id="length-input"
                                                                         [class]="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="ste-id">Length</label>
+                                                                        for="length-input">Length</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.length.invalid && (oversize.length.dirty || oversize.length.touched || isApplicant)">
@@ -498,12 +498,12 @@
                                                         <div class="row">
                                                             <div class="col-12 ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="Zip-id"
+                                                                    <input type="text" id="weight-input"
                                                                         formControlName="weight"
                                                                         [class]="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required>
                                                                     <label class="form-control-placeholder"
-                                                                        for="Zip-id">Weight</label>
+                                                                        for="weight-input">Weight</label>
                                                                 </div>
                                                                 <div
                                                                     *ngIf="oversize.weight.invalid && (oversize.weight.dirty || oversize.weight.touched || isApplicant)">
@@ -528,13 +528,14 @@
                                                         <div class="row">
                                                             <div class="col-6 hydrant_calendar ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="id-address"
+                                                                    <input type="text" id="from-date"
                                                                         formControlName="from" #dpfrom="bsDatepicker"
                                                                         bsDatepicker
+                                                                        [minDate]="minDate"
                                                                         [class]="oversize.from.invalid && (oversize.from.dirty || oversize.from.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
-                                                                        for="id-address">From</label>
+                                                                        for="from-date">From</label>
                                                                     <span (click)="dpfrom.toggle()"
                                                                         [attr.aria-expanded]="dpfrom.isOpen"> <i
                                                                             class="fa fa-calendar"
@@ -552,14 +553,14 @@
 
                                                             <div class="col-6 hydrant_calendar ">
                                                                 <div class="form-group">
-                                                                    <input type="text" id="id-address"
+                                                                    <input type="text" id="to-date"
                                                                         formControlName="to" #dpto="bsDatepicker"
                                                                         bsDatepicker
-                                                                        [minDate]="oversize.from"
+                                                                        [minDate]="oversize.from.value"
                                                                         [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
-                                                                        for="id-address">To</label>
+                                                                        for="to-date">To</label>
                                                                     <span (click)="dpto.toggle()"
                                                                         [attr.aria-expanded]="dpto.isOpen"> <i
                                                                             class="fa fa-calendar"
