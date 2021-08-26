@@ -12,7 +12,7 @@
 
               <div class="progress_step">
                         <div  data-value="16.67"></div>
-                      </div> 
+                      </div>
               </div> -->
         </div>
       </div>
@@ -123,7 +123,7 @@
                         for="password">Password</label>
 
                       <span class="eyeSlash-icon" (click)="typeChange(!isPasswordShow,'pass')">
-                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <i [class]="isPasswordShow ? 'fa fa-eye-slash' : 'fa fa-eye'" aria-hidden="true"></i>
                         <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
                       </span>
 
@@ -150,7 +150,7 @@
                         [class]="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched || isSubmit) ? ' msg form-control-placeholder' : 'form-control-placeholder'"
                         for="conform-password">Confirm Password</label>
                       <span class="eyeSlash-icon" (click)="typeChange(!isCNFPassword,'cnf')">
-                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        <i [class]="isCNFPassword ? 'fa fa-eye-slash' : 'fa fa-eye'" aria-hidden="true"></i>
                         <!-- <i class="fa fa-eye" aria-hidden="true"></i> -->
                       </span>
                     </div>
@@ -168,17 +168,13 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="trems">
-                      <label class="container-btn">
-                        I you agree.<a href="#"> Terms of Use &amp; Privacy Policy </a>
+                      <label [class]="agree.invalid && (isSubmit) ? 'container-btn form-error': 'container-btn'">
+                        I you agree.<a href="#" [class]="agree.invalid && (isSubmit) ? 'container-btn form-error': 'container-btn'"> Terms of Use &amp; Privacy Policy </a>
                         <input type="checkbox" formControlName="agree" id="agree"
                           [class]="agree.invalid && (isSubmit) ? 'radio-class form-group-error' : 'radio-class'">
                         <span class="check-m"></span>
-                        <span class="radio-class" *ngIf=" agree.invalid && (isSubmit)" class="form-error">Please accept
-                          term && condition</span>
                       </label>
                     </div>
-                  </div>
-                  <div class="col-sm-6">
                     <div class="account">
                       <h3>Already have an account? <a [routerLink]="['/']"> Sign in </a></h3>
                     </div>
