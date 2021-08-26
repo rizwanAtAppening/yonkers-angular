@@ -22,7 +22,8 @@ export class OverSizePermitComponent implements OnInit {
   public isApplicant = false;
   public currentTab: string
   public permit_type = 3;
-  public minDate: Date;
+  public minDate: Date = new Date();
+  public minDateForTo: Date = new Date();;
   public application_id: number
   public settings :any
   public cityId:number
@@ -39,14 +40,15 @@ export class OverSizePermitComponent implements OnInit {
     private userService:UsersService
   ) {
     this.settings = settingConfig;
+    console.log("🚀 ~ file: over-size-permit.component.ts ~ line 43 ~ OverSizePermitComponent ~  this.settings",  this.settings)
    }
 
   ngOnInit(): void {
     this.onInIt();
-    this.minDate = new Date();
     this.route.queryParams.subscribe(data => {
       this.currentTab = data.tab;
       this.cityId = data.cityId
+      this.permit_type = data.permitType;
       this.permit_type = data.permitType;
       this.application_id = data.application_id
     })
@@ -55,15 +57,12 @@ export class OverSizePermitComponent implements OnInit {
       this.getCurrentUser()
     }
     this.back(this.currentTab, '')
-
-
   }
 
 
   onInIt() {
     this.applicantFormControl();
     this.overSizeCont()
-    console.log(this.oversize, 'hhhhhhhhhhhh')
   }
 
   applicantFormControl() {
@@ -95,7 +94,8 @@ export class OverSizePermitComponent implements OnInit {
       from: ['', Validators.required],
 
     })
-        this.oversizeForm.controls.from.setValue(this.minDate)
+    this.oversizeForm.controls.from.setValue(this.minDate)
+    this.minDateForTo.setDate(this.oversizeForm.value.from.getDate() + 1);
   }
 
   get oversize() { return this.oversizeForm.controls }

@@ -612,7 +612,7 @@ export const settingConfig = {
       key: 2,
       value: 'Fee & Payments',
     },
-  
+
   ],
 
   department_Role: [
@@ -662,7 +662,8 @@ export const settingConfig = {
     { value: '10:30AM' },
     { value: '11:00AM' },
     { value: '11:30AM' },
-    { value: '00:30PM' },
+    { value: '12:00PM' },
+    { value: '12:30PM' },
     { value: '01:00PM' },
     { value: '01:30PM' },
     { value: '02:00PM' },
@@ -687,8 +688,8 @@ export const settingConfig = {
     { value: '11:30PM' },
 
   ],
- 
- 
+
+
 
   permit_type: {
     "Engineering": 1,
