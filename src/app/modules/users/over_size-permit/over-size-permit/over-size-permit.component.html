@@ -556,7 +556,7 @@
                                                                     <input type="text" id="to-date"
                                                                         formControlName="to" #dpto="bsDatepicker"
                                                                         bsDatepicker
-                                                                        [minDate]="oversize.from.value"
+                                                                        [minDate]="minDateForTo"
                                                                         [class]="oversize.to.invalid && (oversize.to.dirty || oversize.to.touched || isApplicant) ? 'form-control form-group-error' : 'form-control'"
                                                                         required="">
                                                                     <label class="form-control-placeholder"
