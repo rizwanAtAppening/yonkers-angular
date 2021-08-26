@@ -456,7 +456,7 @@
                                                                                             </td>
                                                                                             <td>{{permit?.application_vehicles?.to | date}}
                                                                                             </td>
-                                                                                            <td [class] =" (permit?.decision == 2 || permit?.decision  == 3)? 'submited-Btn green-txt-2':permit?.decision == 1 ? 'submited-Btn red-txt-2':'submited-Btn red-txt-2'" > <button>{{permit?.decision == 2 ? 'Accept':permit?.decision == 3 ? 'Issue Permit':permit?.decision == 1 ? 'Submission Incomplete' :'Pendinng' }}
+                                                                                            <td [class] =" (permit?.decision == 2 || permit?.decision  == 3)? 'submited-Btn green-txt-2':permit?.decision == 1 ? 'submited-Btn red-txt-2':'submited-Btn red-txt-2'" > <button>{{permit?.decision == 2 ? 'Accept':permit?.decision == 3 ? 'Issue Permit':permit?.decision == 1 ? 'Submission Incomplete' :'pending' }}
                                                                                             </button>
                                                                                             </td>
 
