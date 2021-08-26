@@ -367,7 +367,7 @@ export class AddPermitTabSectionComponent implements OnInit {
     return this.formBuilder.group({
       street_one: ['', Validators.required],
       street_two: ['', Validators.required],
-      address_join: [1, Validators.required]
+      address_join: ['', Validators.required]
     })
   }
 
