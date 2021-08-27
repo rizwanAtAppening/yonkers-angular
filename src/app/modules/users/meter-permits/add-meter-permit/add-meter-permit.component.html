@@ -183,7 +183,7 @@
                                                                         <select formControlName="contractor_job"  [class]="meterApplicantCon.contractor_job.invalid && (meterApplicantCon.contractor_job.dirty ||meterApplicantCon.contractor_job.touched || isMerter) ? 'form-control form-group-error' : 'form-control'" class="form-control" >
                                                                             <option>Yes</option>
                                                                             <option>Work will be performed by owner</option>
-                    
+
                                                                         </select>
                                                                         <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                                                         <div
@@ -196,7 +196,7 @@
                                                                     </div>
                                                                 </form>
                                                             </div>
-                    
+
                                                         </div> -->
 
                                                 <div class="col-6">
@@ -300,9 +300,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                             </div>
-                                                         
+
                                                         </div>
                                                     </div> -->
 
@@ -335,13 +335,13 @@
                                                 <div class="row">
                                                     <div class="col-6 ">
                                                         <div class="form-group">
-                                                            <input type="text" id="id-address"
+                                                            <input type="text" id="tap-size"
                                                                 formControlName="tap_size"
                                                                 (input)="setTotalAmount('tapsize')" class="form-control"
                                                                 [class]="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                 required>
                                                             <label class="form-control-placeholder"
-                                                                for="id-address">Size</label>
+                                                                for="tap-size">Size</label>
                                                         </div>
                                                         <div
                                                             *ngIf="meterControl.tap_size.invalid && (meterControl.tap_size.dirty || meterControl.tap_size.touched || isMerter)">
@@ -417,11 +417,11 @@
                                                                         <div class="form-group">
                                                                             <input type="text"
                                                                                 formControlName="meter_test_number"
-                                                                                id="lorem-Ipsum" class="form-control"
+                                                                                id="meter-one" class="form-control"
                                                                                 [class]="meterControl.meter_test_number.invalid && (meterControl.meter_test_number.dirty || meterControl.meter_test_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                                 required>
                                                                             <label class="form-control-placeholder"
-                                                                                for="lorem-Ipsum">Meter No</label>
+                                                                                for="meter-one">Meter No</label>
                                                                         </div>
                                                                         <div
                                                                             *ngIf="meterControl.meter_test_number.invalid && (meterControl.meter_test_number.dirty || meterControl.meter_test_number.touched || isMerter)">
@@ -468,7 +468,7 @@
                                                                         <div class="col-6 ">
                                                                             <div class="form-group">
                                                                                 <input type="text"
-                                                                                    formControlName="new_meter_number"
+                                                                                    formControlName="new_meter_number" id = "new_meter_number"
                                                                                     [class]="meterControl.new_meter_number.invalid && (meterControl.new_meter_number.dirty || meterControl.new_meter_number.touched || isMerter) ? 'form-control form-group-error' : 'form-control'"
                                                                                     id="new_meter_number" class="form-control"
                                                                                     required>
@@ -515,7 +515,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                    
+
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <div class="bdp_email loction-adInput">
@@ -532,11 +532,11 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="location-type-tab">
                                                                     <h3>Meter Test</h3>
                                                                 </div>
-                    
+
                                                                 <div class="bussiness-input mt-3">
                                                                     <div class="row">
                                                                         <div class="col-12">
@@ -550,7 +550,7 @@
                                                                                                 for="id-address">Size</label>
                                                                                         </div>
                                                                                     </div>
-                    
+
                                                                                     <div class="col-6 ">
                                                                                         <div class="form-group">
                                                                                             <input type="text" id="id-address"
@@ -562,11 +562,11 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                    
+
                                                                     </div>
                                                                 </div>
-                    
-                    
+
+
                                                                 <div class="unit-txt">
                                                                     <div class="row">
                                                                         <div class="col-12">
@@ -584,19 +584,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="btn-pre">
                                                                     <button>Previous</button>
                                                                     <button class="continue">Continue</button>
                                                                 </div>
-                    
-                    
+
+
                                                             </div>
-                    
+
                                                         </div>
-                    
+
                                                     </div>
-                    
+
                                                 </div> -->
 
                                     </div>
@@ -756,7 +756,7 @@
                                                                                             (input)="exextAddress('applicanjob')"
                                                                                                 formControlName="location"></textarea>
                                                                                         </div>
-                                                                                        
+
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -772,6 +772,7 @@
                                                                     <div class="col-12 ">
                                                                         <div class="form-group">
                                                                             <input type="text" [typeahead]="jobAdress"
+                                                                            id="location"
                                                                                 (typeaheadOnSelect)="typeaheadOnSelect($event,'applicanjob')"
                                                                                 (input)="exextAddress('location')"
                                                                                 formControlName="location" id="location"
@@ -853,7 +854,7 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                    
+
                                                                     </div>
                                                                     <div class="col-6">
                                                                         <div class="bdp_email loction-adInput">
@@ -870,11 +871,11 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="location-type-tab">
                                                                     <h3>Meter Test</h3>
                                                                 </div>
-                    
+
                                                                 <div class="bussiness-input mt-3">
                                                                     <div class="row">
                                                                         <div class="col-12">
@@ -888,7 +889,7 @@
                                                                                                 for="id-address">Size</label>
                                                                                         </div>
                                                                                     </div>
-                    
+
                                                                                     <div class="col-6 ">
                                                                                         <div class="form-group">
                                                                                             <input type="text" id="id-address"
@@ -900,11 +901,11 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                    
+
                                                                     </div>
                                                                 </div>
-                    
-                    
+
+
                                                                 <div class="unit-txt">
                                                                     <div class="row">
                                                                         <div class="col-12">
@@ -922,19 +923,19 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                    
+
                                                                 <div class="btn-pre">
                                                                     <button>Previous</button>
                                                                     <button class="continue" type="submit" (click) ="addMeterPermit('meterDetails','')">Continue</button>
                                                                 </div>
-                    
-                    
+
+
                                                             </div>
-                    
+
                                                         </div>
-                    
+
                                                     </div>
-                    
+
                                                 </div> -->
 
                                     </div>

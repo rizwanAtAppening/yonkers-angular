@@ -31,7 +31,7 @@
                                 <p class="form-error"
                                     *ngIf="desicion.permit_decision.errors['required']">
                                     Please select permit decision
-                                    
+
                                 </p>
                             </div>
                             </div>
@@ -39,7 +39,7 @@
                     </div>
 
 
-                    <div class="add-special-box" *ngIf ="special_conditions?.length == 0"> 
+                    <div class="add-special-box" *ngIf ="special_conditions?.length == 0">
                         <div class="txt-special-condition" data-toggle="modal" data-target="#staticBackdrop_m">+ Add
                             Special Conditions</div>
                     </div>
@@ -59,9 +59,9 @@
                              <input type="checkbox">
                              <span class="checkmark-replacement"></span>
                            </label> -->
-                         
+
                          <h3 data-toggle="modal" data-target="#staticBackdrop_m">+ Add More</h3>
-                         
+
                          </div>
                              </div>
                     <div class="decision-here">
@@ -80,7 +80,7 @@
                                         <select formControlName="expiration_days"  [class]="desicion.expiration_days.invalid && (desicion.expiration_days.dirty || desicion.expiration_days.touched || isDecision) ? 'form-control  form-group-error ' : 'form-control '" (change) = "getDay($event.target.value)">
                                             <option value="" hidden>--Select--</option>
                                             <option value="{{day?.key}}" *ngFor ="let day of settings?.days">{{day?.value}}</option>
-                                            
+
                                         </select>
                                         <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
                                     </div>
@@ -89,7 +89,7 @@
                                     <p class="form-error"
                                         *ngIf="desicion.expiration_days.errors['required']">
                                         Please select expiration days
-                                        
+
                                     </p>
                                 </div>
                                 </div>
@@ -118,7 +118,7 @@
                                     <p class="form-error"
                                         *ngIf="desicion.inspector.errors['required']">
                                         Please select inspector
-                                        
+
                                     </p>
                                 </div>
                                 </div>
@@ -134,7 +134,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Plan Examiner5</th>
+                                <th>Plan Examiner</th>
                                 <th>Permit Number</th>
                                 <th>Action Taken</th>
                                 <th>Review Date</th>
@@ -142,7 +142,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor ="let data of applicationDetails?.application_issue_permits"> 
+                            <tr *ngFor ="let data of applicationDetails?.application_issue_permits">
                                 <td>{{data?.staff?.name ? data?.staff?.name:'_'}}
                                     <span class="voidMsg" *ngIf="data?.status == 4">(V)</span>
                                 </td>

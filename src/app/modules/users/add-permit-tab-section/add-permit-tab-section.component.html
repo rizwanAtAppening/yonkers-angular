@@ -342,13 +342,18 @@
                                                                         formControlName="address_join"
                                                                         [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                                         class="form-control">
+                                                                        <option value="" hidden>--Select--</option>
                                                                         <option [value]="value?.key"
                                                                             *ngFor="let value of settings?.address_join">
                                                                             {{value?.value}}</option>
                                                                     </select>
-                                                                    <span _ngcontent-guj-c86=""><i _ngcontent-guj-c86=""
-                                                                            aria-hidden="true"
-                                                                            class="fa fa-angle-down"></i></span>
+                                                                    <div
+                                                                    *ngIf="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isSubmit)">
+                                                                    <p class="form-error"
+                                                                        *ngIf="addloc.controls.address_join.errors['required']">
+                                                                        Please select option.
+                                                                    </p>
+                                                                </div>
 
                                                                 </div>
                                                             </div>
@@ -1478,7 +1483,7 @@
                 <div class="what-bg">
                     <form [formGroup]="projectDetailsForm">
                         <div class="job-location-Hd">
-                            <h3>Project Description 
+                            <h3>Project Description
                                 <span>Please provide the following details about your project.</span>
                             </h3>
 
@@ -1632,7 +1637,7 @@
                                                     <div class="form-group">
                                                         <input type="text" id="da1" class="form-control" formControlName="pavement_type" required>
                                                         <label class="form-control-placeholder" for="da1">Pavement Type</label>
-        
+
                                                     </div>
                                                 </div>
                                             </div> -->
@@ -1691,7 +1696,7 @@
                                                     [class]="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'"
                                                     class="form-control" required>
                                                 <label
-                                                    
+
                                                     class="start_dateLabel">End Date</label>
                                                 <div
                                                     *ngIf="projectDetail.end_date.invalid && (projectDetail.end_date.dirty || projectDetail.end_date.touched || isSubmit)">
