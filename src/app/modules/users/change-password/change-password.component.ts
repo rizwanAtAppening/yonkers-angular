@@ -11,6 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ChangePasswordComponent implements OnInit {
   public changePasswordForm: FormGroup;
+  public isOldPasswordIsHide: boolean = false;
+  public isNewPasswordIsHide: boolean = false;
+  public isNewPasswordConfirmIsHide: boolean = false;
   constructor(
     private userService: UsersService,
     private toasterService: ToastrService,
@@ -23,6 +26,32 @@ export class ChangePasswordComponent implements OnInit {
     this.changePasswoedCont();
   }
 
+  oldPasswordToggle(field: any) {
+    if (field.type == 'password') {
+      this.isOldPasswordIsHide = true;
+    }
+    if (field.type == 'text') {
+      this.isOldPasswordIsHide = false;
+    }
+  }
+
+  newPasswordToggle(field: any) {
+    if (field.type == 'password') {
+      this.isNewPasswordIsHide = true;
+    }
+    if (field.type == 'text') {
+      this.isNewPasswordIsHide = false;
+    }
+  }
+
+  newConfirmPasswordToggle(field: any) {
+    if (field.type == 'password') {
+      this.isNewPasswordConfirmIsHide = true;
+    }
+    if (field.type == 'text') {
+      this.isNewPasswordConfirmIsHide = false;
+    }
+  }
   changePasswoedCont() {
     this.changePasswordForm = this.formBuilder.group({
       oldPassword: ['', [
