@@ -216,6 +216,7 @@ export class PermitDecisionsComponent implements OnInit {
     }
     this.applicationService.voidEngDecision(data).subscribe(data => {
       this._TS.success('Decision have voided')
+      this.messageEvent.emit(this.message);
     })
   }
 
