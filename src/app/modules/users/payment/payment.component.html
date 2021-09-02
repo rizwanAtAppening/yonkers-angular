@@ -7,23 +7,23 @@
                         <tr>
                           <th scope="col">Type</th>
                           <th scope="col">Amount</th>
-                         
+
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor = "let fee of paymentsDetailsWithKey">
                           <th scope="row">{{fee?.key}}</th>
                           <td>{{fee?.amount}}</td>
-                         
+
                         </tr>
-                       
+
                       </tbody>
                     </table>
                     <button type="button" class="btn btn-primary float-right mt-2" [disabled] = "isSubmit" (click) ="payment()">Submit</button>
- 
+
          </div>
-         
-               
+
+
      </div> -->
 
      <div class="paymentInputBox_card">
@@ -32,17 +32,17 @@
 <div class="row">
   <div class="col-12">
       <div class="row">
-         
+
               <div class="col-8">
                   <div class="boxborder-card">
                   <div id="credit-card" class=" tab-pane active">
                       <form [formGroup]="cardForm">
                           <br>
-          
+
                           <div class="submission-inner  p-0">
                               <div class="submission-inner-two four mb-2">
                                   <!-- -------------------------------------------------- New design---------------------- ---------------------------------->
-          
+
                                   <div class="cell example example2 mt-3" id="example-2">
                                       <form>
                                           <div data-locale-reversible>
@@ -57,26 +57,26 @@
                                                               onlyNumber placeholder="94107"
                                                               required=""
                                                               autocomplete="postal-code">
-                                                         
+
                                                           <div class="baseline"></div>
                                                           <div class="form-error pm_terms"
                                                               *ngIf="getControls.zip.invalid && (getControls.zip.dirty || getControls.zip.touched || isSubmit)">
                                                               <small
                                                                   *ngIf="getControls.zip.errors['required']"
                                                                   class="msg">
-                                                                  Please Valid Zip Code
+                                                                  Please enter valid zip code
                                                               </small>
-          
+
                                                           </div>
                                                       </div>
-          
+
                                                   </div>
                                                   <div class="col-6 binput-card2">
                                                       <p class="zip-txt">Card Number</p>
                                                       <div class="field">
                                                           <div id="example2-card-number"
                                                               class="input empty"></div>
-                                                         
+
                                                           <div class="baseline"></div>
                                                       </div>
                                                       <div>
@@ -85,19 +85,19 @@
                                                               Please enter valid card number
                                                           </span>
                                                       </div>
-          
+
                                                   </div>
-          
+
                                               </div>
                                           </div>
-          
+
                                           <div class="row exp-date-input exp-date-inputmt">
                                               <div class="col-6 binput-card2">
                                                   <p class="zip-txt">Expiry Date</p>
                                                   <div class="field half-width">
                                                       <div id="example2-card-expiry"
                                                           class="input empty"></div>
-                                                    
+
                                                       <div class="baseline"></div>
                                                   </div>
                                                   <div>
@@ -110,37 +110,37 @@
                                                   <div class="field half-width">
                                                       <div id="example2-card-cvc"
                                                           class="input empty"></div>
-                                                     
+
                                                       <div class="baseline"></div>
                                                   </div>
                                                   <div>
                                                       <span *ngIf="isInValidCvc" class="msg">
-                                                        Please enter CVV 
+                                                        Please enter CVV
                                                       </span>
                                                   </div>
                                               </div>
                                           </div>
-          
+
                                       </form>
-          
-          
-          
+
+
+
                                   </div>
-          
-          
-                                 
+
+
+
                               </div>
                               <div class="submission-inner-two four mb-2 ">
                                   <div class="col-12 mt-4 p-0">
                                       <div class="row">
-          
+
                                           <div class="col-12">
                                               <div class="methode-check sign-up conditions ">
 
 
 
                                                   <label class="container4">
-                                                      <input type="checkbox" 
+                                                      <input type="checkbox"
                                                       formControlName="isTermAndCondition"
                                                       [class]="getControls.isTermAndCondition.invalid && (getControls.isTermAndCondition.dirty || getControls.isTermAndCondition.touched || isSubmit) ? 'form-control form-group-error' : 'form-control'">
                                                       <span class="checkmarkcard"></span>
@@ -197,7 +197,7 @@
                           </div>
                       </form>
                   </div>
-          
+
               </div>
           </div>
           <div class="col-4 right-sidebaar">
@@ -256,14 +256,14 @@
                               </div>
                           </ul>
                           </div>
-                       
+
               </div>
           </div>
       </div>
           </div>
       </div>
   </div>
- 
+
 
 </div>
 

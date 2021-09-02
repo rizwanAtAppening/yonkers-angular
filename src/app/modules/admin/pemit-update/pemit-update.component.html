@@ -447,19 +447,19 @@
 
 
                         <td>
-                          <div class="dropdown_act">
+                          <!-- <div class="dropdown_act">
                             <h6><i class="fa fa-angle-down" aria-hidden="true"></i></h6>
                             <div class="dropdown-content-void">
-                              <!-- <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
-                                                              View</a> -->
-                              <!-- <a  data-toggle="modal"
+                              <a href="#"> <span> <img src="assets/images/d1.svg"> </span>
+                                                              View</a>
+                              <a  data-toggle="modal"
                                                               data-target="#Email-ForApplication"> <span> <img
-                                                                      src="assets/images/d2.svg"> </span> Email</a> -->
-                              <!-- <a href="#" data-toggle="modal"
+                                                                      src="assets/images/d2.svg"> </span> Email</a>
+                              <a href="#" data-toggle="modal"
                                                               data-target="#delete-applicationdecription"> <span> <img
-                                                                      src="assets/images/d3.svg"> </span> Delete</a> -->
+                                                                      src="assets/images/d3.svg"> </span> Delete</a>
                             </div>
-                          </div>
+                          </div> -->
                         </td>
                       </tr>
                     </tbody>
@@ -963,13 +963,12 @@
                           <th>Fee Type</th>
                           <th>Amount</th>
                           <th>Action</th>
-
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let fee of applicationDetails?.application_fees">
                           <td >
-                            {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):fee?.fee_Type == 3 ? 'initial':settings.getSetting('peyments_TypeForFee',fee?.type)}}
+                            {{fee?.fee_Type == 1 ? settings.getSetting('peyments_TypeForDeposit',fee?.type):fee?.fee_Type == 3 ? 'Initial':settings.getSetting('peyments_TypeForFee',fee?.type)}}
                             <span class="voidMsg" *ngIf="fee?.payment_status == 4">(V)</span>
                           </td>
                           <td>{{ fee?.fee_Type == 3 ?'_':settings.getSetting('fee_Type',fee?.fee_Type )}}</td>
@@ -985,7 +984,6 @@
                             </div>
                           </td>
                         </tr>
-
                       </tbody>
                     </table>
                   </div>

@@ -49,7 +49,7 @@ export class ContratorDetailsComponent implements OnInit {
       }
     });
     this.onInIt();
- 
+
   }
 
 
@@ -108,7 +108,7 @@ export class ContratorDetailsComponent implements OnInit {
       this.contractorForm.controls.contractor_state.setValue(this.applicationDetails.contractor_details.contractor_state )
       this.contractorForm.controls.contractor_zip.setValue(this.applicationDetails.contractor_details.contractor_zip )
     }
-   
+
 
   }
 
@@ -116,7 +116,7 @@ export class ContratorDetailsComponent implements OnInit {
   public isContractor = false;
   public contractorData = {}
   updateContratorDetails() {
-    
+
     if (this.contractorForm.invalid) {
       this.isContractor = true
       return false
@@ -146,12 +146,15 @@ export class ContratorDetailsComponent implements OnInit {
         contractor_city:this.contractorForm.value.contractor_city,
         contractor_state:this.contractorForm.value.contractor_state,
         contractor_zip:this.contractorForm.value.contractor_zip,
-        application_id:this.applicationDetails.id
+        application_id:this.applicationDetails.id,
+        dumpster_id:this.applicationDetails.dumpster_id
       }
     }
-    
+    console.log(this.contractorData, 'form data')
+    console.log(this.contractorForm, "from data from the part")
     this.applicationService.updateContratorInfo(this.contractorData).subscribe(data => {
       this.updateCon.nativeElement.click();
+      console.log(data.response, 'response date')
       this.applicationDetails.contractor_details = data.response
       this.messageEvent.emit('hello')
     })
@@ -309,7 +312,7 @@ export class ContratorDetailsComponent implements OnInit {
 
   public isEmail = false;
   addEmialAndPickUp() {
-    
+
     if (this.applicationDetails.applicant_details && this.applicationDetails.applicant_details.applicant_email) {
       this.emailFormGroup.controls.to.setValue(this.applicationDetails.applicant_details.applicant_email)
     }
@@ -366,21 +369,21 @@ export class ContratorDetailsComponent implements OnInit {
   }
 
   phoneNumberFormate() {
-    
+
     var autoFillValue = '-'
     //if (value == 'phone') {
       if (this.contractorForm.value.contractor_phone === null) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone)
       }
       if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 3) {
-        
+
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
       if (this.contractorForm.value.contractor_phone && this.contractorForm.value.contractor_phone.length === 7) {
         this.contractorForm.controls.contractor_phone.setValue(this.contractorForm.value.contractor_phone.concat(autoFillValue))
       }
-    
+
     //}
-  
+
   }
 }
