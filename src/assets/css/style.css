@@ -382,6 +382,18 @@ header {
     font-family: 'Gilroy-Regular';
 }
 
+/* container-btn with out padding */
+container-btn-nopadding {
+  display: block;
+    position: relative;
+    /* padding-left: 25px; */
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #282D5B;
+    line-height: 20px;
+    font-family: 'Gilroy-Regular';
+}
+
 /* Hide the browser's default checkbox */
 .container-btn input {
     position: absolute;
@@ -456,7 +468,9 @@ header {
 .account h3 {
     font-size: 14px;
     line-height: 26px;
-    text-align: right;
+    /* text-align: right; */
+    padding-top: 10px;
+    padding-left: 26px;
     color: #282D5B;
 }
 
@@ -701,7 +715,7 @@ header {
 }
 .what-bg1 {
     background: #FFFFFF;
-   
+
     padding: 40px 30px;
 
 }
@@ -1562,7 +1576,7 @@ color: #00183966;
    -ms-user-select: none;
    user-select: none;
  }
- 
+
  /* Hide the browser's default checkbox */
  .container-name input {
    position: absolute;
@@ -1571,7 +1585,7 @@ color: #00183966;
    height: 0;
    width: 0;
  }
- 
+
  /* Create a custom checkbox */
  .checkmark-mail {
      position: absolute;
@@ -1584,29 +1598,29 @@ color: #00183966;
      border-radius: 5px;
      border: 0.5px solid #8484846E;
  }
- 
- 
- 
+
+
+
  /* When the checkbox is checked, add a blue background */
  .container-name input:checked ~ .checkmark-mail {
    background-color: #2196F3;
     border: 0.5px solid #2196F3;
-   
- 
+
+
  }
- 
+
  /* Create the checkmark/indicator (hidden when not checked) */
  .checkmark-mail:after {
    content: "";
    position: absolute;
    display: none;
  }
- 
+
  /* Show the checkmark when checked */
  .container-name input:checked ~ .checkmark-mail:after {
    display: block;
  }
- 
+
  /* Style the checkmark/indicator */
  .container-name .checkmark-mail:after {
     left: 7px;
@@ -1719,11 +1733,11 @@ color: #282D5BB0;
 
     .pop-Btn button.continue{
         width: 104px;
-    }   
+    }
     .pop-Btn button{
         border: none;
         color: #000;
-    } 
+    }
 
     .updateprofile {
         padding: 80px 0px 50px 0px;
@@ -1800,7 +1814,7 @@ border: 1px solid #00000012;
     font-size: 14px;
 }
 
-.ld-details .table td.exp button{ 
+.ld-details .table td.exp button{
     color: #D81D37;
     border: 1px solid #D81D37;
     border-radius: 11px;
@@ -1810,7 +1824,7 @@ border: 1px solid #00000012;
     line-height: 22px;
 }
 
-.ld-details .table td.view-Btn button{ 
+.ld-details .table td.view-Btn button{
     color: #282D5B;
     border: 1px solid #D4D5DE;
     border-radius: 2px;
@@ -1834,7 +1848,7 @@ border: 1px solid #00000012;
 .poilcy_type select{
     height: 52;
     border: 0.5px solid #282D5B;
-   
+
 }
 .poilcy_type label{
     color:#282D5B !important;
@@ -1908,14 +1922,14 @@ text-align: center;
     -ms-user-select: none;
     user-select: none;
   }
-  
+
   /* Hide the browser's default radio button */
   .owner input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
   }
-  
+
   /* Create a custom radio button */
   .checkma {
     position: absolute;
@@ -1927,27 +1941,27 @@ text-align: center;
     background: #FFFFFF 0% 0% no-repeat padding-box;
   border: 1px solid #4AB5F1;
   }
-  
-  
-  
+
+
+
   /* When the radio button is checked, add a blue background */
   .owner input:checked ~ .checkma {
     background-color: #fff;
     border: 1px solid #2196F3;
   }
-  
+
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkma:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the indicator (dot/circle) when checked */
   .owner input:checked ~ .checkma:after {
     display: block;
   }
-  
+
   /* Style the indicator (dot/circle) */
   .owner .checkma:after {
     top: 4px;
@@ -2107,7 +2121,7 @@ text-align: center;
 
 /* Change Autocomplete styles in Chrome*/
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
@@ -2488,10 +2502,10 @@ cursor: pointer;
 }
 
 .theme-green .bs-datepicker-head{
-    background-color: #4ab5f1 !important; 
+    background-color: #4ab5f1 !important;
 }
 .theme-green .bs-datepicker-body table td.week span{
-    color: #4ab5f1 !important; 
+    color: #4ab5f1 !important;
 }
 
 .table-permit table td.blue-txt-2 button {
@@ -2695,7 +2709,7 @@ float: right;
 }
 
 .select_keyType select{
-    height: 42px; 
+    height: 42px;
     border-radius: 0px;
 }
 
@@ -2744,7 +2758,7 @@ float: right;
 
 .new-UploadBox .img-upload-tbl .table thead th{
     padding: 13px 130px 13px 30px;
-   
+
 }
 .new-UploadBox .img-upload-tbl .table thead tr{
     background: #F6F9FC;
@@ -2837,7 +2851,7 @@ margin-top: 60px;
     left: 0px;
     padding-left: 0px;
     padding-right: 7px;
-    z-index: 99;  
+    z-index: 99;
 }
 
 .bdp_email span.icon-calander{
@@ -2946,7 +2960,7 @@ padding: 36px 94px;
     font-size: 24px;
     line-height: 35px;
     color: #282D5B;
-   
+
 }
 .soure-delete-txt h4{
     font-family: 'Poppins-Regular';
@@ -3188,7 +3202,7 @@ line-height: 21px;
     display: inline-block;
     cursor: pointer;
     color: #4AB5F1;
-    font-size: 12px;  
+    font-size: 12px;
 font-family: 'Poppins-Regular';
 }
 .description_edit-txt h3{
@@ -3322,8 +3336,8 @@ border: 0.5px solid #9CA6C08C;
 
 
 .detailed-edit{
-    max-width: 467px; 
-    border-radius: 4px;  
+    max-width: 467px;
+    border-radius: 4px;
    }
    .txtepd {
        color: #282D5B;
@@ -3349,8 +3363,8 @@ border: 0.5px solid #9CA6C08C;
        line-height: 22px;
        font-family: "Poppins-Medium";
        padding-bottom: 11px;
-       
-       
+
+
    }
    .detail-txtarea textarea::placeholder{
        color: #00183966;
@@ -3358,7 +3372,7 @@ border: 0.5px solid #9CA6C08C;
        line-height: 22px;
    font-family: 'Poppins-Regular';
    }
-   
+
    .modal-btn-decripatn {
        text-align: right;
        margin-bottom: 30px;
@@ -3382,9 +3396,9 @@ border: 0.5px solid #9CA6C08C;
        background: #4AB5F1;
        padding: 10px 27px;
    }
-   
-   
-   
+
+
+
    #close-icon-modal span{
        background: #e6e6e6;
        position: absolute;
@@ -3396,11 +3410,11 @@ border: 0.5px solid #9CA6C08C;
        border-radius: 50%;
        top: 20px;
    }
-   
+
    .decisions_box-collepse{
        padding: 30px;
    }
-   
+
    .text-decision-bx h3{
        color: #3E3F42;
        font-size: 16px;
@@ -3412,7 +3426,7 @@ border: 0.5px solid #9CA6C08C;
        color: #282D5B99;
        font-size: 12px;
        line-height: 18px;
-       padding-bottom: 6px; 
+       padding-bottom: 6px;
    font-family: 'Poppins-Regular';
    }
    .text-decision-bx select{
@@ -3496,7 +3510,7 @@ border: 0.5px solid #9CA6C08C;
        color: #3F465E;
        right: 10px;
    }
-   
+
    .dicision-submit_btn button{
        margin-top: 24px;
        padding: 10px 21px !important;
@@ -3508,27 +3522,27 @@ border: 0.5px solid #9CA6C08C;
    }
    .plan-examiner-box {
     margin-top: 30px;
- 
+
 }
 .plan-examiner-box::-webkit-scrollbar {
     width: 2px;
   }
-  
+
   /* Track */
   .plan-examiner-box::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
   }
-   
+
   /* Handle */
   .plan-examiner-box::-webkit-scrollbar-thumb {
-    background: #2AABFA; 
+    background: #2AABFA;
     border-radius: 10px;
   }
-  
+
   /* Handle on hover */
   .plan-examiner-box::-webkit-scrollbar-thumb:hover {
-    background: #2AABFA; 
+    background: #2AABFA;
   }
 
    .plan-examiner-box .table{
@@ -3550,7 +3564,7 @@ border: 0.5px solid #9CA6C08C;
        line-height: 20px;
    font-family: 'Poppins-Regular';
    }
-   
+
    .add-conditions-modal {
        max-width: 695px;
    }
@@ -3593,28 +3607,28 @@ border: 0.5px solid #9CA6C08C;
        border-bottom: 0.6000000238418579px solid #E8E8E8;
        overflow: auto;
    }
-   
-   
+
+
    /* width */
    .inspaction-box::-webkit-scrollbar {
        width: 3px;
      }
-     
+
      /* Track */
-    
-      
+
+
      /* Handle */
      .inspaction-box::-webkit-scrollbar-thumb {
-       background: #2AABFA; 
+       background: #2AABFA;
        border-radius: 10px;
      }
-     
+
      /* Handle on hover */
      .inspaction-box::-webkit-scrollbar-thumb:hover {
-       background: #2AABFA; 
+       background: #2AABFA;
      }
-   
-   
+
+
    /* The container */
    .container-curb {
        display: block;
@@ -3631,7 +3645,7 @@ border: 0.5px solid #9CA6C08C;
        margin-bottom: 14px !important;
        color: #282D5B;
      }
-     
+
      /* Hide the browser's default checkbox */
      .container-curb input {
        position: absolute;
@@ -3640,7 +3654,7 @@ border: 0.5px solid #9CA6C08C;
        height: 0;
        width: 0;
      }
-     
+
      /* Create a custom checkbox */
      .checkmark-replacement {
          position: absolute;
@@ -3652,27 +3666,27 @@ border: 0.5px solid #9CA6C08C;
          border: 0.5px solid #8484846E;
          border-radius: 5px;
      }
-     
-     
-     
+
+
+
      /* When the checkbox is checked, add a blue background */
      .container-curb input:checked ~ .checkmark-replacement {
        background-color: #2AABFA;
         border: 0.5px solid #2AABFA;
      }
-     
+
      /* Create the checkmark/indicator (hidden when not checked) */
      .checkmark-replacement:after {
        content: "";
        position: absolute;
        display: none;
      }
-     
+
      /* Show the checkmark when checked */
      .container-curb input:checked ~ .checkmark-replacement:after {
        display: block;
      }
-     
+
      /* Style the checkmark/indicator */
      .container-curb .checkmark-replacement:after {
        left: 7px;
@@ -3685,12 +3699,12 @@ border: 0.5px solid #9CA6C08C;
        -ms-transform: rotate(45deg);
        transform: rotate(45deg);
      }
-   
+
      .checkbox-addBtn{
          margin-top: 23px;
          text-align: right;
      }
-   
+
      .checkbox-addBtn button.add-btntxt{
          font-size: 11px;
          padding: 10px 30px;
@@ -3701,7 +3715,7 @@ border: 0.5px solid #9CA6C08C;
          border: none;
          cursor: pointer;
      }
-   
+
      .checkbox-addBtn button.cancle-btntxt{
        font-size: 12px;
        padding: 10px 20px;
@@ -3736,14 +3750,14 @@ padding: 20px 28px 15px 28px;
     line-height: 32px;
     font-size: 14px;
     cursor: pointer;
- 
+
 }
 
 
 .dropdown_act {
     position: relative;
   }
-  
+
   .dropdown-content-void {
     display: none;
     position: absolute;
@@ -3756,7 +3770,7 @@ padding: 20px 28px 15px 28px;
     border-radius: 4px;
     z-index: 1;
   }
-  
+
   .dropdown-content-void a {
     color: black !important;
     padding: 8px 13px;
@@ -3765,7 +3779,7 @@ padding: 20px 28px 15px 28px;
   }
   .dropdown-content-void a:hover {background-color: #ddd;}
   .dropdown_act:hover .dropdown-content-void {display: block;}
-  
+
   .dropdown_act h6{
     width: 20px;
     height: 20px;
@@ -3855,7 +3869,7 @@ cursor: pointer;
     border: 1px solid #282D5B42;
 }
 .admin-add-insurance label{
-  
+
     color: #282D5B99;
     font-size: 12px;
     line-height: 18px;
@@ -3865,7 +3879,7 @@ cursor: pointer;
 .admin-add-insurance{
     position: relative;
     margin-top: 26px !important;
-   
+
 }
 .admin-add-insurance select {
 width: 100%;
@@ -3985,14 +3999,14 @@ position: relative;
     -ms-user-select: none;
     user-select: none;
   }
-  
+
   /* Hide the browser's default radio button */
   .container-pw input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
   }
-  
+
   /* Create a custom radio button */
   .checkpw {
     position: absolute;
@@ -4005,28 +4019,28 @@ position: relative;
   border-radius: 10px;
     border-radius: 50%;
   }
-  
-  
-  
+
+
+
   /* When the radio button is checked, add a blue background */
   .container-pw input:checked ~ .checkpw {
     background-color: #2196F3;
     border: 1px solid #2196F3;
-    
+
   }
-  
+
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .checkpw:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the indicator (dot/circle) when checked */
   .container-pw input:checked ~ .checkpw:after {
     display: block;
   }
-  
+
   /* Style the indicator (dot/circle) */
   .container-pw .checkpw:after {
     top: 4px;
@@ -4093,14 +4107,14 @@ color: #282D5B99 !important;
 .massege-stander-select select{
     color: #282D5B99 !important;
     }
-    
+
     .no-ref-txt h5{
         text-transform: uppercase;
     }
     .description_edit-txt h3{
         text-transform: uppercase;
     }
-   
+
     .documentFileType .select-input-box{
         max-width: 181px;
     }
@@ -4118,15 +4132,15 @@ color: #282D5B99 !important;
         font-family: 'Poppins-Regular';
         font-size: 12px;
     }
-    
+
     .emailfor-select .admin-add-insurance{
     margin-top: 0px !important;
     }
-    .emailfor-select .admin-add-insurance span{ 
+    .emailfor-select .admin-add-insurance span{
         top: 14px;
-    
+
     }
-    
+
     .emailfor-textarea textarea{
         width: 100%;
         background: #fff ;
@@ -4134,7 +4148,7 @@ color: #282D5B99 !important;
     height: 113px;
     resize: none;
     padding: 16px 17px;
-    
+
     }
     .emailfor-textarea  label{
         color: #001839;
@@ -4150,7 +4164,7 @@ color: #282D5B99 !important;
         font-family: "Poppins-Medium";
         font-size: 14px;
     }
-    
+
     .atechpdf span{
         border-radius: 2px;
         padding: 6px 15px;
@@ -4160,11 +4174,11 @@ color: #282D5B99 !important;
         font-family: 'Poppins-Regular';
         line-height: 26px;
     }
-    
+
     .delet-appliction-width {
         max-width: 415px;
     }
-    
+
     .deleteHd-app h6{
         color: #282D5B;
         font-family: "Poppins-SemiBold";
@@ -4182,13 +4196,13 @@ color: #282D5B99 !important;
         max-width: 214px;
         margin: 0 auto;
     }
-    
+
     .delete-appBtn {
         margin: 0 auto;
         text-align: center;
         margin-top: 21px;
         padding-bottom: 20px;
-    
+
     }
     .delete-appBtn .cancle-req {
         padding: 10px 20px;
@@ -4210,19 +4224,19 @@ color: #282D5B99 !important;
     .detail-txtareatwo {
         padding: 10px 35px 0px 19px;
     }
-    
+
     .detail-txtareatwo .modal-btn-decripatn{
     margin-top: 29px;
     }
-    
+
     /* --------------------filter css 29/05/2020-------------------------------- */
-    
-    
+
+
     .dropdownfilter {
         position: relative;
-      
+
       }
-      
+
       .dropdown-contentfilter {
         display: none;
         position: absolute;
@@ -4231,10 +4245,10 @@ color: #282D5B99 !important;
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: 0px 2px 6px #0000001A;
         z-index: 1;
-    
-    
+
+
       }
-      
+
       .dropdown-contentfilter a {
         color: black;
         padding: 12px 16px;
@@ -4248,7 +4262,7 @@ color: #282D5B99 !important;
       .filter-list .nav-pills .nav-link.active::before {
     display: none;
     }
-    
+
     .daily-sec .filter-list .nav-pills .nav-link {
         color: #282D5B;
         font-family: "Poppins-Medium";
@@ -4261,9 +4275,9 @@ color: #282D5B99 !important;
         border-bottom: 0.5px solid #E6E6E6;
     }
     .daily-sec .filter-list .nav-pills .nav-link:last-child{
-        border-bottom: none; 
+        border-bottom: none;
     }
-    
+
     .daily-sec .filter-list .nav-pills .nav-link.active {
         font-size: 12px;
         line-height: 20px;
@@ -4275,7 +4289,7 @@ color: #282D5B99 !important;
         width: 100%;
         border-radius: 0px !important;
     }
-    
+
     .daily-sec .filter-list .nav-pills .nav-link span{
         background: #2AABFA 0% 0% no-repeat padding-box;
         box-shadow: 0px 2px 9px #A2A2A21F;
@@ -4302,7 +4316,7 @@ color: #282D5B99 !important;
         -ms-user-select: none;
         user-select: none;
       }
-      
+
       /* Hide the browser's default checkbox */
       .containerdision input {
         position: absolute;
@@ -4311,7 +4325,7 @@ color: #282D5B99 !important;
         height: 0;
         width: 0;
       }
-      
+
       /* Create a custom checkbox */
       .checkmarkdision {
         position: absolute;
@@ -4323,27 +4337,27 @@ color: #282D5B99 !important;
       border:1px solid #2AABFA;
         background-color: #fff;
       }
-      
-    
-      
+
+
+
       /* When the checkbox is checked, add a blue background */
       .containerdision input:checked ~ .checkmarkdision {
         background-color: #2196F3;
         border:1px solid #2196F3;
       }
-      
+
       /* Create the checkmark/indicator (hidden when not checked) */
       .checkmarkdision:after {
         content: "";
         position: absolute;
         display: none;
       }
-      
+
       /* Show the checkmark when checked */
       .containerdision input:checked ~ .checkmarkdision:after {
         display: block;
       }
-      
+
       /* Style the checkmark/indicator */
       .containerdision .checkmarkdision:after {
       left: 6px;
@@ -4364,7 +4378,7 @@ color: #282D5B99 !important;
     padding-bottom: 5px;
     border-bottom: 0.5px solid #F2F2F2;
       }
-    
+
       .clearallapplyBtn {
           text-align: right;
           margin: 15px 0px;
@@ -4382,7 +4396,7 @@ color: #282D5B99 !important;
           line-height: 23px;
           box-shadow: none;
       }
-    
+
       .clearallapplyBtn button.btnaply{
         color: #fff;
         background: #2AABFA;
@@ -4415,23 +4429,23 @@ color: #282D5B99 !important;
         top: 20px;
         right: 20px;
         font-size: 18px;}
-    
-    
+
+
         .switchs {
             position: relative;
         display: inline-block;
         width: 47px;
         height: 25px;
-          
-        
+
+
         }
-        
-        .switchs input { 
+
+        .switchs input {
           opacity: 0;
           width: 0;
           height: 0;
         }
-        
+
         .slides {
           position: absolute;
           cursor: pointer;
@@ -4443,7 +4457,7 @@ color: #282D5B99 !important;
           -webkit-transition: .4s;
           transition: .4s;
         }
-        
+
         .slides:before {
             position: absolute;
             content: "";
@@ -4455,25 +4469,25 @@ color: #282D5B99 !important;
             -webkit-transition: .4s;
             transition: .4s;
         }
-        
+
         input:checked + .slides {
           background-color: #2196F3;
         }
-        
+
         input:focus + .slides {
           box-shadow: 0 0 1px #2196F3;
         }
-        
+
         input:checked + .slides:before {
           -webkit-transform: translateX(22px);
           -ms-transform: translateX(22px);
           transform: translateX(22px);
         }
-        
+
         .slides.rounds {
           border-radius: 34px;
         }
-        
+
         .slides.rounds:before {
           border-radius: 50%;
         }
@@ -4493,11 +4507,11 @@ color: #282D5B99 !important;
             margin-right: 10px;
             cursor: pointer;
         }
-    
-    
-    
+
+
+
       /* new html changes css 03/06/2020 */
-    
+
       .submissionvoid .dropdown-content-void{
        left: 0;
       }
@@ -4564,7 +4578,7 @@ color: #282D5B99 !important;
     .SubmitInspectionTxt .dropdown-content-void{
         right: 150px !important;
             min-width: 162px !important;
-    
+
     }
     .greenTxt .status-active-btn {
         border: 1px solid #5CB85C;
@@ -4586,7 +4600,7 @@ color: #282D5B99 !important;
         margin-left: 15px;
         padding-bottom:0px;
     }
-    
+
     .filedocumentBox h3{
         text-align: center;
      margin-top: 57px;
@@ -4601,7 +4615,7 @@ color: #282D5B99 !important;
     .filedocumentBox h4 span{
         color: #2AABFA;
     }
-    
+
     .filedocumentBox  input{
         position: absolute;
         top: 0;
@@ -4620,7 +4634,7 @@ color: #282D5B99 !important;
         justify-content: space-between;
         background: #E9F6FE;
     }
-    
+
     .JohnsmithTxt h1{
         font-size: 14px;
         color: #2AABFA;
@@ -4748,7 +4762,7 @@ padding: 10px 17px;
 
 .rightalign_dropdown .SubmitInspectionTxt .dropdown-content-void {
     left: 0 !important;
-    
+
 }
 .rightalign_dropdown .SubmitInspectionTxt .dropdown-content-void a{
     cursor: pointer;
@@ -4853,22 +4867,22 @@ padding: 10px 17px;
 .decisionFilter-Hd::-webkit-scrollbar {
     width: 4px;
   }
-  
+
   /* Track */
   .decisionFilter-Hd::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px grey;
     border-radius: 4px;
   }
-   
+
   /* Handle */
   .decisionFilter-Hd::-webkit-scrollbar-thumb {
-    background: #2AABFA; 
+    background: #2AABFA;
     border-radius: 4px;
   }
-  
+
   /* Handle on hover */
   .decisionFilter-Hd::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+    background: #b30000;
   }
 
   /* admin css  22/09/2020*/
@@ -4905,7 +4919,7 @@ padding: 10px 17px;
    background: #EDF7FE;
 }
 .side-nav-inner ul li span.icon-holder {
-    position: relative;   
+    position: relative;
     z-index: 999;
 }
 .side-nav-inner ul li span.icon-holder::before {
@@ -4918,22 +4932,22 @@ padding: 10px 17px;
     left: -9px;
     top: -5px;
     box-shadow: 0px 3px 10px #BEC2FF00;
-    border-radius: 50%;  
+    border-radius: 50%;
 }
 .side-nav-inner ul li span.icon-holder img{
     z-index: 999;
-    position: relative; 
+    position: relative;
     width: 14px;
     height: 14px;
 }
 .side-nav-inner ul li.active span.icon-holder img{
     z-index: 999;
-    position: relative; 
+    position: relative;
     width: 14px;
     height: 14px;
 }
 .side-nav-inner ul li.active span.icon-holder {
-    position: relative;   
+    position: relative;
 }
 .side-nav-inner ul li.active span.icon-holder::before{
     position: absolute;
@@ -4975,26 +4989,26 @@ font-family: "Poppins-Medium";
     border: 1px solid #00000012;
     padding: 30px 24px;
     }
-    
+
     .external_reviews_hd{
         color: #282D5B;
         font-family: "Poppins-Medium";
         font-size: 18px;
     }
-    
+
     .external_reviews_box .card{
     border: none;
     border-radius: none;
     margin-bottom: 24px;
     }
-    
+
     .external_reviews_box .card button{
     display: flex;
     justify-content: space-between;
     width: 100%;
     background: #E9F6FE;
     padding: 17px 16px;
-    
+
         }
         .external_reviews_box .card button h5{
             font-size: 14px;
@@ -5008,11 +5022,11 @@ font-family: "Poppins-Medium";
     border: none;
     padding: 0;
         }
-    
+
         .external_reviews_box   .btn:focus{
             box-shadow:none;
         }
-    
+
         .external_reviews_box .accordion{
     margin-top: 28px;
         }
@@ -5081,14 +5095,14 @@ border: 0.5px solid #9CA6C08C;
     user-select: none;
     margin-right: 20px;
   }
-  
+
   /* Hide the browser's default radio button */
   .contcity input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
   }
-  
+
   /* Create a custom radio button */
   .check-c {
     position: absolute;
@@ -5099,29 +5113,29 @@ border: 0.5px solid #9CA6C08C;
     background-color: #eee;
     border-radius: 50%;
   }
-  
+
   /* On mouse-over, add a grey background color */
   .contcity:hover input ~ .check-c {
     background-color: #ccc;
   }
-  
+
   /* When the radio button is checked, add a blue background */
   .contcity input:checked ~ .check-c {
     background-color: #2196F3;
   }
-  
+
   /* Create the indicator (the dot/circle - hidden when not checked) */
   .check-c:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the indicator (dot/circle) when checked */
   .contcity input:checked ~ .check-c:after {
     display: block;
   }
-  
+
   /* Style the indicator (dot/circle) */
   .contcity .check-c:after {
        top:6px;
@@ -5135,7 +5149,7 @@ border: 0.5px solid #9CA6C08C;
   .ng-Per label{
     padding-bottom: 5px;
           font-size: 16px;
-      
+
   }
   .ng-Per select{
       width: 100%;
@@ -5253,7 +5267,7 @@ border: 0.5px solid #9CA6C08C;
     -ms-user-select: none;
     user-select: none;
   }
-  
+
   /* Hide the browser's default checkbox */
   .container4 input {
     position: absolute;
@@ -5262,7 +5276,7 @@ border: 0.5px solid #9CA6C08C;
     height: 0;
     width: 0;
   }
-  
+
   /* Create a custom checkbox */
   .checkmarkcard {
     position: absolute;
@@ -5274,29 +5288,29 @@ border: 0.5px solid #9CA6C08C;
     width: 18px;
     background-color: #eee;
   }
-  
+
   /* On mouse-over, add a grey background color */
   .container4:hover input ~ .checkmarkcard {
     background-color: #ccc;
   }
-  
+
   /* When the checkbox is checked, add a blue background */
   .container4 input:checked ~ .checkmarkcard {
     background-color: #2196F3;
   }
-  
+
   /* Create the checkmark/indicator (hidden when not checked) */
   .container4 .checkmarkcard:after {
     content: "";
     position: absolute;
     display: none;
   }
-  
+
   /* Show the checkmark when checked */
   .container4 input:checked ~ .checkmarkcard:after {
     display: block;
   }
-  
+
   /* Style the checkmark/indicator */
   .container4 .checkmarkcard:after {
     left: 5px;
@@ -5365,7 +5379,7 @@ border: 0.5px solid #9CA6C08C;
 }
 .paymentInputBox_card .asses-bor:last-child {
     border-bottom: none !important;
-  
+
 }
 .paymentInputBox_card .Assessment-inner_two ul li{
     font-size: 14px;
@@ -5512,7 +5526,7 @@ position: relative;
     .eyeSlash-icon{
         position: absolute;
         top: 22px;
-        right: 22px;    
+        right: 22px;
         cursor: pointer;
     }
 
@@ -5531,7 +5545,7 @@ position: relative;
     .align_select select{
 height: 42px;
     }
-    .align_select span{ 
+    .align_select span{
 font-size: 18px;
     }
 

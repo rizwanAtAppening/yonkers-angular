@@ -139,13 +139,13 @@
                                                                 <div class="row">
                                                                     <div class="col-12 ">
                                                                         <div class="form-group">
-                                                                            <input type="text" id="Street"
+                                                                            <input type="text" id="street-one"
                                                                                 class="form-control"
                                                                                 formControlName="street_one"  [typeahead]="addressOne" (input) ="searchAddress('location',i)"
                                                                                 [class]="addloc.controls.street_one.invalid && (addloc.controls.street_one.dirty || addloc.controls.street_one.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                                 required="">
                                                                             <label class="form-control-placeholder"
-                                                                                for="Street">Street One
+                                                                                for="street-one">Street One
                                                                             </label>
                                                                         </div>
                                                                         <div
@@ -168,7 +168,7 @@
                                                                             <select formControlName="address_join"
                                                                                 [class]="addloc.controls.address_join.invalid && (addloc.controls.address_join.dirty || addloc.controls.address_join.touched || isPermit) ? 'form-control form-group-error' : 'form-control'">
                                                                                 <option value="" hidden>
-                                                                                    --Select-- 
+                                                                                    --Select--
                                                                                 </option>
                                                                                 <option value="{{category?.key}}"
                                                                                     *ngFor="let category of settings?.address_join">
@@ -187,13 +187,13 @@
                                                                 <div class="row">
                                                                     <div class="col-12 ">
                                                                         <div class="form-group">
-                                                                            <input type="text" id="Street"
+                                                                            <input type="text" id="street-two"
                                                                                 class="form-control"
                                                                                 formControlName="street_two"  [typeahead]="addressTwo" (input) ="searchAddress('locationtwo',i)"
                                                                                 [class]="addloc.controls.street_two.invalid && (addloc.controls.street_two.dirty || addloc.controls.street_two.touched || isPermit) ? 'form-control form-group-error' : 'form-control'"
                                                                                 class="form-control" required="">
                                                                             <label class="form-control-placeholder"
-                                                                                for="Street">Street two
+                                                                                for="street-two">Street two
                                                                             </label>
                                                                         </div>
                                                                         <div
@@ -283,7 +283,7 @@
 
                             </div>
 
-                            
+
                             <div class="bussiness-input">
                                 <div class="row">
                                     <div class="col-12">
@@ -346,7 +346,7 @@
                                 </div>
                             </div>
 
-                            
+
 
                             <div class="dd-textarea">
                                 <div class="row">
@@ -402,7 +402,7 @@
                                         <td>{{data?.application_daily_work_location?.layout_number}}
                                         </td>
                                         <td>
-                                            <p *ngIf="data?.address_id && data?.location_type == 1">                                                                                                
+                                            <p *ngIf="data?.address_id && data?.location_type == 1">
                                                     {{data?.address}}
 
                                             </p>

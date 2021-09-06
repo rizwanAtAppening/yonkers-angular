@@ -177,7 +177,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
 
 
     if (this.location_type == 1) {
-      
+      console.log(this.dwlForm, 'this.dwlForm')
       this.dwlData = {
         //address_id: this.dwlForm.value.address_id,
         address_id: this.addressId ? this.addressId : this.editValue.address_id,
@@ -562,7 +562,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   public permitNumber = new Subject<any>();
   public allPermit = []
   getPermitData() {
-    
+
     if (this.dwlForm.value.permit_number) {
       const data = {
         search_query: this.dwlForm.value.permit_number
@@ -583,7 +583,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
   }
 
   fillDataByPermit(value: any) {
-    
+
     console.log(value)
     this.allPermit.forEach(data => {
       if (value.item == data.permit_number) {
@@ -606,14 +606,14 @@ export class AddDailyWorkLoactionComponent implements OnInit {
                   }
                 })
               })
-  
+
             }
           }
           else {
             data.location.map((data2, i) => {
               this.addLocationControls.controls.map((value, j) => {
                 if (i == j) {
-  
+
                   value['controls'].street_one.setValue(data2.street_one)
                   value['controls'].street_two.setValue(data2.street_two)
                   value['controls'].address_join.setValue(data2.address_join)
@@ -626,7 +626,7 @@ export class AddDailyWorkLoactionComponent implements OnInit {
           this.selectedValue = data.address
           this.dwlForm.controls.address_id.setValue(data.address)
         }
-         
+
       }
     })
 

@@ -166,13 +166,14 @@
 
               <div class="term-use">
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-8">
                     <div class="trems">
                       <label [class]="agree.invalid && (isSubmit) ? 'container-btn form-error': 'container-btn'">
-                        I you agree.<a href="#" [class]="agree.invalid && (isSubmit) ? 'container-btn form-error': 'container-btn'"> Terms of Use &amp; Privacy Policy </a>
+                        I you agree.
                         <input type="checkbox" formControlName="agree" id="agree"
                           [class]="agree.invalid && (isSubmit) ? 'radio-class form-group-error' : 'radio-class'">
                         <span class="check-m"></span>
+                        <a href="#" [class]="agree.invalid && (isSubmit) ? 'container-btn-nopadding form-error': 'container-btn-nopadding'"> Terms of Use &amp; Privacy Policy </a>
                       </label>
                     </div>
                     <div class="account">
