@@ -1,9 +1,10 @@
-import { urls } from './url';
-import { staticUrls } from './staticUrls';
+import { urls } from "./url";
+import { staticUrls } from "./staticUrls";
 
 export const environment = {
   production: true,
-  host: 'http://139.59.40.62:8083',
+  // host: 'http://139.59.40.62:8083',
+  host: "https://yonkers.appening.xyz",
   ...urls,
-  ...staticUrls
+  ...staticUrls,
 };
